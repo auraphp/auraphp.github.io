@@ -24,6 +24,8 @@ Because the project is so young, there's not a lot in place yet. We do have a fu
 
 If you like, you can use the various libraries on their own.  The libraries available at this time are:
 
+- [Autoload](https://github.com/auraphp/aura.autoload) for a PSR-0 compliant autoloader
+
 - [DI](https://github.com/auraphp/aura.router) for dependency injection
 
 - [Signal](https://github.com/auraphp/aura.signal) for signal slots / event handling
