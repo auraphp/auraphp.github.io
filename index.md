@@ -62,7 +62,7 @@ Aura takes advantage of the features available in PHP 5.3+. This means formal na
 
 The primary goal of Aura is to provide high-quality well-tested library packages that can be used in any codebase. This means developers can use as much or as little of the project as necessary.
 
-Aura will have enough libraries to form a full-stack framework of its own. A system repository is be available to incorporate them all into a coherent framework for application development.
+Aura will have enough libraries to form a full-stack framework of its own. A system repository will be available to incorporate them all into a coherent framework for application development.
 
 ### Self-Containment
 
