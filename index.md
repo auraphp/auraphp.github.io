@@ -26,7 +26,7 @@ If you like, you can use the various libraries on their own.  The libraries avai
 
 - [Autoload](https://github.com/auraphp/aura.autoload) for a PSR-0 compliant autoloader
 
-- [DI](https://github.com/auraphp/aura.router) for dependency injection
+- [DI](https://github.com/auraphp/aura.di) for dependency injection
 
 - [Signal](https://github.com/auraphp/aura.signal) for signal slots / event handling
 
