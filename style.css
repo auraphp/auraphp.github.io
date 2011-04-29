@@ -1,7 +1,6 @@
-/* no styles yet */
 html,body,p,div{margin:0;padding:0;}
-body{line-height:1;background:#ddd;font-family:Helvetica;}
+body{line-height:1;background:#e3ded8;font-family:Helvetica;}
 #content{overflow:hidden;border-radius:20px;width:600px;padding:0 15px 15px;margin:15px auto;background:#fff;}
-h1,h2,h3,h4,h5{font-family:Georgia;color:#a0b0b0;}
+h1,h2,h3,h4,h5{font-family:Georgia;color:#003663;}
 p{padding:0 0 10px 0;line-height: 20px;letter-spacing:1px;color:#343434}
 li{margin:10px 0 10px}
