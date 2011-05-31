@@ -56,7 +56,7 @@ Aura will have enough libraries to form a full-stack framework of its own. A sys
 Goals and Standards
 -------------------
 
-These goals and standards are presented in relation to [Solar][].
+These goals and standards are presented in relation to [Solar](http://solarphp.com).
 
 ### PHP 5.3+
 
@@ -112,7 +112,7 @@ The packages available through the Aura project all conform to the Horde/Pear/So
 Conversion Priorities
 ---------------------
 
-These are in relation to converting [Solar][] packages and classes.
+These are in relation to converting [Solar](http://solarphp.com) packages and classes.
 
 - Concentrate on the dynamic dispatch cycle for web apps:  bootstrap, front controller, page controller, and view.
 
