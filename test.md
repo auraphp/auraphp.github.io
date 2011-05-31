@@ -3,9 +3,7 @@ title: The Aura Project for PHP
 layout: cloud
 ---
 
-
-The Aura Project for PHP
-========================
+<div class="grid_4">
 
 Introduction
 ------------
@@ -16,6 +14,9 @@ The project is still young and just getting underway. Please fork the various li
 
 Join our mailing list at <http://groups.google.com/group/auraphp>, or chat with us using IRC on Freenode at `#auraphp`.
 
+</div>
+
+<div class="grid_8">
 
 Getting Started
 ---------------
@@ -25,15 +26,10 @@ Because the project is so young, there's not a lot in place yet. We do have a fu
 If you like, you can use the various libraries on their own.  The libraries available at this time are:
 
 - [Autoload](https://github.com/auraphp/aura.autoload) for a PSR-0 compliant autoloader
-
 - [DI](https://github.com/auraphp/aura.di) for dependency injection
-
 - [Signal](https://github.com/auraphp/aura.signal) for signal slots / event handling
-
 - [Cli](https://github.com/auraphp/aura.signal) for tools to build command-line controllers
-
 - [Router](https://github.com/auraphp/aura.router) for web routing independent of any particular framework
-
 
 Background
 ----------
@@ -42,6 +38,22 @@ The Aura project is essentially the second major version of [Solar][], reimagine
 
   [Solar]: http://solarphp.com
 
+</div>
+
+<div class="clear">/div>
+
+<div class="grid_4">
+
+Libraries First, Framework Second
+---------------------------------
+
+The primary goal of Aura is to provide high-quality well-tested library packages that can be used in any codebase. This means developers can use as much or as little of the project as necessary.
+
+Aura will have enough libraries to form a full-stack framework of its own. A system repository will be available to incorporate them all into a coherent framework for application development.
+
+</div>
+
+<div class="grid_8">
 
 Goals and Standards
 -------------------
@@ -58,19 +70,20 @@ Aura takes advantage of the features available in PHP 5.3+. This means formal na
 
 - Classes do not get sub-namespaces.  E.g., "Exception" class cannot have an "Exception\*" or "exception\*" sub-namespace. Use sub-classes ("Exception_*") or put the class in the sub-namespace so that they are all part of the same sub-namespace
 
-### Libraries First, Framework Second
-
-The primary goal of Aura is to provide high-quality well-tested library packages that can be used in any codebase. This means developers can use as much or as little of the project as necessary.
-
-Aura will have enough libraries to form a full-stack framework of its own. A system repository will be available to incorporate them all into a coherent framework for application development.
-
 ### Self-Containment
 
 In line with the goal of "libraries first", all packages are as self-contained as possible and are independently downloadable.  In some cases this level of independence may lead to some class duplication between packages. In other cases, it may lead to data-transfer objects being used to carry information across package boundaries, so that the package can be used with non-Aura codebases.
 
 Sometimes complete self-containment is not possible.  In these cases, the number of external packages dependencies is kept as small as possible.  Packages with external dependencies have a `DEPENDS` file noting the other packages needed.
 
-### Coding Standards
+</div>
+
+<div class="clear">/div>
+
+<div class="grid_4">
+
+Coding Standards
+----------------
 
 The packages available through the Aura project all conform to the Horde/Pear/Solar/Zend [coding standards](http://pear.php.net/manual/en/coding-standards.php).  In particular:
 
@@ -94,6 +107,9 @@ The packages available through the Aura project all conform to the Horde/Pear/So
 
 - Windows Vista/7 support as-we-go, so that Windows users are part of the community from the very beginning
 
+</div>
+
+<div class="grid_8">
 
 Conversion Priorities
 ---------------------
@@ -113,3 +129,5 @@ These are in relation to converting [Solar][] packages and classes.
 - Make it so that CLI and web controllers share a common vocabulary and execution pattern.
 
 - Use PHPUnit for testing in Aura. Write tests as we go.  Aim for 100% coverage with each commit.
+
+</div>
