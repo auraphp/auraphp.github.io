@@ -38,7 +38,7 @@ The Aura project is essentially the second major version of [Solar](http://solar
 
 </div>
 
-<div class="clear" markdown="1"></div>
+<div class="clear">&nbsp;</div>
 
 <div class="grid_4" markdown="1">
 
@@ -84,7 +84,7 @@ Sometimes complete self-containment is not possible.  In these cases, the number
 
 </div>
 
-<div class="clear" markdown="1"></div>
+<div class="clear">&nbsp;</div>
 
 <div class="grid_4" markdown="1">
 
