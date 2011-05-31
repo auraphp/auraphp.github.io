@@ -49,6 +49,16 @@ The primary goal of Aura is to provide high-quality well-tested library packages
 
 Aura will have enough libraries to form a full-stack framework of its own. A system repository will be available to incorporate them all into a coherent framework for application development.
 
+Coding Standards
+----------------
+
+The packages available through the Aura project all conform to the Horde/Pear/Solar/Zend [coding standards](http://pear.php.net/manual/en/coding-standards.php).  In particular:
+
+- No use of public properties, unless they are magic via __get()/__set()
+- No use of underscore with protected elements
+- Retain the Solar vocabulary
+
+
 </div>
 
 <div class="grid_8" markdown="1">
@@ -63,9 +73,7 @@ These goals and standards are presented in relation to [Solar](http://solarphp.c
 Aura takes advantage of the features available in PHP 5.3+. This means formal namespaces, anonymous functions and closures, late static binding, and other features not available in PHP 5.2.x and earlier.  In particular:
 
 - Use a top-level vendor name ("aura") and second-level package name ("di", "router", "web", "cli", etc);
-
 - Sub-namespaces are allowed, but they are not sub-packages, and are not distributed separately
-
 - Classes do not get sub-namespaces.  E.g., "Exception" class cannot have an "Exception\*" or "exception\*" sub-namespace. Use sub-classes ("Exception_*") or put the class in the sub-namespace so that they are all part of the same sub-namespace
 
 ### Self-Containment
@@ -80,29 +88,14 @@ Sometimes complete self-containment is not possible.  In these cases, the number
 
 <div class="grid_4" markdown="1">
 
-Coding Standards
-----------------
-
-The packages available through the Aura project all conform to the Horde/Pear/Solar/Zend [coding standards](http://pear.php.net/manual/en/coding-standards.php).  In particular:
-
-- No use of public properties, unless they are magic via __get()/__set()
-
-- No use of underscore with protected elements
-
-- Retain the Solar vocabulary
-
-### Techniques
+Techniques
+----------
 
 - Use dependency injection proper instead of the service-locator Solar::dependency() system; the basis for this exists at [https://github.com/auraphp/aura.di](https://github.com/auraphp/aura.di)
-
 - Find effective and reasonable uses for closures/anonymous functions, primarily for object creation within the dependency injector service definitions
-
 - More use of explicit mapping, as vs automatic searching of directory stacks.
-
 - Compose functionality as much as possible through dependency injection, instead of through inheritance and base classes
-
 - Use factories as object creators in general, rather than as adapter creators in specific
-
 - Windows Vista/7 support as-we-go, so that Windows users are part of the community from the very beginning
 
 </div>
@@ -115,17 +108,11 @@ Conversion Priorities
 These are in relation to converting [Solar](http://solarphp.com) packages and classes.
 
 - Concentrate on the dynamic dispatch cycle for web apps:  bootstrap, front controller, page controller, and view.
-
 - Secondary or corollary concentration is on CLI and support classes.
-
 - Leave database and model work for much later (if ever).
-
 - Make it possible to have CLI controllers on a per-package basis.
-
 - Localization should be at the package level, not class-level.
-
 - Make it so that CLI and web controllers share a common vocabulary and execution pattern.
-
 - Use PHPUnit for testing in Aura. Write tests as we go.  Aim for 100% coverage with each commit.
 
 </div>
