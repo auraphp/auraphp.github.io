@@ -3,7 +3,7 @@ title: The Aura Project for PHP
 layout: cloud
 ---
 
-<div class="grid_4">
+<div class="grid_4" markdown="1">
 
 Introduction
 ------------
@@ -16,7 +16,7 @@ Join our mailing list at <http://groups.google.com/group/auraphp>, or chat with 
 
 </div>
 
-<div class="grid_8">
+<div class="grid_8" markdown="1">
 
 Getting Started
 ---------------
@@ -42,7 +42,7 @@ The Aura project is essentially the second major version of [Solar][], reimagine
 
 <div class="clear">/div>
 
-<div class="grid_4">
+<div class="grid_4" markdown="1">
 
 Libraries First, Framework Second
 ---------------------------------
@@ -53,7 +53,7 @@ Aura will have enough libraries to form a full-stack framework of its own. A sys
 
 </div>
 
-<div class="grid_8">
+<div class="grid_8" markdown="1">
 
 Goals and Standards
 -------------------
@@ -80,7 +80,7 @@ Sometimes complete self-containment is not possible.  In these cases, the number
 
 <div class="clear">/div>
 
-<div class="grid_4">
+<div class="grid_4" markdown="1">
 
 Coding Standards
 ----------------
@@ -109,7 +109,7 @@ The packages available through the Aura project all conform to the Horde/Pear/So
 
 </div>
 
-<div class="grid_8">
+<div class="grid_8" markdown="1">
 
 Conversion Priorities
 ---------------------
