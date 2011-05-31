@@ -34,9 +34,7 @@ If you like, you can use the various libraries on their own.  The libraries avai
 Background
 ----------
 
-The Aura project is essentially the second major version of [Solar][], reimagined and rewritten as a library collection with dependency injection instead of a framework with service location.  The name change from Solar to Aura is to reduce confusion with the Apache Solr project.
-
-  [Solar]: http://solarphp.com
+The Aura project is essentially the second major version of [Solar](http://solarphp.com), reimagined and rewritten as a library collection with dependency injection instead of a framework with service location.  The name change from Solar to Aura is to reduce confusion with the Apache Solr project.
 
 </div>
 
@@ -58,7 +56,7 @@ Aura will have enough libraries to form a full-stack framework of its own. A sys
 Goals and Standards
 -------------------
 
-These goals and standards are presented in relation to [Solar][].
+These goals and standards are presented in relation to [Solar](http://solarphp.com).
 
 ### PHP 5.3+
 
@@ -114,7 +112,7 @@ The packages available through the Aura project all conform to the Horde/Pear/So
 Conversion Priorities
 ---------------------
 
-These are in relation to converting [Solar][] packages and classes.
+These are in relation to converting [Solar](http://solarphp.com) packages and classes.
 
 - Concentrate on the dynamic dispatch cycle for web apps:  bootstrap, front controller, page controller, and view.
 
