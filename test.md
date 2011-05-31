@@ -12,7 +12,7 @@ In a world of monolithic frameworks, the Aura project provides independent libra
 
 The project is still young and just getting underway. Please fork the various library package repositories or the system skeleton repository, and help us keep high-quality libraries available and maintained for PHP 5.3+.
 
-Join our mailing list at <http://groups.google.com/group/auraphp>, or chat with us using IRC on Freenode at `#auraphp`.
+Join our mailing list at [http://groups.google.com/group/auraphp](http://groups.google.com/group/auraphp), or chat with us using IRC on Freenode at `#auraphp`.
 
 </div>
 
@@ -95,7 +95,7 @@ The packages available through the Aura project all conform to the Horde/Pear/So
 
 ### Techniques
 
-- Use dependency injection proper instead of the service-locator Solar::dependency() system; the basis for this exists at <https://github.com/auraphp/aura.di>
+- Use dependency injection proper instead of the service-locator Solar::dependency() system; the basis for this exists at [https://github.com/auraphp/aura.di](https://github.com/auraphp/aura.di)
 
 - Find effective and reasonable uses for closures/anonymous functions, primarily for object creation within the dependency injector service definitions
 
