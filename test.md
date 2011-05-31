@@ -38,7 +38,7 @@ The Aura project is essentially the second major version of [Solar](http://solar
 
 </div>
 
-<div class="clear" markdown="1"></div>
+<div class="clear"></div>
 
 <div class="grid_4" markdown="1">
 
