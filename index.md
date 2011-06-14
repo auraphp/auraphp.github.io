@@ -25,11 +25,22 @@ Because the project is so young, there's not a lot in place yet. We do have a fu
 
 If you like, you can use the various libraries on their own.  The libraries available at this time are:
 
-- [Autoload](https://github.com/auraphp/aura.autoload) for a PSR-0 compliant autoloader
-- [DI](https://github.com/auraphp/aura.di) for dependency injection
-- [Signal](https://github.com/auraphp/aura.signal) for signal slots / event handling
-- [Cli](https://github.com/auraphp/aura.signal) for tools to build command-line controllers
-- [Router](https://github.com/auraphp/aura.router) for web routing independent of any particular framework
+- [Autoload](https://github.com/auraphp/Aura.Autoload) for a PSR-0 compliant autoloader
+
+- [Cli](https://github.com/auraphp/Aura.Cli) for tools to build command-line controllers
+
+- [Di](https://github.com/auraphp/Aura.Di) for dependency injection
+
+- [Http](https://github.com/auraphp/Aura.Http) for HTTP response messages
+
+- [Router](https://github.com/auraphp/Aura.Router) for web routing independent of any particular framework
+
+- [Signal](https://github.com/auraphp/Aura.Signal) for signal slots / event handling
+
+- [Web](https://github.com/auraphp/Aura.Web) for web page controllers
+
+- [View](https://github.com/auraphp/Aura.View) for templates, two-step views, and view helpers
+
 
 Background
 ----------
@@ -54,9 +65,9 @@ Coding Standards
 
 The packages available through the Aura project all conform to the Horde/Pear/Solar/Zend [coding standards](http://pear.php.net/manual/en/coding-standards.php).  In particular:
 
-- No use of public properties, unless they are magic via __get()/__set()
+- No use of public properties, unless they are magic via `__get()/__set()`
 - No use of underscore with protected elements
-- Retain the Solar vocabulary
+- Retain the Solar vocabulary for [methods](http://solarphp.com/manual/appendix-standards.naming.methods)
 
 
 </div>
@@ -72,9 +83,10 @@ These goals and standards are presented in relation to [Solar](http://solarphp.c
 
 Aura takes advantage of the features available in PHP 5.3+. This means formal namespaces, anonymous functions and closures, late static binding, and other features not available in PHP 5.2.x and earlier.  In particular:
 
-- Use a top-level vendor name ("aura") and second-level package name ("di", "router", "web", "cli", etc);
+- Use a top-level vendor name ("Aura") and second-level package name ("Di", "Router", "Web", "Cli", etc);
+
 - Sub-namespaces are allowed, but they are not sub-packages, and are not distributed separately
-- Classes do not get sub-namespaces.  E.g., "Exception" class cannot have an "Exception\*" or "exception\*" sub-namespace. Use sub-classes ("Exception_*") or put the class in the sub-namespace so that they are all part of the same sub-namespace
+
 
 ### Self-Containment
 
@@ -92,10 +104,15 @@ Techniques
 ----------
 
 - Use dependency injection proper instead of the service-locator Solar::dependency() system; the basis for this exists at [https://github.com/auraphp/aura.di](https://github.com/auraphp/aura.di)
+
 - Find effective and reasonable uses for closures/anonymous functions, primarily for object creation within the dependency injector service definitions
+
 - More use of explicit mapping, as vs automatic searching of directory stacks.
+
 - Compose functionality as much as possible through dependency injection, instead of through inheritance and base classes
+
 - Use factories as object creators in general, rather than as adapter creators in specific
+
 - Windows Vista/7 support as-we-go, so that Windows users are part of the community from the very beginning
 
 </div>
@@ -107,12 +124,23 @@ Conversion Priorities
 
 These are in relation to converting [Solar](http://solarphp.com) packages and classes.
 
-- Concentrate on the dynamic dispatch cycle for web apps:  bootstrap, front controller, page controller, and view.
-- Secondary or corollary concentration is on CLI and support classes.
-- Leave database and model work for much later (if ever).
-- Make it possible to have CLI controllers on a per-package basis.
+### Remaining
+
 - Localization should be at the package level, not class-level.
+
+- Leave database and model work for much later (if ever).
+
+### Completed
+
+- Concentrate on the dynamic dispatch cycle for web apps:  bootstrap, front controller, page controller, and view.
+
+- Secondary or corollary concentration is on CLI and support classes.
+
+- Make it possible to have CLI controllers on a per-package basis.
+
 - Make it so that CLI and web controllers share a common vocabulary and execution pattern.
+
 - Use PHPUnit for testing in Aura. Write tests as we go.  Aim for 100% coverage with each commit.
+
 
 </div>
