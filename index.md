@@ -103,7 +103,7 @@ Sometimes complete self-containment is not possible.  In these cases, the number
 Techniques
 ----------
 
-- Use dependency injection proper instead of the service-locator Solar::dependency() system; the basis for this exists at [https://github.com/auraphp/aura.di](https://github.com/auraphp/aura.di)
+- Use dependency injection proper instead of the service-locator Solar::dependency() system; the basis for this exists at [https://github.com/auraphp/Aura.Di](https://github.com/auraphp/Aura.Di)
 
 - Find effective and reasonable uses for closures/anonymous functions, primarily for object creation within the dependency injector service definitions
 
