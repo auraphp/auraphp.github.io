@@ -41,6 +41,7 @@ If you like, you can use the various libraries on their own.  The libraries avai
 
 - [View](https://github.com/auraphp/Aura.View) for templates, two-step views, and view helpers
 
+- [Sql](https://github.com/auraphp/Aura.Sql) for connecting with Relational Database.
 
 Background
 ----------
@@ -127,8 +128,6 @@ These are in relation to converting [Solar](http://solarphp.com) packages and cl
 ### Remaining
 
 - Localization should be at the package level, not class-level.
-
-- Leave database and model work for much later (if ever).
 
 ### Completed
 
