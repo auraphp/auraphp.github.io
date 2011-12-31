@@ -8,9 +8,9 @@ layout: cloud
 Introduction
 ------------
 
-In a world of monolithic frameworks, the Aura project provides independent library packages for PHP 5.3+.  These packages can be used alone, in concert with each other, or combined into a full-stack framework of their own.
+In a world of monolithic frameworks, the Aura project provides independent library packages for PHP 5.4+.  These packages can be used alone, in concert with each other, or combined into a full-stack framework of their own.
 
-The project is still young and just getting underway. Please fork the various library package repositories or the system skeleton repository, and help us keep high-quality libraries available and maintained for PHP 5.3+.
+The project is still young and just getting underway. Please fork the various library package repositories or the system skeleton repository, and help us keep high-quality libraries available and maintained for PHP 5.4+.
 
 Join our mailing list at [http://groups.google.com/group/auraphp](http://groups.google.com/group/auraphp), or chat with us using IRC on Freenode at `#auraphp`.
 
@@ -33,13 +33,15 @@ If you like, you can use the various libraries on their own.  The libraries avai
 
 - [Http](https://github.com/auraphp/Aura.Http) for HTTP response messages
 
+- [Marshal](https://github.com/auraphp/Aura.Marshal) for non-ORM data marshalling
+
 - [Router](https://github.com/auraphp/Aura.Router) for web routing independent of any particular framework
 
 - [Signal](https://github.com/auraphp/Aura.Signal) for signal slots / event handling
 
-- [Web](https://github.com/auraphp/Aura.Web) for web page controllers
-
 - [View](https://github.com/auraphp/Aura.View) for templates, two-step views, and view helpers
+
+- [Web](https://github.com/auraphp/Aura.Web) for web page controllers
 
 
 Background
@@ -56,7 +58,7 @@ The Aura project is essentially the second major version of [Solar](http://solar
 Libraries First, Framework Second
 ---------------------------------
 
-The primary goal of Aura is to provide high-quality well-tested library packages that can be used in any codebase. This means developers can use as much or as little of the project as necessary.
+The primary goal of Aura is to provide high-quality well-tested independent library packages that can be used in any codebase. This means developers can use as much or as little of the project as necessary.
 
 Aura will have enough libraries to form a full-stack framework of its own. A system repository will be available to incorporate them all into a coherent framework for application development.
 
@@ -103,7 +105,7 @@ Sometimes complete self-containment is not possible.  In these cases, the number
 Techniques
 ----------
 
-- Use dependency injection proper instead of the service-locator Solar::dependency() system; the basis for this exists at [https://github.com/auraphp/aura.di](https://github.com/auraphp/aura.di)
+- Use dependency injection proper instead of the service-locator `Solar::dependency()` system; the basis for this exists at [https://github.com/auraphp/Aura.Di](https://github.com/auraphp/Aura.Di)
 
 - Find effective and reasonable uses for closures/anonymous functions, primarily for object creation within the dependency injector service definitions
 
@@ -129,6 +131,10 @@ These are in relation to converting [Solar](http://solarphp.com) packages and cl
 - Localization should be at the package level, not class-level.
 
 - Leave database and model work for much later (if ever).
+
+- Data filtering tools
+
+- Form generation tools
 
 ### Completed
 
