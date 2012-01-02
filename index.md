@@ -6,11 +6,13 @@ layout: cloud
 <div class="grid_4" markdown="1">
 
 Introduction
-------------
+============
 
-In a world of monolithic frameworks, the Aura project provides independent library packages for PHP 5.4+.  These packages can be used alone, in concert with each other, or combined into a full-stack framework of their own.
+The Aura project provides independent library packages for PHP 5.4+.  These packages can be used alone, in concert with each other, or combined into a full-stack framework of their own.
 
-The project is still young and just getting underway. Please fork the various library package repositories or the system skeleton repository, and help us keep high-quality libraries available and maintained for PHP 5.4+.
+The Aura project is essentially the second major version of [Solar](http://solarphp.com), reimagined and rewritten as a library collection with dependency injection instead of a framework with service location.  (The name change from Solar to Aura is to reduce confusion with the Apache Solr project.)
+
+The project is becoming mature, and has just had a set of 1.0.0-beta1 package releases. Please fork the various library package repositories or the system skeleton repository, and help us keep high-quality libraries available and maintained for PHP 5.4+.
 
 Join our mailing list at [http://groups.google.com/group/auraphp](http://groups.google.com/group/auraphp), or chat with us using IRC on Freenode at `#auraphp`.
 
@@ -18,42 +20,34 @@ Join our mailing list at [http://groups.google.com/group/auraphp](http://groups.
 
 <div class="grid_8" markdown="1">
 
-Getting Started
----------------
+Available Packages
+==================
 
-Because the project is so young, there's not a lot in place yet. We do have a full system skeleton for developing libraries; check out the [System](https://github.com/auraphp/system) project for more details.
+The Aura project centers around a collection of independent packages. Each package is self-contained and has only the things it needs for its core purpose.  None of the packages depends on any of the other; you can use each of the packages on its own:
 
-If you like, you can use the various libraries on their own.  The libraries available at this time are:
+- **[Autoload](https://github.com/auraphp/Aura.Autoload):** A PSR-0 compliant autoloader, ready for SplClassloader.
 
-- [Autoload](https://github.com/auraphp/Aura.Autoload) for a PSR-0 compliant autoloader
+- **[Cli](https://github.com/auraphp/Aura.Cli):** Tools to build command-line controllers, including a CLI context, options management, and input/ouput handlers
 
-- [Cli](https://github.com/auraphp/Aura.Cli) for tools to build command-line controllers
+- **[Di](https://github.com/auraphp/Aura.Di):** Dependency injection container.
 
-- [Di](https://github.com/auraphp/Aura.Di) for dependency injection
+- **[Http](https://github.com/auraphp/Aura.Http):** Tools to build HTTP response messages
 
-- [Http](https://github.com/auraphp/Aura.Http) for HTTP response messages
+- **[Marshal](https://github.com/auraphp/Aura.Marshal):** Marshals data from any data source into domain objects, including relationships between those object.
 
-- [Marshal](https://github.com/auraphp/Aura.Marshal) for non-ORM data marshalling
+- **[Router](https://github.com/auraphp/Aura.Router):** A web router. 
 
-- [Router](https://github.com/auraphp/Aura.Router) for web routing independent of any particular framework
+- **[Signal](https://github.com/auraphp/Aura.Signal):** A signal slots / event handler implementation.
 
-- [Signal](https://github.com/auraphp/Aura.Signal) for signal slots / event handling
+- **[View](https://github.com/auraphp/Aura.View):** Template views, two-step views, and view helpers.
 
-- [View](https://github.com/auraphp/Aura.View) for templates, two-step views, and view helpers
+- **[Web](https://github.com/auraphp/Aura.Web):** A bare-bones web page controller system, including pre- and post-hooks, a response transfer, and context discovery.
 
-- [Web](https://github.com/auraphp/Aura.Web) for web page controllers
+The Aura project also includes a [system](https://github.com/auraphp/system) that composes the independent packages into a full-stack framework.
 
 
-Background
-----------
-
-The Aura project is essentially the second major version of [Solar](http://solarphp.com), reimagined and rewritten as a library collection with dependency injection instead of a framework with service location.  The name change from Solar to Aura is to reduce confusion with the Apache Solr project.
-
-</div>
-
-<div class="clear">&nbsp;</div>
-
-<div class="grid_4" markdown="1">
+Goals and Standards
+===================
 
 Libraries First, Framework Second
 ---------------------------------
@@ -61,6 +55,14 @@ Libraries First, Framework Second
 The primary goal of Aura is to provide high-quality well-tested independent library packages that can be used in any codebase. This means developers can use as much or as little of the project as necessary.
 
 Aura will have enough libraries to form a full-stack framework of its own. A system repository will be available to incorporate them all into a coherent framework for application development.
+
+In line with the goal of "libraries first", all packages are as self-contained as possible and are independently downloadable.  In some cases this level of independence may lead to some class duplication between packages. In other cases, it may lead to data-transfer objects being used to carry information across package boundaries, so that the package can be used with non-Aura codebases.
+
+High-Quality, Well-Tested
+-------------------------
+
+All packages are to have 100% test coverage.
+
 
 Coding Standards
 ----------------
@@ -71,36 +73,12 @@ The packages available through the Aura project all conform to the Horde/Pear/So
 - No use of underscore with protected elements
 - Retain the Solar vocabulary for [methods](http://solarphp.com/manual/appendix-standards.naming.methods)
 
-
-</div>
-
-<div class="grid_8" markdown="1">
-
-Goals and Standards
--------------------
-
 These goals and standards are presented in relation to [Solar](http://solarphp.com).
 
-### PHP 5.3+
+PHP 5.4+
+--------
 
-Aura takes advantage of the features available in PHP 5.3+. This means formal namespaces, anonymous functions and closures, late static binding, and other features not available in PHP 5.2.x and earlier.  In particular:
-
-- Use a top-level vendor name ("Aura") and second-level package name ("Di", "Router", "Web", "Cli", etc);
-
-- Sub-namespaces are allowed, but they are not sub-packages, and are not distributed separately
-
-
-### Self-Containment
-
-In line with the goal of "libraries first", all packages are as self-contained as possible and are independently downloadable.  In some cases this level of independence may lead to some class duplication between packages. In other cases, it may lead to data-transfer objects being used to carry information across package boundaries, so that the package can be used with non-Aura codebases.
-
-Sometimes complete self-containment is not possible.  In these cases, the number of external packages dependencies is kept as small as possible.  Packages with external dependencies have a `DEPENDS` file noting the other packages needed.
-
-</div>
-
-<div class="clear">&nbsp;</div>
-
-<div class="grid_4" markdown="1">
+Aura is intended to take advantage of the features available in PHP 5.4+ (as compared to PHP 5.2.x and prior). This means formal namespaces, anonymous functions and closures, late static binding, short array syntax, traits, and other features not available in PHP 5.2.x and earlier.
 
 Techniques
 ----------
@@ -117,12 +95,9 @@ Techniques
 
 - Windows Vista/7 support as-we-go, so that Windows users are part of the community from the very beginning
 
-</div>
-
-<div class="grid_8" markdown="1">
 
 Conversion Priorities
----------------------
+=====================
 
 These are in relation to converting [Solar](http://solarphp.com) packages and classes.
 
@@ -135,18 +110,6 @@ These are in relation to converting [Solar](http://solarphp.com) packages and cl
 - Data filtering tools
 
 - Form generation tools
-
-### Completed
-
-- Concentrate on the dynamic dispatch cycle for web apps:  bootstrap, front controller, page controller, and view.
-
-- Secondary or corollary concentration is on CLI and support classes.
-
-- Make it possible to have CLI controllers on a per-package basis.
-
-- Make it so that CLI and web controllers share a common vocabulary and execution pattern.
-
-- Use PHPUnit for testing in Aura. Write tests as we go.  Aim for 100% coverage with each commit.
 
 
 </div>
