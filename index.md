@@ -39,6 +39,8 @@ The Aura project centers around a collection of independent packages. Each packa
 
 - **[Signal](https://github.com/auraphp/Aura.Signal):** A signal slots / event handler implementation.
 
+- **[Sql](https://github.com/auraphp/Aura.Sql):** SQL database connection and query tools.
+
 - **[View](https://github.com/auraphp/Aura.View):** Template views, two-step views, and view helpers.
 
 - **[Web](https://github.com/auraphp/Aura.Web):** A bare-bones web page controller system, including pre- and post-hooks, a response transfer, and context discovery.
@@ -82,6 +84,7 @@ Aura is intended to take advantage of the features available in PHP 5.4+ (as com
 
 Techniques
 ----------
+
 
 - Use dependency injection proper instead of the service-locator `Solar::dependency()` system; the basis for this exists at [https://github.com/auraphp/Aura.Di](https://github.com/auraphp/Aura.Di)
 
