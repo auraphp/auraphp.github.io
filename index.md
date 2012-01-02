@@ -25,25 +25,25 @@ Available Packages
 
 The Aura project centers around a collection of independent packages. Each package is self-contained and has only the things it needs for its core purpose.  None of the packages depends on any of the other; you can use each of the packages on its own:
 
-- **[Autoload](https://github.com/auraphp/Aura.Autoload):** A PSR-0 compliant autoloader, ready for SplClassloader.
+- **[Autoload](http://auraphp.github.com/Aura.Autoload):** A PSR-0 compliant autoloader, ready for SplClassloader.
 
-- **[Cli](https://github.com/auraphp/Aura.Cli):** Tools to build command-line controllers, including a CLI context, options management, and input/ouput handlers
+- **[Cli](http://auraphp.github.com/Aura.Cli):** Tools to build command-line controllers, including a CLI context, options management, and input/ouput handlers
 
-- **[Di](https://github.com/auraphp/Aura.Di):** Dependency injection container.
+- **[Di](http://auraphp.github.com/Aura.Di):** Dependency injection container.
 
-- **[Http](https://github.com/auraphp/Aura.Http):** Tools to build HTTP response messages
+- **[Http](http://auraphp.github.com/Aura.Http):** Tools to build HTTP response messages
 
-- **[Marshal](https://github.com/auraphp/Aura.Marshal):** Marshals data from any data source into domain objects, including relationships between those object.
+- **[Marshal](http://auraphp.github.com/Aura.Marshal):** Marshals data from any data source into domain objects, including relationships between those object.
 
-- **[Router](https://github.com/auraphp/Aura.Router):** A web router. 
+- **[Router](http://auraphp.github.com/Aura.Router):** A web router. 
 
-- **[Signal](https://github.com/auraphp/Aura.Signal):** A signal slots / event handler implementation.
+- **[Signal](http://auraphp.github.com/Aura.Signal):** A signal slots / event handler implementation.
 
-- **[Sql](https://github.com/auraphp/Aura.Sql):** SQL database connection and query tools.
+- **[Sql](http://auraphp.github.com/Aura.Sql):** SQL database connection and query tools.
 
-- **[View](https://github.com/auraphp/Aura.View):** Template views, two-step views, and view helpers.
+- **[View](http://auraphp.github.com/Aura.View):** Template views, two-step views, and view helpers.
 
-- **[Web](https://github.com/auraphp/Aura.Web):** A bare-bones web page controller system, including pre- and post-hooks, a response transfer, and context discovery.
+- **[Web](http://auraphp.github.com/Aura.Web):** A bare-bones web page controller system, including pre- and post-hooks, a response transfer, and context discovery.
 
 The Aura project also includes a [system](https://github.com/auraphp/system) that composes the independent packages into a full-stack framework.
 
