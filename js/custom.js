@@ -3,7 +3,8 @@ $( function() {
         var str = '';
         data.repositories.reverse();
         for( i = 0; i < data.repositories.length; i++ ) {
-            if( data.repositories[i].name != 'auraphp.github.com' ) {
+            var repo = data.repositories[i].name;
+            if( repo.match('Aura.') ) {
                 str = str + '<li><a href="/'+ data.repositories[i].name +'" title="'+ data.repositories[i].description +'">' + data.repositories[i].name + '</a></li>';
             }
         }
