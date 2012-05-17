@@ -1,0 +1,7 @@
+theme :
+  name : mark-reid
+  description : "A short description"
+  version : "0.0.1"
+  author : 
+    name : Mark Reid
+    website : http://mark.reid.name

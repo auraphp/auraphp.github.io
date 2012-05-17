@@ -1,0 +1,9 @@
+theme :
+  name : tom
+  description : "A short description"
+  version : "0.0.1"
+  author : 
+    name : Tom Preston-Werner
+    website : http://tom.preston-werner.com
+  
+   

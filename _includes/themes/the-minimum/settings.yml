@@ -1,0 +1,7 @@
+theme :
+  name : the-minimum
+  description : "A short description"
+  version : "0.0.1"
+  author : 
+    name : Yuya Saito
+    website : http://studiomohawk.github.com/jekyll-bootstrap/
