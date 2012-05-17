@@ -4,14 +4,13 @@ title: Welcome to Blog of Aura Project for PHP 5.4!
 ---
 {% include JB/setup %}
 
-Welcome to the blog for Aura Project for PHP 5.4.
+Here you will see latest news, experiments on Aura and PHP.
 
-We will shortly update this
+
+Some of the recent posts,
 
 <ul class="posts">
   {% for post in site.posts %}
     <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></li>
   {% endfor %}
 </ul>
-
-Thanks to http://github.com/plusjade/jekyll-bootstrap for making this happen

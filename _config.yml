@@ -1,6 +1,6 @@
 # This is the default format. 
 # For more see: https://github.com/mojombo/jekyll/wiki/Permalinks
-permalink: /:categories/:year/:month/:day/:title 
+permalink: /:year/:month/:day/:title 
 
 exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md"]
 auto: true
@@ -9,14 +9,14 @@ pygments: true
 # Themes are encouraged to use these universal variables 
 # so be sure to set them if your theme uses them.
 #
-title : Aura Library for PHP 5.4
+title : Aura Project for PHP
 tagline: Site Tagline
 author :
-  name : Name Lastname
-  email : auraphp@googlegroups.com
+  name : Aura
+  email : 
   github : auraphp
   twitter : auraphp
-  feedburner : feedname
+  feedburner : auraphp
 
 # The production_url is only used when full-domain names are needed
 # such as sitemap.txt 
@@ -81,7 +81,7 @@ JB :
   comments :
     provider : disqus
     disqus :
-#      short_name : jekyllbootstrap
+      short_name : auraphp
 #    livefyre :
 #      site_id : 123
 #    intensedebate :

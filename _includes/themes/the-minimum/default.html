@@ -18,14 +18,12 @@
 	<header class="the-header">
 		<div class="unit-head">
 			<div class="unit-inner unit-head-inner">
-				<p class="logo"><a href="{{ HOME_PATH }}">{{ site.title }}</a></p>
+				<p class="logo"><a href="{{ HOME_PATH }}/blog">{{ site.title }}</a></p>
 				<nav class="nav-global">
 					<ul>
 						{% assign pages_list = site.pages %}
 						{% assign group = 'navigation' %}
 						{% include JB/pages_list %}
-						<li class="forkme"><iframe src="http://markdotto.github.com/github-buttons/github-btn.html?user=plusjade&repo=jekyll-bootstrap&type=fork&count=true"
-								allowtransparency="true" frameborder="0" scrolling="0" width="95px" height="20px"></iframe></li>
 					</ul>
 				</nav>
 			</div><!-- unit-inner -->
@@ -46,14 +44,14 @@
 				<div class="misc vcard">
 					<h4>about</h4>
 					<ul>
-						<li class="contact"><address><span class="author fn n">{{ site.author.name }}</span> - <span class="fn email">{{ site.author.email }}</span></address></li>
-						<li class="github"><a href="http://github.com/{{ site.author.github }}/" rel="me">github.com/{{ site.author.github }}</a></li>
+						<li class="contact"><address><span class="author fn n"><a href="{{ HOME_PATH }}">{{ site.author.name }}</a></span> - <span class="fn email">{{ site.author.email }}</span></address></li>
+						<li class="github"><a href="https://github.com/{{ site.author.github }}/" rel="me">github.com/{{ site.author.github }}</a></li>
 						<li class="twitter"><a href="http://twitter.com/{{ site.author.twitter }}/" rel="me">twitter.com/{{ site.author.twitter }}</a></li>
 						<li class="rss"><a href="http://feeds.feedburner.com/{{ site.author.feedname }}">Subscribe to RSS Feed</a></li>
 					</ul>
 				</div><!-- misc -->
 				<p class="licence">
-					Theme: <a href="http://layouts-the.me">the_minimum</a> based on <a href="http://jekyllbootstrap.com/">Jekyll-bootstrap</a>.<br>
+					Theme: <a href="http://www.layouts-the.me">the_minimum</a> based on <a href="http://jekyllbootstrap.com/">Jekyll-bootstrap</a>.<br>
 					Powered by <a href="https://github.com/mojombo/jekyll">Jekyll</a>.
 				</p>
 			</div><!-- unit-foot-inner -->
