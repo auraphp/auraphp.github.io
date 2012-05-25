@@ -1,6 +1,3 @@
-
-<!-- saved from url=(0086)https://raw.github.com/gist/1455726/316a4c21d444221f9b3c4a67a9b270b88c82952a/oembed.rb -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body><pre style="word-wrap: break-word; white-space: pre-wrap;">##
 # OEmbed Liquid Tag for Jekyll
 #   - requires https://github.com/judofyr/ruby-oembed/
 #
@@ -51,4 +48,3 @@ module Jekyll
 end
 
 Liquid::Template.register_tag('oembed', Jekyll::OEmbed)
-</pre></body></html>
