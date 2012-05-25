@@ -1,3 +1,4 @@
+##
 # OEmbed Liquid Tag for Jekyll
 #   - requires https://github.com/judofyr/ruby-oembed/
 #
@@ -25,7 +26,7 @@ require 'uri'
 ::OEmbed::Providers.register_fallback(::OEmbed::ProviderDiscovery, ::OEmbed::Providers::Embedly, ::OEmbed::Providers::OohEmbed)
 
 module Jekyll
-  class OEmbed &lt; Liquid::Tag
+  class OEmbed < Liquid::Tag
 
     def initialize(tag_name, text, tokens)
        super
@@ -37,12 +38,12 @@ module Jekyll
       url = Liquid::Template.parse(@text).render context
 
       # oembed look up
-      result = ::OEmbed::Providers.get(url.strip!, :format =&gt; :xml)
+      result = ::OEmbed::Providers.get(url.strip!, :format => :xml)
       
       # Odd: slideshare uses provider-name instead of provider_name
       provider = result.fields['provider_name'] || result.fields['provider-name'] || 'unknown'
 
-      "&lt;div class=\"embed #{result.type} #{provider}\"&gt;#{result.html}&lt;/div&gt;"
+      "<div class=\"embed #{result.type} #{provider}\">#{result.html}</div>"
     end
   end
 end
