@@ -110,9 +110,10 @@ All packages are to have 100% test coverage.
 Coding Standards
 ----------------
 
-The packages available through the Aura project all conform to the
-Horde/Pear/Solar/Zend [coding
-standards](http://pear.php.net/manual/en/coding-standards.php). In particular:
+The packages available through the Aura project all conform to the currently accepted standards of [php-fig](http://www.php-fig.org/)
+[PSR-0](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md), 
+[PSR-1](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md), 
+[PSR-2](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md). In particular:
 
 - No use of public properties, unless they are magic via `__get()/__set()`
 
@@ -123,7 +124,6 @@ standards](http://pear.php.net/manual/en/coding-standards.php). In particular:
 
 These goals and standards are presented in relation to
 [Solar](http://solarphp.com).
-
 
 PHP 5.4+
 --------
