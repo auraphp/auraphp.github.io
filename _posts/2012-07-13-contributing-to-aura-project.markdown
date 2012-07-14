@@ -27,7 +27,7 @@ Now you need to clone to your local system.
 
     cd Aura.Web
     
-All `Aura.Package` has `master` and `develop` branch. The `master` points to the current or latest release. All the development activities goes in develop branch. There will be different tags for each release. So if you want to give a PR for a bug then you create a branch from master. 
+All `Aura.Package` has `master` and `develop` branch. The `master` points to the current or latest release. All the development activities goes in develop branch. There will be different tags for each release. So if you want to give a PR for a bug/feature then you create a branch from develop. 
 
 Lets see in which branch you are in ( $ represents the terminal )
     
