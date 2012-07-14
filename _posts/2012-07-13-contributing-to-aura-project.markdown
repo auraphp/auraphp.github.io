@@ -3,7 +3,6 @@ title: Contributing to Aura Project
 layout: post
 category : auraphp
 tags : [contibuting]
-draft: true
 ---
 {% include JB/setup %}
 
@@ -75,11 +74,17 @@ If you want to merge the commits from the upstream/branch , to your current bran
     
 Sometimes there can be conflicts and you may want to resolve and commit manually.
 
-Now you can push your branch to your github account.
+Before you push your branch to your github account remember to run `phpunit` and check the PSR-1, PSR-2 by running PHP_CodeSniffer.
 
     $ git push -u origin experimental
     
-Once you have pushed give a PR to the develop branch if its a feature/changes. Remember to check the PSR-1, PSR-2 by running PHP_CodeSniffer.
+Once you have pushed give a PR to the develop branch if its a feature/changes.
+
+#Running PHPUnit
+I assume you have already installed `phpunit` . If not, have a look into [installing phpunit](http://www.phpunit.de/manual/current/en/installation.html) . From the tests folder run `phpunit`
+
+    $ cd tests
+    $ phpunit
 
 #Running PHP_CodeSniffer
 
@@ -93,6 +98,8 @@ You can also install via pear. For more information look into https://github.com
 
 The core team has direct push/pull access but still its a good idea that [Paul M Jones](https://github.com/pmjones) do the merge. We will discuss about the PR, why the changes needed etc.
 
-Thanks for being with Aura and we love to see your contributions. If you have any queries feel free to comment below or create an issue or talk in #auraphp irc freenode or in [https://groups.google.com/group/auraphp](https://groups.google.com/group/auraphp).
+Thanks for being with Aura and we love to see your contributions. If you have any queries feel free to comment below or create an issue or talk in #auraphp irc freenode or in [https://groups.google.com/group/auraphp](https://groups.google.com/group/auraphp) or tweet to [@auraphp](http://twitter.com/auraphp).
 
-If you are new to irc, you can use [pidgin](http://www.pidgin.im/) or [x-chat](http://xchat.org/)
+If you are new to irc, you can use [pidgin](http://www.pidgin.im/) or [x-chat](http://xchat.org/).
+
+Aura Team
