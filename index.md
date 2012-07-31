@@ -18,7 +18,7 @@ with dependency injection instead of a framework with service location. (The
 name change from Solar to Aura is to reduce confusion with the Apache Solr
 project.)
 
-The project is becoming mature, and has just had a set of 1.0.0-beta1 package
+The project is becoming mature, and has just had a set of 1.0.0-beta3 package
 releases. Please fork the various library package repositories or the system
 skeleton repository, and help us keep high-quality libraries available and
 maintained for PHP 5.4+.
@@ -54,7 +54,7 @@ the packages on its own:
   component-based framework library.
 
 - **[Http](https://github.com/auraphp/Aura.Http):** Tools to build HTTP
-  response messages
+  request and response messages
 
 - **[Marshal](https://github.com/auraphp/Aura.Marshal):** Marshals data from
   any data source into domain objects, including relationships between those
@@ -67,6 +67,9 @@ the packages on its own:
 
 - **[Sql](https://github.com/auraphp/Aura.Sql):** SQL database connection and
   query tools.
+
+- **[Uri](https://github.com/auraphp/Aura.Uri):** Build URLs in an
+  object-oriented fashion
 
 - **[View](https://github.com/auraphp/Aura.View):** Template views, two-step
   views, and view helpers.
@@ -110,10 +113,15 @@ All packages are to have 100% test coverage.
 Coding Standards
 ----------------
 
-The packages available through the Aura project all conform to the currently accepted standards of [php-fig](http://www.php-fig.org/)
-[PSR-0](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md), 
-[PSR-1](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md), 
-[PSR-2](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md). In particular:
+The packages available through the Aura project all conform to the currently
+accepted standards of the [PHP Framework Interop
+Group](http://www.php-fig.org/).
+
+- [PSR-0](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md),
+- [PSR-1](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md), 
+- [PSR-2](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md).
+
+Other standards include:
 
 - No use of public properties, unless they are magic via `__get()/__set()`
 
