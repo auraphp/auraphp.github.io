@@ -71,6 +71,9 @@ the packages on its own:
 - **[Sql](https://github.com/auraphp/Aura.Sql):** SQL database connection and
   query tools.
 
+- **[Uri](https://github.com/auraphp/Aura.Uri):** Provides objects to 
+  help you create and manipulate URLs, including query strings and path elements.
+
 - **[View](https://github.com/auraphp/Aura.View):** Template views, two-step
   views, and view helpers.
 
