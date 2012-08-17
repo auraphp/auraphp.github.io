@@ -49,6 +49,9 @@ the packages on its own:
 - **[Di](https://github.com/auraphp/Aura.Di):** Dependency injection
   container.
 
+- **[Filter](https://github.com/auraphp/Aura.Filter):** Provides validation and
+  sanitizing for data objects.
+
 - **[Framework](https://github.com/auraphp/Aura.Framework):** The only package
   that has dependencies, this package wraps the others to provide a
   component-based framework library.
@@ -167,8 +170,6 @@ classes.
 ### Remaining
 
 - Localization should be at the package level, not class-level.
-
-- Data filtering tools
 
 - Form generation tools
 
