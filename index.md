@@ -65,6 +65,10 @@ the packages on its own:
 
 - **[Router](https://github.com/auraphp/Aura.Router):** A web router.
 
+- **[Session](https://github.com/auraphp/Aura.Session):** Session management 
+  functionality, including session segments, read-once ("flash") values, CSRF 
+  tools, and lazy session starting
+
 - **[Signal](https://github.com/auraphp/Aura.Signal):** A signal slots / event
   handler implementation.
 
