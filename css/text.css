@@ -4,9 +4,6 @@ body {
 
 pre,code {
     font-family: 'DejaVu Sans Mono',Monaco,Consolas,monospace;
-    background-color: #000;
-    border-radius: 10px;
-    padding: 10px 0px 0px 10px;
 }
 
 hr {
