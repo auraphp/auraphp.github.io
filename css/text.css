@@ -3,7 +3,7 @@ body {
 }
 
 code {
-    font-size: 10px;
+    font-size: 12px;
     font-family: 'DejaVu Sans Mono',Menlo,'Andale Mono',Monaco,Consolas,monospace;
     background-color: #eee;
     border-radius: 3px;
@@ -11,7 +11,7 @@ code {
 }
 
 pre {
-    font-size: 10px;
+    font-size: 12px;
     font-family: 'DejaVu Sans Mono',Menlo,'Andale Mono',Monaco,Consolas,monospace;
     background-color: #eee;
     border-radius: 7px;
