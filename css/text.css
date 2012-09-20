@@ -6,6 +6,13 @@ pre,code {
     font-family: 'DejaVu Sans Mono',Menlo,'Andale Mono',Monaco,Consolas,monospace;
 }
 
+pre {
+    background-color: #ccc;
+    border-radius: 10px;
+    padding: 10px 0px 0px 10px;
+
+}
+
 hr {
     border: 0 #ccc solid;
     border-top-width: 1px;
