@@ -1,19 +1,16 @@
-body
-{
+body {
   margin: 0px; 
   padding: 0px;
   background: #f3f4f4;
 }
 
-#top
-{
+#top {
   background: #c0d1da url('../images/banner_bg.jpg') repeat-x top left; 
   height: 215px; 
   width: 100%;
 }
 
-#menu
-{
+#menu {
   height: 45px; 
   color: white; 
   line-height: 45px; 
@@ -22,36 +19,31 @@ body
   padding-right: 30px;
 }
 
-#menu a
-{
+#menu a {
   color: white;
   padding: 5px 10px;
   border-left: 1px solid #444444;
   text-decoration: none; 
 }
 
-#menu a:hover
-{
+#menu a:hover {
   text-decoration: overline;
   background-color: #222233; 
   color: #c0d1da; 
 }
 
-#menu a:first-child
-{
+#menu a:first-child {
   border: none;
 }
 
-#banner
-{
+#banner {
   background: transparent url('../images/banner.jpg') no-repeat center -45px; 
   height: 170px; 
   width: 100%; 
   margin: 0px auto;
 }
 
-#logo
-{
+#logo {
   margin: 0px auto; 
   display: block; 
   width: 279px; 
@@ -60,34 +52,21 @@ body
   background: transparent url('../images/aura_logo.png') no-repeat center center;
 }
 
-#logo:hover
-{
+#logo:hover {
   background: transparent url('../images/aura_logo_hover.png') no-repeat center -20px;
 }
 
-#content
-{
+#content {
   background: white;
   min-height: 400px;
 }
 
-#footer
-{
+#footer {
   min-height: 70px;
   text-align: right;
 }
 
-h2, h2, h3
-{
+h1, h2, h3 {
   color: #129deb;
   border-bottom: 1px solid #e9e9e9;
 }
-
-code
-{
-  background-color: black;
-  padding: 2px 5px;
-  color: #c0d1da;
-}
-
-
