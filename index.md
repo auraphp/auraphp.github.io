@@ -49,6 +49,9 @@ the packages on its own:
 - **[Di](https://github.com/auraphp/Aura.Di):** Dependency injection
   container.
 
+- **[Filter](https://github.com/auraphp/Aura.Filter):** Provides validation and
+  sanitizing for data objects.
+
 - **[Framework](https://github.com/auraphp/Aura.Framework):** The only package
   that has dependencies, this package wraps the others to provide a
   component-based framework library.
@@ -62,14 +65,18 @@ the packages on its own:
 
 - **[Router](https://github.com/auraphp/Aura.Router):** A web router.
 
+- **[Session](https://github.com/auraphp/Aura.Session):** Session management 
+  functionality, including session segments, read-once ("flash") values, CSRF 
+  tools, and lazy session starting
+
 - **[Signal](https://github.com/auraphp/Aura.Signal):** A signal slots / event
   handler implementation.
 
 - **[Sql](https://github.com/auraphp/Aura.Sql):** SQL database connection and
   query tools.
 
-- **[Uri](https://github.com/auraphp/Aura.Uri):** Build URLs in an
-  object-oriented fashion
+- **[Uri](https://github.com/auraphp/Aura.Uri):** Provides objects to 
+  help you create and manipulate URLs, including query strings and path elements.
 
 - **[View](https://github.com/auraphp/Aura.View):** Template views, two-step
   views, and view helpers.
@@ -175,8 +182,6 @@ classes.
 ### Remaining
 
 - Localization should be at the package level, not class-level.
-
-- Data filtering tools
 
 - Form generation tools
 
