@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Welcome to Blog of Aura Project for PHP 5.4!
+title: Aura Project for PHP
 ---
 {% include JB/setup %}
 
