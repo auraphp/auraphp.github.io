@@ -4,10 +4,13 @@ body {
 
 pre,code {
     font-family: 'DejaVu Sans Mono',Menlo,'Andale Mono',Monaco,Consolas,monospace;
+    background-color: #ddd;
+    border-radius: 2px;
+    padding: 2px;
 }
 
 pre {
-    background-color: #ccc;
+    background-color: #ddd;
     border-radius: 7px;
     padding: 7px;
 }
