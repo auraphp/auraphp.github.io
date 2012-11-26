@@ -82,8 +82,8 @@ the packages on its own:
   views, and view helpers.
 
 - **[Web](https://github.com/auraphp/Aura.Web):** A bare-bones web page
-  controller system, including pre- and post-hooks, a response transfer, and
-  context discovery.
+  controller system, including pre- and post-hooks, a response transfer
+  object, and context discovery.
 
 The Aura project also includes a [system](https://github.com/auraphp/system)
 that composes the independent packages into a full-stack framework.
@@ -95,13 +95,10 @@ Goals and Standards
 Libraries First, Framework Second
 ---------------------------------
 
-The primary goal of Aura is to provide high-quality well-tested independent
-library packages that can be used in any codebase. This means developers can
-use as much or as little of the project as necessary.
-
-Aura will have enough libraries to form a full-stack framework of its own. A
-system repository will be available to incorporate them all into a coherent
-framework for application development.
+The primary goal of Aura is to provide high-quality, well-tested,
+[standards-compliant](http://php-fig.org), independent library packages that
+can be used in any codebase. This means developers can use as much or as
+little of the project as necessary.
 
 In line with the goal of "libraries first", all packages are as self-contained
 as possible and are independently downloadable. In some cases this level of
@@ -110,48 +107,50 @@ cases, it may lead to data-transfer objects being used to carry information
 across package boundaries, so that the package can be used with non-Aura
 codebases.
 
+Aura has enough libraries to form a full-stack framework of its own. A system
+repository is available to incorporate them all into a coherent framework for
+application development. Note that the libraries were developed first, and
+were not originally coupled to each other in a framework.
+
 
 High-Quality, Well-Tested
 -------------------------
 
-All packages are to have 100% test coverage.
+With very few exception, all classes in all packages have 100% test coverage.
 
 
-Coding Standards
-----------------
+Standards-Compliant
+-------------------
 
 The packages available through the Aura project all conform to the currently
-accepted standards of the [PHP Framework Interop
+accepted standards of the [PHP Framework Interoperability
 Group](http://www.php-fig.org/).
 
 - [PSR-0](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md),
 - [PSR-1](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md), 
 - [PSR-2](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md).
 
-Other standards include:
+Other Aura-specific standards include:
 
 - No use of public properties, unless they are magic via `__get()/__set()`
 
 - No use of underscore with protected elements
 
-- Retain the Solar vocabulary for
+- Use of the pre-exisintg Solar vocabulary for
   [methods](http://solarphp.com/manual/appendix-standards.naming.methods)
 
-These goals and standards are presented in relation to
-[Solar](http://solarphp.com).
 
 PHP 5.4+
 --------
 
 Aura is intended to take advantage of the features available in PHP 5.4+ (as
 compared to PHP 5.2.x and prior). This means formal namespaces, anonymous
-functions and closures, late static binding, short array syntax, traits, and
-other features not available in PHP 5.2.x and earlier.
+functions and closures, late static binding, short array syntax, traits, the
+callable typehint, and other features not available in PHP 5.2.x and earlier.
 
 
 Techniques
 ----------
-
 
 - Use dependency injection proper instead of the service-locator
   `Solar::dependency()` system; the basis for this exists at
@@ -161,7 +160,7 @@ Techniques
   primarily for object creation within the dependency injector service
   definitions
 
-- More use of explicit mapping, as vs automatic searching of directory stacks.
+- Use explicit configuration more often than implicit convention
 
 - Compose functionality as much as possible through dependency injection,
   instead of through inheritance and base classes
@@ -171,18 +170,4 @@ Techniques
 
 - Windows Vista/7 support as-we-go, so that Windows users are part of the
   community from the very beginning
-
-
-Conversion Priorities
-=====================
-
-These are in relation to converting [Solar](http://solarphp.com) packages and
-classes.
-
-### Remaining
-
-- Localization should be at the package level, not class-level.
-
-- Form generation tools
-
 </div>
