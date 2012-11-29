@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Finally blog is here
-tagline: 
+tagline: -
 category: auraphp
 tags: [hello-world, blog]
 ---
