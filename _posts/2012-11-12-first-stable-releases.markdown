@@ -16,15 +16,15 @@ its first release of 1.0.0 stable library packages. The packages include:
 - [Aura.Router](https://github.com/auraphp/Aura.Router)
 - [Aura.Signal](https://github.com/auraphp/Aura.Signal)
 - [Aura.Sql](https://github.com/auraphp/Aura.Sql)
+- [Aura.Uri](https://github.com/auraphp/Aura.Uri)
 - [Aura.View](https://github.com/auraphp/Aura.View)
 - [Aura.Web](https://github.com/auraphp/Aura.Web)
 
-In addition, we have initial beta releases of four new libarary packages:
+In addition, we have initial beta releases of three new libarary packages:
 
 - [Aura.Filter](https://github.com/auraphp/Aura.Filter)
 - [Aura.Intl](https://github.com/auraphp/Aura.Intl)
 - [Aura.Session](https://github.com/auraphp/Aura.Session)
-- [Aura.Uri](https://github.com/auraphp/Aura.Uri)
 
 Each library package is independent of all the others, so you can pick and
 choose which ones you want to use. With few exceptions, each class in each
