@@ -59,6 +59,9 @@ the packages on its own:
 - **[Http](https://github.com/auraphp/Aura.Http):** Tools to build HTTP
   request and response messages
 
+- **[Intl](https://github.com/auraphp/Aura.Intl):** Provides internationalization 
+  (I18N) tools, specifically package-oriented per-locale message translation.
+
 - **[Marshal](https://github.com/auraphp/Aura.Marshal):** Marshals data from
   any data source into domain objects, including relationships between those
   object.
