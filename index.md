@@ -140,7 +140,7 @@ Other Aura-specific standards include:
 
 - No use of underscore with protected elements
 
-- Use of the pre-exisintg Solar vocabulary for
+- Use of the pre-existing Solar vocabulary for
   [methods](http://solarphp.com/manual/appendix-standards.naming.methods)
 
 
