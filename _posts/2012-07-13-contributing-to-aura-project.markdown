@@ -2,7 +2,7 @@
 title: Contributing to Aura Project
 layout: post
 category : auraphp
-tags : [contibuting]
+tags : [contributing]
 ---
 {% include JB/setup %}
 
