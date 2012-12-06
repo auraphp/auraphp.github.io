@@ -6,7 +6,7 @@ tags : [blog]
 ---
 {% include JB/setup %}
 
-When you play with aura components, sometimes you may have faced some techincal difficulties which people may have never faced. Its always hard to remember what all things we did to resolve it. In such cases we write small snippets of code either in blog or as pastie for future reference. Its a good habit to share stuffs that we learn. There can be better way to do other than that also.
+When you play with aura components, sometimes you may have faced some technical difficulties which people may have never faced. Its always hard to remember what all things we did to resolve it. In such cases we write small snippets of code either in blog or as pastie for future reference. Its a good habit to share stuffs that we learn. There can be better way to do other than that also.
 
 If you like to share something on aura components, you can share here.
 

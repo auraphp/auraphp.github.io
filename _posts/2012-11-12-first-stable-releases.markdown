@@ -20,7 +20,7 @@ its first release of 1.0.0 stable library packages. The packages include:
 - [Aura.View](https://github.com/auraphp/Aura.View)
 - [Aura.Web](https://github.com/auraphp/Aura.Web)
 
-In addition, we have initial beta releases of three new libarary packages:
+In addition, we have initial beta releases of three new library packages:
 
 - [Aura.Filter](https://github.com/auraphp/Aura.Filter)
 - [Aura.Intl](https://github.com/auraphp/Aura.Intl)
