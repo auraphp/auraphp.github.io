@@ -18,10 +18,11 @@ with dependency injection instead of a framework with service location. (The
 name change from Solar to Aura is to reduce confusion with the Apache Solr
 project.)
 
-The project is becoming mature, and has just had a set of 1.0.0-beta3 package
-releases. Please fork the various library package repositories or the system
+The project has released the first stable packages. Read more from
+[First Stable 1.0.0 Library Releases](http://auraphp.github.com/2012/11/12/first-stable-releases/).
+Please fork the various library package repositories or the system
 skeleton repository, and help us keep high-quality libraries available and
-maintained for PHP 5.4+.
+maintained for PHP 5.4+. 
 
 Join our mailing list at
 [http://groups.google.com/group/auraphp](http://groups.google.com/group/auraphp),
@@ -58,6 +59,9 @@ the packages on its own:
 
 - **[Http](https://github.com/auraphp/Aura.Http):** Tools to build HTTP
   request and response messages
+
+- **[Intl](https://github.com/auraphp/Aura.Intl):** Provides internationalization 
+  (I18N) tools, specifically package-oriented per-locale message translation.
 
 - **[Marshal](https://github.com/auraphp/Aura.Marshal):** Marshals data from
   any data source into domain objects, including relationships between those
