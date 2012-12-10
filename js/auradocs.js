@@ -11,7 +11,7 @@ jQuery(function($) {
     switch (this.tagName.toLowerCase()) {
       case "h1":
         if (!ul) {
-          ul = $('<ul class="nav nav-list bs-docs-sidenav">');
+          ul = $('<ul class="nav nav-list bs-docs-sidenav bs-docs-sidebar">');
         }
         lasth1 = $("<li>").html('<a href="#' + this.id + '">' + $(this).html() + '</a>').appendTo(ul);
         lasth1ul = null;
@@ -23,9 +23,9 @@ jQuery(function($) {
         }
         else {
           if (!lasth1ul) {
-            lasth1ul = $('<ul class="nav nav-list">').appendTo(lasth1);
+            lasth1ul = $('<ul class="nav nav-list bs-docs-sidenav">').appendTo(lasth1);
           }
-          lasth2 = $("<li>").html('<a href="#' + this.id + '"> &gt;&nbsp;' + $(this).html() + '</a>').appendTo(lasth1ul);
+          lasth2 = $("<li>").html('<a href="#' + this.id + '"> <i class="icon-hand-right"></i>&nbsp;' + $(this).html() + '</a>').appendTo(lasth1ul);
         }
         break;
       case "h3":
@@ -44,14 +44,11 @@ jQuery(function($) {
   });
   if (ul) {
     $("#sidebar").append(ul);
+    $('.bs-docs-sidebar').affix();
   }
   $('.nav-list > li > a').live('click', function() {
     var id = $(this).attr('href');
     $('html,body').animate({scrollTop: $(id).offset().top - 40},'slow');
-    if ($('.nav-list > li').hasClass('active')) { 
-      $('.nav-list > li').removeClass('active');
-    }
-    $(this).parent().addClass('active');
   });
 });
 
