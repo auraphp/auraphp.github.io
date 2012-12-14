@@ -8,7 +8,7 @@ tags : [router, routing, micro, framework]
 
 Micro-frameworks have gotten a lot of attention in the PHP community over the
 last year. Many people are familiar with [Silex][], the extremely popular
-micro-framework built ontop of Symfony Components. There's something really
+micro-framework built on top of Symfony Components. There's something really
 elegant about the way you can write a quick little application with a micro-framework.
 
 I was recently working on a small project that used [Silex][]. As I browsed my
