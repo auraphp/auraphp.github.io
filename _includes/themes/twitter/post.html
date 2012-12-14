@@ -1,6 +1,5 @@
 <div class="page-header">
   <h1>{{ page.title }}</h1>
-  <p><small>{{ page.author }}</small></p>
 </div>
 
 <div class="row">
@@ -27,6 +26,10 @@
   </div>
   
   <div class="span4">
+      
+    <h4>Author</h4>
+    <div class="author"><span>{{ page.author }}</span></div>
+    
     <h4>Published</h4>
     <div class="date"><span>{{ page.date | date_to_long_string }}</span></div>
 
