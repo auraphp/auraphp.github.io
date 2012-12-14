@@ -3,6 +3,7 @@ title: Writing / Sharing your experience with Aura
 layout: post
 category : auraphp
 tags : [blog]
+author : Hari KT
 ---
 {% include JB/setup %}
 

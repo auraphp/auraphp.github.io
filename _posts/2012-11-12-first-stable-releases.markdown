@@ -3,6 +3,7 @@ layout: post
 title: First Stable 1.0.0 Library Releases
 category : auraphp
 tags : [release]
+author : Paul M. Jones
 ---
 
 The [Aura Project for PHP 5.4](http://auraphp.github.com) is happy to announce

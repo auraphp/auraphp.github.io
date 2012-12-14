@@ -3,6 +3,7 @@ layout: post
 title: Finally blog is here
 category: auraphp
 tags: [hello-world, blog]
+author : Hari KT
 ---
 {% include JB/setup %}
 

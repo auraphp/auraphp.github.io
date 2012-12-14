@@ -3,6 +3,7 @@ title: Aura.Router can also be used as a micro-framework dispatcher!
 layout: post
 category : auraphp
 tags : [router, routing]
+author : Hari KT
 ---
 {% include JB/setup %}
 
