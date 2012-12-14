@@ -44,27 +44,27 @@ So what does Aura.Micro look like in practice?
 $app = new Aura\Micro\Micro();
 
 $app->before(function(){
-	print "Running before" . PHP_EOL;
+    print "Running before" . PHP_EOL;
 });
 
 $app->after(function(){
-	print "Running after" . PHP_EOL;;
+    print "Running after" . PHP_EOL;;
 });
 
 $app->finish(function(){
-	print "Running finish" . PHP_EOL;
+    print "Running finish" . PHP_EOL;
 });
 
 $app->error(function(){
-	print "Error" . PHP_EOL;
+    print "Error" . PHP_EOL;
 });
 
 $app->get("/test", function(){
-	print "Testing" . PHP_EOL;
+    print "Testing" . PHP_EOL;
 });
 
 $app->get("/hello/{:world}", function($world) use($app){
-	print "Hello {$world}" . PHP_EOL;
+    print "Hello {$world}" . PHP_EOL;
 });
 
 $app->run();
@@ -73,17 +73,17 @@ $app->run();
 You can clone [Aura.Micro][] from GitHub or drop the following into your
 `composer.json` file:
 
-	{
-		"repositories": [
+    {
+        "repositories": [
             {
                 "type": "vcs",
                 "url": "http://github.com/stanlemon/aura-micro"
             }
-		],
+        ],
         "require": {
             "stanlemon/aura-micro": "*"
         }
-	}
+    }
 
 Have ideas on how to improve this little wrapper? Add an issue or send over a
 pull request!
