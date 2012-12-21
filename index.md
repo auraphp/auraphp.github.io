@@ -40,56 +40,56 @@ package is self-contained and has only the things it needs for its core
 purpose. None of the packages depends on any of the other; you can use each of
 the packages on its own:
 
-- **[Autoload](http://auraphp.github.com/Aura.Autoload):** A PSR-0 compliant
+- **[Autoload](https://github.com/auraphp/Aura.Autoload):** A PSR-0 compliant
   autoloader, ready for SplClassloader.
 
-- **[Cli](http://auraphp.github.com/Aura.Cli):** Tools to build command-line
+- **[Cli](https://github.com/auraphp/Aura.Cli):** Tools to build command-line
   controllers, including a CLI context, options management, and input/ouput
   handlers
 
-- **[Di](http://auraphp.github.com/Aura.Di):** Dependency injection
+- **[Di](https://github.com/auraphp/Aura.Di):** Dependency injection
   container.
 
-- **[Filter](http://auraphp.github.com/Aura.Filter):** Provides validation and
+- **[Filter](https://github.com/auraphp/Aura.Filter):** Provides validation and
   sanitizing for data objects.
 
-- **[Framework](http://auraphp.github.com/Aura.Framework):** The only package
+- **[Framework](https://github.com/auraphp/Aura.Framework):** The only package
   that has dependencies, this package wraps the others to provide a
   component-based framework library.
 
-- **[Http](http://auraphp.github.com/Aura.Http):** Tools to build HTTP
+- **[Http](https://github.com/auraphp/Aura.Http):** Tools to build HTTP
   request and response messages
 
-- **[Intl](http://auraphp.github.com/Aura.Intl):** Provides internationalization 
+- **[Intl](https://github.com/auraphp/Aura.Intl):** Provides internationalization 
   (I18N) tools, specifically package-oriented per-locale message translation.
 
-- **[Marshal](http://auraphp.github.com/Aura.Marshal):** Marshals data from
+- **[Marshal](https://github.com/auraphp/Aura.Marshal):** Marshals data from
   any data source into domain objects, including relationships between those
   object.
 
-- **[Router](http://auraphp.github.com/Aura.Router):** A web router.
+- **[Router](https://github.com/auraphp/Aura.Router):** A web router.
 
-- **[Session](http://auraphp.github.com/Aura.Session):** Session management 
+- **[Session](https://github.com/auraphp/Aura.Session):** Session management 
   functionality, including session segments, read-once ("flash") values, CSRF 
   tools, and lazy session starting
 
-- **[Signal](http://auraphp.github.com/Aura.Signal):** A signal slots / event
+- **[Signal](https://github.com/auraphp/Aura.Signal):** A signal slots / event
   handler implementation.
 
-- **[Sql](http://auraphp.github.com/Aura.Sql):** SQL database connection and
+- **[Sql](https://github.com/auraphp/Aura.Sql):** SQL database connection and
   query tools.
 
-- **[Uri](http://auraphp.github.com/Aura.Uri):** Provides objects to 
+- **[Uri](https://github.com/auraphp/Aura.Uri):** Provides objects to 
   help you create and manipulate URLs, including query strings and path elements.
 
-- **[View](http://auraphp.github.com/Aura.View):** Template views, two-step
+- **[View](https://github.com/auraphp/Aura.View):** Template views, two-step
   views, and view helpers.
 
-- **[Web](http://auraphp.github.com/Aura.Web):** A bare-bones web page
+- **[Web](https://github.com/auraphp/Aura.Web):** A bare-bones web page
   controller system, including pre- and post-hooks, a response transfer
   object, and context discovery.
 
-The Aura project also includes a [system](http://auraphp.github.com/system)
+The Aura project also includes a [system](https://github.com/auraphp/system)
 that composes the independent packages into a full-stack framework.
 
 
