@@ -5,7 +5,6 @@ layout: cloud
 
 <div class="grid_4" markdown="1">
 
-
 Introduction
 ============
 
