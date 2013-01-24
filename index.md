@@ -9,7 +9,7 @@ layout: cloud
 Introduction
 ============
 
-The Aura project provides independent library packages for PHP 5.4+. These
+The Aura Project provides independent library packages for PHP 5.4+. These
 packages can be used alone, in concert with each other, or combined into a
 full-stack framework of their own.
 
