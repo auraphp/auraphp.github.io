@@ -5,12 +5,13 @@ layout: cloud
 
 <div class="grid_4" markdown="1">
 
+
 Introduction
 ============
 
-The Aura Project provides independent decoupled library packages for PHP 5.4+.
-These packages can be used alone, in concert with each other, or combined into
-a full-stack framework of their own.
+The Aura project provides independent library packages for PHP 5.4+. These
+packages can be used alone, in concert with each other, or combined into a
+full-stack framework of their own.
 
 The Aura project is essentially the second major version of
 [Solar](http://solarphp.com), reimagined and rewritten as a library collection
@@ -42,6 +43,7 @@ the packages on its own:
 
 - **[Autoload](https://github.com/auraphp/Aura.Autoload):** A PSR-0 compliant
   autoloader, ready for SplClassloader.
+  [api versions](http://auraphp.github.com/Aura.Autoload)
 
 - **[Cli](https://github.com/auraphp/Aura.Cli):** Tools to build command-line
   controllers, including a CLI context, options management, and input/ouput
