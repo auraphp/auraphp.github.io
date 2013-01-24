@@ -10,7 +10,7 @@
 
   <address class="signature">
     <a class="author" href="{{ HOME_PATH }}">{{ site.author.name }}</a> 
-    <span class="date">{{ page.date | date_to_long_string }}</span>
+    <span class="date">{{ page.date | date: "%d %B %Y" }}</span>
     <span class="location">{{ page.location }}</span>
   </address>
   

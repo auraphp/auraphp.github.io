@@ -15,7 +15,7 @@
 					<div class="meta">
 						<p class="date-publish">
 							Published: 
-							<date class="date-pub" title="{{ page.date | date_to_xmlschema }}" datetime="{{ page.date | date_to_xmlschema }}" pubdate>
+							<date class="date-pub" title="{{ page.date | date: '%Y-%m-%dT%H:%M:%S%Z' }}" datetime="{{ page.date | date: '%Y-%m-%dT%H:%M:%S%Z' }}" pubdate>
 							<span class="month"><abbr>{{ page.date | date: '%B' }}</abbr></span>
 							<span class="day">{{ page.date | date: '%d' }}</span>
 							<span class="year">{{ page.date | date: '%Y' }}</span>

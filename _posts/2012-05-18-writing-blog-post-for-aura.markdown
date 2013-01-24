@@ -15,7 +15,7 @@ If you like to share something on aura components, you can share here.
 
 Fork https://github.com/auraphp/auraphp.github.com
 
-Add your post to _post directory with naming convention as 
+Add your post to the `_posts` directory with naming convention as 
 
 ```yyyy-mm-dd-url-of-post```
 
