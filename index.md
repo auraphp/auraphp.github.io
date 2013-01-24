@@ -43,7 +43,7 @@ the packages on its own:
 
 - **[Autoload](https://github.com/auraphp/Aura.Autoload):** A PSR-0 compliant
   autoloader, ready for SplClassloader.
-  [api versions](http://auraphp.github.com/Aura.Autoload)
+  *([api versions](http://auraphp.github.com/Aura.Autoload))*
 
 - **[Cli](https://github.com/auraphp/Aura.Cli):** Tools to build command-line
   controllers, including a CLI context, options management, and input/ouput
