@@ -55,7 +55,7 @@ the packages on its own:
   *([api versions](http://auraphp.github.com/Aura.Di))*
 
 - **[Filter](https://github.com/auraphp/Aura.Filter):** Provides validation and
-  sanitizing for data objects. [api versions](http://auraphp.github.com/Aura.Filter)
+  sanitizing for data objects.
   *([api versions](http://auraphp.github.com/Aura.Filter))*
 
 - **[Framework](https://github.com/auraphp/Aura.Framework):** The only package
@@ -97,7 +97,7 @@ the packages on its own:
   *([api versions](http://auraphp.github.com/Aura.Uri))*
 
 - **[View](https://github.com/auraphp/Aura.View):** Template views, two-step
-  views, and view helpers. [api versions](http://auraphp.github.com/Aura.View)
+  views, and view helpers.
   *([api versions](http://auraphp.github.com/Aura.View))*
 
 - **[Web](https://github.com/auraphp/Aura.Web):** A bare-bones web page
