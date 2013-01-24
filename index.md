@@ -5,13 +5,12 @@ layout: cloud
 
 <div class="grid_4" markdown="1">
 
-
 Introduction
 ============
 
-The Aura Project provides independent library packages for PHP 5.4+. These
-packages can be used alone, in concert with each other, or combined into a
-full-stack framework of their own.
+The Aura Project provides independent decoupled library packages for PHP 5.4+.
+These packages can be used alone, in concert with each other, or combined into
+a full-stack framework of their own.
 
 The Aura project is essentially the second major version of
 [Solar](http://solarphp.com), reimagined and rewritten as a library collection
