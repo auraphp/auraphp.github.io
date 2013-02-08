@@ -67,6 +67,10 @@ the packages on its own:
   request and response messages.
   *([api versions](http://auraphp.github.com/Aura.Http))*
 
+- **[Input](https://github.com/auraphp/Aura.Input):** Tools to describe HTML 
+  form fields and values.
+  *([api versions](http://auraphp.github.com/Aura.Input))*
+
 - **[Intl](https://github.com/auraphp/Aura.Intl):** Provides internationalization 
   (I18N) tools, specifically package-oriented per-locale message translation.
   *([api versions](http://auraphp.github.com/Aura.Intl))*
