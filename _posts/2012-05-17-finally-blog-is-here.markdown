@@ -1,11 +1,9 @@
 ---
 layout: post
 title: Finally blog is here
-category: auraphp
-tags: [hello-world, blog]
+tags: [hello-world]
 author : Hari KT
 ---
-{% include JB/setup %}
 
 So finally we have a blog for aura project. We are happy to set the blog before Beta-3. We have some shiny new feature coming for Aura.Http, Aura.View components. Stay tuned for the upcoming Beta-3 release in coming days.
 

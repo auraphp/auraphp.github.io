@@ -1,7 +1,6 @@
 ---
 layout: post
 title: First Stable 1.0.0 Library Releases
-category : auraphp
 tags : [release]
 author : Paul M. Jones
 ---

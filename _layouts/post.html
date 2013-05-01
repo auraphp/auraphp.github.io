@@ -1,5 +1,26 @@
 ---
-layout: blog
+layout: site
+active: blog
 ---
-{% include JB/setup %}
-{% include themes/twitter/post.html %}
+
+<div class="page-header">
+    <h1>{{ page.title }}</h1>
+    <p>
+        on <span class="date">{{ page.date | date: "%d %B %Y" }}</span>
+        by <span class="author">{{ page.author }}</span>
+        {% unless page.tags == empty %}
+        in <span class="tags">
+            {% assign tags_line = page.tags %}
+            {% include JB/tags_line %}
+        </span></p>
+        {% endunless %}
+    </p>
+</div>
+
+<div class="row">
+    <div class="span10">
+        {{ content }}
+        {% include JB/pagination %}
+        {% include JB/comments %}
+    </div>
+</div>

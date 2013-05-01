@@ -1,11 +1,9 @@
 ---
 title: Aura.Micro -- Experimental Replacement for Silex
 layout: post
-category : auraphp
 tags : [router, routing, micro, framework]
 author : Stan Lemon
 ---
-{% include JB/setup %}
 
 Micro-frameworks have gotten a lot of attention in the PHP community over the
 last year. Many people are familiar with [Silex][], the extremely popular

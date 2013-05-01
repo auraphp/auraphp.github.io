@@ -1,0 +1,44 @@
+---
+layout: site
+active: about
+title: Aura for PHP &#58; About
+---
+
+<h1>About Aura</h1>
+
+<p>The Aura project provides independent library packages for PHP 5.4+. These
+packages can be used alone, in concert with each other, or combined into a
+full-stack framework of their own.</p>
+
+<p>The Aura project is essentially the second major version of <a
+href="http://solarphp.com">Solar</a>, reimagined and rewritten as a library
+collection with dependency injection instead of a framework with service
+location. (The name change from Solar to Aura is to reduce confusion with the
+Apache Solr project.)</p>
+
+
+<h2>Libraries First, Framework Second</h2>
+
+<p>The primary goal of Aura is to provide high-quality, well-tested, <a
+href="http://php-fig.org">standards-compliant</a>, independent library
+packages that can be used in any codebase. This means developers can use as
+much or as little of the project as necessary.</p>
+
+<p>In line with the goal of "libraries first", all packages are as self-contained
+as possible and are independently downloadable. In some cases this level of
+independence may lead to some class duplication between packages. In other
+cases, it may lead to data-transfer objects being used to carry information
+across package boundaries, so that the package can be used with non-Aura
+codebases.</p>
+
+<p>Aura has enough libraries to form a full-stack framework of its own. A system
+repository is available to incorporate them all into a coherent framework for
+application development. Note that the libraries were developed first, and
+were not originally coupled to each other in a framework.</p>
+
+<h2>PHP 5.4+</h2>
+
+<p>Aura is intended to take advantage of the features available in PHP 5.4+ (as
+compared to PHP 5.2.x and prior). This means formal namespaces, anonymous
+functions and closures, late static binding, short array syntax, traits, the
+callable typehint, and other features not available in PHP 5.2.x and earlier.</p>

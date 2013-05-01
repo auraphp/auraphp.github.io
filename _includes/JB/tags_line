@@ -1,0 +1,33 @@
+{% comment %}<!--
+The tags_line include is a listing helper for tags that shows them in a single line.
+Usage:
+  1) assign the 'tags_line' variable to a valid array of tags.
+  2) include JB/tags_line
+  example:
+    <ul>
+  	  {% assign tags_line = site.tags %}  
+  	  {% include JB/tags_line %}
+  	</ul>
+  
+  Notes: 
+    Tags can be either a Hash of tag objects (hashes) or an Array of tag-names (strings).
+    The encapsulating 'if' statement checks whether tags_line is a Hash or Array.
+    site.tags is a Hash while page.tags is an array.
+    
+  This helper can be seen in use at: ../_layouts/default.html
+-->{% endcomment %}
+
+{% if site.JB.tags_line.provider == "custom" %}
+  {% include custom/tags_line %}
+{% else %}
+  {% if tags_line.first[0] == null %}
+    {% for tag in tags_line %} 
+    	<a href="{{ BASE_PATH }}{{ site.JB.tags_path }}#{{ tag }}-ref">{{ tag }}</a>
+    {% endfor %}
+  {% else %}
+    {% for tag in tags_line %} 
+    	<a href="{{ BASE_PATH }}{{ site.JB.tags_path }}#{{ tag[0] }}-ref">{{ tag[0] }}</a>
+    {% endfor %}
+  {% endif %}
+{% endif %}
+{% assign tags_line = nil %}

@@ -1,11 +1,9 @@
 ---
 title: Contributing to Aura Project
 layout: post
-category : auraphp
 tags : [contributing]
 author : Hari KT
 ---
-{% include JB/setup %}
 
 Sometimes you may have noticed a bug, or need a feature implemented, and need to contribute back to the aura community. These are some of the steps to help / contribute to aura project.
 

@@ -1,11 +1,9 @@
 ---
 title: New System Release, Including Aura.Framework and Aura.Demo
 layout: post
-category : auraphp
 tags : [framework, demo, system]
 author : Paul M. Jones
 ---
-{% include JB/setup %}
 
 Late last night we released version 1.0.0-beta4 of the full-stack [system][],
 which composes all the independent Aura packages into a coherent framework

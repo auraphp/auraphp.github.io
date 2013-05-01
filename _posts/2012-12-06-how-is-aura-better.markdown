@@ -1,7 +1,6 @@
 ---
 title: How Is Aura Better Than (er, Different From ;-) Symfony and Zend?
 layout: post
-category : auraphp
 tags : [interview]
 author : Paul M. Jones
 ---

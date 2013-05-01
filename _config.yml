@@ -1,6 +1,6 @@
 # This is the default format. 
 # For more see: https://github.com/mojombo/jekyll/wiki/Permalinks
-permalink: /:year/:month/:day/:title 
+permalink: /blog/:year/:month/:day/:title 
 
 exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md"]
 auto: true
@@ -9,7 +9,7 @@ pygments: true
 # Themes are encouraged to use these universal variables 
 # so be sure to set them if your theme uses them.
 #
-title : Aura Project for PHP
+title : Aura for PHP
 tagline: Independent Component Packages for PHP 5.4
 author :
   name : Aura
@@ -26,7 +26,7 @@ author :
 # Else if you are pushing to username.github.com, replace with your username.
 # Finally if you are pushing to a GitHub project page, include the project name at the end.
 #
-production_url : http://auraphp.github.com
+production_url : http://auraphp.com
 
 # All Jekyll-Bootstrap specific configurations are namespaced into this hash
 #
@@ -70,9 +70,9 @@ JB :
   # These paths are to the main pages Jekyll-Bootstrap ships with.
   # Some JB helpers refer to these paths; change theme here if needed.
   #
-  archive_path: /archive.html
-  categories_path : /categories.html
-  tags_path : /tags.html
+  archive_path: /blog
+  categories_path : /blog/categories
+  tags_path : /blog/tags
 
   # Settings for comments helper
   # Set 'provider' to the comment provider you want to use.
