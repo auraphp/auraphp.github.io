@@ -13,7 +13,7 @@ $packages = [
     'Aura.Signal'   => '1.0.0',
     'Aura.Sql'      => '1.0.0',
     'Aura.Uri'      => '1.1.0',
-    'Aura.View'     => '1.0.0',
+    'Aura.View'     => '1.1.0',
     'Aura.Web'      => '1.0.0',
 ];
 
