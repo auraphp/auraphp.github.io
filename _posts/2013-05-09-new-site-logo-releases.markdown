@@ -14,4 +14,4 @@ out today!
 [Bootstrap]: http://twitter.github.io/bootstrap/
 [Spacelab]: http://bootswatch.com/spacelab/
 [logo]: http://auraphp.com/img/aura-logo-black.png
-[packages]: http://auraphp.com/packages/
+[packages]: http://auraphp.com/packages
