@@ -20,8 +20,8 @@ $packages = [
 $html = [];
 
 $html[] = "Package | "
-        . "Description | "
         . "API Version | "
+        . "Description | "
         . "Release Date | "
         . "Downloads | "
         . "Development ";
@@ -40,8 +40,8 @@ foreach ($packages as $package => $version) {
     ));
     $name = substr($package, 5);
     $html[] = "[{$name}](/{$package}) | "
-            . str_replace("\n", " ", $json->description) . " | "
             . "[{$version}](/{$package}/version/{$version}/api) | "
+            . str_replace("\n", " ", $json->description) . " | "
             . "{$json->time} | "
             . "[.zip](https://github.com/auraphp/{$package}/zipball/{$version}), "
             . "[.tar.gz](https://github.com/auraphp/{$package}/tarball/{$version}) | "
