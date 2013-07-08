@@ -44,7 +44,7 @@ Let us create an example form
             // are the displayed text)
             $this->setField('state', 'select')
                  ->setOptions($states);
-
+        
             $this->setField('message', 'textarea')
                 ->setAttribs([
                     'cols' => 40,
@@ -62,6 +62,7 @@ Let us create an example form
         }
     }
 
+> Read passing options into forms, to see how the states can also be provided.
 
 ## Setting Filters On The Form ##
 
@@ -79,7 +80,7 @@ In-order to make use of the dependency injection, we need to map the
 form names to `Example\Package\GenericFactory`.
     
     [php]
-    $di->params['Hari\Framework\GenericFactory']['map']['form.contact'] = 
+    $di->params['Example\Package\GenericFactory']['map']['form.contact'] = 
         $di->newFactory('Example\Package\Input\ContactForm');
 
 ## Form object ##
@@ -302,9 +303,9 @@ array with `$options->getStates()`.
     [php]
     <?php
     namespace Example\Package;
-
+    
     use Aura\Input\Form;
-
+    
     class ContactForm extends Form
     {
         protected function init()

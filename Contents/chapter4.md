@@ -140,7 +140,7 @@ Open the editor and paste the below contents
     // map the 'greet' controller value to a page controller class
     $di->params['Aura\Framework\Web\Controller\Factory']['map']['greet'] = 'Example\Package\Web\Greet\Page';
 
-Save the files as `default.php` in 'Example.Package/config' folder.
+Save the files as `default.php` in `Example.Package/config` folder.
 
 ## Loading your package ##
 
@@ -149,7 +149,7 @@ you need to add your package in the `{$system}/config/_packages` file.
 
 This is because some packages, depend on another package. So the configuration
 needs to be loaded first. The packages are loaded in the order it is 
-written in `config/_packages` file.
+written in `{$system}/config/_packages` file.
 
 ## Try it out ##
 

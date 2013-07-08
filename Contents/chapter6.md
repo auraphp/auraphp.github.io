@@ -1,7 +1,8 @@
 # The View #
 
 The aura framework make use of Aura.View as the default templating, 
-but you can also make use of other templating as done in Hari.Extras.
+but you can also make use of other templating as done in 
+[Hari.Extras](https://github.com/harikt/Hari.Extras).
 The Aura View package is an implementation of the
 [`TemplateView`](http://martinfowler.com/eaaCatalog/templateView.html) pattern,
 with support for automatic escaping, path stacks, and helpers. It adheres to

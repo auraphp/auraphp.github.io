@@ -303,3 +303,23 @@ you don't need to repeat common information:
             'edit'   => '/{:id}/edit',
         ],
     ));
+
+## Inside controller ##
+
+RouterMap objects are availble inside controller as `$this->router`
+
+    [php]
+    $this->router->generategenerate('read', [
+        'id' => 42,
+        'format' => '.atom',
+    ]);
+
+## Inside view ##
+
+You can generate routes as  
+
+    [php]
+    $this->route('read', [
+        'id' => 42,
+        'format' => '.atom',
+    ]);

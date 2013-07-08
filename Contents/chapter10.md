@@ -1,114 +1,176 @@
-# Generic Factory #
+# Connecting to Database #
 
-If you are not familiar with dependency injection and how the dependency 
-injection container works, please read Aura.Di.
+Before you read this chapter, please familarize yourself reading previous 
+chapters on Dependency Injection container, Generic Factory.
 
-So in-order to make use of the dependency injection, when creating models, 
-forms etc, it will be good to have a generic factory. The aura framework 
-doesn't provide one. 
+Aura framework doesn't force you to use Aura.Sql and how you need to work
+on the models. It is your taste whether you need to work with Propel, 
+Doctrine or native PDO itself.
 
-But let us create it
+In this we are going to make use of Aura.Sql to connect to the database.
+
+## Database Connection ##
+
+Let us create an AbstractModel.php file with contents and save in folder
+`package/Example.Package/src/Example/Package/Model`
 
     [php]
     <?php
-    namespace Example\Package;
+    namespace Example\Package\Model;
     
-    class GenericFactory
+    use Aura\Sql\ConnectionLocator;
+    
+    abstract class AbstractModel
     {
-        protected $map;
+        /**
+         * 
+         * The connections to connect to database
+         * 
+         * @var ConnectionLocator
+         * 
+         */
+        protected $connection_locator;
         
-        public function __construct($map = []) 
+        /**
+         * 
+         * Constructor
+         * 
+         * @param ConnectionLocator $connection_locator Set the db connection
+         * 
+         */
+        public function __construct(ConnectionLocator $connection_locator)
         {
-            $this->map = $map;
+            $this->connection_locator = $connection_locator;
         }
         
-        public function newInstance($name)
+        /**
+         * 
+         * Returns an \Aura\Sql\Connection\AbstractConnection object
+         * 
+         * @param string $type The type of connection. master / slave
+         * 
+         * @param string $name The name of the connection for master / slave
+         * 
+         * @return \Aura\Sql\Connection\AbstractConnection
+         * 
+         */
+        public function getConnection($type = null, $name = null)
         {
-            if (! isset($this->map[$name])) {
-                throw new \Exception("$name not mapped");
+            switch ($type) {
+                case 'master':
+                    $connection = 'getMaster';
+                    break;
+                case 'slave':
+                    $connection = 'getSlave';
+                    break;
+                default:
+                    $connection = 'getDefault';
+                    break;
             }
-            $factory = $this->map[$name];
-            $model = $factory();
-            return $model;
+            return $this->connection_locator->$connection($name);
         }
     }
-    
 
-Save the above contents as `GenericFactory.php` in 
-`package/Example.Package/src/Example/Package` folder.
+## Creating your models ##
 
-## Extending the controller ##
-
-We can set `GenericFactory` as a setter injection on the controller.
+If your models need database connection, you can extend the class with
+`Example\Package\Model\AbstractModel` and use the `getConnection()` method
+and query database.
 
     [php]
     <?php
-    namespace Example\Package\Web;
+    namespace Example\Package\Model;
     
-    use Aura\Framework\Web\Controller\AbstractPage;
-    abstract class PageController extends AbstractPage
-    {        
-        protected $factory;
+    use Example\Package\Model\AbstractModel;
     
-        public function setFactory(GenericFactory $factory)
+    class User extends AbstractModel
+    {
+        protected $table = 'user';
+        
+        public function insert($bind)
         {
-            $this->factory = $factory;
+            $connection = $this->getConnection();
+            // create a new Insert object
+            $insert = $connection->newInsert();
+    
+            // INSERT INTO foo (name, email, username, password, created_at) 
+            // VALUES (:name, :email, :username, NOW());
+            $insert->into($this->table)
+                   ->cols(['name', 'email', 'username'])
+                   ->set('created_at', 'NOW()');
+    
+            $stmt = $connection->query($insert, $bind);
+            return $stmt;
         }
         
-        public function getFactory()
+        public function update($bind)
         {
-            return $this->factory;
-        }
-    }
-
-Save the above contents as `PageController.php` in 
-`package/Example.Package/src/Example/Package/Web` folder.
-
-Let us modify our old example in chapter-4 to extend our `PageController`.
-The `package/Example.Package/src/Example/Package/Web/Greet/Page.php` will 
-look as below
-
-    [php]
-    <?php
-    namespace Example\Package\Web\Quick;
+            $connection = $this->getConnection();
+            // create a new Update object
+            $update = $connection->newUpdate();
     
-    use Example\Package\Web\PageController;
+            $cols = ['name', 'email', 'username'];
+            $update->table($this->table)
+                   ->cols($cols)
+                   ->set('updated_at', 'NOW()')
+                   ->where('id = :id');
     
-    class Page extends PageController
-    {
-        public function actionIndex()
-        {
-            $this->data->message = $this->context->getQuery('name', 'guys!');
-            $this->view = 'index';
+            $stmt = $connection->query($update, $bind);
+            return $stmt;
         }
     }
 
 ## Configuration ##
 
-So far we have not configured to set the `GenericFactory` object to 
-`PageController`. Let us add in our `package/Example.Package/config/default.php`
-the below contents.
+You can keep the connection configuration information in the 
+`{$system}/config/default.php`.
 
     [php]
-    // the generic factory service
-    $di->set('generic_factory', function () use ($di) {
-        return $di->newInstance('Hari\Framework\GenericFactory');
+    // database
+    $di->set('connection_factory', function () use ($di) {
+        return $di->newInstance('Aura\Sql\ConnectionFactory');
     });
-    $di->setter['Example\Package\Web\PageController']['setFactory'] = $di->lazyGet('generic_factory');
-
-Inorder to create the objects, you can assign to the map.
-
-    [php]
-    // default params for the model factory
-    $di->params['Example\Package\GenericFactory']['map']
-        ['model.user'] = $di->newFactory('Example\Package\Model\User');
-    $di->params['Example\Package\GenericFactory']['map']
-        ['model.post'] = $di->newFactory('Example\Package\Model\Post');
-    $di->params['Example\Package\GenericFactory']['map']
-        ['form.user.login'] = $di->newFactory('Example\Package\Form\Login');
     
-And now from the controller you can create objects like 
+    $di->set('connection_locator', function () use ($di) {
+        return $di->newInstance('Aura\Sql\ConnectionLocator');
+    });
+    
+    // default params for the AbstractModel class
+    $di->params['Example\Package\Model\AbstractModel'] = [
+        'connection_locator' => $di->lazyGet('connection_locator')
+    ];
+    
+    $di->params['Aura\Sql\ConnectionLocator'] = [
+        'connection_factory' => $di->lazyGet('connection_factory'),
+        'default' => [
+            'adapter' => 'mysql',
+            'dsn' => 'host=db-host;dbname=db-name',
+            'username' => 'db-username',
+            'password' => 'dbpassword',
+            'options' => []
+        ],
+        'masters' => [],
+        'slaves' => []
+    ];
+
+> Change the `adapter`, `db-host`, `db-name`, `db-username`, `db-password`
+according to yours.
+
+And we need to map the `Example\Package\GenericFactory` in-order to create 
+model objects from the controller. Save the below contents in the 
+`config/default.php` of your package or in the `$system`.
 
     [php]
-    $user = $this->getFactory()->newInstance('model.user');
-    $form = $this->getFactory()->newInstance('form.user.login');
+    $di->params['Example\Package\GenericFactory']['map']['user'] = $di->newFactory('Example\Package\Model\User');
+    // add more like this
+    // $di->params['Example\Package\GenericFactory']['map'][<name>] = $di->newFactory(<the-class-name>);
+
+Now if you have the GenericFactory injected to the controller as we 
+did in chapter6, then we can call
+
+    [php]
+    $this->factory->newInstance(<name>);
+    $this->getFactory()->newInstance(<name>);
+    // $this->factory->newInstance('user');
+
+That's it for now!.
