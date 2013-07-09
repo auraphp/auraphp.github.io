@@ -47,6 +47,8 @@ We can set `GenericFactory` as a setter injection on the controller.
     namespace Example\Package\Web;
     
     use Aura\Framework\Web\Controller\AbstractPage;
+    use Example\Package\GenericFactory;
+    
     abstract class PageController extends AbstractPage
     {        
         protected $factory;

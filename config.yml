@@ -1,5 +1,5 @@
 book:
-    title:            "The complete reference for Aura"
+    title:            "The book on Aura"
     author:           "Hari KT, Paul M Jones"
     edition:          "First edition"
     language:         en
@@ -31,7 +31,8 @@ book:
         - { element: chapter, number: 10, content: chapter10.md }
         - { element: chapter, number: 11, content: chapter11.md }
         - { element: chapter, number: 12, content: chapter12.md }
-        - { element: chapter, number: 13, content: chapter13.md }        
+        - { element: chapter, number: 13, content: chapter13.md }
+        - { element: chapter, number: 14, content: chapter14.md }
 
     editions:
         ebook:
