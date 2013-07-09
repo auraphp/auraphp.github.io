@@ -74,7 +74,7 @@ below
 
     [php]
     <?php
-    namespace Example\Package\Web\Quick;
+    namespace Example\Package\Web\Greet;
     use Aura\Framework\Web\Controller\AbstractPage;
     class Page extends AbstractPage
     {
