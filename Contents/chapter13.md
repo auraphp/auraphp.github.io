@@ -1,7 +1,7 @@
 # Creating Forms #
 
-Every webpage needs some sort of forms. Please do read chapter-5 
-( Dependency Injection ) and chapter-6 ( Generic Factory ).
+Every webpage needs some sort of forms. Please do read chapter on 
+Dependency Injection and Generic Factory.
 
 ## Form class ##
 
@@ -20,7 +20,7 @@ Let us create an example form
     
     class ContactForm extends Form
     {
-        protected function init()
+        public function init()
         {
             $states = array(
                 'AL' => 'Alabama',
