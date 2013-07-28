@@ -46,7 +46,7 @@ jQuery(function($) {
     $("#sidebar").append(ul);
     $('.bs-docs-sidebar').affix();
   }
-  $('.nav-list > li > a').live('click', function() {
+  $('.nav-list > li').on('click', 'a', function() {
     var id = $(this).attr('href');
     $('html,body').animate({scrollTop: $(id).offset().top - 40},'slow');
   });
