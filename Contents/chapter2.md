@@ -1,56 +1,53 @@
 # Installation #
 
-You can use aura framework as a whole downloading the full system tarball
-or by cloning the system and then manually install packages, or via composer.
+システム全体のtarballをダウンロードしてAuraフレームワークを使用することができます。またはsystemをcloneして手動でパッケージをインストールする事もできるし、composerを使ってインストールすることもできます。
 
 ## Tarball ##
 
- -    Download the latest tarball from the
-      [downloads directory](http://auraphp.com/system/downloads).
+-  [download](http://auraphp.com/system/downloads)から最新のtarballをダウンロード
 
- -    Uncompress the tarball to your document root.
+- tarballをドキュメントルートへ解凍します。
 
- -    Browse to `/path/to/system/web/index.php` to see "Hello World!".
+-  `/path/to/system/web/index.php`をブラウズすると &quot;Hello World！&quot;が表示されます。
 
 
 ## Cloning via Git ##
 
-The `git` command must be in your `$PATH` for this to work.
+これが機能するためには `git`コマンドが `$PATH`に存在する必要があります。
 
- -    Clone the Aura `system` repository to your document root. 
- This will give you the overall system skeleton along with an `update.php` script.
+- ドキュメントルートに Auraの `system` リポジトリをcloneします。
+`update.php`を実行して、システムのスケルトンを取得します。
 
         $ git clone https://github.com/auraphp/system.git
 
- -    Run `php update.php` to install the remaining library packages from 
- the system as below.
+-    `php update.php&#39;を実行してシステムの他のライブラリをインストールするには以下の様にします。
 
         $ cd system
         $ php update.php
         
-    You can subsequently update the system and all library packages (including
-    installation of newly-available packages) with the same `php update.php`
-    command.
+`php update.php`コマンドはシステムを最新の状態に保ちます。（新しく利用可能になったパッケージのインストールも含みます）
 
- -    Browse to `/path/to/system/web/index.php` to see "Hello World!".
+
+ -    `/path/to/system/web/index.php` をブラウズすると &quot;Hello World!&quot;.が表示されます。
+
     
-## Via Composer ##
+## Composer ##
 
-The easiest way create an aura framework based project is via 
-[composer](http://getcomposer.org). For this you need to 
-[install composer](http://getcomposer.org/doc/00-intro.md#installation-nix)
+[composer]（http://getcomposer.org）を使うとAuraフレームワークベースのプロジェクトを最も簡単に作成する事ができます。そのためには[install composer](http://getcomposer.org/doc/00-intro.md#installation-nix)が必要です。
 
- -    Let us create our new aura framework based project. Open the terminal and run 
+ -    Auraフレームワークの新しいベースプロジェクトを作成しましょう。ターミナルを開いて実行します。
 
-        composer create-project -s dev aura/system <your-project-dir>
+        composer create-project -s dev aura/system 
     
- -    Browse to `/path/to/system/web/index.php` to see "Hello World!".
-    
-The above command will install all the dependencies for the aura project.
-What it does under the hood is something like 
+ -    `/path/to/system/web/index.php` をブラウズすると &quot;Hello World!&quot;.が表示されます。
 
-    git clone https://github.com/auraphp/system.git <your-project-dir>
-    cd <your-project-dir>
+
+    
+上記のコマンドは、Auraのプロジェクトのすべての依存関係をインストールします。上記コマンドではこのような事が行われています。
+
+    git clone https://github.com/auraphp/system.git 
+    cd 
     composer install
 
-> Assuming you have composer installed globally.
+
+> composerがグローバルにインストールされていると仮定しています。
