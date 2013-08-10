@@ -1,10 +1,10 @@
 # System Organization #
 
-The system directory structure is pretty straightforward:
+システムのディレクトリは理解の容易な単純な構造です：
 
     {$system}/
         config/                     # mode-specific config files
-            _mode                   # The config mode, 'default' by default
+            _mode                   # The config mode, &#39;default&#39; by default
             _packages               # Load these packages in order
             default.php             # default config overrides
             dev.php                 # shared development server
@@ -23,17 +23,14 @@ The system directory structure is pretty straightforward:
             index.php               # bootstrap script
 
 
-`config`: The configuration files which are common to all packages.
+`config`: すべてのパッケージに共通する設定ファイル
 
-`package`: All aura packages like Aura.Autoload, Aura.Di, Aura.Router 
-etc and the one you are creating will be at packages folder.
+`Package`: Aura.Autoload, Aura.Di, Aura.Routerのような既存のすべてのAuraパッケージ、それにAuraパッケージとして作成するパッケージ
 
-`tmp`: The temporary files, like cached configuration etc
+`tmp`: キャッシュや設定ファイルなどのテンポラリーファイル
 
-`vendor`: All the 3rd party libraries, like Doctrine, Propel, Twig
-what all you install via composer.
+`vendor`: Doctrine, Propel, Twigなどすべてのサードパーティのライブラリとcomposerでインストールするライブラリあなたには、作曲家を介してインストールするすべてのもの。
 
-`web`: The web folder is the one that is exposed to the user.
+`web`: webフォルダはユーザーに公開されます
 
-We will talk more on Package organization and how to create your own 
-package in the next chapter.
+パッケージの構成の詳細とどのようにあなた自身のパッケージを作成するかは次の章で紹介します。
