@@ -1,18 +1,11 @@
 # Introduction to Aura #
 
-The primary goal of Aura is to provide high-quality, well-tested, 
-standards-compliant, decoupled libraries that can be used in any codebase. 
-This means you can use as much or as little of the project as you like.
+Auraの第一の目標は十分にテストされ、標準に準拠し、どのコードベースでも使用することができる高品質で粗結合なライブラリを提供する事です。必要に応じた分だけプロジェクトに使用することができます。
 
 ## Packages ##
 
-The Aura project centers around a collection of independent packages. 
-Each package is self-contained and has only the things it needs for its 
-core purpose. None of the packages depends on any of the other; you can 
-[download](http://auraphp.com/packages) and use each of the packages on its own.
+Auraプロジェクトは独立したパッケージの集合が中心です。各パッケージは自己完結していて、それぞれの専門の目的にのみ使用されます。どのパッケージも他のパッケージに依存しません。[ダウンロード](http://auraphp.com/packages)してそれぞれのパッケージをを独立して使用することができます。
 
 ## The Aura System ##
 
-The Aura System provides a full-stack Aura framework built around [Aura library
-packages](http://auraphp.com/packages). If you are looking for standalone 
-versions of a package look into the package documentation.
+Aura Systemは、[Aura ライブラリパッケージ] (http://auraphp.com/packages)を中心としたフルスタックフレームワークを提供します。スタンドアロンでパッケージを使用する場合はそれぞれのパッケージのドキュメントを見ることができます。
