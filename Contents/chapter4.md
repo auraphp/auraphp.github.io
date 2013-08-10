@@ -1,10 +1,8 @@
 # Package Organization #
 
-In Aura, all code is grouped into packages. There is no difference between
-library packages, support packages, web packages, and so on -- they are all
-just "packages."
+Auraではすべてのコードはパッケージにとして分類されます。ライブラリパッケージ、サポートパッケージ、Webパッケージなど - これらはすべて同じで単に &quot;パッケージ&quot;です。
 
-The package directory structure looks like this:
+パッケージのディレクトリ構造は次のようになります。
 
     [bash]
     Vendor.Package/
@@ -12,7 +10,7 @@ The package directory structure looks like this:
         composer.json               # composer/packagist file
         config/                     # package-level configs
             default.php             # default configs
-            test.php                # configs for "test" mode
+            test.php                # configs for &quot;test&quot; mode
         meta/                       # metadata for packaging scripts
         LICENSE                     # license file
         README.md                   # readme file
@@ -31,7 +29,7 @@ The package directory structure looks like this:
             images/                 # image files
             scripts/                # javascript (or other script) files
 
-In general, your `src/` files should be organized like so:
+通常`src/`はこのように構成されます：
 
     [bash]
     Vendor/
@@ -50,28 +48,26 @@ In general, your `src/` files should be organized like so:
                 Helper/
                     HelperName.php  # a view helper
 
-You can of course place other libraries in the package if you like.
+パッケージに他のライブラリを配置することは自由にできます。
 
 ## Creating your Package ##
 
-Let's create a package and a page controller, to greet a person
-
+パッケージを作成してみます。ここでは「挨拶」をするためにパッケージとページコントローラーを作成しましょう。
 ## Package Structure ##
 
-First, create the package structure (just the parts we need):
+まず、パッケージ構造（必要な部分だけ）を作成します：
 
     [bash]
     $ mkdir -p package/Example.Package/src/Example/Package/Web/Greet/views
     $ mkdir package/Example.Package/config
 
-    Note : If you are in *nix system the -p command works. If you are in 
-    windows, you may want to create each directory seprately.
+注：* nixの場合は、-pコマンドが使えます。Windoesの場合は各ディレクトリを別々に作成します。
 
 ## Page Controller and View ##
 
-Let us create our controller. Open your favourite editor and save the code
-below
+コントローラを作成してみましょう。好きなエディタで以下のコードを入力して&#39;Page.php&#39;として `package/Example.Package/src/Example/Package/Web/Greet/`フォルダに保存します。
 
+```php
     [php]
     <?php
     namespace Example\Package\Web\Greet;
@@ -84,11 +80,11 @@ below
             $this->view = 'index';
         }
     }
+```
 
-as `Page.php` in the folder `package/Example.Package/src/Example/Package/Web/Greet/`
-
-Next, we need to create a view for the action. Paste the below code 
-
+次に、アクション用のビューを作成します。
+以下のコードを貼り付けます
+```php
     [php]
     <?php
     $this->title()->set('Welcome to the world of Aura Framework!');
@@ -98,11 +94,10 @@ Next, we need to create a view for the action. Paste the below code
         <input type="text" name="name" id="name" class="input-medium search-query" placeholder="Name" />
         <input type="submit" name="greet" id="greet" value="Greet" class="btn" />
     </form>
+```    
     
-and save it as `index.php` in `package/Example.Package/src/Example/Package/Web/Greet/views`
-folder.
-
-At this point your package directory should look like this:
+ `package/Example.Package/src/Example/Package/Web/Greet/views`フォルダに`index.php`として保存します。
+この時点で、あなたのパッケージディレクトリは次のようになります。
 
     [bash]
     Example.Package/
@@ -117,11 +112,10 @@ At this point your package directory should look like this:
 
 ## Configuration ##
 
-We have not added any files to the autoloader, and have not specified 
-the routes. Its time to add it in the configuration.
+私たちはまだオートローダーに任意のファイルを追加していないし、ルートも指定していません。それではそれらの設定を追加してみましょう。
+エディタを開き、以下の内容を貼り付けます。
 
-Open the editor and paste the below contents 
-
+```php
     [php]
     <?php
     /** Example Package configs */
@@ -139,24 +133,19 @@ Open the editor and paste the below contents
     
     // map the 'greet' controller value to a page controller class
     $di->params['Aura\Framework\Web\Controller\Factory']['map']['greet'] = 'Example\Package\Web\Greet\Page';
-
-Save the files as `default.php` in `Example.Package/config` folder.
+```
+    
+`Example.Package/config`フォルダに` default.php `としてファイルを保存します。
 
 ## Loading your package ##
 
-For the framework to load your package and the configuration files, 
-you need to add your package in the `{$system}/config/_packages` file.
-
-This is because some packages, depend on another package. So the configuration
-needs to be loaded first. The packages are loaded in the order it is 
-written in `{$system}/config/_packages` file.
+フレームワークにパッケージと設定ファイルをロードするため、`{$system}/config/_packages`ファイルをパッケージに追加する必要があります。
+いくつかのパッケージは、別のパッケージに依存しているため設定を最初にロードする必要があります。パッケージは{$system}/config/_packages` ファイルで書かれている順番で読み込まれます。
 
 ## Try it out ##
 
-It is time to see what we did so far.
-Let us use the PHP's built in capability of running it as server from cli 
+これまでにした事を確認してみましょう。PHPのCLIで利用できる組み込みのサーバ機能を使用してみましょう。
 
     $ php -S localhost:8000 web/index.php
 
-Browse `http://localhost:8000/greet` URL and see `Hey good day` and if you 
-insert `Bob` in the input box and submit, you will see `Hey good day Bob`
+`http://localhost:8000/greet`のURLを参照して`Hey good day` と表示されます。その時`Bpb`とinput boxにテキストを入力して送信した場合は`Hey good day Bob`と表示されるでしょう。
