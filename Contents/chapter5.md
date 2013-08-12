@@ -174,6 +174,7 @@
 ## Configuration ##
  ここでは、二つのことを追加する必要があります。 Add your controller to the map in the `config/default.php` ファイルでコントローラーをマップして加える事です。
 .
+
     [php]
     $di->params['Aura\Framework\Web\Controller\Factory']['map']['<name>'] = 
         'Vendor\Package\Web\Greet\Page';
