@@ -1,18 +1,9 @@
 # Controller #
-
-The Aura Framework controller is the extended version of Aura Web 
-package, which provides tools to build web page controllers, including
-an `AbstractPage` for action methods, a `Context` class for discovering the
-request environment, and a `Response` transfer object that describes the
-eventual HTTP response. (Note that the `Response` transfer object is not
-itself an HTTP response.) It also includes a `Signal` interface to handle
-calls to controller hooks, as well as a `Renderer` interface to allow for
-different rendering strategies.
+ Aura Framework controller はアクションメソッドドのための`AbstractPage`やリクエストを扱う`Context`、HTTPレスポンスを転送する`Response`転送オブジェクトを含んだwebページコントローラーを作成するために必要なAura Web の拡張版です。（`Response`転送オブジェクトはHTTPレスポンスそのものでは無い事に注意してください)
+これにはコントローラにフック処理をするための`Signal`インターフェイスや複数のレンダリング方法を提供する`Renderer`インタフェースも含まれます。
 
 ## Creating your controller ##
-
-We create a page controller class of our own, extending the 
-`Aura\Framework\Web\Controller\AbstractPage`
+ `Aura\Framework\Web\Controller\AbstractPage` を拡張して独自のコントローラーを作成します。
 
     [php]
     <?php
@@ -24,38 +15,33 @@ We create a page controller class of our own, extending the
     {
         
     }
-
-
+    
 ## The Execution Cycle ##
 
-The heart of the page controller is its execution cycle.
+ページコントローラーには実行サイクルがあります。
 
-The `exec()` cycle runs ...
+`exec()`サイクルが実行されると ...
 
-- the `preExec()` hook to prepare for overall execution,
+- まず `preExec()` フックが全体の実行のために準備されます。
 
-- the `preAction()` hook to prepare for the action,
+- 次に `preAction()` フックがアクションのために準備されます。
 
-- the `action()` method to invoke the method determined by the `'action'`
-  param value
+- `action()` `'action'`パラメータの値で決定されたメソッドが実行されます。
 
-- the `postAction()` hook,
+- 続いて`postAction()` がフックされ、
 
-- the `preRender()` hook to prepare for rendering,
+- `preRender()` フックがレンダリングのために準備されます。
 
-- the `render()` method to render a presentation (this is up to the developer
-  to create),
+- `render()` メソッドでプレゼンテーションがレンダリングされます（ディベロッパーが作成することもできます）
 
-- the `postRender()` hook, and
+- 続いて`postRender()` がフックされ、
 
-- the `postExec()` hook to do work after overall execution.
+- `postExec()` は全体の実行の終わりにフックされます。
 
 ## Action Methods ##
 
-At this point, calling `exec()` on the page controller will do nothing,
-because there are no corresponding action methods. To add an action method to
-the page controller, create it as a method named `action*()` with any
-parameters it needs:
+この時点で `exec()`が呼ばれても何も起こりません。一致するアクションメソッドが無いからです。
+ページコントローラーにアクションメソッドを追加するには必要な引数を追加した`action*()`メソッドを作成します。
 
     [php]
     <?php
@@ -71,50 +57,40 @@ parameters it needs:
             $content = "Hello, {$noun}!";
             $this->data->content = $content;
         }
-    }
+    } 
 
 ## The Response Transfer Object ##
 
-To manipulate the response description, use the `$this->response` transfer
-object. Some of the important methods are:
+  レスポンスを操作するためには`$this->response` 転送オブジェクトを使います。重要なメソッドはのいくつかは以下のとおりです。
 
-- `setContent()`: sets the body content
+- `setContent()`: コンテント本体をセットします
 
-- `setHeader()`: sets a single header value
+- `setHeader()`: 単一のヘッダーをセットします
 
-- `setCookie()`: sets a single cookie
+- `setCookie()`: 単一のcookieをセットします
 
-- `setRedirect()`: sets a `Location:` header for redirect, with an optional
-  status code and message (default is `'302 Found'`.)
+- `setRedirect()`: `Location:` ヘッダーをリダイレクトのためにセットします (デフォルトは `'302 Found'`.)
 
-- `setStatusCode()` and `setStatusText()`: sets the HTTP status code and
-  message
+- `setStatusCode()` と `setStatusText()`　はHTTPのステータスコードとメッセージをセットします
 
-For more information, please review the [Response][] class.
-
+ 詳細については、[Response][]クラスを確認してください。
 
 ## The Context Object ##
+ webのリクエスト状況は `$this->context`オブジェクトで知る事ができます。重要なメソッドのいくつかは以下のとおりです。
 
-You can discover the web request environment using the `$this->context`
-object. Some of the important methods are:
+- `getQuery()`: $_GET の値を取得します
 
-- `getQuery()`: gets a $_GET value
+- `getPost()`: $_POST の値を取得します
 
-- `getPost()`: gets a $_POST value
+- `getFiles()`: $_FILES vの値を取得します
 
-- `getFiles()`: gets a $_FILES value
+- `getInput()`: 生の `php://input` の値を取得します
 
-- `getInput()`: gets the raw `php://input` value
+- `getJsonInput()`: 生の `php://input` の値と `json_decode()` の値を取得します
 
-- `getJsonInput()`: gets the raw `php://input` value and `json_decode()` it
+- `isGet()`, `isPut()`, `isXhr()`, 等: メソッドが `GET`, `PUT`, あるいは `Xml-HTTP-Request`等かを返します
 
-- `isGet()`, `isPut()`, `isXhr()`, etc.: Tells if the request method was
-  `GET`, `PUT`, an `Xml-HTTP-Request`, etc.
-
-For more information, please review the [Context][] class.
-
-An example "search" action using a "terms" query string parameter might look
-like this:
+ 詳細については、 [Context][]クラスご確認ください。 "terms" クエリー文字列をつかった"search" アクションのコード例は以下の様になるでしょう。
 
     [php]
     <?php
@@ -126,33 +102,22 @@ like this:
         }
     }
 
-Given a URI with the query string `'?terms=foo+bar+baz'`, the `$terms`
-variable would be `'foo bar baz'`. If there was no `'terms'` item in the query
-string, `$terms` would be null.
-
+`'?terms=foo+bar+baz'`というクエリーのついたURIが与えられると `$terms`変数は `'foo bar baz'`になります。もしクエリーに `'terms'`がないと`$terms`はnullになります。
 
 ## The Accept Object ##
+ `$this->accept`オブジェクトをつかってクライアントが何をアクセプトしているかを知る事ができます。
+ 
+- `getContentType()`: 利用可能なメディアタイプを返します
 
-You can discover what the client will accept using the `$this->accept` object.
+- `getCharset()`: 利用可能なキャラクターセットを返します
 
-- `getContentType()`: returns the accepted media types
+- `getEncoding()`: 利用可能なエンコーディングを返します
 
-- `getCharset()`: returns the accepted character sets
-
-- `getEncoding()`: returns the accepted encodings
-
-- `getLanguage()`: returns the accepted languages
-
+- `getLanguage()`: 利用可能な言語を返します
 
 ## Data and Rendering ##
 
-Usually, you will not want to manipulate the `Response` content directly in
-the action method. It is almost always the case that you will collect data
-inside the action method, then hand off to a rendering system to present that
-data. The `AbstractPage` provides a `$data` property and a `Renderer` strategy
-system for just that purpose.
-
-Here is a naive example of how to use the `$data` property:
+通常は`Response`の内容をアクションメソッドで直接操作したいとは思わないでしょう。ほとんどの場合は、アクションメソッドの内部でデータを集めて、表示のためにレンダリングシステムにデータを渡します。`AbstractPage`は`$data`プロパティと`Renderer` を提供します。 `$data`プロパティを単純に使用する例は、次のとおりです。
 
     [php]
     <?php
@@ -170,13 +135,11 @@ Here is a naive example of how to use the `$data` property:
 
 ## View template and layout ##
 
-In-order to render the proper template, we need to assign which view and 
-layout need to be rendered.
+適切なテンプレートでレンダリングするためには、レンダリングに必要なビューとレイアウトのアサインが必要です。
+ レンダーに必要な値はこのようにアサインします。 `$this->view = 'viewname'`
+レイアウトに必要なアサインはこのようにします。`$this->layout = 'layout-name'`.
 
-You can assign which view it needs to render as `$this->view = 'viewname'`
-and which layout need to be assigned via `$this->layout = 'layout-name'`.
-
-    [php]
+   [php]
     <?php
     namespace Vendor\Package\Web\Greet;
     
@@ -209,17 +172,13 @@ and which layout need to be assigned via `$this->layout = 'layout-name'`.
     }
 
 ## Configuration ##
-
-Now we need to add two things.
-
-Add your controller to the map in the `config/default.php` file.
-
+ ここでは、二つのことを追加する必要があります。 Add your controller to the map in the `config/default.php` ファイルでコントローラーをマップして加える事です。
+.
     [php]
     $di->params['Aura\Framework\Web\Controller\Factory']['map']['<name>'] = 
         'Vendor\Package\Web\Greet\Page';
-
-Add a route, with the same name of the controller you have specified 
-above
+        
+ 上記コントローラで指定した同じ名前でルートを追加します。
 
     [php]
     $di->get('router_map')->add('<unique-route-name>', '/registered', [
@@ -228,5 +187,5 @@ above
             'action' => 'hello',
         ],
     ]);
-    
-Consider reading routing chapter for more information on routes.
+
+ルートの詳細については、ルーティングの章を読んでみてください。
