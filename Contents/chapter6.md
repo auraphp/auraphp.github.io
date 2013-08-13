@@ -1,15 +1,12 @@
 # The View #
 
-The aura framework make use of Aura.View as the default templating, 
-but you can also make use of other templating as done in 
-[Hari.Extras](https://github.com/harikt/Hari.Extras).
-The Aura View package is an implementation of the
-[`TemplateView`](http://martinfowler.com/eaaCatalog/templateView.html) pattern,
-with support for automatic escaping, path stacks, and helpers. It adheres to
-the "use PHP for presentation logic" ideology, and is preceded by systems such
-as [`Savant`](http://phpsavant.com),
-[`Zend_View`](http://framework.zend.com/manual/en/zend.view.html), and
-[`Solar_View`](http://solarphp.com/class/Solar_View).
+AuraフレームワークはAura.Viewをデフォルトのテンプレートとして使用します。
+しかし[Hari.Extras](https://github.com/harikt/Hari.Extras)で行っている様に他のテンプレートシステムを使う事もできます。
+Aura Viewパッケージは[`TemplateView`](http://martinfowler.com/eaaCatalog/templateView.html)パターンの実装です。
+これには自動エスペープや"path stacks"、ヘルパー等のサポートも含まれています。
+
+「PHPをプレゼンテーションロジックのために使用する」という方針を固持していますが、[`Savant`](http://phpsavant.com)、[`Zend_View`](http://framework.zend.com/manual/en/zend.view.html)、それに
+[`Solar_View`](http://solarphp.com/class/Solar_View)などで置き換えることができます。
 
 ## Assigning Data from controller ##
 
@@ -19,8 +16,7 @@ as [`Savant`](http://phpsavant.com),
         'bar' => 'value of bar',
     ];
 
-We can then refer to the data as properties from within the template script
-using `$this`:
+`$this`を使ってテンプレートスクリプトからプロパティを利用するこができます。：
 
     [php]
     // template script
@@ -29,10 +25,9 @@ using `$this`:
 
 ## Writing Template Scripts ##
 
-Aura View template scripts are written in plain PHP and do not require a new
-markup language. The template scripts are executed inside the `Template`
-object scope, so use of `$this` refers to the `Template` object. The following
-is an example script:
+Aura Viewテンプレートスクリプトは素のPHPで書かれ新しいマークアップ言語を必要としません。
+テンプレートスクリプトは`Template`オブジェクトスコープ内部で実行されます。 
+そのとき`$this`は`Template` オブジェクトを指しています。以下にスクリプト例を示します。
 
     [php]
     <html>
@@ -48,7 +43,8 @@ We can use any PHP code we would normally use. (This will require discipline
 on the part of the template script author to restrict himself to
 presentation-related logic only.)
 
-We may wish to use the alternative PHP syntax for conditionals and loops:
+PHPコードを通常通りに使用します（ここにはプレゼンテーションのためのロジックしか記述しません）
+条件分岐やループのための表記はこのようになります。
 
     [php]
     <?php if ($this->model->hasMessage()): ?>
@@ -63,20 +59,17 @@ We may wish to use the alternative PHP syntax for conditionals and loops:
 
 ## Escaping Output ##
 
-***Aura View automatically escapes data assigned to the template when you
-access that data.*** So, in general, you do not need to manually apply escaping
-in your template scripts.
 
-- Strings assigned to the template are automatically escaped as you access
-  them; integers, floats, booleans, and nulls are not.
+***Aura View はテンプレートにアサインされたデータをアクセスする時に自動でエスケープ処理が行われます。***通常はテンプレート内で手動で適用する必要はありません
 
-- If you assign an array to the template, its keys and values will be escaped
-  as you access them.
+- アサインされた文字列はアクセスに応じて自動的にエスペープされます：
+  integers, floats, booleans, それに nulls と not
 
-- If you assign an object to the template, its properties and method returns
-  will also be escaped as you access them.
+- もし配列がアサインされたらそのキーと値はアクセスされたときにエスペープされます
 
-Here is an example of the business logic to assign data to the template ...
+- もしオブジェクトがアサインされたらプロパティとメソッドの返り値はアクセスされたときにエスケープされます
+
+ビジネスロジックのデータがテンプレートにアサインされた例です ...
 
     [php]
     <?php
@@ -98,7 +91,7 @@ Here is an example of the business logic to assign data to the template ...
     ];
 
 
-... and here is an example of the automatic escaping in the template:
+... そしてこれはテンプレートでの自動エスケープの例です。
 
     [php]
     <?php
@@ -128,14 +121,12 @@ Here is an example of the business logic to assign data to the template ...
         echo $key . ': ' . $val;
     }
 
-
-Note that automatic escaping occurs at *access* time, not at *assignment*
-time, and only occurs when accessing *values assigned to the template*.
+エスケープは*アクセス*時に行われ、*アサイン*の時では無いのに注意してください。
+*テンプレートにアサインされた値*にアクセスした時のみに行われます。
 
 ## Manual Escaping ##
 
-If you create a variable of your own inside a template, you will need to
-escape it yourself using the `escape()` helper:
+もしテンプレート内で作成した値があれば、`escape()` ヘルパーを使って自身でエスケープする必要があります。
 
     [php]
     <?php
@@ -145,8 +136,7 @@ escape it yourself using the `escape()` helper:
 
 ## Raw Data ##
 
-If you want to access the assigned data without escaping applied, use the
-`__raw()` method:
+もしエスケープしない値をアクセスしたときには`__raw()`メソッドを使います。
 
     [php]
     <?php
@@ -176,13 +166,11 @@ If you want to access the assigned data without escaping applied, use the
         // ...
     }
 
-    
-Using the raw data is the only way to get a `count()` on an array or a
-`Countable` object, or to find the class type of the underlying variable. This
-is because the automatic escaping works by wrapping ("decorating") the
-underlying variable with an escaper object. The decoration makes it possible
-to auto-escape array keys and values, and object properties and methods, but
-unfortunately hides things like `implements` and `instanceof` from PHP.
+
+配列や`Countable`オブジェクトから`count()`を求めるには生の値が必要です。
+これは元の値にエスケープをするオブジェクトがラッピング（デコレーティング）され自動エスケープが行われてしまうためです。
+このデコレーションは配列のキーと値、オブエクとのプロパティとメソッドに対して自動エスケープする事を可能にしますが、
+一方`implements` や `instanceof`といった事ができる機能が利用できなくなってしまいます事に注意が必要です。
 
 ## Double Escaping ##
 
@@ -190,7 +178,10 @@ There is an escaping "gotcha" to look out for when manipulating values after
 they are assigned to a template. If you use an assigned value and re-assign
 it to the template, the new value will be double-escaped when you access it.
 
-For example, given this business logic ...
+テンプレートにアサインされた後の値を操作したときに、エスケープが面倒な事にならないように注意する必要がありあmす。
+もしアサインされた値を再びアサインすると新しい値はアクセスしたときに二重エスケープされてしまうでしょう。
+
+例えばこのようなビジネスロジックが与えられたとします ...
 
     [php]
     <?php
@@ -198,7 +189,7 @@ For example, given this business logic ...
     $this->data->foo = "this & that";
 
     
-... and this template script ...
+.. テンプレートスクリプトはこれです ...
 
     [php]
     <?php
@@ -206,13 +197,12 @@ For example, given this business logic ...
     $this->bar = $this->foo . " & the other";
     echo $this->bar;
 
+... この時、アウトプットは二重エスケープされた`"this &amp;amp; that &amp; the other"`になってしまいます。
+これは`$this->foo` をアクセスしたときにエスケープされた後、出力のときに`$this->bar`がアクセスされたときに
+更に自動エスケープされてしまうためです。
 
-... the output will be `"this &amp;amp; that &amp; the other"`. The output was
-double-escaped; this is because the template escaped `$this->foo` for us when
-we accessed it and assigned it to `$this->bar`, and then escaped `$this->bar`
-for output as well.
+`__raw()`このような操作を行うときには`__raw()`の値を使います：
 
-When performing manipulations of this kind, use the `__raw()` values instead:
 
     [php]
     <?php
@@ -221,97 +211,85 @@ When performing manipulations of this kind, use the `__raw()` values instead:
     echo $this->bar;
 
 
-Now the output will be `"this &amp; that &amp; the other"`, correctly escaped
-only once.
+これで出力は`"this &amp; that &amp; the other"`と正しく一度だけ行われる様になりました。
 
 ## Using Helpers ##
 
-Aura View comes with various `Helper` classes to encapsulate common
-presentation logic. These helpers are mapped to the `Template` object through
-a `HelperLocator`. We can call a helper in one of two ways:
+Aura View は様々な `Helper` クラスを共通のプレゼンテーションロジックに利用する事ができます。
+これらのヘルパーは`Template`オブジェクトに`HelperLocator`を通じてマップされています。
+コールする方法は二通りです：
 
-- As a method on the `Template` object
+- `Template` オブジェクトのメソッドとして
 
-- Via `getHelper()` to get the helper as an object of its own
+- オブジェクトがもつ`getHelper()`でヘルパーを取得します 
 
 We have already discussed the `escape()` helper above. Other helpers that are
 part of Aura View include:
+`escape()`ヘルパーを利用した例は見てきました。Aura Viewの他のヘルパーは以下のようなものがあります。
 
-- `$this->anchor($href, $text)` returns an `<a href="$href">$text</a>` tag
+- `$this->anchor($href, $text)`は`<a href="$href">$text</a>`タグを返します。
 
-- `$this->attribs($list)` returns a space-separated attribute list from a
-  `$list` key-value pair
+- `$this->attribs($list)`は`$list`からキー/バリューのペアの空白区切りのリストを返します。
 
-- `$this->base($href)` returns a `<base href="$href" />` tag
+- `$this->base($href)`は `<base href="$href" />`タグを返します。
 
-- `$this->datetime($datestr, $format)` returns a formatted datetime string.
+- `$this->datetime($datestr, $format)`はフォーマットされたdatetime文字列を返します。
 
-- `$this->image($src)` returns an `<img src="$src" />` tag.
+- `$this->image($src)` は `<img src="$src" />` タグを返します。
 
-- `$this->input($attribs, $value, $label, $label_attribs)` 
-returns an `<input>` tag, optionally wrapped in a `<label>` tag
-    
-    In general `$this->input(['type' => $type], $value, $label, $label_attribs)` 
-    
-    `$value`, `$label` and `$label_attribs` are optional.
+- `$this->input($attribs, $value, $label, $label_attribs)` は `<input>`タグを返しますが、オプションで `<label>` タグを返す事もできます。
+   `$this->input(['type' => $type], $value, $label, $label_attribs)` の中で `$value`, `$label` and `$label_attribs` はオプションです。
     
     Supported types:
+　　サポートするタイプ
+　　
+    - `button` : クリックできるボタン
+    - `checkbox` : チェクボックス
+    - `color` : カラーピッカー
+    - `date` : 日付コントロール（年、月、日）
+    - `datetime` : 日付と時間のコントロール（年、月、日、時間、分、秒、秒以下の値、UTCタイムゾーン）
+    - `datetime-local` : 日付と時間のコントロール（年、月、日、時間、分、秒、秒以下の値、タイムゾーンは含まない）
+    - `email` : e-mailアドレス
+    - `file` : ファイルアップロードのための"Browse..." ボタン
+    - `hidden` : hiddenインプットフィールド
+    - `image` : サブミット用の画像 
+    - `month` : 月日コントロール(タイムゾーンなし)
+    - `number` : 数値入力
+    - `password` : パスワードフィールド
+    - `radio` : ラジオボタン
+    - `range` : 正確な値を必要としない（スライダーのような）数値入力コントロール
+    - `reset` : リセットボタン（全てのフォームをデフォルト値にリセット）
+    - `search` : 検索文字列を入力するためのテキストフィールド
+    - `submit` : 送信ボタン
+    - `tel` : 電話番号
+    - `text` : (デフォルト) 単一行のテキストフィールド
+    - `time` : タイムコントロール（タイムゾーンなし）
+    - `url` : URLフィールド
+    - `week` : 週と年のコントロール (タイムゾーンなし)
     
-    - `button` : clickable button
-    - `checkbox` : checkbox
-    - `color` : color picker
-    - `date` : date control (year, month and day)
-    - `datetime` : date and time control (year, month, day, hour, 
-    minute, second, and fraction of a second, UTC time zone)
-    - `datetime-local` : date and time control (year, month, day, 
-    hour, minute, second, and fraction of a second, no time zone)
-    - `email` : e-mail address
-    - `file` : file-select field and a "Browse..." button for file uploads
-    - `hidden` : hidden input field
-    - `image` : image as the submit button
-    - `month` : month and year control (no time zone)
-    - `number` : field for entering a number
-    - `password` : password field
-    - `radio` : radio button
-    - `range` : control for entering a number whose exact value is not 
-    important (like a slider control)
-    - `reset` : reset button (resets all form values to default values)
-    - `search` : text field for entering a search string
-    - `submit` : submit button
-    - `tel` : telephone number
-    - `text` : (default) single-line text field
-    - `time` : time control (no time zone)
-    - `url` : URL field
-    - `week` : week and year control (no time zone)
-    
-    Examples are 
+    このような例になります
     
     - `$this->input(['type' => 'text', ... ], 'field value')`
     
     - `$this->input(['type' => 'checkbox', 'value' => 'yes'], 'yes')`
 
 
-- `$this->metas()` provides an object with methods that add to, and then
-  retrieve, a series of `<meta ... />` tags.
+- `$this->metas()` は`<meta ... />` タグを取得したり追加できるオブジェクトを用意します。
 
-    - `$this->metas()->addHttp($http_equiv, $content)` adds an HTTP-equivalent
-      meta tag to the helper.
+    - `$this->metas()->addHttp($http_equiv, $content)`  HTTP-equivalent メタタグをヘルパーに追加します。
+
+    - `$this->metas()->addName($name, $content)` メタ名のタグをヘルパーに追加します
     
-    - `$this->metas()->addName($name, $content)` adds a meta-name tags to the
-      helper.
-    
-    - `$this-metas()->get()` returns all the added tags from the helper.
+    - `$this-metas()->get()` 追加された全てのタグを取得します。
 
 
-- `$this->scripts()` provides an object with methods that add to, and then
-  retrieve, a series of `<script ... ></script>` tags.
+    - `$this->scripts()` は`<meta ... />` タグを取得したり追加できるオブジェクトを用意します。` タグを取得したり追加できるオブジェクトを用意します。
 
-    - `$this->scripts()->add($src)` adds a script tag to the helper.
+    - `$this->scripts()->add($src)` はヘルパーにスクリプトタグを追加します。
     
-    - `$this->scripts()->addCond($exp, $src)` adds a script tag inside a
-      conditional expression to the helper.
+    - `$this->scripts()->addCond($exp, $src)` 条件式のスクリプトタグを追加します。
     
-    - `$this->scripts()->get()` returns all the added tags from the helper.
+    - `$this->scripts()->get()` ヘルパーに追加された全てのタグを返します。
     
 
 - `$this->styles()` provides an object with methods that add to, and then
