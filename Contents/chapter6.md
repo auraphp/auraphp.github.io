@@ -292,28 +292,25 @@ part of Aura View include:
     - `$this->scripts()->get()` ヘルパーに追加された全てのタグを返します。
     
 
-- `$this->styles()` provides an object with methods that add to, and then
-  retrieve, a series of `<link rel="stylesheet" ... />` tags.
 
-    - `$this->styles()->add($href)` adds a style tag to the helper.
+    - `$this->styles()` `<link rel="stylesheet" ... />`タグを追加したり取得できるオブジェクトを用意します。
+
+    - `$this->styles()->add($href)` ヘルパーにスタイルタグを追加します。
     
-    - `$this->styles()->get()` returns all the added tags from the helper.
-
-
-- `$this->textarea($attribs, $html)` Returns a `<textarea>`. `$html` is optional.
-
-- `$this->title()` provides an object with methods that manipulate the
-  `<title>...</title>` tag.
-
-    - `$this->title()->set($title)` sets the title value.
+    - `$this->styles()->get()` ヘルパーに追加された全てのタグを返します。
     
-    - `$this->title()->append($suffix)` adds on to the end of title value.
-    
-    - `$this->title()->prepend($prefix)` adds on to the beginning of the title
-      value.
-    
-    - `$this->title()->get()` returns the title tag and value.
 
+    - `$this->textarea($attribs, $html)` `<textarea>`を返します。`$html`はオプションです。
+
+    - `$this->title()`  `<title>...</title>`タグを操作するオブジェクトを用意します。
+
+    - `$this->title()->set($title)` タイトルの値をセットします。
+    
+    - `$this->title()->append($suffix)` タイトルの値に追加します。
+    
+    - `$this->title()->prepend($prefix)`  タイトルの値の前に追加します。
+    
+    - `$this->title()->get()` タイトルタグと値を返します。
 
 ## Template Composition ##
 
@@ -349,13 +346,20 @@ doing so, we can pass an array of variables to be used in the partial
 template; they will be available under `$this` **in place of** the parent
 template variables. For example, given the following partial template ...
 
+テンプレートはスコープに応じてそれぞれの部分に分割されていて、そのため部分的な値を渡す事が
+できます;  they will be available under `$this` **in place of** the parent
+template variables.例えばこれらのパーシャル（部分的な）テンプレートは...
+
+
+
     [php]
     <?php
     // partial template named '_item.php'.
     echo "    <li>{$this->item}</li>" . PHP_EOL;
 
 
-... we can use it from within another template as a partial:
+... 他のテンプレートからこのテンプレートを部分的に使う事ができます。
+
 
     [php]
     <?php
@@ -371,23 +375,27 @@ That will run the `$template_name` template script in a separate scope, and
 the `$template_vars` array will be available as `$this` properties within that
 separate scope.
 
+他のスコープの中では`$template_name` テンプレートスクリプトが実行されいます。そして
+`$template_vars`配列は他のスコープ内の`$this`プロパティで利用されます。
+
 > N.b.: We can also `fetch()` other templates from within a template;
 > template scripts that are fetched in this way will *not* share the scope
 > of the template they are called from (although `$this` will still be
 > available).
 
 
+
 ## Writing Helpers ##
 
-There are two steps to adding new helpers:
+新しいヘルパーを追加するには２つの手順があります：
 
-1. Write a helper class
+1. ヘルパークラスをかく
 
-2. Add that class as a service in the `HelperLocator`
+2. `HelperLocator`のサービスとしてクラスを追加する。
 
-Writing a helper class is straightforward: extend `AbstractHelper` with an
-`__invoke()` method. The following helper, for example, applies ROT-13 to a
-string.
+ヘルパークラスをかくのは難しくありません。 `AbstractHelper`を拡張して`__invoke()` メソッドを記述します。
+この例のヘルパーはROT-13を文字列にするものです。
+
 
     [php]
     <?php
@@ -404,8 +412,7 @@ string.
     }
 
 
-Now that we have a helper class, you can add it as a service in the
-`HelperLocator` like so:
+これでヘルパークラスを持つ事ができました。サービスとして`HelperLocator` に追加します：
 
     [php]
     <?php
@@ -414,8 +421,9 @@ Now that we have a helper class, you can add it as a service in the
         return $di->newInstance('Vendor\Package\View\Helper\Obfuscate');
     };
     
-The service name in the `HelperLocator` doubles as a method name on the
-`Template` object. This means we can call the helper via `$this->obfuscate()`:
+
+`HelperLocator`のサービスの名前はメソッド名と`Template`オブジェクトに使われます。
+これは `$this->obfuscate()`メソッド経由でヘルパーが呼ばれるという事です。
 
     [php]
     <?php
@@ -423,8 +431,6 @@ The service name in the `HelperLocator` doubles as a method name on the
     echo $this->obfuscate('plain text');
 
 
-Note that we can use any method name for the helper, although it is generally
-useful to name the service for the helper class.
+注）ヘルパーにはどんな名前でもつけることができます。ただし、ヘルパークラスにとって充分な名前である必要があるでしょう
 
-Please examine the classes in `Aura\View\Helper` for more complex and powerful
-examples.
+`Aura\View\Helper`クラスろもっと複雑でパワフルな例をを調べてみてください。
