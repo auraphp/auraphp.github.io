@@ -1,0 +1,1115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project version="2.0.0a7" title="">
+  <file path="BasicFormatter.php" hash="92976061c6972b01e5ca44e06028ae6a" package="Aura\Intl">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Intl"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Intl" line="20" package="Aura\Intl">
+      <extends/>
+      <implements>\Aura\Intl\FormatterInterface</implements>
+      <name>BasicFormatter</name>
+      <full_name>\Aura\Intl\BasicFormatter</full_name>
+      <docblock line="13">
+        <description><![CDATA[BasicFormatter]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Intl"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Intl" line="35" package="Aura\Intl">
+        <name>format</name>
+        <full_name>format</full_name>
+        <docblock line="22">
+          <description><![CDATA[Format message]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="param" description="" type="string" variable="$locale">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="22" name="param" description="" type="string" variable="$string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="22" name="param" description="" type="array" variable="$tokens_values">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="22" name="return" description="A string replaced with the token values" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="35">
+          <name>$locale</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="35">
+          <name>$string</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="35">
+          <name>$tokens_values</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Exception.php" hash="6a5e2cc89737256d9afa142f508dd1fa" package="Aura\Intl">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Intl"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Intl" line="20" package="Aura\Intl">
+      <extends>\Exception</extends>
+      <name>Exception</name>
+      <full_name>\Aura\Intl\Exception</full_name>
+      <docblock line="13">
+        <description><![CDATA[Exception]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Intl"/>
+      </docblock>
+    </class>
+  </file>
+  <file path="FormatterInterface.php" hash="faf06cac03066b3b6d67f8ff246378fc" package="Aura\Intl">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Intl"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <interface namespace="Aura\Intl" line="20" package="Aura\Intl">
+      <name>FormatterInterface</name>
+      <full_name>\Aura\Intl\FormatterInterface</full_name>
+      <docblock line="13">
+        <description><![CDATA[Formatter Interface]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Intl"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Intl" line="33" package="Aura\Intl">
+        <name>format</name>
+        <full_name>format</full_name>
+        <docblock line="22">
+          <description><![CDATA[Format message]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="param" description="" type="string" variable="$locale">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="22" name="param" description="" type="string" variable="$string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="22" name="param" description="" type="array" variable="$tokens_values">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="33">
+          <name>$locale</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="33">
+          <name>$string</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="33">
+          <name>$tokens_values</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+    </interface>
+  </file>
+  <file path="FormatterLocator.php" hash="4339c4efc86ab364eafcb8ba7142098f" package="Aura\Intl">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Intl"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Intl" line="20" package="Aura\Intl">
+      <extends/>
+      <name>FormatterLocator</name>
+      <full_name>\Aura\Intl\FormatterLocator</full_name>
+      <docblock line="13">
+        <description><![CDATA[A ServiceLocator implementation for loading and retaining formatter objects.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Intl"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="29" namespace="Aura\Intl" package="Default">
+        <name>$registry</name>
+        <default><![CDATA[]]></default>
+        <docblock line="22">
+          <description><![CDATA[A registry to retain formatter objects.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Intl" line="42" package="Aura\Intl">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="31">
+          <description><![CDATA[Constructor.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="31" name="param" description="An array of key-value pairs where the key is the formatter name (doubles as a method name) and the value is the formatter object. The value may also be a closure that returns a formatter object. Note that is has to be a closure, not just any callable, because the formatter object itself might be callable." type="array" variable="$registry">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="42">
+          <name>$registry</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Intl" line="62" package="Aura\Intl">
+        <name>set</name>
+        <full_name>set</full_name>
+        <docblock line="49">
+          <description><![CDATA[Sets a formatter into the registry by name.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="49" name="param" description="The formatter name; this doubles as a method name when called from a template." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="49" name="param" description="The formatter specification, typically a closure that builds and returns a formatter object." type="string" variable="$spec">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="49" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="62">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="62">
+          <name>$spec</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Intl" line="76" package="Aura\Intl">
+        <name>get</name>
+        <full_name>get</full_name>
+        <docblock line="67">
+          <description><![CDATA[Gets a formatter from the registry by name.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="67" name="param" description="The formatter to retrieve." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="67" name="return" description="A formatter object." type="\Aura\Intl\FormatterInterface">
+            <type by_reference="false">\Aura\Intl\FormatterInterface</type>
+          </tag>
+        </docblock>
+        <argument line="76">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="IntlFormatter.php" hash="ef3d858bfa0ff9cd5e0f8b114da3630f" package="Aura\Intl">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Intl"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="MessageFormatter">MessageFormatter</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Intl" line="22" package="Aura\Intl">
+      <extends/>
+      <implements>\Aura\Intl\FormatterInterface</implements>
+      <name>IntlFormatter</name>
+      <full_name>\Aura\Intl\IntlFormatter</full_name>
+      <docblock line="15">
+        <description><![CDATA[Uses php intl extension to format messages]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Intl"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Intl" line="34" package="Aura\Intl">
+        <name>format</name>
+        <full_name>format</full_name>
+        <docblock line="24">
+          <description><![CDATA[Format the message with the help of php intl extension]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="24" name="param" description="" type="string" variable="$locale">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="24" name="param" description="" type="string" variable="$string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="24" name="param" description="" type="array" variable="$tokens_values">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="24" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="24" name="throws" description="" type="\Aura\Intl\Exception">
+            <type by_reference="false">\Aura\Intl\Exception</type>
+          </tag>
+        </docblock>
+        <argument line="34">
+          <name>$locale</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="34">
+          <name>$string</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="34">
+          <name>$tokens_values</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Package.php" hash="42313436491d165248be3f550d38a412" package="Aura\Intl">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Intl"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Intl" line="20" package="Aura\Intl">
+      <extends/>
+      <name>Package</name>
+      <full_name>\Aura\Intl\Package</full_name>
+      <docblock line="13">
+        <description><![CDATA[Message Catalog]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Intl"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="29" namespace="Aura\Intl" package="Default">
+        <name>$messages</name>
+        <default><![CDATA[]]></default>
+        <docblock line="22">
+          <description><![CDATA[Message keys and translations in this package.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="39" namespace="Aura\Intl" package="Default">
+        <name>$fallback</name>
+        <default><![CDATA[]]></default>
+        <docblock line="31">
+          <description><![CDATA[The name of a fallback package to use when a message key does not
+exist.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="31" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="48" namespace="Aura\Intl" package="Default">
+        <name>$formatter</name>
+        <default><![CDATA[]]></default>
+        <docblock line="41">
+          <description><![CDATA[The name of the formatter to use when formatting translated messages.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="41" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Intl" line="61" package="Aura\Intl">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="50">
+          <description><![CDATA[Constructor.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="50" name="param" description="The name of the formatter to use." type="string" variable="$formatter">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="50" name="param" description="The name of the fallback package to use." type="string" variable="$fallback">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="50" name="param" description="The messages in this package." type="array" variable="$messages">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="62">
+          <name>$formatter</name>
+          <default><![CDATA['basic']]></default>
+          <type/>
+        </argument>
+        <argument line="63">
+          <name>$fallback</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+        <argument line="64">
+          <name>$messages</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Intl" line="80" package="Aura\Intl">
+        <name>setMessages</name>
+        <full_name>setMessages</full_name>
+        <docblock line="71">
+          <description><![CDATA[Sets the messages for this package.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="71" name="param" description="The messages for this package." type="array" variable="$messages">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="71" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="80">
+          <name>$messages</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Intl" line="92" package="Aura\Intl">
+        <name>getMessages</name>
+        <full_name>getMessages</full_name>
+        <docblock line="85">
+          <description><![CDATA[Gets the messages for this package.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="85" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Intl" line="106" package="Aura\Intl">
+        <name>setFormatter</name>
+        <full_name>setFormatter</full_name>
+        <docblock line="97">
+          <description><![CDATA[Sets the formatter name for this package.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="97" name="param" description="The formatter name for this package." type="string" variable="$formatter">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="97" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="106">
+          <name>$formatter</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Intl" line="118" package="Aura\Intl">
+        <name>getFormatter</name>
+        <full_name>getFormatter</full_name>
+        <docblock line="111">
+          <description><![CDATA[Gets the formatter name for this package.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="111" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Intl" line="132" package="Aura\Intl">
+        <name>setFallback</name>
+        <full_name>setFallback</full_name>
+        <docblock line="123">
+          <description><![CDATA[Sets the fallback package name.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="123" name="param" description="The fallback package name." type="string" variable="$fallback">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="123" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="132">
+          <name>$fallback</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Intl" line="144" package="Aura\Intl">
+        <name>getFallback</name>
+        <full_name>getFallback</full_name>
+        <docblock line="137">
+          <description><![CDATA[Gets the fallback package name.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="137" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="PackageLocator.php" hash="04addbe16a4e124a94eb3b73828b8c4f" package="Aura\Intl">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Intl"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Intl" line="20" package="Aura\Intl">
+      <extends/>
+      <implements>\Aura\Intl\PackageLocatorInterface</implements>
+      <name>PackageLocator</name>
+      <full_name>\Aura\Intl\PackageLocator</full_name>
+      <docblock line="13">
+        <description><![CDATA[A ServiceLocator implementation for loading and retaining translator objects.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Intl"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="33" namespace="Aura\Intl" package="Default">
+        <name>$registry</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="22">
+          <description><![CDATA[A registry of packages.]]></description>
+          <long-description><![CDATA[<p>Unlike many other registries, this one is two layers deep. The first
+key is a package name, the second key is a locale code, and the value
+is the package information for that name and locale.</p>]]></long-description>
+          <tag line="22" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Intl" line="44" package="Aura\Intl">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="35">
+          <description><![CDATA[Constructor.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="35" name="param" description="A registry of packages." type="array" variable="$registry">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="35" name="see" description="\Aura\Intl\$registry" refers="\Aura\Intl\$registry"/>
+        </docblock>
+        <argument line="44">
+          <name>$registry</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Intl" line="67" package="Aura\Intl">
+        <name>set</name>
+        <full_name>set</full_name>
+        <docblock line="53">
+          <description><![CDATA[Sets a Package object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="53" name="param" description="The package name." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="53" name="param" description="The locale for the package." type="string" variable="$locale">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="53" name="param" description="The package object, or a callable to create and return one." type="\Aura\Intl\Package|\Aura\Intl\callable" variable="$spec">
+            <type by_reference="false">\Aura\Intl\Package</type>
+            <type by_reference="false">\Aura\Intl\callable</type>
+          </tag>
+          <tag line="53" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="67">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="67">
+          <name>$locale</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="67">
+          <name>$spec</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Intl" line="83" package="Aura\Intl">
+        <name>get</name>
+        <full_name>get</full_name>
+        <docblock line="72">
+          <description><![CDATA[Gets a Package object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="72" name="param" description="The package name." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="72" name="param" description="The locale for the package." type="string" variable="$locale">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="72" name="return" description="" type="\Aura\Intl\Package">
+            <type by_reference="false">\Aura\Intl\Package</type>
+          </tag>
+        </docblock>
+        <argument line="83">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="83">
+          <name>$locale</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="PackageLocatorInterface.php" hash="2c14a4378d71981ce49c990022c42ea4" package="Aura\Intl">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Intl"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <interface namespace="Aura\Intl" line="20" package="Aura\Intl">
+      <name>PackageLocatorInterface</name>
+      <full_name>\Aura\Intl\PackageLocatorInterface</full_name>
+      <docblock line="13">
+        <description><![CDATA[Package locator interface.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Intl"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Intl" line="36" package="Aura\Intl">
+        <name>set</name>
+        <full_name>set</full_name>
+        <docblock line="22">
+          <description><![CDATA[Sets a Package object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="param" description="The package name." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="22" name="param" description="The locale for the package." type="string" variable="$locale">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="22" name="param" description="The package object, or a callable to create and return one." type="\Aura\Intl\Package|\Aura\Intl\callable" variable="$spec">
+            <type by_reference="false">\Aura\Intl\Package</type>
+            <type by_reference="false">\Aura\Intl\callable</type>
+          </tag>
+          <tag line="22" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="36">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="36">
+          <name>$locale</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="36">
+          <name>$spec</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Intl" line="49" package="Aura\Intl">
+        <name>get</name>
+        <full_name>get</full_name>
+        <docblock line="38">
+          <description><![CDATA[Gets a Package object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="38" name="param" description="The package name." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="38" name="param" description="The locale for the package." type="string" variable="$locale">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="38" name="return" description="" type="\Aura\Intl\Package">
+            <type by_reference="false">\Aura\Intl\Package</type>
+          </tag>
+        </docblock>
+        <argument line="49">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="49">
+          <name>$locale</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </interface>
+  </file>
+  <file path="Translator.php" hash="0216cdf470a1d4e5521b588c9d4b1ff8" package="Aura\Intl">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Intl"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Intl" line="20" package="Aura\Intl">
+      <extends/>
+      <implements>\Aura\Intl\TranslatorInterface</implements>
+      <name>Translator</name>
+      <full_name>\Aura\Intl\Translator</full_name>
+      <docblock line="13">
+        <description><![CDATA[Translator to translate the message]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Intl"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="29" namespace="Aura\Intl" package="Default">
+        <name>$fallback</name>
+        <default><![CDATA[]]></default>
+        <docblock line="22">
+          <description><![CDATA[A fallback translator.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="var" description="" type="\Aura\Intl\TranslatorInterface">
+            <type by_reference="false">\Aura\Intl\TranslatorInterface</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="38" namespace="Aura\Intl" package="Default">
+        <name>$formatter</name>
+        <default><![CDATA[]]></default>
+        <docblock line="31">
+          <description><![CDATA[The formatter to use when translating messages.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="31" name="var" description="" type="\Aura\Intl\FormatterInterface">
+            <type by_reference="false">\Aura\Intl\FormatterInterface</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="47" namespace="Aura\Intl" package="Default">
+        <name>$locale</name>
+        <default><![CDATA[]]></default>
+        <docblock line="40">
+          <description><![CDATA[The locale being used for translations.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="40" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="56" namespace="Aura\Intl" package="Default">
+        <name>$messages</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="49">
+          <description><![CDATA[The message keys and translations.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="49" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Intl" line="71" package="Aura\Intl">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="58">
+          <description><![CDATA[Constructor]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="58" name="param" description="The locale being used." type="string" variable="$locale">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="58" name="param" description="The message keys and translations." type="array" variable="$messages">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="58" name="param" description="A message formatter." type="\Aura\Intl\FormatterInterface" variable="$formatter">
+            <type by_reference="false">\Aura\Intl\FormatterInterface</type>
+          </tag>
+          <tag line="58" name="param" description="A fallback translator." type="\Aura\Intl\TranslatorInterface" variable="$fallback">
+            <type by_reference="false">\Aura\Intl\TranslatorInterface</type>
+          </tag>
+        </docblock>
+        <argument line="72">
+          <name>$locale</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="73">
+          <name>$messages</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+        <argument line="74">
+          <name>$formatter</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Intl\FormatterInterface</type>
+        </argument>
+        <argument line="75">
+          <name>$fallback</name>
+          <default><![CDATA[null]]></default>
+          <type>Aura\Intl\TranslatorInterface</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Intl" line="92" package="Aura\Intl">
+        <name>getMessage</name>
+        <full_name>getMessage</full_name>
+        <docblock line="83">
+          <description><![CDATA[Gets the message translation by its key.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="83" name="param" description="The message key." type="string" variable="$key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="83" name="return" description="The message translation string, or false if not found." type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="92">
+          <name>$key</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Intl" line="124" package="Aura\Intl">
+        <name>translate</name>
+        <full_name>translate</full_name>
+        <docblock line="111">
+          <description><![CDATA[Translates the message indicated by they key, replacing token values
+along the way.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="111" name="param" description="The message key." type="string" variable="$key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="111" name="param" description="Token values to interpolate into the message." type="array" variable="$tokens_values">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="111" name="return" description="The translated message with tokens replaced." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="124">
+          <name>$key</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="124">
+          <name>$tokens_values</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="TranslatorFactory.php" hash="ed02d582f562a69cd7e66d79508844ba" package="Aura\Intl">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Intl"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Intl" line="20" package="Aura\Intl">
+      <extends/>
+      <name>TranslatorFactory</name>
+      <full_name>\Aura\Intl\TranslatorFactory</full_name>
+      <docblock line="13">
+        <description><![CDATA[Factory to create Translator objects.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Intl"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="29" namespace="Aura\Intl" package="Default">
+        <name>$class</name>
+        <default><![CDATA['Aura\Intl\Translator']]></default>
+        <docblock line="22">
+          <description><![CDATA[The class to use for new instances.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Intl" line="48" package="Aura\Intl">
+        <name>newInstance</name>
+        <full_name>newInstance</full_name>
+        <docblock line="31">
+          <description><![CDATA[Returns a new Translator.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="31" name="param" description="The locale code for the translator." type="string" variable="$locale">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="31" name="param" description="The localized messages for the translator." type="array" variable="$messages">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="31" name="param" description="The formatter to use for interpolating token values." type="\Aura\Intl\FormatterInterface" variable="$formatter">
+            <type by_reference="false">\Aura\Intl\FormatterInterface</type>
+          </tag>
+          <tag line="31" name="param" description="A fallback translator to use, if any." type="\Aura\Intl\TranslatorInterface" variable="$fallback">
+            <type by_reference="false">\Aura\Intl\TranslatorInterface</type>
+          </tag>
+          <tag line="31" name="return" description="" type="\Aura\Intl\Translator">
+            <type by_reference="false">\Aura\Intl\Translator</type>
+          </tag>
+        </docblock>
+        <argument line="49">
+          <name>$locale</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="50">
+          <name>$messages</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+        <argument line="51">
+          <name>$formatter</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Intl\FormatterInterface</type>
+        </argument>
+        <argument line="52">
+          <name>$fallback</name>
+          <default><![CDATA[null]]></default>
+          <type>Aura\Intl\TranslatorInterface</type>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="TranslatorInterface.php" hash="282baa17addcb6b1481b721044b3f292" package="Aura\Intl">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Intl"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <interface namespace="Aura\Intl" line="20" package="Aura\Intl">
+      <name>TranslatorInterface</name>
+      <full_name>\Aura\Intl\TranslatorInterface</full_name>
+      <docblock line="13">
+        <description><![CDATA[TranslatorInterface]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Intl"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Intl" line="31" package="Aura\Intl">
+        <name>translate</name>
+        <full_name>translate</full_name>
+        <docblock line="22">
+          <description><![CDATA[translate]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="param" description="" type="string" variable="$key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="22" name="param" description="" type="array" variable="$tokens_values">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="31">
+          <name>$key</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="31">
+          <name>$tokens_values</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+    </interface>
+  </file>
+  <file path="TranslatorLocator.php" hash="8d97486b65a917889e377f749efd0827" package="Aura\Intl">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Intl"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Intl" line="20" package="Aura\Intl">
+      <extends/>
+      <name>TranslatorLocator</name>
+      <full_name>\Aura\Intl\TranslatorLocator</full_name>
+      <docblock line="13">
+        <description><![CDATA[A ServiceLocator implementation for loading and retaining translator objects.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Intl"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="29" namespace="Aura\Intl" package="Default">
+        <name>$registry</name>
+        <default><![CDATA[]]></default>
+        <docblock line="22">
+          <description><![CDATA[A registry to retain translator objects.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="38" namespace="Aura\Intl" package="Default">
+        <name>$locale</name>
+        <default><![CDATA[]]></default>
+        <docblock line="31">
+          <description><![CDATA[The current locale code.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="31" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="48" namespace="Aura\Intl" package="Default">
+        <name>$factory</name>
+        <default><![CDATA[]]></default>
+        <docblock line="40">
+          <description><![CDATA[A translator factory.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="40" name="var" description="" type="\Aura\Intl\TranslatorFactory">
+            <type by_reference="false">\Aura\Intl\TranslatorFactory</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="57" namespace="Aura\Intl" package="Default">
+        <name>$packages</name>
+        <default><![CDATA[]]></default>
+        <docblock line="50">
+          <description><![CDATA[A package locator.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="50" name="var" description="" type="\Aura\Intl\PackageLocator">
+            <type by_reference="false">\Aura\Intl\PackageLocator</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="66" namespace="Aura\Intl" package="Default">
+        <name>$formatters</name>
+        <default><![CDATA[]]></default>
+        <docblock line="59">
+          <description><![CDATA[A formatter locator.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="59" name="var" description="" type="\Aura\Intl\FormatterInterface">
+            <type by_reference="false">\Aura\Intl\FormatterInterface</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Intl" line="82" package="Aura\Intl">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="68">
+          <description><![CDATA[Constructor.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="68" name="param" description="The package locator." type="\Aura\Intl\PackageLocator" variable="$packages">
+            <type by_reference="false">\Aura\Intl\PackageLocator</type>
+          </tag>
+          <tag line="68" name="param" description="The formatter lcoator." type="\Aura\Intl\FormatterLocator" variable="$formatters">
+            <type by_reference="false">\Aura\Intl\FormatterLocator</type>
+          </tag>
+          <tag line="68" name="param" description="A translator factory to create translator objects for the locale and package." type="\Aura\Intl\TranslatorFactory" variable="$factory">
+            <type by_reference="false">\Aura\Intl\TranslatorFactory</type>
+          </tag>
+          <tag line="68" name="param" description="The default locale code to use." type="string" variable="$locale">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="83">
+          <name>$packages</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Intl\PackageLocator</type>
+        </argument>
+        <argument line="84">
+          <name>$formatters</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Intl\FormatterLocator</type>
+        </argument>
+        <argument line="85">
+          <name>$factory</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Intl\TranslatorFactory</type>
+        </argument>
+        <argument line="86">
+          <name>$locale</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Intl" line="103" package="Aura\Intl">
+        <name>setLocale</name>
+        <full_name>setLocale</full_name>
+        <docblock line="94">
+          <description><![CDATA[Sets the default locale code.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="94" name="param" description="The new locale code." type="string" variable="$locale">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="94" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="103">
+          <name>$locale</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Intl" line="115" package="Aura\Intl">
+        <name>getLocale</name>
+        <full_name>getLocale</full_name>
+        <docblock line="108">
+          <description><![CDATA[Returns the default locale code.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="108" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Intl" line="126" package="Aura\Intl">
+        <name>getFactory</name>
+        <full_name>getFactory</full_name>
+        <docblock line="120">
+          <description><![CDATA[The TranslatorFactory object]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="120" name="return" description="" type="\Aura\Intl\TranslatorFactory">
+            <type by_reference="false">\Aura\Intl\TranslatorFactory</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Intl" line="138" package="Aura\Intl">
+        <name>getPackages</name>
+        <full_name>getPackages</full_name>
+        <docblock line="131">
+          <description><![CDATA[An object of type PackagesInterface]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="131" name="return" description="" type="\Aura\Intl\PackagesInterface">
+            <type by_reference="false">\Aura\Intl\PackagesInterface</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Intl" line="150" package="Aura\Intl">
+        <name>getFormatters</name>
+        <full_name>getFormatters</full_name>
+        <docblock line="143">
+          <description><![CDATA[object of type FormatterLocator]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="143" name="return" description="" type="\Aura\Intl\FormatterLocator">
+            <type by_reference="false">\Aura\Intl\FormatterLocator</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Intl" line="167" package="Aura\Intl">
+        <name>get</name>
+        <full_name>get</full_name>
+        <docblock line="155">
+          <description><![CDATA[Gets a translator from the registry by package for a locale.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="155" name="param" description="The translator package to retrieve." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="155" name="param" description="The locale to use; if empty, uses the default locale." type="string" variable="$locale">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="155" name="return" description="A translator object." type="\Aura\Intl\TranslatorInterface">
+            <type by_reference="false">\Aura\Intl\TranslatorInterface</type>
+          </tag>
+        </docblock>
+        <argument line="167">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="167">
+          <name>$locale</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <package name="Aura" full_name="Aura">
+    <package name="Intl" full_name="Aura\Intl"/>
+  </package>
+  <package name="Default" full_name="Default"/>
+  <namespace name="Aura" full_name="Aura">
+    <namespace name="Intl" full_name="Aura\Intl"/>
+  </namespace>
+  <marker count="0">todo</marker>
+  <marker count="0">fixme</marker>
+  <deprecated count="0"/>
+</project>

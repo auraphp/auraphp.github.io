@@ -1,0 +1,386 @@
+<!DOCTYPE html><html xmlns:date="http://exslt.org/dates-and-times" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » \Aura\Input\Collection</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Namespaces</a></li>
+<li><a href="../namespaces/Aura.html"><i class="icon-th"></i> Aura</a></li>
+<li><a>Packages</a></li>
+<li><a href="../packages/Aura.html"><i class="icon-folder-open"></i> Aura</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">0</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods</li>
+<li class="method public "><a href="#__construct" title="__construct :: Constructor."><span class="description">Constructor.</span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#count" title="count :: Countable: returns the number of Fieldsets in this collection."><span class="description">Countable: returns the number of Fieldsets in this collection.</span><pre>count()</pre></a></li>
+<li class="method public "><a href="#fill" title="fill :: Support for this input when addressed via Fieldset::__set()."><span class="description">Support for this input when addressed via Fieldset::__set().</span><pre>fill()</pre></a></li>
+<li class="method public "><a href="#filter" title="filter :: Applies each fieldset filter."><span class="description">Applies each fieldset filter.</span><pre>filter()</pre></a></li>
+<li class="method public inherited"><a href="#get" title="get :: Returns this input for the presentation layer."><span class="description">Returns this input for the presentation layer.</span><pre>get()</pre></a></li>
+<li class="method public inherited"><a href="#getFullName" title="getFullName :: Returns the full name for this input, incuding the prefix (if any)."><span class="description">Returns the full name for this input, incuding the prefix (if any).</span><pre>getFullName()</pre></a></li>
+<li class="method public "><a href="#getIterator" title="getIterator :: IteratorAggregate: returns an external iterator for this collection."><span class="description">IteratorAggregate: returns an external iterator for this collection.</span><pre>getIterator()</pre></a></li>
+<li class="method public "><a href="#getKeys" title="getKeys :: Gets all the keys for all Fieldsets in this collection."><span class="description">Gets all the keys for all Fieldsets in this collection.</span><pre>getKeys()</pre></a></li>
+<li class="method public "><a href="#getMessages" title="getMessages :: Returns the messages for the fieldset filters."><span class="description">Returns the messages for the fieldset filters.</span><pre>getMessages()</pre></a></li>
+<li class="method public "><a href="#offsetExists" title="offsetExists :: ArrayAccess: is a particular Fieldset key set?"><span class="description">ArrayAccess: is a particular Fieldset key set?</span><pre>offsetExists()</pre></a></li>
+<li class="method public "><a href="#offsetGet" title="offsetGet :: ArrayAccess: returns the fieldset at a particular offset."><span class="description">ArrayAccess: returns the fieldset at a particular offset.</span><pre>offsetGet()</pre></a></li>
+<li class="method public "><a href="#offsetSet" title="offsetSet :: ArrayAccess: sets an offset as a Fieldset."><span class="description">ArrayAccess: sets an offset as a Fieldset.</span><pre>offsetSet()</pre></a></li>
+<li class="method public "><a href="#offsetUnset" title="offsetUnset :: ArrayAccess: unsets a particular Fieldset key."><span class="description">ArrayAccess: unsets a particular Fieldset key.</span><pre>offsetUnset()</pre></a></li>
+<li class="method public inherited"><a href="#read" title="read :: Support for this input when addressed via Fieldset::__get()."><span class="description">Support for this input when addressed via Fieldset::__get().</span><pre>read()</pre></a></li>
+<li class="method public inherited"><a href="#setName" title="setName :: Sets the name for the input."><span class="description">Sets the name for the input.</span><pre>setName()</pre></a></li>
+<li class="method public inherited"><a href="#setNamePrefix" title="setNamePrefix :: Sets the name prefix for the input, typically composed of the parent
+input names."><span class="description">Sets the name prefix for the input, typically composed of the parent
+input names.</span><pre>setNamePrefix()</pre></a></li>
+<li class="nav-header protected">» Protected</li>
+<li class="method protected "><a href="#newFieldset" title="newFieldset :: Creates and returns a new fieldset."><span class="description">Creates and returns a new fieldset.</span><pre>newFieldset()</pre></a></li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties</li>
+<li class="nav-header protected">» Protected</li>
+<li class="property protected "><a href="#%24factory" title="$factory :: Factory to create a particular fieldset type."><span class="description">Factory to create a particular fieldset type.</span><pre>$factory</pre></a></li>
+<li class="property protected "><a href="#%24fieldsets" title="$fieldsets :: Fieldsets in the collection."><span class="description">Fieldsets in the collection.</span><pre>$fieldsets</pre></a></li>
+<li class="property protected inherited"><a href="#%24name" title="$name :: The name for the input."><span class="description">The name for the input.</span><pre>$name</pre></a></li>
+<li class="property protected inherited"><a href="#%24name_prefix" title="$name_prefix :: The prefix for the name, typically composed of the parent input names."><span class="description">The prefix for the name, typically composed of the parent input names.</span><pre>$name_prefix</pre></a></li>
+</ul>
+</div>
+<div class="span8">
+<a name="%5CAura%5CInput%5CCollection" id="\Aura\Input\Collection"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/Aura.html">Aura</a></li>
+<span class="divider">\</span><li><a href="../namespaces/Aura.Input.html">Input</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/Aura.Input.Collection.html">Collection</a>
+</li>
+</ul>
+<div href="../classes/Aura.Input.Collection.html" class="element class">
+<p class="short_description">Represents a collection of fieldsets of a single type.</p>
+<div class="details">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>package</th>
+<td><a href="../packages/Aura.Input.html">Aura.Input</a></td>
+</tr></table>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a name="__construct" id="__construct"></a><div class="element clickable method public __construct" data-toggle="collapse" data-target=".__construct .collapse">
+<h2>Constructor.</h2>
+<pre>__construct(callable $factory) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$factory</h4>
+<code>\Aura\Input\callable</code><p>A factory to create the fieldset objects for this collection.</p></div>
+</div></div>
+</div>
+<a name="count" id="count"></a><div class="element clickable method public count" data-toggle="collapse" data-target=".count .collapse">
+<h2>Countable: returns the number of Fieldsets in this collection.</h2>
+<pre>count() : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>int</code></div>
+</div></div>
+</div>
+<a name="fill" id="fill"></a><div class="element clickable method public fill" data-toggle="collapse" data-target=".fill .collapse">
+<h2>Support for this input when addressed via Fieldset::__set().</h2>
+<pre>fill(array $data) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>array</code><p>The data for each fieldset in the collection.</p></div>
+</div></div>
+</div>
+<a name="filter" id="filter"></a><div class="element clickable method public filter" data-toggle="collapse" data-target=".filter .collapse">
+<h2>Applies each fieldset filter.</h2>
+<pre>filter() : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>bool</code>True if all filters passed, false if one or more failed.</div>
+</div></div>
+</div>
+<a name="get" id="get"></a><div class="element clickable method public get" data-toggle="collapse" data-target=".get .collapse">
+<h2>Returns this input for the presentation layer.</h2>
+<pre>get() : \Aura\Input\self</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Input\AbstractInput::get()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>\Aura\Input\self</code></div>
+</div></div>
+</div>
+<a name="getFullName" id="getFullName"></a><div class="element clickable method public getFullName" data-toggle="collapse" data-target=".getFullName .collapse">
+<h2>Returns the full name for this input, incuding the prefix (if any).</h2>
+<pre>getFullName() : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Input\AbstractInput::getFullName()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="getIterator" id="getIterator"></a><div class="element clickable method public getIterator" data-toggle="collapse" data-target=".getIterator .collapse">
+<h2>IteratorAggregate: returns an external iterator for this collection.</h2>
+<pre>getIterator() : <a href="../classes/Aura.Input.CollectionIterator.html">\Aura\Input\CollectionIterator</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/Aura.Input.CollectionIterator.html">\Aura\Input\CollectionIterator</a></code></div>
+</div></div>
+</div>
+<a name="getKeys" id="getKeys"></a><div class="element clickable method public getKeys" data-toggle="collapse" data-target=".getKeys .collapse">
+<h2>Gets all the keys for all Fieldsets in this collection.</h2>
+<pre>getKeys() : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a name="getMessages" id="getMessages"></a><div class="element clickable method public getMessages" data-toggle="collapse" data-target=".getMessages .collapse">
+<h2>Returns the messages for the fieldset filters.</h2>
+<pre>getMessages(mixed $key) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$key</h4>
+<code>mixed</code><p>The fieldset key to return messages for; if null, returns messages from all fieldsets.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a name="offsetExists" id="offsetExists"></a><div class="element clickable method public offsetExists" data-toggle="collapse" data-target=".offsetExists .collapse">
+<h2>ArrayAccess: is a particular Fieldset key set?</h2>
+<pre>offsetExists(mixed $offset) : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$offset</h4>
+<code>mixed</code><p>The Fieldset key.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>bool</code>True if the Fielset key is set, false if not.</div>
+</div></div>
+</div>
+<a name="offsetGet" id="offsetGet"></a><div class="element clickable method public offsetGet" data-toggle="collapse" data-target=".offsetGet .collapse">
+<h2>ArrayAccess: returns the fieldset at a particular offset.</h2>
+<pre>offsetGet(mixed $offset) : <a href="../classes/Aura.Input.Fieldset.html">\Aura\Input\Fieldset</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$offset</h4>
+<code>mixed</code><p>The fieldset key.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/Aura.Input.Fieldset.html">\Aura\Input\Fieldset</a></code></div>
+</div></div>
+</div>
+<a name="offsetSet" id="offsetSet"></a><div class="element clickable method public offsetSet" data-toggle="collapse" data-target=".offsetSet .collapse">
+<h2>ArrayAccess: sets an offset as a Fieldset.</h2>
+<pre>offsetSet(mixed $offset, <a href="../classes/Aura.Input.Fieldset.html">\Aura\Input\Fieldset</a> $fieldset) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$offset</h4>
+<code>mixed</code><p>The Fieldset key.</p></div>
+<div class="subelement argument">
+<h4>$fieldset</h4>
+<code><a href="../classes/Aura.Input.Fieldset.html">\Aura\Input\Fieldset</a></code><p>The Fieldset for that key.</p></div>
+</div></div>
+</div>
+<a name="offsetUnset" id="offsetUnset"></a><div class="element clickable method public offsetUnset" data-toggle="collapse" data-target=".offsetUnset .collapse">
+<h2>ArrayAccess: unsets a particular Fieldset key.</h2>
+<pre>offsetUnset(mixed $offset) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$offset</h4>
+<code>mixed</code><p>The Fieldset key.</p></div>
+</div></div>
+</div>
+<a name="read" id="read"></a><div class="element clickable method public read" data-toggle="collapse" data-target=".read .collapse">
+<h2>Support for this input when addressed via Fieldset::__get().</h2>
+<pre>read() : \Aura\Input\self</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Input\AbstractInput::read()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>\Aura\Input\self</code></div>
+</div></div>
+</div>
+<a name="setName" id="setName"></a><div class="element clickable method public setName" data-toggle="collapse" data-target=".setName .collapse">
+<h2>Sets the name for the input.</h2>
+<pre>setName(string $name) : \Aura\Input\self</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Input\AbstractInput::setName()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$name</h4>
+<code>string</code><p>The input name.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\Aura\Input\self</code></div>
+</div></div>
+</div>
+<a name="setNamePrefix" id="setNamePrefix"></a><div class="element clickable method public setNamePrefix" data-toggle="collapse" data-target=".setNamePrefix .collapse">
+<h2>Sets the name prefix for the input, typically composed of the parent
+input names.</h2>
+<pre>setNamePrefix(string $name_prefix) : \Aura\Input\self</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Input\AbstractInput::setNamePrefix()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$name_prefix</h4>
+<code>string</code><p>The name prefix.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\Aura\Input\self</code></div>
+</div></div>
+</div>
+<a name="newFieldset" id="newFieldset"></a><div class="element clickable method protected newFieldset" data-toggle="collapse" data-target=".newFieldset .collapse">
+<h2>Creates and returns a new fieldset.</h2>
+<pre>newFieldset(string $key) : <a href="../classes/Aura.Input.Fieldset.html">\Aura\Input\Fieldset</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$key</h4>
+<code>string</code><p>The key for the new fieldset.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/Aura.Input.Fieldset.html">\Aura\Input\Fieldset</a></code></div>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a name="%24factory" id="$factory"> </a><div class="element clickable property protected $factory" data-toggle="collapse" data-target=".$factory .collapse">
+<h2>Factory to create a particular fieldset type.</h2>
+<pre>$factory : \Aura\Input\callable</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24fieldsets" id="$fieldsets"> </a><div class="element clickable property protected $fieldsets" data-toggle="collapse" data-target=".$fieldsets .collapse">
+<h2>Fieldsets in the collection.</h2>
+<pre>$fieldsets : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24name" id="$name"> </a><div class="element clickable property protected $name" data-toggle="collapse" data-target=".$name .collapse">
+<h2>The name for the input.</h2>
+<pre>$name : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Input\AbstractInput::$$name</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24name_prefix" id="$name_prefix"> </a><div class="element clickable property protected $name_prefix" data-toggle="collapse" data-target=".$name_prefix .collapse">
+<h2>The prefix for the name, typically composed of the parent input names.</h2>
+<pre>$name_prefix : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Input\AbstractInput::$$name_prefix</td>
+</tr></table>
+</div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a7</a> and<br>
+            generated on 2013-05-09T16:23:04-05:00.<br></footer></div>
+</div>
+</body>
+</html>

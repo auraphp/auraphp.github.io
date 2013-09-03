@@ -1,0 +1,438 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>DocBlox Documentation</title><link rel="stylesheet" href="css/jquery-ui.css" type="text/css"></link><link rel="stylesheet" href="css/docblox/jquery-ui-1.8.16.custom.css" type="text/css"></link><link rel="stylesheet" href="css/jquery.treeview.css" type="text/css"></link><link rel="stylesheet" href="css/theme.css" type="text/css"></link><script type="text/javascript" src="js/jquery-1.4.2.min.js"></script><script type="text/javascript" src="js/jquery-ui-1.8.2.custom.min.js"></script><script type="text/javascript" src="js/jquery.tools.min.js"></script><script type="text/javascript" src="js/jquery.cookie.js"></script><script type="text/javascript" src="js/jquery.treeview.js"></script><script type="text/javascript">
+            $(document).ready(function() {
+                $(".filetree").treeview({
+                    collapsed: true,
+                    persist: "cookie"
+                });
+
+                $("#accordion").accordion({
+                    collapsible: true,
+                    autoHeight:  false,
+                    fillSpace:   true
+                });
+
+                $(".tabs").tabs();
+            });
+        </script></head><body><div xmlns="" id="content">
+<script xmlns:dbx="http://docblox-project.org/xsl/functions">
+
+      function filterElements()
+      {
+        inherited = !$('#show-inherited').hasClass('deselected');
+        public    = !$('#show-public').hasClass('deselected');
+        protected = !$('#show-protected').hasClass('deselected');
+        private   = !$('#show-private').hasClass('deselected');
+
+        $('div.public').each(function(index, val) {
+            $(val).toggle(public && !($(val).hasClass('inherited_from') && !inherited));
+        });
+        $('div.protected').each(function(index, val) {
+            $(val).toggle(protected && !($(val).hasClass('inherited_from') && !inherited));
+        });
+        $('div.private').each(function(index, val) {
+            $(val).toggle(private && !($(val).hasClass('inherited_from') && !inherited));
+        });
+      }
+
+      $(document).ready(function() {
+        $('a.gripper').click(function() {
+            $(this).nextAll('div.code-tabs').slideToggle();
+            $(this).children('img').toggle();
+            return false;
+        });
+
+        $('div.method code span.highlight,div.function code span.highlight,div.constant code span.highlight,div.property code span.highlight').css('cursor', 'pointer');
+
+        $('div.method code span.highlight,div.function code span.highlight,div.constant code span.highlight,div.property code span.highlight').click(function() {
+            $(this).parent().nextAll('div.code-tabs').slideToggle();
+            $(this).parent().prevAll('a.gripper').children('img').toggle();
+            return false;
+        });
+
+        $('div.code-tabs').hide();
+        $('a.gripper').show();
+        $('div.code-tabs:empty').prevAll('a.gripper').html('');
+
+        $('#show-public, #show-protected, #show-private, #show-inherited')
+            .css('cursor', 'pointer')
+            .click(function(){
+                $(this).toggleClass('deselected');
+                if ($(this).hasClass('deselected')) {
+                  $(this).fadeTo('fast', '0.4');
+                } else {
+                  $(this).fadeTo('fast', '1.0');
+                }
+                filterElements();
+                return false;
+            });
+        $('#show-protected, #show-private').click();
+
+        // add the sliding behaviour to the file navigation and show it
+        // it is initially hidden for non-JS users.
+        $("#file-nav-box").show().hover(function() {
+            $("#file-nav-container").slideDown(400);
+        }, function() {
+            $("#file-nav-container").slideUp(400);
+        });
+      });
+
+      
+    </script><h1 xmlns:dbx="http://docblox-project.org/xsl/functions" class="file">Aura/Marshal/Manager.php</h1>
+<div xmlns:dbx="http://docblox-project.org/xsl/functions" id="file-nav-box">
+<div id="file-nav-options">
+              Show:
+              <img src="images/icons/visibility_public.png" id="show-public"><img src="images/icons/visibility_protected.png" id="show-protected"><img src="images/icons/visibility_private.png" id="show-private"><span class="attribute" id="show-inherited">inherited</span>
+</div>
+<div id="file-nav-container">
+<ul id="file-nav"><li>
+<a href="#classes"><img src="images/icons/class.png" height="14">
+                          Classes
+                      </a><ul><li><a href="#%5CAura%5CMarshal%5CManager">\Aura\Marshal\Manager</a></li></ul>
+</li></ul>
+<div style="clear: left;"></div>
+</div>
+<div id="file-nav-tab">
+              Table of Contents
+          </div>
+</div>
+<a xmlns:dbx="http://docblox-project.org/xsl/functions" name="top" class="anchor"></a><a name="classes" class="anchor"></a><a xmlns:dbx="http://docblox-project.org/xsl/functions" id="\Aura\Marshal\Manager" class="anchor"></a><h2 xmlns:dbx="http://docblox-project.org/xsl/functions" class="class">\Aura\Marshal\Manager<div class="to-top"><a href="#top">jump to top</a></div>
+</h2>
+<div xmlns:dbx="http://docblox-project.org/xsl/functions" class="class">
+<small class="package"><b>Package: </b>Aura\Marshal</small><p class="short-description">A manager for the types in the domain model.</p>
+<div class="long-description"></div>
+<dl class="class-info"></dl>
+<h3>Properties</h3>
+<div>
+<a id="\Aura\Marshal\Manager::$relation_builder" class="anchor"></a><div class="property protected">
+<a href="#" class="gripper"><img src="images/icons/arrow_right.png"><img src="images/icons/arrow_down.png" style="display: none;"></a><code><img src="images/icons/property.png" alt="Property"><img src="images/icons/visibility_protected.png" style="margin-right: 5px" alt="protected">\Aura\Marshal\Relation\Builder
+                 <span class="highlight">$relation_builder</span>= ''
+                </code><div class="description">
+<p class="short-description">A builder for relation objects.</p></div>
+<div class="code-tabs">
+<div class="long-description"></div>
+<strong>Details</strong><dl class="property-info">
+<dt>Type</dt>
+<dd><a href="db_Aura_Marshal_Relation_Builder.html#%5CAura%5CMarshal%5CRelation%5CBuilder">\Aura\Marshal\Relation\Builder</a></dd>
+</dl>
+</div>
+<div class="clear"></div>
+</div>
+<a id="\Aura\Marshal\Manager::$type_builder" class="anchor"></a><div class="property protected">
+<a href="#" class="gripper"><img src="images/icons/arrow_right.png"><img src="images/icons/arrow_down.png" style="display: none;"></a><code><img src="images/icons/property.png" alt="Property"><img src="images/icons/visibility_protected.png" style="margin-right: 5px" alt="protected">\Aura\Marshal\Type\Builder
+                 <span class="highlight">$type_builder</span>= ''
+                </code><div class="description">
+<p class="short-description">A builder for type objects.</p></div>
+<div class="code-tabs">
+<div class="long-description"></div>
+<strong>Details</strong><dl class="property-info">
+<dt>Type</dt>
+<dd><a href="db_Aura_Marshal_Type_Builder.html#%5CAura%5CMarshal%5CType%5CBuilder">\Aura\Marshal\Type\Builder</a></dd>
+</dl>
+</div>
+<div class="clear"></div>
+</div>
+<a id="\Aura\Marshal\Manager::$types" class="anchor"></a><div class="property protected">
+<a href="#" class="gripper"><img src="images/icons/arrow_right.png"><img src="images/icons/arrow_down.png" style="display: none;"></a><code><img src="images/icons/property.png" alt="Property"><img src="images/icons/visibility_protected.png" style="margin-right: 5px" alt="protected">array
+                 <span class="highlight">$types</span>= ''
+                </code><div class="description">
+<p class="short-description">An array of type definition arrays, which are converted to type
+objects as you request them.</p></div>
+<div class="code-tabs">
+<div class="long-description"></div>
+<strong>Details</strong><dl class="property-info">
+<dt>Type</dt>
+<dd>array</dd>
+</dl>
+</div>
+<div class="clear"></div>
+</div>
+</div>
+<h3>Methods</h3>
+<div>
+<a id="\Aura\Marshal\Manager::__construct()" class="anchor"></a><div class="method public">
+<a href="#" class="gripper"><img src="images/icons/arrow_right.png"><img src="images/icons/arrow_down.png" style="display: none;"></a><code><img src="images/icons/method.png" alt="method"><img src="images/icons/visibility_public.png" style="margin-right: 5px" alt="public"><span class="highlight">__construct</span><span class="nb-faded-text">(
+          <a href="db_Aura_Marshal_Type_Builder.html#%5CAura%5CMarshal%5CType%5CBuilder">\Aura\Marshal\Type\Builder</a> $type_builder, <a href="db_Aura_Marshal_Relation_Builder.html#%5CAura%5CMarshal%5CRelation%5CBuilder">\Aura\Marshal\Relation\Builder</a> $relation_builder, array $types
+              =
+              []
+          )
+        </span>
+        :
+          void</code><div class="description"><p class="short_description">Constructor.</p></div>
+<div class="code-tabs">
+<div class="long-description"><p>The $types definition array looks like this:</p>
+
+<pre><code> $types = [
+
+     // the name to use for this type in the manager
+     'some_type_name' =&gt; [
+
+         // the identity field in each record
+         'identity_field' =&gt; 'id',
+
+         // fields to index against
+         'index_fields' =&gt; ['field1', 'field2'],
+
+         // the record class generated by the record builder
+         'record_class' =&gt; 'Aura\Domain\Record',
+
+         // a record builder for the type
+         'record_builder' =&gt; new \Aura\Domain\RecordBuilder,
+
+         // a collection builder for the type
+         'collection_builder' =&gt; new \Aura\Domain\CollectionBuilder,
+
+         // relationship definitons
+         'relation_names' =&gt; [
+             // discussed below
+         ],
+     ),
+
+     'next_type_name' =&gt; [
+         // ...
+     ],
+
+     // ...
+ );
+</code></pre>
+
+<p>The relationship definitions portion looks like this:</p>
+
+<pre><code> $relation_names = [
+
+     'name_for_relation_1' =&gt; [
+
+         // the relationship to the native (parent) type: the parent
+         // belongs_to, has_one, has_many, or has_many_through
+         // of the foreign type. required.
+         'relationship' =&gt; 'has_many',
+
+         // the name of the foreign (related) type in the manager.
+         // optional; by default, uses the relation name as the
+         // foreign type.
+         'foreign_type' =&gt; 'another_type_name',
+
+         // the name of the native (parent) record field to use
+         // when matching foreign (related) records. required.
+         'native_field' =&gt; 'native_field_name',
+
+         // the name of the foreign (related) record field to use
+         // when matching the native (parent) record. required.
+         'foreign_field' =&gt; 'foreign_field_name',
+
+         // -------------------------------------------------------
+         // if you have a has_many_through relationship, add the
+         // following three keys to set up the association mapping.
+
+         // the name of the type through which the native
+         // and foreign types are mapped to each other.
+         'through_type' =&gt; 'mapping_type_name',
+
+         // in the "through" record, the name of the field that
+         // maps to the 'native_field' value
+         'through_native_field' =&gt; 'mapping_native_field_name',
+
+         // in the "through" record, the name of the field that
+         // maps to the 'foreign_field' value
+         'through_foreign_field' =&gt; 'mapping_foreign_field_name',
+     ),
+
+     'name_for_relation_2' =&gt; [
+         // ...
+     ],
+
+     // ...
+ );
+</code></pre></div>
+<strong>Parameters</strong><table class="argument-info">
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tr>
+<th>$type_builder</th>
+<td><a href="db_Aura_Marshal_Type_Builder.html#%5CAura%5CMarshal%5CType%5CBuilder">\Aura\Marshal\Type\Builder</a></td>
+<td><em><p>A builder for type objects.</p></em></td>
+</tr>
+<tr>
+<th>$relation_builder</th>
+<td><a href="db_Aura_Marshal_Relation_Builder.html#%5CAura%5CMarshal%5CRelation%5CBuilder">\Aura\Marshal\Relation\Builder</a></td>
+<td><em><p>A builder for relation objects.</p></em></td>
+</tr>
+<tr>
+<th>$types</th>
+<td>array</td>
+<td><em><p>Type definitions.</p></em></td>
+</tr>
+</table>
+</div>
+<div class="clear"></div>
+</div>
+<a id="\Aura\Marshal\Manager::__get()" class="anchor"></a><div class="method public">
+<a href="#" class="gripper"><img src="images/icons/arrow_right.png"><img src="images/icons/arrow_down.png" style="display: none;"></a><code><img src="images/icons/method.png" alt="method"><img src="images/icons/visibility_public.png" style="margin-right: 5px" alt="public"><span class="highlight">__get</span><span class="nb-faded-text">(
+          string $name
+          )
+        </span>
+        :
+          <a href="db_Aura_Marshal_Type_GenericType.html#%5CAura%5CMarshal%5CType%5CGenericType">\Aura\Marshal\Type\GenericType</a></code><div class="description"><p class="short_description">Gets a type by name, creating a type object for it as needed.</p></div>
+<div class="code-tabs">
+<div class="long-description"></div>
+<strong>Parameters</strong><table class="argument-info">
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tr>
+<th>$name</th>
+<td>string</td>
+<td><em><p>The type name to retrieve.</p></em></td>
+</tr>
+</table>
+<strong>Returns</strong><table class="argument-info">
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tr>
+<td><a href="db_Aura_Marshal_Type_GenericType.html#%5CAura%5CMarshal%5CType%5CGenericType">\Aura\Marshal\Type\GenericType</a></td>
+<td></td>
+</tr>
+</table>
+</div>
+<div class="clear"></div>
+</div>
+<a id="\Aura\Marshal\Manager::buildType()" class="anchor"></a><div class="method protected">
+<a href="#" class="gripper"><img src="images/icons/arrow_right.png"><img src="images/icons/arrow_down.png" style="display: none;"></a><code><img src="images/icons/method.png" alt="method"><img src="images/icons/visibility_protected.png" style="margin-right: 5px" alt="protected"><span class="highlight">buildType</span><span class="nb-faded-text">(
+          string $name
+          )
+        </span>
+        :
+          <a href="db_Aura_Marshal_Type_GenericType.html#%5CAura%5CMarshal%5CType%5CGenericType">\Aura\Marshal\Type\GenericType</a></code><div class="description"><p class="short_description">Builds a type object from a type definition.</p></div>
+<div class="code-tabs">
+<div class="long-description"><p>The build process happens in two stages:</p>
+
+<ol>
+<li><p>Use the $type_builder to create the type object.</p></li>
+<li><p>Add relationships from the type definition.</p></li>
+</ol>
+
+<p>The two-stage process helps avoid race conditions where a type may
+have relationships to other type object that might not be in the
+manager yet.</p></div>
+<strong>Parameters</strong><table class="argument-info">
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tr>
+<th>$name</th>
+<td>string</td>
+<td><em><p>The type name to build.</p></em></td>
+</tr>
+</table>
+<strong>Returns</strong><table class="argument-info">
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tr>
+<td><a href="db_Aura_Marshal_Type_GenericType.html#%5CAura%5CMarshal%5CType%5CGenericType">\Aura\Marshal\Type\GenericType</a></td>
+<td></td>
+</tr>
+</table>
+</div>
+<div class="clear"></div>
+</div>
+<a id="\Aura\Marshal\Manager::getTypes()" class="anchor"></a><div class="method public">
+<a href="#" class="gripper"><img src="images/icons/arrow_right.png"><img src="images/icons/arrow_down.png" style="display: none;"></a><code><img src="images/icons/method.png" alt="method"><img src="images/icons/visibility_public.png" style="margin-right: 5px" alt="public"><span class="highlight">getTypes</span><span class="nb-faded-text">(
+          
+          )
+        </span>
+        :
+          array</code><div class="description"><p class="short_description">Returns the names of all types in the manager.</p></div>
+<div class="code-tabs">
+<div class="long-description"></div>
+<strong>Returns</strong><table class="argument-info">
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tr>
+<td>array</td>
+<td></td>
+</tr>
+</table>
+</div>
+<div class="clear"></div>
+</div>
+<a id="\Aura\Marshal\Manager::setRelation()" class="anchor"></a><div class="method public">
+<a href="#" class="gripper"><img src="images/icons/arrow_right.png"><img src="images/icons/arrow_down.png" style="display: none;"></a><code><img src="images/icons/method.png" alt="method"><img src="images/icons/visibility_public.png" style="margin-right: 5px" alt="public"><span class="highlight">setRelation</span><span class="nb-faded-text">(
+          string $type, string $name, array $info
+          )
+        </span>
+        :
+          void</code><div class="description"><p class="short_description">Sets a one relation for a type in the manager.</p></div>
+<div class="code-tabs">
+<div class="long-description"></div>
+<strong>Parameters</strong><table class="argument-info">
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tr>
+<th>$type</th>
+<td>string</td>
+<td><em><p>The type to set the relation on.</p></em></td>
+</tr>
+<tr>
+<th>$name</th>
+<td>string</td>
+<td><em><p>The name for the relation.</p></em></td>
+</tr>
+<tr>
+<th>$info</th>
+<td>array</td>
+<td><em><p>The relation information.</p></em></td>
+</tr>
+</table>
+</div>
+<div class="clear"></div>
+</div>
+<a id="\Aura\Marshal\Manager::setType()" class="anchor"></a><div class="method public">
+<a href="#" class="gripper"><img src="images/icons/arrow_right.png"><img src="images/icons/arrow_down.png" style="display: none;"></a><code><img src="images/icons/method.png" alt="method"><img src="images/icons/visibility_public.png" style="margin-right: 5px" alt="public"><span class="highlight">setType</span><span class="nb-faded-text">(
+          string $name, array $info
+          )
+        </span>
+        :
+          void</code><div class="description"><p class="short_description">Sets one type in the manager.</p></div>
+<div class="code-tabs">
+<div class="long-description"></div>
+<strong>Parameters</strong><table class="argument-info">
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tr>
+<th>$name</th>
+<td>string</td>
+<td><em><p>The name to use for the type.</p></em></td>
+</tr>
+<tr>
+<th>$info</th>
+<td>array</td>
+<td><em><p>An array of type definition information.</p></em></td>
+</tr>
+</table>
+</div>
+<div class="clear"></div>
+</div>
+</div>
+</div>
+</div>
+<small xmlns="" class="footer">Documentation was generated by <a href="http://docblox-project.org">DocBlox 0.17.2</a>.
+    </small></body></html>

@@ -1,0 +1,395 @@
+<!DOCTYPE html><html xmlns:date="http://exslt.org/dates-and-times" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » \Aura\View\AbstractTemplate</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Namespaces</a></li>
+<li><a href="../namespaces/Aura.html"><i class="icon-th"></i> Aura</a></li>
+<li><a>Packages</a></li>
+<li><a href="../packages/Aura.html"><i class="icon-folder-open"></i> Aura</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">0</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul><li>todo 
+                <span class="label label-info">2</span>
+</li></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods</li>
+<li class="method public "><a href="#__call" title="__call :: Magic call to provide shared helpers as template methods."><span class="description">Magic call to provide shared helpers as template methods.</span><pre>__call()</pre></a></li>
+<li class="method public "><a href="#__construct" title="__construct :: Constructor."><span class="description">Constructor.</span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#__get" title="__get :: Magic read access to template data."><span class="description">Magic read access to template data.</span><pre>__get()</pre></a></li>
+<li class="method public "><a href="#__isset" title="__isset :: Magic isset() checks on template data."><span class="description">Magic isset() checks on template data.</span><pre>__isset()</pre></a></li>
+<li class="method public "><a href="#__raw" title="__raw :: Returns the raw data object."><span class="description">Returns the raw data object.</span><pre>__raw()</pre></a></li>
+<li class="method public "><a href="#__set" title="__set :: Magic write access to template data."><span class="description">Magic write access to template data.</span><pre>__set()</pre></a></li>
+<li class="method public "><a href="#__unset" title="__unset :: Magic unset() for template data."><span class="description">Magic unset() for template data.</span><pre>__unset()</pre></a></li>
+<li class="method public "><a href="#addData" title="addData :: Merges new data with the existing template data."><span class="description">Merges new data with the existing template data.</span><pre>addData()</pre></a></li>
+<li class="method public "><a href="#fetch" title="fetch :: Fetches the output from a template."><span class="description">Fetches the output from a template.</span><pre>fetch()</pre></a></li>
+<li class="method public "><a href="#find" title="find :: Returns the path to the requested template script; searches through
+$this-&gt;paths to find the first matching template."><span class="description">Returns the path to the requested template script; searches through
+$this-&gt;paths to find the first matching template.</span><pre>find()</pre></a></li>
+<li class="method public "><a href="#getData" title="getData :: Gets all template variables."><span class="description">Gets all template variables.</span><pre>getData()</pre></a></li>
+<li class="method public "><a href="#getHelper" title="getHelper :: Retrieves a shared helper from the helper container."><span class="description">Retrieves a shared helper from the helper container.</span><pre>getHelper()</pre></a></li>
+<li class="method public "><a href="#getHelperLocator" title="getHelperLocator :: Returns the helper locator object."><span class="description">Returns the helper locator object.</span><pre>getHelperLocator()</pre></a></li>
+<li class="method public "><a href="#getTemplateFinder" title="getTemplateFinder :: Returns the TemplateFinder object."><span class="description">Returns the TemplateFinder object.</span><pre>getTemplateFinder()</pre></a></li>
+<li class="method public "><a href="#partial" title="partial :: Fetches the output from a partial."><span class="description">Fetches the output from a partial.</span><pre>partial()</pre></a></li>
+<li class="method public "><a href="#setData" title="setData :: Replaces all template data at once; this will remove all previous
+data."><span class="description">Replaces all template data at once; this will remove all previous
+data.</span><pre>setData()</pre></a></li>
+<li class="method public "><a href="#setPaths" title="setPaths :: Sets the search paths for templates; paths are searched in FIFO order."><span class="description">Sets the search paths for templates; paths are searched in FIFO order.</span><pre>setPaths()</pre></a></li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties</li>
+<li class="nav-header private">» Private</li>
+<li class="property private "><a href="#%24data" title="$data :: Data assigned to the template."><span class="description">Data assigned to the template.</span><pre>$data</pre></a></li>
+<li class="property private "><a href="#%24escaper" title="$escaper :: A data-escaper object."><span class="description">A data-escaper object.</span><pre>$escaper</pre></a></li>
+<li class="property private "><a href="#%24escaper_factory" title="$escaper_factory :: A factory to create an escaper."><span class="description">A factory to create an escaper.</span><pre>$escaper_factory</pre></a></li>
+<li class="property private "><a href="#%24helper_locator" title="$helper_locator :: A ServiceLocator for helper objects, so that repeated calls to the same
+helper use the same object."><span class="description">A ServiceLocator for helper objects, so that repeated calls to the same
+helper use the same object.</span><pre>$helper_locator</pre></a></li>
+<li class="property private "><a href="#%24template_finder" title='$template_finder :: View "finder" (to find views in a path stack).'><span class="description">View "finder" (to find views in a path stack).</span><pre>$template_finder</pre></a></li>
+</ul>
+</div>
+<div class="span8">
+<a name="%5CAura%5CView%5CAbstractTemplate" id="\Aura\View\AbstractTemplate"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/Aura.html">Aura</a></li>
+<span class="divider">\</span><li><a href="../namespaces/Aura.View.html">View</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/Aura.View.AbstractTemplate.html">AbstractTemplate</a>
+</li>
+</ul>
+<div href="../classes/Aura.View.AbstractTemplate.html" class="element class">
+<p class="short_description">Provides an abstract TemplateView pattern implementation.</p>
+<div class="details">
+<p class="long_description"><p>We use an
+abstract so that the extended "real" Template class does not have access
+to the private support properties herein.</p></p>
+<table class="table table-bordered"><tr>
+<th>package</th>
+<td><a href="../packages/Aura.View.html">Aura.View</a></td>
+</tr></table>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a name="__call" id="__call"></a><div class="element clickable method public __call" data-toggle="collapse" data-target=".__call .collapse">
+<h2>Magic call to provide shared helpers as template methods.</h2>
+<pre>__call(string $name, array $args) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$name</h4>
+<code>string</code><p>The helper name.</p></div>
+<div class="subelement argument">
+<h4>$args</h4>
+<code>array</code><p>The arguments to pass to the helper.</p></div>
+</div></div>
+</div>
+<a name="__construct" id="__construct"></a><div class="element clickable method public __construct" data-toggle="collapse" data-target=".__construct .collapse">
+<h2>Constructor.</h2>
+<pre>__construct(Aura\View\EscaperFactory $escaper_factory, Aura\View\TemplateFinder $template_finder, Aura\View\HelperLocator $helper_locator) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$escaper_factory</h4>
+<code><a href="../classes/Aura.View.EscaperFactory.html">\Aura\View\EscaperFactory</a></code><p>An escaper factory.</p></div>
+<div class="subelement argument">
+<h4>$template_finder</h4>
+<code><a href="../classes/Aura.View.TemplateFinder.html">\Aura\View\TemplateFinder</a></code><p>A template finder.</p></div>
+<div class="subelement argument">
+<h4>$helper_locator</h4>
+<code><a href="../classes/Aura.View.HelperLocator.html">\Aura\View\HelperLocator</a></code><p>A Service Locator for helpers attached to this template.</p></div>
+</div></div>
+</div>
+<a name="__get" id="__get"></a><div class="element clickable method public __get" data-toggle="collapse" data-target=".__get .collapse">
+<h2>Magic read access to template data.</h2>
+<pre>__get(string $key) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$key</h4>
+<code>string</code><p>The template variable name.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a name="__isset" id="__isset"></a><div class="element clickable method public __isset" data-toggle="collapse" data-target=".__isset .collapse">
+<h2>Magic isset() checks on template data.</h2>
+<pre>__isset(string $key) : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$key</h4>
+<code>string</code><p>The template variable name.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>bool</code></div>
+</div></div>
+</div>
+<a name="__raw" id="__raw"></a><div class="element clickable method public __raw" data-toggle="collapse" data-target=".__raw .collapse">
+<h2>Returns the raw data object.</h2>
+<pre>__raw() : \StdClass</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>\StdClass</code></div>
+</div></div>
+</div>
+<a name="__set" id="__set"></a><div class="element clickable method public __set" data-toggle="collapse" data-target=".__set .collapse">
+<h2>Magic write access to template data.</h2>
+<pre>__set(string $key, string $val) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$key</h4>
+<code>string</code><p>The template variable name.</p></div>
+<div class="subelement argument">
+<h4>$val</h4>
+<code>string</code><p>The template variable value.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a name="__unset" id="__unset"></a><div class="element clickable method public __unset" data-toggle="collapse" data-target=".__unset .collapse">
+<h2>Magic unset() for template data.</h2>
+<pre>__unset(string $key) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$key</h4>
+<code>string</code><p>The template variable name.</p></div>
+</div></div>
+</div>
+<a name="addData" id="addData"></a><div class="element clickable method public addData" data-toggle="collapse" data-target=".addData .collapse">
+<h2>Merges new data with the existing template data.</h2>
+<pre>addData(array $data) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>array</code><p>An array of key-value pairs where the keys are template variable names, and the values are the variable values.</p>
+</div>
+</div></div>
+</div>
+<a name="fetch" id="fetch"></a><div class="element clickable method public fetch" data-toggle="collapse" data-target=".fetch .collapse">
+<h2>Fetches the output from a template.</h2>
+<pre>fetch(string $name__) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$name__</h4>
+<code>string</code><p>The template name to use.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="find" id="find"></a><div class="element clickable method public find" data-toggle="collapse" data-target=".find .collapse">
+<h2>Returns the path to the requested template script; searches through
+$this-&gt;paths to find the first matching template.</h2>
+<pre>find(string $name) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$name</h4>
+<code>string</code><p>The template name to look for in the template path.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>The full path to the template script.</div>
+</div></div>
+</div>
+<a name="getData" id="getData"></a><div class="element clickable method public getData" data-toggle="collapse" data-target=".getData .collapse">
+<h2>Gets all template variables.</h2>
+<pre>getData() : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>An array of key-value pairs where the keys are template variable names, and the values are the variable values.</div>
+</div></div>
+</div>
+<a name="getHelper" id="getHelper"></a><div class="element clickable method public getHelper" data-toggle="collapse" data-target=".getHelper .collapse">
+<h2>Retrieves a shared helper from the helper container.</h2>
+<pre>getHelper(string $name) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$name</h4>
+<code>string</code><p>The helper to retrieve.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a name="getHelperLocator" id="getHelperLocator"></a><div class="element clickable method public getHelperLocator" data-toggle="collapse" data-target=".getHelperLocator .collapse">
+<h2>Returns the helper locator object.</h2>
+<pre>getHelperLocator() : <a href="../classes/Aura.View.HelperLocator.html">\Aura\View\HelperLocator</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/Aura.View.HelperLocator.html">\Aura\View\HelperLocator</a></code></div>
+</div></div>
+</div>
+<a name="getTemplateFinder" id="getTemplateFinder"></a><div class="element clickable method public getTemplateFinder" data-toggle="collapse" data-target=".getTemplateFinder .collapse">
+<h2>Returns the TemplateFinder object.</h2>
+<pre>getTemplateFinder() : <a href="../classes/Aura.View.TemplateFinder.html">\Aura\View\TemplateFinder</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/Aura.View.TemplateFinder.html">\Aura\View\TemplateFinder</a></code></div>
+</div></div>
+</div>
+<a name="partial" id="partial"></a><div class="element clickable method public partial" data-toggle="collapse" data-target=".partial .collapse">
+<h2>Fetches the output from a partial.</h2>
+<pre>partial(string $name, array $data) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>The partial will be executed in
+isolation from the rest of the template, which means <code>$this</code> refers
+to the <em>partial</em> data, not the original template data. However,
+helper objects are shared.</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$name</h4>
+<code>string</code><p>The partial to use.</p></div>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>array</code><p>Data to use for the partial.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="setData" id="setData"></a><div class="element clickable method public setData" data-toggle="collapse" data-target=".setData .collapse">
+<h2>Replaces all template data at once; this will remove all previous
+data.</h2>
+<pre>setData(array $data) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>array</code><p>An array of key-value pairs where the keys are template variable names, and the values are the variable values.</p>
+</div>
+</div></div>
+</div>
+<a name="setPaths" id="setPaths"></a><div class="element clickable method public setPaths" data-toggle="collapse" data-target=".setPaths .collapse">
+<h2>Sets the search paths for templates; paths are searched in FIFO order.</h2>
+<pre>setPaths(array $paths) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$paths</h4>
+<code>array</code><p>An array of directory paths where templates are.</p></div>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a name="%24data" id="$data"> </a><div class="element clickable property private $data" data-toggle="collapse" data-target=".$data .collapse">
+<h2>Data assigned to the template.</h2>
+<pre>$data : object</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24escaper" id="$escaper"> </a><div class="element clickable property private $escaper" data-toggle="collapse" data-target=".$escaper .collapse">
+<h2>A data-escaper object.</h2>
+<pre>$escaper : <a href="../classes/Aura.View.Escaper.Object.html">\Aura\View\Escaper\Object</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24escaper_factory" id="$escaper_factory"> </a><div class="element clickable property private $escaper_factory" data-toggle="collapse" data-target=".$escaper_factory .collapse">
+<h2>A factory to create an escaper.</h2>
+<pre>$escaper_factory : <a href="../classes/Aura.View.EscaperFactory.html">\Aura\View\EscaperFactory</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24helper_locator" id="$helper_locator"> </a><div class="element clickable property private $helper_locator" data-toggle="collapse" data-target=".$helper_locator .collapse">
+<h2>A ServiceLocator for helper objects, so that repeated calls to the same
+helper use the same object.</h2>
+<pre>$helper_locator : <a href="../classes/Aura.View.HelperLocator.html">\Aura\View\HelperLocator</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24template_finder" id="$template_finder"> </a><div class="element clickable property private $template_finder" data-toggle="collapse" data-target=".$template_finder .collapse">
+<h2>View "finder" (to find views in a path stack).</h2>
+<pre>$template_finder : <a href="../classes/Aura.View.TemplateFinder.html">\Aura\View\TemplateFinder</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a7</a> and<br>
+            generated on 2012-11-30T06:40:49-02:00.<br></footer></div>
+</div>
+</body>
+</html>

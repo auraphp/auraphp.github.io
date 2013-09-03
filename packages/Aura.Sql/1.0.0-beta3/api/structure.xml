@@ -1,0 +1,3594 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project version="2.0.0a7" title="">
+  <file path="Adapter/AbstractAdapter.php" hash="52691d9effb9753ce8ed5818c978b670" package="Aura\Sql">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Sql"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="ColumnFactory">Aura\Sql\ColumnFactory</namespace-alias>
+    <namespace-alias name="ProfilerInterface">Aura\Sql\ProfilerInterface</namespace-alias>
+    <namespace-alias name="AbstractQuery">Aura\Sql\Query\AbstractQuery</namespace-alias>
+    <namespace-alias name="QueryFactory">Aura\Sql\Query\Factory</namespace-alias>
+    <namespace-alias name="PDO">PDO</namespace-alias>
+    <namespace-alias name="PDOStatement">PDOStatement</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Sql\Adapter" line="27" package="Aura\Sql">
+      <extends/>
+      <name>AbstractAdapter</name>
+      <full_name>\Aura\Sql\Adapter\AbstractAdapter</full_name>
+      <docblock line="20">
+        <description><![CDATA[Abstract class for SQL drivers.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="20" name="package" description="Aura.Sql"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="36" namespace="Aura\Sql\Adapter" package="Default">
+        <name>$column_factory</name>
+        <default><![CDATA[]]></default>
+        <docblock line="29">
+          <description><![CDATA[A ColumnFactory for returning column information.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="29" name="var" description="" type="\Aura\Sql\ColumnFactory">
+            <type by_reference="false">\Aura\Sql\ColumnFactory</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="46" namespace="Aura\Sql\Adapter" package="Default">
+        <name>$dsn</name>
+        <default><![CDATA[]]></default>
+        <docblock line="38">
+          <description><![CDATA[The PDO DSN for the connection.]]></description>
+          <long-description><![CDATA[<p>This can be an array of key-value pairs
+or a string (minus the PDO type prefix).</p>]]></long-description>
+          <tag line="38" name="var" description="" type="string|array">
+            <type by_reference="false">string</type>
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="55" namespace="Aura\Sql\Adapter" package="Default">
+        <name>$dsn_prefix</name>
+        <default><![CDATA[]]></default>
+        <docblock line="48">
+          <description><![CDATA[The PDO type prefix.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="48" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="64" namespace="Aura\Sql\Adapter" package="Default">
+        <name>$options</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="57">
+          <description><![CDATA[PDO options for the connection.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="57" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="73" namespace="Aura\Sql\Adapter" package="Default">
+        <name>$password</name>
+        <default><![CDATA[]]></default>
+        <docblock line="66">
+          <description><![CDATA[The password for the connection.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="66" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="82" namespace="Aura\Sql\Adapter" package="Default">
+        <name>$pdo</name>
+        <default><![CDATA[]]></default>
+        <docblock line="75">
+          <description><![CDATA[The PDO connection object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="75" name="var" description="" type="\PDO">
+            <type by_reference="false">\PDO</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="91" namespace="Aura\Sql\Adapter" package="Default">
+        <name>$quote_name_prefix</name>
+        <default><![CDATA[]]></default>
+        <docblock line="84">
+          <description><![CDATA[The prefix to use when quoting identifier names.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="84" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="100" namespace="Aura\Sql\Adapter" package="Default">
+        <name>$quote_name_suffix</name>
+        <default><![CDATA[]]></default>
+        <docblock line="93">
+          <description><![CDATA[The suffix to use when quoting identifier names.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="93" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="109" namespace="Aura\Sql\Adapter" package="Default">
+        <name>$username</name>
+        <default><![CDATA[]]></default>
+        <docblock line="102">
+          <description><![CDATA[The username for the connection.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="102" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Adapter" line="130" package="Aura\Sql">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="111">
+          <description><![CDATA[Constructor.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="111" name="param" description="A query profiler." type="\Aura\Sql\ProfilerInterface" variable="$profiler">
+            <type by_reference="false">\Aura\Sql\ProfilerInterface</type>
+          </tag>
+          <tag line="111" name="param" description="A column object factory." type="\Aura\Sql\ColumnFactory" variable="$column_factory">
+            <type by_reference="false">\Aura\Sql\ColumnFactory</type>
+          </tag>
+          <tag line="111" name="param" description="A query object factory." type="\Aura\Sql\Query\Factory" variable="$query_factory">
+            <type by_reference="false">\Aura\Sql\Query\Factory</type>
+          </tag>
+          <tag line="111" name="param" description="DSN parameters for the PDO connection." type="mixed" variable="$dsn">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="111" name="param" description="The username for the PDO connection." type="string" variable="$username">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="111" name="param" description="The password for the PDO connection." type="string" variable="$password">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="111" name="param" description="Options for PDO connection." type="array" variable="$options">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="131">
+          <name>$profiler</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Sql\ProfilerInterface</type>
+        </argument>
+        <argument line="132">
+          <name>$column_factory</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Sql\ColumnFactory</type>
+        </argument>
+        <argument line="133">
+          <name>$query_factory</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Sql\Query\Factory</type>
+        </argument>
+        <argument line="134">
+          <name>$dsn</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="135">
+          <name>$username</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+        <argument line="136">
+          <name>$password</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+        <argument line="137">
+          <name>$options</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Adapter" line="155" package="Aura\Sql">
+        <name>getProfiler</name>
+        <full_name>getProfiler</full_name>
+        <docblock line="148">
+          <description><![CDATA[Returns the profiler object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="148" name="return" description="" type="\Aura\Sql\ProfilerInterface">
+            <type by_reference="false">\Aura\Sql\ProfilerInterface</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Adapter" line="167" package="Aura\Sql">
+        <name>getColumnFactory</name>
+        <full_name>getColumnFactory</full_name>
+        <docblock line="160">
+          <description><![CDATA[Returns the column factory object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="160" name="return" description="" type="\Aura\Sql\ColumnFactory">
+            <type by_reference="false">\Aura\Sql\ColumnFactory</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Adapter" line="179" package="Aura\Sql">
+        <name>getQueryFactory</name>
+        <full_name>getQueryFactory</full_name>
+        <docblock line="172">
+          <description><![CDATA[Returns the query factory object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="172" name="return" description="" type="\Aura\Sql\Query\Factory">
+            <type by_reference="false">\Aura\Sql\Query\Factory</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Adapter" line="191" package="Aura\Sql">
+        <name>getDsnString</name>
+        <full_name>getDsnString</full_name>
+        <docblock line="184">
+          <description><![CDATA[Returns the DSN string used by the PDO connection.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="184" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Adapter" line="216" package="Aura\Sql">
+        <name>getPdo</name>
+        <full_name>getPdo</full_name>
+        <docblock line="208">
+          <description><![CDATA[Returns the PDO connection object; if it does not exist, creates it to
+connect to the database.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="208" name="return" description="" type="\PDO">
+            <type by_reference="false">\PDO</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Adapter" line="231" package="Aura\Sql">
+        <name>connect</name>
+        <full_name>connect</full_name>
+        <docblock line="224">
+          <description><![CDATA[Connects to the database by creating the PDO object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="224" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Adapter" line="245" package="Aura\Sql">
+        <name>preConnect</name>
+        <full_name>preConnect</full_name>
+        <docblock line="238">
+          <description><![CDATA[A hook that executes before the database connection is created.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="238" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Adapter" line="256" package="Aura\Sql">
+        <name>postConnect</name>
+        <full_name>postConnect</full_name>
+        <docblock line="249">
+          <description><![CDATA[A hook that executes after the database connection is created.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="249" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Adapter" line="274" package="Aura\Sql">
+        <name>query</name>
+        <full_name>query</full_name>
+        <docblock line="260">
+          <description><![CDATA[Prepares and executes an SQL query, optionally binding values
+to named placeholders in the query text.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="260" name="param" description="The text of the SQL query; or, a query object." type="string|\Aura\Sql\Query\AbstractQuery" variable="$query">
+            <type by_reference="false">string</type>
+            <type by_reference="false">\Aura\Sql\Query\AbstractQuery</type>
+          </tag>
+          <tag line="260" name="param" description="An associative array of data to bind to named placeholders in the query." type="array" variable="$data">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="260" name="return" description="" type="\PDOStatement">
+            <type by_reference="false">\PDOStatement</type>
+          </tag>
+        </docblock>
+        <argument line="274">
+          <name>$query</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="274">
+          <name>$data</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Adapter" line="289" package="Aura\Sql">
+        <name>beginTransaction</name>
+        <full_name>beginTransaction</full_name>
+        <docblock line="282">
+          <description><![CDATA[Begins a database transaction and turns off autocommit.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="282" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Adapter" line="305" package="Aura\Sql">
+        <name>commit</name>
+        <full_name>commit</full_name>
+        <docblock line="298">
+          <description><![CDATA[Commits the current database transaction and turns autocommit back on.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="298" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Adapter" line="322" package="Aura\Sql">
+        <name>rollback</name>
+        <full_name>rollback</full_name>
+        <docblock line="314">
+          <description><![CDATA[Rolls back the current database transaction and turns autocommit back
+on.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="314" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Adapter" line="351" package="Aura\Sql">
+        <name>prepare</name>
+        <full_name>prepare</full_name>
+        <docblock line="331">
+          <description><![CDATA[Creates a prepared PDOStatment and binds data values to placeholders.]]></description>
+          <long-description><![CDATA[<p>PDO itself is touchy about binding values.  If you attempt to bind a
+value that does not have a corresponding placeholder, PDO will error.
+This method checks the query text to find placeholders and binds only
+data values that have placeholders in the text.</p>
+
+<p>Similarly, PDO won't bind an array value. This method checks to see if
+the data to be bound is an array; if it is, the array is quoted and
+replaced into the text directly instead of binding it.</p>]]></long-description>
+          <tag line="331" name="param" description="The text of the SQL query." type="string" variable="$text">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="331" name="param" description="The values to bind (or quote) into the PDOStatement." type="array" variable="$data">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="331" name="return" description="" type="\PDOStatement">
+            <type by_reference="false">\PDOStatement</type>
+          </tag>
+        </docblock>
+        <argument line="351">
+          <name>$text</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="351">
+          <name>$data</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Adapter" line="432" package="Aura\Sql">
+        <name>fetchAll</name>
+        <full_name>fetchAll</full_name>
+        <docblock line="419">
+          <description><![CDATA[Fetches all rows from the database using sequential keys.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="419" name="param" description="The text of the SQL statement, optionally with named placeholders." type="string" variable="$text">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="419" name="param" description="An associative array of data to bind to the named placeholders." type="array" variable="$data">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="419" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="432">
+          <name>$text</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="432">
+          <name>$data</name>
+          <default><![CDATA[array()]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Adapter" line="455" package="Aura\Sql">
+        <name>fetchAssoc</name>
+        <full_name>fetchAssoc</full_name>
+        <docblock line="438">
+          <description><![CDATA[Fetches all rows from the database using associative keys (defined by
+the first column).]]></description>
+          <long-description><![CDATA[<p>N.b.: if multiple rows have the same first column value, the last
+row with that value will override earlier rows.</p>]]></long-description>
+          <tag line="438" name="param" description="The text of the SQL statement, optionally with named placeholders." type="string" variable="$text">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="438" name="param" description="An associative array of data to bind to the named placeholders." type="array" variable="$data">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="438" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="455">
+          <name>$text</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="455">
+          <name>$data</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Adapter" line="479" package="Aura\Sql">
+        <name>fetchCol</name>
+        <full_name>fetchCol</full_name>
+        <docblock line="466">
+          <description><![CDATA[Fetches the first column of all rows as a sequential array.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="466" name="param" description="The text of the SQL statement, optionally with named placeholders." type="string" variable="$text">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="466" name="param" description="An associative array of data to bind to the named placeholders." type="array" variable="$data">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="466" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="479">
+          <name>$text</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="479">
+          <name>$data</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Adapter" line="498" package="Aura\Sql">
+        <name>fetchValue</name>
+        <full_name>fetchValue</full_name>
+        <docblock line="485">
+          <description><![CDATA[Fetches the very first value (i.e., first column of the first row).]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="485" name="param" description="The text of the SQL statement, optionally with named placeholders." type="string" variable="$text">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="485" name="param" description="An associative array of data to bind to the named placeholders." type="array" variable="$data">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="485" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="498">
+          <name>$text</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="498">
+          <name>$data</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Adapter" line="518" package="Aura\Sql">
+        <name>fetchPairs</name>
+        <full_name>fetchPairs</full_name>
+        <docblock line="504">
+          <description><![CDATA[Fetches an associative array of all rows as key-value pairs (first
+column is the key, second column is the value).]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="504" name="param" description="The text of the SQL statement, optionally with named placeholders." type="string" variable="$text">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="504" name="param" description="An associative array of data to bind to the named placeholders." type="array" variable="$data">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="504" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="518">
+          <name>$text</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="518">
+          <name>$data</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Adapter" line="541" package="Aura\Sql">
+        <name>fetchOne</name>
+        <full_name>fetchOne</full_name>
+        <docblock line="528">
+          <description><![CDATA[Fetches one row from the database.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="528" name="param" description="The text of the SQL statement, optionally with named placeholders." type="string" variable="$text">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="528" name="param" description="An associative array of data to bind to the named placeholders." type="array" variable="$data">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="528" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="541">
+          <name>$text</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="541">
+          <name>$data</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Adapter" line="561" package="Aura\Sql">
+        <name>quote</name>
+        <full_name>quote</full_name>
+        <docblock line="547">
+          <description><![CDATA[Safely quotes a value for an SQL statement.]]></description>
+          <long-description><![CDATA[<p>If an array is passed as the value, the array values are quoted
+and then returned as a comma-separated string; this is useful
+for generating <code>IN()</code> lists.</p>]]></long-description>
+          <tag line="547" name="param" description="The value to quote." type="mixed" variable="$val">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="547" name="return" description="An SQL-safe quoted value (or a string of separated-and-quoted values)." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="561">
+          <name>$val</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Adapter" line="593" package="Aura\Sql">
+        <name>quoteInto</name>
+        <full_name>quoteInto</full_name>
+        <docblock line="578">
+          <description><![CDATA[Quotes a value and places into a piece of text at a placeholder; the
+placeholder is a question-mark.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="578" name="param" description="The text with placeholder(s)." type="string" variable="$text">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="578" name="param" description="The data value(s) to quote." type="mixed" variable="$data">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="578" name="return" description="An SQL-safe quoted value (or string of separated values) placed into the orignal text." type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="578" name="see" description="\Aura\Sql\Adapter\quote()" refers="\Aura\Sql\Adapter\quote()"/>
+        </docblock>
+        <argument line="593">
+          <name>$text</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="593">
+          <name>$data</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Adapter" line="663" package="Aura\Sql">
+        <name>quoteMulti</name>
+        <full_name>quoteMulti</full_name>
+        <docblock line="631">
+          <description><![CDATA[Quote multiple text-and-value pieces.]]></description>
+          <long-description><![CDATA[<p>The placeholder is a question-mark; all placeholders will be replaced
+with the quoted value.   For example ...</p>
+
+<pre><code>$list = [
+     "WHERE date &gt; ?"   =&gt; '2005-01-01',
+     "  AND date &lt; ?"   =&gt; '2005-02-01',
+     "  AND type IN(?)" =&gt; ['a', 'b', 'c'],
+];
+
+$safe = $sql-&gt;quoteMulti($list);
+
+// $safe = "WHERE date &gt; '2005-01-02'
+//          AND date &lt; 2005-02-01
+//          AND type IN('a','b','c')"
+</code></pre>
+
+<p>}}</p>]]></long-description>
+          <tag line="631" name="param" description="A series of key-value pairs where the key is the placeholder text and the value is the value to be quoted into it. If the key is an integer, it is assumed that the value is piece of literal text to be used and not quoted." type="array" variable="$list">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="631" name="param" description="Return the list pieces separated with this string (for example ' AND ')." type="string" variable="$sep">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="631" name="return" description="An SQL-safe string composed of the list keys and quoted values." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="663">
+          <name>$list</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="663">
+          <name>$sep</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Adapter" line="703" package="Aura\Sql">
+        <name>quoteName</name>
+        <full_name>quoteName</full_name>
+        <docblock line="682">
+          <description><![CDATA[Quotes a single identifier name (table, table alias, table column,
+index, sequence).]]></description>
+          <long-description><![CDATA[<p>If the name contains <code>' AS '</code>, this method will separately quote the
+parts before and after the <code>' AS '</code>.</p>
+
+<p>If the name contains a space, this method will separately quote the
+parts before and after the space.</p>
+
+<p>If the name contains a dot, this method will separately quote the
+parts before and after the dot.</p>]]></long-description>
+          <tag line="682" name="param" description="The identifier name to quote." type="string" variable="$spec">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="682" name="return" description="The quoted identifier name." type="string|array">
+            <type by_reference="false">string</type>
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="682" name="see" description="\Aura\Sql\Adapter\replaceName()" refers="\Aura\Sql\Adapter\replaceName()"/>
+        </docblock>
+        <argument line="703">
+          <name>$spec</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Adapter" line="761" package="Aura\Sql">
+        <name>quoteNamesIn</name>
+        <full_name>quoteNamesIn</full_name>
+        <docblock line="743">
+          <description><![CDATA[Quotes all fully-qualified identifier names ("table.col") in a string,
+typically an SQL snippet for a SELECT clause.]]></description>
+          <long-description><![CDATA[<p>Does not quote identifier names that are string literals (i.e., inside
+single or double quotes).</p>
+
+<p>Looks for a trailing ' AS alias' and quotes the alias as well.</p>]]></long-description>
+          <tag line="743" name="param" description="The string in which to quote fully-qualified identifier names to quote." type="string" variable="$text">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="743" name="return" description="The string with names quoted in it." type="string|array">
+            <type by_reference="false">string</type>
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="743" name="see" description="\Aura\Sql\Adapter\replaceNamesIn()" refers="\Aura\Sql\Adapter\replaceNamesIn()"/>
+        </docblock>
+        <argument line="761">
+          <name>$text</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Adapter" line="830" package="Aura\Sql">
+        <name>insert</name>
+        <full_name>insert</full_name>
+        <docblock line="818">
+          <description><![CDATA[Inserts a row of data into a table.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="818" name="param" description="The table to insert into." type="string" variable="$table">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="818" name="param" description="An associative array where the key is the column name and the value is the value to insert for that column." type="array" variable="$cols">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="818" name="return" description="The number of rows affected, typically 1." type="int">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+        <argument line="830">
+          <name>$table</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="830">
+          <name>$cols</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Adapter" line="857" package="Aura\Sql">
+        <name>update</name>
+        <full_name>update</full_name>
+        <docblock line="839">
+          <description><![CDATA[Updates a table with specified data based on WHERE conditions.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="839" name="param" description="The table to udpate." type="string" variable="$table">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="839" name="param" description="An associative array where the key is the column name and the value is the value to use for that column." type="array" variable="$cols">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="839" name="param" description="Conditions for a WHERE clause." type="string" variable="$cond">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="839" name="param" description="Additional data to bind to the query; these are not part of the update, and note that the $cols values will take precedence over these additional values." type="array" variable="$data">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="839" name="return" description="The number of rows affected." type="int">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+        <argument line="857">
+          <name>$table</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="857">
+          <name>$cols</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+        <argument line="857">
+          <name>$cond</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="857">
+          <name>$data</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Adapter" line="883" package="Aura\Sql">
+        <name>delete</name>
+        <full_name>delete</full_name>
+        <docblock line="870">
+          <description><![CDATA[Deletes rows from the table based on WHERE conditions.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="870" name="param" description="The table to delete from." type="string" variable="$table">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="870" name="param" description="Conditions for a WHERE clause." type="string" variable="$cond">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="870" name="param" description="Additional data to bind to the query." type="array" variable="$data">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="870" name="return" description="The number of rows affected." type="int">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+        <argument line="883">
+          <name>$table</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="883">
+          <name>$cond</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="883">
+          <name>$data</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Adapter" line="901" package="Aura\Sql">
+        <name>newSelect</name>
+        <full_name>newSelect</full_name>
+        <docblock line="894">
+          <description><![CDATA[Returns a new Select object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="894" name="return" description="" type="\Aura\Sql\Adapter\Select">
+            <type by_reference="false">\Aura\Sql\Adapter\Select</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Adapter" line="913" package="Aura\Sql">
+        <name>newInsert</name>
+        <full_name>newInsert</full_name>
+        <docblock line="906">
+          <description><![CDATA[Returns a new Insert object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="906" name="return" description="" type="\Aura\Sql\Adapter\Insert">
+            <type by_reference="false">\Aura\Sql\Adapter\Insert</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Adapter" line="925" package="Aura\Sql">
+        <name>newUpdate</name>
+        <full_name>newUpdate</full_name>
+        <docblock line="918">
+          <description><![CDATA[Returns a new Update object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="918" name="return" description="" type="\Aura\Sql\Adapter\Update">
+            <type by_reference="false">\Aura\Sql\Adapter\Update</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Adapter" line="937" package="Aura\Sql">
+        <name>newDelete</name>
+        <full_name>newDelete</full_name>
+        <docblock line="930">
+          <description><![CDATA[Returns a new Delete object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="930" name="return" description="" type="\Aura\Sql\Adapter\Update">
+            <type by_reference="false">\Aura\Sql\Adapter\Update</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Adapter" line="955" package="Aura\Sql">
+        <name>limit</name>
+        <full_name>limit</full_name>
+        <docblock line="942">
+          <description><![CDATA[Modifies an SQL string **in place** to add a `LIMIT .]]></description>
+          <long-description><![CDATA[<p>.. OFFSET` clause.</p>]]></long-description>
+          <tag line="942" name="param" description="The SQL string." type="string" variable="$text">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="942" name="param" description="The number of rows to return." type="int" variable="$count">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="942" name="param" description="Skip this many rows first." type="int" variable="$offset">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="942" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="955">
+          <name>$text</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="955">
+          <name>$count</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="955">
+          <name>$offset</name>
+          <default><![CDATA[0]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Sql\Adapter" line="976" package="Aura\Sql">
+        <name>newPdo</name>
+        <full_name>newPdo</full_name>
+        <docblock line="969">
+          <description><![CDATA[Creates a new PDO object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="969" name="return" description="" type="\PDO">
+            <type by_reference="false">\PDO</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Sql\Adapter" line="1000" package="Aura\Sql">
+        <name>replaceName</name>
+        <full_name>replaceName</full_name>
+        <docblock line="988">
+          <description><![CDATA[Quotes an identifier name (table, index, etc); ignores empty values and
+values of '*'.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="988" name="param" description="The identifier name to quote." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="988" name="return" description="The quoted identifier name." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="988" name="see" description="\Aura\Sql\Adapter\quoteName()" refers="\Aura\Sql\Adapter\quoteName()"/>
+        </docblock>
+        <argument line="1000">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Sql\Adapter" line="1024" package="Aura\Sql">
+        <name>replaceNamesIn</name>
+        <full_name>replaceNamesIn</full_name>
+        <docblock line="1012">
+          <description><![CDATA[Quotes all fully-qualified identifier names ("table.col") in a string.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1012" name="param" description="The string in which to quote fully-qualified identifier names to quote." type="string" variable="$text">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1012" name="return" description="The string with names quoted in it." type="string|array">
+            <type by_reference="false">string</type>
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="1012" name="see" description="\Aura\Sql\Adapter\quoteNamesIn()" refers="\Aura\Sql\Adapter\quoteNamesIn()"/>
+        </docblock>
+        <argument line="1024">
+          <name>$text</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Sql\Adapter" line="1057" package="Aura\Sql">
+        <name>getTypeSizeScope</name>
+        <full_name>getTypeSizeScope</full_name>
+        <docblock line="1046">
+          <description><![CDATA[Given a column specification, parse into datatype, size, and
+decimal scale.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1046" name="param" description="The column specification; for example, &quot;VARCHAR(255)&quot; or &quot;NUMERIC(10,2)&quot;." type="string" variable="$spec">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1046" name="return" description="A sequential array of the column type, size, and scale." type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="1057">
+          <name>$spec</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="true" static="false" visibility="public" namespace="Aura\Sql\Adapter" line="1098" package="Aura\Sql">
+        <name>fetchTableList</name>
+        <full_name>fetchTableList</full_name>
+        <docblock line="1088">
+          <description><![CDATA[Returns an list of tables in the database.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1088" name="param" description="Optionally, pass a schema name to get the list of tables in this schema." type="string" variable="$schema">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1088" name="return" description="The list of tables in the database." type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="1098">
+          <name>$schema</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="true" static="false" visibility="public" namespace="Aura\Sql\Adapter" line="1111" package="Aura\Sql">
+        <name>fetchTableCols</name>
+        <full_name>fetchTableCols</full_name>
+        <docblock line="1100">
+          <description><![CDATA[Returns an array of columns in a table.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1100" name="param" description="Return the columns in this table. This may be just a `table` name, or a `schema.table` name." type="string" variable="$spec">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1100" name="return" description="An associative array where the key is the column name and the value is a Column object." type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="1111">
+          <name>$spec</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Sql\Adapter" line="1125" package="Aura\Sql">
+        <name>splitName</name>
+        <full_name>splitName</full_name>
+        <docblock line="1113">
+          <description><![CDATA[Splits an identifier name into two parts, based on the location of the
+first dot.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1113" name="param" description="The identifier name to be split." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1113" name="return" description="An array of two elements; element 0 is the parts before the dot, and element 1 is the part after the dot. If there was no dot, element 0 will be null and element 1 will be the name as given." type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="1125">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Adapter/Mysql.php" hash="3f36a381cef7cc4bb776bbbb190136ad" package="Aura\Sql">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Sql"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Sql\Adapter" line="20" package="Aura\Sql">
+      <extends>\Aura\Sql\Adapter\AbstractAdapter</extends>
+      <name>Mysql</name>
+      <full_name>\Aura\Sql\Adapter\Mysql</full_name>
+      <docblock line="13">
+        <description><![CDATA[MySql adapter.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Sql"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="30" namespace="Aura\Sql\Adapter" package="Default">
+        <name>$dsn</name>
+        <default><![CDATA[array('host' => null, 'port' => null, 'dbname' => null, 'unix_socket' => null, 'charset' => null)]]></default>
+        <docblock line="22">
+          <description><![CDATA[The PDO DSN for the connection.]]></description>
+          <long-description><![CDATA[<p>This can be an array of key-value pairs
+or a string (minus the PDO type prefix).</p>]]></long-description>
+          <tag line="22" name="var" description="" type="string|array">
+            <type by_reference="false">string</type>
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="45" namespace="Aura\Sql\Adapter" package="Default">
+        <name>$dsn_prefix</name>
+        <default><![CDATA['mysql']]></default>
+        <docblock line="38">
+          <description><![CDATA[The PDO type prefix.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="38" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="54" namespace="Aura\Sql\Adapter" package="Default">
+        <name>$quote_name_prefix</name>
+        <default><![CDATA['`']]></default>
+        <docblock line="47">
+          <description><![CDATA[The prefix to use when quoting identifier names.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="47" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="63" namespace="Aura\Sql\Adapter" package="Default">
+        <name>$quote_name_suffix</name>
+        <default><![CDATA['`']]></default>
+        <docblock line="56">
+          <description><![CDATA[The suffix to use when quoting identifier names.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="56" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Adapter" line="75" package="Aura\Sql">
+        <name>fetchTableList</name>
+        <full_name>fetchTableList</full_name>
+        <docblock line="65">
+          <description><![CDATA[Returns an list of tables in the database.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="65" name="param" description="Optionally, pass a schema name to get the list of tables in this schema." type="string" variable="$schema">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="65" name="return" description="The list of tables in the database." type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="75">
+          <name>$schema</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Adapter" line="95" package="Aura\Sql">
+        <name>fetchTableCols</name>
+        <full_name>fetchTableCols</full_name>
+        <docblock line="84">
+          <description><![CDATA[Returns an array of columns in a table.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="84" name="param" description="Return the columns in this table. This may be just a `table` name, or a `schema.table` name." type="string" variable="$spec">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="84" name="return" description="An associative array where the key is the column name and the value is a Column object." type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="95">
+          <name>$spec</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Sql\Adapter" line="146" package="Aura\Sql">
+        <name>getDefault</name>
+        <full_name>getDefault</full_name>
+        <docblock line="137">
+          <description><![CDATA[A helper method to get the default value for a column.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="137" name="param" description="The default value as reported by MySQL." type="string" variable="$default">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="137" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="146">
+          <name>$default</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Adapter" line="165" package="Aura\Sql">
+        <name>lastInsertId</name>
+        <full_name>lastInsertId</full_name>
+        <docblock line="158">
+          <description><![CDATA[Returns the last ID inserted on the connection.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="158" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Adapter/Pgsql.php" hash="bcd57c960d3db7805d0cb65b88dcf617" package="Aura\Sql">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Sql"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Sql\Adapter" line="20" package="Aura\Sql">
+      <extends>\Aura\Sql\Adapter\AbstractAdapter</extends>
+      <name>Pgsql</name>
+      <full_name>\Aura\Sql\Adapter\Pgsql</full_name>
+      <docblock line="13">
+        <description><![CDATA[PostgreSQL adapter.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Sql"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="30" namespace="Aura\Sql\Adapter" package="Default">
+        <name>$dsn</name>
+        <default><![CDATA[array('host' => null, 'port' => null, 'dbname' => null, 'user' => null, 'password' => null)]]></default>
+        <docblock line="22">
+          <description><![CDATA[The PDO DSN for the connection.]]></description>
+          <long-description><![CDATA[<p>This can be an array of key-value pairs
+or a string (minus the PDO type prefix).</p>]]></long-description>
+          <tag line="22" name="var" description="" type="string|array">
+            <type by_reference="false">string</type>
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="45" namespace="Aura\Sql\Adapter" package="Default">
+        <name>$dsn_prefix</name>
+        <default><![CDATA['pgsql']]></default>
+        <docblock line="38">
+          <description><![CDATA[The PDO type prefix.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="38" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="54" namespace="Aura\Sql\Adapter" package="Default">
+        <name>$quote_name_prefix</name>
+        <default><![CDATA['"']]></default>
+        <docblock line="47">
+          <description><![CDATA[The prefix to use when quoting identifier names.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="47" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="63" namespace="Aura\Sql\Adapter" package="Default">
+        <name>$quote_name_suffix</name>
+        <default><![CDATA['"']]></default>
+        <docblock line="56">
+          <description><![CDATA[The suffix to use when quoting identifier names.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="56" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Adapter" line="75" package="Aura\Sql">
+        <name>fetchTableList</name>
+        <full_name>fetchTableList</full_name>
+        <docblock line="65">
+          <description><![CDATA[Returns a list of all tables in the database.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="65" name="param" description="Fetch tbe list of tables in this schema; when empty, uses the default schema." type="string" variable="$schema">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="65" name="return" description="All table names in the database." type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="75">
+          <name>$schema</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Adapter" line="106" package="Aura\Sql">
+        <name>fetchTableCols</name>
+        <full_name>fetchTableCols</full_name>
+        <docblock line="95">
+          <description><![CDATA[Returns an array of columns in a table.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="95" name="param" description="Return the columns in this table. This may be just a `table` name, or a `schema.table` name." type="string" variable="$spec">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="95" name="return" description="An associative array where the key is the column name and the value is a Column object." type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="106">
+          <name>$spec</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Sql\Adapter" line="176" package="Aura\Sql">
+        <name>getDefault</name>
+        <full_name>getDefault</full_name>
+        <docblock line="164">
+          <description><![CDATA[Given a native column SQL default value, finds a PHP literal value.]]></description>
+          <long-description><![CDATA[<p>SQL NULLs are converted to PHP nulls.  Non-literal values (such as
+keywords and functions) are also returned as null.</p>]]></long-description>
+          <tag line="164" name="param" description="The column default SQL value." type="string" variable="$default">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="164" name="return" description="A literal PHP value." type="\Aura\Sql\Adapter\scalar">
+            <type by_reference="false">\Aura\Sql\Adapter\scalar</type>
+          </tag>
+        </docblock>
+        <argument line="176">
+          <name>$default</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Adapter" line="212" package="Aura\Sql">
+        <name>lastInsertId</name>
+        <full_name>lastInsertId</full_name>
+        <docblock line="196">
+          <description><![CDATA[Returns the last ID inserted on the connection for a given table
+and column sequence.]]></description>
+          <long-description><![CDATA[<p>PostgreSQL uses a sequence named for the table and column to track
+auto-incremented IDs; you need to pass the table and column name to
+tell PostgreSQL which sequence to check.</p>]]></long-description>
+          <tag line="196" name="param" description="The table to check the last inserted ID on." type="string" variable="$table">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="196" name="param" description="The column to check the last inserted ID on." type="string" variable="$col">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="196" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="212">
+          <name>$table</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="212">
+          <name>$col</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Adapter/Sqlite.php" hash="93ab4cdc840a568bb5a3c31e3205d3d5" package="Aura\Sql">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Sql"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Sql\Adapter" line="20" package="Aura\Sql">
+      <extends>\Aura\Sql\Adapter\AbstractAdapter</extends>
+      <name>Sqlite</name>
+      <full_name>\Aura\Sql\Adapter\Sqlite</full_name>
+      <docblock line="13">
+        <description><![CDATA[SQLite adapter.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Sql"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="31" namespace="Aura\Sql\Adapter" package="Default">
+        <name>$autoinc_string</name>
+        <default><![CDATA['INTEGER PRIMARY KEY AUTOINCREMENT']]></default>
+        <docblock line="22">
+          <description><![CDATA[The string used for SQLite autoincrement data types.]]></description>
+          <long-description><![CDATA[<p>This is different for versions 2 and 3 of SQLite.</p>]]></long-description>
+          <tag line="22" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="40" namespace="Aura\Sql\Adapter" package="Default">
+        <name>$dsn</name>
+        <default><![CDATA[null]]></default>
+        <docblock line="33">
+          <description><![CDATA[The PDO DSN for the connection, typically a file path.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="33" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="49" namespace="Aura\Sql\Adapter" package="Default">
+        <name>$dsn_prefix</name>
+        <default><![CDATA['sqlite']]></default>
+        <docblock line="42">
+          <description><![CDATA[The PDO type prefix.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="42" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="58" namespace="Aura\Sql\Adapter" package="Default">
+        <name>$quote_name_prefix</name>
+        <default><![CDATA['"']]></default>
+        <docblock line="51">
+          <description><![CDATA[The quote character before an entity name (table, index, etc).]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="51" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="67" namespace="Aura\Sql\Adapter" package="Default">
+        <name>$quote_name_suffix</name>
+        <default><![CDATA['"']]></default>
+        <docblock line="60">
+          <description><![CDATA[The quote character after an entity name (table, index, etc).]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="60" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Adapter" line="79" package="Aura\Sql">
+        <name>fetchTableList</name>
+        <full_name>fetchTableList</full_name>
+        <docblock line="69">
+          <description><![CDATA[Returns a list of tables in the database.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="69" name="param" description="Optionally, pass a schema name to get the list of tables in this schema." type="string" variable="$schema">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="69" name="return" description="The list of tables in the database." type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="79">
+          <name>$schema</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Adapter" line="109" package="Aura\Sql">
+        <name>fetchTableCols</name>
+        <full_name>fetchTableCols</full_name>
+        <docblock line="98">
+          <description><![CDATA[Describes the columns in a table.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="98" name="param" description="Return the columns in this table. This may be just a `table` name, or a `schema.table` name." type="string" variable="$spec">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="98" name="return" description="An associative array where the key is the column name and the value is a Column object." type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="109">
+          <name>$spec</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Adapter" line="236" package="Aura\Sql">
+        <name>lastInsertId</name>
+        <full_name>lastInsertId</full_name>
+        <docblock line="229">
+          <description><![CDATA[Returns the last ID inserted on the connection.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="229" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Adapter/Sqlsrv.php" hash="3f7a6731e119846f52b26411e812e991" package="Aura\Sql">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Sql"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Sql\Adapter" line="20" package="Aura\Sql">
+      <extends>\Aura\Sql\Adapter\AbstractAdapter</extends>
+      <name>Sqlsrv</name>
+      <full_name>\Aura\Sql\Adapter\Sqlsrv</full_name>
+      <docblock line="13">
+        <description><![CDATA[Microsoft SQL Server adapter.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Sql"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="30" namespace="Aura\Sql\Adapter" package="Default">
+        <name>$dsn</name>
+        <default><![CDATA[array('Server' => null, 'Database' => null)]]></default>
+        <docblock line="22">
+          <description><![CDATA[The PDO DSN for the connection.]]></description>
+          <long-description><![CDATA[<p>This can be an array of key-value pairs
+or a string (minus the PDO type prefix).</p>]]></long-description>
+          <tag line="22" name="var" description="" type="string|array">
+            <type by_reference="false">string</type>
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="42" namespace="Aura\Sql\Adapter" package="Default">
+        <name>$dsn_prefix</name>
+        <default><![CDATA['sqlsrv']]></default>
+        <docblock line="35">
+          <description><![CDATA[The PDO type prefix.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="35" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="51" namespace="Aura\Sql\Adapter" package="Default">
+        <name>$quote_name_prefix</name>
+        <default><![CDATA['[']]></default>
+        <docblock line="44">
+          <description><![CDATA[The prefix to use when quoting identifier names.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="44" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="60" namespace="Aura\Sql\Adapter" package="Default">
+        <name>$quote_name_suffix</name>
+        <default><![CDATA[']']]></default>
+        <docblock line="53">
+          <description><![CDATA[The suffix to use when quoting identifier names.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="53" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Adapter" line="74" package="Aura\Sql">
+        <name>fetchTableList</name>
+        <full_name>fetchTableList</full_name>
+        <docblock line="62">
+          <description><![CDATA[Returns a list of all tables in the database.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="62" name="param" description="Fetch tbe list of tables in this schema; when empty, uses the default schema." type="string" variable="$schema">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="62" name="return" description="All table names in the database." type="array">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="62" name="todo" description="Honor the $schema param."/>
+        </docblock>
+        <argument line="74">
+          <name>$schema</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Adapter" line="93" package="Aura\Sql">
+        <name>fetchTableCols</name>
+        <full_name>fetchTableCols</full_name>
+        <docblock line="80">
+          <description><![CDATA[Returns an array of columns in a table.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="80" name="param" description="Return the columns in this table. This may be just a `table` name, or a `schema.table` name." type="string" variable="$spec">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="80" name="return" description="An associative array where the key is the column name and the value is a Column object." type="array">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="80" name="todo" description="Honor `schema.table` as the specification."/>
+        </docblock>
+        <argument line="93">
+          <name>$spec</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Adapter" line="152" package="Aura\Sql">
+        <name>limit</name>
+        <full_name>limit</full_name>
+        <docblock line="138">
+          <description><![CDATA[Modifies an SQL string **in place** to add a `TOP` or
+`FETCH NEXT .]]></description>
+          <long-description><![CDATA[<p>.. OFFSET` clause.</p>]]></long-description>
+          <tag line="138" name="param" description="The SQL string." type="string" variable="$text">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="138" name="param" description="The number of rows to return." type="int" variable="$count">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="138" name="param" description="Skip this many rows first." type="int" variable="$offset">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="138" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="152">
+          <name>$text</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="152">
+          <name>$count</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="152">
+          <name>$offset</name>
+          <default><![CDATA[0]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="AdapterFactory.php" hash="3443b0c18c085fe6a5c9b32d6115bcd6" package="Aura\Sql">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Sql"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="QueryFactory">Aura\Sql\Query\Factory</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Sql" line="22" package="Aura\Sql">
+      <extends/>
+      <name>AdapterFactory</name>
+      <full_name>\Aura\Sql\AdapterFactory</full_name>
+      <docblock line="15">
+        <description><![CDATA[A factory for adapter objects.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Sql"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="31" namespace="Aura\Sql" package="Default">
+        <name>$map</name>
+        <default><![CDATA[array('mysql' => 'Aura\Sql\Adapter\Mysql', 'pgsql' => 'Aura\Sql\Adapter\Pgsql', 'sqlite' => 'Aura\Sql\Adapter\Sqlite')]]></default>
+        <docblock line="24">
+          <description><![CDATA[A map of short adapter names to fully-qualified classes.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="24" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql" line="44" package="Aura\Sql">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="37">
+          <description><![CDATA[Constructor.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="37" name="param" description="An override map of adapter names to classes." type="array" variable="$map">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="44">
+          <name>$map</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql" line="66" package="Aura\Sql">
+        <name>newInstance</name>
+        <full_name>newInstance</full_name>
+        <docblock line="49">
+          <description><![CDATA[Returns a new adapter instance.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="49" name="param" description="The name of the adapter." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="49" name="param" description="The DSN for the adapter." type="mixed" variable="$dsn">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="49" name="param" description="The username for the adapter." type="string" variable="$username">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="49" name="param" description="The password for the adapter." type="string" variable="$password">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="49" name="param" description="PDO options for the adapter." type="array" variable="$options">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="49" name="return" description="" type="\Aura\Sql\AbstractAdapter">
+            <type by_reference="false">\Aura\Sql\AbstractAdapter</type>
+          </tag>
+        </docblock>
+        <argument line="67">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="68">
+          <name>$dsn</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="69">
+          <name>$username</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+        <argument line="70">
+          <name>$password</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+        <argument line="71">
+          <name>$options</name>
+          <default><![CDATA[array()]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Column.php" hash="53351e3d50ae7b35da75f46477ac80a5" package="Aura\Sql">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Sql"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Sql" line="20" package="Aura\Sql">
+      <extends/>
+      <name>Column</name>
+      <full_name>\Aura\Sql\Column</full_name>
+      <docblock line="13">
+        <description><![CDATA[Represents one column from a table.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Sql"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="29" namespace="Aura\Sql" package="Default">
+        <name>$name</name>
+        <default><![CDATA[]]></default>
+        <docblock line="22">
+          <description><![CDATA[The name of the column.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="38" namespace="Aura\Sql" package="Default">
+        <name>$type</name>
+        <default><![CDATA[]]></default>
+        <docblock line="31">
+          <description><![CDATA[The datatype of the column.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="31" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="48" namespace="Aura\Sql" package="Default">
+        <name>$size</name>
+        <default><![CDATA[]]></default>
+        <docblock line="40">
+          <description><![CDATA[The size of the column; typically, this is a number of bytes or
+characters for the column as a whole.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="40" name="var" description="" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="57" namespace="Aura\Sql" package="Default">
+        <name>$scale</name>
+        <default><![CDATA[]]></default>
+        <docblock line="50">
+          <description><![CDATA[The scale of the column (i.e., the number of decimal places).]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="50" name="var" description="" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="66" namespace="Aura\Sql" package="Default">
+        <name>$notnull</name>
+        <default><![CDATA[]]></default>
+        <docblock line="59">
+          <description><![CDATA[Is the column marked as `NOT NULL`?]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="59" name="var" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="75" namespace="Aura\Sql" package="Default">
+        <name>$default</name>
+        <default><![CDATA[]]></default>
+        <docblock line="68">
+          <description><![CDATA[The default value of the column.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="68" name="var" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="84" namespace="Aura\Sql" package="Default">
+        <name>$autoinc</name>
+        <default><![CDATA[]]></default>
+        <docblock line="77">
+          <description><![CDATA[Is the column auto-incremented?]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="77" name="var" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="93" namespace="Aura\Sql" package="Default">
+        <name>$primary</name>
+        <default><![CDATA[]]></default>
+        <docblock line="86">
+          <description><![CDATA[Is the column part of the primary key?]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="86" name="var" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql" line="118" package="Aura\Sql">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="95">
+          <description><![CDATA[Constructor.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="95" name="param" description="The name of the column." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="95" name="param" description="The datatype of the column." type="string" variable="$type">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="95" name="param" description="The size of the column." type="int" variable="$size">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="95" name="param" description="The scale of the column (i.e., the number of digits after the decimal point)." type="int" variable="$scale">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="95" name="param" description="Is the column defined as NOT NULL (i.e., required) ?" type="bool" variable="$notnull">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="95" name="param" description="The default value of the column." type="mixed" variable="$default">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="95" name="param" description="Is the column auto-incremented?" type="bool" variable="$autoinc">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="95" name="param" description="Is the column part of the primary key?" type="bool" variable="$primary">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+        <argument line="119">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="120">
+          <name>$type</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="121">
+          <name>$size</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="122">
+          <name>$scale</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="123">
+          <name>$notnull</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="124">
+          <name>$default</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="125">
+          <name>$autoinc</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="126">
+          <name>$primary</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql" line="147" package="Aura\Sql">
+        <name>__get</name>
+        <full_name>__get</full_name>
+        <docblock line="138">
+          <description><![CDATA[Returns property values.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="138" name="param" description="The property name." type="string" variable="$key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="138" name="return" description="The property value." type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="147">
+          <name>$key</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Aura\Sql" line="168" package="Aura\Sql">
+        <name>__set_state</name>
+        <full_name>__set_state</full_name>
+        <docblock line="152">
+          <description><![CDATA[Returns column object for var_export.]]></description>
+          <long-description><![CDATA[<p>If you use "var_export" here,
+there is another issue here. Saying that we're exporting an instance
+of the class 'foo\bar\BazClass'.
+Here var_export will return something like:
+    "foo\bar\BazClass::__set_state(...)".
+But we expect something like:
+    "\foo\bar\BazClass::__set_state(...)".
+You can see it here: https://bugs.php.net/bug.php?id=52740.</p>]]></long-description>
+          <tag line="152" name="param" description="Column property." type="array" variable="$array">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="152" name="return" description="\Aura\Sql\Column." type="object">
+            <type by_reference="false">object</type>
+          </tag>
+        </docblock>
+        <argument line="168">
+          <name>$array</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="ColumnFactory.php" hash="d0a245a87c2811736d25b5706c96e2bf" package="Aura\Sql">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Sql"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Sql" line="20" package="Aura\Sql">
+      <extends/>
+      <name>ColumnFactory</name>
+      <full_name>\Aura\Sql\ColumnFactory</full_name>
+      <docblock line="13">
+        <description><![CDATA[A factory for column objects.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Sql"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql" line="45" package="Aura\Sql">
+        <name>newInstance</name>
+        <full_name>newInstance</full_name>
+        <docblock line="22">
+          <description><![CDATA[Returns a new Column object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="param" description="The name of the column." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="22" name="param" description="The datatype of the column." type="string" variable="$type">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="22" name="param" description="The size of the column." type="int" variable="$size">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="22" name="param" description="The scale of the column (i.e., the number of digits after the decimal point)." type="int" variable="$scale">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="22" name="param" description="Is the column defined as NOT NULL (i.e., required) ?" type="bool" variable="$notnull">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="22" name="param" description="The default value of the column." type="mixed" variable="$default">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="22" name="param" description="Is the column auto-incremented?" type="bool" variable="$autoinc">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="22" name="param" description="Is the column part of the primary key?" type="bool" variable="$primary">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+        <argument line="46">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="47">
+          <name>$type</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="48">
+          <name>$size</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="49">
+          <name>$scale</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="50">
+          <name>$notnull</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="51">
+          <name>$default</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="52">
+          <name>$autoinc</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="53">
+          <name>$primary</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="ConnectionManager.php" hash="3e5e681569808b38697c0553697ca2e5" package="Aura\Sql">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Sql"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Sql" line="20" package="Aura\Sql">
+      <extends/>
+      <name>ConnectionManager</name>
+      <full_name>\Aura\Sql\ConnectionManager</full_name>
+      <docblock line="13">
+        <description><![CDATA[Manages connections to default, master, and slave databases.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Sql"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="29" namespace="Aura\Sql" package="Default">
+        <name>$adapter_factory</name>
+        <default><![CDATA[]]></default>
+        <docblock line="22">
+          <description><![CDATA[An SQL adapter factory.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="var" description="" type="\Aura\Sql\AdapterFactory">
+            <type by_reference="false">\Aura\Sql\AdapterFactory</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="38" namespace="Aura\Sql" package="Default">
+        <name>$conn</name>
+        <default><![CDATA[array('default' => null, 'masters' => array(), 'slaves' => array())]]></default>
+        <docblock line="31">
+          <description><![CDATA[SQL adapter connection objects as constructed from their params.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="31" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="51" namespace="Aura\Sql" package="Default">
+        <name>$default</name>
+        <default><![CDATA[array('adapter' => null, 'dsn' => array(), 'username' => null, 'password' => null, 'options' => array())]]></default>
+        <docblock line="44">
+          <description><![CDATA[The default connection params.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="44" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="68" namespace="Aura\Sql" package="Default">
+        <name>$masters</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="59">
+          <description><![CDATA[Params for one or more master connections.]]></description>
+          <long-description><![CDATA[<p>The key for each element in
+the array is a name for the connection, and each value is an array of
+connection params (cf. the <code>$default</code> array elements).</p>]]></long-description>
+          <tag line="59" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="79" namespace="Aura\Sql" package="Default">
+        <name>$slaves</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="70">
+          <description><![CDATA[Params for one or more slave connections.]]></description>
+          <long-description><![CDATA[<p>The key for each element in
+the array is a name for the connection, and each value is an array of
+connection params (cf. the $default array elements).</p>]]></long-description>
+          <tag line="70" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql" line="98" package="Aura\Sql">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="81">
+          <description><![CDATA[Constructor.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="81" name="param" description="An adapter factory to create connection objects." type="\Aura\Sql\AdapterFactory" variable="$adapter_factory">
+            <type by_reference="false">\Aura\Sql\AdapterFactory</type>
+          </tag>
+          <tag line="81" name="param" description="An array of key-value pairs for the default connection." type="array" variable="$default">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="81" name="param" description="An array of key-value pairs where the key is the connection name and the value is an array of connection params." type="array" variable="$masters">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="81" name="param" description="An array of key-value pairs where the key is the connection name and the value is an array of connection params." type="array" variable="$slaves">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="99">
+          <name>$adapter_factory</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Sql\AdapterFactory</type>
+        </argument>
+        <argument line="100">
+          <name>$default</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+        <argument line="101">
+          <name>$masters</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+        <argument line="102">
+          <name>$slaves</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql" line="123" package="Aura\Sql">
+        <name>setDefault</name>
+        <full_name>setDefault</full_name>
+        <docblock line="114">
+          <description><![CDATA[Sets the default connection params.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="114" name="param" description="The default connection params." type="array" variable="$params">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="114" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="123">
+          <name>$params</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql" line="139" package="Aura\Sql">
+        <name>setMaster</name>
+        <full_name>setMaster</full_name>
+        <docblock line="128">
+          <description><![CDATA[Sets the params for one master connection by name.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="128" name="param" description="The master connection name." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="128" name="param" description="The master connection params." type="array" variable="$params">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="128" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="139">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="139">
+          <name>$params</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql" line="155" package="Aura\Sql">
+        <name>setSlave</name>
+        <full_name>setSlave</full_name>
+        <docblock line="144">
+          <description><![CDATA[Sets the params for one slave connection by name.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="144" name="param" description="The slave connection name." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="144" name="param" description="The slave connection params." type="array" variable="$params">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="144" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="155">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="155">
+          <name>$params</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql" line="173" package="Aura\Sql">
+        <name>getRead</name>
+        <full_name>getRead</full_name>
+        <docblock line="160">
+          <description><![CDATA[Returns a "read" connection.]]></description>
+          <long-description><![CDATA[<p>Picks a connection in this order:</p>
+
+<ul>
+<li><p>A random slave; or,</p></li>
+<li><p>If there are no slaves, a random master; or,</p></li>
+<li><p>If there are no masters, the default connection.</p></li>
+</ul>]]></long-description>
+          <tag line="160" name="return" description="" type="\Aura\Sql\AbstractAdapter">
+            <type by_reference="false">\Aura\Sql\AbstractAdapter</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql" line="195" package="Aura\Sql">
+        <name>getWrite</name>
+        <full_name>getWrite</full_name>
+        <docblock line="184">
+          <description><![CDATA[Returns a "write" connection.]]></description>
+          <long-description><![CDATA[<p>Picks a connection in this order:</p>
+
+<ul>
+<li><p>A random master; or,</p></li>
+<li><p>If there are no masters, the default connection.</p></li>
+</ul>]]></long-description>
+          <tag line="184" name="return" description="" type="\Aura\Sql\AbstractAdapter">
+            <type by_reference="false">\Aura\Sql\AbstractAdapter</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql" line="211" package="Aura\Sql">
+        <name>getDefault</name>
+        <full_name>getDefault</full_name>
+        <docblock line="204">
+          <description><![CDATA[Returns the default connection object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="204" name="return" description="" type="\Aura\Sql\AbstractAdapter">
+            <type by_reference="false">\Aura\Sql\AbstractAdapter</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql" line="235" package="Aura\Sql">
+        <name>getMaster</name>
+        <full_name>getMaster</full_name>
+        <docblock line="225">
+          <description><![CDATA[Returns a "master" connection object by name.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="225" name="param" description="The master connection name; if not specified, returns a random master connection." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="225" name="return" description="" type="\Aura\Sql\AbstractAdapter">
+            <type by_reference="false">\Aura\Sql\AbstractAdapter</type>
+          </tag>
+        </docblock>
+        <argument line="235">
+          <name>$name</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql" line="270" package="Aura\Sql">
+        <name>getSlave</name>
+        <full_name>getSlave</full_name>
+        <docblock line="260">
+          <description><![CDATA[Returns a "slave" connection object by name.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="260" name="param" description="The slave connection name; if not specified, returns a random slave." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="260" name="return" description="" type="\Aura\Sql\AbstractAdapter">
+            <type by_reference="false">\Aura\Sql\AbstractAdapter</type>
+          </tag>
+        </docblock>
+        <argument line="270">
+          <name>$name</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Sql" line="306" package="Aura\Sql">
+        <name>merge</name>
+        <full_name>merge</full_name>
+        <docblock line="294">
+          <description><![CDATA[A somewhat more friendly merge function thatn array_merge_recursive()
+(we need to override sequential values, not append them).]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="294" name="param" description="The baseline values." type="array" variable="$baseline">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="294" name="param" description="The override values." type="array" variable="$override">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="294" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="306">
+          <name>$baseline</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="306">
+          <name>$override</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Exception/NoSuchMaster.php" hash="ed7021fdc6201d669fad0b64e7d7e1ff" package="Aura\Sql">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Sql"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="Exception">Aura\Sql\Exception</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Sql\Exception" line="21" package="Aura\Sql">
+      <extends>\Aura\Sql\Exception</extends>
+      <name>NoSuchMaster</name>
+      <full_name>\Aura\Sql\Exception\NoSuchMaster</full_name>
+      <docblock line="14">
+        <description><![CDATA[No such master exception]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="14" name="package" description="Aura.Sql"/>
+      </docblock>
+    </class>
+  </file>
+  <file path="Exception/NoSuchSlave.php" hash="84d4a79cf0df9329753a76af03a3b379" package="Aura\Sql">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Sql"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="Exception">Aura\Sql\Exception</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Sql\Exception" line="21" package="Aura\Sql">
+      <extends>\Aura\Sql\Exception</extends>
+      <name>NoSuchSlave</name>
+      <full_name>\Aura\Sql\Exception\NoSuchSlave</full_name>
+      <docblock line="14">
+        <description><![CDATA[No such slave exception]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="14" name="package" description="Aura.Sql"/>
+      </docblock>
+    </class>
+  </file>
+  <file path="Exception.php" hash="e47a6d022a94a1df930905f8d6938970" package="Aura\Sql">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Sql"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Sql" line="20" package="Aura\Sql">
+      <extends>\Exception</extends>
+      <name>Exception</name>
+      <full_name>\Aura\Sql\Exception</full_name>
+      <docblock line="13">
+        <description><![CDATA[Base Exception class for Aura Sql]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Sql"/>
+      </docblock>
+    </class>
+  </file>
+  <file path="Profiler.php" hash="6d7a6c9821aae0cf0ebec13b294bb9bd" package="Aura\Sql">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Sql"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="PDOStatement">PDOStatement</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Sql" line="22" package="Aura\Sql">
+      <extends/>
+      <implements>\Aura\Sql\ProfilerInterface</implements>
+      <name>Profiler</name>
+      <full_name>\Aura\Sql\Profiler</full_name>
+      <docblock line="15">
+        <description><![CDATA[Retains query profiles.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Sql"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="31" namespace="Aura\Sql" package="Default">
+        <name>$active</name>
+        <default><![CDATA[false]]></default>
+        <docblock line="24">
+          <description><![CDATA[Is the profiler active?]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="24" name="var" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="40" namespace="Aura\Sql" package="Default">
+        <name>$profiles</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="33">
+          <description><![CDATA[Retained profiles.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="33" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql" line="51" package="Aura\Sql">
+        <name>setActive</name>
+        <full_name>setActive</full_name>
+        <docblock line="42">
+          <description><![CDATA[Turns the profiler on and off.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="42" name="param" description="True to turn on, false to turn off." type="bool" variable="$active">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="42" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="51">
+          <name>$active</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql" line="63" package="Aura\Sql">
+        <name>isActive</name>
+        <full_name>isActive</full_name>
+        <docblock line="56">
+          <description><![CDATA[Is the profiler active?]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="56" name="return" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql" line="79" package="Aura\Sql">
+        <name>exec</name>
+        <full_name>exec</full_name>
+        <docblock line="68">
+          <description><![CDATA[Executes a PDOStatement and profiles it.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="68" name="param" description="The PDOStatement to execute and profile." type="\PDOStatement" variable="$stmt">
+            <type by_reference="false">\PDOStatement</type>
+          </tag>
+          <tag line="68" name="param" description="The data that was bound into the statement." type="array" variable="$data">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="68" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="79">
+          <name>$stmt</name>
+          <default><![CDATA[]]></default>
+          <type>PDOStatement</type>
+        </argument>
+        <argument line="79">
+          <name>$data</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql" line="107" package="Aura\Sql">
+        <name>call</name>
+        <full_name>call</full_name>
+        <docblock line="94">
+          <description><![CDATA[Calls a user function and and profile it.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="94" name="param" description="The user function to call." type="\Aura\Sql\callable" variable="$func">
+            <type by_reference="false">\Aura\Sql\callable</type>
+          </tag>
+          <tag line="94" name="param" description="The text of the SQL query." type="string" variable="$text">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="94" name="param" description="The data that was used by the function." type="array" variable="$data">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="94" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="107">
+          <name>$func</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="107">
+          <name>$text</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="107">
+          <name>$data</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql" line="137" package="Aura\Sql">
+        <name>addProfile</name>
+        <full_name>addProfile</full_name>
+        <docblock line="122">
+          <description><![CDATA[Adds a profile to the profiler.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="122" name="param" description="The text (typically an SQL query) being profiled." type="string" variable="$text">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="122" name="param" description="The elapsed time in seconds." type="float" variable="$time">
+            <type by_reference="false">float</type>
+          </tag>
+          <tag line="122" name="param" description="The data that was used." type="array" variable="$data">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="122" name="param" description="An exception backtrace as a string." type="string" variable="$trace">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="122" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="137">
+          <name>$text</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="137">
+          <name>$time</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="137">
+          <name>$data</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+        <argument line="137">
+          <name>$trace</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql" line="154" package="Aura\Sql">
+        <name>getProfiles</name>
+        <full_name>getProfiles</full_name>
+        <docblock line="147">
+          <description><![CDATA[Returns all the profiles.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="147" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="ProfilerInterface.php" hash="ee47ac3059f11e01976692528f93dd1e" package="Aura\Sql">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Sql"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="PDOStatement">PDOStatement</namespace-alias>
+    <interface namespace="Aura\Sql" line="22" package="Aura\Sql">
+      <name>ProfilerInterface</name>
+      <full_name>\Aura\Sql\ProfilerInterface</full_name>
+      <docblock line="15">
+        <description><![CDATA[Interface for query profilers.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Sql"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql" line="33" package="Aura\Sql">
+        <name>setActive</name>
+        <full_name>setActive</full_name>
+        <docblock line="24">
+          <description><![CDATA[Turns the profiler on and off.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="24" name="param" description="True to turn on, false to turn off." type="bool" variable="$active">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="24" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="33">
+          <name>$active</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql" line="42" package="Aura\Sql">
+        <name>isActive</name>
+        <full_name>isActive</full_name>
+        <docblock line="35">
+          <description><![CDATA[Is the profiler active?]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="35" name="return" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql" line="55" package="Aura\Sql">
+        <name>exec</name>
+        <full_name>exec</full_name>
+        <docblock line="44">
+          <description><![CDATA[Executes a PDOStatment and profiles it.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="44" name="param" description="The PDOStatement to execute and profile." type="\PDOStatement" variable="$stmt">
+            <type by_reference="false">\PDOStatement</type>
+          </tag>
+          <tag line="44" name="param" description="The data that was bound into the statement." type="array" variable="$data">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="44" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="55">
+          <name>$stmt</name>
+          <default><![CDATA[]]></default>
+          <type>PDOStatement</type>
+        </argument>
+        <argument line="55">
+          <name>$data</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql" line="70" package="Aura\Sql">
+        <name>call</name>
+        <full_name>call</full_name>
+        <docblock line="57">
+          <description><![CDATA[Calls a user function and and profile it.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="57" name="param" description="The user function to call." type="\Aura\Sql\callable" variable="$func">
+            <type by_reference="false">\Aura\Sql\callable</type>
+          </tag>
+          <tag line="57" name="param" description="The text of the SQL query." type="string" variable="$text">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="57" name="param" description="The data that was used by the function." type="array" variable="$data">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="57" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="70">
+          <name>$func</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="70">
+          <name>$text</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="70">
+          <name>$data</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql" line="87" package="Aura\Sql">
+        <name>addProfile</name>
+        <full_name>addProfile</full_name>
+        <docblock line="72">
+          <description><![CDATA[Adds a profile to the profiler.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="72" name="param" description="The text (typically an SQL query) being profiled." type="string" variable="$text">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="72" name="param" description="The elapsed time in seconds." type="float" variable="$time">
+            <type by_reference="false">float</type>
+          </tag>
+          <tag line="72" name="param" description="The data that was used." type="array" variable="$data">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="72" name="param" description="An exception backtrace as a string." type="string" variable="$trace">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="72" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="87">
+          <name>$text</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="87">
+          <name>$time</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="87">
+          <name>$data</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+        <argument line="87">
+          <name>$trace</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql" line="96" package="Aura\Sql">
+        <name>getProfiles</name>
+        <full_name>getProfiles</full_name>
+        <docblock line="89">
+          <description><![CDATA[Returns all the profiles.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="89" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+    </interface>
+  </file>
+  <file path="Query/AbstractQuery.php" hash="bdd4a4bb759cc2a773219cf3103d12b9" package="Aura\Sql">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Sql"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="AbstractAdapter">Aura\Sql\Adapter\AbstractAdapter</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Sql\Query" line="22" package="Aura\Sql">
+      <extends/>
+      <name>AbstractQuery</name>
+      <full_name>\Aura\Sql\Query\AbstractQuery</full_name>
+      <docblock line="15">
+        <description><![CDATA[Abstract query object for Select, Insert, Update, and Delete.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Sql"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="31" namespace="Aura\Sql\Query" package="Default">
+        <name>$sql</name>
+        <default><![CDATA[]]></default>
+        <docblock line="24">
+          <description><![CDATA[An SQL connection adapter.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="24" name="var" description="" type="\Aura\Sql\Adapter\AbstractAdapter">
+            <type by_reference="false">\Aura\Sql\Adapter\AbstractAdapter</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Query" line="42" package="Aura\Sql">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="33">
+          <description><![CDATA[Constructor.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="33" name="param" description="An SQL adapter." type="\Aura\Sql\Adapter\AbstractAdapter" variable="$sql">
+            <type by_reference="false">\Aura\Sql\Adapter\AbstractAdapter</type>
+          </tag>
+          <tag line="33" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="42">
+          <name>$sql</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Sql\Adapter\AbstractAdapter</type>
+        </argument>
+      </method>
+      <method final="false" abstract="true" static="false" visibility="public" namespace="Aura\Sql\Query" line="54" package="Aura\Sql">
+        <name>__toString</name>
+        <full_name>__toString</full_name>
+        <docblock line="47">
+          <description><![CDATA[Converts this query object to a string.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="47" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Sql\Query" line="65" package="Aura\Sql">
+        <name>indentCsv</name>
+        <full_name>indentCsv</full_name>
+        <docblock line="56">
+          <description><![CDATA[Returns an array as an indented comma-separated values string.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="56" name="param" description="The values to convert." type="array" variable="$list">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="56" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="65">
+          <name>$list</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Sql\Query" line="81" package="Aura\Sql">
+        <name>indent</name>
+        <full_name>indent</full_name>
+        <docblock line="72">
+          <description><![CDATA[Returns an array as an indented string.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="72" name="param" description="The values to convert." type="array" variable="$list">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="72" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="81">
+          <name>$list</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Query/Delete.php" hash="eaa03186e4fd5497901692650a0a73ad" package="Aura\Sql">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Sql"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Sql\Query" line="20" package="Aura\Sql">
+      <extends>\Aura\Sql\Query\AbstractQuery</extends>
+      <name>Delete</name>
+      <full_name>\Aura\Sql\Query\Delete</full_name>
+      <docblock line="13">
+        <description><![CDATA[An object for DELETE queries.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Sql"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="31" namespace="Aura\Sql\Query" package="Default">
+        <name>$table</name>
+        <default><![CDATA[]]></default>
+        <docblock line="24">
+          <description><![CDATA[The table to delete from.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="24" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Query" line="40" package="Aura\Sql">
+        <name>__toString</name>
+        <full_name>__toString</full_name>
+        <docblock line="33">
+          <description><![CDATA[Returns this object as an SQL statement string.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="33" name="return" description="An SQL statement string." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Query" line="59" package="Aura\Sql">
+        <name>from</name>
+        <full_name>from</full_name>
+        <docblock line="50">
+          <description><![CDATA[Sets the table to delete from.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="50" name="param" description="The table to delete from." type="string" variable="$table">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="50" name="return" description="" type="\Aura\Sql\Query\$this">
+            <type by_reference="false">\Aura\Sql\Query\$this</type>
+          </tag>
+        </docblock>
+        <argument line="59">
+          <name>$table</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Query/Factory.php" hash="829ddbc42a4c5c1bb6b086854a3940d8" package="Aura\Sql">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Sql"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="AbstractAdapter">Aura\Sql\Adapter\AbstractAdapter</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Sql\Query" line="22" package="Aura\Sql">
+      <extends/>
+      <name>Factory</name>
+      <full_name>\Aura\Sql\Query\Factory</full_name>
+      <docblock line="15">
+        <description><![CDATA[Creates query statement objects.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Sql"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Query" line="35" package="Aura\Sql">
+        <name>newInstance</name>
+        <full_name>newInstance</full_name>
+        <docblock line="24">
+          <description><![CDATA[Returns a new query object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="24" name="param" description="The query object type." type="string" variable="$type">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="24" name="param" description="The SQL connection adapter." type="\Aura\Sql\Adapter\AbstractAdapter" variable="$sql">
+            <type by_reference="false">\Aura\Sql\Adapter\AbstractAdapter</type>
+          </tag>
+          <tag line="24" name="return" description="" type="\Aura\Sql\Query\AbstractQuery">
+            <type by_reference="false">\Aura\Sql\Query\AbstractQuery</type>
+          </tag>
+        </docblock>
+        <argument line="35">
+          <name>$type</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="35">
+          <name>$sql</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Sql\Adapter\AbstractAdapter</type>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Query/Insert.php" hash="8330e9ff6d70af25fe0cbe237938c98e" package="Aura\Sql">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Sql"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Sql\Query" line="20" package="Aura\Sql">
+      <extends>\Aura\Sql\Query\AbstractQuery</extends>
+      <name>Insert</name>
+      <full_name>\Aura\Sql\Query\Insert</full_name>
+      <docblock line="13">
+        <description><![CDATA[An object for INSERT queries.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Sql"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="31" namespace="Aura\Sql\Query" package="Default">
+        <name>$table</name>
+        <default><![CDATA[]]></default>
+        <docblock line="24">
+          <description><![CDATA[The table to insert into.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="24" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Query" line="40" package="Aura\Sql">
+        <name>__toString</name>
+        <full_name>__toString</full_name>
+        <docblock line="33">
+          <description><![CDATA[Returns this object as an SQL statement string.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="33" name="return" description="An SQL statement string." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Query" line="58" package="Aura\Sql">
+        <name>into</name>
+        <full_name>into</full_name>
+        <docblock line="49">
+          <description><![CDATA[Sets the table to insert into.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="49" name="param" description="The table to insert into." type="string" variable="$table">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="49" name="return" description="" type="\Aura\Sql\Query\$this">
+            <type by_reference="false">\Aura\Sql\Query\$this</type>
+          </tag>
+        </docblock>
+        <argument line="58">
+          <name>$table</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Query/Select.php" hash="66b88ad9190754f546fc801dea9f8f06" package="Aura\Sql">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Sql"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="AbstractAdapter">Aura\Sql\Adapter\AbstractAdapter</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Sql\Query" line="22" package="Aura\Sql">
+      <extends>\Aura\Sql\Query\AbstractQuery</extends>
+      <name>Select</name>
+      <full_name>\Aura\Sql\Query\Select</full_name>
+      <docblock line="15">
+        <description><![CDATA[An object for SELECT queries.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Sql"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="33" namespace="Aura\Sql\Query" package="Default">
+        <name>$union</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="26">
+          <description><![CDATA[An array of union SELECT statements.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="26" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="42" namespace="Aura\Sql\Query" package="Default">
+        <name>$distinct</name>
+        <default><![CDATA[false]]></default>
+        <docblock line="35">
+          <description><![CDATA[Is this a SELECT DISTINCT ?]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="35" name="var" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="51" namespace="Aura\Sql\Query" package="Default">
+        <name>$for_update</name>
+        <default><![CDATA[false]]></default>
+        <docblock line="44">
+          <description><![CDATA[Is this a SELECT FOR UPDATE?]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="44" name="var" description="" type="\Aura\Sql\Query\"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="60" namespace="Aura\Sql\Query" package="Default">
+        <name>$cols</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="53">
+          <description><![CDATA[The columns to be selected.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="53" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="69" namespace="Aura\Sql\Query" package="Default">
+        <name>$from</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="62">
+          <description><![CDATA[Select from these tables.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="62" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="78" namespace="Aura\Sql\Query" package="Default">
+        <name>$join</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="71">
+          <description><![CDATA[Use these joins.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="71" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="87" namespace="Aura\Sql\Query" package="Default">
+        <name>$group_by</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="80">
+          <description><![CDATA[GROUP BY these columns.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="80" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="96" namespace="Aura\Sql\Query" package="Default">
+        <name>$having</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="89">
+          <description><![CDATA[The list of HAVING conditions.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="89" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="105" namespace="Aura\Sql\Query" package="Default">
+        <name>$order_by</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="98">
+          <description><![CDATA[ORDER BY these columns.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="98" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="114" namespace="Aura\Sql\Query" package="Default">
+        <name>$limit</name>
+        <default><![CDATA[0]]></default>
+        <docblock line="107">
+          <description><![CDATA[The number of rows to return]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="107" name="var" description="" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="123" namespace="Aura\Sql\Query" package="Default">
+        <name>$offset</name>
+        <default><![CDATA[0]]></default>
+        <docblock line="116">
+          <description><![CDATA[Return rows after this offset.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="116" name="var" description="" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="132" namespace="Aura\Sql\Query" package="Default">
+        <name>$paging</name>
+        <default><![CDATA[10]]></default>
+        <docblock line="125">
+          <description><![CDATA[The number of rows per page.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="125" name="var" description="" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Query" line="141" package="Aura\Sql">
+        <name>__toString</name>
+        <full_name>__toString</full_name>
+        <docblock line="134">
+          <description><![CDATA[Returns this object as an SQL statement string.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="134" name="return" description="An SQL statement string." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Sql\Query" line="158" package="Aura\Sql">
+        <name>toString</name>
+        <full_name>toString</full_name>
+        <docblock line="150">
+          <description><![CDATA[Returns the SELECT parts composed as a string (does not include
+the union selects).]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="150" name="return" description="A SELECT string." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Query" line="234" package="Aura\Sql">
+        <name>setPaging</name>
+        <full_name>setPaging</full_name>
+        <docblock line="225">
+          <description><![CDATA[Sets the number of rows per page.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="225" name="param" description="The number of rows to page at." type="int" variable="$paging">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="225" name="return" description="" type="\Aura\Sql\Query\$this">
+            <type by_reference="false">\Aura\Sql\Query\$this</type>
+          </tag>
+        </docblock>
+        <argument line="234">
+          <name>$paging</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Query" line="247" package="Aura\Sql">
+        <name>getPaging</name>
+        <full_name>getPaging</full_name>
+        <docblock line="240">
+          <description><![CDATA[Gets the number of rows per page.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="240" name="return" description="The number of rows per page." type="int">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Query" line="262" package="Aura\Sql">
+        <name>forUpdate</name>
+        <full_name>forUpdate</full_name>
+        <docblock line="252">
+          <description><![CDATA[Makes the select FOR UPDATE (or not).]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="252" name="param" description="Whether or not the SELECT is FOR UPDATE (default true)." type="bool" variable="$flag">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="252" name="return" description="" type="\Aura\Sql\Query\$this">
+            <type by_reference="false">\Aura\Sql\Query\$this</type>
+          </tag>
+        </docblock>
+        <argument line="262">
+          <name>$flag</name>
+          <default><![CDATA[true]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Query" line="277" package="Aura\Sql">
+        <name>distinct</name>
+        <full_name>distinct</full_name>
+        <docblock line="267">
+          <description><![CDATA[Makes the select DISTINCT (or not).]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="267" name="param" description="Whether or not the SELECT is DISTINCT (default true)." type="bool" variable="$flag">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="267" name="return" description="" type="\Aura\Sql\Query\$this">
+            <type by_reference="false">\Aura\Sql\Query\$this</type>
+          </tag>
+        </docblock>
+        <argument line="277">
+          <name>$flag</name>
+          <default><![CDATA[true]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Query" line="295" package="Aura\Sql">
+        <name>cols</name>
+        <full_name>cols</full_name>
+        <docblock line="283">
+          <description><![CDATA[Adds columns to the query.]]></description>
+          <long-description><![CDATA[<p>Multiple calls to cols() will append to the list of columns, not
+overwrite the previous columns.</p>]]></long-description>
+          <tag line="283" name="param" description="The column(s) to add to the query." type="array" variable="$cols">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="283" name="return" description="" type="\Aura\Sql\Query\$this">
+            <type by_reference="false">\Aura\Sql\Query\$this</type>
+          </tag>
+        </docblock>
+        <argument line="295">
+          <name>$cols</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Query" line="312" package="Aura\Sql">
+        <name>from</name>
+        <full_name>from</full_name>
+        <docblock line="303">
+          <description><![CDATA[Adds a FROM table and columns to the query.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="303" name="param" description="The table specification; &quot;foo&quot; or &quot;foo AS bar&quot;." type="string" variable="$spec">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="303" name="return" description="" type="\Aura\Sql\Query\$this">
+            <type by_reference="false">\Aura\Sql\Query\$this</type>
+          </tag>
+        </docblock>
+        <argument line="312">
+          <name>$spec</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Query" line="330" package="Aura\Sql">
+        <name>fromSubSelect</name>
+        <full_name>fromSubSelect</full_name>
+        <docblock line="318">
+          <description><![CDATA[Adds an aliased sub-select to the query.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="318" name="param" description="If a Select object, use as the sub-select; if a string, the sub-select string." type="string|\Aura\Sql\Query\Select" variable="$spec">
+            <type by_reference="false">string</type>
+            <type by_reference="false">\Aura\Sql\Query\Select</type>
+          </tag>
+          <tag line="318" name="param" description="The alias name for the sub-select." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="318" name="return" description="" type="\Aura\Sql\Query\$this">
+            <type by_reference="false">\Aura\Sql\Query\$this</type>
+          </tag>
+        </docblock>
+        <argument line="330">
+          <name>$spec</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="330">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Query" line="350" package="Aura\Sql">
+        <name>join</name>
+        <full_name>join</full_name>
+        <docblock line="337">
+          <description><![CDATA[Adds a JOIN table and columns to the query.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="337" name="param" description="The join type: inner, left, natural, etc." type="string" variable="$join">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="337" name="param" description="The table specification; &quot;foo&quot; or &quot;foo AS bar&quot;." type="string" variable="$spec">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="337" name="param" description="Join on this condition." type="string" variable="$cond">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="337" name="return" description="" type="\Aura\Sql\Query\$this">
+            <type by_reference="false">\Aura\Sql\Query\$this</type>
+          </tag>
+        </docblock>
+        <argument line="350">
+          <name>$join</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="350">
+          <name>$spec</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="350">
+          <name>$cond</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Query" line="380" package="Aura\Sql">
+        <name>joinSubSelect</name>
+        <full_name>joinSubSelect</full_name>
+        <docblock line="363">
+          <description><![CDATA[Adds a JOIN to an aliased subselect and columns to the query.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="363" name="param" description="The join type: inner, left, natural, etc." type="string" variable="$join">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="363" name="param" description="If a Select object, use as the sub-select; if a string, the sub-select command string." type="string|\Aura\Sql\Query\Select" variable="$spec">
+            <type by_reference="false">string</type>
+            <type by_reference="false">\Aura\Sql\Query\Select</type>
+          </tag>
+          <tag line="363" name="param" description="The alias name for the sub-select." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="363" name="param" description="Join on this condition." type="string" variable="$cond">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="363" name="return" description="" type="\Aura\Sql\Query\$this">
+            <type by_reference="false">\Aura\Sql\Query\$this</type>
+          </tag>
+        </docblock>
+        <argument line="380">
+          <name>$join</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="380">
+          <name>$spec</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="380">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="380">
+          <name>$cond</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Query" line="403" package="Aura\Sql">
+        <name>groupBy</name>
+        <full_name>groupBy</full_name>
+        <docblock line="394">
+          <description><![CDATA[Adds grouping to the query.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="394" name="param" description="The column(s) to group by." type="array" variable="$spec">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="394" name="return" description="" type="\Aura\Sql\Query\$this">
+            <type by_reference="false">\Aura\Sql\Query\$this</type>
+          </tag>
+        </docblock>
+        <argument line="403">
+          <name>$spec</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Query" line="436" package="Aura\Sql">
+        <name>having</name>
+        <full_name>having</full_name>
+        <docblock line="411">
+          <description><![CDATA[Adds a HAVING condition to the query by AND; if a value is passed as
+the second param, it will be quoted and replaced into the condition
+wherever a question-mark appears.]]></description>
+          <long-description><![CDATA[<p>Array values are quoted and comma-separated.</p>
+
+<p>{{code: php
+    // simplest but non-secure
+    $select->having("COUNT(id) = $count");</p>
+
+<pre><code>// secure
+$select-&gt;having('COUNT(id) = ?', $count);
+
+// equivalent security with named binding
+$select-&gt;having('COUNT(id) = :count');
+$select-&gt;bind('count', $count);
+</code></pre>
+
+<p>}}</p>]]></long-description>
+          <tag line="411" name="param" description="The HAVING condition." type="string" variable="$cond">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="411" name="return" description="" type="\Aura\Sql\Query\$this">
+            <type by_reference="false">\Aura\Sql\Query\$this</type>
+          </tag>
+        </docblock>
+        <argument line="436">
+          <name>$cond</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Query" line="466" package="Aura\Sql">
+        <name>orHaving</name>
+        <full_name>orHaving</full_name>
+        <docblock line="454">
+          <description><![CDATA[Adds a HAVING condition to the query by AND; otherwise identical to
+`having()`.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="454" name="param" description="The HAVING condition." type="string" variable="$cond">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="454" name="return" description="" type="\Aura\Sql\Query\$this">
+            <type by_reference="false">\Aura\Sql\Query\$this</type>
+          </tag>
+          <tag line="454" name="see" description="\Aura\Sql\Query\having()" refers="\Aura\Sql\Query\having()"/>
+        </docblock>
+        <argument line="466">
+          <name>$cond</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Query" line="493" package="Aura\Sql">
+        <name>orderBy</name>
+        <full_name>orderBy</full_name>
+        <docblock line="484">
+          <description><![CDATA[Adds a row order to the query.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="484" name="param" description="The columns and direction to order by." type="array" variable="$spec">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="484" name="return" description="" type="\Aura\Sql\Query\$this">
+            <type by_reference="false">\Aura\Sql\Query\$this</type>
+          </tag>
+        </docblock>
+        <argument line="493">
+          <name>$spec</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Query" line="510" package="Aura\Sql">
+        <name>limit</name>
+        <full_name>limit</full_name>
+        <docblock line="501">
+          <description><![CDATA[Sets a limit count on the query.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="501" name="param" description="The number of rows to return." type="int" variable="$limit">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="501" name="return" description="" type="\Aura\Sql\Query\$this">
+            <type by_reference="false">\Aura\Sql\Query\$this</type>
+          </tag>
+        </docblock>
+        <argument line="510">
+          <name>$limit</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Query" line="525" package="Aura\Sql">
+        <name>offset</name>
+        <full_name>offset</full_name>
+        <docblock line="516">
+          <description><![CDATA[Sets a limit offset on the query.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="516" name="param" description="Start returning after this many rows." type="int" variable="$offset">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="516" name="return" description="" type="\Aura\Sql\Query\$this">
+            <type by_reference="false">\Aura\Sql\Query\$this</type>
+          </tag>
+        </docblock>
+        <argument line="525">
+          <name>$offset</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Query" line="540" package="Aura\Sql">
+        <name>page</name>
+        <full_name>page</full_name>
+        <docblock line="531">
+          <description><![CDATA[Sets the limit and count by page number.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="531" name="param" description="Limit results to this page number." type="int" variable="$page">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="531" name="return" description="" type="\Aura\Sql\Query\$this">
+            <type by_reference="false">\Aura\Sql\Query\$this</type>
+          </tag>
+        </docblock>
+        <argument line="540">
+          <name>$page</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Query" line="565" package="Aura\Sql">
+        <name>union</name>
+        <full_name>union</full_name>
+        <docblock line="557">
+          <description><![CDATA[Takes the current select properties and retains them, then sets
+UNION for the next set of properties.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="557" name="return" description="" type="\Aura\Sql\Query\$this">
+            <type by_reference="false">\Aura\Sql\Query\$this</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Query" line="580" package="Aura\Sql">
+        <name>unionAll</name>
+        <full_name>unionAll</full_name>
+        <docblock line="572">
+          <description><![CDATA[Takes the current select properties and retains them, then sets
+UNION ALL for the next set of properties.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="572" name="return" description="" type="\Aura\Sql\Query\$this">
+            <type by_reference="false">\Aura\Sql\Query\$this</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Sql\Query" line="595" package="Aura\Sql">
+        <name>reset</name>
+        <full_name>reset</full_name>
+        <docblock line="587">
+          <description><![CDATA[Clears the current select properties; generally used after adding a
+union.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="587" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Query/Update.php" hash="95ef4e0913521372c4e0652df899ac4f" package="Aura\Sql">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Sql"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Sql\Query" line="20" package="Aura\Sql">
+      <extends>\Aura\Sql\Query\AbstractQuery</extends>
+      <name>Update</name>
+      <full_name>\Aura\Sql\Query\Update</full_name>
+      <docblock line="13">
+        <description><![CDATA[An object for UPDATE queries.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Sql"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="32" namespace="Aura\Sql\Query" package="Default">
+        <name>$table</name>
+        <default><![CDATA[]]></default>
+        <docblock line="25">
+          <description><![CDATA[The table to update.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="25" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Query" line="41" package="Aura\Sql">
+        <name>__toString</name>
+        <full_name>__toString</full_name>
+        <docblock line="34">
+          <description><![CDATA[Returns this object as an SQL statement string.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="34" name="return" description="An SQL statement string." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Sql\Query" line="67" package="Aura\Sql">
+        <name>table</name>
+        <full_name>table</full_name>
+        <docblock line="58">
+          <description><![CDATA[Sets the table to update.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="58" name="param" description="The table to update." type="string" variable="$table">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="58" name="return" description="" type="\Aura\Sql\Query\$this">
+            <type by_reference="false">\Aura\Sql\Query\$this</type>
+          </tag>
+        </docblock>
+        <argument line="67">
+          <name>$table</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Query/ValuesTrait.php" hash="1ffcc0ca8d3b0b2e23a1b79361bfb1f1" package="Aura\Sql">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Sql"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+  </file>
+  <file path="Query/WhereTrait.php" hash="66c13d2ea55659d316dc87953663d967" package="Aura\Sql">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Sql"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+  </file>
+  <package name="Aura" full_name="Aura">
+    <package name="Sql" full_name="Aura\Sql"/>
+  </package>
+  <package name="Default" full_name="Default"/>
+  <namespace name="Aura" full_name="Aura">
+    <namespace name="Sql" full_name="Aura\Sql">
+      <namespace name="Adapter" full_name="Aura\Sql\Adapter"/>
+      <namespace name="Exception" full_name="Aura\Sql\Exception"/>
+      <namespace name="Query" full_name="Aura\Sql\Query"/>
+    </namespace>
+  </namespace>
+  <marker count="2">todo</marker>
+  <marker count="0">fixme</marker>
+  <deprecated count="0"/>
+</project>

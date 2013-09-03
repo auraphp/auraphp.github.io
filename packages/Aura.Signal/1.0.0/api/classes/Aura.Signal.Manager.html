@@ -1,0 +1,274 @@
+<!DOCTYPE html><html xmlns:date="http://exslt.org/dates-and-times" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » \Aura\Signal\Manager</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Namespaces</a></li>
+<li><a href="../namespaces/Aura.html"><i class="icon-th"></i> Aura</a></li>
+<li><a>Packages</a></li>
+<li><a href="../packages/Aura.html"><i class="icon-folder-open"></i> Aura</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">0</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods</li>
+<li class="method public "><a href="#__construct" title="__construct :: Constructor."><span class="description">Constructor.</span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#getHandlers" title="getHandlers :: Gets Handler instances for the Manager."><span class="description">Gets Handler instances for the Manager.</span><pre>getHandlers()</pre></a></li>
+<li class="method public "><a href="#getResults" title="getResults :: Returns the ResultCollection from the last signal processing."><span class="description">Returns the ResultCollection from the last signal processing.</span><pre>getResults()</pre></a></li>
+<li class="method public "><a href="#handler" title="handler :: Adds a Handler to respond to a sender signal."><span class="description">Adds a Handler to respond to a sender signal.</span><pre>handler()</pre></a></li>
+<li class="method public "><a href="#send" title="send :: Invokes the Handler objects for a sender and signal."><span class="description">Invokes the Handler objects for a sender and signal.</span><pre>send()</pre></a></li>
+<li class="nav-header protected">» Protected</li>
+<li class="method protected "><a href="#process" title="process :: Invokes the Handler objects for a sender and signal."><span class="description">Invokes the Handler objects for a sender and signal.</span><pre>process()</pre></a></li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties</li>
+<li class="nav-header protected">» Protected</li>
+<li class="property protected "><a href="#%24handler_factory" title="$handler_factory :: A factory to create Handler objects."><span class="description">A factory to create Handler objects.</span><pre>$handler_factory</pre></a></li>
+<li class="property protected "><a href="#%24handlers" title="$handlers :: An array of Handler instances that respond to class signals."><span class="description">An array of Handler instances that respond to class signals.</span><pre>$handlers</pre></a></li>
+<li class="property protected "><a href="#%24result_collection" title="$result_collection :: A prototype ResultCollection; this will be cloned by `send()` to retain
+the Result objects from Handler instances."><span class="description">A prototype ResultCollection; this will be cloned by `send()` to retain
+the Result objects from Handler instances.</span><pre>$result_collection</pre></a></li>
+<li class="property protected "><a href="#%24result_factory" title="$result_factory :: A factory to create Result objects."><span class="description">A factory to create Result objects.</span><pre>$result_factory</pre></a></li>
+<li class="property protected "><a href="#%24results" title="$results :: A ResultCollection from the last signal sent."><span class="description">A ResultCollection from the last signal sent.</span><pre>$results</pre></a></li>
+<li class="property protected "><a href="#%24sorted" title="$sorted :: Have the handlers for a signal been sorted by position?"><span class="description">Have the handlers for a signal been sorted by position?</span><pre>$sorted</pre></a></li>
+<li class="nav-header">
+<i class="icon-custom icon-constant"></i> Constants</li>
+<li class="constant  "><a href="#STOP" title="STOP :: Indicates that the signal should not call more Handler instances."><span class="description">Indicates that the signal should not call more Handler instances.</span><pre>STOP</pre></a></li>
+</ul>
+</div>
+<div class="span8">
+<a name="%5CAura%5CSignal%5CManager" id="\Aura\Signal\Manager"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/Aura.html">Aura</a></li>
+<span class="divider">\</span><li><a href="../namespaces/Aura.Signal.html">Signal</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/Aura.Signal.Manager.html">Manager</a>
+</li>
+</ul>
+<div href="../classes/Aura.Signal.Manager.html" class="element class">
+<p class="short_description">Processes signals through to Handler objects.</p>
+<div class="details">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>package</th>
+<td><a href="../packages/Aura.Signal.html">Aura.Signal</a></td>
+</tr></table>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a name="__construct" id="__construct"></a><div class="element clickable method public __construct" data-toggle="collapse" data-target=".__construct .collapse">
+<h2>Constructor.</h2>
+<pre>__construct(Aura\Signal\HandlerFactory $handler_factory, Aura\Signal\ResultFactory $result_factory, Aura\Signal\ResultCollection $result_collection, array $handlers) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$handler_factory</h4>
+<code><a href="../classes/Aura.Signal.HandlerFactory.html">\Aura\Signal\HandlerFactory</a></code><p>A factory to create Handler objects.</p></div>
+<div class="subelement argument">
+<h4>$result_factory</h4>
+<code><a href="../classes/Aura.Signal.ResultFactory.html">\Aura\Signal\ResultFactory</a></code><p>A factory to create Result objects.</p></div>
+<div class="subelement argument">
+<h4>$result_collection</h4>
+<code><a href="../classes/Aura.Signal.ResultCollection.html">\Aura\Signal\ResultCollection</a></code><p>A prototype ResultCollection.</p></div>
+<div class="subelement argument">
+<h4>$handlers</h4>
+<code>array</code><p>An array describing Handler params.</p></div>
+</div></div>
+</div>
+<a name="getHandlers" id="getHandlers"></a><div class="element clickable method public getHandlers" data-toggle="collapse" data-target=".getHandlers .collapse">
+<h2>Gets Handler instances for the Manager.</h2>
+<pre>getHandlers(string $signal) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$signal</h4>
+<code>string</code><p>Only get Handler instances for this signal; if null, get all Handler instances.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a name="getResults" id="getResults"></a><div class="element clickable method public getResults" data-toggle="collapse" data-target=".getResults .collapse">
+<h2>Returns the ResultCollection from the last signal processing.</h2>
+<pre>getResults() : <a href="../classes/Aura.Signal.ResultCollection.html">\Aura\Signal\ResultCollection</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/Aura.Signal.ResultCollection.html">\Aura\Signal\ResultCollection</a></code></div>
+</div></div>
+</div>
+<a name="handler" id="handler"></a><div class="element clickable method public handler" data-toggle="collapse" data-target=".handler .collapse">
+<h2>Adds a Handler to respond to a sender signal.</h2>
+<pre>handler(string | object $sender, string $signal, callback $callback, int $position) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$sender</h4>
+<code>stringobject</code><p>The class or object sender of the signal. If a class, inheritance will be honored, and '*' will be interpreted as "any class."</p>
+</div>
+<div class="subelement argument">
+<h4>$signal</h4>
+<code>string</code><p>The name of the signal for that sender.</p></div>
+<div class="subelement argument">
+<h4>$callback</h4>
+<code>callback</code><p>The callback to execute when the signal is received.</p></div>
+<div class="subelement argument">
+<h4>$position</h4>
+<code>int</code><p>The handler processing position; lower numbers are processed first. Use this to force a handler to be used before or after others.</p></div>
+</div></div>
+</div>
+<a name="send" id="send"></a><div class="element clickable method public send" data-toggle="collapse" data-target=".send .collapse">
+<h2>Invokes the Handler objects for a sender and signal.</h2>
+<pre>send(object $origin, string $signal) : <a href="../classes/Aura.Signal.ResultCollection.html">\Aura\Signal\ResultCollection</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>params</th>
+<td>Arguments to pass to the Handler callback.</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$origin</h4>
+<code>object</code><p>The object sending the signal. Note that this is always an object, not a class name.</p></div>
+<div class="subelement argument">
+<h4>$signal</h4>
+<code>string</code><p>The name of the signal from that origin.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code><a href="../classes/Aura.Signal.ResultCollection.html">\Aura\Signal\ResultCollection</a></code>The results from each of the Handler objects.</div>
+</div></div>
+</div>
+<a name="process" id="process"></a><div class="element clickable method protected process" data-toggle="collapse" data-target=".process .collapse">
+<h2>Invokes the Handler objects for a sender and signal.</h2>
+<pre>process(object $origin, string $signal, \Aura\Signal\$args $args) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$origin</h4>
+<code>object</code><p>The object sending the signal. Note that this is always an object, not a class name.</p></div>
+<div class="subelement argument">
+<h4>$signal</h4>
+<code>string</code><p>The name of the signal from that origin.</p></div>
+<div class="subelement argument">
+<h4>$args</h4>
+<code>\Aura\Signal\$args</code><p>Arguments to pass to the Handler callback.</p></div>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a name="%24handler_factory" id="$handler_factory"> </a><div class="element clickable property protected $handler_factory" data-toggle="collapse" data-target=".$handler_factory .collapse">
+<h2>A factory to create Handler objects.</h2>
+<pre>$handler_factory : <a href="../classes/Aura.Signal.HandlerFactory.html">\Aura\Signal\HandlerFactory</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24handlers" id="$handlers"> </a><div class="element clickable property protected $handlers" data-toggle="collapse" data-target=".$handlers .collapse">
+<h2>An array of Handler instances that respond to class signals.</h2>
+<pre>$handlers : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24result_collection" id="$result_collection"> </a><div class="element clickable property protected $result_collection" data-toggle="collapse" data-target=".$result_collection .collapse">
+<h2>A prototype ResultCollection; this will be cloned by `send()` to retain
+the Result objects from Handler instances.</h2>
+<pre>$result_collection : <a href="../classes/Aura.Signal.ResultCollection.html">\Aura\Signal\ResultCollection</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24result_factory" id="$result_factory"> </a><div class="element clickable property protected $result_factory" data-toggle="collapse" data-target=".$result_factory .collapse">
+<h2>A factory to create Result objects.</h2>
+<pre>$result_factory : <a href="../classes/Aura.Signal.ResultFactory.html">\Aura\Signal\ResultFactory</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24results" id="$results"> </a><div class="element clickable property protected $results" data-toggle="collapse" data-target=".$results .collapse">
+<h2>A ResultCollection from the last signal sent.</h2>
+<pre>$results : <a href="../classes/Aura.Signal.ResultCollection.html">\Aura\Signal\ResultCollection</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24sorted" id="$sorted"> </a><div class="element clickable property protected $sorted" data-toggle="collapse" data-target=".$sorted .collapse">
+<h2>Have the handlers for a signal been sorted by position?</h2>
+<pre>$sorted : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<h3>
+<i class="icon-custom icon-constant"></i> Constants</h3>
+<a name="STOP" id="STOP"> </a><div class="element clickable constant  STOP" data-toggle="collapse" data-target=".STOP .collapse">
+<h2>Indicates that the signal should not call more Handler instances.</h2>
+<pre>STOP </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>const</th>
+<td>string</td>
+</tr></table>
+</div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a7</a> and<br>
+            generated on 2012-11-28T15:05:18-02:00.<br></footer></div>
+</div>
+</body>
+</html>

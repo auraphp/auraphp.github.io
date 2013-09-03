@@ -1,0 +1,339 @@
+<!DOCTYPE html><html xmlns:date="http://exslt.org/dates-and-times" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » \Aura\Filter\Rule\Ipv4</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Namespaces</a></li>
+<li><a href="../namespaces/Aura.html"><i class="icon-th"></i> Aura</a></li>
+<li><a>Packages</a></li>
+<li><a href="../packages/Aura.html"><i class="icon-folder-open"></i> Aura</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">0</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul><li>todo 
+                <span class="label label-info">2</span>
+</li></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods</li>
+<li class="method public inherited"><a href="#fix" title="fix :: Sanitize the value, transforming it as needed."><span class="description">Sanitize the value, transforming it as needed.</span><pre>fix()</pre></a></li>
+<li class="method public inherited"><a href="#fixBlankOr" title="fixBlankOr :: If the value is blank, set to null; sanitize if not blank, transforming
+it as needed."><span class="description">If the value is blank, set to null; sanitize if not blank, transforming
+it as needed.</span><pre>fixBlankOr()</pre></a></li>
+<li class="method public inherited"><a href="#getMessage" title="getMessage :: Get the error message; note that this returns the message whether or
+not there was an error when validating or sanitizing."><span class="description">Get the error message; note that this returns the message whether or
+not there was an error when validating or sanitizing.</span><pre>getMessage()</pre></a></li>
+<li class="method public inherited"><a href="#getValue" title="getValue :: Get the value of the field being filtered, or null if the field is
+not set in the data."><span class="description">Get the value of the field being filtered, or null if the field is
+not set in the data.</span><pre>getValue()</pre></a></li>
+<li class="method public inherited"><a href="#is" title="is :: Is the value valid?"><span class="description">Is the value valid?</span><pre>is()</pre></a></li>
+<li class="method public inherited"><a href="#isBlankOr" title="isBlankOr :: Is the value blank, or otherwise valid?"><span class="description">Is the value blank, or otherwise valid?</span><pre>isBlankOr()</pre></a></li>
+<li class="method public inherited"><a href="#isNot" title="isNot :: Is the value *not* valid?"><span class="description">Is the value *not* valid?</span><pre>isNot()</pre></a></li>
+<li class="method public inherited"><a href="#prep" title="prep :: Prepare the rule for reuse."><span class="description">Prepare the rule for reuse.</span><pre>prep()</pre></a></li>
+<li class="method public inherited"><a href="#setValue" title="setValue :: Set value of field, creating it in the data if needed."><span class="description">Set value of field, creating it in the data if needed.</span><pre>setValue()</pre></a></li>
+<li class="nav-header protected">» Protected</li>
+<li class="method protected inherited"><a href="#isBlank" title="isBlank :: Is the value blank?"><span class="description">Is the value blank?</span><pre>isBlank()</pre></a></li>
+<li class="method protected "><a href="#sanitize" title="sanitize :: Forces the value to an IPv4 address."><span class="description">Forces the value to an IPv4 address.</span><pre>sanitize()</pre></a></li>
+<li class="method protected "><a href="#validate" title="validate :: Validates that the value is a legal IPv4 address."><span class="description">Validates that the value is a legal IPv4 address.</span><pre>validate()</pre></a></li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties</li>
+<li class="nav-header protected">» Protected</li>
+<li class="property protected inherited"><a href="#%24data" title="$data :: The full set of data to be filtered."><span class="description">The full set of data to be filtered.</span><pre>$data</pre></a></li>
+<li class="property protected inherited"><a href="#%24field" title="$field :: The field to be filtered within the data."><span class="description">The field to be filtered within the data.</span><pre>$field</pre></a></li>
+<li class="property protected "><a href="#%24message" title="$message :: Error message"><span class="description">Error message</span><pre>$message</pre></a></li>
+</ul>
+</div>
+<div class="span8">
+<a name="%5CAura%5CFilter%5CRule%5CIpv4" id="\Aura\Filter\Rule\Ipv4"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/Aura.html">Aura</a></li>
+<span class="divider">\</span><li><a href="../namespaces/Aura.Filter.html">Filter</a></li>
+<span class="divider">\</span><li><a href="../namespaces/Aura.Filter.Rule.html">Rule</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/Aura.Filter.Rule.Ipv4.html">Ipv4</a>
+</li>
+</ul>
+<div href="../classes/Aura.Filter.Rule.Ipv4.html" class="element class">
+<p class="short_description">Sanitizes a value to an IPv4 address.</p>
+<div class="details">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>package</th>
+<td><a href="../packages/Aura.Filter.html">Aura.Filter</a></td>
+</tr>
+<tr>
+<th>license</th>
+<td><a href="http://opensource.org/licenses/bsd-license.php">BSD</a></td>
+</tr>
+</table>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a name="fix" id="fix"></a><div class="element clickable method public fix" data-toggle="collapse" data-target=".fix .collapse">
+<h2>Sanitize the value, transforming it as needed.</h2>
+<pre>fix() : bool</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Filter\AbstractRule::fix()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>bool</code>True if the value was sanitized, false if not.</div>
+</div></div>
+</div>
+<a name="fixBlankOr" id="fixBlankOr"></a><div class="element clickable method public fixBlankOr" data-toggle="collapse" data-target=".fixBlankOr .collapse">
+<h2>If the value is blank, set to null; sanitize if not blank, transforming
+it as needed.</h2>
+<pre>fixBlankOr() : bool</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Filter\AbstractRule::fixBlankOr()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>bool</code>True if the value was set to null or sanitized, false if not.</div>
+</div></div>
+</div>
+<a name="getMessage" id="getMessage"></a><div class="element clickable method public getMessage" data-toggle="collapse" data-target=".getMessage .collapse">
+<h2>Get the error message; note that this returns the message whether or
+not there was an error when validating or sanitizing.</h2>
+<pre>getMessage() : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Filter\AbstractRule::getMessage()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="getValue" id="getValue"></a><div class="element clickable method public getValue" data-toggle="collapse" data-target=".getValue .collapse">
+<h2>Get the value of the field being filtered, or null if the field is
+not set in the data.</h2>
+<pre>getValue() : mixed</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Filter\AbstractRule::getValue()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a name="is" id="is"></a><div class="element clickable method public is" data-toggle="collapse" data-target=".is .collapse">
+<h2>Is the value valid?</h2>
+<pre>is() : bool</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Filter\AbstractRule::is()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>bool</code>True if valid, false if not valid.</div>
+</div></div>
+</div>
+<a name="isBlankOr" id="isBlankOr"></a><div class="element clickable method public isBlankOr" data-toggle="collapse" data-target=".isBlankOr .collapse">
+<h2>Is the value blank, or otherwise valid?</h2>
+<pre>isBlankOr() : bool</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Filter\AbstractRule::isBlankOr()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>bool</code>True if blank or valid, false if not.</div>
+</div></div>
+</div>
+<a name="isNot" id="isNot"></a><div class="element clickable method public isNot" data-toggle="collapse" data-target=".isNot .collapse">
+<h2>Is the value *not* valid?</h2>
+<pre>isNot() : bool</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Filter\AbstractRule::isNot()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>bool</code>True if not valid, false if valid.</div>
+</div></div>
+</div>
+<a name="prep" id="prep"></a><div class="element clickable method public prep" data-toggle="collapse" data-target=".prep .collapse">
+<h2>Prepare the rule for reuse.</h2>
+<pre>prep(StdClass $data, string $field) : void</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Filter\AbstractRule::prep()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>\StdClass</code><p>The full set of data to be filtered.</p></div>
+<div class="subelement argument">
+<h4>$field</h4>
+<code>string</code><p>The field to be filtered within the data.</p></div>
+</div></div>
+</div>
+<a name="setValue" id="setValue"></a><div class="element clickable method public setValue" data-toggle="collapse" data-target=".setValue .collapse">
+<h2>Set value of field, creating it in the data if needed.</h2>
+<pre>setValue(string $value) : void</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Filter\AbstractRule::setValue()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>string</code><p>The new value of the field.</p></div>
+</div></div>
+</div>
+<a name="isBlank" id="isBlank"></a><div class="element clickable method protected isBlank" data-toggle="collapse" data-target=".isBlank .collapse">
+<h2>Is the value blank?</h2>
+<pre>isBlank() : bool</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Blank is null, empty string, or a string of only whitespace. Non-null
+non-string values are not blank; e.g., integer zero, float zero, an
+empty array, boolean false, etc. are not blank.</p></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Filter\AbstractRule::isBlank()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>bool</code>True if blank, false if not.</div>
+</div></div>
+</div>
+<a name="sanitize" id="sanitize"></a><div class="element clickable method protected sanitize" data-toggle="collapse" data-target=".sanitize .collapse">
+<h2>Forces the value to an IPv4 address.</h2>
+<pre>sanitize() : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>bool</code>True if the value was fixed, false if not.</div>
+</div></div>
+</div>
+<a name="validate" id="validate"></a><div class="element clickable method protected validate" data-toggle="collapse" data-target=".validate .collapse">
+<h2>Validates that the value is a legal IPv4 address.</h2>
+<pre>validate() : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>bool</code>True if valid, false if not.</div>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a name="%24data" id="$data"> </a><div class="element clickable property protected $data" data-toggle="collapse" data-target=".$data .collapse">
+<h2>The full set of data to be filtered.</h2>
+<pre>$data : object</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Filter\AbstractRule::$$data</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24field" id="$field"> </a><div class="element clickable property protected $field" data-toggle="collapse" data-target=".$field .collapse">
+<h2>The field to be filtered within the data.</h2>
+<pre>$field : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Filter\AbstractRule::$$field</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24message" id="$message"> </a><div class="element clickable property protected $message" data-toggle="collapse" data-target=".$message .collapse">
+<h2>Error message</h2>
+<pre>$message : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a7</a> and<br>
+            generated on 2012-11-29T11:49:09-02:00.<br></footer></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,194 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>DocBlox Documentation</title><link rel="stylesheet" href="css/jquery-ui.css" type="text/css"></link><link rel="stylesheet" href="css/docblox/jquery-ui-1.8.16.custom.css" type="text/css"></link><link rel="stylesheet" href="css/jquery.treeview.css" type="text/css"></link><link rel="stylesheet" href="css/theme.css" type="text/css"></link><script type="text/javascript" src="js/jquery-1.4.2.min.js"></script><script type="text/javascript" src="js/jquery-ui-1.8.2.custom.min.js"></script><script type="text/javascript" src="js/jquery.tools.min.js"></script><script type="text/javascript" src="js/jquery.cookie.js"></script><script type="text/javascript" src="js/jquery.treeview.js"></script><script type="text/javascript">
+            $(document).ready(function() {
+                $(".filetree").treeview({
+                    collapsed: true,
+                    persist: "cookie"
+                });
+
+                $("#accordion").accordion({
+                    collapsible: true,
+                    autoHeight:  false,
+                    fillSpace:   true
+                });
+
+                $(".tabs").tabs();
+            });
+        </script></head><body><script xmlns="" type="text/javascript" src="js/sidebar.js"></script><div xmlns="" id="sidebar">
+<div id="sidebar-header">
+<img src="images/icon48x48.png" id="sidebar-logo" alt="Logo"><h1>DocBlox</h1>
+<div style="clear: both"></div>
+</div>
+<div id="sidebar-nav">
+<h3 id="sidebar-dashboard">
+<img class="icon" src="css/docblox/images/icons/dashboard.png" alt="Dashboard"><a href="content.html" class="link" target="content">Dashboard</a>
+</h3>
+<div style="display: none"></div>
+<h3 id="sidebar-files">
+<img src="css/docblox/images/icons/files.png" alt="Files"><a href="#files">Files</a>
+</h3>
+<div class="sidebar-section">
+<div class="search-bar">
+<a href="#" onclick="$(this).parent().next().find('.collapsable-hitarea').click(); return false;"><img src="images/collapse_all.png" title="Collapse all" alt="Collapse all"></a><a href="#" onclick="$(this).parent().next().find('.expandable-hitarea').click(); return false;"><img src="images/expand_all.png" title="Expand all" alt="Expand all"></a><div><input type="text" onkeyup="tree_search(this);"></div>
+</div>
+<ul class="sidebar-nav-tree">
+<li class="closed">
+<span class="file"><a href="db_Aura_View_AbstractTemplate.html" target="content">Aura/View/AbstractTemplate.php</a></span><ul id="files_f024b896240b40f11ea73237b2df064a" class="filetree"><li><span class="class"><a href="db_Aura_View_AbstractTemplate.html#%5CAura%5CView%5CAbstractTemplate" target="content">AbstractTemplate<br></a></span></li></ul>
+</li>
+<li class="closed">
+<span class="file"><a href="db_Aura_View_Exception.html" target="content">Aura/View/Exception.php</a></span><ul id="files_24e55860d5bc9c2b4814da97497b3a0e" class="filetree"><li><span class="class"><a href="db_Aura_View_Exception.html#%5CAura%5CView%5CException" target="content">Exception<br></a></span></li></ul>
+</li>
+<li class="closed">
+<span class="file"><a href="db_Aura_View_Exception_HelperNotMapped.html" target="content">Aura/View/Exception/HelperNotMapped.php</a></span><ul id="files_f49e9a70fcb0f67c54da462821a83ebc" class="filetree"><li><span class="class"><a href="db_Aura_View_Exception_HelperNotMapped.html#%5CAura%5CView%5CException%5CHelperNotMapped" target="content">HelperNotMapped<br></a></span></li></ul>
+</li>
+<li class="closed">
+<span class="file"><a href="db_Aura_View_Exception_TemplateNotFound.html" target="content">Aura/View/Exception/TemplateNotFound.php</a></span><ul id="files_50dc228055dca0a4af81e5f9e7d2cd4d" class="filetree"><li><span class="class"><a href="db_Aura_View_Exception_TemplateNotFound.html#%5CAura%5CView%5CException%5CTemplateNotFound" target="content">TemplateNotFound<br></a></span></li></ul>
+</li>
+<li class="closed">
+<span class="file"><a href="db_Aura_View_FormatTypes.html" target="content">Aura/View/FormatTypes.php</a></span><ul id="files_34469da8ef3b208ae1a04a496b17dda0" class="filetree"><li><span class="class"><a href="db_Aura_View_FormatTypes.html#%5CAura%5CView%5CFormatTypes" target="content">FormatTypes<br></a></span></li></ul>
+</li>
+<li class="closed">
+<span class="file"><a href="db_Aura_View_Helper_AbstractHelper.html" target="content">Aura/View/Helper/AbstractHelper.php</a></span><ul id="files_69bbdef1b6c2fdb65ba26533e6389d1b" class="filetree"><li><span class="class"><a href="db_Aura_View_Helper_AbstractHelper.html#%5CAura%5CView%5CHelper%5CAbstractHelper" target="content">AbstractHelper<br></a></span></li></ul>
+</li>
+<li class="closed">
+<span class="file"><a href="db_Aura_View_Helper_Anchor.html" target="content">Aura/View/Helper/Anchor.php</a></span><ul id="files_3d0ebde8018a7215821d667dbb7cfbe0" class="filetree"><li><span class="class"><a href="db_Aura_View_Helper_Anchor.html#%5CAura%5CView%5CHelper%5CAnchor" target="content">Anchor<br></a></span></li></ul>
+</li>
+<li class="closed">
+<span class="file"><a href="db_Aura_View_Helper_Attribs.html" target="content">Aura/View/Helper/Attribs.php</a></span><ul id="files_89e8350d92303bf372235008509c5fd8" class="filetree"><li><span class="class"><a href="db_Aura_View_Helper_Attribs.html#%5CAura%5CView%5CHelper%5CAttribs" target="content">Attribs<br></a></span></li></ul>
+</li>
+<li class="closed">
+<span class="file"><a href="db_Aura_View_Helper_Base.html" target="content">Aura/View/Helper/Base.php</a></span><ul id="files_652de66a8b416c5d6ffc7028d0253dd4" class="filetree"><li><span class="class"><a href="db_Aura_View_Helper_Base.html#%5CAura%5CView%5CHelper%5CBase" target="content">Base<br></a></span></li></ul>
+</li>
+<li class="closed">
+<span class="file"><a href="db_Aura_View_Helper_Datetime.html" target="content">Aura/View/Helper/Datetime.php</a></span><ul id="files_f24c9548471bf07991ee3e1f309e0b4c" class="filetree"><li><span class="class"><a href="db_Aura_View_Helper_Datetime.html#%5CAura%5CView%5CHelper%5CDatetime" target="content">Datetime<br></a></span></li></ul>
+</li>
+<li class="closed">
+<span class="file"><a href="db_Aura_View_Helper_Escape.html" target="content">Aura/View/Helper/Escape.php</a></span><ul id="files_3d73021c3adf3dc216450acf56c9c880" class="filetree"><li><span class="class"><a href="db_Aura_View_Helper_Escape.html#%5CAura%5CView%5CHelper%5CEscape" target="content">Escape<br></a></span></li></ul>
+</li>
+<li class="closed">
+<span class="file"><a href="db_Aura_View_Helper_Image.html" target="content">Aura/View/Helper/Image.php</a></span><ul id="files_ba09e195ce336499ecd5791a01cab890" class="filetree"><li><span class="class"><a href="db_Aura_View_Helper_Image.html#%5CAura%5CView%5CHelper%5CImage" target="content">Image<br></a></span></li></ul>
+</li>
+<li class="closed">
+<span class="file"><a href="db_Aura_View_Helper_Links.html" target="content">Aura/View/Helper/Links.php</a></span><ul id="files_5fc499da4cbb128af893d60aeb1fb0c4" class="filetree"><li><span class="class"><a href="db_Aura_View_Helper_Links.html#%5CAura%5CView%5CHelper%5CLinks" target="content">Links<br></a></span></li></ul>
+</li>
+<li class="closed">
+<span class="file"><a href="db_Aura_View_Helper_Metas.html" target="content">Aura/View/Helper/Metas.php</a></span><ul id="files_f64cbcbaab29e682ca17854e445f0234" class="filetree"><li><span class="class"><a href="db_Aura_View_Helper_Metas.html#%5CAura%5CView%5CHelper%5CMetas" target="content">Metas<br></a></span></li></ul>
+</li>
+<li class="closed">
+<span class="file"><a href="db_Aura_View_Helper_Scripts.html" target="content">Aura/View/Helper/Scripts.php</a></span><ul id="files_442866f03a4cd9d4de8b36ac08b736f6" class="filetree"><li><span class="class"><a href="db_Aura_View_Helper_Scripts.html#%5CAura%5CView%5CHelper%5CScripts" target="content">Scripts<br></a></span></li></ul>
+</li>
+<li class="closed">
+<span class="file"><a href="db_Aura_View_Helper_Styles.html" target="content">Aura/View/Helper/Styles.php</a></span><ul id="files_d6fc815f50082c540ad81c7b5486eb7d" class="filetree"><li><span class="class"><a href="db_Aura_View_Helper_Styles.html#%5CAura%5CView%5CHelper%5CStyles" target="content">Styles<br></a></span></li></ul>
+</li>
+<li class="closed">
+<span class="file"><a href="db_Aura_View_Helper_Title.html" target="content">Aura/View/Helper/Title.php</a></span><ul id="files_d336998ec8a63f5c1000223023bdb404" class="filetree"><li><span class="class"><a href="db_Aura_View_Helper_Title.html#%5CAura%5CView%5CHelper%5CTitle" target="content">Title<br></a></span></li></ul>
+</li>
+<li class="closed">
+<span class="file"><a href="db_Aura_View_HelperLocator.html" target="content">Aura/View/HelperLocator.php</a></span><ul id="files_155609f4be16bd65e1aeaab96749ede3" class="filetree"><li><span class="class"><a href="db_Aura_View_HelperLocator.html#%5CAura%5CView%5CHelperLocator" target="content">HelperLocator<br></a></span></li></ul>
+</li>
+<li class="closed">
+<span class="file"><a href="db_Aura_View_Template.html" target="content">Aura/View/Template.php</a></span><ul id="files_ba0f9f8170341b4dd77f80b067bf3fb4" class="filetree"><li><span class="class"><a href="db_Aura_View_Template.html#%5CAura%5CView%5CTemplate" target="content">Template<br></a></span></li></ul>
+</li>
+<li class="closed">
+<span class="file"><a href="db_Aura_View_TemplateFinder.html" target="content">Aura/View/TemplateFinder.php</a></span><ul id="files_afc05d6d416c69711a06bb78d64d1d5d" class="filetree"><li><span class="class"><a href="db_Aura_View_TemplateFinder.html#%5CAura%5CView%5CTemplateFinder" target="content">TemplateFinder<br></a></span></li></ul>
+</li>
+<li class="closed">
+<span class="file"><a href="db_Aura_View_TwoStep.html" target="content">Aura/View/TwoStep.php</a></span><ul id="files_271e1d04d94ea3a1b6d6e232387126e2" class="filetree"><li><span class="class"><a href="db_Aura_View_TwoStep.html#%5CAura%5CView%5CTwoStep" target="content">TwoStep<br></a></span></li></ul>
+</li>
+</ul>
+</div>
+<h3 id="sidebar-packages">
+<img src="css/docblox/images/icons/packages.png" alt="Packages"><a href="#packages">Packages</a>
+</h3>
+<div class="sidebar-section sidebar-tree">
+<div class="search-bar">
+<a href="#" onclick="$(this).parent().next().find('.collapsable-hitarea').click(); return false;"><img src="images/collapse_all.png" title="Collapse all" alt="Collapse all"></a><a href="#" onclick="$(this).parent().next().find('.expandable-hitarea').click(); return false;"><img src="images/expand_all.png" title="Expand all" alt="Expand all"></a><div><input type="text" onkeyup="tree_search(this);"></div>
+</div>
+<ul class="sidebar-nav-tree"><li class="closed">
+<span class="folder">Aura</span><ul><li class="closed">
+<span class="folder">View</span><ul>
+<li><span class="class"><a href="db_Aura_View_Helper_AbstractHelper.html#%5CAura%5CView%5CHelper%5CAbstractHelper" target="content">AbstractHelper</a></span></li>
+<li><span class="class"><a href="db_Aura_View_AbstractTemplate.html#%5CAura%5CView%5CAbstractTemplate" target="content">AbstractTemplate</a></span></li>
+<li><span class="class"><a href="db_Aura_View_Helper_Anchor.html#%5CAura%5CView%5CHelper%5CAnchor" target="content">Anchor</a></span></li>
+<li><span class="class"><a href="db_Aura_View_Helper_Attribs.html#%5CAura%5CView%5CHelper%5CAttribs" target="content">Attribs</a></span></li>
+<li><span class="class"><a href="db_Aura_View_Helper_Base.html#%5CAura%5CView%5CHelper%5CBase" target="content">Base</a></span></li>
+<li><span class="class"><a href="db_Aura_View_Helper_Datetime.html#%5CAura%5CView%5CHelper%5CDatetime" target="content">Datetime</a></span></li>
+<li><span class="class"><a href="db_Aura_View_Helper_Escape.html#%5CAura%5CView%5CHelper%5CEscape" target="content">Escape</a></span></li>
+<li><span class="class"><a href="db_Aura_View_Exception.html#%5CAura%5CView%5CException" target="content">Exception</a></span></li>
+<li><span class="class"><a href="db_Aura_View_FormatTypes.html#%5CAura%5CView%5CFormatTypes" target="content">FormatTypes</a></span></li>
+<li><span class="class"><a href="db_Aura_View_HelperLocator.html#%5CAura%5CView%5CHelperLocator" target="content">HelperLocator</a></span></li>
+<li><span class="class"><a href="db_Aura_View_Exception_HelperNotMapped.html#%5CAura%5CView%5CException%5CHelperNotMapped" target="content">HelperNotMapped</a></span></li>
+<li><span class="class"><a href="db_Aura_View_Helper_Image.html#%5CAura%5CView%5CHelper%5CImage" target="content">Image</a></span></li>
+<li><span class="class"><a href="db_Aura_View_Helper_Links.html#%5CAura%5CView%5CHelper%5CLinks" target="content">Links</a></span></li>
+<li><span class="class"><a href="db_Aura_View_Helper_Metas.html#%5CAura%5CView%5CHelper%5CMetas" target="content">Metas</a></span></li>
+<li><span class="class"><a href="db_Aura_View_Helper_Scripts.html#%5CAura%5CView%5CHelper%5CScripts" target="content">Scripts</a></span></li>
+<li><span class="class"><a href="db_Aura_View_Helper_Styles.html#%5CAura%5CView%5CHelper%5CStyles" target="content">Styles</a></span></li>
+<li><span class="class"><a href="db_Aura_View_Template.html#%5CAura%5CView%5CTemplate" target="content">Template</a></span></li>
+<li><span class="class"><a href="db_Aura_View_TemplateFinder.html#%5CAura%5CView%5CTemplateFinder" target="content">TemplateFinder</a></span></li>
+<li><span class="class"><a href="db_Aura_View_Exception_TemplateNotFound.html#%5CAura%5CView%5CException%5CTemplateNotFound" target="content">TemplateNotFound</a></span></li>
+<li><span class="class"><a href="db_Aura_View_Helper_Title.html#%5CAura%5CView%5CHelper%5CTitle" target="content">Title</a></span></li>
+<li><span class="class"><a href="db_Aura_View_TwoStep.html#%5CAura%5CView%5CTwoStep" target="content">TwoStep</a></span></li>
+</ul>
+</li></ul>
+</li></ul>
+</div>
+<h3 id="sidebar-namespaces">
+<img src="css/docblox/images/icons/namespaces.png" alt="Namespaces"><a href="#namespaces">Namespaces</a>
+</h3>
+<div class="sidebar-section sidebar-tree">
+<div class="search-bar">
+<a href="#" onclick="$(this).parent().next().find('.collapsable-hitarea').click(); return false;"><img src="images/collapse_all.png" title="Collapse all" alt="Collapse all"></a><a href="#" onclick="$(this).parent().next().find('.expandable-hitarea').click(); return false;"><img src="images/expand_all.png" title="Expand all" alt="Expand all"></a><div><input type="text" onkeyup="tree_search(this);"></div>
+</div>
+<ul class="sidebar-nav-tree"><li class="closed">
+<span class="folder">Aura</span><ul><li class="closed">
+<span class="folder">View</span><ul>
+<li class="closed">
+<span class="folder">Exception</span><ul>
+<li><span class="class"><a href="db_Aura_View_Exception_HelperNotMapped.html#%5CAura%5CView%5CException%5CHelperNotMapped" target="content">HelperNotMapped</a></span></li>
+<li><span class="class"><a href="db_Aura_View_Exception_TemplateNotFound.html#%5CAura%5CView%5CException%5CTemplateNotFound" target="content">TemplateNotFound</a></span></li>
+</ul>
+</li>
+<li class="closed">
+<span class="folder">Helper</span><ul>
+<li><span class="class"><a href="db_Aura_View_Helper_AbstractHelper.html#%5CAura%5CView%5CHelper%5CAbstractHelper" target="content">AbstractHelper</a></span></li>
+<li><span class="class"><a href="db_Aura_View_Helper_Anchor.html#%5CAura%5CView%5CHelper%5CAnchor" target="content">Anchor</a></span></li>
+<li><span class="class"><a href="db_Aura_View_Helper_Attribs.html#%5CAura%5CView%5CHelper%5CAttribs" target="content">Attribs</a></span></li>
+<li><span class="class"><a href="db_Aura_View_Helper_Base.html#%5CAura%5CView%5CHelper%5CBase" target="content">Base</a></span></li>
+<li><span class="class"><a href="db_Aura_View_Helper_Datetime.html#%5CAura%5CView%5CHelper%5CDatetime" target="content">Datetime</a></span></li>
+<li><span class="class"><a href="db_Aura_View_Helper_Escape.html#%5CAura%5CView%5CHelper%5CEscape" target="content">Escape</a></span></li>
+<li><span class="class"><a href="db_Aura_View_Helper_Image.html#%5CAura%5CView%5CHelper%5CImage" target="content">Image</a></span></li>
+<li><span class="class"><a href="db_Aura_View_Helper_Links.html#%5CAura%5CView%5CHelper%5CLinks" target="content">Links</a></span></li>
+<li><span class="class"><a href="db_Aura_View_Helper_Metas.html#%5CAura%5CView%5CHelper%5CMetas" target="content">Metas</a></span></li>
+<li><span class="class"><a href="db_Aura_View_Helper_Scripts.html#%5CAura%5CView%5CHelper%5CScripts" target="content">Scripts</a></span></li>
+<li><span class="class"><a href="db_Aura_View_Helper_Styles.html#%5CAura%5CView%5CHelper%5CStyles" target="content">Styles</a></span></li>
+<li><span class="class"><a href="db_Aura_View_Helper_Title.html#%5CAura%5CView%5CHelper%5CTitle" target="content">Title</a></span></li>
+</ul>
+</li>
+<li><span class="class"><a href="db_Aura_View_AbstractTemplate.html#%5CAura%5CView%5CAbstractTemplate" target="content">AbstractTemplate</a></span></li>
+<li><span class="class"><a href="db_Aura_View_Exception.html#%5CAura%5CView%5CException" target="content">Exception</a></span></li>
+<li><span class="class"><a href="db_Aura_View_FormatTypes.html#%5CAura%5CView%5CFormatTypes" target="content">FormatTypes</a></span></li>
+<li><span class="class"><a href="db_Aura_View_HelperLocator.html#%5CAura%5CView%5CHelperLocator" target="content">HelperLocator</a></span></li>
+<li><span class="class"><a href="db_Aura_View_Template.html#%5CAura%5CView%5CTemplate" target="content">Template</a></span></li>
+<li><span class="class"><a href="db_Aura_View_TemplateFinder.html#%5CAura%5CView%5CTemplateFinder" target="content">TemplateFinder</a></span></li>
+<li><span class="class"><a href="db_Aura_View_TwoStep.html#%5CAura%5CView%5CTwoStep" target="content">TwoStep</a></span></li>
+</ul>
+</li></ul>
+</li></ul>
+</div>
+<h3 id="sidebar-charts">
+<img src="css/docblox/images/icons/chart.png" alt="Charts"><a href="#charts">Charts</a>
+</h3>
+<div class="sidebar-section"><ul style="list-style-image: url('css/docblox/images/icons/chart15x12.png');"><li><a href="graph.html" target="content">Class Inheritance Diagram</a></li></ul></div>
+<h3 id="sidebar-reports">
+<img src="css/docblox/images/icons/reports.png" alt="Reports"><a href="#reports">Reports</a>
+</h3>
+<div class="sidebar-section"><ul style="list-style-image: url('css/docblox/images/icons/reports9x12.png');">
+<li><a href="report_markers.html" target="content">Markers (TODO/FIXME)</a></li>
+<li><a href="report_parse_markers.html" target="content">Parsing errors</a></li>
+<li><a href="report_deprecated.html" target="content">Deprecated elements</a></li>
+</ul></div>
+</div>
+<div id="sidebar-footer">
+        Documentation is generated by <a href="http://docblox-project.org" target="_top"><img src="images/icon48x48.png" height="12" align="top" alt="Logo"> DocBlox 0.17.2</a>, images courtesy of <a href="http://glyphish.com/" target="_top">Glyphish</a>
+</div>
+</div></body></html>

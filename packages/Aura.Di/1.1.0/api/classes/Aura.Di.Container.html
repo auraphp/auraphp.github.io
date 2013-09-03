@@ -1,0 +1,525 @@
+<!DOCTYPE html><html xmlns:date="http://exslt.org/dates-and-times" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » \Aura\Di\Container</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Namespaces</a></li>
+<li><a href="../namespaces/Aura.html"><i class="icon-th"></i> Aura</a></li>
+<li><a>Packages</a></li>
+<li><a href="../packages/Aura.html"><i class="icon-folder-open"></i> Aura</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">0</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods</li>
+<li class="method public "><a href="#__clone" title="__clone :: When cloning this Container, *do not* make a copy of the service
+objects."><span class="description">When cloning this Container, *do not* make a copy of the service
+objects.</span><pre>__clone()</pre></a></li>
+<li class="method public "><a href="#__construct" title="__construct :: Constructor."><span class="description">Constructor.</span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#__get" title="__get :: Magic get to provide access to the Config::$params and $setter
+objects."><span class="description">Magic get to provide access to the Config::$params and $setter
+objects.</span><pre>__get()</pre></a></li>
+<li class="method public "><a href="#get" title="get :: Gets a service object by key, lazy-loading it as needed."><span class="description">Gets a service object by key, lazy-loading it as needed.</span><pre>get()</pre></a></li>
+<li class="method public "><a href="#getDefs" title="getDefs :: Gets the list of service definitions."><span class="description">Gets the list of service definitions.</span><pre>getDefs()</pre></a></li>
+<li class="method public "><a href="#getForge" title="getForge :: Gets the Forge object used for creating new instances."><span class="description">Gets the Forge object used for creating new instances.</span><pre>getForge()</pre></a></li>
+<li class="method public "><a href="#getServices" title="getServices :: Gets the list of instantiated services."><span class="description">Gets the list of instantiated services.</span><pre>getServices()</pre></a></li>
+<li class="method public "><a href="#has" title="has :: Does a particular service definition exist?"><span class="description">Does a particular service definition exist?</span><pre>has()</pre></a></li>
+<li class="method public "><a href="#isLocked" title="isLocked :: Is the Container locked?"><span class="description">Is the Container locked?</span><pre>isLocked()</pre></a></li>
+<li class="method public "><a href="#lazy" title="lazy :: Returns a Lazy containing a general-purpose callable."><span class="description">Returns a Lazy containing a general-purpose callable.</span><pre>lazy()</pre></a></li>
+<li class="method public "><a href="#lazyCall" title="lazyCall :: Returns a Lazy that invokes a callable (e.g., to call a method on an
+object)."><span class="description">Returns a Lazy that invokes a callable (e.g., to call a method on an
+object).</span><pre>lazyCall()</pre></a></li>
+<li class="method public "><a href="#lazyGet" title="lazyGet :: Returns a Lazy that gets a service."><span class="description">Returns a Lazy that gets a service.</span><pre>lazyGet()</pre></a></li>
+<li class="method public "><a href="#lazyInclude" title="lazyInclude :: Returns a lazy that includes a file."><span class="description">Returns a lazy that includes a file.</span><pre>lazyInclude()</pre></a></li>
+<li class="method public "><a href="#lazyNew" title="lazyNew :: Returns a Lazy that creates a new instance."><span class="description">Returns a Lazy that creates a new instance.</span><pre>lazyNew()</pre></a></li>
+<li class="method public "><a href="#lazyRequire" title="lazyRequire :: Returns a lazy that requires a file."><span class="description">Returns a lazy that requires a file.</span><pre>lazyRequire()</pre></a></li>
+<li class="method public "><a href="#lock" title="lock :: Lock the Container so that configuration cannot be accessed externally,
+and no new service definitions can be added."><span class="description">Lock the Container so that configuration cannot be accessed externally,
+and no new service definitions can be added.</span><pre>lock()</pre></a></li>
+<li class="method public "><a href="#newFactory" title="newFactory :: Returns a Factory that creates an object over and over again (as vs
+creating it one time like the lazyNew() or newInstance() methods)."><span class="description">Returns a Factory that creates an object over and over again (as vs
+creating it one time like the lazyNew() or newInstance() methods).</span><pre>newFactory()</pre></a></li>
+<li class="method public "><a href="#newInstance" title="newInstance :: Returns a new instance of the specified class, optionally
+with additional override parameters."><span class="description">Returns a new instance of the specified class, optionally
+with additional override parameters.</span><pre>newInstance()</pre></a></li>
+<li class="method public "><a href="#set" title="set :: Sets a service definition by name."><span class="description">Sets a service definition by name.</span><pre>set()</pre></a></li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties</li>
+<li class="nav-header protected">» Protected</li>
+<li class="property protected "><a href="#%24defs" title="$defs :: Retains named service definitions."><span class="description">Retains named service definitions.</span><pre>$defs</pre></a></li>
+<li class="property protected "><a href="#%24forge" title="$forge :: A Forge object to create classes through reflection."><span class="description">A Forge object to create classes through reflection.</span><pre>$forge</pre></a></li>
+<li class="property protected "><a href="#%24locked" title="$locked :: Is the Container locked?  (When locked, you cannot access configuration
+properties from outside the object, and cannot set services.)"><span class="description">Is the Container locked?  (When locked, you cannot access configuration
+properties from outside the object, and cannot set services.)</span><pre>$locked</pre></a></li>
+<li class="property protected "><a href="#%24params" title="$params :: A convenient reference to the Config::$params object, which itself
+is contained by the Forge object."><span class="description">A convenient reference to the Config::$params object, which itself
+is contained by the Forge object.</span><pre>$params</pre></a></li>
+<li class="property protected "><a href="#%24services" title="$services :: Retains the actual service objects."><span class="description">Retains the actual service objects.</span><pre>$services</pre></a></li>
+<li class="property protected "><a href="#%24setter" title="$setter :: A convenient reference to the Config::$setter object, which itself
+is contained by the Forge object."><span class="description">A convenient reference to the Config::$setter object, which itself
+is contained by the Forge object.</span><pre>$setter</pre></a></li>
+</ul>
+</div>
+<div class="span8">
+<a name="%5CAura%5CDi%5CContainer" id="\Aura\Di\Container"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/Aura.html">Aura</a></li>
+<span class="divider">\</span><li><a href="../namespaces/Aura.Di.html">Di</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/Aura.Di.Container.html">Container</a>
+</li>
+</ul>
+<div href="../classes/Aura.Di.Container.html" class="element class">
+<p class="short_description">Dependency injection container.</p>
+<div class="details">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>package</th>
+<td><a href="../packages/Aura.Di.html">Aura.Di</a></td>
+</tr></table>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a name="__clone" id="__clone"></a><div class="element clickable method public __clone" data-toggle="collapse" data-target=".__clone .collapse">
+<h2>When cloning this Container, *do not* make a copy of the service
+objects.</h2>
+<pre>__clone() : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"><p>Leave the configuration and definitions intact.</p></p></div></div>
+</div>
+<a name="__construct" id="__construct"></a><div class="element clickable method public __construct" data-toggle="collapse" data-target=".__construct .collapse">
+<h2>Constructor.</h2>
+<pre>__construct(Aura\Di\ForgeInterface $forge) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$forge</h4>
+<code><a href="../classes/Aura.Di.ForgeInterface.html">\Aura\Di\ForgeInterface</a></code><p>A forge for creating objects using keyword parameter configuration.</p></div>
+</div></div>
+</div>
+<a name="__get" id="__get"></a><div class="element clickable method public __get" data-toggle="collapse" data-target=".__get .collapse">
+<h2>Magic get to provide access to the Config::$params and $setter
+objects.</h2>
+<pre>__get(string $key) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$key</h4>
+<code>string</code><p>The property to retrieve ('params' or 'setter').</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a name="get" id="get"></a><div class="element clickable method public get" data-toggle="collapse" data-target=".get .collapse">
+<h2>Gets a service object by key, lazy-loading it as needed.</h2>
+<pre>get(string $key) : object</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$key</h4>
+<code>string</code><p>The service to get.</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="../classes/Aura.Di.Exception.ServiceNotFound.html">\Aura\Di\Exception\ServiceNotFound</a></code></th>
+<td>when the requested service does not exist.</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>object</code></div>
+</div></div>
+</div>
+<a name="getDefs" id="getDefs"></a><div class="element clickable method public getDefs" data-toggle="collapse" data-target=".getDefs .collapse">
+<h2>Gets the list of service definitions.</h2>
+<pre>getDefs() : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a name="getForge" id="getForge"></a><div class="element clickable method public getForge" data-toggle="collapse" data-target=".getForge .collapse">
+<h2>Gets the Forge object used for creating new instances.</h2>
+<pre>getForge() : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a name="getServices" id="getServices"></a><div class="element clickable method public getServices" data-toggle="collapse" data-target=".getServices .collapse">
+<h2>Gets the list of instantiated services.</h2>
+<pre>getServices() : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a name="has" id="has"></a><div class="element clickable method public has" data-toggle="collapse" data-target=".has .collapse">
+<h2>Does a particular service definition exist?</h2>
+<pre>has(string $key) : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$key</h4>
+<code>string</code><p>The service key to look up.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>bool</code></div>
+</div></div>
+</div>
+<a name="isLocked" id="isLocked"></a><div class="element clickable method public isLocked" data-toggle="collapse" data-target=".isLocked .collapse">
+<h2>Is the Container locked?</h2>
+<pre>isLocked() : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>bool</code></div>
+</div></div>
+</div>
+<a name="lazy" id="lazy"></a><div class="element clickable method public lazy" data-toggle="collapse" data-target=".lazy .collapse">
+<h2>Returns a Lazy containing a general-purpose callable.</h2>
+<pre>lazy(callable $callable) : <a href="../classes/Aura.Di.Lazy.html">\Aura\Di\Lazy</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Use this when you
+have complex logic or heavy overhead when creating a param that may or
+may not need to be loaded.</p>
+
+<pre><code> $di-&gt;params['ClassName']['param_name'] = $di-&gt;lazy(function () {
+     return include 'filename.php';
+ });
+</code></pre></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$callable</h4>
+<code>\Aura\Di\callable</code><p>The callable functionality.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code><a href="../classes/Aura.Di.Lazy.html">\Aura\Di\Lazy</a></code>A lazy-load object that contains the callable.</div>
+</div></div>
+</div>
+<a name="lazyCall" id="lazyCall"></a><div class="element clickable method public lazyCall" data-toggle="collapse" data-target=".lazyCall .collapse">
+<h2>Returns a Lazy that invokes a callable (e.g., to call a method on an
+object).</h2>
+<pre>lazyCall(\Aura\Di\callable $callable) : <a href="../classes/Aura.Di.Lazy.html">\Aura\Di\Lazy</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$callable</h4>
+<code>\Aura\Di\callable</code><p>The callable. Params after this one are treated as params for the call.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/Aura.Di.Lazy.html">\Aura\Di\Lazy</a></code></div>
+</div></div>
+</div>
+<a name="lazyGet" id="lazyGet"></a><div class="element clickable method public lazyGet" data-toggle="collapse" data-target=".lazyGet .collapse">
+<h2>Returns a Lazy that gets a service.</h2>
+<pre>lazyGet(string $key) : <a href="../classes/Aura.Di.Lazy.html">\Aura\Di\Lazy</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>This allows you to replace the
+following idiom ...</p>
+
+<pre><code> $di-&gt;params['ClassName']['param_name'] = $di-&gt;lazy(function() use ($di)) {
+     return $di-&gt;get('service');
+ }
+</code></pre>
+
+<p>... with the following:</p>
+
+<pre><code> $di-&gt;params['ClassName']['param_name'] = $di-&gt;lazyGet('service');
+</code></pre></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$key</h4>
+<code>string</code><p>The service name; it does not need to exist yet.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code><a href="../classes/Aura.Di.Lazy.html">\Aura\Di\Lazy</a></code>A lazy-load object that gets the named service.</div>
+</div></div>
+</div>
+<a name="lazyInclude" id="lazyInclude"></a><div class="element clickable method public lazyInclude" data-toggle="collapse" data-target=".lazyInclude .collapse">
+<h2>Returns a lazy that includes a file.</h2>
+<pre>lazyInclude(string $file) : <a href="../classes/Aura.Di.Lazy.html">\Aura\Di\Lazy</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>This replaces the idiom ...</p>
+
+<pre><code>$di-&gt;params['ClassName']['foo'] = $di-&gt;lazy(function () {
+    return include "/path/to/file.php";
+};
+</code></pre>
+
+<p>... with:</p>
+
+<pre><code>$di-&gt;params['ClassName']['foo'] = $di-&gt;lazyRequire("/path/to/file.php");
+</code></pre></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$file</h4>
+<code>string</code><p>The file to include.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/Aura.Di.Lazy.html">\Aura\Di\Lazy</a></code></div>
+</div></div>
+</div>
+<a name="lazyNew" id="lazyNew"></a><div class="element clickable method public lazyNew" data-toggle="collapse" data-target=".lazyNew .collapse">
+<h2>Returns a Lazy that creates a new instance.</h2>
+<pre>lazyNew(string $class, array $params, array $setters) : <a href="../classes/Aura.Di.Lazy.html">\Aura\Di\Lazy</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>This allows you to replace
+the following idiom:</p>
+
+<pre><code> $di-&gt;params['ClassName']['param_name'] = $di-&gt;lazy(function () use ($di)) {
+     return $di-&gt;newInstance('OtherClass', [...]);
+ });
+</code></pre>
+
+<p>... with the following:</p>
+
+<pre><code> $di-&gt;params['ClassName']['param_name'] = $di-&gt;lazyNew('OtherClass', [...]);
+</code></pre></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$class</h4>
+<code>string</code><p>The type of class of instantiate.</p></div>
+<div class="subelement argument">
+<h4>$params</h4>
+<code>array</code><p>Override parameters for the instance.</p></div>
+<div class="subelement argument">
+<h4>$setters</h4>
+<code>array</code><p>Override setters for the instance</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code><a href="../classes/Aura.Di.Lazy.html">\Aura\Di\Lazy</a></code>A lazy-load object that creates the new instance.</div>
+</div></div>
+</div>
+<a name="lazyRequire" id="lazyRequire"></a><div class="element clickable method public lazyRequire" data-toggle="collapse" data-target=".lazyRequire .collapse">
+<h2>Returns a lazy that requires a file.</h2>
+<pre>lazyRequire(string $file) : <a href="../classes/Aura.Di.Lazy.html">\Aura\Di\Lazy</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>This replaces the idiom ...</p>
+
+<pre><code>$di-&gt;params['ClassName']['foo'] = $di-&gt;lazy(function () {
+    return require "/path/to/file.php";
+};
+</code></pre>
+
+<p>... with:</p>
+
+<pre><code>$di-&gt;params['ClassName']['foo'] = $di-&gt;lazyRequire("/path/to/file.php");
+</code></pre></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$file</h4>
+<code>string</code><p>The file to require.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/Aura.Di.Lazy.html">\Aura\Di\Lazy</a></code></div>
+</div></div>
+</div>
+<a name="lock" id="lock"></a><div class="element clickable method public lock" data-toggle="collapse" data-target=".lock .collapse">
+<h2>Lock the Container so that configuration cannot be accessed externally,
+and no new service definitions can be added.</h2>
+<pre>lock() : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="newFactory" id="newFactory"></a><div class="element clickable method public newFactory" data-toggle="collapse" data-target=".newFactory .collapse">
+<h2>Returns a Factory that creates an object over and over again (as vs
+creating it one time like the lazyNew() or newInstance() methods).</h2>
+<pre>newFactory(string $class, array $params, array $setters) : <a href="../classes/Aura.Di.Factory.html">\Aura\Di\Factory</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$class</h4>
+<code>string</code><p>THe factory will create an instance of this class.</p></div>
+<div class="subelement argument">
+<h4>$params</h4>
+<code>array</code><p>Override parameters for the instance.</p></div>
+<div class="subelement argument">
+<h4>$setters</h4>
+<code>array</code><p>Override setters for the instance.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/Aura.Di.Factory.html">\Aura\Di\Factory</a></code></div>
+</div></div>
+</div>
+<a name="newInstance" id="newInstance"></a><div class="element clickable method public newInstance" data-toggle="collapse" data-target=".newInstance .collapse">
+<h2>Returns a new instance of the specified class, optionally
+with additional override parameters.</h2>
+<pre>newInstance(string $class, array $params, array $setters) : object</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$class</h4>
+<code>string</code><p>The type of class of instantiate.</p></div>
+<div class="subelement argument">
+<h4>$params</h4>
+<code>array</code><p>Override parameters for the instance.</p></div>
+<div class="subelement argument">
+<h4>$setters</h4>
+<code>array</code><p>Override setters for the instance.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>object</code>An instance of the requested class.</div>
+</div></div>
+</div>
+<a name="set" id="set"></a><div class="element clickable method public set" data-toggle="collapse" data-target=".set .collapse">
+<h2>Sets a service definition by name.</h2>
+<pre>set(string $key, object $val) : \Aura\Di\$this</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>If you set a service as a Closure,
+it is automatically treated as a Lazy. (Note that is has to be a
+Closure, not just any callable, to be treated as a Lazy; this is
+because the actual service object itself might be callable via an
+__invoke() method.)</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$key</h4>
+<code>string</code><p>The service key.</p></div>
+<div class="subelement argument">
+<h4>$val</h4>
+<code>object</code><p>The service object; if a Closure, is treated as a Lazy.</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered">
+<tr>
+<th><code><a href="../classes/Aura.Di.Exception.ContainerLocked.html">\Aura\Di\Exception\ContainerLocked</a></code></th>
+<td>when the Container is locked.</td>
+</tr>
+<tr>
+<th><code>\Aura\Di\Exception\Service</code></th>
+<td></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response"><code>\Aura\Di\$this</code></div>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a name="%24defs" id="$defs"> </a><div class="element clickable property protected $defs" data-toggle="collapse" data-target=".$defs .collapse">
+<h2>Retains named service definitions.</h2>
+<pre>$defs : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24forge" id="$forge"> </a><div class="element clickable property protected $forge" data-toggle="collapse" data-target=".$forge .collapse">
+<h2>A Forge object to create classes through reflection.</h2>
+<pre>$forge : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24locked" id="$locked"> </a><div class="element clickable property protected $locked" data-toggle="collapse" data-target=".$locked .collapse">
+<h2>Is the Container locked?  (When locked, you cannot access configuration
+properties from outside the object, and cannot set services.)</h2>
+<pre>$locked : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>see</th>
+<td>\Aura\Di\__get()</td>
+</tr>
+<tr>
+<th>see</th>
+<td>\Aura\Di\set()</td>
+</tr>
+</table>
+</div></div>
+</div>
+<a name="%24params" id="$params"> </a><div class="element clickable property protected $params" data-toggle="collapse" data-target=".$params .collapse">
+<h2>A convenient reference to the Config::$params object, which itself
+is contained by the Forge object.</h2>
+<pre>$params : <a href="http://php.net/manual/en/class.arrayobject.php">\ArrayObject</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24services" id="$services"> </a><div class="element clickable property protected $services" data-toggle="collapse" data-target=".$services .collapse">
+<h2>Retains the actual service objects.</h2>
+<pre>$services : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24setter" id="$setter"> </a><div class="element clickable property protected $setter" data-toggle="collapse" data-target=".$setter .collapse">
+<h2>A convenient reference to the Config::$setter object, which itself
+is contained by the Forge object.</h2>
+<pre>$setter : <a href="http://php.net/manual/en/class.arrayobject.php">\ArrayObject</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a7</a> and<br>
+            generated on 2013-04-07T22:52:33-05:00.<br></footer></div>
+</div>
+</body>
+</html>

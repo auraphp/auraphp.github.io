@@ -1,0 +1,1733 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project version="2.0.0a7" title="">
+  <file path="AbstractInput.php" hash="ee6c58e39837a38e353ea737b872502c" package="Aura\Input">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Input"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Input" line="21" package="Aura\Input">
+      <extends/>
+      <name>AbstractInput</name>
+      <full_name>\Aura\Input\AbstractInput</full_name>
+      <docblock line="13">
+        <description><![CDATA[An abstract input class; serves as the base for Fields, Fieldsets, and
+Collections.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Input"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="30" namespace="Aura\Input" package="Default">
+        <name>$name</name>
+        <default><![CDATA[]]></default>
+        <docblock line="23">
+          <description><![CDATA[The name for the input.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="23" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="39" namespace="Aura\Input" package="Default">
+        <name>$name_prefix</name>
+        <default><![CDATA[]]></default>
+        <docblock line="32">
+          <description><![CDATA[The prefix for the name, typically composed of the parent input names.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="32" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="50" package="Aura\Input">
+        <name>setName</name>
+        <full_name>setName</full_name>
+        <docblock line="41">
+          <description><![CDATA[Sets the name for the input.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="41" name="param" description="The input name." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="41" name="return" description="" type="\Aura\Input\self">
+            <type by_reference="false">\Aura\Input\self</type>
+          </tag>
+        </docblock>
+        <argument line="50">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="66" package="Aura\Input">
+        <name>setNamePrefix</name>
+        <full_name>setNamePrefix</full_name>
+        <docblock line="56">
+          <description><![CDATA[Sets the name prefix for the input, typically composed of the parent
+input names.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="56" name="param" description="The name prefix." type="string" variable="$name_prefix">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="56" name="return" description="" type="\Aura\Input\self">
+            <type by_reference="false">\Aura\Input\self</type>
+          </tag>
+        </docblock>
+        <argument line="66">
+          <name>$name_prefix</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="79" package="Aura\Input">
+        <name>getFullName</name>
+        <full_name>getFullName</full_name>
+        <docblock line="72">
+          <description><![CDATA[Returns the full name for this input, incuding the prefix (if any).]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="72" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="95" package="Aura\Input">
+        <name>read</name>
+        <full_name>read</full_name>
+        <docblock line="88">
+          <description><![CDATA[Support for this input when addressed via Fieldset::__get().]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="88" name="return" description="" type="\Aura\Input\self">
+            <type by_reference="false">\Aura\Input\self</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="107" package="Aura\Input">
+        <name>get</name>
+        <full_name>get</full_name>
+        <docblock line="100">
+          <description><![CDATA[Returns this input for the presentation layer.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="100" name="return" description="" type="\Aura\Input\self">
+            <type by_reference="false">\Aura\Input\self</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="AntiCsrfInterface.php" hash="812072a699cdeef54ae152d3b4c2fdc3" package="Aura\Input">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Input"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <interface namespace="Aura\Input" line="20" package="Aura\Input">
+      <name>AntiCsrfInterface</name>
+      <full_name>\Aura\Input\AntiCsrfInterface</full_name>
+      <docblock line="13">
+        <description><![CDATA[Defines the interface for anti-CSRF protection logic.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Input"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="32" package="Aura\Input">
+        <name>setField</name>
+        <full_name>setField</full_name>
+        <docblock line="22">
+          <description><![CDATA[Sets the field value for the anti-CSRF value.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="param" description="The fieldset on which to set the anti-CSRF value." type="\Aura\Input\Fieldset" variable="$fieldset">
+            <type by_reference="false">\Aura\Input\Fieldset</type>
+          </tag>
+          <tag line="22" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="32">
+          <name>$fieldset</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Input\Fieldset</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="45" package="Aura\Input">
+        <name>isValid</name>
+        <full_name>isValid</full_name>
+        <docblock line="34">
+          <description><![CDATA[Checks the raw user input to see if the incoming anti-CSRF value is
+valid.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="34" name="param" description="The incoming user data, generally from $_POST." type="array" variable="$data">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="34" name="return" description="True if the incoming data has the correct anti-CSRF value, false if not." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+        <argument line="45">
+          <name>$data</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+    </interface>
+  </file>
+  <file path="Builder.php" hash="24c5eeaa9041ce51b86b7b2035d7e902" package="Aura\Input">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Input"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Input" line="20" package="Aura\Input">
+      <extends/>
+      <implements>\Aura\Input\BuilderInterface</implements>
+      <name>Builder</name>
+      <full_name>\Aura\Input\Builder</full_name>
+      <docblock line="13">
+        <description><![CDATA[A builder to create Field, Fieldset, and fieldset Collection objects.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Input"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="29" namespace="Aura\Input" package="Default">
+        <name>$collection_class</name>
+        <default><![CDATA['Aura\Input\Collection']]></default>
+        <docblock line="22">
+          <description><![CDATA[The class to use for creating fieldset collections.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="38" namespace="Aura\Input" package="Default">
+        <name>$field_class</name>
+        <default><![CDATA['Aura\Input\Field']]></default>
+        <docblock line="31">
+          <description><![CDATA[The class to use for creating fields.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="31" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="48" namespace="Aura\Input" package="Default">
+        <name>$fieldset_map</name>
+        <default><![CDATA[]]></default>
+        <docblock line="40">
+          <description><![CDATA[A map of fieldset types to *callables that create objects* (as
+vs class names).]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="40" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="58" package="Aura\Input">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="50">
+          <description><![CDATA[Constructor.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="50" name="param" description="A map of fieldset types to *callables that create objects* (as vs class names)." type="array" variable="$fieldset_map">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="58">
+          <name>$fieldset_map</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="74" package="Aura\Input">
+        <name>newField</name>
+        <full_name>newField</full_name>
+        <docblock line="63">
+          <description><![CDATA[Creates a new Field object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="63" name="param" description="The field name." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="63" name="param" description="The field type." type="string" variable="$type">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="63" name="return" description="" type="\Aura\Input\Field">
+            <type by_reference="false">\Aura\Input\Field</type>
+          </tag>
+        </docblock>
+        <argument line="74">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="74">
+          <name>$type</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="96" package="Aura\Input">
+        <name>newFieldset</name>
+        <full_name>newFieldset</full_name>
+        <docblock line="85">
+          <description><![CDATA[Creates a new Fieldset object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="85" name="param" description="The fieldset name." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="85" name="param" description="The fieldset type." type="string" variable="$type">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="85" name="return" description="" type="\Aura\Input\Fieldset">
+            <type by_reference="false">\Aura\Input\Fieldset</type>
+          </tag>
+        </docblock>
+        <argument line="96">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="96">
+          <name>$type</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="118" package="Aura\Input">
+        <name>newCollection</name>
+        <full_name>newCollection</full_name>
+        <docblock line="107">
+          <description><![CDATA[Creates a new Collection object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="107" name="param" description="The collection name." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="107" name="param" description="The collection type." type="string" variable="$type">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="107" name="return" description="" type="\Aura\Input\Collection">
+            <type by_reference="false">\Aura\Input\Collection</type>
+          </tag>
+        </docblock>
+        <argument line="118">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="118">
+          <name>$type</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="BuilderInterface.php" hash="625103ff0d3b02c41f871e34390c1b4f" package="Aura\Input">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Input"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <interface namespace="Aura\Input" line="21" package="Aura\Input">
+      <name>BuilderInterface</name>
+      <full_name>\Aura\Input\BuilderInterface</full_name>
+      <docblock line="13">
+        <description><![CDATA[The interface for a builder to create fields, fieldsets, and fieldset
+collections.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Input"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="34" package="Aura\Input">
+        <name>newField</name>
+        <full_name>newField</full_name>
+        <docblock line="23">
+          <description><![CDATA[Creates a new Field object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="23" name="param" description="The field name." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="23" name="param" description="The field type." type="string" variable="$type">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="23" name="return" description="" type="\Aura\Input\Field">
+            <type by_reference="false">\Aura\Input\Field</type>
+          </tag>
+        </docblock>
+        <argument line="34">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="34">
+          <name>$type</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="47" package="Aura\Input">
+        <name>newFieldset</name>
+        <full_name>newFieldset</full_name>
+        <docblock line="36">
+          <description><![CDATA[Creates a new Fieldset object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="36" name="param" description="The fieldset name." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="36" name="param" description="The fieldset type." type="string" variable="$type">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="36" name="return" description="" type="\Aura\Input\Fieldset">
+            <type by_reference="false">\Aura\Input\Fieldset</type>
+          </tag>
+        </docblock>
+        <argument line="47">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="47">
+          <name>$type</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="59" package="Aura\Input">
+        <name>newCollection</name>
+        <full_name>newCollection</full_name>
+        <docblock line="48">
+          <description><![CDATA[Creates a new Collection object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="48" name="param" description="The collection name." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="48" name="param" description="The collection type." type="string" variable="$type">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="48" name="return" description="" type="\Aura\Input\Collection">
+            <type by_reference="false">\Aura\Input\Collection</type>
+          </tag>
+        </docblock>
+        <argument line="59">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="59">
+          <name>$type</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </interface>
+  </file>
+  <file path="Collection.php" hash="7043f3ce2e56d1feeec229d6ffc72400" package="Aura\Input">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Input"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="ArrayAccess">ArrayAccess</namespace-alias>
+    <namespace-alias name="Countable">Countable</namespace-alias>
+    <namespace-alias name="IteratorAggregate">IteratorAggregate</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Input" line="24" package="Aura\Input">
+      <extends>\Aura\Input\AbstractInput</extends>
+      <implements>\ArrayAccess</implements>
+      <implements>\Countable</implements>
+      <implements>\IteratorAggregate</implements>
+      <name>Collection</name>
+      <full_name>\Aura\Input\Collection</full_name>
+      <docblock line="17">
+        <description><![CDATA[Represents a collection of fieldsets of a single type.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="17" name="package" description="Aura.Input"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="33" namespace="Aura\Input" package="Default">
+        <name>$factory</name>
+        <default><![CDATA[]]></default>
+        <docblock line="26">
+          <description><![CDATA[Factory to create a particular fieldset type.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="26" name="var" description="" type="\Aura\Input\callable">
+            <type by_reference="false">\Aura\Input\callable</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="42" namespace="Aura\Input" package="Default">
+        <name>$fieldsets</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="35">
+          <description><![CDATA[Fieldsets in the collection.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="35" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="52" package="Aura\Input">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="44">
+          <description><![CDATA[Constructor.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="44" name="param" description="A factory to create the fieldset objects for this collection." type="\Aura\Input\callable" variable="$factory">
+            <type by_reference="false">\Aura\Input\callable</type>
+          </tag>
+        </docblock>
+        <argument line="52">
+          <name>$factory</name>
+          <default><![CDATA[]]></default>
+          <type>callable</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="64" package="Aura\Input">
+        <name>fill</name>
+        <full_name>fill</full_name>
+        <docblock line="57">
+          <description><![CDATA[Support for this input when addressed via Fieldset::__set().]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="57" name="param" description="The data for each fieldset in the collection." type="array" variable="$data">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="64">
+          <name>$data</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="83" package="Aura\Input">
+        <name>filter</name>
+        <full_name>filter</full_name>
+        <docblock line="76">
+          <description><![CDATA[Applies each fieldset filter.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="76" name="return" description="True if all filters passed, false if one or more failed." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="104" package="Aura\Input">
+        <name>getMessages</name>
+        <full_name>getMessages</full_name>
+        <docblock line="94">
+          <description><![CDATA[Returns the messages for the fieldset filters.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="94" name="param" description="The fieldset key to return messages for; if null, returns messages from all fieldsets." type="mixed" variable="$key">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="94" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="104">
+          <name>$key</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="124" package="Aura\Input">
+        <name>getIterator</name>
+        <full_name>getIterator</full_name>
+        <docblock line="117">
+          <description><![CDATA[IteratorAggregate: returns an external iterator for this collection.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="117" name="return" description="" type="\Aura\Input\CollectionIterator">
+            <type by_reference="false">\Aura\Input\CollectionIterator</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="136" package="Aura\Input">
+        <name>getKeys</name>
+        <full_name>getKeys</full_name>
+        <docblock line="129">
+          <description><![CDATA[Gets all the keys for all Fieldsets in this collection.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="129" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Input" line="150" package="Aura\Input">
+        <name>newFieldset</name>
+        <full_name>newFieldset</full_name>
+        <docblock line="141">
+          <description><![CDATA[Creates and returns a new fieldset.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="141" name="param" description="The key for the new fieldset." type="string" variable="$key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="141" name="return" description="" type="\Aura\Input\Fieldset">
+            <type by_reference="false">\Aura\Input\Fieldset</type>
+          </tag>
+        </docblock>
+        <argument line="150">
+          <name>$key</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="167" package="Aura\Input">
+        <name>offsetGet</name>
+        <full_name>offsetGet</full_name>
+        <docblock line="158">
+          <description><![CDATA[ArrayAccess: returns the fieldset at a particular offset.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="158" name="param" description="The fieldset key." type="mixed" variable="$offset">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="158" name="return" description="" type="\Aura\Input\Fieldset">
+            <type by_reference="false">\Aura\Input\Fieldset</type>
+          </tag>
+        </docblock>
+        <argument line="167">
+          <name>$offset</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="185" package="Aura\Input">
+        <name>offsetSet</name>
+        <full_name>offsetSet</full_name>
+        <docblock line="174">
+          <description><![CDATA[ArrayAccess: sets an offset as a Fieldset.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="174" name="param" description="The Fieldset key." type="mixed" variable="$offset">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="174" name="param" description="The Fieldset for that key." type="\Aura\Input\Fieldset" variable="$fieldset">
+            <type by_reference="false">\Aura\Input\Fieldset</type>
+          </tag>
+          <tag line="174" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="185">
+          <name>$offset</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="185">
+          <name>$fieldset</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="199" package="Aura\Input">
+        <name>offsetExists</name>
+        <full_name>offsetExists</full_name>
+        <docblock line="190">
+          <description><![CDATA[ArrayAccess: is a particular Fieldset key set?]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="190" name="param" description="The Fieldset key." type="mixed" variable="$offset">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="190" name="return" description="True if the Fielset key is set, false if not." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+        <argument line="199">
+          <name>$offset</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="213" package="Aura\Input">
+        <name>offsetUnset</name>
+        <full_name>offsetUnset</full_name>
+        <docblock line="204">
+          <description><![CDATA[ArrayAccess: unsets a particular Fieldset key.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="204" name="param" description="The Fieldset key." type="mixed" variable="$offset">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="204" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="213">
+          <name>$offset</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="225" package="Aura\Input">
+        <name>count</name>
+        <full_name>count</full_name>
+        <docblock line="218">
+          <description><![CDATA[Countable: returns the number of Fieldsets in this collection.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="218" name="return" description="" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="CollectionIterator.php" hash="19dcd7ae27e7756f64f1ccc1a013b939" package="Aura\Input">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Input"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Input" line="20" package="Aura\Input">
+      <extends/>
+      <implements>\Iterator</implements>
+      <name>CollectionIterator</name>
+      <full_name>\Aura\Input\CollectionIterator</full_name>
+      <docblock line="13">
+        <description><![CDATA[An object to allow iteration over fieldsets.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Input"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="29" namespace="Aura\Input" package="Default">
+        <name>$fieldsets</name>
+        <default><![CDATA[]]></default>
+        <docblock line="22">
+          <description><![CDATA[The fieldsets over which we are iterating.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="38" namespace="Aura\Input" package="Default">
+        <name>$keys</name>
+        <default><![CDATA[]]></default>
+        <docblock line="31">
+          <description><![CDATA[The keys to iterate over in the fieldsets.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="31" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="47" namespace="Aura\Input" package="Default">
+        <name>$valid</name>
+        <default><![CDATA[]]></default>
+        <docblock line="40">
+          <description><![CDATA[Is the current iterator position valid?]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="40" name="var" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="56" package="Aura\Input">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="49">
+          <description><![CDATA[Constructor.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="49" name="param" description="The fieldsets over which to iterate." type="\Aura\Input\Collection" variable="$collection">
+            <type by_reference="false">\Aura\Input\Collection</type>
+          </tag>
+        </docblock>
+        <argument line="56">
+          <name>$collection</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Input\Collection</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="69" package="Aura\Input">
+        <name>current</name>
+        <full_name>current</full_name>
+        <docblock line="62">
+          <description><![CDATA[Returns the value at the current iterator position.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="62" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="81" package="Aura\Input">
+        <name>key</name>
+        <full_name>key</full_name>
+        <docblock line="74">
+          <description><![CDATA[Returns the current iterator position.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="74" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="93" package="Aura\Input">
+        <name>next</name>
+        <full_name>next</full_name>
+        <docblock line="86">
+          <description><![CDATA[Moves the iterator to the next position.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="86" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="105" package="Aura\Input">
+        <name>rewind</name>
+        <full_name>rewind</full_name>
+        <docblock line="98">
+          <description><![CDATA[Moves the iterator to the first position.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="98" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="117" package="Aura\Input">
+        <name>valid</name>
+        <full_name>valid</full_name>
+        <docblock line="110">
+          <description><![CDATA[Is the current iterator position valid?]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="110" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Exception/CsrfViolation.php" hash="19e2d040b4221c81ea7a2e8d0e0d66f8" package="Aura\Input">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Input"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="Exception">Aura\Input\Exception</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Input\Exception" line="22" package="Aura\Input">
+      <extends>\Aura\Input\Exception</extends>
+      <name>CsrfViolation</name>
+      <full_name>\Aura\Input\Exception\CsrfViolation</full_name>
+      <docblock line="15">
+        <description><![CDATA[The incoming anti-CSRF value is not valid.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Input"/>
+      </docblock>
+    </class>
+  </file>
+  <file path="Exception/NoSuchInput.php" hash="2af01c2ef84d38a3dc66172cf3b628cd" package="Aura\Input">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Input"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="Exception">Aura\Input\Exception</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Input\Exception" line="22" package="Aura\Input">
+      <extends>\Aura\Input\Exception</extends>
+      <name>NoSuchInput</name>
+      <full_name>\Aura\Input\Exception\NoSuchInput</full_name>
+      <docblock line="15">
+        <description><![CDATA[The requested input does not exist.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Input"/>
+      </docblock>
+    </class>
+  </file>
+  <file path="Exception.php" hash="c3cf306cb93c202811bcc2aee1dc7b7e" package="Aura\Input">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Input"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Input" line="20" package="Aura\Input">
+      <extends>\Exception</extends>
+      <name>Exception</name>
+      <full_name>\Aura\Input\Exception</full_name>
+      <docblock line="13">
+        <description><![CDATA[Generic package exception.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Input"/>
+      </docblock>
+    </class>
+  </file>
+  <file path="Field.php" hash="cacffec00136e7fd39621defe86ff2d4" package="Aura\Input">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Input"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Input" line="20" package="Aura\Input">
+      <extends>\Aura\Input\AbstractInput</extends>
+      <name>Field</name>
+      <full_name>\Aura\Input\Field</full_name>
+      <docblock line="13">
+        <description><![CDATA[A single field in a fieldset.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Input"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="29" namespace="Aura\Input" package="Default">
+        <name>$type</name>
+        <default><![CDATA[]]></default>
+        <docblock line="22">
+          <description><![CDATA[The field type.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="39" namespace="Aura\Input" package="Default">
+        <name>$attribs</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="31">
+          <description><![CDATA[HTML attributes for the field as key-value pairs.]]></description>
+          <long-description><![CDATA[<p>The key is the
+attribute name and the value is the attribute value.</p>]]></long-description>
+          <tag line="31" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="51" namespace="Aura\Input" package="Default">
+        <name>$options</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="41">
+          <description><![CDATA[Options for the field as key-value pairs (typically for select and
+radio elements).]]></description>
+          <long-description><![CDATA[<p>The key is the option value and the value is the
+option label.  Nested options may be honored as the key being an
+optgroup label and the array value as the options under that optgroup.</p>]]></long-description>
+          <tag line="41" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="61" namespace="Aura\Input" package="Default">
+        <name>$value</name>
+        <default><![CDATA[]]></default>
+        <docblock line="53">
+          <description><![CDATA[The value for the field.]]></description>
+          <long-description><![CDATA[<p>This may or may not be the same as the
+'value' attribue.</p>]]></long-description>
+          <tag line="53" name="var" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="70" package="Aura\Input">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="63">
+          <description><![CDATA[Constructor.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="63" name="param" description="The field type." type="string" variable="$type">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="70">
+          <name>$type</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="84" package="Aura\Input">
+        <name>fill</name>
+        <full_name>fill</full_name>
+        <docblock line="75">
+          <description><![CDATA[Fills this field with a value.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="75" name="param" description="The value for the field." type="mixed" variable="$value">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="75" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="84">
+          <name>$value</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="96" package="Aura\Input">
+        <name>read</name>
+        <full_name>read</full_name>
+        <docblock line="89">
+          <description><![CDATA[Reads the value from this field.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="89" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="109" package="Aura\Input">
+        <name>get</name>
+        <full_name>get</full_name>
+        <docblock line="101">
+          <description><![CDATA[Returns this field as a plain old PHP array for use in a view.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="101" name="return" description="An array with keys `'type'`, `'name'`, `'attribs'`, `'options'`, and `'value'`." type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="140" package="Aura\Input">
+        <name>setAttribs</name>
+        <full_name>setAttribs</full_name>
+        <docblock line="130">
+          <description><![CDATA[Sets the HTML attributes on this field.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="130" name="param" description="HTML attributes for the field as key-value pairs; the key is the attribute name and the value is the attribute value." type="array" variable="$attribs">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="130" name="return" description="" type="\Aura\Input\self">
+            <type by_reference="false">\Aura\Input\self</type>
+          </tag>
+        </docblock>
+        <argument line="140">
+          <name>$attribs</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="158" package="Aura\Input">
+        <name>setOptions</name>
+        <full_name>setOptions</full_name>
+        <docblock line="146">
+          <description><![CDATA[Sets the value options for this field, typically for select and radios.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="146" name="param" description="Options for the field as key-value pairs. The key is the option value and the value is the option label. Nested options may be honored as the key being an optgroup label and the array value as the options under that optgroup." type="array" variable="$options">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="146" name="return" description="" type="\Aura\Input\self">
+            <type by_reference="false">\Aura\Input\self</type>
+          </tag>
+        </docblock>
+        <argument line="158">
+          <name>$options</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="173" package="Aura\Input">
+        <name>setValue</name>
+        <full_name>setValue</full_name>
+        <docblock line="164">
+          <description><![CDATA[Sets the value on this field.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="164" name="param" description="The value for the field." type="mixed" variable="$value">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="164" name="return" description="" type="\Aura\Input\self">
+            <type by_reference="false">\Aura\Input\self</type>
+          </tag>
+        </docblock>
+        <argument line="173">
+          <name>$value</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Fieldset.php" hash="1dd2c27e436a106b12e4d42f1b989a72" package="Aura\Input">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Input"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Input" line="21" package="Aura\Input">
+      <extends>\Aura\Input\AbstractInput</extends>
+      <name>Fieldset</name>
+      <full_name>\Aura\Input\Fieldset</full_name>
+      <docblock line="13">
+        <description><![CDATA[A fieldset of inputs, where the inputs themselves may be values, other
+fieldsets, or other collections.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Input"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="30" namespace="Aura\Input" package="Default">
+        <name>$builder</name>
+        <default><![CDATA[]]></default>
+        <docblock line="23">
+          <description><![CDATA[A builder to create input objects.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="23" name="var" description="" type="\Aura\Input\Builder">
+            <type by_reference="false">\Aura\Input\Builder</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="39" namespace="Aura\Input" package="Default">
+        <name>$filter</name>
+        <default><![CDATA[]]></default>
+        <docblock line="32">
+          <description><![CDATA[A filter for the fieldset values.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="32" name="var" description="" type="\Aura\Input\FilterInterface">
+            <type by_reference="false">\Aura\Input\FilterInterface</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="48" namespace="Aura\Input" package="Default">
+        <name>$inputs</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="41">
+          <description><![CDATA[Inputs in the fieldset.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="41" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="58" namespace="Aura\Input" package="Default">
+        <name>$options</name>
+        <default><![CDATA[]]></default>
+        <docblock line="50">
+          <description><![CDATA[Object for retaining information about options available to the form
+inputs.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="50" name="var" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="72" package="Aura\Input">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="60">
+          <description><![CDATA[Constructor.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="60" name="param" description="An object to build input objects." type="\Aura\Input\BuilderInterface" variable="$builder">
+            <type by_reference="false">\Aura\Input\BuilderInterface</type>
+          </tag>
+          <tag line="60" name="param" description="A filter object for this fieldset." type="\Aura\Input\FilterInterface" variable="$filter">
+            <type by_reference="false">\Aura\Input\FilterInterface</type>
+          </tag>
+          <tag line="60" name="param" description="An arbitrary options object for use when setting up inputs and filters." type="object" variable="$options">
+            <type by_reference="false">object</type>
+          </tag>
+        </docblock>
+        <argument line="73">
+          <name>$builder</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Input\BuilderInterface</type>
+        </argument>
+        <argument line="74">
+          <name>$filter</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Input\FilterInterface</type>
+        </argument>
+        <argument line="75">
+          <name>$options</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="92" package="Aura\Input">
+        <name>__get</name>
+        <full_name>__get</full_name>
+        <docblock line="83">
+          <description><![CDATA[Gets an input value from this fieldset.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="83" name="param" description="The input name." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="83" name="return" description="The input value." type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="92">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="108" package="Aura\Input">
+        <name>__set</name>
+        <full_name>__set</full_name>
+        <docblock line="97">
+          <description><![CDATA[Sets an input value on this fieldset.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="97" name="param" description="The input name." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="97" name="param" description="The input value." type="mixed" variable="$value">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="97" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="108">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="108">
+          <name>$value</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="122" package="Aura\Input">
+        <name>__isset</name>
+        <full_name>__isset</full_name>
+        <docblock line="113">
+          <description><![CDATA[Checks if a value is set on an input in this fieldset.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="113" name="param" description="The input name." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="113" name="return" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+        <argument line="122">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="140" package="Aura\Input">
+        <name>__unset</name>
+        <full_name>__unset</full_name>
+        <docblock line="131">
+          <description><![CDATA[Sets the value of an input in this fieldset to null.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="131" name="param" description="The input name." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="131" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="140">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="154" package="Aura\Input">
+        <name>getFilter</name>
+        <full_name>getFilter</full_name>
+        <docblock line="147">
+          <description><![CDATA[Returns the filter object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="147" name="return" description="" type="\Aura\Input\FilterInterface">
+            <type by_reference="false">\Aura\Input\FilterInterface</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="168" package="Aura\Input">
+        <name>getInput</name>
+        <full_name>getInput</full_name>
+        <docblock line="159">
+          <description><![CDATA[Returns an individual input object by name.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="159" name="param" description="The name of the input object." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="159" name="return" description="" type="\Aura\Input\AbstractInput">
+            <type by_reference="false">\Aura\Input\AbstractInput</type>
+          </tag>
+        </docblock>
+        <argument line="168">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="186" package="Aura\Input">
+        <name>getInputNames</name>
+        <full_name>getInputNames</full_name>
+        <docblock line="179">
+          <description><![CDATA[Returns the names of all input objects in this fieldset.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="179" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="198" package="Aura\Input">
+        <name>getBuilder</name>
+        <full_name>getBuilder</full_name>
+        <docblock line="191">
+          <description><![CDATA[Returns the input builder.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="191" name="return" description="" type="\Aura\Input\BuilderInterface">
+            <type by_reference="false">\Aura\Input\BuilderInterface</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="210" package="Aura\Input">
+        <name>getOptions</name>
+        <full_name>getOptions</full_name>
+        <docblock line="203">
+          <description><![CDATA[Returns the options object]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="203" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="224" package="Aura\Input">
+        <name>fill</name>
+        <full_name>fill</full_name>
+        <docblock line="215">
+          <description><![CDATA[Fills this fieldset with input values.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="215" name="param" description="The values for this fieldset." type="array" variable="$data">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="215" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="224">
+          <name>$data</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="240" package="Aura\Input">
+        <name>init</name>
+        <full_name>init</full_name>
+        <docblock line="233">
+          <description><![CDATA[Initializes the inputs and filter.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="233" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="255" package="Aura\Input">
+        <name>setField</name>
+        <full_name>setField</full_name>
+        <docblock line="244">
+          <description><![CDATA[Sets a new Field input.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="244" name="param" description="The Field name." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="244" name="param" description="A Field of this type; defaults to 'text'." type="string" variable="$type">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="244" name="return" description="" type="\Aura\Input\Field">
+            <type by_reference="false">\Aura\Input\Field</type>
+          </tag>
+        </docblock>
+        <argument line="255">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="255">
+          <name>$type</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="272" package="Aura\Input">
+        <name>setFieldset</name>
+        <full_name>setFieldset</full_name>
+        <docblock line="261">
+          <description><![CDATA[Sets a new Fieldset input.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="261" name="param" description="The Fieldset name." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="261" name="param" description="A Fieldset of this type; defaults to $name." type="string" variable="$type">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="261" name="return" description="" type="\Aura\Input\Fieldset">
+            <type by_reference="false">\Aura\Input\Fieldset</type>
+          </tag>
+        </docblock>
+        <argument line="272">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="272">
+          <name>$type</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="290" package="Aura\Input">
+        <name>setCollection</name>
+        <full_name>setCollection</full_name>
+        <docblock line="278">
+          <description><![CDATA[Sets a new Collection input.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="278" name="param" description="The Collection name." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="278" name="param" description="A Collection of this type of Fieldset; defaults to $name." type="string" variable="$type">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="278" name="return" description="" type="\Aura\Input\Collection">
+            <type by_reference="false">\Aura\Input\Collection</type>
+          </tag>
+        </docblock>
+        <argument line="290">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="290">
+          <name>$type</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="305" package="Aura\Input">
+        <name>get</name>
+        <full_name>get</full_name>
+        <docblock line="296">
+          <description><![CDATA[Returns an input in a format suitable for a view.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="296" name="param" description="The input name." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="296" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="305">
+          <name>$name</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="327" package="Aura\Input">
+        <name>filter</name>
+        <full_name>filter</full_name>
+        <docblock line="320">
+          <description><![CDATA[Filters the inputs on this fieldset.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="320" name="return" description="True if all the filter rules pass, false if not." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="342" package="Aura\Input">
+        <name>getMessages</name>
+        <full_name>getMessages</full_name>
+        <docblock line="332">
+          <description><![CDATA[Gets the filter messages.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="332" name="param" description="The input name to get the filter message for; if empty, gets all messages for all inputs." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="332" name="return" description="The filter messages." type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="342">
+          <name>$name</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Filter.php" hash="9d468695ed9a7dcf95b9103d1b7ac3c1" package="Aura\Input">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Input"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Input" line="20" package="Aura\Input">
+      <extends/>
+      <implements>\Aura\Input\FilterInterface</implements>
+      <name>Filter</name>
+      <full_name>\Aura\Input\Filter</full_name>
+      <docblock line="13">
+        <description><![CDATA[A filter]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Input"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="29" namespace="Aura\Input" package="Default">
+        <name>$rules</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="22">
+          <description><![CDATA[The array of rules to be applied to fields.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="38" namespace="Aura\Input" package="Default">
+        <name>$messages</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="31">
+          <description><![CDATA[The array of messages to be used when rules fail.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="31" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="53" package="Aura\Input">
+        <name>setRule</name>
+        <full_name>setRule</full_name>
+        <docblock line="40">
+          <description><![CDATA[Set Rule on a field]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="40" name="param" description="The field value" type="string" variable="$field">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="40" name="param" description="The message when the rule fails" type="string" variable="$message">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="40" name="param" description="A closure with two params; the first is the value of the field being tested, and the second is the set of all values (typically the Fieldset object itself)." type="\Closure" variable="$closure">
+            <type by_reference="false">\Closure</type>
+          </tag>
+        </docblock>
+        <argument line="53">
+          <name>$field</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="53">
+          <name>$message</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="53">
+          <name>$closure</name>
+          <default><![CDATA[]]></default>
+          <type>Closure</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="67" package="Aura\Input">
+        <name>values</name>
+        <full_name>values</full_name>
+        <docblock line="58">
+          <description><![CDATA[Apply filters to the input object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="58" name="param" description="The value" type="mixed" variable="$values">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="58" name="return" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+        <argument line="67">
+          <name>$values</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="101" package="Aura\Input">
+        <name>getMessages</name>
+        <full_name>getMessages</full_name>
+        <docblock line="92">
+          <description><![CDATA[Get messages]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="92" name="param" description="All error messages or only for a single field" type="string" variable="$field">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="92" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="101">
+          <name>$field</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="FilterInterface.php" hash="39d51068f90360ad8f5f994629f7252a" package="Aura\Input">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Input"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <interface namespace="Aura\Input" line="20" package="Aura\Input">
+      <name>FilterInterface</name>
+      <full_name>\Aura\Input\FilterInterface</full_name>
+      <docblock line="13">
+        <description><![CDATA[A filter interface]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Input"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="33" package="Aura\Input">
+        <name>setRule</name>
+        <full_name>setRule</full_name>
+        <docblock line="22">
+          <description><![CDATA[Set Rule on a field]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="param" description="The field value" type="string" variable="$field">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="22" name="param" description="The message when the rule fails" type="string" variable="$message">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="22" name="param" description="A closure" type="\Closure" variable="$closure">
+            <type by_reference="false">\Closure</type>
+          </tag>
+        </docblock>
+        <argument line="33">
+          <name>$field</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="33">
+          <name>$message</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="33">
+          <name>$closure</name>
+          <default><![CDATA[]]></default>
+          <type>Closure</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="44" package="Aura\Input">
+        <name>values</name>
+        <full_name>values</full_name>
+        <docblock line="35">
+          <description><![CDATA[Filter and Validate the data]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="35" name="param" description="The value" type="mixed" variable="$values">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="35" name="return" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+        <argument line="44">
+          <name>$values</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="55" package="Aura\Input">
+        <name>getMessages</name>
+        <full_name>getMessages</full_name>
+        <docblock line="46">
+          <description><![CDATA[Get messages]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="46" name="param" description="All error messages or only for a single field" type="string" variable="$field">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="46" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="55">
+          <name>$field</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+    </interface>
+  </file>
+  <file path="Form.php" hash="dce67a250edc2e238ab344f9fb3bad6d" package="Aura\Input">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Input"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Input" line="21" package="Aura\Input">
+      <extends>\Aura\Input\Fieldset</extends>
+      <name>Form</name>
+      <full_name>\Aura\Input\Form</full_name>
+      <docblock line="13">
+        <description><![CDATA[A top-level form object to contain fields, fieldsets, collections, and
+anti-CSRF protection.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Input"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="30" namespace="Aura\Input" package="Default">
+        <name>$anti_csrf</name>
+        <default><![CDATA[]]></default>
+        <docblock line="23">
+          <description><![CDATA[The anti-CSRF implementation, if any.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="23" name="var" description="" type="\Aura\Input\AntiCsrfInterface">
+            <type by_reference="false">\Aura\Input\AntiCsrfInterface</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="42" package="Aura\Input">
+        <name>setAntiCsrf</name>
+        <full_name>setAntiCsrf</full_name>
+        <docblock line="32">
+          <description><![CDATA[Sets the anti-CSRF implementation; calls the `setField()` method on the
+implementation to set the anti-CSRF field.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="32" name="param" description="The anti-CSRF implementation." type="\Aura\Input\AntiCsrfInterface" variable="$anti_csrf">
+            <type by_reference="false">\Aura\Input\AntiCsrfInterface</type>
+          </tag>
+          <tag line="32" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="42">
+          <name>$anti_csrf</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Input\AntiCsrfInterface</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="55" package="Aura\Input">
+        <name>getAntiCsrf</name>
+        <full_name>getAntiCsrf</full_name>
+        <docblock line="48">
+          <description><![CDATA[Returns the anti-CSRF implementation, if any.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="48" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="75" package="Aura\Input">
+        <name>fill</name>
+        <full_name>fill</full_name>
+        <docblock line="60">
+          <description><![CDATA[Fills this form with input values.]]></description>
+          <long-description><![CDATA[<p>If an anti-CSRF implementation is set and the incoming data does not
+have a valid anti-CSRF value, it will throw an exception.</p>]]></long-description>
+          <tag line="60" name="param" description="The values for this fieldset." type="array" variable="$data">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="60" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+          <tag line="60" name="throws" description="if an anti-CSRF implementation is set and the incoming data does not have a valid anti-CSRF value." type="\Aura\Input\Exception\CsrfViolation">
+            <type by_reference="false">\Aura\Input\Exception\CsrfViolation</type>
+          </tag>
+        </docblock>
+        <argument line="75">
+          <name>$data</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Input" line="90" package="Aura\Input">
+        <name>getIterator</name>
+        <full_name>getIterator</full_name>
+        <docblock line="83">
+          <description><![CDATA[Returns all the fields collection]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="83" name="return" description="" type="\ArrayIterator">
+            <type by_reference="false">\ArrayIterator</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <package name="Aura" full_name="Aura">
+    <package name="Input" full_name="Aura\Input"/>
+  </package>
+  <package name="Default" full_name="Default"/>
+  <namespace name="Aura" full_name="Aura">
+    <namespace name="Input" full_name="Aura\Input">
+      <namespace name="Exception" full_name="Aura\Input\Exception"/>
+    </namespace>
+  </namespace>
+  <marker count="0">todo</marker>
+  <marker count="0">fixme</marker>
+  <deprecated count="0"/>
+</project>

@@ -1,0 +1,2345 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project version="2.0.0a7" title="">
+  <file path="Autoload/Loader.php" hash="260c6b275ce51cebbd02ebe858a3bd7f" package="Aura\Framework">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Framework"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="Autoloader">Aura\Autoload\Loader</namespace-alias>
+    <namespace-alias name="System">Aura\Framework\System</namespace-alias>
+    <include line="39" type="Require" package="Default">
+      <name/>
+    </include>
+    <class final="false" abstract="false" namespace="Aura\Framework\Autoload" line="23" package="Aura\Framework">
+      <extends>\Aura\Autoload\Loader</extends>
+      <name>Loader</name>
+      <full_name>\Aura\Framework\Autoload\Loader</full_name>
+      <docblock line="16">
+        <description><![CDATA[A framework-aware autoloader.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="16" name="package" description="Aura.Framework"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework\Autoload" line="34" package="Aura\Framework">
+        <name>prep</name>
+        <full_name>prep</full_name>
+        <docblock line="25">
+          <description><![CDATA[Preps the autoloader with system information.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="25" name="param" description="A system object." type="\Aura\Framework\System" variable="$system">
+            <type by_reference="false">\Aura\Framework\System</type>
+          </tag>
+          <tag line="25" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="34">
+          <name>$system</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Framework\System</type>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Bootstrap/Cli.php" hash="7c9fa9352877a1fdd369bfd13e29160f" package="Aura\Framework">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Framework"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="Context">Aura\Cli\Context</namespace-alias>
+    <namespace-alias name="CliFactory">Aura\Framework\Cli\Factory</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Framework\Bootstrap" line="23" package="Aura\Framework">
+      <extends/>
+      <name>Cli</name>
+      <full_name>\Aura\Framework\Bootstrap\Cli</full_name>
+      <docblock line="16">
+        <description><![CDATA[A bootstrapper for CLI apps.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="16" name="package" description="Aura.Framework"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="32" namespace="Aura\Framework\Bootstrap" package="Default">
+        <name>$context</name>
+        <default><![CDATA[]]></default>
+        <docblock line="25">
+          <description><![CDATA[A CLI context object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="25" name="var" description="" type="\Aura\Cli\Context">
+            <type by_reference="false">\Aura\Cli\Context</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="41" namespace="Aura\Framework\Bootstrap" package="Default">
+        <name>$factory</name>
+        <default><![CDATA[]]></default>
+        <docblock line="34">
+          <description><![CDATA[A CLI command factory.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="34" name="var" description="" type="\Aura\Framework\Cli\Factory">
+            <type by_reference="false">\Aura\Framework\Cli\Factory</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework\Bootstrap" line="52" package="Aura\Framework">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="43">
+          <description><![CDATA[Constructor.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="43" name="param" description="The CLI context." type="\Aura\Cli\Context" variable="$context">
+            <type by_reference="false">\Aura\Cli\Context</type>
+          </tag>
+          <tag line="43" name="param" description="A factory for CLI commands." type="\Aura\Framework\Cli\Factory" variable="$factory">
+            <type by_reference="false">\Aura\Framework\Cli\Factory</type>
+          </tag>
+        </docblock>
+        <argument line="53">
+          <name>$context</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Cli\Context</type>
+        </argument>
+        <argument line="54">
+          <name>$factory</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Framework\Cli\Factory</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework\Bootstrap" line="70" package="Aura\Framework">
+        <name>exec</name>
+        <full_name>exec</full_name>
+        <docblock line="60">
+          <description><![CDATA[Creates and executes a CLI command and returns the exit code;
+echoes exceptions along the way.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="60" name="param" description="The command file that maps to a class name." type="string" variable="$file">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="60" name="return" description="The return code from the command." type="int">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+        <argument line="70">
+          <name>$file</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Framework\Bootstrap" line="101" package="Aura\Framework">
+        <name>echoException</name>
+        <full_name>echoException</full_name>
+        <docblock line="92">
+          <description><![CDATA[Echoes an exception and all its previous exceptions.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="92" name="param" description="The exception to echo." type="\Aura\Framework\Bootstrap\Exception" variable="$e">
+            <type by_reference="false">\Aura\Framework\Bootstrap\Exception</type>
+          </tag>
+          <tag line="92" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="101">
+          <name>$e</name>
+          <default><![CDATA[null]]></default>
+          <type>Aura\Framework\Bootstrap\Exception</type>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Bootstrap/Factory.php" hash="c21f018d379b4c97c87a2f1263692523" package="Aura\Framework">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Framework"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="Loader">Aura\Framework\Autoload\Loader</namespace-alias>
+    <namespace-alias name="System">Aura\Framework\System</namespace-alias>
+    <namespace-alias name="Exception">Exception</namespace-alias>
+    <include line="106" type="Require Once" package="Default">
+      <name/>
+    </include>
+    <include line="113" type="Require Once" package="Default">
+      <name/>
+    </include>
+    <include line="114" type="Require Once" package="Default">
+      <name/>
+    </include>
+    <include line="117" type="Require Once" package="Default">
+      <name/>
+    </include>
+    <include line="140" type="Require" package="Default">
+      <name/>
+    </include>
+    <class final="false" abstract="false" namespace="Aura\Framework\Bootstrap" line="24" package="Aura\Framework">
+      <extends/>
+      <name>Factory</name>
+      <full_name>\Aura\Framework\Bootstrap\Factory</full_name>
+      <docblock line="17">
+        <description><![CDATA[A bootstrapper factory.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="17" name="package" description="Aura.Framework"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="33" namespace="Aura\Framework\Bootstrap" package="Default">
+        <name>$root</name>
+        <default><![CDATA[]]></default>
+        <docblock line="26">
+          <description><![CDATA[The path to the system root.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="26" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="42" namespace="Aura\Framework\Bootstrap" package="Default">
+        <name>$map</name>
+        <default><![CDATA[array('cli' => 'Aura\Framework\Bootstrap\Cli', 'web' => 'Aura\Framework\Bootstrap\Web')]]></default>
+        <docblock line="35">
+          <description><![CDATA[An array of app types to bootstrap classes.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="35" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework\Bootstrap" line="56" package="Aura\Framework">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="47">
+          <description><![CDATA[Constructor.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="47" name="param" description="The path to the system root." type="string" variable="$root">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="47" name="param" description="An override map of app types to bootstrap classes." type="array" variable="$map">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="56">
+          <name>$root</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+        <argument line="56">
+          <name>$map</name>
+          <default><![CDATA[null]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework\Bootstrap" line="81" package="Aura\Framework">
+        <name>newInstance</name>
+        <full_name>newInstance</full_name>
+        <docblock line="70">
+          <description><![CDATA[Returns a new bootstrap instance.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="70" name="param" description="The app type." type="string" variable="$type">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="70" name="param" description="The config mode to use." type="string" variable="$mode">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="70" name="return" description="A bootstrapper." type="object">
+            <type by_reference="false">object</type>
+          </tag>
+        </docblock>
+        <argument line="81">
+          <name>$type</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="81">
+          <name>$mode</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework\Bootstrap" line="98" package="Aura\Framework">
+        <name>prep</name>
+        <full_name>prep</full_name>
+        <docblock line="88">
+          <description><![CDATA[Preps the framework for bootstrapping: creates foundation objects,
+loads configurations, etc.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="88" name="param" description="The config mode." type="string" variable="$mode">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="88" name="return" description="A dependency injection container." type="\Aura\Di\Container">
+            <type by_reference="false">\Aura\Di\Container</type>
+          </tag>
+        </docblock>
+        <argument line="98">
+          <name>$mode</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework\Bootstrap" line="175" package="Aura\Framework">
+        <name>readCacheConfig</name>
+        <full_name>readCacheConfig</full_name>
+        <docblock line="162">
+          <description><![CDATA[Reads the cached config file, if any.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="162" name="param" description="A system object." type="\Aura\Framework\System" variable="$system">
+            <type by_reference="false">\Aura\Framework\System</type>
+          </tag>
+          <tag line="162" name="param" description="A callable to read configs in a limited scope." type="\Aura\Framework\Bootstrap\callable" variable="$read">
+            <type by_reference="false">\Aura\Framework\Bootstrap\callable</type>
+          </tag>
+          <tag line="162" name="param" description="The config mode." type="string" variable="$mode">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="162" name="return" description="True if there was a cached config file, false if not." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+        <argument line="175">
+          <name>$system</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Framework\System</type>
+        </argument>
+        <argument line="175">
+          <name>$read</name>
+          <default><![CDATA[]]></default>
+          <type>callable</type>
+        </argument>
+        <argument line="175">
+          <name>$mode</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework\Bootstrap" line="197" package="Aura\Framework">
+        <name>readSystemConfig</name>
+        <full_name>readSystemConfig</full_name>
+        <docblock line="184">
+          <description><![CDATA[Reads the system config file.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="184" name="param" description="A system object." type="\Aura\Framework\System" variable="$system">
+            <type by_reference="false">\Aura\Framework\System</type>
+          </tag>
+          <tag line="184" name="param" description="A callable to read configs in a limited scope." type="\Aura\Framework\Bootstrap\callable" variable="$read">
+            <type by_reference="false">\Aura\Framework\Bootstrap\callable</type>
+          </tag>
+          <tag line="184" name="param" description="The config mode." type="string" variable="$mode">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="184" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="197">
+          <name>$system</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Framework\System</type>
+        </argument>
+        <argument line="197">
+          <name>$read</name>
+          <default><![CDATA[]]></default>
+          <type>callable</type>
+        </argument>
+        <argument line="197">
+          <name>$mode</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework\Bootstrap" line="218" package="Aura\Framework">
+        <name>readPackageConfig</name>
+        <full_name>readPackageConfig</full_name>
+        <docblock line="205">
+          <description><![CDATA[Reads each package config file for the mode.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="205" name="param" description="A system object." type="\Aura\Framework\System" variable="$system">
+            <type by_reference="false">\Aura\Framework\System</type>
+          </tag>
+          <tag line="205" name="param" description="A callable to read configs in a limited scope." type="\Aura\Framework\Bootstrap\callable" variable="$read">
+            <type by_reference="false">\Aura\Framework\Bootstrap\callable</type>
+          </tag>
+          <tag line="205" name="param" description="The config mode." type="string" variable="$mode">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="205" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="218">
+          <name>$system</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Framework\System</type>
+        </argument>
+        <argument line="218">
+          <name>$read</name>
+          <default><![CDATA[]]></default>
+          <type>callable</type>
+        </argument>
+        <argument line="218">
+          <name>$mode</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Bootstrap/Web.php" hash="cab49b7ec7938466fcf2453ae64c026c" package="Aura\Framework">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Framework"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="FrontController">Aura\Framework\Web\Controller\Front</namespace-alias>
+    <namespace-alias name="HttpTransport">Aura\Http\Transport</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Framework\Bootstrap" line="23" package="Aura\Framework">
+      <extends/>
+      <name>Web</name>
+      <full_name>\Aura\Framework\Bootstrap\Web</full_name>
+      <docblock line="16">
+        <description><![CDATA[A bootstrapper for web apps.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="16" name="package" description="Aura.Framework"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="32" namespace="Aura\Framework\Bootstrap" package="Default">
+        <name>$front_controller</name>
+        <default><![CDATA[]]></default>
+        <docblock line="25">
+          <description><![CDATA[The front controller.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="25" name="var" description="" type="\Aura\Framework\Web\Controller\Front">
+            <type by_reference="false">\Aura\Framework\Web\Controller\Front</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="41" namespace="Aura\Framework\Bootstrap" package="Default">
+        <name>$http_transport</name>
+        <default><![CDATA[]]></default>
+        <docblock line="34">
+          <description><![CDATA[An HTTP transport.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="34" name="var" description="" type="\Aura\Http\Transport">
+            <type by_reference="false">\Aura\Http\Transport</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework\Bootstrap" line="52" package="Aura\Framework">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="43">
+          <description><![CDATA[Constructor.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="43" name="param" description="The front controller." type="\Aura\Framework\Web\Controller\Front" variable="$front_controller">
+            <type by_reference="false">\Aura\Framework\Web\Controller\Front</type>
+          </tag>
+          <tag line="43" name="param" description="An HTTP transport." type="\Aura\Http\Transport" variable="$http_transport">
+            <type by_reference="false">\Aura\Http\Transport</type>
+          </tag>
+        </docblock>
+        <argument line="53">
+          <name>$front_controller</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Framework\Web\Controller\Front</type>
+        </argument>
+        <argument line="54">
+          <name>$http_transport</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Http\Transport</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework\Bootstrap" line="68" package="Aura\Framework">
+        <name>exec</name>
+        <full_name>exec</full_name>
+        <docblock line="60">
+          <description><![CDATA[Executes the front controller, gets back an HTTP response, and
+sends it via the HTTP transport; catches and echoes exceptions.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="60" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Framework\Bootstrap" line="88" package="Aura\Framework">
+        <name>echoException</name>
+        <full_name>echoException</full_name>
+        <docblock line="79">
+          <description><![CDATA[Echoes an exception and all its previous exceptions.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="79" name="param" description="The exception to echo." type="\Aura\Framework\Bootstrap\Exception" variable="$e">
+            <type by_reference="false">\Aura\Framework\Bootstrap\Exception</type>
+          </tag>
+          <tag line="79" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="88">
+          <name>$e</name>
+          <default><![CDATA[null]]></default>
+          <type>Aura\Framework\Bootstrap\Exception</type>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Cli/AbstractCommand.php" hash="9640e2fe8e3c558f8e434d3c345d075a" package="Aura\Framework">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Framework"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="AbstractCliCommand">Aura\Cli\AbstractCommand</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Framework\Cli" line="22" package="Aura\Framework">
+      <extends>\Aura\Cli\AbstractCommand</extends>
+      <name>AbstractCommand</name>
+      <full_name>\Aura\Framework\Cli\AbstractCommand</full_name>
+      <docblock line="15">
+        <description><![CDATA[Abstract class for framework commands.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Framework"/>
+      </docblock>
+    </class>
+  </file>
+  <file path="Cli/CacheClassmap/Command.php" hash="4b5f6236f29fa46471a7d428f916b43a" package="Aura\Framework">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Framework"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="AbstractCommand">Aura\Framework\Cli\AbstractCommand</namespace-alias>
+    <namespace-alias name="System">Aura\Framework\System</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Framework\Cli\CacheClassmap" line="23" package="Aura\Framework">
+      <extends>\Aura\Framework\Cli\AbstractCommand</extends>
+      <name>Command</name>
+      <full_name>\Aura\Framework\Cli\CacheClassmap\Command</full_name>
+      <docblock line="16">
+        <description><![CDATA[Caches the map of package source class files to `tmp/cache/classmap.php`.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="16" name="package" description="Aura.Framework"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="32" namespace="Aura\Framework\Cli\CacheClassmap" package="Default">
+        <name>$system</name>
+        <default><![CDATA[]]></default>
+        <docblock line="25">
+          <description><![CDATA[The System object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="25" name="var" description="" type="\Aura\Framework\System">
+            <type by_reference="false">\Aura\Framework\System</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework\Cli\CacheClassmap" line="41" package="Aura\Framework">
+        <name>setSystem</name>
+        <full_name>setSystem</full_name>
+        <docblock line="34">
+          <description><![CDATA[Sets the system object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="34" name="param" description="The system object." type="\Aura\Framework\System" variable="$system">
+            <type by_reference="false">\Aura\Framework\System</type>
+          </tag>
+        </docblock>
+        <argument line="41">
+          <name>$system</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Framework\System</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework\Cli\CacheClassmap" line="54" package="Aura\Framework">
+        <name>action</name>
+        <full_name>action</full_name>
+        <docblock line="46">
+          <description><![CDATA[Caches the map of package source class files to
+`tmp/cache/classmap.php`.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="46" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Cli/CacheConfig/Command.php" hash="22ed3a5898aacbfe50ebdc200c6064b6" package="Aura\Framework">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Framework"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="AbstractCommand">Aura\Framework\Cli\AbstractCommand</namespace-alias>
+    <namespace-alias name="System">Aura\Framework\System</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Framework\Cli\CacheConfig" line="24" package="Aura\Framework">
+      <extends>\Aura\Framework\Cli\AbstractCommand</extends>
+      <name>Command</name>
+      <full_name>\Aura\Framework\Cli\CacheConfig\Command</full_name>
+      <docblock line="16">
+        <description><![CDATA[Caches all mode-specific package config files to
+`tmp/cache/config/{$mode}.php`.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="16" name="package" description="Aura.Framework"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="33" namespace="Aura\Framework\Cli\CacheConfig" package="Default">
+        <name>$system</name>
+        <default><![CDATA[]]></default>
+        <docblock line="26">
+          <description><![CDATA[The System object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="26" name="var" description="" type="\Aura\Framework\System">
+            <type by_reference="false">\Aura\Framework\System</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework\Cli\CacheConfig" line="42" package="Aura\Framework">
+        <name>setSystem</name>
+        <full_name>setSystem</full_name>
+        <docblock line="35">
+          <description><![CDATA[Sets the system object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="35" name="param" description="The system object." type="\Aura\Framework\System" variable="$system">
+            <type by_reference="false">\Aura\Framework\System</type>
+          </tag>
+        </docblock>
+        <argument line="42">
+          <name>$system</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Framework\System</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework\Cli\CacheConfig" line="55" package="Aura\Framework">
+        <name>action</name>
+        <full_name>action</full_name>
+        <docblock line="47">
+          <description><![CDATA[Caches the mode-specific package config files to
+`tmp/cache/config/{$mode}.php`.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="47" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Framework\Cli\CacheConfig" line="102" package="Aura\Framework">
+        <name>read</name>
+        <full_name>read</full_name>
+        <docblock line="89">
+          <description><![CDATA[Reads a config file from a package directory; replaces __DIR__ and
+__FILE__ constants with string values so that the original values
+are honored regardless of where the cached configs are placed.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="89" name="param" description="The package directory." type="string" variable="$package_dir">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="89" name="param" description="The config mode to read." type="string" variable="$mode">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="89" name="return" description="The config file, with __DIR__ and" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="102">
+          <name>$package_dir</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="102">
+          <name>$mode</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Cli/Factory.php" hash="c723e6cb43389c5609dafac73607acfb" package="Aura\Framework">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Framework"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="ForgeInterface">Aura\Di\ForgeInterface</namespace-alias>
+    <namespace-alias name="NoClassForController">Aura\Framework\Exception\NoClassForController</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Framework\Cli" line="23" package="Aura\Framework">
+      <extends/>
+      <name>Factory</name>
+      <full_name>\Aura\Framework\Cli\Factory</full_name>
+      <docblock line="16">
+        <description><![CDATA[A factory to create command objects.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="16" name="package" description="Aura.Framework"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="32" namespace="Aura\Framework\Cli" package="Default">
+        <name>$forge</name>
+        <default><![CDATA[]]></default>
+        <docblock line="25">
+          <description><![CDATA[An object-creation Forge.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="25" name="var" description="" type="\Aura\Di\ForgeInterface">
+            <type by_reference="false">\Aura\Di\ForgeInterface</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="41" namespace="Aura\Framework\Cli" package="Default">
+        <name>$map</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="34">
+          <description><![CDATA[A map of command names to command classes.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="34" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework\Cli" line="52" package="Aura\Framework">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="43">
+          <description><![CDATA[Constructor.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="43" name="param" description="An object-creation Forge." type="\Aura\Di\ForgeInterface" variable="$forge">
+            <type by_reference="false">\Aura\Di\ForgeInterface</type>
+          </tag>
+          <tag line="43" name="param" description="A map of controller names to controller classes." type="array" variable="$map">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="53">
+          <name>$forge</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Di\ForgeInterface</type>
+        </argument>
+        <argument line="54">
+          <name>$map</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework\Cli" line="69" package="Aura\Framework">
+        <name>newInstance</name>
+        <full_name>newInstance</full_name>
+        <docblock line="60">
+          <description><![CDATA[Creates and returns a command class based on a controller name.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="60" name="param" description="The command file that maps to a controller name" type="string" variable="$file">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="60" name="return" description="A CLI command instance." type="\Aura\Framework\Cli\AbstractCommand">
+            <type by_reference="false">\Aura\Framework\Cli\AbstractCommand</type>
+          </tag>
+        </docblock>
+        <argument line="69">
+          <name>$file</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Cli/Server/Command.php" hash="d765f5634ec5d7ba2b6f299ae197573a" package="Aura\Framework">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Framework"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="AbstractCommand">Aura\Framework\Cli\AbstractCommand</namespace-alias>
+    <namespace-alias name="Option">Aura\Cli\Option</namespace-alias>
+    <namespace-alias name="System">Aura\Framework\System</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Framework\Cli\Server" line="24" package="Aura\Framework">
+      <extends>\Aura\Framework\Cli\AbstractCommand</extends>
+      <name>Command</name>
+      <full_name>\Aura\Framework\Cli\Server\Command</full_name>
+      <docblock line="17">
+        <description><![CDATA[Setup and run a development server.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="17" name="package" description="Aura.Framework"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="33" namespace="Aura\Framework\Cli\Server" package="Default">
+        <name>$php</name>
+        <default><![CDATA['php']]></default>
+        <docblock line="26">
+          <description><![CDATA[The path to the PHP executable.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="26" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="42" namespace="Aura\Framework\Cli\Server" package="Default">
+        <name>$system</name>
+        <default><![CDATA[]]></default>
+        <docblock line="35">
+          <description><![CDATA[A System object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="35" name="var" description="" type="\Aura\Framework\System">
+            <type by_reference="false">\Aura\Framework\System</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="51" namespace="Aura\Framework\Cli\Server" package="Default">
+        <name>$options</name>
+        <default><![CDATA[array('port' => array('long' => 'port', 'short' => 'p', 'param' => \Aura\Cli\Option::PARAM_REQUIRED, 'multi' => false, 'default' => 8000))]]></default>
+        <docblock line="44">
+          <description><![CDATA[Getopt definitions.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="44" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework\Cli\Server" line="70" package="Aura\Framework">
+        <name>setPhp</name>
+        <full_name>setPhp</full_name>
+        <docblock line="61">
+          <description><![CDATA[Sets the path to the PHP executable.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="61" name="param" description="The path to PHP." type="string" variable="$php">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="61" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="70">
+          <name>$php</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework\Cli\Server" line="84" package="Aura\Framework">
+        <name>setSystem</name>
+        <full_name>setSystem</full_name>
+        <docblock line="75">
+          <description><![CDATA[Sets the System object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="75" name="param" description="" type="\Aura\Framework\System" variable="$system">
+            <type by_reference="false">\Aura\Framework\System</type>
+          </tag>
+          <tag line="75" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="84">
+          <name>$system</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework\Cli\Server" line="96" package="Aura\Framework">
+        <name>action</name>
+        <full_name>action</full_name>
+        <docblock line="89">
+          <description><![CDATA[Setup and run the server.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="89" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Exception/NoClassForController.php" hash="992111716198c4cb5746704bae05c9db" package="Aura\Framework">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Framework"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="Exception">Aura\Framework\Exception</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Framework\Exception" line="22" package="Aura\Framework">
+      <extends>\Aura\Framework\Exception</extends>
+      <name>NoClassForController</name>
+      <full_name>\Aura\Framework\Exception\NoClassForController</full_name>
+      <docblock line="15">
+        <description><![CDATA[Could not find a class mapped to a controller name.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Framework"/>
+      </docblock>
+    </class>
+  </file>
+  <file path="Exception.php" hash="12db71e640c415421844d480a2aaff36" package="Aura\Framework">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Framework"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Framework" line="20" package="Aura\Framework">
+      <extends>\Exception</extends>
+      <name>Exception</name>
+      <full_name>\Aura\Framework\Exception</full_name>
+      <docblock line="13">
+        <description><![CDATA[Generic package exception.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Framework"/>
+      </docblock>
+    </class>
+  </file>
+  <file path="Inflect.php" hash="1e2f37a80e690333d4da24604d30ffa6" package="Aura\Framework">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Framework"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Framework" line="20" package="Aura\Framework">
+      <extends/>
+      <name>Inflect</name>
+      <full_name>\Aura\Framework\Inflect</full_name>
+      <docblock line="13">
+        <description><![CDATA[Methods for inflecting strings from one form to another form.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Framework"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework" line="31" package="Aura\Framework">
+        <name>camelToDashes</name>
+        <full_name>camelToDashes</full_name>
+        <docblock line="22">
+          <description><![CDATA[Returns "camelCapsWord" and "CamelCapsWord" as "camel-caps-word".]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="param" description="The camel-caps word." type="string" variable="$str">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="22" name="return" description="The word with dashes in place of camel caps." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="31">
+          <name>$str</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework" line="47" package="Aura\Framework">
+        <name>camelToUnder</name>
+        <full_name>camelToUnder</full_name>
+        <docblock line="38">
+          <description><![CDATA[Returns "camelCapsWord" and "CamelCapsWord" as "Camel_Caps_Word".]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="38" name="param" description="The camel-caps word." type="string" variable="$str">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="38" name="return" description="The word with underscores in place of camel caps." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="47">
+          <name>$str</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework" line="63" package="Aura\Framework">
+        <name>classToFile</name>
+        <full_name>classToFile</full_name>
+        <docblock line="54">
+          <description><![CDATA[PSR-0 class-to-filename implementation.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="54" name="param" description="The class or interface name." type="string" variable="$spec">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="54" name="return" description="The spec as converted to a file path." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="63">
+          <name>$spec</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework" line="87" package="Aura\Framework">
+        <name>splitNamespaceAndClass</name>
+        <full_name>splitNamespaceAndClass</full_name>
+        <docblock line="77">
+          <description><![CDATA[Splits a fully-qualified class name into namespace and class portions.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="77" name="param" description="The fully-qualified class name." type="string" variable="$spec">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="77" name="return" description="A 2-element array where element 0 is the namespace and element 1 is the class." type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="87">
+          <name>$spec</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework" line="111" package="Aura\Framework">
+        <name>dashesToCamel</name>
+        <full_name>dashesToCamel</full_name>
+        <docblock line="102">
+          <description><![CDATA[Returns "foo-bar-baz" as "fooBarBaz".]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="102" name="param" description="The dashed word." type="string" variable="$str">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="102" name="return" description="The word in camelCaps." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="111">
+          <name>$str</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework" line="127" package="Aura\Framework">
+        <name>dashesToUnder</name>
+        <full_name>dashesToUnder</full_name>
+        <docblock line="118">
+          <description><![CDATA[Returns "foo-bar-baz" as "foo_bar_baz".]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="118" name="param" description="The underscore word." type="string" variable="$str">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="118" name="return" description="The word with dashes." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="127">
+          <name>$str</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework" line="141" package="Aura\Framework">
+        <name>dashesToStudly</name>
+        <full_name>dashesToStudly</full_name>
+        <docblock line="132">
+          <description><![CDATA[Returns "foo-bar-baz" as "FooBarBaz".]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="132" name="param" description="The dashed word." type="string" variable="$str">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="132" name="return" description="The word in StudlyCaps." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="141">
+          <name>$str</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework" line="155" package="Aura\Framework">
+        <name>underToCamel</name>
+        <full_name>underToCamel</full_name>
+        <docblock line="146">
+          <description><![CDATA[Returns "foo_bar_baz" as "fooBarBaz".]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="146" name="param" description="The underscore word." type="string" variable="$str">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="146" name="return" description="The word in camelCaps." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="155">
+          <name>$str</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework" line="171" package="Aura\Framework">
+        <name>underToDashes</name>
+        <full_name>underToDashes</full_name>
+        <docblock line="162">
+          <description><![CDATA[Returns "foo_bar_baz" as "foo-bar-baz".]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="162" name="param" description="The underscore word." type="string" variable="$str">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="162" name="return" description="The word with dashes." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="171">
+          <name>$str</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework" line="185" package="Aura\Framework">
+        <name>underToStudly</name>
+        <full_name>underToStudly</full_name>
+        <docblock line="176">
+          <description><![CDATA[Returns "foo_bar_baz" as "FooBarBaz".]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="176" name="param" description="The underscore word." type="string" variable="$str">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="176" name="return" description="The word in StudlyCaps." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="185">
+          <name>$str</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Input/Filter.php" hash="504bf3405393c14a6189db59ab272582" package="Aura\Framework">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Framework"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="FilterInterface">Aura\Input\FilterInterface</namespace-alias>
+    <namespace-alias name="RuleCollection">Aura\Filter\RuleCollection</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Framework\Input" line="23" package="Aura\Framework">
+      <extends>\Aura\Filter\RuleCollection</extends>
+      <implements>\Aura\Input\FilterInterface</implements>
+      <name>Filter</name>
+      <full_name>\Aura\Framework\Input\Filter</full_name>
+      <docblock line="16">
+        <description><![CDATA[Nothing to do but implement the separated interface.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="16" name="package" description="Aura.Framework"/>
+      </docblock>
+    </class>
+  </file>
+  <file path="Intl/Translator.php" hash="3bba9cdf666a31946cf044726bc342f8" package="Aura\Framework">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Framework"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="IntlTranslator">Aura\Intl\Translator</namespace-alias>
+    <namespace-alias name="CliTranslatorInterface">Aura\Cli\TranslatorInterface</namespace-alias>
+    <namespace-alias name="FilterTranslatorInterface">Aura\Filter\TranslatorInterface</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Framework\Intl" line="24" package="Aura\Framework">
+      <extends>\Aura\Intl\Translator</extends>
+      <implements>\Aura\Cli\TranslatorInterface</implements>
+      <implements>\Aura\Filter\TranslatorInterface</implements>
+      <name>Translator</name>
+      <full_name>\Aura\Framework\Intl\Translator</full_name>
+      <docblock line="17">
+        <description><![CDATA[Implements separated interfaces for packages.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="17" name="package" description="Aura.Framework"/>
+      </docblock>
+    </class>
+  </file>
+  <file path="Intl/TranslatorFactory.php" hash="4978225eaf5a4f02d7904f4fc1393cff" package="Aura\Framework">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Framework"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="IntlTranslatorFactory">Aura\Intl\TranslatorFactory</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Framework\Intl" line="22" package="Aura\Framework">
+      <extends>\Aura\Intl\TranslatorFactory</extends>
+      <name>TranslatorFactory</name>
+      <full_name>\Aura\Framework\Intl\TranslatorFactory</full_name>
+      <docblock line="15">
+        <description><![CDATA[A factory to create framework translators.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Framework"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="31" namespace="Aura\Framework\Intl" package="Default">
+        <name>$class</name>
+        <default><![CDATA['Aura\Framework\Intl\Translator']]></default>
+        <docblock line="24">
+          <description><![CDATA[The class to create for new instances.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="24" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+    </class>
+  </file>
+  <file path="Signal/Manager.php" hash="a86d6908459d966176301c759462fae9" package="Aura\Framework">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Framework"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="SignalManager">Aura\Signal\Manager</namespace-alias>
+    <namespace-alias name="CliSignalInterface">Aura\Cli\SignalInterface</namespace-alias>
+    <namespace-alias name="WebSignalInterface">Aura\Web\SignalInterface</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Framework\Signal" line="24" package="Aura\Framework">
+      <extends>\Aura\Signal\Manager</extends>
+      <implements>\Aura\Cli\SignalInterface</implements>
+      <implements>\Aura\Web\SignalInterface</implements>
+      <name>Manager</name>
+      <full_name>\Aura\Framework\Signal\Manager</full_name>
+      <docblock line="17">
+        <description><![CDATA[Nothing to do but implement the separated interface.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="17" name="package" description="Aura.Framework"/>
+      </docblock>
+    </class>
+  </file>
+  <file path="System.php" hash="8bdd04eef5c0c26d7503cee6c0d0f6b2" package="Aura\Framework">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Framework"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Framework" line="20" package="Aura\Framework">
+      <extends/>
+      <name>System</name>
+      <full_name>\Aura\Framework\System</full_name>
+      <docblock line="13">
+        <description><![CDATA[Keeps track of the Aura system directories.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Framework"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="29" namespace="Aura\Framework" package="Default">
+        <name>$root</name>
+        <default><![CDATA[]]></default>
+        <docblock line="22">
+          <description><![CDATA[The root directory of the Aura system.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework" line="38" package="Aura\Framework">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="31">
+          <description><![CDATA[Constructor.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="31" name="param" description="The root directory of the Aura system." type="string" variable="$root">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="38">
+          <name>$root</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework" line="50" package="Aura\Framework">
+        <name>__toString</name>
+        <full_name>__toString</full_name>
+        <docblock line="43">
+          <description><![CDATA[When using as a string, return the root path only.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="43" name="return" description="The root directory of the Aura system." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Framework" line="67" package="Aura\Framework">
+        <name>getSubPath</name>
+        <full_name>getSubPath</full_name>
+        <docblock line="55">
+          <description><![CDATA[Gets the path for any directory, along with an optional subdirectory
+path.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="55" name="param" description="The directory name to get the path for." type="string" variable="$dir">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="55" name="param" description="An optional subdirectory path." type="string" variable="$sub">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="55" name="return" description="full directory path, with proper directory separators." type="\Aura\Framework\The">
+            <type by_reference="false">\Aura\Framework\The</type>
+          </tag>
+        </docblock>
+        <argument line="67">
+          <name>$dir</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="67">
+          <name>$sub</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework" line="87" package="Aura\Framework">
+        <name>getRootPath</name>
+        <full_name>getRootPath</full_name>
+        <docblock line="77">
+          <description><![CDATA[Gets the root path for the Aura system, along with an optional
+subdirectory path.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="77" name="param" description="An optional subdirectory path." type="string" variable="$sub">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="77" name="return" description="full directory path, with proper directory separators." type="\Aura\Framework\The">
+            <type by_reference="false">\Aura\Framework\The</type>
+          </tag>
+        </docblock>
+        <argument line="87">
+          <name>$sub</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework" line="107" package="Aura\Framework">
+        <name>getPackagePath</name>
+        <full_name>getPackagePath</full_name>
+        <docblock line="97">
+          <description><![CDATA[Gets the package path for the Aura system, along with an optional
+subdirectory path.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="97" name="param" description="An optional subdirectory path." type="string" variable="$sub">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="97" name="return" description="full directory path, with proper directory separators." type="\Aura\Framework\The">
+            <type by_reference="false">\Aura\Framework\The</type>
+          </tag>
+        </docblock>
+        <argument line="107">
+          <name>$sub</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework" line="122" package="Aura\Framework">
+        <name>getTmpPath</name>
+        <full_name>getTmpPath</full_name>
+        <docblock line="112">
+          <description><![CDATA[Gets the tmp path for the Aura system, along with an optional
+subdirectory path.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="112" name="param" description="An optional subdirectory path." type="string" variable="$sub">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="112" name="return" description="full directory path, with proper directory separators." type="\Aura\Framework\The">
+            <type by_reference="false">\Aura\Framework\The</type>
+          </tag>
+        </docblock>
+        <argument line="122">
+          <name>$sub</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework" line="137" package="Aura\Framework">
+        <name>getConfigPath</name>
+        <full_name>getConfigPath</full_name>
+        <docblock line="127">
+          <description><![CDATA[Gets the config path for the Aura system, along with an optional
+subdirectory path.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="127" name="param" description="An optional subdirectory path." type="string" variable="$sub">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="127" name="return" description="full directory path, with proper directory separators." type="\Aura\Framework\The">
+            <type by_reference="false">\Aura\Framework\The</type>
+          </tag>
+        </docblock>
+        <argument line="137">
+          <name>$sub</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework" line="152" package="Aura\Framework">
+        <name>getIncludePath</name>
+        <full_name>getIncludePath</full_name>
+        <docblock line="142">
+          <description><![CDATA[Gets the include path for the Aura system, along with an optional
+subdirectory path.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="142" name="param" description="An optional subdirectory path." type="string" variable="$sub">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="142" name="return" description="full directory path, with proper directory separators." type="\Aura\Framework\The">
+            <type by_reference="false">\Aura\Framework\The</type>
+          </tag>
+        </docblock>
+        <argument line="152">
+          <name>$sub</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework" line="167" package="Aura\Framework">
+        <name>getVendorPath</name>
+        <full_name>getVendorPath</full_name>
+        <docblock line="157">
+          <description><![CDATA[Gets the vendor path for the Aura system, along with an optional
+subdirectory path.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="157" name="param" description="An optional subdirectory path." type="string" variable="$sub">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="157" name="return" description="full directory path, with proper directory separators." type="\Aura\Framework\The">
+            <type by_reference="false">\Aura\Framework\The</type>
+          </tag>
+        </docblock>
+        <argument line="167">
+          <name>$sub</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework" line="182" package="Aura\Framework">
+        <name>getWebPath</name>
+        <full_name>getWebPath</full_name>
+        <docblock line="172">
+          <description><![CDATA[Gets the web path for the Aura system, along with an optional
+subdirectory path.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="172" name="param" description="An optional subdirectory path." type="string" variable="$sub">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="172" name="return" description="full directory path, with proper directory separators." type="\Aura\Framework\The">
+            <type by_reference="false">\Aura\Framework\The</type>
+          </tag>
+        </docblock>
+        <argument line="182">
+          <name>$sub</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Test/WiringAssertionsTrait.php" hash="a4bbe162cb3228fab0b5ccbc6c30a6e6" package="Aura\Framework">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Framework"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+  </file>
+  <file path="View/Helper/AssetHref.php" hash="2ec0d10bd3538c83263c3ccb6a9732ed" package="Aura\Framework">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Framework"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="AbstractHelper">Aura\View\Helper\AbstractHelper</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Framework\View\Helper" line="22" package="Aura\View">
+      <extends>\Aura\View\Helper\AbstractHelper</extends>
+      <name>AssetHref</name>
+      <full_name>\Aura\Framework\View\Helper\AssetHref</full_name>
+      <docblock line="15">
+        <description><![CDATA[Generates href values for assets.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.View"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="31" namespace="Aura\Framework\View\Helper" package="Default">
+        <name>$base</name>
+        <default><![CDATA[]]></default>
+        <docblock line="24">
+          <description><![CDATA[The base (prefix) href for all asset hrefs.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="24" name="var" description="" type="\Aura\Framework\View\Helper\"/>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework\View\Helper" line="40" package="Aura\View">
+        <name>setBase</name>
+        <full_name>setBase</full_name>
+        <docblock line="33">
+          <description><![CDATA[Sets the base (prefix) href for all asset hrefs.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="33" name="param" description="The base href." type="string" variable="$base">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="40">
+          <name>$base</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework\View\Helper" line="52" package="Aura\View">
+        <name>__invoke</name>
+        <full_name>__invoke</full_name>
+        <docblock line="45">
+          <description><![CDATA[Returns the href for an asset.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="45" name="param" description="The asset href, prefixed with the base href." type="string" variable="$href">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="52">
+          <name>$href</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="View/Helper/Route.php" hash="eadc948913ccdd27f845e56fd07ba94f" package="Aura\Framework">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Framework"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="AbstractHelper">Aura\View\Helper\AbstractHelper</namespace-alias>
+    <namespace-alias name="RouterMap">Aura\Router\Map</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Framework\View\Helper" line="23" package="Aura\View">
+      <extends>\Aura\View\Helper\AbstractHelper</extends>
+      <name>Route</name>
+      <full_name>\Aura\Framework\View\Helper\Route</full_name>
+      <docblock line="16">
+        <description><![CDATA[Generates route links.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="16" name="package" description="Aura.View"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="32" namespace="Aura\Framework\View\Helper" package="Default">
+        <name>$router</name>
+        <default><![CDATA[]]></default>
+        <docblock line="25">
+          <description><![CDATA[A router map object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="25" name="var" description="" type="\Aura\Router\Map">
+            <type by_reference="false">\Aura\Router\Map</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework\View\Helper" line="41" package="Aura\View">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="34">
+          <description><![CDATA[Constructor.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="34" name="param" description="The router map." type="\Aura\Router\Map" variable="$router">
+            <type by_reference="false">\Aura\Router\Map</type>
+          </tag>
+        </docblock>
+        <argument line="41">
+          <name>$router</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Router\Map</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework\View\Helper" line="59" package="Aura\View">
+        <name>__invoke</name>
+        <full_name>__invoke</full_name>
+        <docblock line="46">
+          <description><![CDATA[Returns a route by name; optional interpolates data into it.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="46" name="param" description="The route name to look up." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="46" name="param" description="The data to interpolate into the URI; data keys map to param tokens in the path." type="array" variable="$data">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="46" name="return" description="A URI path string if the route name is found, or boolean false if not." type="string|false">
+            <type by_reference="false">string</type>
+            <type by_reference="false">false</type>
+          </tag>
+        </docblock>
+        <argument line="59">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="59">
+          <name>$data</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Web/Asset/Page.php" hash="8d09b4fb5d4420677da896bc76b4e6e7" package="Aura\Framework">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Framework"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="AbstractPage">Aura\Framework\Web\Controller\AbstractPage</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Framework\Web\Asset" line="41" package="Aura\Framework">
+      <extends>\Aura\Framework\Web\Controller\AbstractPage</extends>
+      <name>Page</name>
+      <full_name>\Aura\Framework\Web\Asset\Page</full_name>
+      <docblock line="15">
+        <description><![CDATA[Provides a public interface to web assets for a package.]]></description>
+        <long-description><![CDATA[<p>Your package should be set up like this:</p>
+
+<pre><code> Vendor.Package/
+     config/
+     scripts/
+     src/
+     tests/
+     web/
+         images/
+         scripts/
+         styles/
+             foo.css
+</code></pre>
+
+<p>You can then use the URL <code>/asset/Vendor.Package/styles/foo.css</code> to access
+the package asset, even though it's not in the web document root.</p>
+
+<p>Additionally, you can cache the assets to the web document root, so that
+they are served statically instead of through PHP.</p>]]></long-description>
+        <tag line="15" name="package" description="Aura.Framework"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="50" namespace="Aura\Framework\Web\Asset" package="Default">
+        <name>$cache_config_modes</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="43">
+          <description><![CDATA[The Aura config modes in which we should cache web assets.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="43" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="60" namespace="Aura\Framework\Web\Asset" package="Default">
+        <name>$web_cache_dir</name>
+        <default><![CDATA[]]></default>
+        <docblock line="52">
+          <description><![CDATA[The subdirectory inside the web document root where we should cache
+web assets.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="52" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework\Web\Asset" line="71" package="Aura\Framework">
+        <name>setCacheConfigModes</name>
+        <full_name>setCacheConfigModes</full_name>
+        <docblock line="62">
+          <description><![CDATA[Sets the config modes in which caching should take place.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="62" name="param" description="An array of mode names." type="array" variable="$modes">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="62" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="71">
+          <name>$modes</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework\Web\Asset" line="86" package="Aura\Framework">
+        <name>setWebCacheDir</name>
+        <full_name>setWebCacheDir</full_name>
+        <docblock line="76">
+          <description><![CDATA[Sets the subdirectory in the web document root where web assets should
+be cached.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="76" name="param" description="" type="string" variable="$dir">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="76" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="86">
+          <name>$dir</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework\Web\Asset" line="103" package="Aura\Framework">
+        <name>actionIndex</name>
+        <full_name>actionIndex</full_name>
+        <docblock line="91">
+          <description><![CDATA[Given a package name and an asset file name, delivers the asset
+(and caches it if the config mode is correct).]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="91" name="param" description="The package name (e.g., `Vendor.Package`)." type="string" variable="$package">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="91" name="param" description="The asset file name (e.g. `images/logo.jpg`)." type="string" variable="$file">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="91" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="103">
+          <name>$package</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+        <argument line="103">
+          <name>$file</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Web/Controller/AbstractPage.php" hash="a711a384e53ec5e71cc8f341ae6ef31e" package="Aura\Framework">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Framework"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="System">Aura\Framework\System</namespace-alias>
+    <namespace-alias name="RouterMap">Aura\Router\Map</namespace-alias>
+    <namespace-alias name="WebAbstractPage">Aura\Web\Controller\AbstractPage</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Framework\Web\Controller" line="24" package="Aura\Framework">
+      <extends>\Aura\Web\Controller\AbstractPage</extends>
+      <name>AbstractPage</name>
+      <full_name>\Aura\Framework\Web\Controller\AbstractPage</full_name>
+      <docblock line="17">
+        <description><![CDATA[An abstract web page controller for the framework.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="17" name="package" description="Aura.Framework"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="33" namespace="Aura\Framework\Web\Controller" package="Default">
+        <name>$layout</name>
+        <default><![CDATA[]]></default>
+        <docblock line="26">
+          <description><![CDATA[The layout to use for rendering.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="26" name="var" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="42" namespace="Aura\Framework\Web\Controller" package="Default">
+        <name>$router</name>
+        <default><![CDATA[]]></default>
+        <docblock line="35">
+          <description><![CDATA[A router object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="35" name="var" description="" type="\Aura\Router\Map">
+            <type by_reference="false">\Aura\Router\Map</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="51" namespace="Aura\Framework\Web\Controller" package="Default">
+        <name>$system</name>
+        <default><![CDATA[]]></default>
+        <docblock line="44">
+          <description><![CDATA[A system object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="44" name="var" description="" type="\Aura\Framework\System">
+            <type by_reference="false">\Aura\Framework\System</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="60" namespace="Aura\Framework\Web\Controller" package="Default">
+        <name>$view</name>
+        <default><![CDATA[]]></default>
+        <docblock line="53">
+          <description><![CDATA[The view to use for rendering.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="53" name="var" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework\Web\Controller" line="71" package="Aura\Framework">
+        <name>setRouter</name>
+        <full_name>setRouter</full_name>
+        <docblock line="62">
+          <description><![CDATA[Sets the router object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="62" name="param" description="The router object." type="\Aura\Router\Map" variable="$router">
+            <type by_reference="false">\Aura\Router\Map</type>
+          </tag>
+          <tag line="62" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="71">
+          <name>$router</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Router\Map</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework\Web\Controller" line="85" package="Aura\Framework">
+        <name>setSystem</name>
+        <full_name>setSystem</full_name>
+        <docblock line="76">
+          <description><![CDATA[Sets the system object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="76" name="param" description="The system object." type="\Aura\Framework\System" variable="$system">
+            <type by_reference="false">\Aura\Framework\System</type>
+          </tag>
+          <tag line="76" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="85">
+          <name>$system</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Framework\System</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework\Web\Controller" line="97" package="Aura\Framework">
+        <name>getLayout</name>
+        <full_name>getLayout</full_name>
+        <docblock line="90">
+          <description><![CDATA[Returns the layout to use for rendering.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="90" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework\Web\Controller" line="109" package="Aura\Framework">
+        <name>getView</name>
+        <full_name>getView</full_name>
+        <docblock line="102">
+          <description><![CDATA[Returns the view to use for rendering.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="102" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Web/Controller/Factory.php" hash="22bcc436c805578941a6985e4957b108" package="Aura\Framework">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Framework"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="ForgeInterface">Aura\Di\ForgeInterface</namespace-alias>
+    <namespace-alias name="NoClassForController">Aura\Framework\Exception\NoClassForController</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Framework\Web\Controller" line="24" package="Aura\Framework">
+      <extends/>
+      <name>Factory</name>
+      <full_name>\Aura\Framework\Web\Controller\Factory</full_name>
+      <docblock line="16">
+        <description><![CDATA[A factory to create controller objects; these need not be only Page
+controllers, but (e.g.) Resource or App controllers.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="16" name="package" description="Aura.Framework"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="33" namespace="Aura\Framework\Web\Controller" package="Default">
+        <name>$forge</name>
+        <default><![CDATA[]]></default>
+        <docblock line="26">
+          <description><![CDATA[An object-creation Forge.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="26" name="var" description="" type="\Aura\Di\ForgeInterface">
+            <type by_reference="false">\Aura\Di\ForgeInterface</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="42" namespace="Aura\Framework\Web\Controller" package="Default">
+        <name>$map</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="35">
+          <description><![CDATA[A map of controller names to controller classes.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="35" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="51" namespace="Aura\Framework\Web\Controller" package="Default">
+        <name>$not_found</name>
+        <default><![CDATA[null]]></default>
+        <docblock line="44">
+          <description><![CDATA[The controller class to instantiate when no mapping is found.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="44" name="var" description="" type="\Aura\Framework\Web\Controller\Aura\Framework\Web\NotFound">
+            <type by_reference="false">\Aura\Framework\Web\Controller\Aura\Framework\Web\NotFound</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework\Web\Controller" line="65" package="Aura\Framework">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="53">
+          <description><![CDATA[Constructor.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="53" name="param" description="An object-creation Forge." type="\Aura\Di\ForgeInterface" variable="$forge">
+            <type by_reference="false">\Aura\Di\ForgeInterface</type>
+          </tag>
+          <tag line="53" name="param" description="A map of controller names to controller classes." type="array" variable="$map">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="53" name="param" description="The controller class to instantiate when no mapping is found." type="string" variable="$not_found">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="66">
+          <name>$forge</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Di\ForgeInterface</type>
+        </argument>
+        <argument line="67">
+          <name>$map</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+        <argument line="68">
+          <name>$not_found</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework\Web\Controller" line="86" package="Aura\Framework">
+        <name>newInstance</name>
+        <full_name>newInstance</full_name>
+        <docblock line="75">
+          <description><![CDATA[Creates and returns a controller class based on a controller name.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="75" name="param" description="The controller name." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="75" name="param" description="Params to pass to the controller." type="array" variable="$params">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="75" name="return" description="A controller instance." type="\Aura\Framework\Web\Controller\Page">
+            <type by_reference="false">\Aura\Framework\Web\Controller\Page</type>
+          </tag>
+        </docblock>
+        <argument line="86">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="86">
+          <name>$params</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Web/Controller/Front.php" hash="7e22371c07bda909c235191f8c850ea7" package="Aura\Framework">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Framework"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="Factory">Aura\Framework\Web\Controller\Factory</namespace-alias>
+    <namespace-alias name="HttpResponse">Aura\Http\Message\Response</namespace-alias>
+    <namespace-alias name="RouterMap">Aura\Router\Map</namespace-alias>
+    <namespace-alias name="SessionManager">Aura\Session\Manager</namespace-alias>
+    <namespace-alias name="SignalManager">Aura\Signal\Manager</namespace-alias>
+    <namespace-alias name="Context">Aura\Web\Context</namespace-alias>
+    <namespace-alias name="WebResponse">Aura\Web\Response</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Framework\Web\Controller" line="29" package="Aura\Framework">
+      <extends/>
+      <name>Front</name>
+      <full_name>\Aura\Framework\Web\Controller\Front</full_name>
+      <docblock line="21">
+        <description><![CDATA[Takes an incoming web request (Context), then dispatches it, renders
+content, and returns a response for it.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="21" name="package" description="Aura.Framework"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="38" namespace="Aura\Framework\Web\Controller" package="Default">
+        <name>$context</name>
+        <default><![CDATA[]]></default>
+        <docblock line="31">
+          <description><![CDATA[The web request context.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="31" name="var" description="" type="\Aura\Web\Context">
+            <type by_reference="false">\Aura\Web\Context</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="47" namespace="Aura\Framework\Web\Controller" package="Default">
+        <name>$transfer</name>
+        <default><![CDATA[]]></default>
+        <docblock line="40">
+          <description><![CDATA[The web response transfer object returned from the controller.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="40" name="var" description="" type="\Aura\Web\Response">
+            <type by_reference="false">\Aura\Web\Response</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="56" namespace="Aura\Framework\Web\Controller" package="Default">
+        <name>$response</name>
+        <default><![CDATA[]]></default>
+        <docblock line="49">
+          <description><![CDATA[The full HTTP response created from the transfer object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="49" name="var" description="" type="\Aura\Http\Message\Response">
+            <type by_reference="false">\Aura\Http\Message\Response</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="65" namespace="Aura\Framework\Web\Controller" package="Default">
+        <name>$factory</name>
+        <default><![CDATA[]]></default>
+        <docblock line="58">
+          <description><![CDATA[A controller factory.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="58" name="var" description="" type="\Aura\Framework\Web\Controller\Factory">
+            <type by_reference="false">\Aura\Framework\Web\Controller\Factory</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="74" namespace="Aura\Framework\Web\Controller" package="Default">
+        <name>$session</name>
+        <default><![CDATA[]]></default>
+        <docblock line="67">
+          <description><![CDATA[A session manager.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="67" name="var" description="" type="\Aura\Session\Manager">
+            <type by_reference="false">\Aura\Session\Manager</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="83" namespace="Aura\Framework\Web\Controller" package="Default">
+        <name>$signal</name>
+        <default><![CDATA[]]></default>
+        <docblock line="76">
+          <description><![CDATA[A signal manager.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="76" name="var" description="" type="\Aura\Signal\Manager">
+            <type by_reference="false">\Aura\Signal\Manager</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="92" namespace="Aura\Framework\Web\Controller" package="Default">
+        <name>$router</name>
+        <default><![CDATA[]]></default>
+        <docblock line="85">
+          <description><![CDATA[A router map.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="85" name="var" description="" type="\Aura\Router\Map">
+            <type by_reference="false">\Aura\Router\Map</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework\Web\Controller" line="111" package="Aura\Framework">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="94">
+          <description><![CDATA[Constructor.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="94" name="param" description="A signal manager." type="\Aura\Signal\Manager" variable="$signal">
+            <type by_reference="false">\Aura\Signal\Manager</type>
+          </tag>
+          <tag line="94" name="param" description="The web context." type="\Aura\Web\Context" variable="$context">
+            <type by_reference="false">\Aura\Web\Context</type>
+          </tag>
+          <tag line="94" name="param" description="The router map." type="\Aura\Router\Map" variable="$router">
+            <type by_reference="false">\Aura\Router\Map</type>
+          </tag>
+          <tag line="94" name="param" description="A web page controller factory." type="\Aura\Framework\Web\Controller\Factory" variable="$factory">
+            <type by_reference="false">\Aura\Framework\Web\Controller\Factory</type>
+          </tag>
+          <tag line="94" name="param" description="The eventual HTTP response object." type="\Aura\Http\Message\Response" variable="$response">
+            <type by_reference="false">\Aura\Http\Message\Response</type>
+          </tag>
+          <tag line="94" name="param" description="A session manager." type="\Aura\Session\Manager" variable="$session">
+            <type by_reference="false">\Aura\Session\Manager</type>
+          </tag>
+        </docblock>
+        <argument line="112">
+          <name>$signal</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Signal\Manager</type>
+        </argument>
+        <argument line="113">
+          <name>$context</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Web\Context</type>
+        </argument>
+        <argument line="114">
+          <name>$router</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Router\Map</type>
+        </argument>
+        <argument line="115">
+          <name>$factory</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Framework\Web\Controller\Factory</type>
+        </argument>
+        <argument line="116">
+          <name>$response</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Http\Message\Response</type>
+        </argument>
+        <argument line="117">
+          <name>$session</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Session\Manager</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework\Web\Controller" line="136" package="Aura\Framework">
+        <name>__get</name>
+        <full_name>__get</full_name>
+        <docblock line="127">
+          <description><![CDATA[Magic read-only access to properties.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="127" name="param" description="The property to retrieve." type="string" variable="$key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="127" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="136">
+          <name>$key</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework\Web\Controller" line="161" package="Aura\Framework">
+        <name>exec</name>
+        <full_name>exec</full_name>
+        <docblock line="141">
+          <description><![CDATA[Dispatches a Route to a web controller, renders a view into the
+ResponseTransfer, and returns an HTTP response.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="141" name="signal" description="pre_exec"/>
+          <tag line="141" name="signal" description="pre_request"/>
+          <tag line="141" name="signal" description="post_request"/>
+          <tag line="141" name="signal" description="pre_response"/>
+          <tag line="141" name="signal" description="post_response"/>
+          <tag line="141" name="signal" description="post_exec"/>
+          <tag line="141" name="return" description="" type="\Aura\Framework\Web\Controller\Aura\Http\Response">
+            <type by_reference="false">\Aura\Framework\Web\Controller\Aura\Http\Response</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework\Web\Controller" line="189" package="Aura\Framework">
+        <name>request</name>
+        <full_name>request</full_name>
+        <docblock line="182">
+          <description><![CDATA[Handle the incoming request.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="182" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework\Web\Controller" line="232" package="Aura\Framework">
+        <name>response</name>
+        <full_name>response</full_name>
+        <docblock line="225">
+          <description><![CDATA[Converts the web response transfer object into the HTTP response.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="225" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Web/NotFound/Page.php" hash="9e1dab2bf0234c5d36611231711304dd" package="Aura\Framework">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Framework"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="AbstractPage">Aura\Framework\Web\Controller\AbstractPage</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Framework\Web\NotFound" line="22" package="Aura\Framework">
+      <extends>\Aura\Framework\Web\Controller\AbstractPage</extends>
+      <name>Page</name>
+      <full_name>\Aura\Framework\Web\NotFound\Page</full_name>
+      <docblock line="15">
+        <description><![CDATA[Show this when a page controller could not be found for the request.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Framework"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework\Web\NotFound" line="31" package="Aura\Framework">
+        <name>preExec</name>
+        <full_name>preExec</full_name>
+        <docblock line="24">
+          <description><![CDATA[Force the action to "index".]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="24" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework\Web\NotFound" line="43" package="Aura\Framework">
+        <name>actionIndex</name>
+        <full_name>actionIndex</full_name>
+        <docblock line="36">
+          <description><![CDATA[Shows information about what happened.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="36" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Web/Renderer/AuraViewTwoStep.php" hash="1765f4fd773743cb9995e524bf855b8c" package="Aura\Framework">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Framework"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="Inflect">Aura\Framework\Inflect</namespace-alias>
+    <namespace-alias name="TwoStep">Aura\View\TwoStep</namespace-alias>
+    <namespace-alias name="AbstractRenderer">Aura\Web\Renderer\AbstractRenderer</namespace-alias>
+    <namespace-alias name="ControllerInterface">Aura\Web\Controller\ControllerInterface</namespace-alias>
+    <namespace-alias name="Accept">Aura\Web\Accept</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Framework\Web\Renderer" line="26" package="Aura\Framework">
+      <extends>\Aura\Web\Renderer\AbstractRenderer</extends>
+      <name>AuraViewTwoStep</name>
+      <full_name>\Aura\Framework\Web\Renderer\AuraViewTwoStep</full_name>
+      <docblock line="19">
+        <description><![CDATA[Incorporate the Aura.View two step rendering]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="19" name="package" description="Aura.Framework"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="35" namespace="Aura\Framework\Web\Renderer" package="Default">
+        <name>$twostep</name>
+        <default><![CDATA[]]></default>
+        <docblock line="28">
+          <description><![CDATA[A TwoStep view object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="28" name="var" description="" type="\Aura\View\TwoStep">
+            <type by_reference="false">\Aura\View\TwoStep</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="44" namespace="Aura\Framework\Web\Renderer" package="Default">
+        <name>$inflect</name>
+        <default><![CDATA[]]></default>
+        <docblock line="37">
+          <description><![CDATA[An inflection object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="37" name="var" description="" type="\Aura\Framework\Inflect">
+            <type by_reference="false">\Aura\Framework\Inflect</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="53" namespace="Aura\Framework\Web\Renderer" package="Default">
+        <name>$accept</name>
+        <default><![CDATA[]]></default>
+        <docblock line="46">
+          <description><![CDATA[An accept object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="46" name="var" description="" type="\Aura\Web\Accept">
+            <type by_reference="false">\Aura\Web\Accept</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework\Web\Renderer" line="66" package="Aura\Framework">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="55">
+          <description><![CDATA[Constructor.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="55" name="param" description="A two-step view object." type="\Aura\View\TwoStep" variable="$twostep">
+            <type by_reference="false">\Aura\View\TwoStep</type>
+          </tag>
+          <tag line="55" name="param" description="An inflection object." type="\Aura\Framework\Inflect" variable="$inflect">
+            <type by_reference="false">\Aura\Framework\Inflect</type>
+          </tag>
+          <tag line="55" name="param" description="An Accept object for content types." type="\Aura\Web\Accept" variable="$accept">
+            <type by_reference="false">\Aura\Web\Accept</type>
+          </tag>
+        </docblock>
+        <argument line="67">
+          <name>$twostep</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\View\TwoStep</type>
+        </argument>
+        <argument line="68">
+          <name>$inflect</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Framework\Inflect</type>
+        </argument>
+        <argument line="69">
+          <name>$accept</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Web\Accept</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework\Web\Renderer" line="86" package="Aura\Framework">
+        <name>__call</name>
+        <full_name>__call</full_name>
+        <docblock line="76">
+          <description><![CDATA[Allows us to call, e.g., $renderer->addInnerPath() to override stuff
+in a seemingly-direct manner.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="76" name="param" description="Method to call." type="string" variable="$method">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="76" name="param" description="Params for the method." type="array" variable="$params">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="86">
+          <name>$method</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="86">
+          <name>$params</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework\Web\Renderer" line="101" package="Aura\Framework">
+        <name>setController</name>
+        <full_name>setController</full_name>
+        <docblock line="91">
+          <description><![CDATA[Sets the controller object; prepares the renderer with view and layout
+paths based on the controller path.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="91" name="param" description="The controller object." type="\Aura\Web\Controller\ControllerInterface" variable="$controller">
+            <type by_reference="false">\Aura\Web\Controller\ControllerInterface</type>
+          </tag>
+          <tag line="91" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="101">
+          <name>$controller</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Web\Controller\ControllerInterface</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Framework\Web\Renderer" line="146" package="Aura\Framework">
+        <name>exec</name>
+        <full_name>exec</full_name>
+        <docblock line="139">
+          <description><![CDATA[Executes the renderer.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="139" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <package name="Aura" full_name="Aura">
+    <package name="Framework" full_name="Aura\Framework"/>
+    <package name="View" full_name="Aura\View"/>
+  </package>
+  <package name="Default" full_name="Default"/>
+  <namespace name="Aura" full_name="Aura">
+    <namespace name="Framework" full_name="Aura\Framework">
+      <namespace name="Autoload" full_name="Aura\Framework\Autoload"/>
+      <namespace name="Bootstrap" full_name="Aura\Framework\Bootstrap"/>
+      <namespace name="Cli" full_name="Aura\Framework\Cli">
+        <namespace name="CacheClassmap" full_name="Aura\Framework\Cli\CacheClassmap"/>
+        <namespace name="CacheConfig" full_name="Aura\Framework\Cli\CacheConfig"/>
+        <namespace name="Server" full_name="Aura\Framework\Cli\Server"/>
+      </namespace>
+      <namespace name="Exception" full_name="Aura\Framework\Exception"/>
+      <namespace name="Input" full_name="Aura\Framework\Input"/>
+      <namespace name="Intl" full_name="Aura\Framework\Intl"/>
+      <namespace name="Signal" full_name="Aura\Framework\Signal"/>
+      <namespace name="View" full_name="Aura\Framework\View">
+        <namespace name="Helper" full_name="Aura\Framework\View\Helper"/>
+      </namespace>
+      <namespace name="Web" full_name="Aura\Framework\Web">
+        <namespace name="Asset" full_name="Aura\Framework\Web\Asset"/>
+        <namespace name="Controller" full_name="Aura\Framework\Web\Controller"/>
+        <namespace name="NotFound" full_name="Aura\Framework\Web\NotFound"/>
+        <namespace name="Renderer" full_name="Aura\Framework\Web\Renderer"/>
+      </namespace>
+    </namespace>
+  </namespace>
+  <marker count="0">todo</marker>
+  <marker count="0">fixme</marker>
+  <deprecated count="0"/>
+</project>

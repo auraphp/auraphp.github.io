@@ -1,0 +1,231 @@
+<!DOCTYPE html><html xmlns:date="http://exslt.org/dates-and-times" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » \Aura\Intl\TranslatorLocator</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Namespaces</a></li>
+<li><a href="../namespaces/Aura.html"><i class="icon-th"></i> Aura</a></li>
+<li><a>Packages</a></li>
+<li><a href="../packages/Aura.html"><i class="icon-folder-open"></i> Aura</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">0</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods</li>
+<li class="method public "><a href="#__construct" title="__construct :: Constructor."><span class="description">Constructor.</span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#get" title="get :: Gets a translator from the registry by package for a locale."><span class="description">Gets a translator from the registry by package for a locale.</span><pre>get()</pre></a></li>
+<li class="method public "><a href="#getFactory" title="getFactory :: The TranslatorFactory object"><span class="description">The TranslatorFactory object</span><pre>getFactory()</pre></a></li>
+<li class="method public "><a href="#getFormatters" title="getFormatters :: object of type FormatterLocator"><span class="description">object of type FormatterLocator</span><pre>getFormatters()</pre></a></li>
+<li class="method public "><a href="#getLocale" title="getLocale :: Returns the default locale code."><span class="description">Returns the default locale code.</span><pre>getLocale()</pre></a></li>
+<li class="method public "><a href="#getPackages" title="getPackages :: An object of type PackagesInterface"><span class="description">An object of type PackagesInterface</span><pre>getPackages()</pre></a></li>
+<li class="method public "><a href="#setLocale" title="setLocale :: Sets the default locale code."><span class="description">Sets the default locale code.</span><pre>setLocale()</pre></a></li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties</li>
+<li class="nav-header protected">» Protected</li>
+<li class="property protected "><a href="#%24factory" title="$factory :: A translator factory."><span class="description">A translator factory.</span><pre>$factory</pre></a></li>
+<li class="property protected "><a href="#%24formatters" title="$formatters :: A formatter locator."><span class="description">A formatter locator.</span><pre>$formatters</pre></a></li>
+<li class="property protected "><a href="#%24locale" title="$locale :: The current locale code."><span class="description">The current locale code.</span><pre>$locale</pre></a></li>
+<li class="property protected "><a href="#%24packages" title="$packages :: A package locator."><span class="description">A package locator.</span><pre>$packages</pre></a></li>
+<li class="property protected "><a href="#%24registry" title="$registry :: A registry to retain translator objects."><span class="description">A registry to retain translator objects.</span><pre>$registry</pre></a></li>
+</ul>
+</div>
+<div class="span8">
+<a name="%5CAura%5CIntl%5CTranslatorLocator" id="\Aura\Intl\TranslatorLocator"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/Aura.html">Aura</a></li>
+<span class="divider">\</span><li><a href="../namespaces/Aura.Intl.html">Intl</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/Aura.Intl.TranslatorLocator.html">TranslatorLocator</a>
+</li>
+</ul>
+<div href="../classes/Aura.Intl.TranslatorLocator.html" class="element class">
+<p class="short_description">A ServiceLocator implementation for loading and retaining translator objects.</p>
+<div class="details">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>package</th>
+<td><a href="../packages/Aura.Intl.html">Aura.Intl</a></td>
+</tr></table>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a name="__construct" id="__construct"></a><div class="element clickable method public __construct" data-toggle="collapse" data-target=".__construct .collapse">
+<h2>Constructor.</h2>
+<pre>__construct(Aura\Intl\PackageLocator $packages, Aura\Intl\FormatterLocator $formatters, Aura\Intl\TranslatorFactory $factory, string $locale) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$packages</h4>
+<code><a href="../classes/Aura.Intl.PackageLocator.html">\Aura\Intl\PackageLocator</a></code><p>The package locator.</p></div>
+<div class="subelement argument">
+<h4>$formatters</h4>
+<code><a href="../classes/Aura.Intl.FormatterLocator.html">\Aura\Intl\FormatterLocator</a></code><p>The formatter locator.</p></div>
+<div class="subelement argument">
+<h4>$factory</h4>
+<code><a href="../classes/Aura.Intl.TranslatorFactory.html">\Aura\Intl\TranslatorFactory</a></code><p>A translator factory to create translator objects for the locale and package.</p></div>
+<div class="subelement argument">
+<h4>$locale</h4>
+<code>string</code><p>The default locale code to use.</p></div>
+</div></div>
+</div>
+<a name="get" id="get"></a><div class="element clickable method public get" data-toggle="collapse" data-target=".get .collapse">
+<h2>Gets a translator from the registry by package for a locale.</h2>
+<pre>get(string $name, string $locale) : <a href="../classes/Aura.Intl.TranslatorInterface.html">\Aura\Intl\TranslatorInterface</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$name</h4>
+<code>string</code><p>The translator package to retrieve.</p></div>
+<div class="subelement argument">
+<h4>$locale</h4>
+<code>string</code><p>The locale to use; if empty, uses the default locale.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code><a href="../classes/Aura.Intl.TranslatorInterface.html">\Aura\Intl\TranslatorInterface</a></code>A translator object.</div>
+</div></div>
+</div>
+<a name="getFactory" id="getFactory"></a><div class="element clickable method public getFactory" data-toggle="collapse" data-target=".getFactory .collapse">
+<h2>The TranslatorFactory object</h2>
+<pre>getFactory() : <a href="../classes/Aura.Intl.TranslatorFactory.html">\Aura\Intl\TranslatorFactory</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/Aura.Intl.TranslatorFactory.html">\Aura\Intl\TranslatorFactory</a></code></div>
+</div></div>
+</div>
+<a name="getFormatters" id="getFormatters"></a><div class="element clickable method public getFormatters" data-toggle="collapse" data-target=".getFormatters .collapse">
+<h2>object of type FormatterLocator</h2>
+<pre>getFormatters() : <a href="../classes/Aura.Intl.FormatterLocator.html">\Aura\Intl\FormatterLocator</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/Aura.Intl.FormatterLocator.html">\Aura\Intl\FormatterLocator</a></code></div>
+</div></div>
+</div>
+<a name="getLocale" id="getLocale"></a><div class="element clickable method public getLocale" data-toggle="collapse" data-target=".getLocale .collapse">
+<h2>Returns the default locale code.</h2>
+<pre>getLocale() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="getPackages" id="getPackages"></a><div class="element clickable method public getPackages" data-toggle="collapse" data-target=".getPackages .collapse">
+<h2>An object of type PackagesInterface</h2>
+<pre>getPackages() : \Aura\Intl\PackagesInterface</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>\Aura\Intl\PackagesInterface</code></div>
+</div></div>
+</div>
+<a name="setLocale" id="setLocale"></a><div class="element clickable method public setLocale" data-toggle="collapse" data-target=".setLocale .collapse">
+<h2>Sets the default locale code.</h2>
+<pre>setLocale(string $locale) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$locale</h4>
+<code>string</code><p>The new locale code.</p></div>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a name="%24factory" id="$factory"> </a><div class="element clickable property protected $factory" data-toggle="collapse" data-target=".$factory .collapse">
+<h2>A translator factory.</h2>
+<pre>$factory : <a href="../classes/Aura.Intl.TranslatorFactory.html">\Aura\Intl\TranslatorFactory</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24formatters" id="$formatters"> </a><div class="element clickable property protected $formatters" data-toggle="collapse" data-target=".$formatters .collapse">
+<h2>A formatter locator.</h2>
+<pre>$formatters : <a href="../classes/Aura.Intl.FormatterInterface.html">\Aura\Intl\FormatterInterface</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24locale" id="$locale"> </a><div class="element clickable property protected $locale" data-toggle="collapse" data-target=".$locale .collapse">
+<h2>The current locale code.</h2>
+<pre>$locale : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24packages" id="$packages"> </a><div class="element clickable property protected $packages" data-toggle="collapse" data-target=".$packages .collapse">
+<h2>A package locator.</h2>
+<pre>$packages : <a href="../classes/Aura.Intl.PackageLocator.html">\Aura\Intl\PackageLocator</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24registry" id="$registry"> </a><div class="element clickable property protected $registry" data-toggle="collapse" data-target=".$registry .collapse">
+<h2>A registry to retain translator objects.</h2>
+<pre>$registry : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a7</a> and<br>
+            generated on 2013-04-12T16:05:19-05:00.<br></footer></div>
+</div>
+</body>
+</html>

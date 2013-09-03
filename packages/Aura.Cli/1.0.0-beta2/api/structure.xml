@@ -1,0 +1,1561 @@
+<?xml version="1.0"?>
+<project version="0.17.2" title="">
+  <file path="Aura/Cli/AbstractCommand.php" hash="29ac656631b702b08bc403838e0b6399" package="Default">
+    <class final="false" abstract="true" line="18" namespace="Aura\Cli" package="Aura\Cli">
+      <name>AbstractCommand</name>
+      <extends/>
+      <full_name>\Aura\Cli\AbstractCommand</full_name>
+      <docblock>
+        <description>The CLI equivalent of a page-controller to perform a single action.</description>
+        <long-description/>
+        <tag line="11" name="package" description="Aura.Cli"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="28" package="Default">
+        <name>$getopt</name>
+        <default/>
+        <docblock>
+          <description>A Getopt object for the Command; retains the short and long options
+passed at the command line.</description>
+          <long-description/>
+          <tag line="20" name="var" description="" type="\Aura\Cli\Getopt">
+            <type by_reference="false">\Aura\Cli\Getopt</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="37" package="Default">
+        <name>$options</name>
+        <default>[]</default>
+        <docblock>
+          <description>The option definitions for the Getopt object.</description>
+          <long-description/>
+          <tag line="30" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="48" package="Default">
+        <name>$options_strict</name>
+        <default>Getopt::STRICT</default>
+        <docblock>
+          <description>Should Getopt be strict about how options are processed?  In strict
+mode, passing an undefined option will throw an exception; in
+non-strict, it will not.</description>
+          <long-description/>
+          <tag line="39" name="var" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="57" package="Default">
+        <name>$params</name>
+        <default>[]</default>
+        <docblock>
+          <description>The positional (numeric) arguments passed at the command line.</description>
+          <long-description/>
+          <tag line="50" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" line="70" package="Default">
+        <name>__construct</name>
+        <docblock>
+          <description>Constructor.</description>
+          <long-description/>
+          <tag line="59" name="param" description="The command-line context." type="\Aura\Cli\Context" variable="$context">
+            <type by_reference="false">\Aura\Cli\Context</type>
+          </tag>
+          <tag line="59" name="param" description="Standard input/output streams." type="\Aura\Cli\Stdio" variable="$stdio">
+            <type by_reference="false">\Aura\Cli\Stdio</type>
+          </tag>
+          <tag line="59" name="param" description="An options processor and reader." type="\Aura\Cli\Getopt" variable="$getopt">
+            <type by_reference="false">\Aura\Cli\Getopt</type>
+          </tag>
+        </docblock>
+        <argument line="71">
+          <name>$context</name>
+          <default/>
+          <type>Context</type>
+        </argument>
+        <argument line="72">
+          <name>$stdio</name>
+          <default/>
+          <type>Stdio</type>
+        </argument>
+        <argument line="73">
+          <name>$getopt</name>
+          <default/>
+          <type>Getopt</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" line="89" package="Default">
+        <name>initGetopt</name>
+        <docblock>
+          <description>Passes the Context arguments to `$getopt`.</description>
+          <long-description/>
+          <tag line="82" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" line="102" package="Default">
+        <name>initParams</name>
+        <docblock>
+          <description>Loads `$params` from `$getopt`.</description>
+          <long-description/>
+          <tag line="95" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="126" package="Default">
+        <name>exec</name>
+        <docblock>
+          <description>Executes the Command.  In order, it does these things:</description>
+          <long-description>&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;calls &lt;code&gt;preExec()&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;calls &lt;code&gt;preAction()&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;calles &lt;code&gt;action()&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;calls &lt;code&gt;postAction()&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;calls &lt;code&gt;postExec()&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;</long-description>
+          <tag line="107" name="see" description="\Aura\Cli\action()" refers="\Aura\Cli\action()"/>
+          <tag line="107" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="146" package="Default">
+        <name>preExec</name>
+        <docblock>
+          <description>Runs at the beginning of `exec()` before `preAction()`.</description>
+          <long-description/>
+          <tag line="139" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="157" package="Default">
+        <name>preAction</name>
+        <docblock>
+          <description>Runs before `action()` but after `preExec()`.</description>
+          <long-description/>
+          <tag line="150" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="true" static="false" visibility="protected" line="168" package="Default">
+        <name>action</name>
+        <docblock>
+          <description>The main logic for the Command.</description>
+          <long-description/>
+          <tag line="161" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="177" package="Default">
+        <name>postAction</name>
+        <docblock>
+          <description>Runs after `action()` but before `postExec()`.</description>
+          <long-description/>
+          <tag line="170" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="188" package="Default">
+        <name>postExec</name>
+        <docblock>
+          <description>Runs at the end of `exec()` after `postAction()`.</description>
+          <long-description/>
+          <tag line="181" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Aura/Cli/Context.php" hash="e3e3959e43f7e46c5ce23f0e6e5153d5" package="Default">
+    <class final="false" abstract="false" line="18" namespace="Aura\Cli" package="Aura\Cli">
+      <name>Context</name>
+      <extends/>
+      <full_name>\Aura\Cli\Context</full_name>
+      <docblock>
+        <description>Collection point for information about the command-line execution context.</description>
+        <long-description/>
+        <tag line="11" name="package" description="Aura.Cli"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="27" package="Default">
+        <name>$argv</name>
+        <default/>
+        <docblock>
+          <description>Values taken from $_SERVER['argv'].</description>
+          <long-description/>
+          <tag line="20" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="36" package="Default">
+        <name>$env</name>
+        <default/>
+        <docblock>
+          <description>Imported $_ENV values.</description>
+          <long-description/>
+          <tag line="29" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="45" package="Default">
+        <name>$server</name>
+        <default/>
+        <docblock>
+          <description>Imported $_SERVER values.</description>
+          <long-description/>
+          <tag line="38" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" line="56" package="Default">
+        <name>__construct</name>
+        <docblock>
+          <description>Constructor.</description>
+          <long-description/>
+          <tag line="47" name="param" description="Globals provided by PHP, typically `$GLOBALS`." type="array" variable="$globals">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="47" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="56">
+          <name>$globals</name>
+          <default/>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="83" package="Default">
+        <name>getEnv</name>
+        <docblock>
+          <description>Retrieves an **unfiltered** value by key from the $env property, or an
+alternate default value if that key does not exist.</description>
+          <long-description/>
+          <tag line="70" name="param" description="The $env key to retrieve the value of." type="string" variable="$key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="70" name="param" description="The value to return if the key does not exist." type="string" variable="$alt">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="70" name="return" description="The value of $env[$key], or the alternate default value." type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="83">
+          <name>$key</name>
+          <default>null</default>
+          <type/>
+        </argument>
+        <argument line="83">
+          <name>$alt</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="101" package="Default">
+        <name>getServer</name>
+        <docblock>
+          <description>Retrieves an **unfiltered** value by key from the $server property, or
+an alternate default value if that key does not exist.</description>
+          <long-description/>
+          <tag line="88" name="param" description="The $server key to retrieve the value of." type="string" variable="$key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="88" name="param" description="The value to return if the key does not exist." type="string" variable="$alt">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="88" name="return" description="The value of $server[$key], or the alternate default value." type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="101">
+          <name>$key</name>
+          <default>null</default>
+          <type/>
+        </argument>
+        <argument line="101">
+          <name>$alt</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="120" package="Default">
+        <name>getArgv</name>
+        <docblock>
+          <description>Retrieves an **unfiltered** value by position from the `$argv`
+property, or an alternate default value if that position does not
+exist.</description>
+          <long-description/>
+          <tag line="106" name="param" description="The `$argv` positional key to retrieve the value of." type="int" variable="$key">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="106" name="param" description="The value to return if the key does not exist." type="string" variable="$alt">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="106" name="return" description="The value of $server[$key], or the alternate default value." type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="120">
+          <name>$key</name>
+          <default>null</default>
+          <type/>
+        </argument>
+        <argument line="120">
+          <name>$alt</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="135" package="Default">
+        <name>shiftArgv</name>
+        <docblock>
+          <description>Shifts the first value off the `$argv` property and returns it. Note
+that this modifies the `$argv` property; if you need the original,
+unmodified arguments, call `server('argv')`.</description>
+          <long-description/>
+          <tag line="125" name="return" description="The value shifted off the beginning of the `$argv` property." type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" line="149" package="Default">
+        <name>setArgv</name>
+        <docblock>
+          <description>Sets the `$argv` property.</description>
+          <long-description/>
+          <tag line="140" name="param" description="The new value of `$argv`." type="array" variable="$argv">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="140" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="149">
+          <name>$argv</name>
+          <default/>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" line="171" package="Default">
+        <name>getValue</name>
+        <docblock>
+          <description>Common method to get a property value and return it.</description>
+          <long-description/>
+          <tag line="154" name="param" description="The property variable to fetch from: get, post, etc." type="string" variable="$var">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="154" name="param" description="The array key in that property, if any, to get the value of." type="string" variable="$key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="154" name="param" description="The alternative default value to return if the requested key does not exist." type="string" variable="$alt">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="154" name="return" description="The requested value, or the alternative default value." type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="171">
+          <name>$var</name>
+          <default/>
+          <type/>
+        </argument>
+        <argument line="171">
+          <name>$key</name>
+          <default/>
+          <type/>
+        </argument>
+        <argument line="171">
+          <name>$alt</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Aura/Cli/Exception/OptionName.php" hash="e1bae6ed494a950c57478bf5190d1dff" package="Default">
+    <class final="false" abstract="false" line="18" namespace="Aura\Cli\Exception" package="Aura\Cli">
+      <name>OptionName</name>
+      <extends>\Aura\Cli\Exception</extends>
+      <full_name>\Aura\Cli\Exception\OptionName</full_name>
+      <docblock>
+        <description>Option objects need to be initialized with a name.</description>
+        <long-description/>
+        <tag line="11" name="package" description="Aura.Cli"/>
+      </docblock>
+    </class>
+  </file>
+  <file path="Aura/Cli/Exception/OptionNotDefined.php" hash="1a58e08aae160caf18bd001b0cbfd520" package="Default">
+    <class final="false" abstract="false" line="18" namespace="Aura\Cli\Exception" package="Aura\Cli">
+      <name>OptionNotDefined</name>
+      <extends>\Aura\Cli\Exception</extends>
+      <full_name>\Aura\Cli\Exception\OptionNotDefined</full_name>
+      <docblock>
+        <description>Asked for an option that is not defined.</description>
+        <long-description/>
+        <tag line="11" name="package" description="Aura.Cli"/>
+      </docblock>
+    </class>
+  </file>
+  <file path="Aura/Cli/Exception/OptionNotMulti.php" hash="79cadc0afd13eae5f8450f504f8b0fc4" package="Default">
+    <class final="false" abstract="false" line="18" namespace="Aura\Cli\Exception" package="Aura\Cli">
+      <name>OptionNotMulti</name>
+      <extends>\Aura\Cli\Exception</extends>
+      <full_name>\Aura\Cli\Exception\OptionNotMulti</full_name>
+      <docblock>
+        <description>The option does not allow multiple values.</description>
+        <long-description/>
+        <tag line="11" name="package" description="Aura.Cli"/>
+      </docblock>
+    </class>
+  </file>
+  <file path="Aura/Cli/Exception/OptionParam.php" hash="bce28cd00e7d16802bff5d084e99e12b" package="Default">
+    <class final="false" abstract="false" line="18" namespace="Aura\Cli\Exception" package="Aura\Cli">
+      <name>OptionParam</name>
+      <extends>\Aura\Cli\Exception</extends>
+      <full_name>\Aura\Cli\Exception\OptionParam</full_name>
+      <docblock>
+        <description>The option 'param' value needs a boolean or a null.</description>
+        <long-description/>
+        <tag line="11" name="package" description="Aura.Cli"/>
+      </docblock>
+    </class>
+  </file>
+  <file path="Aura/Cli/Exception/OptionParamRejected.php" hash="7aa37df0f38f25ffa6196373d5ed3fb7" package="Default">
+    <class final="false" abstract="false" line="18" namespace="Aura\Cli\Exception" package="Aura\Cli">
+      <name>OptionParamRejected</name>
+      <extends>\Aura\Cli\Exception</extends>
+      <full_name>\Aura\Cli\Exception\OptionParamRejected</full_name>
+      <docblock>
+        <description>The option requires that no parameter be present.</description>
+        <long-description/>
+        <tag line="11" name="package" description="Aura.Cli"/>
+      </docblock>
+    </class>
+  </file>
+  <file path="Aura/Cli/Exception/OptionParamRequired.php" hash="d5675290c9c8eee3b967112a6771c0d4" package="Default">
+    <class final="false" abstract="false" line="18" namespace="Aura\Cli\Exception" package="Aura\Cli">
+      <name>OptionParamRequired</name>
+      <extends>\Aura\Cli\Exception</extends>
+      <full_name>\Aura\Cli\Exception\OptionParamRequired</full_name>
+      <docblock>
+        <description>The option requires a non-blank parameter.</description>
+        <long-description/>
+        <tag line="11" name="package" description="Aura.Cli"/>
+      </docblock>
+    </class>
+  </file>
+  <file path="Aura/Cli/Exception.php" hash="4de9a8b9a240b55fa6090483bd65518a" package="Default">
+    <class final="false" abstract="false" line="18" namespace="Aura\Cli" package="Aura\Cli">
+      <name>Exception</name>
+      <extends>\Exception</extends>
+      <full_name>\Aura\Cli\Exception</full_name>
+      <docblock>
+        <description>Generic package exception.</description>
+        <long-description/>
+        <tag line="11" name="package" description="Aura.Cli"/>
+      </docblock>
+    </class>
+  </file>
+  <file path="Aura/Cli/Getopt.php" hash="be3fab3386acd1cbea9499e11d73a6b4" package="Default">
+    <parse_markers>
+      <notice line="154">Argument $prop is missing from the function Docblock</notice>
+      <notice line="219">Argument $long is missing from the function Docblock</notice>
+      <notice line="241">Argument $char is missing from the function Docblock</notice>
+      <notice line="362">Name of argument $spec does not match with function Docblock</notice>
+    </parse_markers>
+    <class final="false" abstract="false" line="18" namespace="Aura\Cli" package="Aura\Cli">
+      <name>Getopt</name>
+      <extends/>
+      <full_name>\Aura\Cli\Getopt</full_name>
+      <docblock>
+        <description>Retrieves and validates command-line options and parameter values.</description>
+        <long-description/>
+        <tag line="11" name="package" description="Aura.Cli"/>
+      </docblock>
+      <constant namespace="Aura\Cli" line="27" package="Default">
+        <name>STRICT</name>
+        <value>true</value>
+        <docblock>
+          <description>If an option is passed that is not defined, throw an exception.</description>
+          <long-description/>
+          <tag line="20" name="const" description="bool"/>
+        </docblock>
+      </constant>
+      <constant namespace="Aura\Cli" line="36" package="Default">
+        <name>NON_STRICT</name>
+        <value>false</value>
+        <docblock>
+          <description>Do not throw exceptions when undefined options are passed.</description>
+          <long-description/>
+          <tag line="29" name="const" description="bool"/>
+        </docblock>
+      </constant>
+      <property final="false" static="false" visibility="protected" line="45" package="Default">
+        <name>$option_factory</name>
+        <default/>
+        <docblock>
+          <description>A factory to create Option objects.</description>
+          <long-description/>
+          <tag line="38" name="var" description="" type="\Aura\Cli\OptionFactory">
+            <type by_reference="false">\Aura\Cli\OptionFactory</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="54" package="Default">
+        <name>$options</name>
+        <default>[]</default>
+        <docblock>
+          <description>Definitions for recognized options.</description>
+          <long-description/>
+          <tag line="47" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="63" package="Default">
+        <name>$params</name>
+        <default>[]</default>
+        <docblock>
+          <description>Remaining non-option params after loading option values.</description>
+          <long-description/>
+          <tag line="56" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="72" package="Default">
+        <name>$argv</name>
+        <default>[]</default>
+        <docblock>
+          <description>The incoming arguments, typically from $_SERVER['argv'].</description>
+          <long-description/>
+          <tag line="65" name="param" description="array" type="" variable=""/>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" line="81" package="Default">
+        <name>__construct</name>
+        <docblock>
+          <description>Constructor.</description>
+          <long-description/>
+          <tag line="74" name="param" description="A factory for Option objects." type="\Aura\Cli\OptionFactory" variable="$option_factory">
+            <type by_reference="false">\Aura\Cli\OptionFactory</type>
+          </tag>
+        </docblock>
+        <argument line="81">
+          <name>$option_factory</name>
+          <default/>
+          <type>OptionFactory</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="95" package="Default">
+        <name>__get</name>
+        <docblock>
+          <description>Make Option values available as magic readonly properties.</description>
+          <long-description/>
+          <tag line="86" name="param" description="The option name." type="string" variable="$key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="86" name="return" description="The option value." type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="95">
+          <name>$key</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="116" package="Default">
+        <name>init</name>
+        <docblock>
+          <description>Initializes the instance with option definitions.</description>
+          <long-description/>
+          <tag line="103" name="param" description="An array of key-value pairs where the key is the option name and the value is the option spec." type="array" variable="$opts">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="103" name="param" description="Initialize in strict (true) or non-strict (false) mode?" type="bool" variable="$strict">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="103" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="116">
+          <name>$opts</name>
+          <default/>
+          <type>array</type>
+        </argument>
+        <argument line="116">
+          <name>$strict</name>
+          <default>self::STRICT</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="140" package="Default">
+        <name>getOptions</name>
+        <docblock>
+          <description>Returns all the Option definition objects.</description>
+          <long-description/>
+          <tag line="133" name="return" description="An array of Option objects." type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="154" package="Default">
+        <name>getOption</name>
+        <docblock>
+          <description>Returns a single Option definition object by its property name.</description>
+          <long-description/>
+          <tag line="145" name="var" description="The property name of the option." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="145" name="return" description="" type="\Aura\Cli\Option">
+            <type by_reference="false">\Aura\Cli\Option</type>
+          </tag>
+        </docblock>
+        <argument line="154">
+          <name>$prop</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="172" package="Default">
+        <name>getOptionValues</name>
+        <docblock>
+          <description>Returns an array of all Option names and their values.</description>
+          <long-description/>
+          <tag line="165" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="190" package="Default">
+        <name>getOptionValue</name>
+        <docblock>
+          <description>Returns the value of a single Option by name.</description>
+          <long-description/>
+          <tag line="181" name="param" description="The option name to get a value for." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="181" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="190">
+          <name>$name</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="205" package="Default">
+        <name>getParams</name>
+        <docblock>
+          <description>Returns an array of all numeric parameters.</description>
+          <long-description/>
+          <tag line="198" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="219" package="Default">
+        <name>getLongOption</name>
+        <docblock>
+          <description>Returns a single Option definition object by its long-format name.</description>
+          <long-description/>
+          <tag line="210" name="var" description="The long-format name of the option." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="210" name="return" description="" type="\Aura\Cli\Option">
+            <type by_reference="false">\Aura\Cli\Option</type>
+          </tag>
+        </docblock>
+        <argument line="219">
+          <name>$long</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="241" package="Default">
+        <name>getShortOption</name>
+        <docblock>
+          <description>Returns a single Option definition object by its short-format name.</description>
+          <long-description/>
+          <tag line="232" name="var" description="The long-format name of the option." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="232" name="return" description="" type="\Aura\Cli\Option">
+            <type by_reference="false">\Aura\Cli\Option</type>
+          </tag>
+        </docblock>
+        <argument line="241">
+          <name>$char</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="265" package="Default">
+        <name>load</name>
+        <docblock>
+          <description>Loads Option values from an argument array, placing option values
+in the defined Option objects and placing non-option params in a
+`$params` variable.</description>
+          <long-description/>
+          <tag line="254" name="param" description="An argument array, typically from $_SERVER['argv']." type="array" variable="$argv">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="254" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="265">
+          <name>$argv</name>
+          <default/>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" line="314" package="Default">
+        <name>loadLong</name>
+        <docblock>
+          <description>Parses a long-form option.</description>
+          <long-description/>
+          <tag line="305" name="param" description="The `$argv` element, e.g. &quot;--foo&quot; or &quot;--bar=baz&quot;." type="string" variable="$spec">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="305" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="314">
+          <name>$spec</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" line="362" package="Default">
+        <name>loadShort</name>
+        <docblock>
+          <description>Parses a short-form option (or cluster of options).</description>
+          <long-description/>
+          <tag line="353" name="param" description="The `$argv` element, e.g. &quot;-f&quot; or &quot;-fbz&quot;." type="string" variable="$arg">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="353" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="362">
+          <name>$spec</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" line="422" package="Default">
+        <name>loadShortCluster</name>
+        <docblock>
+          <description>Parses a cluster of short options.</description>
+          <long-description/>
+          <tag line="413" name="param" description="The short-option cluster (e.g. &quot;-abcd&quot;)." type="string" variable="$spec">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="413" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="422">
+          <name>$spec</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Aura/Cli/Option.php" hash="b1bd5fd5f6a6dbeae5c9f233968267a8" package="Default">
+    <parse_markers>
+      <notice line="121">Name of argument $name does not match with function Docblock</notice>
+      <notice line="122">Argument $long is missing from the function Docblock</notice>
+      <notice line="123">Argument $short is missing from the function Docblock</notice>
+      <notice line="124">Argument $param is missing from the function Docblock</notice>
+      <notice line="125">Argument $multi is missing from the function Docblock</notice>
+      <notice line="126">Argument $default is missing from the function Docblock</notice>
+    </parse_markers>
+    <class final="false" abstract="false" line="18" namespace="Aura\Cli" package="Aura\Cli">
+      <name>Option</name>
+      <extends/>
+      <full_name>\Aura\Cli\Option</full_name>
+      <docblock>
+        <description>Defines a single command-line option.</description>
+        <long-description/>
+        <tag line="11" name="package" description="Aura.Cli"/>
+      </docblock>
+      <constant namespace="Aura\Cli" line="27" package="Default">
+        <name>PARAM_REQUIRED</name>
+        <value>'required'</value>
+        <docblock>
+          <description>A parameter value is required to be present for this option.</description>
+          <long-description/>
+          <tag line="20" name="const" description="string"/>
+        </docblock>
+      </constant>
+      <constant namespace="Aura\Cli" line="36" package="Default">
+        <name>PARAM_REJECTED</name>
+        <value>'rejected'</value>
+        <docblock>
+          <description>Any parameter value on this option will be rejected.</description>
+          <long-description/>
+          <tag line="29" name="const" description="string"/>
+        </docblock>
+      </constant>
+      <constant namespace="Aura\Cli" line="45" package="Default">
+        <name>PARAM_OPTIONAL</name>
+        <value>'optional'</value>
+        <docblock>
+          <description>A parameter value may or may not be present on this option.</description>
+          <long-description/>
+          <tag line="38" name="const" description="string"/>
+        </docblock>
+      </constant>
+      <property final="false" static="false" visibility="protected" line="54" package="Default">
+        <name>$name</name>
+        <default>null</default>
+        <docblock>
+          <description>The property name of the option.</description>
+          <long-description/>
+          <tag line="47" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="63" package="Default">
+        <name>$long</name>
+        <default>null</default>
+        <docblock>
+          <description>The long name of the option.</description>
+          <long-description/>
+          <tag line="56" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="72" package="Default">
+        <name>$short</name>
+        <default>null</default>
+        <docblock>
+          <description>The short name of the option.</description>
+          <long-description/>
+          <tag line="65" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="82" package="Default">
+        <name>$param</name>
+        <default>self::PARAM_OPTIONAL</default>
+        <docblock>
+          <description>When the option is present, will a be parameter required, optional, or
+rejected (i.e., no param allowed) ?</description>
+          <long-description/>
+          <tag line="74" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="91" package="Default">
+        <name>$multi</name>
+        <default>null</default>
+        <docblock>
+          <description>Can the option be specified multiple times?</description>
+          <long-description/>
+          <tag line="84" name="var" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="100" package="Default">
+        <name>$default</name>
+        <default>null</default>
+        <docblock>
+          <description>The default value for the option param.</description>
+          <long-description/>
+          <tag line="93" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="109" package="Default">
+        <name>$value</name>
+        <default>null</default>
+        <docblock>
+          <description>The option value as set from the command line.</description>
+          <long-description/>
+          <tag line="102" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" line="120" package="Default">
+        <name>__construct</name>
+        <docblock>
+          <description>Initialized the object with an option definition array.</description>
+          <long-description/>
+          <tag line="111" name="param" description="The option definition." type="array" variable="$data">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="111" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="121">
+          <name>$name</name>
+          <default>null</default>
+          <type/>
+        </argument>
+        <argument line="122">
+          <name>$long</name>
+          <default>null</default>
+          <type/>
+        </argument>
+        <argument line="123">
+          <name>$short</name>
+          <default>null</default>
+          <type/>
+        </argument>
+        <argument line="124">
+          <name>$param</name>
+          <default>null</default>
+          <type/>
+        </argument>
+        <argument line="125">
+          <name>$multi</name>
+          <default>null</default>
+          <type/>
+        </argument>
+        <argument line="126">
+          <name>$default</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="173" package="Default">
+        <name>setValue</name>
+        <docblock>
+          <description>Sets the option value.</description>
+          <long-description/>
+          <tag line="164" name="param" description="The value to set." type="mixed" variable="$value">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="164" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="173">
+          <name>$value</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="199" package="Default">
+        <name>getValue</name>
+        <docblock>
+          <description>Gets the option value.</description>
+          <long-description/>
+          <tag line="191" name="return" description="The value as set from the command line, or the default value if not set from the command line." type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="215" package="Default">
+        <name>getLong</name>
+        <docblock>
+          <description>Gets the long name for this option.</description>
+          <long-description/>
+          <tag line="208" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="227" package="Default">
+        <name>getShort</name>
+        <docblock>
+          <description>Gets the short name for this option.</description>
+          <long-description/>
+          <tag line="220" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="239" package="Default">
+        <name>getName</name>
+        <docblock>
+          <description>Gets the property name for this option.</description>
+          <long-description/>
+          <tag line="232" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="251" package="Default">
+        <name>getDefault</name>
+        <docblock>
+          <description>Gets the default value of this option.</description>
+          <long-description/>
+          <tag line="244" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="263" package="Default">
+        <name>isMulti</name>
+        <docblock>
+          <description>Can this option be present multiple times?</description>
+          <long-description/>
+          <tag line="256" name="return" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="275" package="Default">
+        <name>isParamRequired</name>
+        <docblock>
+          <description>Is a param value required to be present on this option?</description>
+          <long-description/>
+          <tag line="268" name="return" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="287" package="Default">
+        <name>isParamRejected</name>
+        <docblock>
+          <description>Is a param value required *not* to be present on this option?</description>
+          <long-description/>
+          <tag line="280" name="return" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="299" package="Default">
+        <name>isParamOptional</name>
+        <docblock>
+          <description>Is a param value optional on this option?</description>
+          <long-description/>
+          <tag line="292" name="return" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Aura/Cli/OptionFactory.php" hash="8c5bee9cefa8447ea1b62402f309696d" package="Default">
+    <class final="false" abstract="false" line="18" namespace="Aura\Cli" package="Aura\Cli">
+      <name>OptionFactory</name>
+      <extends/>
+      <full_name>\Aura\Cli\OptionFactory</full_name>
+      <docblock>
+        <description>A factory to create Option objects.</description>
+        <long-description/>
+        <tag line="11" name="package" description="Aura.Cli"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="27" package="Default">
+        <name>$params</name>
+        <default>[
+        'name'    =&gt; null</default>
+        <docblock>
+          <description>An array of default parameters for Option objects.</description>
+          <long-description/>
+          <tag line="20" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" line="46" package="Default">
+        <name>newInstance</name>
+        <docblock>
+          <description>Creates and returns a new Option object.</description>
+          <long-description/>
+          <tag line="36" name="param" description="An array of key-value pairs corresponding to Option constructor params." type="array" variable="$params">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="36" name="return" description="" type="\Aura\Cli\Option">
+            <type by_reference="false">\Aura\Cli\Option</type>
+          </tag>
+        </docblock>
+        <argument line="46">
+          <name>$params</name>
+          <default/>
+          <type>array</type>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Aura/Cli/Stdio.php" hash="4ae2f4fbea7207d00025530e542adb50" package="Default">
+    <parse_markers>
+      <notice line="71">Argument $vt100 is missing from the function Docblock</notice>
+    </parse_markers>
+    <class final="false" abstract="false" line="18" namespace="Aura\Cli" package="Aura\Cli">
+      <name>Stdio</name>
+      <extends/>
+      <full_name>\Aura\Cli\Stdio</full_name>
+      <docblock>
+        <description>Provides a wrapper for standard input/output handles.</description>
+        <long-description/>
+        <tag line="11" name="package" description="Aura.Cli"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="27" package="Default">
+        <name>$stdin</name>
+        <default/>
+        <docblock>
+          <description>A handle for standard input.</description>
+          <long-description/>
+          <tag line="20" name="var" description="" type="resource">
+            <type by_reference="false">resource</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="36" package="Default">
+        <name>$stdout</name>
+        <default/>
+        <docblock>
+          <description>A handle for standard output.</description>
+          <long-description/>
+          <tag line="29" name="var" description="" type="resource">
+            <type by_reference="false">resource</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="45" package="Default">
+        <name>$stderr</name>
+        <default/>
+        <docblock>
+          <description>A handle for standard error.</description>
+          <long-description/>
+          <tag line="38" name="var" description="" type="resource">
+            <type by_reference="false">resource</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="54" package="Default">
+        <name>$vt100</name>
+        <default/>
+        <docblock>
+          <description>A Vt100 object to format output.</description>
+          <long-description/>
+          <tag line="47" name="var" description="" type="\Aura\Cli\Vt100">
+            <type by_reference="false">\Aura\Cli\Vt100</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" line="67" package="Default">
+        <name>__construct</name>
+        <docblock>
+          <description>Constructor.</description>
+          <long-description/>
+          <tag line="56" name="param" description="A handle for standard input." type="resource" variable="$stdin">
+            <type by_reference="false">resource</type>
+          </tag>
+          <tag line="56" name="param" description="A handle for standard output." type="resource" variable="$stdout">
+            <type by_reference="false">resource</type>
+          </tag>
+          <tag line="56" name="param" description="A handle for standard error." type="resource" variable="$stderr">
+            <type by_reference="false">resource</type>
+          </tag>
+        </docblock>
+        <argument line="68">
+          <name>$stdin</name>
+          <default/>
+          <type/>
+        </argument>
+        <argument line="69">
+          <name>$stdout</name>
+          <default/>
+          <type/>
+        </argument>
+        <argument line="70">
+          <name>$stderr</name>
+          <default/>
+          <type/>
+        </argument>
+        <argument line="71">
+          <name>$vt100</name>
+          <default/>
+          <type>Vt100</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="86" package="Default">
+        <name>getStdin</name>
+        <docblock>
+          <description>Returns the standard input handle.</description>
+          <long-description/>
+          <tag line="79" name="return" description="" type="resource">
+            <type by_reference="false">resource</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="98" package="Default">
+        <name>getStdout</name>
+        <docblock>
+          <description>Returns the standard output handle.</description>
+          <long-description/>
+          <tag line="91" name="return" description="" type="resource">
+            <type by_reference="false">resource</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="110" package="Default">
+        <name>getStderr</name>
+        <docblock>
+          <description>Returns the standard error handle.</description>
+          <long-description/>
+          <tag line="103" name="return" description="" type="resource">
+            <type by_reference="false">resource</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="122" package="Default">
+        <name>in</name>
+        <docblock>
+          <description>Gets user input from the command line and trims the end-of-line.</description>
+          <long-description/>
+          <tag line="115" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="135" package="Default">
+        <name>inln</name>
+        <docblock>
+          <description>Gets user input from the command line and leaves the end-of-line in
+place.</description>
+          <long-description/>
+          <tag line="127" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="150" package="Default">
+        <name>out</name>
+        <docblock>
+          <description>Prints text to standard output via the Vt100 formatter **without**
+a trailing newline.</description>
+          <long-description/>
+          <tag line="140" name="param" description="The text to print to standard output." type="string" variable="$string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="140" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="150">
+          <name>$string</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="165" package="Default">
+        <name>outln</name>
+        <docblock>
+          <description>Prints text to standard output via the Vt100 formatter **with**
+a trailing newline.</description>
+          <long-description/>
+          <tag line="155" name="param" description="The text to print to standard output." type="string" variable="$string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="155" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="165">
+          <name>$string</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="180" package="Default">
+        <name>err</name>
+        <docblock>
+          <description>Prints text to standard error via the Vt100 formatter **without**
+a trailing newline.</description>
+          <long-description/>
+          <tag line="170" name="param" description="The text to print to standard error." type="string" variable="$string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="170" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="180">
+          <name>$string</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="195" package="Default">
+        <name>errln</name>
+        <docblock>
+          <description>Prints text to standard error via the Vt100 formatter **without**
+a trailing newline.</description>
+          <long-description/>
+          <tag line="185" name="param" description="The text to print to standard error." type="string" variable="$string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="185" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="195">
+          <name>$string</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Aura/Cli/Vt100.php" hash="66d5a4bf70ed089b5a41870e18cc2ec7" package="Default">
+    <class final="false" abstract="false" line="24" namespace="Aura\Cli" package="Aura\Cli">
+      <name>Vt100</name>
+      <extends/>
+      <full_name>\Aura\Cli\Vt100</full_name>
+      <docblock>
+        <description>Text formatting for VT100 terminals.</description>
+        <long-description/>
+        <tag line="11" name="package" description="Aura.Cli"/>
+        <tag line="11" name="author" description="Clay Loveless &lt;clay@killersoft.com&gt;"/>
+        <tag line="11" name="author" description="Paul M. Jones &lt;pmjones@paul-m-jones.com&gt;"/>
+        <tag line="11" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="39" package="Default">
+        <name>$format</name>
+        <default>[
+        
+        // literal percent sign
+        '%%'    =&gt; '%'</default>
+        <docblock>
+          <description>Array of format conversions for use on a variety of pre-set console
+style combinations.</description>
+          <long-description>&lt;p&gt;Based on &lt;code&gt;ANSI VT100 Color/Style Codes&lt;/code&gt; according to the
+&lt;a href="http://vt100.net/docs/vt100-ug"&gt;VT100 User Guide&lt;/a&gt; and the
+&lt;a href="http://www.termsys.demon.co.uk/vtansi.htm"&gt;ANSI/VT100 Terminal Control reference&lt;/a&gt;.
+Inspired by &lt;a href="http://pear.php.net/Console_Color"&gt;PEAR Console_Color&lt;/a&gt;.&lt;/p&gt;</long-description>
+          <tag line="26" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="98" package="Default">
+        <name>$posix</name>
+        <default>null</default>
+        <docblock>
+          <description>The POSIX terminal flag.</description>
+          <long-description/>
+          <tag line="87" name="var" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="87" name="see" description="\Aura\Cli\setPosix()" refers="\Aura\Cli\setPosix()"/>
+          <tag line="87" name="see" description="\Aura\Cli\getPosix()" refers="\Aura\Cli\getPosix()"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="107" package="Default">
+        <name>$php_os</name>
+        <default>PHP_OS</default>
+        <docblock>
+          <description>The PHP_OS value. Provided so we can fake the OS as needed.</description>
+          <long-description/>
+          <tag line="100" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" line="120" package="Default">
+        <name>setPosix</name>
+        <docblock>
+          <description>Forces output to format for POSIX terminals, or to strip for non-POSIX
+terminals; when null, will auto-determine if the terminal is POSIX.</description>
+          <long-description/>
+          <tag line="109" name="param" description="True to force formatting, false to force stripping, or null to auto-determine." type="bool" variable="$flag">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="109" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="120">
+          <name>$flag</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="137" package="Default">
+        <name>getPosix</name>
+        <docblock>
+          <description>Gets the value of the POSIX terminal flag.</description>
+          <long-description/>
+          <tag line="129" name="param" description="True to force formatting, false to force stripping, or null to auto-determine." type="mixed" variable="$flag">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="151" package="Default">
+        <name>setPhpOs</name>
+        <docblock>
+          <description>Sets the `$php_os` value.</description>
+          <long-description/>
+          <tag line="142" name="param" description="The new PHP OS value." type="string" variable="$php_os">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="142" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="151">
+          <name>$php_os</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="163" package="Default">
+        <name>getPhpOs</name>
+        <docblock>
+          <description>Gets the `$php_os` value.</description>
+          <long-description/>
+          <tag line="156" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="177" package="Default">
+        <name>format</name>
+        <docblock>
+          <description>Converts VT100 %-markup in text to control codes.</description>
+          <long-description/>
+          <tag line="168" name="param" description="The text to format." type="string" variable="$text">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="168" name="return" description="The formatted text." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="177">
+          <name>$text</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="191" package="Default">
+        <name>strip</name>
+        <docblock>
+          <description>Strips VT100 %-markup from text.</description>
+          <long-description/>
+          <tag line="182" name="param" description="The text to strip %-markup from." type="string" variable="$text">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="182" name="return" description="The plain text." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="191">
+          <name>$text</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="219" package="Default">
+        <name>write</name>
+        <docblock>
+          <description>Writes text to a file handle, converting to control codes if the handle
+is a posix TTY, or to plain text if not.</description>
+          <long-description/>
+          <tag line="204" name="param" description="The file handle." type="resource" variable="$handle">
+            <type by_reference="false">resource</type>
+          </tag>
+          <tag line="204" name="param" description="The text to write to the file handle, converting %-markup if the handle is a posix TTY, or stripping markup if not." type="string" variable="$text">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="204" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+          <tag line="204" name="see" description="\Aura\Cli\writeln()" refers="\Aura\Cli\writeln()"/>
+        </docblock>
+        <argument line="219">
+          <name>$handle</name>
+          <default/>
+          <type/>
+        </argument>
+        <argument line="219">
+          <name>$text</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="245" package="Default">
+        <name>writeln</name>
+        <docblock>
+          <description>Writes text to a file handle, converting to control codes if the handle
+is a posix TTY, or to plain text if not, and then appends a newline.</description>
+          <long-description/>
+          <tag line="230" name="param" description="The file handle." type="resource" variable="$handle">
+            <type by_reference="false">resource</type>
+          </tag>
+          <tag line="230" name="param" description="The text to write to the file handle, converting %-markup if the handle is a posix TTY, or stripping markup if not." type="string" variable="$text">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="230" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+          <tag line="230" name="see" description="\Aura\Cli\write()" refers="\Aura\Cli\write()"/>
+        </docblock>
+        <argument line="245">
+          <name>$handle</name>
+          <default/>
+          <type/>
+        </argument>
+        <argument line="245">
+          <name>$text</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" line="260" package="Default">
+        <name>isPosix</name>
+        <docblock>
+          <description>Determines if a stream handle should be treated as a POSIX terminal.</description>
+          <long-description/>
+          <tag line="251" name="param" description="The stream handle." type="resource" variable="$handle">
+            <type by_reference="false">resource</type>
+          </tag>
+          <tag line="251" name="return" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+        <argument line="260">
+          <name>$handle</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <package name="Aura">
+    <package name="Cli"/>
+  </package>
+  <package name="Default"/>
+  <namespace name="Aura">
+    <namespace name="Cli">
+      <namespace name="Exception"/>
+    </namespace>
+  </namespace>
+  <marker>todo</marker>
+  <marker>fixme</marker>
+</project>

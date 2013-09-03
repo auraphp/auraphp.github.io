@@ -1,0 +1,2960 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project version="2.0.0a7" title="">
+  <file path="AbstractTemplate.php" hash="961d20b1fee22af89889e0114d2a3c41" package="Aura\View">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.View"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\View" line="22" package="Aura\View">
+      <extends/>
+      <name>AbstractTemplate</name>
+      <full_name>\Aura\View\AbstractTemplate</full_name>
+      <docblock line="13">
+        <description><![CDATA[Provides an abstract TemplateView pattern implementation.]]></description>
+        <long-description><![CDATA[<p>We use an
+abstract so that the extended "real" Template class does not have access
+to the private support properties herein.</p>]]></long-description>
+        <tag line="13" name="package" description="Aura.View"/>
+      </docblock>
+      <property final="false" static="false" visibility="private" line="31" namespace="Aura\View" package="Default">
+        <name>$_template_finder</name>
+        <default><![CDATA[]]></default>
+        <docblock line="24">
+          <description><![CDATA[View "finder" (to find views in a path stack).]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="24" name="var" description="" type="\Aura\View\TemplateFinder">
+            <type by_reference="false">\Aura\View\TemplateFinder</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="40" namespace="Aura\View" package="Default">
+        <name>$_data</name>
+        <default><![CDATA[]]></default>
+        <docblock line="33">
+          <description><![CDATA[Data assigned to the template.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="33" name="var" description="" type="object">
+            <type by_reference="false">object</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="50" namespace="Aura\View" package="Default">
+        <name>$_helper_locator</name>
+        <default><![CDATA[]]></default>
+        <docblock line="42">
+          <description><![CDATA[A ServiceLocator for helper objects, so that repeated calls to the same
+helper use the same object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="42" name="var" description="" type="\Aura\View\HelperLocator">
+            <type by_reference="false">\Aura\View\HelperLocator</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="59" namespace="Aura\View" package="Default">
+        <name>$_escaper</name>
+        <default><![CDATA[]]></default>
+        <docblock line="52">
+          <description><![CDATA[A data-escaper object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="52" name="var" description="" type="\Aura\View\Escaper\Object">
+            <type by_reference="false">\Aura\View\Escaper\Object</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="68" namespace="Aura\View" package="Default">
+        <name>$_escaper_factory</name>
+        <default><![CDATA[]]></default>
+        <docblock line="61">
+          <description><![CDATA[A factory to create an escaper.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="61" name="var" description="" type="\Aura\View\EscaperFactory">
+            <type by_reference="false">\Aura\View\EscaperFactory</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View" line="82" package="Aura\View">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="70">
+          <description><![CDATA[Constructor.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="70" name="param" description="An escaper factory." type="\Aura\View\EscaperFactory" variable="$escaper_factory">
+            <type by_reference="false">\Aura\View\EscaperFactory</type>
+          </tag>
+          <tag line="70" name="param" description="A template finder." type="\Aura\View\TemplateFinder" variable="$template_finder">
+            <type by_reference="false">\Aura\View\TemplateFinder</type>
+          </tag>
+          <tag line="70" name="param" description="A Service Locator for helpers attached to this template." type="\Aura\View\HelperLocator" variable="$helper_locator">
+            <type by_reference="false">\Aura\View\HelperLocator</type>
+          </tag>
+        </docblock>
+        <argument line="83">
+          <name>$escaper_factory</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\View\EscaperFactory</type>
+        </argument>
+        <argument line="84">
+          <name>$template_finder</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\View\TemplateFinder</type>
+        </argument>
+        <argument line="85">
+          <name>$helper_locator</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\View\HelperLocator</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View" line="102" package="Aura\View">
+        <name>__get</name>
+        <full_name>__get</full_name>
+        <docblock line="93">
+          <description><![CDATA[Magic read access to template data.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="93" name="param" description="The template variable name." type="string" variable="$key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="93" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="102">
+          <name>$key</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View" line="118" package="Aura\View">
+        <name>__set</name>
+        <full_name>__set</full_name>
+        <docblock line="107">
+          <description><![CDATA[Magic write access to template data.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="107" name="param" description="The template variable name." type="string" variable="$key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="107" name="param" description="The template variable value." type="string" variable="$val">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="107" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="118">
+          <name>$key</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="118">
+          <name>$val</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View" line="132" package="Aura\View">
+        <name>__isset</name>
+        <full_name>__isset</full_name>
+        <docblock line="123">
+          <description><![CDATA[Magic isset() checks on template data.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="123" name="param" description="The template variable name." type="string" variable="$key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="123" name="return" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+        <argument line="132">
+          <name>$key</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View" line="146" package="Aura\View">
+        <name>__unset</name>
+        <full_name>__unset</full_name>
+        <docblock line="137">
+          <description><![CDATA[Magic unset() for template data.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="137" name="param" description="The template variable name." type="string" variable="$key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="137" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="146">
+          <name>$key</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View" line="162" package="Aura\View">
+        <name>__call</name>
+        <full_name>__call</full_name>
+        <docblock line="151">
+          <description><![CDATA[Magic call to provide shared helpers as template methods.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="151" name="param" description="The helper name." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="151" name="param" description="The arguments to pass to the helper." type="array" variable="$args">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="151" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="162">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="162">
+          <name>$args</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View" line="177" package="Aura\View">
+        <name>setPaths</name>
+        <full_name>setPaths</full_name>
+        <docblock line="168">
+          <description><![CDATA[Sets the search paths for templates; paths are searched in FIFO order.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="168" name="param" description="An array of directory paths where templates are." type="array" variable="$paths">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="168" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="177">
+          <name>$paths</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View" line="192" package="Aura\View">
+        <name>addData</name>
+        <full_name>addData</full_name>
+        <docblock line="182">
+          <description><![CDATA[Merges new data with the existing template data.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="182" name="param" description="An array of key-value pairs where the keys are template variable names, and the values are the variable values." type="array" variable="$data">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="182" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="192">
+          <name>$data</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View" line="209" package="Aura\View">
+        <name>setData</name>
+        <full_name>setData</full_name>
+        <docblock line="198">
+          <description><![CDATA[Replaces all template data at once; this will remove all previous
+data.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="198" name="param" description="An array of key-value pairs where the keys are template variable names, and the values are the variable values." type="array" variable="$data">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="198" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="209">
+          <name>$data</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View" line="223" package="Aura\View">
+        <name>getData</name>
+        <full_name>getData</full_name>
+        <docblock line="215">
+          <description><![CDATA[Gets all template variables.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="215" name="return" description="An array of key-value pairs where the keys are template variable names, and the values are the variable values." type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View" line="235" package="Aura\View">
+        <name>__raw</name>
+        <full_name>__raw</full_name>
+        <docblock line="228">
+          <description><![CDATA[Returns the raw data object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="228" name="return" description="" type="\StdClass">
+            <type by_reference="false">\StdClass</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View" line="247" package="Aura\View">
+        <name>getHelperLocator</name>
+        <full_name>getHelperLocator</full_name>
+        <docblock line="240">
+          <description><![CDATA[Returns the helper locator object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="240" name="return" description="" type="\Aura\View\HelperLocator">
+            <type by_reference="false">\Aura\View\HelperLocator</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View" line="262" package="Aura\View">
+        <name>find</name>
+        <full_name>find</full_name>
+        <docblock line="252">
+          <description><![CDATA[Returns the path to the requested template script; searches through
+$this->paths to find the first matching template.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="252" name="param" description="The template name to look for in the template path." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="252" name="return" description="The full path to the template script." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="262">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View" line="286" package="Aura\View">
+        <name>getTemplateFinder</name>
+        <full_name>getTemplateFinder</full_name>
+        <docblock line="279">
+          <description><![CDATA[Returns the TemplateFinder object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="279" name="return" description="" type="\Aura\View\TemplateFinder">
+            <type by_reference="false">\Aura\View\TemplateFinder</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View" line="300" package="Aura\View">
+        <name>getHelper</name>
+        <full_name>getHelper</full_name>
+        <docblock line="291">
+          <description><![CDATA[Retrieves a shared helper from the helper container.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="291" name="param" description="The helper to retrieve." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="291" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="300">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="true" static="false" visibility="public" namespace="Aura\View" line="314" package="Aura\View">
+        <name>fetch</name>
+        <full_name>fetch</full_name>
+        <docblock line="305">
+          <description><![CDATA[Fetches the output from a template.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="305" name="param" description="The template name to use." type="string" variable="$__name__">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="305" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="314">
+          <name>$__name__</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="true" static="false" visibility="public" namespace="Aura\View" line="330" package="Aura\View">
+        <name>partial</name>
+        <full_name>partial</full_name>
+        <docblock line="316">
+          <description><![CDATA[Fetches the output from a partial.]]></description>
+          <long-description><![CDATA[<p>The partial will be executed in
+isolation from the rest of the template, which means <code>$this</code> refers
+to the <em>partial</em> data, not the original template data. However,
+helper objects are shared.</p>]]></long-description>
+          <tag line="316" name="param" description="The partial to use." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="316" name="param" description="Data to use for the partial." type="array" variable="$data">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="316" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="330">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="330">
+          <name>$data</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Escaper/Iterator.php" hash="6e172352636ad2ed71750daa4a288890" package="Aura\View">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.View"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\View\Escaper" line="20" package="Aura\View">
+      <extends>\Aura\View\Escaper\Object</extends>
+      <implements>\Iterator</implements>
+      <name>Iterator</name>
+      <full_name>\Aura\View\Escaper\Iterator</full_name>
+      <docblock line="13">
+        <description><![CDATA[An iterator for escaper objects.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.View"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View\Escaper" line="29" package="Aura\View">
+        <name>current</name>
+        <full_name>current</full_name>
+        <docblock line="22">
+          <description><![CDATA[Returns the current value.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View\Escaper" line="41" package="Aura\View">
+        <name>key</name>
+        <full_name>key</full_name>
+        <docblock line="34">
+          <description><![CDATA[Returns the current key.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="34" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View\Escaper" line="53" package="Aura\View">
+        <name>next</name>
+        <full_name>next</full_name>
+        <docblock line="46">
+          <description><![CDATA[Returns the next item.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="46" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View\Escaper" line="65" package="Aura\View">
+        <name>rewind</name>
+        <full_name>rewind</full_name>
+        <docblock line="58">
+          <description><![CDATA[Rewinds the iterator the start.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="58" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View\Escaper" line="77" package="Aura\View">
+        <name>valid</name>
+        <full_name>valid</full_name>
+        <docblock line="70">
+          <description><![CDATA[Is the current position valid?]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="70" name="return" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Escaper/IteratorAggregate.php" hash="d22b648070c964dc8644f5e81b3d76ac" package="Aura\View">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.View"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\View\Escaper" line="20" package="Aura\View">
+      <extends>\Aura\View\Escaper\Object</extends>
+      <implements>\IteratorAggregate</implements>
+      <name>IteratorAggregate</name>
+      <full_name>\Aura\View\Escaper\IteratorAggregate</full_name>
+      <docblock line="13">
+        <description><![CDATA[Returns an iterator wrapped in an escaper.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.View"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View\Escaper" line="29" package="Aura\View">
+        <name>getIterator</name>
+        <full_name>getIterator</full_name>
+        <docblock line="22">
+          <description><![CDATA[Returns an iterator wrapped in an escaper.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="return" description="" type="\Aura\View\Escaper\Iterator">
+            <type by_reference="false">\Aura\View\Escaper\Iterator</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Escaper/Object.php" hash="8565ee23e13ee3b62d39b4474bcf3e4e" package="Aura\View">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.View"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="EscaperFactory">Aura\View\EscaperFactory</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\View\Escaper" line="22" package="Aura\View">
+      <extends/>
+      <implements>\ArrayAccess</implements>
+      <name>Object</name>
+      <full_name>\Aura\View\Escaper\Object</full_name>
+      <docblock line="15">
+        <description><![CDATA[A decorator to return escaped values from objects/arrays/etc.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.View"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="31" namespace="Aura\View\Escaper" package="Default">
+        <name>$factory</name>
+        <default><![CDATA[]]></default>
+        <docblock line="24">
+          <description><![CDATA[An escaper factory.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="24" name="var" description="" type="\Aura\View\EscaperFactory">
+            <type by_reference="false">\Aura\View\EscaperFactory</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="40" namespace="Aura\View\Escaper" package="Default">
+        <name>$object</name>
+        <default><![CDATA[]]></default>
+        <docblock line="33">
+          <description><![CDATA[The object being decorated (wrapped) for escaping.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="33" name="var" description="" type="object">
+            <type by_reference="false">object</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="49" namespace="Aura\View\Escaper" package="Default">
+        <name>$quotes</name>
+        <default><![CDATA[]]></default>
+        <docblock line="42">
+          <description><![CDATA[The type of quoting to use for htmlspecialchars(), e.g.]]></description>
+          <long-description><![CDATA[<p>ENT_QUOTES.</p>]]></long-description>
+          <tag line="42" name="var" description="" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="58" namespace="Aura\View\Escaper" package="Default">
+        <name>$charset</name>
+        <default><![CDATA[]]></default>
+        <docblock line="51">
+          <description><![CDATA[The character set to use for htmlspecialchars(), e.g.]]></description>
+          <long-description><![CDATA[<p>'UTF-8'.</p>]]></long-description>
+          <tag line="51" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View\Escaper" line="73" package="Aura\View">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="60">
+          <description><![CDATA[Constructor.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="60" name="param" description="A factory for escaper objects." type="\Aura\View\EscaperFactory" variable="$factory">
+            <type by_reference="false">\Aura\View\EscaperFactory</type>
+          </tag>
+          <tag line="60" name="param" description="The object to be decorated for escaping." type="object" variable="$object">
+            <type by_reference="false">object</type>
+          </tag>
+          <tag line="60" name="param" description="The type of quotes for htmlspecialchars()." type="string" variable="$quotes">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="60" name="param" description="The character set to use for htmlspecialchars()." type="string" variable="$charset">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="73">
+          <name>$factory</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\View\EscaperFactory</type>
+        </argument>
+        <argument line="73">
+          <name>$object</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="73">
+          <name>$quotes</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="73">
+          <name>$charset</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View\Escaper" line="90" package="Aura\View">
+        <name>__get</name>
+        <full_name>__get</full_name>
+        <docblock line="81">
+          <description><![CDATA[Returns an escaped property from the underlying object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="81" name="param" description="The underlying object property." type="string" variable="$prop">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="81" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="90">
+          <name>$prop</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View\Escaper" line="106" package="Aura\View">
+        <name>__set</name>
+        <full_name>__set</full_name>
+        <docblock line="95">
+          <description><![CDATA[Sets a property on the underlying object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="95" name="param" description="The underlying object property." type="string" variable="$prop">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="95" name="param" description="Set the property to this value." type="mixed" variable="$spec">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="95" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="106">
+          <name>$prop</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="106">
+          <name>$spec</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View\Escaper" line="120" package="Aura\View">
+        <name>__isset</name>
+        <full_name>__isset</full_name>
+        <docblock line="111">
+          <description><![CDATA[Is the underlying object property set?]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="111" name="param" description="The underlying object property." type="string" variable="$prop">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="111" name="return" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+        <argument line="120">
+          <name>$prop</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View\Escaper" line="134" package="Aura\View">
+        <name>__unset</name>
+        <full_name>__unset</full_name>
+        <docblock line="125">
+          <description><![CDATA[Unsets the underlying object property.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="125" name="param" description="The underlying object property." type="string" variable="$prop">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="125" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="134">
+          <name>$prop</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View\Escaper" line="150" package="Aura\View">
+        <name>__call</name>
+        <full_name>__call</full_name>
+        <docblock line="139">
+          <description><![CDATA[Calls an underlying object method and escapes the return value.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="139" name="param" description="The underlying object method." type="string" variable="$method">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="139" name="param" description="Params to pass to the method." type="array" variable="$params">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="139" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="150">
+          <name>$method</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="150">
+          <name>$params</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View\Escaper" line="165" package="Aura\View">
+        <name>__raw</name>
+        <full_name>__raw</full_name>
+        <docblock line="158">
+          <description><![CDATA[Returns the underlying object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="158" name="return" description="" type="object">
+            <type by_reference="false">object</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View\Escaper" line="182" package="Aura\View">
+        <name>__escape</name>
+        <full_name>__escape</full_name>
+        <docblock line="170">
+          <description><![CDATA[Returns an escaped value.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="170" name="param" description="The value to escape. If a string, uses htmlspecialchars(); if an array or object, wraps it in an escaper; otherwise, does not escape (e.g. numerics, resources, bools, nulls, etc.)." type="mixed" variable="$spec">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="170" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="182">
+          <name>$spec</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View\Escaper" line="205" package="Aura\View">
+        <name>offsetExists</name>
+        <full_name>offsetExists</full_name>
+        <docblock line="196">
+          <description><![CDATA[ArrayAccess: does the requested property exist?]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="196" name="param" description="The requested property." type="string" variable="$prop">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="196" name="return" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+        <argument line="205">
+          <name>$prop</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View\Escaper" line="219" package="Aura\View">
+        <name>offsetGet</name>
+        <full_name>offsetGet</full_name>
+        <docblock line="210">
+          <description><![CDATA[ArrayAccess: get a property value.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="210" name="param" description="The requested property." type="string" variable="$prop">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="210" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="219">
+          <name>$prop</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View\Escaper" line="235" package="Aura\View">
+        <name>offsetSet</name>
+        <full_name>offsetSet</full_name>
+        <docblock line="224">
+          <description><![CDATA[ArrayAccess: sets a property value.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="224" name="param" description="The requested property." type="string" variable="$prop">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="224" name="param" description="The value to set it to." type="mixed" variable="$spec">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="224" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="235">
+          <name>$prop</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="235">
+          <name>$spec</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View\Escaper" line="249" package="Aura\View">
+        <name>offsetUnset</name>
+        <full_name>offsetUnset</full_name>
+        <docblock line="240">
+          <description><![CDATA[ArrayAccess: unset a property.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="240" name="param" description="The requested property." type="string" variable="$prop">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="240" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="249">
+          <name>$prop</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="EscaperFactory.php" hash="243f318fcad3170d147085845645399c" package="Aura\View">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.View"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\View" line="20" package="Aura\View">
+      <extends/>
+      <name>EscaperFactory</name>
+      <full_name>\Aura\View\EscaperFactory</full_name>
+      <docblock line="13">
+        <description><![CDATA[A factory to create escaper objects.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.View"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="29" namespace="Aura\View" package="Default">
+        <name>$quotes</name>
+        <default><![CDATA[ENT_QUOTES]]></default>
+        <docblock line="22">
+          <description><![CDATA[The type of quoting to use for htmlspecialchars(), e.g.]]></description>
+          <long-description><![CDATA[<p>ENT_QUOTES.</p>]]></long-description>
+          <tag line="22" name="var" description="" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="38" namespace="Aura\View" package="Default">
+        <name>$charset</name>
+        <default><![CDATA['UTF-8']]></default>
+        <docblock line="31">
+          <description><![CDATA[The character set to use for htmlspecialchars(), e.g.]]></description>
+          <long-description><![CDATA[<p>'UTF-8'.</p>]]></long-description>
+          <tag line="31" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View" line="49" package="Aura\View">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="40">
+          <description><![CDATA[Constructor.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="40" name="param" description="The type of quotes for htmlspecialchars()." type="string" variable="$quotes">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="40" name="param" description="The character set to use for htmlspecialchars()." type="string" variable="$charset">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="49">
+          <name>$quotes</name>
+          <default><![CDATA[ENT_QUOTES]]></default>
+          <type/>
+        </argument>
+        <argument line="49">
+          <name>$charset</name>
+          <default><![CDATA['UTF-8']]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View" line="64" package="Aura\View">
+        <name>newInstance</name>
+        <full_name>newInstance</full_name>
+        <docblock line="55">
+          <description><![CDATA[Returns a new instance of an escaper object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="55" name="param" description="The object to escape." type="mixed" variable="$spec">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="55" name="return" description="" type="\Aura\View\Escaper\Object">
+            <type by_reference="false">\Aura\View\Escaper\Object</type>
+          </tag>
+        </docblock>
+        <argument line="64">
+          <name>$spec</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Exception/HelperNotMapped.php" hash="113a45962a5a0cf3600d7abc846c2a1b" package="Aura\View">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.View"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="Exception">Aura\View\Exception</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\View\Exception" line="21" package="Aura\View">
+      <extends>\Aura\View\Exception</extends>
+      <name>HelperNotMapped</name>
+      <full_name>\Aura\View\Exception\HelperNotMapped</full_name>
+      <docblock line="14">
+        <description><![CDATA[Throws Helper Not Mapped Exception]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="14" name="package" description="Aura.View"/>
+      </docblock>
+    </class>
+  </file>
+  <file path="Exception/TemplateNotFound.php" hash="32a1d2300c0d807e7c654b60b30776d5" package="Aura\View">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.View"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="Exception">Aura\View\Exception</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\View\Exception" line="22" package="Aura\View">
+      <extends>\Aura\View\Exception</extends>
+      <name>TemplateNotFound</name>
+      <full_name>\Aura\View\Exception\TemplateNotFound</full_name>
+      <docblock line="15">
+        <description><![CDATA[Throw Template Not Found Exception]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.View"/>
+      </docblock>
+    </class>
+  </file>
+  <file path="Exception.php" hash="4cc65786d1daae788d59fe9efaa9feca" package="Aura\View">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.View"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\View" line="20" package="Aura\View">
+      <extends>\Exception</extends>
+      <name>Exception</name>
+      <full_name>\Aura\View\Exception</full_name>
+      <docblock line="13">
+        <description><![CDATA[Aura View Exception]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.View"/>
+      </docblock>
+    </class>
+  </file>
+  <file path="FormatTypes.php" hash="dda8c29e452537bc8115423dd7ffca20" package="Aura\View">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.View"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\View" line="22" package="Aura\View">
+      <extends/>
+      <name>FormatTypes</name>
+      <full_name>\Aura\View\FormatTypes</full_name>
+      <docblock line="13">
+        <description><![CDATA[Provides a mapping between .format file extensions and their Content-Type
+values.]]></description>
+        <long-description><![CDATA[<p>Also handles negotiation between an array of Accept headers and a
+list of available .format views to be rendered.</p>]]></long-description>
+        <tag line="13" name="package" description="Aura.View"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="31" namespace="Aura\View" package="Default">
+        <name>$map</name>
+        <default><![CDATA[array('.aif' => 'audio/x-aiff', '.aifc' => 'audio/x-aiff', '.aiff' => 'audio/x-aiff', '.asf' => 'video/x-ms-asf', '.asr' => 'video/x-ms-asf', '.asx' => 'video/x-ms-asf', '.atom' => 'application/atom+xml', '.au' => 'audio/basic', '.avi' => 'video/x-msvideo', '.bas' => 'text/plain', '.bmp' => 'image/bmp', '.c' => 'text/plain', '.css' => 'text/css', '.csv' => 'text/plain', '.dtd' => 'application/xml-dtd', '.etx' => 'text/x-setext', '.flr' => 'x-world/x-vrml', '.gif' => 'image/gif', '.gz' => 'application/x-gzip', '.h' => 'text/plain', '.htm' => 'text/html', '.html' => 'text/html', '.ico' => 'image/x-icon', '.jfif' => 'image/pipeg', '.jpe' => 'image/jpeg', '.jpeg' => 'image/jpeg', '.jpg' => 'image/jpeg', '.js' => 'text/javascript', '.json' => 'application/json', '.lsf' => 'video/x-la-asf', '.lsx' => 'video/x-la-asf', '.m3u' => 'audio/x-mpegurl', '.mid' => 'audio/mid', '.mov' => 'video/quicktime', '.movie' => 'video/x-sgi-movie', '.mp2' => 'video/mpeg', '.mp3' => 'audio/mpeg', '.mpa' => 'video/mpeg', '.mpe' => 'video/mpeg', '.mpeg' => 'video/mpeg', '.mpg' => 'video/mpeg', '.mpv2' => 'video/mpeg', '.ogg' => 'application/ogg', '.pbm' => 'image/x-portable-bitmap', '.pdf' => 'application/pdf', '.pgm' => 'image/x-portable-graymap', '.png' => 'image/png', '.pnm' => 'image/x-portable-anymap', '.ppm' => 'image/x-portable-pixmap', '.ps' => 'application/postscript', '.qt' => 'video/quicktime', '.ra' => 'audio/x-pn-realaudio', '.ram' => 'audio/x-pn-realaudio', '.ras' => 'image/x-cmu-raster', '.rdf' => 'application/rdf+xml', '.rgb' => 'image/x-rgb', '.rmi' => 'audio/mid', '.rss' => 'application/rss+xml', '.rss2' => 'application/rss+xml', '.rtf' => 'application/rtf', '.snd' => 'audio/basic', '.svg' => 'image/svg+xml', '.text' => 'text/plain', '.tif' => 'image/tiff', '.tiff' => 'image/tiff', '.tsv' => 'text/plain', '.txt' => 'text/plain', '.vcf' => 'text/x-vcard', '.vrml' => 'x-world/x-vrml', '.wav' => 'audio/x-wav', '.wrl' => 'x-world/x-vrml', '.wrz' => 'x-world/x-vrml', '.xaf' => 'x-world/x-vrml', '.xbm' => 'image/x-xbitmap', '.xht' => 'application/xhtml+xml', '.xhtml' => 'application/xhtml+xml', '.xml' => 'application/xml', '.xof' => 'x-world/x-vrml', '.xpm' => 'image/x-xpixmap', '.xwd' => 'image/x-xwindowdump', '.zip' => 'application/zip')]]></default>
+        <docblock line="24">
+          <description><![CDATA[An array of `.format` extensions to Content-Type mappings.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="24" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View" line="123" package="Aura\View">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="115">
+          <description><![CDATA[Constructor.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="115" name="param" description="An array of additional or override .format mappings to Content-Type values." type="array" variable="$map">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="123">
+          <name>$map</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View" line="143" package="Aura\View">
+        <name>matchAcceptFormats</name>
+        <full_name>matchAcceptFormats</full_name>
+        <docblock line="128">
+          <description><![CDATA[Given an array of acceptable Content-Type values and an array of
+available .format views, picks an acceptable .format view.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="128" name="param" description="An array of acceptable Content-Type values." type="array" variable="$accept">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="128" name="param" description="An array of available .format views." type="array" variable="$formats">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="128" name="return" description="An acceptable .format view matching one of the Content-Type values." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="128" name="todo" description="Handle '*' variations on $accept."/>
+        </docblock>
+        <argument line="143">
+          <name>$accept</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+        <argument line="143">
+          <name>$formats</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View" line="167" package="Aura\View">
+        <name>getContentType</name>
+        <full_name>getContentType</full_name>
+        <docblock line="158">
+          <description><![CDATA[Returns the Content-Type for a particular .format file extension.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="158" name="param" description="The .format file extension." type="string" variable="$format">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="158" name="return" description="The mapped Content-Type value." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="167">
+          <name>$format</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Helper/AbstractHelper.php" hash="b7fcd95c2d09dd88f47156b75dc95733" package="Aura\View">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.View"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\View\Helper" line="20" package="Aura\View">
+      <extends/>
+      <name>AbstractHelper</name>
+      <full_name>\Aura\View\Helper\AbstractHelper</full_name>
+      <docblock line="13">
+        <description><![CDATA[Abstract helper base class.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.View"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="29" namespace="Aura\View\Helper" package="Default">
+        <name>$indent</name>
+        <default><![CDATA['    ']]></default>
+        <docblock line="22">
+          <description><![CDATA[Use this as one level of indentation for output.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View\Helper" line="40" package="Aura\View">
+        <name>setIndent</name>
+        <full_name>setIndent</full_name>
+        <docblock line="31">
+          <description><![CDATA[Sets the string to use for one level of indentation.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="31" name="param" description="The indent string." type="string" variable="$indent">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="31" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="40">
+          <name>$indent</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\View\Helper" line="57" package="Aura\View">
+        <name>attribs</name>
+        <full_name>attribs</full_name>
+        <docblock line="45">
+          <description><![CDATA[Converts an associative array to an attribute string.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="45" name="param" description="From this array, each key-value pair is converted to an attribute name and value." type="array|\Aura\View\Helper\Traversable" variable="$attribs">
+            <type by_reference="false">array</type>
+            <type by_reference="false">\Aura\View\Helper\Traversable</type>
+          </tag>
+          <tag line="45" name="param" description="Skip attributes listed in this array." type="array" variable="$skip">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="45" name="return" description="The attribute string." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="57">
+          <name>$attribs</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="57">
+          <name>$skip</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Helper/Anchor.php" hash="3a5f65df4e30a6fd732682b8dc7bcf92" package="Aura\View">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.View"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\View\Helper" line="20" package="Aura\View">
+      <extends>\Aura\View\Helper\AbstractHelper</extends>
+      <name>Anchor</name>
+      <full_name>\Aura\View\Helper\Anchor</full_name>
+      <docblock line="13">
+        <description><![CDATA[Helper to generate `<a .]]></description>
+        <long-description><![CDATA[<p>.. />` tags.</p>]]></long-description>
+        <tag line="13" name="package" description="Aura.View"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View\Helper" line="35" package="Aura\View">
+        <name>__invoke</name>
+        <full_name>__invoke</full_name>
+        <docblock line="22">
+          <description><![CDATA[Returns an anchor tag.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="param" description="The anchor href specification." type="string" variable="$href">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="22" name="param" description="The text for the anchor." type="string" variable="$text">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="22" name="param" description="Attributes for the anchor." type="array" variable="$attribs">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="22" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="35">
+          <name>$href</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="35">
+          <name>$text</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="35">
+          <name>$attribs</name>
+          <default><![CDATA[array()]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Helper/Attribs.php" hash="02cddd4e0b54e83f247c1bb9a8362584" package="Aura\View">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.View"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\View\Helper" line="20" package="Aura\View">
+      <extends>\Aura\View\Helper\AbstractHelper</extends>
+      <name>Attribs</name>
+      <full_name>\Aura\View\Helper\Attribs</full_name>
+      <docblock line="13">
+        <description><![CDATA[Helper to convert key-value arrays to attribute strings.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.View"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View\Helper" line="34" package="Aura\View">
+        <name>__invoke</name>
+        <full_name>__invoke</full_name>
+        <docblock line="22">
+          <description><![CDATA[Converts an associative array to an attribute string.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="param" description="From this array, each key-value pair is converted to an attribute name and value." type="array" variable="$attribs">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="22" name="param" description="Skip attributes listed in this array." type="array" variable="$skip">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="22" name="return" description="The string of attributes." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="34">
+          <name>$attribs</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="34">
+          <name>$skip</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Helper/Base.php" hash="f3e74231b2694299b933fc2a0b7ba641" package="Aura\View">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.View"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\View\Helper" line="20" package="Aura\View">
+      <extends>\Aura\View\Helper\AbstractHelper</extends>
+      <name>Base</name>
+      <full_name>\Aura\View\Helper\Base</full_name>
+      <docblock line="13">
+        <description><![CDATA[Helper to generate `<base .]]></description>
+        <long-description><![CDATA[<p>.. />` tags.</p>]]></long-description>
+        <tag line="13" name="package" description="Aura.View"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View\Helper" line="31" package="Aura\View">
+        <name>__invoke</name>
+        <full_name>__invoke</full_name>
+        <docblock line="22">
+          <description><![CDATA[Returns a `<base .]]></description>
+          <long-description><![CDATA[<p>.. />` tag.</p>]]></long-description>
+          <tag line="22" name="param" description="The base href." type="string" variable="$href">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="22" name="return" description="The `&lt;base ... /&gt;` tag." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="31">
+          <name>$href</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Helper/Datetime.php" hash="4088ae0429218c57489f88d064bc73ed" package="Aura\View">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.View"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\View\Helper" line="22" package="Aura\View">
+      <extends>\Aura\View\Helper\AbstractHelper</extends>
+      <name>Datetime</name>
+      <full_name>\Aura\View\Helper\Datetime</full_name>
+      <docblock line="13">
+        <description><![CDATA[Helper for a formatted timestamp using date() format codes.]]></description>
+        <long-description><![CDATA[<p>Default format is "Y-m-d H:i:s".</p>]]></long-description>
+        <tag line="13" name="package" description="Aura.View"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="31" namespace="Aura\View\Helper" package="Default">
+        <name>$format</name>
+        <default><![CDATA[array('date' => 'Y-m-d', 'time' => 'H:i:s', 'datetime' => 'Y-m-d H:i:s', 'default' => 'Y-m-d H:i:s')]]></default>
+        <docblock line="24">
+          <description><![CDATA[An array of datetime formats.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="24" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View\Helper" line="45" package="Aura\View">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="38">
+          <description><![CDATA[Constructor.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="38" name="param" description="Additional or override datetime formats." type="array" variable="$format">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="45">
+          <name>$format</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View\Helper" line="62" package="Aura\View">
+        <name>__invoke</name>
+        <full_name>__invoke</full_name>
+        <docblock line="50">
+          <description><![CDATA[Outputs a formatted timestamp using date() format codes.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="50" name="param" description="Any date-time string suitable for strtotime()." type="string" variable="$spec">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="50" name="param" description="An optional custom date() formatting string." type="string" variable="$format">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="50" name="return" description="The formatted date string." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="62">
+          <name>$spec</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="62">
+          <name>$format</name>
+          <default><![CDATA['default']]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Helper/Escape.php" hash="c922821223aaf8d69adb5cdd39f5887a" package="Aura\View">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.View"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="EscaperFactory">Aura\View\EscaperFactory</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\View\Helper" line="21" package="Aura\View">
+      <extends/>
+      <name>Escape</name>
+      <full_name>\Aura\View\Helper\Escape</full_name>
+      <docblock line="14">
+        <description><![CDATA[Inline escaper.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="14" name="package" description="Aura.View"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="30" namespace="Aura\View\Helper" package="Default">
+        <name>$escaper_object</name>
+        <default><![CDATA[]]></default>
+        <docblock line="23">
+          <description><![CDATA[An escaper object so we have access to its __escape() method.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="23" name="var" description="" type="\Aura\View\Helper\Aura\View\Escaper\Object">
+            <type by_reference="false">\Aura\View\Helper\Aura\View\Escaper\Object</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View\Helper" line="40" package="Aura\View">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="32">
+          <description><![CDATA[Constructor.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="32" name="param" description="A factory to create the escaper object." type="\Aura\View\EscaperFactory" variable="$escaper_factory">
+            <type by_reference="false">\Aura\View\EscaperFactory</type>
+          </tag>
+        </docblock>
+        <argument line="40">
+          <name>$escaper_factory</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\View\EscaperFactory</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View\Helper" line="53" package="Aura\View">
+        <name>__invoke</name>
+        <full_name>__invoke</full_name>
+        <docblock line="45">
+          <description><![CDATA[Escapes strings; wraps objects and arrays in escaper objects; leaves
+booleans/numbers/resources/nulls alone.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="45" name="param" description="The value to escape." type="mixed" variable="$val">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="53">
+          <name>$val</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Helper/Image.php" hash="255231234fc79f5b9880f2d535d3ace6" package="Aura\View">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.View"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\View\Helper" line="20" package="Aura\View">
+      <extends>\Aura\View\Helper\AbstractHelper</extends>
+      <name>Image</name>
+      <full_name>\Aura\View\Helper\Image</full_name>
+      <docblock line="13">
+        <description><![CDATA[Helper to generate an <img .]]></description>
+        <long-description><![CDATA[<p>.. /> tag.</p>]]></long-description>
+        <tag line="13" name="package" description="Aura.View"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View\Helper" line="38" package="Aura\View">
+        <name>__invoke</name>
+        <full_name>__invoke</full_name>
+        <docblock line="22">
+          <description><![CDATA[Returns an <img .]]></description>
+          <long-description><![CDATA[<p>.. /> tag.</p>
+
+<p>If an "alt" attribute is not specified, will add it from the
+image basename.</p>]]></long-description>
+          <tag line="22" name="param" description="The href to the image source." type="string" variable="$src">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="22" name="param" description="Additional attributes for the tag." type="array" variable="$attribs">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="22" name="return" description="An &lt;img ... /&gt; tag." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="22" name="todo" description="Add automated height/width calculation?"/>
+        </docblock>
+        <argument line="38">
+          <name>$src</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="38">
+          <name>$attribs</name>
+          <default><![CDATA[array()]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Helper/Links.php" hash="a901cdc006e6264ebb903794e3d5e2c9" package="Aura\View">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.View"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\View\Helper" line="20" package="Aura\View">
+      <extends>\Aura\View\Helper\AbstractHelper</extends>
+      <name>Links</name>
+      <full_name>\Aura\View\Helper\Links</full_name>
+      <docblock line="13">
+        <description><![CDATA[Helper for a stack of <link .]]></description>
+        <long-description><![CDATA[<p>.. /> tags.</p>]]></long-description>
+        <tag line="13" name="package" description="Aura.View"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="29" namespace="Aura\View\Helper" package="Default">
+        <name>$links</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="22">
+          <description><![CDATA[The array of all links added to the helper.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View\Helper" line="38" package="Aura\View">
+        <name>__invoke</name>
+        <full_name>__invoke</full_name>
+        <docblock line="31">
+          <description><![CDATA[Returns the helper so you can call methods on it.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="31" name="return" description="" type="\Aura\View\Helper\$this">
+            <type by_reference="false">\Aura\View\Helper\$this</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View\Helper" line="52" package="Aura\View">
+        <name>add</name>
+        <full_name>add</full_name>
+        <docblock line="43">
+          <description><![CDATA[Adda a <link .]]></description>
+          <long-description><![CDATA[<p>.. /> tag to the stack.</p>]]></long-description>
+          <tag line="43" name="param" description="Attributes for the &lt;link&gt; tag." type="array" variable="$attribs">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="43" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="52">
+          <name>$attribs</name>
+          <default><![CDATA[array()]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View\Helper" line="65" package="Aura\View">
+        <name>get</name>
+        <full_name>get</full_name>
+        <docblock line="58">
+          <description><![CDATA[Returns the stack of <link .]]></description>
+          <long-description><![CDATA[<p>.. /> tags as a single block.</p>]]></long-description>
+          <tag line="58" name="return" description="The &lt;link ... /&gt; tags." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Helper/Metas.php" hash="5917d57d261dfa318038f29f938e6cf4" package="Aura\View">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.View"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\View\Helper" line="20" package="Aura\View">
+      <extends>\Aura\View\Helper\AbstractHelper</extends>
+      <name>Metas</name>
+      <full_name>\Aura\View\Helper\Metas</full_name>
+      <docblock line="13">
+        <description><![CDATA[Helper for a stack of <meta .]]></description>
+        <long-description><![CDATA[<p>.. /> tags.</p>]]></long-description>
+        <tag line="13" name="package" description="Aura.View"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="29" namespace="Aura\View\Helper" package="Default">
+        <name>$metas</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="22">
+          <description><![CDATA[The array of all metas added to the helper.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View\Helper" line="38" package="Aura\View">
+        <name>__invoke</name>
+        <full_name>__invoke</full_name>
+        <docblock line="31">
+          <description><![CDATA[Returns the helper so you can call methods on it.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="31" name="return" description="" type="\Aura\View\Helper\$this">
+            <type by_reference="false">\Aura\View\Helper\$this</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View\Helper" line="54" package="Aura\View">
+        <name>add</name>
+        <full_name>add</full_name>
+        <docblock line="43">
+          <description><![CDATA[Returns a <meta .]]></description>
+          <long-description><![CDATA[<p>.. /> tag.</p>]]></long-description>
+          <tag line="43" name="param" description="Attributes for the &lt;link&gt; tag." type="array" variable="$attribs">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="43" name="param" description="The meta position." type="int" variable="$pos">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="43" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="54">
+          <name>$attribs</name>
+          <default><![CDATA[array()]]></default>
+          <type/>
+        </argument>
+        <argument line="54">
+          <name>$pos</name>
+          <default><![CDATA[100]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View\Helper" line="73" package="Aura\View">
+        <name>addHttp</name>
+        <full_name>addHttp</full_name>
+        <docblock line="60">
+          <description><![CDATA[Returns a <meta http-equiv="" content="" /> tag.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="60" name="param" description="The http-equiv type." type="string" variable="$http_equiv">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="60" name="param" description="The content value." type="string" variable="$content">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="60" name="param" description="The meta position." type="int" variable="$pos">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="60" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="73">
+          <name>$http_equiv</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="73">
+          <name>$content</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="73">
+          <name>$pos</name>
+          <default><![CDATA[100]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View\Helper" line="96" package="Aura\View">
+        <name>addName</name>
+        <full_name>addName</full_name>
+        <docblock line="83">
+          <description><![CDATA[Returns a <meta name="" content="" /> tag.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="83" name="param" description="The name value." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="83" name="param" description="The content value." type="string" variable="$content">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="83" name="param" description="The meta position." type="int" variable="$pos">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="83" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="96">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="96">
+          <name>$content</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="96">
+          <name>$pos</name>
+          <default><![CDATA[100]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View\Helper" line="113" package="Aura\View">
+        <name>get</name>
+        <full_name>get</full_name>
+        <docblock line="106">
+          <description><![CDATA[Returns the stack of <meta .]]></description>
+          <long-description><![CDATA[<p>.. /> tags as a single block.</p>]]></long-description>
+          <tag line="106" name="return" description="The &lt;meta ... /&gt; tags." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Helper/Scripts.php" hash="d75046ea64d05bd48840f9da7435f0f6" package="Aura\View">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.View"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\View\Helper" line="20" package="Aura\View">
+      <extends>\Aura\View\Helper\AbstractHelper</extends>
+      <name>Scripts</name>
+      <full_name>\Aura\View\Helper\Scripts</full_name>
+      <docblock line="13">
+        <description><![CDATA[Helper for a stack of <script> tags.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.View"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="29" namespace="Aura\View\Helper" package="Default">
+        <name>$scripts</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="22">
+          <description><![CDATA[The array of all scripts added to the helper.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View\Helper" line="38" package="Aura\View">
+        <name>__invoke</name>
+        <full_name>__invoke</full_name>
+        <docblock line="31">
+          <description><![CDATA[Returns the helper so you can call methods on it.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="31" name="return" description="" type="\Aura\View\Helper\$this">
+            <type by_reference="false">\Aura\View\Helper\$this</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View\Helper" line="56" package="Aura\View">
+        <name>add</name>
+        <full_name>add</full_name>
+        <docblock line="43">
+          <description><![CDATA[Adds a <script> tag to the stack.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="43" name="param" description="The source href for the script." type="string" variable="$src">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="43" name="param" description="Additional attributes for the &lt;script&gt; tag." type="array" variable="$attribs">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="43" name="param" description="The script position in the stack." type="int" variable="$pos">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="43" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="56">
+          <name>$src</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="56">
+          <name>$attribs</name>
+          <default><![CDATA[array()]]></default>
+          <type/>
+        </argument>
+        <argument line="56">
+          <name>$pos</name>
+          <default><![CDATA[100]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View\Helper" line="84" package="Aura\View">
+        <name>addCond</name>
+        <full_name>addCond</full_name>
+        <docblock line="68">
+          <description><![CDATA[Adds a conditional `<!--[if .]]></description>
+          <long-description><![CDATA[<p>..]><script>&lt;![endif] -->` tag to the
+stack.</p>]]></long-description>
+          <tag line="68" name="param" description="The conditional expression for the script." type="string" variable="$exp">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="68" name="param" description="The source href for the script." type="string" variable="$src">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="68" name="param" description="Additional attributes for the &lt;script&gt; tag." type="array" variable="$attribs">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="68" name="param" description="The script position in the stack." type="string" variable="$pos">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="68" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="84">
+          <name>$exp</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="84">
+          <name>$src</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="84">
+          <name>$attribs</name>
+          <default><![CDATA[array()]]></default>
+          <type/>
+        </argument>
+        <argument line="84">
+          <name>$pos</name>
+          <default><![CDATA[100]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View\Helper" line="103" package="Aura\View">
+        <name>get</name>
+        <full_name>get</full_name>
+        <docblock line="96">
+          <description><![CDATA[Returns the stack of <script> tags as a single block.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="96" name="return" description="The &lt;script&gt; tags." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Helper/Styles.php" hash="0be4d5f7981fe4f305aa33fbf72ad99a" package="Aura\View">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.View"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\View\Helper" line="20" package="Aura\View">
+      <extends>\Aura\View\Helper\AbstractHelper</extends>
+      <name>Styles</name>
+      <full_name>\Aura\View\Helper\Styles</full_name>
+      <docblock line="13">
+        <description><![CDATA[Helper for <link rel="stylesheet" .]]></description>
+        <long-description><![CDATA[<p>.. /> tags.</p>]]></long-description>
+        <tag line="13" name="package" description="Aura.View"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="29" namespace="Aura\View\Helper" package="Default">
+        <name>$styles</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="22">
+          <description><![CDATA[The array of all styles added to the helper.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View\Helper" line="38" package="Aura\View">
+        <name>__invoke</name>
+        <full_name>__invoke</full_name>
+        <docblock line="31">
+          <description><![CDATA[Returns the helper so you can call methods on it.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="31" name="return" description="" type="\Aura\View\Helper\$this">
+            <type by_reference="false">\Aura\View\Helper\$this</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View\Helper" line="56" package="Aura\View">
+        <name>add</name>
+        <full_name>add</full_name>
+        <docblock line="43">
+          <description><![CDATA[Adds a <link rel="stylesheet" .]]></description>
+          <long-description><![CDATA[<p>.. /> tag to the stack.</p>]]></long-description>
+          <tag line="43" name="param" description="The source href for the stylesheet." type="string" variable="$href">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="43" name="param" description="Additional attributes for the &lt;link&gt; tag." type="array" variable="$attribs">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="43" name="param" description="The stylesheet position in the stack." type="int" variable="$pos">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="43" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="56">
+          <name>$href</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="56">
+          <name>$attribs</name>
+          <default><![CDATA[array()]]></default>
+          <type/>
+        </argument>
+        <argument line="56">
+          <name>$pos</name>
+          <default><![CDATA[100]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View\Helper" line="88" package="Aura\View">
+        <name>get</name>
+        <full_name>get</full_name>
+        <docblock line="80">
+          <description><![CDATA[Returns the stack of <link rel="stylesheet" .]]></description>
+          <long-description><![CDATA[<p>.. /> tags as a single
+block.</p>]]></long-description>
+          <tag line="80" name="return" description="The &lt;link rel=&quot;stylesheet&quot; ... /&gt; tags." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Helper/Title.php" hash="679bab2e1f38385e8f4367963e10e5d4" package="Aura\View">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.View"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\View\Helper" line="20" package="Aura\View">
+      <extends>\Aura\View\Helper\AbstractHelper</extends>
+      <name>Title</name>
+      <full_name>\Aura\View\Helper\Title</full_name>
+      <docblock line="13">
+        <description><![CDATA[Sets the title of the layout]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.View"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="29" namespace="Aura\View\Helper" package="Default">
+        <name>$title</name>
+        <default><![CDATA[null]]></default>
+        <docblock line="22">
+          <description><![CDATA[The <title> value.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View\Helper" line="38" package="Aura\View">
+        <name>__invoke</name>
+        <full_name>__invoke</full_name>
+        <docblock line="31">
+          <description><![CDATA[Returns the helper so you can call methods on it.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="31" name="return" description="" type="\Aura\View\Helper\$this">
+            <type by_reference="false">\Aura\View\Helper\$this</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View\Helper" line="52" package="Aura\View">
+        <name>set</name>
+        <full_name>set</full_name>
+        <docblock line="43">
+          <description><![CDATA[Sets the <title> string.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="43" name="param" description="The title string." type="string" variable="$title">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="43" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="52">
+          <name>$title</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View\Helper" line="66" package="Aura\View">
+        <name>append</name>
+        <full_name>append</full_name>
+        <docblock line="57">
+          <description><![CDATA[Appends to the end of the current <title> string.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="57" name="param" description="The string to be appended to the title." type="string" variable="$text">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="57" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="66">
+          <name>$text</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View\Helper" line="80" package="Aura\View">
+        <name>prepend</name>
+        <full_name>prepend</full_name>
+        <docblock line="71">
+          <description><![CDATA[Prepends to the beginning of the current <title> string.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="71" name="param" description="The string to be appended to the title." type="string" variable="$text">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="71" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="80">
+          <name>$text</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View\Helper" line="92" package="Aura\View">
+        <name>get</name>
+        <full_name>get</full_name>
+        <docblock line="85">
+          <description><![CDATA[Returns the current title string.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="85" name="return" description="The current title string." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="HelperLocator.php" hash="275fa5a1929a44b9189ea66594c35cc8" package="Aura\View">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.View"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\View" line="20" package="Aura\View">
+      <extends/>
+      <name>HelperLocator</name>
+      <full_name>\Aura\View\HelperLocator</full_name>
+      <docblock line="13">
+        <description><![CDATA[A ServiceLocator implementation for loading and retaining helper objects.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.View"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="29" namespace="Aura\View" package="Default">
+        <name>$registry</name>
+        <default><![CDATA[]]></default>
+        <docblock line="22">
+          <description><![CDATA[A registry to retain helper objects.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View" line="42" package="Aura\View">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="31">
+          <description><![CDATA[Constructor.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="31" name="param" description="An array of key-value pairs where the key is the helper name (doubles as a method name) and the value is the helper object. The value may also be a closure that returns a helper object. Note that is has to be a closure, not just any callable, because the helper object itself might be callable." type="array" variable="$registry">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="42">
+          <name>$registry</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View" line="62" package="Aura\View">
+        <name>set</name>
+        <full_name>set</full_name>
+        <docblock line="49">
+          <description><![CDATA[Sets a helper into the registry by name.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="49" name="param" description="The helper name; this doubles as a method name when called from a template." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="49" name="param" description="The helper specification, typically a closure that builds and returns a helper object." type="string" variable="$spec">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="49" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="62">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="62">
+          <name>$spec</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View" line="76" package="Aura\View">
+        <name>get</name>
+        <full_name>get</full_name>
+        <docblock line="67">
+          <description><![CDATA[Gets a helper from the registry by name.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="67" name="param" description="The helper to retrieve." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="67" name="return" description="A helper object." type="\Aura\View\AbstractHelper">
+            <type by_reference="false">\Aura\View\AbstractHelper</type>
+          </tag>
+        </docblock>
+        <argument line="76">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Template.php" hash="e44b3959c0ba24a189fae52f3023ce25" package="Aura\View">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.View"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <include line="35" type="Require" package="Default">
+      <name/>
+    </include>
+    <class final="false" abstract="false" namespace="Aura\View" line="21" package="Aura\View">
+      <extends>\Aura\View\AbstractTemplate</extends>
+      <name>Template</name>
+      <full_name>\Aura\View\Template</full_name>
+      <docblock line="13">
+        <description><![CDATA[Provides a concrete Template View pattern implementation; it does not
+have access to the private support properties of the parent abstract.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.View"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View" line="32" package="Aura\View">
+        <name>fetch</name>
+        <full_name>fetch</full_name>
+        <docblock line="23">
+          <description><![CDATA[Fetches the output from a template.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="23" name="param" description="The template name to use." type="string" variable="$__name__">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="23" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="32">
+          <name>$__name__</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View" line="53" package="Aura\View">
+        <name>partial</name>
+        <full_name>partial</full_name>
+        <docblock line="39">
+          <description><![CDATA[Fetches the output from a partial.]]></description>
+          <long-description><![CDATA[<p>The partial will be executed in
+isolation from the rest of the template, which means <code>$this</code> refers
+to the <em>partial</em> data, not the original template data. However, helper
+objects <em>are</em> shared between the original template and the partial.</p>]]></long-description>
+          <tag line="39" name="param" description="The partial to use." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="39" name="param" description="Data to use for the partial." type="array" variable="$data">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="39" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="53">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="53">
+          <name>$data</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="TemplateFinder.php" hash="5d9ab684f1ef27c0d5a513e5cf7203cf" package="Aura\View">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.View"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\View" line="20" package="Aura\View">
+      <extends/>
+      <name>TemplateFinder</name>
+      <full_name>\Aura\View\TemplateFinder</full_name>
+      <docblock line="13">
+        <description><![CDATA[Finds files in user-defined path hierarchies.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.View"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="29" namespace="Aura\View" package="Default">
+        <name>$paths</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="22">
+          <description><![CDATA[The stack of paths.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="39" namespace="Aura\View" package="Default">
+        <name>$found</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="31">
+          <description><![CDATA[A cache of found files, so we do not need to search the path stack
+for a particular file more than once.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="31" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View" line="48" package="Aura\View">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="41">
+          <description><![CDATA[Constructor.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="41" name="param" description="The default path stack for this TemplateFinder." type="array" variable="$paths">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="48">
+          <name>$paths</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View" line="60" package="Aura\View">
+        <name>getPaths</name>
+        <full_name>getPaths</full_name>
+        <docblock line="53">
+          <description><![CDATA[Gets a copy of the current path stack.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="53" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View" line="82" package="Aura\View">
+        <name>prepend</name>
+        <full_name>prepend</full_name>
+        <docblock line="65">
+          <description><![CDATA[Adds one path to the top of the path stack.]]></description>
+          <long-description><![CDATA[<p>{{code: php
+    $template_finder->prepend('/path/1');
+    $template_finder->prepend('/path/2');
+    $template_finder->prepend('/path/3');
+    // $template_finder->getPaths() reveals that the directory search order will be
+    // '/path/3/', '/path/2/', '/path/1/'.
+}}</p>]]></long-description>
+          <tag line="65" name="param" description="The directories to add to the paths." type="array|string" variable="$path">
+            <type by_reference="false">array</type>
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="65" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="82">
+          <name>$path</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View" line="105" package="Aura\View">
+        <name>append</name>
+        <full_name>append</full_name>
+        <docblock line="88">
+          <description><![CDATA[Adds one path to the end of the path stack.]]></description>
+          <long-description><![CDATA[<p>{{code: php
+    $template_finder->append('/path/1');
+    $template_finder->append('/path/2');
+    $template_finder->append('/path/3');
+    // $template_finder->getPaths() reveals that the directory search order will be
+    // '/path/1/', '/path/2/', '/path/3/'.
+}}</p>]]></long-description>
+          <tag line="88" name="param" description="The directories to add to the paths." type="array|string" variable="$path">
+            <type by_reference="false">array</type>
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="88" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="105">
+          <name>$path</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View" line="130" package="Aura\View">
+        <name>setPaths</name>
+        <full_name>setPaths</full_name>
+        <docblock line="111">
+          <description><![CDATA[Sets the paths directly.]]></description>
+          <long-description><![CDATA[<p>{{code: php
+     $template_finder->setPaths([
+         '/path/1',
+         '/path/2',
+         '/path/3',
+     ]);
+     // $template_finder->getPaths() reveals that the search order will be
+     // '/path/1', '/path/2', '/path/3'.
+}}</p>]]></long-description>
+          <tag line="111" name="param" description="The directories to add to the paths." type="array|string" variable="$paths">
+            <type by_reference="false">array</type>
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="111" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="130">
+          <name>$paths</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View" line="157" package="Aura\View">
+        <name>find</name>
+        <full_name>find</full_name>
+        <docblock line="136">
+          <description><![CDATA[Finds a file in the paths.]]></description>
+          <long-description><![CDATA[<p>{{code: php
+    $template_finder->append('/path/1');
+    $template_finder->append('/path/2');
+    $template_finder->append('/path/3');</p>
+
+<pre><code>$file = $template_finder-&gt;find('file.php');
+// $file is now the first instance of 'file.php' found from the
+// assigned paths, looking first for '/path/3/file.php', then for
+// '/path/2/file.php', then finally for '/path/1/file.php'.
+</code></pre>
+
+<p>}}</p>]]></long-description>
+          <tag line="136" name="param" description="The file to find using the assigned paths." type="string" variable="$file">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="136" name="return" description="The absolute path to the file, or false if not found using the paths." type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="157">
+          <name>$file</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\View" line="194" package="Aura\View">
+        <name>fileExists</name>
+        <full_name>fileExists</full_name>
+        <docblock line="184">
+          <description><![CDATA[Checks to see if a file exists at a particular location.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="184" name="param" description="The file to find." type="string" variable="$file">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="184" name="return" description="The absolute path to the file, or false if not found." type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="194">
+          <name>$file</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="TwoStep.php" hash="7008a2f3fcd16760a766282aa46180d3" package="Aura\View">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.View"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\View" line="21" package="Aura\View">
+      <extends/>
+      <name>TwoStep</name>
+      <full_name>\Aura\View\TwoStep</full_name>
+      <docblock line="13">
+        <description><![CDATA[Provides a TwoStepView pattern implementation; this allows for an inner
+("core") view and and outer ("layout") view as commonly used by web apps.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.View"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="30" namespace="Aura\View" package="Default">
+        <name>$accept</name>
+        <default><![CDATA[]]></default>
+        <docblock line="23">
+          <description><![CDATA[An array of Accept headers, in the format ['type' => weight].]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="23" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="39" namespace="Aura\View" package="Default">
+        <name>$data</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="32">
+          <description><![CDATA[The shared data for inner and outer views.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="32" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="48" namespace="Aura\View" package="Default">
+        <name>$format</name>
+        <default><![CDATA[]]></default>
+        <docblock line="41">
+          <description><![CDATA[The .format to render.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="41" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="57" namespace="Aura\View" package="Default">
+        <name>$format_types</name>
+        <default><![CDATA[]]></default>
+        <docblock line="50">
+          <description><![CDATA[A FormatTypes object to map .format values to Content-Type values.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="50" name="var" description="" type="\Aura\View\FormatTypes">
+            <type by_reference="false">\Aura\View\FormatTypes</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="66" namespace="Aura\View" package="Default">
+        <name>$inner_paths</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="59">
+          <description><![CDATA[The paths to search when finding an inner view template.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="59" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="83" namespace="Aura\View" package="Default">
+        <name>$inner_view</name>
+        <default><![CDATA[]]></default>
+        <docblock line="68">
+          <description><![CDATA[The inner view to use.]]></description>
+          <long-description><![CDATA[<p>This may be one of three types:</p>
+
+<ul>
+<li><p>(string) A template file name.</p></li>
+<li><p>(callable) A callable to execute. It should take no parameters.</p></li>
+<li><p>(array) An array where each element key is a .format name, and the
+corresponding element value is a string or a callable. This type is
+most useful when allowing for multiple views using the same data.</p></li>
+</ul>]]></long-description>
+          <tag line="68" name="var" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="93" namespace="Aura\View" package="Default">
+        <name>$inner_view_var</name>
+        <default><![CDATA['inner_view']]></default>
+        <docblock line="85">
+          <description><![CDATA[The name of the variable in the outer view template that should be
+replaced with the output of the inner view template.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="85" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="103" namespace="Aura\View" package="Default">
+        <name>$template</name>
+        <default><![CDATA[]]></default>
+        <docblock line="95">
+          <description><![CDATA[The Template object to be used when rendering the inner view and outer
+view.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="95" name="var" description="" type="\Aura\View\Template">
+            <type by_reference="false">\Aura\View\Template</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="112" namespace="Aura\View" package="Default">
+        <name>$outer_paths</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="105">
+          <description><![CDATA[The paths to search when finding the outer view template.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="105" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="130" namespace="Aura\View" package="Default">
+        <name>$outer_view</name>
+        <default><![CDATA[]]></default>
+        <docblock line="114">
+          <description><![CDATA[The inner view to use.]]></description>
+          <long-description><![CDATA[<p>This may be one of three types:</p>
+
+<ul>
+<li><p>(string) A template file name.</p></li>
+<li><p>(callable) A callable to execute; it should be a single parameter,
+<code>$inner</code>, which is the content of the inner view.</p></li>
+<li><p>(array) An array where each element key is a .format name, and the
+corresponding element value is a string or a callable. This type is
+most useful when allowing for multiple views using the same data.</p></li>
+</ul>]]></long-description>
+          <tag line="114" name="var" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View" line="142" package="Aura\View">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="132">
+          <description><![CDATA[Constructor.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="132" name="param" description="The Template object to be used when rendering the inner view and outer view." type="\Aura\View\Template" variable="$template">
+            <type by_reference="false">\Aura\View\Template</type>
+          </tag>
+          <tag line="132" name="param" description="An object that maps formats to types." type="\Aura\View\FormatTypes" variable="$format_types">
+            <type by_reference="false">\Aura\View\FormatTypes</type>
+          </tag>
+        </docblock>
+        <argument line="142">
+          <name>$template</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\View\Template</type>
+        </argument>
+        <argument line="142">
+          <name>$format_types</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\View\FormatTypes</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View" line="158" package="Aura\View">
+        <name>setAccept</name>
+        <full_name>setAccept</full_name>
+        <docblock line="148">
+          <description><![CDATA[Set the Accept values for negotiating formats.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="148" name="param" description="An array where each key is a content-type and each value is a corresponding weight." type="array" variable="$accept">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="148" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="158">
+          <name>$accept</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View" line="170" package="Aura\View">
+        <name>getAccept</name>
+        <full_name>getAccept</full_name>
+        <docblock line="163">
+          <description><![CDATA[Returns the Accept values for negotiating formats.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="163" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View" line="185" package="Aura\View">
+        <name>setFormat</name>
+        <full_name>setFormat</full_name>
+        <docblock line="175">
+          <description><![CDATA[Sets the .format to pick when the inner/outer views provide multiple
+formats.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="175" name="param" description="string" type="" variable="$format"/>
+          <tag line="175" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="185">
+          <name>$format</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View" line="198" package="Aura\View">
+        <name>getFormat</name>
+        <full_name>getFormat</full_name>
+        <docblock line="190">
+          <description><![CDATA[Returns the .format to pick when the inner/outer views provide multiple
+formats.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="190" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View" line="210" package="Aura\View">
+        <name>getContentType</name>
+        <full_name>getContentType</full_name>
+        <docblock line="203">
+          <description><![CDATA[Returns the Content-Type for the current .format, if any.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="203" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View" line="224" package="Aura\View">
+        <name>setData</name>
+        <full_name>setData</full_name>
+        <docblock line="215">
+          <description><![CDATA[Sets the shared data for inner and outer views.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="215" name="param" description="The data for the inner and outer views." type="array" variable="$data">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="215" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="224">
+          <name>$data</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View" line="236" package="Aura\View">
+        <name>getData</name>
+        <full_name>getData</full_name>
+        <docblock line="229">
+          <description><![CDATA[Returns the shared data for inner and outer views.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="229" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View" line="258" package="Aura\View">
+        <name>setInnerView</name>
+        <full_name>setInnerView</full_name>
+        <docblock line="241">
+          <description><![CDATA[Sets inner view specification.]]></description>
+          <long-description><![CDATA[<p>The specification may be:</p>
+
+<ul>
+<li><p>(string) A template file name.</p></li>
+<li><p>(callable) A closure to execute; it should take no parameters.</p></li>
+<li><p>(array) An array where each element key is a .format name, and the
+corresponding element value is a string or a callable. This type is
+most useful when allowing for multiple views using the same data.</p></li>
+</ul>]]></long-description>
+          <tag line="241" name="param" description="The inner view specification." type="mixed" variable="$inner_view">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="241" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="258">
+          <name>$inner_view</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View" line="273" package="Aura\View">
+        <name>getInnerView</name>
+        <full_name>getInnerView</full_name>
+        <docblock line="263">
+          <description><![CDATA[Returns the inner view specification.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="263" name="param" description="Only return the specification for this .format; if null, return all formats." type="string" variable="$format">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="263" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="273">
+          <name>$format</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View" line="288" package="Aura\View">
+        <name>setInnerPaths</name>
+        <full_name>setInnerPaths</full_name>
+        <docblock line="278">
+          <description><![CDATA[Sets the paths to search when finding the inner view template.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="278" name="param" description="The paths to search when finding the inner view template." type="array" variable="$inner_paths">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="278" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="288">
+          <name>$inner_paths</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View" line="302" package="Aura\View">
+        <name>addInnerPath</name>
+        <full_name>addInnerPath</full_name>
+        <docblock line="293">
+          <description><![CDATA[Appends a path to search when finding the inner view template.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="293" name="param" description="The path to append." type="string" variable="$path">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="293" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="302">
+          <name>$path</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View" line="314" package="Aura\View">
+        <name>getInnerPaths</name>
+        <full_name>getInnerPaths</full_name>
+        <docblock line="307">
+          <description><![CDATA[Returns the paths to search when finding the inner view template.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="307" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View" line="337" package="Aura\View">
+        <name>setOuterView</name>
+        <full_name>setOuterView</full_name>
+        <docblock line="319">
+          <description><![CDATA[Sets the outer view specification.]]></description>
+          <long-description><![CDATA[<p>The specification may be:</p>
+
+<ul>
+<li><p>(string) A template file name.</p></li>
+<li><p>(callable) A callable to execute; it should take one parameter,
+<code>$inner</code>, which is the content of the inner view.</p></li>
+<li><p>(array) An array where each element key is a .format name, and the
+corresponding element value is a string or a callable. This type is
+most useful when allowing for multiple views using the same data.</p></li>
+</ul>]]></long-description>
+          <tag line="319" name="param" description="The outer view specification." type="mixed" variable="$outer_view">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="319" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="337">
+          <name>$outer_view</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View" line="352" package="Aura\View">
+        <name>getOuterView</name>
+        <full_name>getOuterView</full_name>
+        <docblock line="342">
+          <description><![CDATA[Returns the outer view specification.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="342" name="param" description="Only return the specification for this .format; if null, return all formats." type="string" variable="$format">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="342" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="352">
+          <name>$format</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View" line="367" package="Aura\View">
+        <name>setOuterPaths</name>
+        <full_name>setOuterPaths</full_name>
+        <docblock line="357">
+          <description><![CDATA[Sets the paths to search when finding the outer view template.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="357" name="param" description="The paths to search when finding the outer view template." type="array" variable="$outer_paths">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="357" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="367">
+          <name>$outer_paths</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View" line="381" package="Aura\View">
+        <name>addOuterPath</name>
+        <full_name>addOuterPath</full_name>
+        <docblock line="372">
+          <description><![CDATA[Appends a path to search when finding the outer view template.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="372" name="param" description="The path to append." type="string" variable="$path">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="372" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="381">
+          <name>$path</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View" line="393" package="Aura\View">
+        <name>getOuterPaths</name>
+        <full_name>getOuterPaths</full_name>
+        <docblock line="386">
+          <description><![CDATA[Returns the paths to search when finding the outer view template.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="386" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View" line="409" package="Aura\View">
+        <name>setInnerViewVar</name>
+        <full_name>setInnerViewVar</full_name>
+        <docblock line="398">
+          <description><![CDATA[Sets the name of the variable in the outer view template that should
+be replaced with the output of the inner view template.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="398" name="param" description="The variable name in the outer view template." type="string" variable="$inner_view_var">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="398" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="409">
+          <name>$inner_view_var</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View" line="422" package="Aura\View">
+        <name>getInnerViewVar</name>
+        <full_name>getInnerViewVar</full_name>
+        <docblock line="414">
+          <description><![CDATA[Returns the name of the variable in the outer view template that should
+be replaced with the output of the inner view template.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="414" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\View" line="435" package="Aura\View">
+        <name>render</name>
+        <full_name>render</full_name>
+        <docblock line="427">
+          <description><![CDATA[Renders the inner view and outer view and returns the resulting output,
+negotiating a format from the accept header values.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="427" name="return" description="The rendered two-step view results." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\View" line="481" package="Aura\View">
+        <name>renderView</name>
+        <full_name>renderView</full_name>
+        <docblock line="467">
+          <description><![CDATA[Renders a view (inner or outer).]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="467" name="param" description="The view to render." type="mixed" variable="$view">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="467" name="param" description="Look through these paths for view templates." type="array" variable="$paths">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="467" name="param" description="If $view is null, use this as the default rendering result." type="string" variable="$default">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="467" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="481">
+          <name>$view</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="481">
+          <name>$paths</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="481">
+          <name>$default</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\View" line="512" package="Aura\View">
+        <name>getView</name>
+        <full_name>getView</full_name>
+        <docblock line="501">
+          <description><![CDATA[Gets the view for a particular format.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="501" name="param" description="The inner or outer view specification." type="mixed" variable="$view">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="501" name="param" description="The format to use." type="string" variable="$format">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="501" name="return" description="The matching view for the format." type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="512">
+          <name>$view</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="512">
+          <name>$format</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <package name="Aura" full_name="Aura">
+    <package name="View" full_name="Aura\View"/>
+  </package>
+  <package name="Default" full_name="Default"/>
+  <namespace name="Aura" full_name="Aura">
+    <namespace name="View" full_name="Aura\View">
+      <namespace name="Escaper" full_name="Aura\View\Escaper"/>
+      <namespace name="Exception" full_name="Aura\View\Exception"/>
+      <namespace name="Helper" full_name="Aura\View\Helper"/>
+    </namespace>
+  </namespace>
+  <marker count="2">todo</marker>
+  <marker count="0">fixme</marker>
+  <deprecated count="0"/>
+</project>

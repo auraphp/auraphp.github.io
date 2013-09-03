@@ -1,0 +1,396 @@
+<!DOCTYPE html><html xmlns:date="http://exslt.org/dates-and-times" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » \Aura\Http\Message\Response</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Namespaces</a></li>
+<li><a href="../namespaces/Aura.html"><i class="icon-th"></i> Aura</a></li>
+<li><a>Packages</a></li>
+<li><a href="../packages/Aura.html"><i class="icon-folder-open"></i> Aura</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">0</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul>
+<li>todo 
+                <span class="label label-info">3</span>
+</li>
+<li>fixme 
+                <span class="label label-info">3</span>
+</li>
+</ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods</li>
+<li class="method public inherited"><a href="#__construct" title="__construct :: Constructor."><span class="description">Constructor.</span><pre>__construct()</pre></a></li>
+<li class="method public inherited"><a href="#__get" title="__get :: Read-only access to properties."><span class="description">Read-only access to properties.</span><pre>__get()</pre></a></li>
+<li class="method public inherited"><a href="#getContent" title="getContent :: Returns the $content object."><span class="description">Returns the $content object.</span><pre>getContent()</pre></a></li>
+<li class="method public inherited"><a href="#getCookies" title="getCookies :: Returns the $cookies object."><span class="description">Returns the $cookies object.</span><pre>getCookies()</pre></a></li>
+<li class="method public inherited"><a href="#getHeaders" title="getHeaders :: Returns the $headers object (not including cookies)."><span class="description">Returns the $headers object (not including cookies).</span><pre>getHeaders()</pre></a></li>
+<li class="method public "><a href="#getStatusCode" title="getStatusCode :: Returns the HTTP status code for the message."><span class="description">Returns the HTTP status code for the message.</span><pre>getStatusCode()</pre></a></li>
+<li class="method public "><a href="#getStatusText" title="getStatusText :: Returns the HTTP status text for the message."><span class="description">Returns the HTTP status text for the message.</span><pre>getStatusText()</pre></a></li>
+<li class="method public inherited"><a href="#getVersion" title="getVersion :: Returns the HTTP version for the message."><span class="description">Returns the HTTP version for the message.</span><pre>getVersion()</pre></a></li>
+<li class="method public inherited"><a href="#setContent" title="setContent :: Sets the content for the message."><span class="description">Sets the content for the message.</span><pre>setContent()</pre></a></li>
+<li class="method public inherited"><a href="#setCookies" title="setCookies :: Sets the cookies for the message."><span class="description">Sets the cookies for the message.</span><pre>setCookies()</pre></a></li>
+<li class="method public inherited"><a href="#setHeaders" title="setHeaders :: Sets the headers for the message (not including cookies)."><span class="description">Sets the headers for the message (not including cookies).</span><pre>setHeaders()</pre></a></li>
+<li class="method public "><a href="#setStatusCode" title="setStatusCode :: Sets the HTTP status code to for the response."><span class="description">Sets the HTTP status code to for the response.</span><pre>setStatusCode()</pre></a></li>
+<li class="method public "><a href="#setStatusText" title="setStatusText :: Sets the HTTP status text for the message."><span class="description">Sets the HTTP status text for the message.</span><pre>setStatusText()</pre></a></li>
+<li class="method public inherited"><a href="#setVersion" title="setVersion :: Sets the HTTP version for the message."><span class="description">Sets the HTTP version for the message.</span><pre>setVersion()</pre></a></li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties</li>
+<li class="nav-header protected">» Protected</li>
+<li class="property protected inherited"><a href="#%24content" title="$content :: The content of this message."><span class="description">The content of this message.</span><pre>$content</pre></a></li>
+<li class="property protected inherited"><a href="#%24cookies" title="$cookies :: The cookies for this message."><span class="description">The cookies for this message.</span><pre>$cookies</pre></a></li>
+<li class="property protected inherited"><a href="#%24headers" title="$headers :: The headers for this message."><span class="description">The headers for this message.</span><pre>$headers</pre></a></li>
+<li class="property protected "><a href="#%24status_code" title="$status_code :: The HTTP status code of the message."><span class="description">The HTTP status code of the message.</span><pre>$status_code</pre></a></li>
+<li class="property protected "><a href="#%24status_text" title="$status_text :: The HTTP status message of the message."><span class="description">The HTTP status message of the message.</span><pre>$status_text</pre></a></li>
+<li class="property protected "><a href="#%24status_text_default" title="$status_text_default :: List of default HTTP status messages."><span class="description">List of default HTTP status messages.</span><pre>$status_text_default</pre></a></li>
+<li class="property protected inherited"><a href="#%24version" title="$version :: The HTTP version for this message."><span class="description">The HTTP version for this message.</span><pre>$version</pre></a></li>
+</ul>
+</div>
+<div class="span8">
+<a name="%5CAura%5CHttp%5CMessage%5CResponse" id="\Aura\Http\Message\Response"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/Aura.html">Aura</a></li>
+<span class="divider">\</span><li><a href="../namespaces/Aura.Http.html">Http</a></li>
+<span class="divider">\</span><li><a href="../namespaces/Aura.Http.Message.html">Message</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/Aura.Http.Message.Response.html">Response</a>
+</li>
+</ul>
+<div href="../classes/Aura.Http.Message.Response.html" class="element class">
+<p class="short_description">The Aura Response class.</p>
+<div class="details">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>package</th>
+<td><a href="../packages/Aura.Http.html">Aura.Http</a></td>
+</tr></table>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a name="__construct" id="__construct"></a><div class="element clickable method public __construct" data-toggle="collapse" data-target=".__construct .collapse">
+<h2>Constructor.</h2>
+<pre>__construct(Aura\Http\Header\Collection $headers, Aura\Http\Cookie\Collection $cookies) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Http\Message::__construct()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$headers</h4>
+<code><a href="../classes/Aura.Http.Header.Collection.html">\Aura\Http\Header\Collection</a></code><p>A Headers object.</p></div>
+<div class="subelement argument">
+<h4>$cookies</h4>
+<code><a href="../classes/Aura.Http.Cookie.Collection.html">\Aura\Http\Cookie\Collection</a></code><p>A Cookies object.</p></div>
+</div></div>
+</div>
+<a name="__get" id="__get"></a><div class="element clickable method public __get" data-toggle="collapse" data-target=".__get .collapse">
+<h2>Read-only access to properties.</h2>
+<pre>__get(string $key) : mixed</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Http\Message::__get()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$key</h4>
+<code>string</code><p>The property to retrieve.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a name="getContent" id="getContent"></a><div class="element clickable method public getContent" data-toggle="collapse" data-target=".getContent .collapse">
+<h2>Returns the $content object.</h2>
+<pre>getContent() : mixed</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Http\Message::getContent()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>The content for the message.</div>
+</div></div>
+</div>
+<a name="getCookies" id="getCookies"></a><div class="element clickable method public getCookies" data-toggle="collapse" data-target=".getCookies .collapse">
+<h2>Returns the $cookies object.</h2>
+<pre>getCookies() : <a href="../classes/Aura.Http.Cookie.Collection.html">\Aura\Http\Cookie\Collection</a></pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Http\Message::getCookies()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/Aura.Http.Cookie.Collection.html">\Aura\Http\Cookie\Collection</a></code></div>
+</div></div>
+</div>
+<a name="getHeaders" id="getHeaders"></a><div class="element clickable method public getHeaders" data-toggle="collapse" data-target=".getHeaders .collapse">
+<h2>Returns the $headers object (not including cookies).</h2>
+<pre>getHeaders() : <a href="../classes/Aura.Http.Header.Collection.html">\Aura\Http\Header\Collection</a></pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Http\Message::getHeaders()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/Aura.Http.Header.Collection.html">\Aura\Http\Header\Collection</a></code></div>
+</div></div>
+</div>
+<a name="getStatusCode" id="getStatusCode"></a><div class="element clickable method public getStatusCode" data-toggle="collapse" data-target=".getStatusCode .collapse">
+<h2>Returns the HTTP status code for the message.</h2>
+<pre>getStatusCode() : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>int</code></div>
+</div></div>
+</div>
+<a name="getStatusText" id="getStatusText"></a><div class="element clickable method public getStatusText" data-toggle="collapse" data-target=".getStatusText .collapse">
+<h2>Returns the HTTP status text for the message.</h2>
+<pre>getStatusText() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="getVersion" id="getVersion"></a><div class="element clickable method public getVersion" data-toggle="collapse" data-target=".getVersion .collapse">
+<h2>Returns the HTTP version for the message.</h2>
+<pre>getVersion() : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Http\Message::getVersion()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="setContent" id="setContent"></a><div class="element clickable method public setContent" data-toggle="collapse" data-target=".setContent .collapse">
+<h2>Sets the content for the message.</h2>
+<pre>setContent(mixed $content) : void</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Http\Message::setContent()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$content</h4>
+<code>mixed</code><p>The content for the message.</p></div>
+</div></div>
+</div>
+<a name="setCookies" id="setCookies"></a><div class="element clickable method public setCookies" data-toggle="collapse" data-target=".setCookies .collapse">
+<h2>Sets the cookies for the message.</h2>
+<pre>setCookies(Aura\Http\Cookie\Collection $cookies) : void</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Http\Message::setCookies()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$cookies</h4>
+<code><a href="../classes/Aura.Http.Cookie.Collection.html">\Aura\Http\Cookie\Collection</a></code><p>The cookies object.</p></div>
+</div></div>
+</div>
+<a name="setHeaders" id="setHeaders"></a><div class="element clickable method public setHeaders" data-toggle="collapse" data-target=".setHeaders .collapse">
+<h2>Sets the headers for the message (not including cookies).</h2>
+<pre>setHeaders(Aura\Http\Header\Collection $headers) : void</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Http\Message::setHeaders()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$headers</h4>
+<code><a href="../classes/Aura.Http.Header.Collection.html">\Aura\Http\Header\Collection</a></code><p>A Headers object.</p></div>
+</div></div>
+</div>
+<a name="setStatusCode" id="setStatusCode"></a><div class="element clickable method public setStatusCode" data-toggle="collapse" data-target=".setStatusCode .collapse">
+<h2>Sets the HTTP status code to for the response.</h2>
+<pre>setStatusCode(int $code) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Automatically resets the
+status text to the default for that code, if any.</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$code</h4>
+<code>int</code><p>An HTTP status code, such as 200, 302, 404, etc.</p></div>
+</div></div>
+</div>
+<a name="setStatusText" id="setStatusText"></a><div class="element clickable method public setStatusText" data-toggle="collapse" data-target=".setStatusText .collapse">
+<h2>Sets the HTTP status text for the message.</h2>
+<pre>setStatusText(string $text) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$text</h4>
+<code>string</code><p>The status text.</p></div>
+</div></div>
+</div>
+<a name="setVersion" id="setVersion"></a><div class="element clickable method public setVersion" data-toggle="collapse" data-target=".setVersion .collapse">
+<h2>Sets the HTTP version for the message.</h2>
+<pre>setVersion(string $version) : void</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Http\Message::setVersion()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$version</h4>
+<code>string</code><p>The HTTP version to use for this message.</p></div>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a name="%24content" id="$content"> </a><div class="element clickable property protected $content" data-toggle="collapse" data-target=".$content .collapse">
+<h2>The content of this message.</h2>
+<pre>$content : mixed</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Http\Message::$$content</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24cookies" id="$cookies"> </a><div class="element clickable property protected $cookies" data-toggle="collapse" data-target=".$cookies .collapse">
+<h2>The cookies for this message.</h2>
+<pre>$cookies : <a href="../classes/Aura.Http.Cookie.Collection.html">\Aura\Http\Cookie\Collection</a></pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Http\Message::$$cookies</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24headers" id="$headers"> </a><div class="element clickable property protected $headers" data-toggle="collapse" data-target=".$headers .collapse">
+<h2>The headers for this message.</h2>
+<pre>$headers : <a href="../classes/Aura.Http.Header.Collection.html">\Aura\Http\Header\Collection</a></pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Http\Message::$$headers</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24status_code" id="$status_code"> </a><div class="element clickable property protected $status_code" data-toggle="collapse" data-target=".$status_code .collapse">
+<h2>The HTTP status code of the message.</h2>
+<pre>$status_code : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24status_text" id="$status_text"> </a><div class="element clickable property protected $status_text" data-toggle="collapse" data-target=".$status_text .collapse">
+<h2>The HTTP status message of the message.</h2>
+<pre>$status_text : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24status_text_default" id="$status_text_default"> </a><div class="element clickable property protected $status_text_default" data-toggle="collapse" data-target=".$status_text_default .collapse">
+<h2>List of default HTTP status messages.</h2>
+<pre>$status_text_default : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24version" id="$version"> </a><div class="element clickable property protected $version" data-toggle="collapse" data-target=".$version .collapse">
+<h2>The HTTP version for this message.</h2>
+<pre>$version : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Http\Message::$$version</td>
+</tr></table>
+</div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a7</a> and<br>
+            generated on 2013-05-10T12:00:07-05:00.<br></footer></div>
+</div>
+</body>
+</html>

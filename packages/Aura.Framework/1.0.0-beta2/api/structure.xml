@@ -1,0 +1,1934 @@
+<?xml version="1.0"?>
+<project version="0.17.2" title="">
+  <file path="Aura/Framework/Bootstrap.php" hash="681ee3974efee2cec94d1741881ad0de" package="Default">
+    <namespace-alias name="Loader">Aura\Autoload\Loader</namespace-alias>
+    <namespace-alias name="DiContainer">Aura\Di\Container</namespace-alias>
+    <namespace-alias name="DiForge">Aura\Di\Forge</namespace-alias>
+    <namespace-alias name="DiConfig">Aura\Di\Config</namespace-alias>
+    <class final="false" abstract="false" line="22" namespace="Aura\Framework" package="Aura\Framework">
+      <name>Bootstrap</name>
+      <extends/>
+      <full_name>\Aura\Framework\Bootstrap</full_name>
+      <docblock>
+        <description>A bootstrapper for web and cli execution.</description>
+        <long-description/>
+        <tag line="15" name="package" description="Aura.Framework"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="31" package="Default">
+        <name>$system</name>
+        <default/>
+        <docblock>
+          <description>The System object.</description>
+          <long-description/>
+          <tag line="24" name="var" description="" type="\Aura\Framework\System">
+            <type by_reference="false">\Aura\Framework\System</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="40" package="Default">
+        <name>$loader</name>
+        <default/>
+        <docblock>
+          <description>The autoloader object.</description>
+          <long-description/>
+          <tag line="33" name="var" description="" type="\Aura\Autoloader\Loader">
+            <type by_reference="false">\Aura\Autoloader\Loader</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="49" package="Default">
+        <name>$config</name>
+        <default/>
+        <docblock>
+          <description>The Config object.</description>
+          <long-description/>
+          <tag line="42" name="var" description="" type="\Aura\Framework\Config">
+            <type by_reference="false">\Aura\Framework\Config</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="58" package="Default">
+        <name>$di</name>
+        <default/>
+        <docblock>
+          <description>The dependency injection container.</description>
+          <long-description/>
+          <tag line="51" name="var" description="" type="\Aura\Di\Container">
+            <type by_reference="false">\Aura\Di\Container</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" line="67" package="Default">
+        <name>exec</name>
+        <docblock>
+          <description>Execution setup method.</description>
+          <long-description/>
+          <tag line="60" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="127" package="Default">
+        <name>execWeb</name>
+        <docblock>
+          <description>Execute bootstrap in a web context.</description>
+          <long-description/>
+          <tag line="120" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="149" package="Default">
+        <name>execCli</name>
+        <docblock>
+          <description>Execute bootstrap in a CLI context.</description>
+          <long-description/>
+          <tag line="140" name="param" description="The command class to instantiate and execute." type="string" variable="$class">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="140" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="149">
+          <name>$class</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="173" package="Default">
+        <name>load</name>
+        <docblock>
+          <description>Require a file in a limited scope with variables for `$system`,
+`$loader`, and `$di`. Generally for loading PHP-based config files.</description>
+          <long-description/>
+          <tag line="163" name="param" description="The file to require." type="string" variable="$file">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="163" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="173">
+          <name>$file</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Aura/Framework/Cli/AbstractCommand.php" hash="cf96811b0390d4accf229eb2f8a7eca0" package="Default">
+    <namespace-alias name="AbstractCliCommand">Aura\Cli\AbstractCommand</namespace-alias>
+    <namespace-alias name="SignalManager">Aura\Signal\Manager</namespace-alias>
+    <class final="false" abstract="true" line="20" namespace="Aura\Framework\Cli" package="Aura\Framework">
+      <name>AbstractCommand</name>
+      <extends>\Aura\Cli\AbstractCommand</extends>
+      <full_name>\Aura\Framework\Cli\AbstractCommand</full_name>
+      <docblock>
+        <description>Abstract class for framework commands.</description>
+        <long-description/>
+        <tag line="13" name="package" description="Aura.Framework"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="29" package="Default">
+        <name>$signal</name>
+        <default/>
+        <docblock>
+          <description>A signal manager.</description>
+          <long-description/>
+          <tag line="22" name="var" description="" type="\Aura\Signal\Manager">
+            <type by_reference="false">\Aura\Signal\Manager</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" line="40" package="Default">
+        <name>setSignal</name>
+        <docblock>
+          <description>Sets the signal manager and adds handler hooks.</description>
+          <long-description/>
+          <tag line="31" name="param" description="The signal manager." type="\Aura\Signal\Manager" variable="$signal">
+            <type by_reference="false">\Aura\Signal\Manager</type>
+          </tag>
+          <tag line="31" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="40">
+          <name>$signal</name>
+          <default/>
+          <type>SignalManager</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="56" package="Default">
+        <name>exec</name>
+        <docblock>
+          <description>Executes the action while invoking signal manager hooks.</description>
+          <long-description/>
+          <tag line="49" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Aura/Framework/Cli/CacheClassmap/Command.php" hash="a65024505e88c8693da874ea9a07e86a" package="Default">
+    <namespace-alias name="AbstractCommand">Aura\Framework\Cli\AbstractCommand</namespace-alias>
+    <namespace-alias name="System">Aura\Framework\System</namespace-alias>
+    <class final="false" abstract="false" line="20" namespace="Aura\Framework\Cli\CacheClassmap" package="Aura\Framework">
+      <name>Command</name>
+      <extends>\Aura\Framework\Cli\AbstractCommand</extends>
+      <full_name>\Aura\Framework\Cli\CacheClassmap\Command</full_name>
+      <docblock>
+        <description>Caches the map of package source class files to `tmp/cache/classmap.php`.</description>
+        <long-description/>
+        <tag line="13" name="package" description="Aura.Framework"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="29" package="Default">
+        <name>$system</name>
+        <default/>
+        <docblock>
+          <description>The System object.</description>
+          <long-description/>
+          <tag line="22" name="var" description="" type="\Aura\Framework\System">
+            <type by_reference="false">\Aura\Framework\System</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" line="38" package="Default">
+        <name>setSystem</name>
+        <docblock>
+          <description>Sets the system object.</description>
+          <long-description/>
+          <tag line="31" name="param" description="The system object." type="\Aura\Framework\System" variable="$system">
+            <type by_reference="false">\Aura\Framework\System</type>
+          </tag>
+        </docblock>
+        <argument line="38">
+          <name>$system</name>
+          <default/>
+          <type>System</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="51" package="Default">
+        <name>action</name>
+        <docblock>
+          <description>Caches the map of package source class files to
+`tmp/cache/classmap.php`.</description>
+          <long-description/>
+          <tag line="43" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Aura/Framework/Cli/CacheConfig/Command.php" hash="90aead38047ce044e1c93ca0311f342a" package="Default">
+    <namespace-alias name="AbstractCommand">Aura\Framework\Cli\AbstractCommand</namespace-alias>
+    <namespace-alias name="System">Aura\Framework\System</namespace-alias>
+    <class final="false" abstract="false" line="21" namespace="Aura\Framework\Cli\CacheConfig" package="Aura\Framework">
+      <name>Command</name>
+      <extends>\Aura\Framework\Cli\AbstractCommand</extends>
+      <full_name>\Aura\Framework\Cli\CacheConfig\Command</full_name>
+      <docblock>
+        <description>Caches all mode-specific package config files to
+`tmp/cache/config/{$mode}.php`.</description>
+        <long-description/>
+        <tag line="13" name="package" description="Aura.Framework"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="30" package="Default">
+        <name>$system</name>
+        <default/>
+        <docblock>
+          <description>The System object.</description>
+          <long-description/>
+          <tag line="23" name="var" description="" type="\Aura\Framework\System">
+            <type by_reference="false">\Aura\Framework\System</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" line="39" package="Default">
+        <name>setSystem</name>
+        <docblock>
+          <description>Sets the system object.</description>
+          <long-description/>
+          <tag line="32" name="param" description="The system object." type="\Aura\Framework\System" variable="$system">
+            <type by_reference="false">\Aura\Framework\System</type>
+          </tag>
+        </docblock>
+        <argument line="39">
+          <name>$system</name>
+          <default/>
+          <type>System</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="52" package="Default">
+        <name>action</name>
+        <docblock>
+          <description>Caches the mode-specific package config files to
+`tmp/cache/config/{$mode}.php`.</description>
+          <long-description/>
+          <tag line="44" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" line="97" package="Default">
+        <name>read</name>
+        <docblock>
+          <description>Reads a config file from a package directory; replaces __DIR__ and
+__FILE__ constants with string values so that the original values
+are honored regardless of where the cached configs are placed.</description>
+          <long-description/>
+          <tag line="84" name="param" description="The package directory." type="string" variable="$package_dir">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="84" name="param" description="The config mode to read." type="string" variable="$mode">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="84" name="return" description="The config file, with __DIR__ and" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="97">
+          <name>$package_dir</name>
+          <default/>
+          <type/>
+        </argument>
+        <argument line="97">
+          <name>$mode</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Aura/Framework/Cli/HelloWorld/Command.php" hash="b7016ca3bdd88d7f2d47b132d18ecd02" package="Default">
+    <namespace-alias name="AbstractCommand">Aura\Framework\Cli\AbstractCommand</namespace-alias>
+    <class final="false" abstract="false" line="19" namespace="Aura\Framework\Cli\HelloWorld" package="Aura\Framework">
+      <name>Command</name>
+      <extends>\Aura\Framework\Cli\AbstractCommand</extends>
+      <full_name>\Aura\Framework\Cli\HelloWorld\Command</full_name>
+      <docblock>
+        <description>A simple CLI command to output "Hello, World!"</description>
+        <long-description/>
+        <tag line="12" name="package" description="Aura.Framework"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" line="28" package="Default">
+        <name>action</name>
+        <docblock>
+          <description>Sends "Hello World!" to standard output.</description>
+          <long-description/>
+          <tag line="21" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Aura/Framework/Cli/MakeTest/Command.php" hash="012ea14305b0c0cc5893563f3a929a6b" package="Default">
+    <namespace-alias name="AbstractCommand">Aura\Framework\Cli\AbstractCommand</namespace-alias>
+    <namespace-alias name="System">Aura\Framework\System</namespace-alias>
+    <namespace-alias name="Inflect">Aura\Framework\Inflect</namespace-alias>
+    <namespace-alias name="SourceNotFound">Aura\Framework\Exception\SourceNotFound</namespace-alias>
+    <namespace-alias name="TestFileExists">Aura\Framework\Exception\TestFileExists</namespace-alias>
+    <namespace-alias name="TestFileNotCreated">Aura\Framework\Exception\TestFileNotCreated</namespace-alias>
+    <namespace-alias name="TestFileNotMoved">Aura\Framework\Exception\TestFileNotMoved</namespace-alias>
+    <class final="false" abstract="false" line="33" namespace="Aura\Framework\Cli\MakeTest" package="Aura\Framework">
+      <name>Command</name>
+      <extends>\Aura\Framework\Cli\AbstractCommand</extends>
+      <full_name>\Aura\Framework\Cli\MakeTest\Command</full_name>
+      <docblock>
+        <description>Using PHPUnit, creates a test file from an existing package source class
+and places it in the package tests directory.</description>
+        <long-description>&lt;p&gt;Usage is ...&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; $ php package/Aura.Framework/cli/make-test {$FILE}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;... where &lt;code&gt;$FILE&lt;/code&gt; is a package file path, e.g.
+&lt;code&gt;package/Vendor.Package/src/Vendor/Package/Class.php&lt;/code&gt;.&lt;/p&gt;</long-description>
+        <tag line="18" name="package" description="Aura.Framework"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="42" package="Default">
+        <name>$system</name>
+        <default/>
+        <docblock>
+          <description>A system object.</description>
+          <long-description/>
+          <tag line="35" name="var" description="" type="\Aura\Framework\System">
+            <type by_reference="false">\Aura\Framework\System</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="51" package="Default">
+        <name>$phpunit</name>
+        <default/>
+        <docblock>
+          <description>The `phpunit` executable path.</description>
+          <long-description/>
+          <tag line="44" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="60" package="Default">
+        <name>$bootstrap</name>
+        <default/>
+        <docblock>
+          <description>The bootstrap file PHPUnit should load.</description>
+          <long-description/>
+          <tag line="53" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" line="71" package="Default">
+        <name>setSystem</name>
+        <docblock>
+          <description>Sets a System object for this class.</description>
+          <long-description/>
+          <tag line="62" name="param" description="The System object." type="\Aura\Framework\System" variable="$system">
+            <type by_reference="false">\Aura\Framework\System</type>
+          </tag>
+          <tag line="62" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="71">
+          <name>$system</name>
+          <default/>
+          <type>System</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="85" package="Default">
+        <name>setPhpunit</name>
+        <docblock>
+          <description>Sets the phpunit executable.</description>
+          <long-description/>
+          <tag line="76" name="param" description="The phpunit executable path." type="string" variable="$phpunit">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="76" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="85">
+          <name>$phpunit</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="97" package="Default">
+        <name>setBootstrap</name>
+        <docblock>
+          <description>Sets the location of the bootstrap file.</description>
+          <long-description/>
+          <tag line="90" name="param" description="The path to the bootstrap file." type="string" variable="$bootstrap">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="97">
+          <name>$bootstrap</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="110" package="Default">
+        <name>action</name>
+        <docblock>
+          <description>Creates a test file from an existing package source class and places
+it in the package tests directory.</description>
+          <long-description/>
+          <tag line="102" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" line="179" package="Default">
+        <name>getClass</name>
+        <docblock>
+          <description>Given a class specification, extract the vendor, package, and class
+names.</description>
+          <long-description/>
+          <tag line="168" name="param" description="The fully-qualified class specification." type="string" variable="$spec">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="168" name="return" description="A seqential array of vendor name, package name, and class name." type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="179">
+          <name>$spec</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" line="219" package="Default">
+        <name>modifySkeleton</name>
+        <docblock>
+          <description>Given a test class skeleton from PHPUnit, modify it so that it works
+nicely within the Aura testing system.</description>
+          <long-description/>
+          <tag line="207" name="param" description="The PHPUnit test class skeleton." type="string" variable="$skel">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="207" name="param" description="The namespace of the class being tested." type="string" variable="$namespace">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="207" name="return" description="The modified test skeleton." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="219">
+          <name>$skel</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Aura/Framework/Config.php" hash="fcb6b2dfc7d180b4599554d214d6f92e" package="Default">
+    <namespace-alias name="Loader">Aura\Autoload\Loader</namespace-alias>
+    <namespace-alias name="Container">Aura\Di\Container</namespace-alias>
+    <class final="false" abstract="false" line="20" namespace="Aura\Framework" package="Aura\Framework">
+      <name>Config</name>
+      <extends/>
+      <full_name>\Aura\Framework\Config</full_name>
+      <docblock>
+        <description>Loads config values from package and system config files.</description>
+        <long-description/>
+        <tag line="13" name="package" description="Aura.Framework"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="29" package="Default">
+        <name>$system</name>
+        <default/>
+        <docblock>
+          <description>The System object.</description>
+          <long-description/>
+          <tag line="22" name="var" description="" type="\Aura\Framework\System">
+            <type by_reference="false">\Aura\Framework\System</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="38" package="Default">
+        <name>$loader</name>
+        <default/>
+        <docblock>
+          <description>The autoloader object.</description>
+          <long-description/>
+          <tag line="31" name="var" description="" type="\Aura\Autoloader\Loader">
+            <type by_reference="false">\Aura\Autoloader\Loader</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="47" package="Default">
+        <name>$di</name>
+        <default/>
+        <docblock>
+          <description>The dependency injection container.</description>
+          <long-description/>
+          <tag line="40" name="var" description="" type="\Aura\Di\Container">
+            <type by_reference="false">\Aura\Di\Container</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="56" package="Default">
+        <name>$files</name>
+        <default/>
+        <docblock>
+          <description>Config files that have been loaded.</description>
+          <long-description/>
+          <tag line="49" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="65" package="Default">
+        <name>$mode</name>
+        <default/>
+        <docblock>
+          <description>The config mode.</description>
+          <long-description/>
+          <tag line="58" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" line="78" package="Default">
+        <name>__construct</name>
+        <docblock>
+          <description>Constructor.</description>
+          <long-description/>
+          <tag line="67" name="param" description="The System object." type="\Aura\Framework\System" variable="$system">
+            <type by_reference="false">\Aura\Framework\System</type>
+          </tag>
+          <tag line="67" name="param" description="The autoloader object." type="\Aura\Autoload\Loader" variable="$loader">
+            <type by_reference="false">\Aura\Autoload\Loader</type>
+          </tag>
+          <tag line="67" name="param" description="The dependency injection container." type="\Aura\Di\Container" variable="$di">
+            <type by_reference="false">\Aura\Di\Container</type>
+          </tag>
+        </docblock>
+        <argument line="78">
+          <name>$system</name>
+          <default/>
+          <type>System</type>
+        </argument>
+        <argument line="78">
+          <name>$loader</name>
+          <default/>
+          <type>Loader</type>
+        </argument>
+        <argument line="78">
+          <name>$di</name>
+          <default/>
+          <type>Container</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="95" package="Default">
+        <name>getMode</name>
+        <docblock>
+          <description>Returns the config mode.</description>
+          <long-description/>
+          <tag line="88" name="return" description="The config mode." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="107" package="Default">
+        <name>getFiles</name>
+        <docblock>
+          <description>Returns the list of config files that have been loaded.</description>
+          <long-description/>
+          <tag line="100" name="return" description="The loaded config files." type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="120" package="Default">
+        <name>exec</name>
+        <docblock>
+          <description>Loads config files, either from the cache or from the packages, and
+for the system mode config file.</description>
+          <long-description/>
+          <tag line="112" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="139" package="Default">
+        <name>getCacheFile</name>
+        <docblock>
+          <description>Gets the name of the config cache file.</description>
+          <long-description/>
+          <tag line="132" name="return" description="The config file path, or null if not readable." type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="154" package="Default">
+        <name>loadFromPackages</name>
+        <docblock>
+          <description>Loads each package config file for the mode.</description>
+          <long-description/>
+          <tag line="147" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="189" package="Default">
+        <name>loadMode</name>
+        <docblock>
+          <description>Loads the system-level config file for the current mode.</description>
+          <long-description/>
+          <tag line="182" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="206" package="Default">
+        <name>load</name>
+        <docblock>
+          <description>Loads a config file in a limited scope.</description>
+          <long-description/>
+          <tag line="197" name="param" description="The config file to load." type="string" variable="$file">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="197" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="206">
+          <name>$file</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Aura/Framework/Exception/NoClassForController.php" hash="d0d81b2aeb1fba5479bfdc8eb5326483" package="Default">
+    <class final="false" abstract="false" line="18" namespace="Aura\Framework\Exception" package="Aura\Framework">
+      <name>NoClassForController</name>
+      <extends>\Aura\Framework\Exception</extends>
+      <full_name>\Aura\Framework\Exception\NoClassForController</full_name>
+      <docblock>
+        <description>Could not find a class mapped to a controller name.</description>
+        <long-description/>
+        <tag line="11" name="package" description="Aura.Framework"/>
+      </docblock>
+    </class>
+  </file>
+  <file path="Aura/Framework/Exception/SourceNotFound.php" hash="2d5d6f10f4511967e9fe62d2764a01d8" package="Default">
+    <class final="false" abstract="false" line="18" namespace="Aura\Framework\Exception" package="Aura\Framework">
+      <name>SourceNotFound</name>
+      <extends>\Aura\Framework\Exception</extends>
+      <full_name>\Aura\Framework\Exception\SourceNotFound</full_name>
+      <docblock>
+        <description>Could not find the source class file for a test.</description>
+        <long-description/>
+        <tag line="11" name="package" description="Aura.Framework"/>
+      </docblock>
+    </class>
+  </file>
+  <file path="Aura/Framework/Exception/TestFileExists.php" hash="fceb8b5518d37ea75d83f708fe7fa7c0" package="Default">
+    <class final="false" abstract="false" line="18" namespace="Aura\Framework\Exception" package="Aura\Framework">
+      <name>TestFileExists</name>
+      <extends>\Aura\Framework\Exception</extends>
+      <full_name>\Aura\Framework\Exception\TestFileExists</full_name>
+      <docblock>
+        <description>A test file already exists for a given class.</description>
+        <long-description/>
+        <tag line="11" name="package" description="Aura.Framework"/>
+      </docblock>
+    </class>
+  </file>
+  <file path="Aura/Framework/Exception/TestFileNotCreated.php" hash="6a6f5a68c1a65665588e04541160d21b" package="Default">
+    <class final="false" abstract="false" line="18" namespace="Aura\Framework\Exception" package="Aura\Framework">
+      <name>TestFileNotCreated</name>
+      <extends>\Aura\Framework\Exception</extends>
+      <full_name>\Aura\Framework\Exception\TestFileNotCreated</full_name>
+      <docblock>
+        <description>The requested test file was not created.</description>
+        <long-description/>
+        <tag line="11" name="package" description="Aura.Framework"/>
+      </docblock>
+    </class>
+  </file>
+  <file path="Aura/Framework/Exception/TestFileNotFound.php" hash="b5d5ae779ab4b82c70a00418d05ab174" package="Default">
+    <class final="false" abstract="false" line="18" namespace="Aura\Framework\Exception" package="Aura\Framework">
+      <name>TestFileNotFound</name>
+      <extends>\Aura\Framework\Exception</extends>
+      <full_name>\Aura\Framework\Exception\TestFileNotFound</full_name>
+      <docblock>
+        <description>Could not find the file for a given test.</description>
+        <long-description/>
+        <tag line="11" name="package" description="Aura.Framework"/>
+      </docblock>
+    </class>
+  </file>
+  <file path="Aura/Framework/Exception/TestFileNotMoved.php" hash="47a977e28e562b8ab7d1492415ee8c35" package="Default">
+    <class final="false" abstract="false" line="18" namespace="Aura\Framework\Exception" package="Aura\Framework">
+      <name>TestFileNotMoved</name>
+      <extends>\Aura\Framework\Exception</extends>
+      <full_name>\Aura\Framework\Exception\TestFileNotMoved</full_name>
+      <docblock>
+        <description>The test file could not be moved to its proper location.</description>
+        <long-description/>
+        <tag line="11" name="package" description="Aura.Framework"/>
+      </docblock>
+    </class>
+  </file>
+  <file path="Aura/Framework/Exception.php" hash="a29918479923dac6382b54be71df8cbe" package="Default">
+    <class final="false" abstract="false" line="18" namespace="Aura\Framework" package="Aura\Framework">
+      <name>Exception</name>
+      <extends>\Exception</extends>
+      <full_name>\Aura\Framework\Exception</full_name>
+      <docblock>
+        <description>Generic package exception.</description>
+        <long-description/>
+        <tag line="11" name="package" description="Aura.Framework"/>
+      </docblock>
+    </class>
+  </file>
+  <file path="Aura/Framework/Inflect.php" hash="aabe97ef821e891054472ebdc3fef00e" package="Default">
+    <class final="false" abstract="false" line="18" namespace="Aura\Framework" package="Aura\Framework">
+      <name>Inflect</name>
+      <extends/>
+      <full_name>\Aura\Framework\Inflect</full_name>
+      <docblock>
+        <description>Methods for inflecting strings from one form to another form.</description>
+        <long-description/>
+        <tag line="11" name="package" description="Aura.Framework"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" line="29" package="Default">
+        <name>camelToDashes</name>
+        <docblock>
+          <description>Returns "camelCapsWord" and "CamelCapsWord" as "camel-caps-word".</description>
+          <long-description/>
+          <tag line="20" name="param" description="The camel-caps word." type="string" variable="$str">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="20" name="return" description="The word with dashes in place of camel caps." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="29">
+          <name>$str</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="45" package="Default">
+        <name>camelToUnder</name>
+        <docblock>
+          <description>Returns "camelCapsWord" and "CamelCapsWord" as "Camel_Caps_Word".</description>
+          <long-description/>
+          <tag line="36" name="param" description="The camel-caps word." type="string" variable="$str">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="36" name="return" description="The word with underscores in place of camel caps." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="45">
+          <name>$str</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="61" package="Default">
+        <name>classToFile</name>
+        <docblock>
+          <description>PSR-0 class-to-filename implementation.</description>
+          <long-description/>
+          <tag line="52" name="param" description="The class or interface name." type="string" variable="$spec">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="52" name="return" description="The spec as converted to a file path." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="61">
+          <name>$spec</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="85" package="Default">
+        <name>splitNamespaceAndClass</name>
+        <docblock>
+          <description>Splits a fully-qualified class name into namespace and class portions.</description>
+          <long-description/>
+          <tag line="75" name="param" description="The fully-qualified class name." type="string" variable="$spec">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="75" name="return" description="A 2-element array where element 0 is the namespace and element 1 is the class." type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="85">
+          <name>$spec</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="109" package="Default">
+        <name>dashesToCamel</name>
+        <docblock>
+          <description>Returns "foo-bar-baz" as "fooBarBaz".</description>
+          <long-description/>
+          <tag line="100" name="param" description="The dashed word." type="string" variable="$str">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="100" name="return" description="The word in camelCaps." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="109">
+          <name>$str</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="125" package="Default">
+        <name>dashesToUnder</name>
+        <docblock>
+          <description>Returns "foo-bar-baz" as "foo_bar_baz".</description>
+          <long-description/>
+          <tag line="116" name="param" description="The underscore word." type="string" variable="$str">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="116" name="return" description="The word with dashes." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="125">
+          <name>$str</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="139" package="Default">
+        <name>dashesToStudly</name>
+        <docblock>
+          <description>Returns "foo-bar-baz" as "FooBarBaz".</description>
+          <long-description/>
+          <tag line="130" name="param" description="The dashed word." type="string" variable="$str">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="130" name="return" description="The word in StudlyCaps." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="139">
+          <name>$str</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="153" package="Default">
+        <name>underToCamel</name>
+        <docblock>
+          <description>Returns "foo_bar_baz" as "fooBarBaz".</description>
+          <long-description/>
+          <tag line="144" name="param" description="The underscore word." type="string" variable="$str">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="144" name="return" description="The word in camelCaps." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="153">
+          <name>$str</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="169" package="Default">
+        <name>underToDashes</name>
+        <docblock>
+          <description>Returns "foo_bar_baz" as "foo-bar-baz".</description>
+          <long-description/>
+          <tag line="160" name="param" description="The underscore word." type="string" variable="$str">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="160" name="return" description="The word with dashes." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="169">
+          <name>$str</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="183" package="Default">
+        <name>underToStudly</name>
+        <docblock>
+          <description>Returns "foo_bar_baz" as "FooBarBaz".</description>
+          <long-description/>
+          <tag line="174" name="param" description="The underscore word." type="string" variable="$str">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="174" name="return" description="The word in StudlyCaps." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="183">
+          <name>$str</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Aura/Framework/System.php" hash="a80b7bc4c8e73541c57eb5eb4ea802c4" package="Default">
+    <class final="false" abstract="false" line="18" namespace="Aura\Framework" package="Aura\Framework">
+      <name>System</name>
+      <extends/>
+      <full_name>\Aura\Framework\System</full_name>
+      <docblock>
+        <description>Keeps track of the Aura system directories.</description>
+        <long-description/>
+        <tag line="11" name="package" description="Aura.Framework"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="27" package="Default">
+        <name>$root</name>
+        <default/>
+        <docblock>
+          <description>The root directory of the Aura system.</description>
+          <long-description/>
+          <tag line="20" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" line="36" package="Default">
+        <name>__construct</name>
+        <docblock>
+          <description>Constructor.</description>
+          <long-description/>
+          <tag line="29" name="param" description="The root directory of the Aura system." type="string" variable="$root">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="36">
+          <name>$root</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" line="53" package="Default">
+        <name>getSubPath</name>
+        <docblock>
+          <description>Gets the path for any directory, along with an optional subdirectory
+path.</description>
+          <long-description/>
+          <tag line="41" name="param" description="The directory name to get the path for." type="string" variable="$dir">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="41" name="param" description="An optional subdirectory path." type="string" variable="$sub">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="41" name="return" description="full directory path, with proper directory separators." type="\Aura\Framework\The">
+            <type by_reference="false">\Aura\Framework\The</type>
+          </tag>
+        </docblock>
+        <argument line="53">
+          <name>$dir</name>
+          <default/>
+          <type/>
+        </argument>
+        <argument line="53">
+          <name>$sub</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="73" package="Default">
+        <name>getRootPath</name>
+        <docblock>
+          <description>Gets the root path for the Aura system, along with an optional
+subdirectory path.</description>
+          <long-description/>
+          <tag line="63" name="param" description="An optional subdirectory path." type="string" variable="$sub">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="63" name="return" description="full directory path, with proper directory separators." type="\Aura\Framework\The">
+            <type by_reference="false">\Aura\Framework\The</type>
+          </tag>
+        </docblock>
+        <argument line="73">
+          <name>$sub</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="93" package="Default">
+        <name>getPackagePath</name>
+        <docblock>
+          <description>Gets the package path for the Aura system, along with an optional
+subdirectory path.</description>
+          <long-description/>
+          <tag line="83" name="param" description="An optional subdirectory path." type="string" variable="$sub">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="83" name="return" description="full directory path, with proper directory separators." type="\Aura\Framework\The">
+            <type by_reference="false">\Aura\Framework\The</type>
+          </tag>
+        </docblock>
+        <argument line="93">
+          <name>$sub</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="108" package="Default">
+        <name>getTmpPath</name>
+        <docblock>
+          <description>Gets the tmp path for the Aura system, along with an optional
+subdirectory path.</description>
+          <long-description/>
+          <tag line="98" name="param" description="An optional subdirectory path." type="string" variable="$sub">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="98" name="return" description="full directory path, with proper directory separators." type="\Aura\Framework\The">
+            <type by_reference="false">\Aura\Framework\The</type>
+          </tag>
+        </docblock>
+        <argument line="108">
+          <name>$sub</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="123" package="Default">
+        <name>getConfigPath</name>
+        <docblock>
+          <description>Gets the config path for the Aura system, along with an optional
+subdirectory path.</description>
+          <long-description/>
+          <tag line="113" name="param" description="An optional subdirectory path." type="string" variable="$sub">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="113" name="return" description="full directory path, with proper directory separators." type="\Aura\Framework\The">
+            <type by_reference="false">\Aura\Framework\The</type>
+          </tag>
+        </docblock>
+        <argument line="123">
+          <name>$sub</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="138" package="Default">
+        <name>getIncludePath</name>
+        <docblock>
+          <description>Gets the include path for the Aura system, along with an optional
+subdirectory path.</description>
+          <long-description/>
+          <tag line="128" name="param" description="An optional subdirectory path." type="string" variable="$sub">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="128" name="return" description="full directory path, with proper directory separators." type="\Aura\Framework\The">
+            <type by_reference="false">\Aura\Framework\The</type>
+          </tag>
+        </docblock>
+        <argument line="138">
+          <name>$sub</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="153" package="Default">
+        <name>getWebPath</name>
+        <docblock>
+          <description>Gets the web path for the Aura system, along with an optional
+subdirectory path.</description>
+          <long-description/>
+          <tag line="143" name="param" description="An optional subdirectory path." type="string" variable="$sub">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="143" name="return" description="full directory path, with proper directory separators." type="\Aura\Framework\The">
+            <type by_reference="false">\Aura\Framework\The</type>
+          </tag>
+        </docblock>
+        <argument line="153">
+          <name>$sub</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Aura/Framework/View/Helper/AssetHref.php" hash="af9eae5cf565e40cf1913b1a888c5a10" package="Default">
+    <namespace-alias name="AbstractHelper">Aura\View\Helper\AbstractHelper</namespace-alias>
+    <class final="false" abstract="false" line="19" namespace="Aura\Framework\View\Helper" package="Aura\Framework">
+      <name>AssetHref</name>
+      <extends>\Aura\View\Helper\AbstractHelper</extends>
+      <full_name>\Aura\Framework\View\Helper\AssetHref</full_name>
+      <docblock>
+        <description>Generates href values for assets.</description>
+        <long-description/>
+        <tag line="12" name="package" description="Aura.Framework"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" line="28" package="Default">
+        <name>setBase</name>
+        <docblock>
+          <description>Sets the base (prefix) href for all asset hrefs.</description>
+          <long-description/>
+          <tag line="21" name="param" description="The base href." type="string" variable="$base">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="28">
+          <name>$base</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="40" package="Default">
+        <name>__invoke</name>
+        <docblock>
+          <description>Returns the href for an asset.</description>
+          <long-description/>
+          <tag line="33" name="param" description="The asset href, prefixed with the base href." type="string" variable="$href">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="40">
+          <name>$href</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Aura/Framework/View/Helper/Route.php" hash="94b1ac012ba755de8773e72d700e47aa" package="Default">
+    <namespace-alias name="AbstractHelper">Aura\View\Helper\AbstractHelper</namespace-alias>
+    <namespace-alias name="RouterMap">Aura\Router\Map</namespace-alias>
+    <class final="false" abstract="false" line="22" namespace="Aura\Framework\View\Helper" package="Aura\Framework">
+      <name>Route</name>
+      <extends>\Aura\View\Helper\AbstractHelper</extends>
+      <full_name>\Aura\Framework\View\Helper\Route</full_name>
+      <docblock>
+        <description>Generates route links.</description>
+        <long-description/>
+        <tag line="15" name="package" description="Aura.Framework"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="31" package="Default">
+        <name>$router</name>
+        <default/>
+        <docblock>
+          <description>A router map object.</description>
+          <long-description/>
+          <tag line="24" name="var" description="" type="\Aura\Router\Map">
+            <type by_reference="false">\Aura\Router\Map</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" line="40" package="Default">
+        <name>__construct</name>
+        <docblock>
+          <description>Constructor.</description>
+          <long-description/>
+          <tag line="33" name="param" description="The router map." type="\Aura\Router\Map" variable="$router">
+            <type by_reference="false">\Aura\Router\Map</type>
+          </tag>
+        </docblock>
+        <argument line="40">
+          <name>$router</name>
+          <default/>
+          <type>RouterMap</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="58" package="Default">
+        <name>__invoke</name>
+        <docblock>
+          <description>Returns a route by name; optionall interpolates data into it.</description>
+          <long-description/>
+          <tag line="45" name="param" description="The route name to look up." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="45" name="param" description="The data to inpterolate into the URI; data keys map to param tokens in the path." type="array" variable="$data">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="45" name="return" description="A URI path string if the route name is found, or boolean false if not." type="string|false">
+            <type by_reference="false">string</type>
+            <type by_reference="false">false</type>
+          </tag>
+        </docblock>
+        <argument line="58">
+          <name>$name</name>
+          <default/>
+          <type/>
+        </argument>
+        <argument line="58">
+          <name>$data</name>
+          <default>[]</default>
+          <type>array</type>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Aura/Framework/Web/AbstractPage.php" hash="c3d64b90d9c9a96db3cb8129e86e80bd" package="Default">
+    <namespace-alias name="Inflect">Aura\Framework\Inflect</namespace-alias>
+    <namespace-alias name="System">Aura\Framework\System</namespace-alias>
+    <namespace-alias name="RouterMap">Aura\Router\Map</namespace-alias>
+    <namespace-alias name="SignalManager">Aura\Signal\Manager</namespace-alias>
+    <namespace-alias name="TwoStep">Aura\View\TwoStep</namespace-alias>
+    <namespace-alias name="WebAbstractPage">Aura\Web\AbstractPage</namespace-alias>
+    <class final="false" abstract="true" line="24" namespace="Aura\Framework\Web" package="Aura\Framework">
+      <name>AbstractPage</name>
+      <extends>\Aura\Web\AbstractPage</extends>
+      <full_name>\Aura\Framework\Web\AbstractPage</full_name>
+      <docblock>
+        <description>An abstract web page controller for the framework.</description>
+        <long-description/>
+        <tag line="17" name="package" description="Aura.Framework"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="33" package="Default">
+        <name>$inflect</name>
+        <default/>
+        <docblock>
+          <description>An inflection object.</description>
+          <long-description/>
+          <tag line="26" name="var" description="" type="\Aura\Framework\Inflect">
+            <type by_reference="false">\Aura\Framework\Inflect</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="42" package="Default">
+        <name>$router</name>
+        <default/>
+        <docblock>
+          <description>A router object.</description>
+          <long-description/>
+          <tag line="35" name="var" description="" type="\Aura\Router\Map">
+            <type by_reference="false">\Aura\Router\Map</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="51" package="Default">
+        <name>$signal</name>
+        <default/>
+        <docblock>
+          <description>A signal manager</description>
+          <long-description/>
+          <tag line="44" name="var" description="" type="\Aura\Signal\Manager">
+            <type by_reference="false">\Aura\Signal\Manager</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="60" package="Default">
+        <name>$system</name>
+        <default/>
+        <docblock>
+          <description>A system object.</description>
+          <long-description/>
+          <tag line="53" name="var" description="" type="\Aura\Framework\System">
+            <type by_reference="false">\Aura\Framework\System</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="69" package="Default">
+        <name>$view</name>
+        <default/>
+        <docblock>
+          <description>A two-step view object.</description>
+          <long-description/>
+          <tag line="62" name="var" description="" type="\Aura\View\TwoStep">
+            <type by_reference="false">\Aura\View\TwoStep</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" line="80" package="Default">
+        <name>setInflect</name>
+        <docblock>
+          <description>Sets the inflection object.</description>
+          <long-description/>
+          <tag line="71" name="param" description="The inflection object." type="\Aura\Framework\Inflect" variable="$inflect">
+            <type by_reference="false">\Aura\Framework\Inflect</type>
+          </tag>
+          <tag line="71" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="80">
+          <name>$inflect</name>
+          <default/>
+          <type>Inflect</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="94" package="Default">
+        <name>setRouter</name>
+        <docblock>
+          <description>Sets the router object.</description>
+          <long-description/>
+          <tag line="85" name="param" description="The router object." type="\Aura\Router\Map" variable="$router">
+            <type by_reference="false">\Aura\Router\Map</type>
+          </tag>
+          <tag line="85" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="94">
+          <name>$router</name>
+          <default/>
+          <type>RouterMap</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="108" package="Default">
+        <name>setSignal</name>
+        <docblock>
+          <description>Sets the signal manager and adds handlers for hooks.</description>
+          <long-description/>
+          <tag line="99" name="param" description="The signal manager." type="\Aura\Signal\Manager" variable="$signal">
+            <type by_reference="false">\Aura\Signal\Manager</type>
+          </tag>
+          <tag line="99" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="108">
+          <name>$signal</name>
+          <default/>
+          <type>SignalManager</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="128" package="Default">
+        <name>setSystem</name>
+        <docblock>
+          <description>Sets the system object.</description>
+          <long-description/>
+          <tag line="119" name="param" description="The system object." type="\Aura\Framework\System" variable="$system">
+            <type by_reference="false">\Aura\Framework\System</type>
+          </tag>
+          <tag line="119" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="128">
+          <name>$system</name>
+          <default/>
+          <type>System</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="142" package="Default">
+        <name>setView</name>
+        <docblock>
+          <description>Sets the two-step view object and sets inner and outer template paths.</description>
+          <long-description/>
+          <tag line="133" name="param" description="The two-step view object." type="\Aura\View\TwoStep" variable="$view">
+            <type by_reference="false">\Aura\View\TwoStep</type>
+          </tag>
+          <tag line="133" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="142">
+          <name>$view</name>
+          <default/>
+          <type>TwoStep</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="185" package="Default">
+        <name>exec</name>
+        <docblock>
+          <description>Executes the page action, invoking hooks via the signal manager.</description>
+          <long-description/>
+          <tag line="178" name="return" description="" type="\Aura\Web\Response">
+            <type by_reference="false">\Aura\Web\Response</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" line="215" package="Default">
+        <name>render</name>
+        <docblock>
+          <description>Renders the view into the response and sets the response content-type.</description>
+          <long-description>&lt;p&gt;N.b.: If the response content is already set, the view will not be
+rendered.&lt;/p&gt;</long-description>
+          <tag line="205" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Aura/Framework/Web/Asset/Page.php" hash="bdbdaefd4fe6b030313cf4fe7534ed7d" package="Default">
+    <namespace-alias name="AbstractPage">Aura\Framework\Web\AbstractPage</namespace-alias>
+    <class final="false" abstract="false" line="38" namespace="Aura\Framework\Web\Asset" package="Aura\Framework">
+      <name>Page</name>
+      <extends>\Aura\Framework\Web\AbstractPage</extends>
+      <full_name>\Aura\Framework\Web\Asset\Page</full_name>
+      <docblock>
+        <description>Provides a public interface to web assets for a package.</description>
+        <long-description>&lt;p&gt;Your package should be set up like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; Vendor.Package/
+     config/
+     scripts/
+     src/
+     tests/
+     web/
+         images/
+         scripts/
+         styles/
+             foo.css
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can then use the URL &lt;code&gt;/asset/Vendor.Package/styles/foo.css&lt;/code&gt; to access
+the package asset, even though it's not in the web document root.&lt;/p&gt;
+
+&lt;p&gt;Additionally, you can cache the assets to the web document root, so that
+they are served statically instead of through PHP.&lt;/p&gt;</long-description>
+        <tag line="12" name="package" description="Aura.Framework"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="47" package="Default">
+        <name>$cache_config_modes</name>
+        <default>[]</default>
+        <docblock>
+          <description>The Aura config modes in which we should cache web assets.</description>
+          <long-description/>
+          <tag line="40" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="57" package="Default">
+        <name>$web_cache_dir</name>
+        <default/>
+        <docblock>
+          <description>The subdirectory inside the web document root where we should cache
+web assets.</description>
+          <long-description/>
+          <tag line="49" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" line="68" package="Default">
+        <name>setCacheConfigModes</name>
+        <docblock>
+          <description>Sets the config modes in which caching should take place.</description>
+          <long-description/>
+          <tag line="59" name="param" description="An array of mode names." type="array" variable="$modes">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="59" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="68">
+          <name>$modes</name>
+          <default>[]</default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="83" package="Default">
+        <name>setWebCacheDir</name>
+        <docblock>
+          <description>Sets the subdirectory in the web document root where web assets should
+be cached.</description>
+          <long-description/>
+          <tag line="73" name="param" description="" type="string" variable="$dir">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="73" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="83">
+          <name>$dir</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="100" package="Default">
+        <name>actionIndex</name>
+        <docblock>
+          <description>Given a package name and an asset file name, delivers the asset
+(and caches it if the config mode is correct).</description>
+          <long-description/>
+          <tag line="88" name="param" description="The package name (e.g., `Vendor.Package`)." type="string" variable="$package">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="88" name="param" description="The asset file name (e.g. `images/logo.jpg`)." type="string" variable="$file">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="88" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="100">
+          <name>$package</name>
+          <default>null</default>
+          <type/>
+        </argument>
+        <argument line="100">
+          <name>$file</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Aura/Framework/Web/Factory.php" hash="25ce2b924b65a14b695e7587428f6f7e" package="Default">
+    <namespace-alias name="ForgeInterface">Aura\Di\ForgeInterface</namespace-alias>
+    <namespace-alias name="NoClassForController">Aura\Framework\Exception\NoClassForController</namespace-alias>
+    <class final="false" abstract="false" line="21" namespace="Aura\Framework\Web" package="Aura\Framework">
+      <name>Factory</name>
+      <extends/>
+      <full_name>\Aura\Framework\Web\Factory</full_name>
+      <docblock>
+        <description>A factory to create controller objects; these need not be only Page
+controllers, but (e.g.) Resource or App controllers.</description>
+        <long-description/>
+        <tag line="13" name="package" description="Aura.Framework"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="30" package="Default">
+        <name>$forge</name>
+        <default/>
+        <docblock>
+          <description>An object-creation Forge.</description>
+          <long-description/>
+          <tag line="23" name="var" description="" type="\Aura\Di\ForgeInterface">
+            <type by_reference="false">\Aura\Di\ForgeInterface</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="39" package="Default">
+        <name>$map</name>
+        <default>[]</default>
+        <docblock>
+          <description>A map of controller names to controller classes.</description>
+          <long-description/>
+          <tag line="32" name="var" description="" type="\Aura\Di\ForgeInterface">
+            <type by_reference="false">\Aura\Di\ForgeInterface</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="48" package="Default">
+        <name>$not_found</name>
+        <default>null</default>
+        <docblock>
+          <description>The controller class to instantiate when no mapping is found.</description>
+          <long-description/>
+          <tag line="41" name="var" description="" type="\Aura\Di\ForgeInterface">
+            <type by_reference="false">\Aura\Di\ForgeInterface</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" line="62" package="Default">
+        <name>__construct</name>
+        <docblock>
+          <description>Constructor.</description>
+          <long-description/>
+          <tag line="50" name="param" description="An object-creation Forge." type="\Aura\Di\ForgeInterface" variable="$forge">
+            <type by_reference="false">\Aura\Di\ForgeInterface</type>
+          </tag>
+          <tag line="50" name="param" description="A map of controller names to controller classes." type="array" variable="$map">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="50" name="param" description="The controller class to instantiate when no mapping is found." type="string" variable="$not_found">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="63">
+          <name>$forge</name>
+          <default/>
+          <type>ForgeInterface</type>
+        </argument>
+        <argument line="64">
+          <name>$map</name>
+          <default>[]</default>
+          <type>array</type>
+        </argument>
+        <argument line="65">
+          <name>$not_found</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="83" package="Default">
+        <name>newInstance</name>
+        <docblock>
+          <description>Creates and returns a controller class based on a controller name.</description>
+          <long-description/>
+          <tag line="72" name="param" description="The controller name." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="72" name="param" description="Params to pass to the controller." type="array" variable="$params">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="72" name="return" description="A controller instance." type="\Aura\Framework\Web\Page">
+            <type by_reference="false">\Aura\Framework\Web\Page</type>
+          </tag>
+        </docblock>
+        <argument line="83">
+          <name>$name</name>
+          <default/>
+          <type/>
+        </argument>
+        <argument line="83">
+          <name>$params</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Aura/Framework/Web/Front.php" hash="bc1411b3d7510c271dd55f0846b49870" package="Default">
+    <namespace-alias name="Factory">Aura\Framework\Web\Factory</namespace-alias>
+    <namespace-alias name="HttpResponse">Aura\Http\Response</namespace-alias>
+    <namespace-alias name="RouterMap">Aura\Router\Map</namespace-alias>
+    <namespace-alias name="SignalManager">Aura\Signal\Manager</namespace-alias>
+    <namespace-alias name="Context">Aura\Web\Context</namespace-alias>
+    <namespace-alias name="WebResponse">Aura\Web\Response</namespace-alias>
+    <class final="false" abstract="false" line="25" namespace="Aura\Framework\Web" package="Aura\Framework">
+      <name>Front</name>
+      <extends/>
+      <full_name>\Aura\Framework\Web\Front</full_name>
+      <docblock>
+        <description>Takes an incoming web request (Context), then dispatches it, renders
+content, and returns a response for it.</description>
+        <long-description/>
+        <tag line="17" name="package" description="Aura.Framework"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="34" package="Default">
+        <name>$context</name>
+        <default/>
+        <docblock>
+          <description>The web request context.</description>
+          <long-description/>
+          <tag line="27" name="var" description="" type="\Aura\Web\Context">
+            <type by_reference="false">\Aura\Web\Context</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="43" package="Default">
+        <name>$transfer</name>
+        <default/>
+        <docblock>
+          <description>The web reponse transfer object returned from the controller.</description>
+          <long-description/>
+          <tag line="36" name="var" description="" type="\Aura\Web\Response">
+            <type by_reference="false">\Aura\Web\Response</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="52" package="Default">
+        <name>$response</name>
+        <default/>
+        <docblock>
+          <description>The full HTTP response created from the transfer object.</description>
+          <long-description/>
+          <tag line="45" name="var" description="" type="\Aura\Http\Response">
+            <type by_reference="false">\Aura\Http\Response</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="61" package="Default">
+        <name>$factory</name>
+        <default/>
+        <docblock>
+          <description>A page controller factory.</description>
+          <long-description/>
+          <tag line="54" name="var" description="" type="\Aura\Framework\Web\Factory">
+            <type by_reference="false">\Aura\Framework\Web\Factory</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="70" package="Default">
+        <name>$signal</name>
+        <default/>
+        <docblock>
+          <description>A signal manager.</description>
+          <long-description/>
+          <tag line="63" name="var" description="" type="\Aura\Signal\Manager">
+            <type by_reference="false">\Aura\Signal\Manager</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="79" package="Default">
+        <name>$router</name>
+        <default/>
+        <docblock>
+          <description>A router map.</description>
+          <long-description/>
+          <tag line="72" name="var" description="" type="\Aura\Router\Map">
+            <type by_reference="false">\Aura\Router\Map</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" line="97" package="Default">
+        <name>__construct</name>
+        <docblock>
+          <description>Constructor.</description>
+          <long-description/>
+          <tag line="82" name="param" description="A signal manager." type="\Aura\Signal\Manager" variable="$signal">
+            <type by_reference="false">\Aura\Signal\Manager</type>
+          </tag>
+          <tag line="82" name="param" description="The web context." type="\Aura\Web\Context" variable="$context">
+            <type by_reference="false">\Aura\Web\Context</type>
+          </tag>
+          <tag line="82" name="param" description="The router map." type="\Aura\Router\Map" variable="$router">
+            <type by_reference="false">\Aura\Router\Map</type>
+          </tag>
+          <tag line="82" name="param" description="A web page controller factory." type="\Aura\Framework\Web\Factory" variable="$factory">
+            <type by_reference="false">\Aura\Framework\Web\Factory</type>
+          </tag>
+          <tag line="82" name="param" description="The eventual HTTP response object." type="\Aura\Http\Response" variable="$response">
+            <type by_reference="false">\Aura\Http\Response</type>
+          </tag>
+        </docblock>
+        <argument line="98">
+          <name>$signal</name>
+          <default/>
+          <type>SignalManager</type>
+        </argument>
+        <argument line="99">
+          <name>$context</name>
+          <default/>
+          <type>Context</type>
+        </argument>
+        <argument line="100">
+          <name>$router</name>
+          <default/>
+          <type>RouterMap</type>
+        </argument>
+        <argument line="101">
+          <name>$factory</name>
+          <default/>
+          <type>Factory</type>
+        </argument>
+        <argument line="102">
+          <name>$response</name>
+          <default/>
+          <type>HttpResponse</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="120" package="Default">
+        <name>__get</name>
+        <docblock>
+          <description>Magic read-only access to properties.</description>
+          <long-description/>
+          <tag line="111" name="param" description="The property to retrieve." type="string" variable="$key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="111" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="120">
+          <name>$key</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="145" package="Default">
+        <name>exec</name>
+        <docblock>
+          <description>Dispatches a Route to a web controller, renders a view into the
+ReponseTransfer, and returns an HTTP response.</description>
+          <long-description/>
+          <tag line="125" name="signal" description="pre_exec"/>
+          <tag line="125" name="signal" description="pre_request"/>
+          <tag line="125" name="signal" description="post_request"/>
+          <tag line="125" name="signal" description="pre_response"/>
+          <tag line="125" name="signal" description="post_response"/>
+          <tag line="125" name="signal" description="post_exec"/>
+          <tag line="125" name="return" description="" type="\Aura\Http\Response">
+            <type by_reference="false">\Aura\Http\Response</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="172" package="Default">
+        <name>request</name>
+        <docblock>
+          <description>Handle the incoming request.</description>
+          <long-description/>
+          <tag line="165" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="204" package="Default">
+        <name>response</name>
+        <docblock>
+          <description>Converts the web response transfer object into the HTTP response.</description>
+          <long-description/>
+          <tag line="197" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Aura/Framework/Web/Hello/Page.php" hash="932b23c9ff8f35e814e6a1d117a5182d" package="Default">
+    <namespace-alias name="AbstractPage">Aura\Framework\Web\AbstractPage</namespace-alias>
+    <class final="false" abstract="false" line="19" namespace="Aura\Framework\Web\Hello" package="Aura\Framework">
+      <name>Page</name>
+      <extends>\Aura\Framework\Web\AbstractPage</extends>
+      <full_name>\Aura\Framework\Web\Hello\Page</full_name>
+      <docblock>
+        <description>A basic controller to show "Hello world" or an image asset.</description>
+        <long-description/>
+        <tag line="12" name="package" description="Aura.Framework"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" line="28" package="Default">
+        <name>actionWorld</name>
+        <docblock>
+          <description>Sets the inner view to "world" and does nothing else.</description>
+          <long-description/>
+          <tag line="21" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="40" package="Default">
+        <name>actionAsset</name>
+        <docblock>
+          <description>Sets the inner view to "asset" and does nothing else.</description>
+          <long-description/>
+          <tag line="33" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Aura/Framework/Web/Hello/view/asset.php" hash="35776568193bfd68c13900c506eb2f5a" package="Aura\Framework">
+    <docblock>
+      <description>This file is part of the Aura Project for PHP.</description>
+      <long-description/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+      <tag line="2" name="package" description="Aura.Framework"/>
+    </docblock>
+  </file>
+  <file path="Aura/Framework/Web/Hello/view/world.php" hash="82072cfcdd921431d44f7ef8acb52856" package="Aura\Framework">
+    <docblock>
+      <description>This file is part of the Aura Project for PHP.</description>
+      <long-description/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+      <tag line="2" name="package" description="Aura.Framework"/>
+    </docblock>
+  </file>
+  <file path="Aura/Framework/Web/NotFound/Page.php" hash="ebcebc671dde619f80f34d1d4ccb1c94" package="Default">
+    <namespace-alias name="AbstractPage">Aura\Framework\Web\AbstractPage</namespace-alias>
+    <class final="false" abstract="false" line="19" namespace="Aura\Framework\Web\NotFound" package="Aura\Framework">
+      <name>Page</name>
+      <extends>\Aura\Framework\Web\AbstractPage</extends>
+      <full_name>\Aura\Framework\Web\NotFound\Page</full_name>
+      <docblock>
+        <description>Show this when a page controller could not be found for the request.</description>
+        <long-description/>
+        <tag line="12" name="package" description="Aura.Framework"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" line="28" package="Default">
+        <name>preExec</name>
+        <docblock>
+          <description>Force the action to "index".</description>
+          <long-description/>
+          <tag line="21" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="40" package="Default">
+        <name>actionIndex</name>
+        <docblock>
+          <description>Shows information about what happened.</description>
+          <long-description/>
+          <tag line="33" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <package name="Aura">
+    <package name="Framework"/>
+  </package>
+  <package name="Default"/>
+  <namespace name="Aura">
+    <namespace name="Framework">
+      <namespace name="Cli">
+        <namespace name="CacheClassmap"/>
+        <namespace name="CacheConfig"/>
+        <namespace name="HelloWorld"/>
+        <namespace name="MakeTest"/>
+      </namespace>
+      <namespace name="Exception"/>
+      <namespace name="View">
+        <namespace name="Helper"/>
+      </namespace>
+      <namespace name="Web">
+        <namespace name="Asset"/>
+        <namespace name="Hello"/>
+        <namespace name="NotFound"/>
+      </namespace>
+    </namespace>
+  </namespace>
+  <marker>todo</marker>
+  <marker>fixme</marker>
+</project>

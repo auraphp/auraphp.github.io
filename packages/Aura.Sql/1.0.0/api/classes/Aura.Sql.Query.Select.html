@@ -1,0 +1,692 @@
+<!DOCTYPE html><html xmlns:date="http://exslt.org/dates-and-times" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » \Aura\Sql\Query\Select</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Namespaces</a></li>
+<li><a href="../namespaces/Aura.html"><i class="icon-th"></i> Aura</a></li>
+<li><a>Packages</a></li>
+<li><a href="../packages/Aura.html"><i class="icon-folder-open"></i> Aura</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">0</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul><li>todo 
+                <span class="label label-info">3</span>
+</li></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods</li>
+<li class="method public inherited"><a href="#__construct" title="__construct :: Constructor."><span class="description">Constructor.</span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#__toString" title="__toString :: Returns this object as an SQL statement string."><span class="description">Returns this object as an SQL statement string.</span><pre>__toString()</pre></a></li>
+<li class="method public inherited"><a href="#addBind" title="addBind :: Adds values to bind into the query; merges with existing values."><span class="description">Adds values to bind into the query; merges with existing values.</span><pre>addBind()</pre></a></li>
+<li class="method public "><a href="#cols" title="cols :: Adds columns to the query."><span class="description">Adds columns to the query.</span><pre>cols()</pre></a></li>
+<li class="method public "><a href="#distinct" title="distinct :: Makes the select DISTINCT (or not)."><span class="description">Makes the select DISTINCT (or not).</span><pre>distinct()</pre></a></li>
+<li class="method public "><a href="#forUpdate" title="forUpdate :: Makes the select FOR UPDATE (or not)."><span class="description">Makes the select FOR UPDATE (or not).</span><pre>forUpdate()</pre></a></li>
+<li class="method public "><a href="#from" title="from :: Adds a FROM table and columns to the query."><span class="description">Adds a FROM table and columns to the query.</span><pre>from()</pre></a></li>
+<li class="method public "><a href="#fromSubSelect" title="fromSubSelect :: Adds an aliased sub-select to the query."><span class="description">Adds an aliased sub-select to the query.</span><pre>fromSubSelect()</pre></a></li>
+<li class="method public inherited"><a href="#getBind" title="getBind :: Gets the values to bind into the query."><span class="description">Gets the values to bind into the query.</span><pre>getBind()</pre></a></li>
+<li class="method public inherited"><a href="#getConnection" title="getConnection :: Gets the database connection for this query object."><span class="description">Gets the database connection for this query object.</span><pre>getConnection()</pre></a></li>
+<li class="method public "><a href="#getPaging" title="getPaging :: Gets the number of rows per page."><span class="description">Gets the number of rows per page.</span><pre>getPaging()</pre></a></li>
+<li class="method public "><a href="#groupBy" title="groupBy :: Adds grouping to the query."><span class="description">Adds grouping to the query.</span><pre>groupBy()</pre></a></li>
+<li class="method public "><a href="#having" title="having :: Adds a HAVING condition to the query by AND; if a value is passed as
+the second param, it will be quoted and replaced into the condition
+wherever a question-mark appears."><span class="description">Adds a HAVING condition to the query by AND; if a value is passed as
+the second param, it will be quoted and replaced into the condition
+wherever a question-mark appears.</span><pre>having()</pre></a></li>
+<li class="method public "><a href="#join" title="join :: Adds a JOIN table and columns to the query."><span class="description">Adds a JOIN table and columns to the query.</span><pre>join()</pre></a></li>
+<li class="method public "><a href="#joinSubSelect" title="joinSubSelect :: Adds a JOIN to an aliased subselect and columns to the query."><span class="description">Adds a JOIN to an aliased subselect and columns to the query.</span><pre>joinSubSelect()</pre></a></li>
+<li class="method public "><a href="#limit" title="limit :: Sets a limit count on the query."><span class="description">Sets a limit count on the query.</span><pre>limit()</pre></a></li>
+<li class="method public "><a href="#offset" title="offset :: Sets a limit offset on the query."><span class="description">Sets a limit offset on the query.</span><pre>offset()</pre></a></li>
+<li class="method public "><a href="#orHaving" title="orHaving :: Adds a HAVING condition to the query by AND; otherwise identical to
+`having()`."><span class="description">Adds a HAVING condition to the query by AND; otherwise identical to
+`having()`.</span><pre>orHaving()</pre></a></li>
+<li class="method public "><a href="#orderBy" title="orderBy :: Adds a row order to the query."><span class="description">Adds a row order to the query.</span><pre>orderBy()</pre></a></li>
+<li class="method public "><a href="#page" title="page :: Sets the limit and count by page number."><span class="description">Sets the limit and count by page number.</span><pre>page()</pre></a></li>
+<li class="method public inherited"><a href="#setBind" title="setBind :: Sets values to bind into the query; this overrides any previous
+bindings."><span class="description">Sets values to bind into the query; this overrides any previous
+bindings.</span><pre>setBind()</pre></a></li>
+<li class="method public "><a href="#setPaging" title="setPaging :: Sets the number of rows per page."><span class="description">Sets the number of rows per page.</span><pre>setPaging()</pre></a></li>
+<li class="method public "><a href="#union" title="union :: Takes the current select properties and retains them, then sets
+UNION for the next set of properties."><span class="description">Takes the current select properties and retains them, then sets
+UNION for the next set of properties.</span><pre>union()</pre></a></li>
+<li class="method public "><a href="#unionAll" title="unionAll :: Takes the current select properties and retains them, then sets
+UNION ALL for the next set of properties."><span class="description">Takes the current select properties and retains them, then sets
+UNION ALL for the next set of properties.</span><pre>unionAll()</pre></a></li>
+<li class="nav-header protected">» Protected</li>
+<li class="method protected inherited"><a href="#indent" title="indent :: Returns an array as an indented string."><span class="description">Returns an array as an indented string.</span><pre>indent()</pre></a></li>
+<li class="method protected inherited"><a href="#indentCsv" title="indentCsv :: Returns an array as an indented comma-separated values string."><span class="description">Returns an array as an indented comma-separated values string.</span><pre>indentCsv()</pre></a></li>
+<li class="method protected "><a href="#reset" title="reset :: Clears the current select properties; generally used after adding a
+union."><span class="description">Clears the current select properties; generally used after adding a
+union.</span><pre>reset()</pre></a></li>
+<li class="method protected "><a href="#toString" title="toString :: Returns the SELECT parts composed as a string (does not include
+the union selects)."><span class="description">Returns the SELECT parts composed as a string (does not include
+the union selects).</span><pre>toString()</pre></a></li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties</li>
+<li class="nav-header protected">» Protected</li>
+<li class="property protected inherited"><a href="#%24bind" title="$bind :: Data to be bound to the query."><span class="description">Data to be bound to the query.</span><pre>$bind</pre></a></li>
+<li class="property protected "><a href="#%24cols" title="$cols :: The columns to be selected."><span class="description">The columns to be selected.</span><pre>$cols</pre></a></li>
+<li class="property protected inherited"><a href="#%24connection" title="$connection :: An SQL connection."><span class="description">An SQL connection.</span><pre>$connection</pre></a></li>
+<li class="property protected "><a href="#%24distinct" title="$distinct :: Is this a SELECT DISTINCT ?"><span class="description">Is this a SELECT DISTINCT ?</span><pre>$distinct</pre></a></li>
+<li class="property protected "><a href="#%24for_update" title="$for_update :: Is this a SELECT FOR UPDATE?"><span class="description">Is this a SELECT FOR UPDATE?</span><pre>$for_update</pre></a></li>
+<li class="property protected "><a href="#%24from" title="$from :: Select from these tables."><span class="description">Select from these tables.</span><pre>$from</pre></a></li>
+<li class="property protected "><a href="#%24group_by" title="$group_by :: GROUP BY these columns."><span class="description">GROUP BY these columns.</span><pre>$group_by</pre></a></li>
+<li class="property protected "><a href="#%24having" title="$having :: The list of HAVING conditions."><span class="description">The list of HAVING conditions.</span><pre>$having</pre></a></li>
+<li class="property protected "><a href="#%24join" title="$join :: Use these joins."><span class="description">Use these joins.</span><pre>$join</pre></a></li>
+<li class="property protected "><a href="#%24limit" title="$limit :: The number of rows to return"><span class="description">The number of rows to return</span><pre>$limit</pre></a></li>
+<li class="property protected "><a href="#%24offset" title="$offset :: Return rows after this offset."><span class="description">Return rows after this offset.</span><pre>$offset</pre></a></li>
+<li class="property protected "><a href="#%24order_by" title="$order_by :: ORDER BY these columns."><span class="description">ORDER BY these columns.</span><pre>$order_by</pre></a></li>
+<li class="property protected "><a href="#%24paging" title="$paging :: The number of rows per page."><span class="description">The number of rows per page.</span><pre>$paging</pre></a></li>
+<li class="property protected "><a href="#%24union" title="$union :: An array of union SELECT statements."><span class="description">An array of union SELECT statements.</span><pre>$union</pre></a></li>
+</ul>
+</div>
+<div class="span8">
+<a name="%5CAura%5CSql%5CQuery%5CSelect" id="\Aura\Sql\Query\Select"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/Aura.html">Aura</a></li>
+<span class="divider">\</span><li><a href="../namespaces/Aura.Sql.html">Sql</a></li>
+<span class="divider">\</span><li><a href="../namespaces/Aura.Sql.Query.html">Query</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/Aura.Sql.Query.Select.html">Select</a>
+</li>
+</ul>
+<div href="../classes/Aura.Sql.Query.Select.html" class="element class">
+<p class="short_description">An object for SELECT queries.</p>
+<div class="details">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>package</th>
+<td><a href="../packages/Aura.Sql.html">Aura.Sql</a></td>
+</tr></table>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a name="__construct" id="__construct"></a><div class="element clickable method public __construct" data-toggle="collapse" data-target=".__construct .collapse">
+<h2>Constructor.</h2>
+<pre>__construct(Aura\Sql\Connection\AbstractConnection $connection) : void</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Sql\Query\AbstractQuery::__construct()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$connection</h4>
+<code><a href="../classes/Aura.Sql.Connection.AbstractConnection.html">\Aura\Sql\Connection\AbstractConnection</a></code><p>An SQL connection.</p></div>
+</div></div>
+</div>
+<a name="__toString" id="__toString"></a><div class="element clickable method public __toString" data-toggle="collapse" data-target=".__toString .collapse">
+<h2>Returns this object as an SQL statement string.</h2>
+<pre>__toString() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>An SQL statement string.</div>
+</div></div>
+</div>
+<a name="addBind" id="addBind"></a><div class="element clickable method public addBind" data-toggle="collapse" data-target=".addBind .collapse">
+<h2>Adds values to bind into the query; merges with existing values.</h2>
+<pre>addBind(array $bind) : void</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Sql\Query\AbstractQuery::addBind()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$bind</h4>
+<code>array</code><p>Values to bind to the query.</p></div>
+</div></div>
+</div>
+<a name="cols" id="cols"></a><div class="element clickable method public cols" data-toggle="collapse" data-target=".cols .collapse">
+<h2>Adds columns to the query.</h2>
+<pre>cols(array $cols) : \Aura\Sql\Query\$this</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Multiple calls to cols() will append to the list of columns, not
+overwrite the previous columns.</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$cols</h4>
+<code>array</code><p>The column(s) to add to the query.</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\Aura\Sql\Query\$this</code></div>
+</div></div>
+</div>
+<a name="distinct" id="distinct"></a><div class="element clickable method public distinct" data-toggle="collapse" data-target=".distinct .collapse">
+<h2>Makes the select DISTINCT (or not).</h2>
+<pre>distinct(bool $flag) : \Aura\Sql\Query\$this</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$flag</h4>
+<code>bool</code><p>Whether or not the SELECT is DISTINCT (default true).</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\Aura\Sql\Query\$this</code></div>
+</div></div>
+</div>
+<a name="forUpdate" id="forUpdate"></a><div class="element clickable method public forUpdate" data-toggle="collapse" data-target=".forUpdate .collapse">
+<h2>Makes the select FOR UPDATE (or not).</h2>
+<pre>forUpdate(bool $flag) : \Aura\Sql\Query\$this</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$flag</h4>
+<code>bool</code><p>Whether or not the SELECT is FOR UPDATE (default true).</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\Aura\Sql\Query\$this</code></div>
+</div></div>
+</div>
+<a name="from" id="from"></a><div class="element clickable method public from" data-toggle="collapse" data-target=".from .collapse">
+<h2>Adds a FROM table and columns to the query.</h2>
+<pre>from(string $spec) : \Aura\Sql\Query\$this</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$spec</h4>
+<code>string</code><p>The table specification; "foo" or "foo AS bar".</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\Aura\Sql\Query\$this</code></div>
+</div></div>
+</div>
+<a name="fromSubSelect" id="fromSubSelect"></a><div class="element clickable method public fromSubSelect" data-toggle="collapse" data-target=".fromSubSelect .collapse">
+<h2>Adds an aliased sub-select to the query.</h2>
+<pre>fromSubSelect(string | <a href="../classes/Aura.Sql.Query.Select.html">\Aura\Sql\Query\Select</a> $spec, string $name) : \Aura\Sql\Query\$this</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$spec</h4>
+<code>string<a href="../classes/Aura.Sql.Query.Select.html">\Aura\Sql\Query\Select</a></code><p>If a Select object, use as the sub-select; if a string, the sub-select string.</p>
+</div>
+<div class="subelement argument">
+<h4>$name</h4>
+<code>string</code><p>The alias name for the sub-select.</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\Aura\Sql\Query\$this</code></div>
+</div></div>
+</div>
+<a name="getBind" id="getBind"></a><div class="element clickable method public getBind" data-toggle="collapse" data-target=".getBind .collapse">
+<h2>Gets the values to bind into the query.</h2>
+<pre>getBind() : array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Sql\Query\AbstractQuery::getBind()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a name="getConnection" id="getConnection"></a><div class="element clickable method public getConnection" data-toggle="collapse" data-target=".getConnection .collapse">
+<h2>Gets the database connection for this query object.</h2>
+<pre>getConnection() : <a href="../classes/Aura.Sql.Connection.AbstractConnection.html">\Aura\Sql\Connection\AbstractConnection</a></pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Sql\Query\AbstractQuery::getConnection()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/Aura.Sql.Connection.AbstractConnection.html">\Aura\Sql\Connection\AbstractConnection</a></code></div>
+</div></div>
+</div>
+<a name="getPaging" id="getPaging"></a><div class="element clickable method public getPaging" data-toggle="collapse" data-target=".getPaging .collapse">
+<h2>Gets the number of rows per page.</h2>
+<pre>getPaging() : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>int</code>The number of rows per page.</div>
+</div></div>
+</div>
+<a name="groupBy" id="groupBy"></a><div class="element clickable method public groupBy" data-toggle="collapse" data-target=".groupBy .collapse">
+<h2>Adds grouping to the query.</h2>
+<pre>groupBy(array $spec) : \Aura\Sql\Query\$this</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$spec</h4>
+<code>array</code><p>The column(s) to group by.</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\Aura\Sql\Query\$this</code></div>
+</div></div>
+</div>
+<a name="having" id="having"></a><div class="element clickable method public having" data-toggle="collapse" data-target=".having .collapse">
+<h2>Adds a HAVING condition to the query by AND; if a value is passed as
+the second param, it will be quoted and replaced into the condition
+wherever a question-mark appears.</h2>
+<pre>having(string $cond) : \Aura\Sql\Query\$this</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Array values are quoted and comma-separated.</p>
+
+<p>{{code: php
+    // simplest but non-secure
+    $select->having("COUNT(id) = $count");</p>
+
+<pre><code>// secure
+$select-&gt;having('COUNT(id) = ?', $count);
+
+// equivalent security with named binding
+$select-&gt;having('COUNT(id) = :count');
+$select-&gt;bind('count', $count);
+</code></pre>
+
+<p>}}</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$cond</h4>
+<code>string</code><p>The HAVING condition.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\Aura\Sql\Query\$this</code></div>
+</div></div>
+</div>
+<a name="join" id="join"></a><div class="element clickable method public join" data-toggle="collapse" data-target=".join .collapse">
+<h2>Adds a JOIN table and columns to the query.</h2>
+<pre>join(string $join, string $spec, string $cond) : \Aura\Sql\Query\$this</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$join</h4>
+<code>string</code><p>The join type: inner, left, natural, etc.</p></div>
+<div class="subelement argument">
+<h4>$spec</h4>
+<code>string</code><p>The table specification; "foo" or "foo AS bar".</p>
+</div>
+<div class="subelement argument">
+<h4>$cond</h4>
+<code>string</code><p>Join on this condition.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\Aura\Sql\Query\$this</code></div>
+</div></div>
+</div>
+<a name="joinSubSelect" id="joinSubSelect"></a><div class="element clickable method public joinSubSelect" data-toggle="collapse" data-target=".joinSubSelect .collapse">
+<h2>Adds a JOIN to an aliased subselect and columns to the query.</h2>
+<pre>joinSubSelect(string $join, string | <a href="../classes/Aura.Sql.Query.Select.html">\Aura\Sql\Query\Select</a> $spec, string $name, string $cond) : \Aura\Sql\Query\$this</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$join</h4>
+<code>string</code><p>The join type: inner, left, natural, etc.</p></div>
+<div class="subelement argument">
+<h4>$spec</h4>
+<code>string<a href="../classes/Aura.Sql.Query.Select.html">\Aura\Sql\Query\Select</a></code><p>If a Select object, use as the sub-select; if a string, the sub-select command string.</p>
+</div>
+<div class="subelement argument">
+<h4>$name</h4>
+<code>string</code><p>The alias name for the sub-select.</p>
+</div>
+<div class="subelement argument">
+<h4>$cond</h4>
+<code>string</code><p>Join on this condition.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\Aura\Sql\Query\$this</code></div>
+</div></div>
+</div>
+<a name="limit" id="limit"></a><div class="element clickable method public limit" data-toggle="collapse" data-target=".limit .collapse">
+<h2>Sets a limit count on the query.</h2>
+<pre>limit(int $limit) : \Aura\Sql\Query\$this</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$limit</h4>
+<code>int</code><p>The number of rows to return.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\Aura\Sql\Query\$this</code></div>
+</div></div>
+</div>
+<a name="offset" id="offset"></a><div class="element clickable method public offset" data-toggle="collapse" data-target=".offset .collapse">
+<h2>Sets a limit offset on the query.</h2>
+<pre>offset(int $offset) : \Aura\Sql\Query\$this</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$offset</h4>
+<code>int</code><p>Start returning after this many rows.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\Aura\Sql\Query\$this</code></div>
+</div></div>
+</div>
+<a name="orHaving" id="orHaving"></a><div class="element clickable method public orHaving" data-toggle="collapse" data-target=".orHaving .collapse">
+<h2>Adds a HAVING condition to the query by AND; otherwise identical to
+`having()`.</h2>
+<pre>orHaving(string $cond) : \Aura\Sql\Query\$this</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td>\Aura\Sql\Query\having()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$cond</h4>
+<code>string</code><p>The HAVING condition.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\Aura\Sql\Query\$this</code></div>
+</div></div>
+</div>
+<a name="orderBy" id="orderBy"></a><div class="element clickable method public orderBy" data-toggle="collapse" data-target=".orderBy .collapse">
+<h2>Adds a row order to the query.</h2>
+<pre>orderBy(array $spec) : \Aura\Sql\Query\$this</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$spec</h4>
+<code>array</code><p>The columns and direction to order by.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\Aura\Sql\Query\$this</code></div>
+</div></div>
+</div>
+<a name="page" id="page"></a><div class="element clickable method public page" data-toggle="collapse" data-target=".page .collapse">
+<h2>Sets the limit and count by page number.</h2>
+<pre>page(int $page) : \Aura\Sql\Query\$this</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$page</h4>
+<code>int</code><p>Limit results to this page number.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\Aura\Sql\Query\$this</code></div>
+</div></div>
+</div>
+<a name="setBind" id="setBind"></a><div class="element clickable method public setBind" data-toggle="collapse" data-target=".setBind .collapse">
+<h2>Sets values to bind into the query; this overrides any previous
+bindings.</h2>
+<pre>setBind(array $bind) : void</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Sql\Query\AbstractQuery::setBind()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$bind</h4>
+<code>array</code><p>Values to bind to the query.</p></div>
+</div></div>
+</div>
+<a name="setPaging" id="setPaging"></a><div class="element clickable method public setPaging" data-toggle="collapse" data-target=".setPaging .collapse">
+<h2>Sets the number of rows per page.</h2>
+<pre>setPaging(int $paging) : \Aura\Sql\Query\$this</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$paging</h4>
+<code>int</code><p>The number of rows to page at.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\Aura\Sql\Query\$this</code></div>
+</div></div>
+</div>
+<a name="union" id="union"></a><div class="element clickable method public union" data-toggle="collapse" data-target=".union .collapse">
+<h2>Takes the current select properties and retains them, then sets
+UNION for the next set of properties.</h2>
+<pre>union() : \Aura\Sql\Query\$this</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>\Aura\Sql\Query\$this</code></div>
+</div></div>
+</div>
+<a name="unionAll" id="unionAll"></a><div class="element clickable method public unionAll" data-toggle="collapse" data-target=".unionAll .collapse">
+<h2>Takes the current select properties and retains them, then sets
+UNION ALL for the next set of properties.</h2>
+<pre>unionAll() : \Aura\Sql\Query\$this</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>\Aura\Sql\Query\$this</code></div>
+</div></div>
+</div>
+<a name="indent" id="indent"></a><div class="element clickable method protected indent" data-toggle="collapse" data-target=".indent .collapse">
+<h2>Returns an array as an indented string.</h2>
+<pre>indent(array $list) : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Sql\Query\AbstractQuery::indent()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$list</h4>
+<code>array</code><p>The values to convert.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="indentCsv" id="indentCsv"></a><div class="element clickable method protected indentCsv" data-toggle="collapse" data-target=".indentCsv .collapse">
+<h2>Returns an array as an indented comma-separated values string.</h2>
+<pre>indentCsv(array $list) : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Sql\Query\AbstractQuery::indentCsv()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$list</h4>
+<code>array</code><p>The values to convert.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="reset" id="reset"></a><div class="element clickable method protected reset" data-toggle="collapse" data-target=".reset .collapse">
+<h2>Clears the current select properties; generally used after adding a
+union.</h2>
+<pre>reset() : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="toString" id="toString"></a><div class="element clickable method protected toString" data-toggle="collapse" data-target=".toString .collapse">
+<h2>Returns the SELECT parts composed as a string (does not include
+the union selects).</h2>
+<pre>toString() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>A SELECT string.</div>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a name="%24bind" id="$bind"> </a><div class="element clickable property protected $bind" data-toggle="collapse" data-target=".$bind .collapse">
+<h2>Data to be bound to the query.</h2>
+<pre>$bind : array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Sql\Query\AbstractQuery::$$bind</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24cols" id="$cols"> </a><div class="element clickable property protected $cols" data-toggle="collapse" data-target=".$cols .collapse">
+<h2>The columns to be selected.</h2>
+<pre>$cols : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24connection" id="$connection"> </a><div class="element clickable property protected $connection" data-toggle="collapse" data-target=".$connection .collapse">
+<h2>An SQL connection.</h2>
+<pre>$connection : <a href="../classes/Aura.Sql.Connection.AbstractConnection.html">\Aura\Sql\Connection\AbstractConnection</a></pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Sql\Query\AbstractQuery::$$connection</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24distinct" id="$distinct"> </a><div class="element clickable property protected $distinct" data-toggle="collapse" data-target=".$distinct .collapse">
+<h2>Is this a SELECT DISTINCT ?</h2>
+<pre>$distinct : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24for_update" id="$for_update"> </a><div class="element clickable property protected $for_update" data-toggle="collapse" data-target=".$for_update .collapse">
+<h2>Is this a SELECT FOR UPDATE?</h2>
+<pre>$for_update : </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24from" id="$from"> </a><div class="element clickable property protected $from" data-toggle="collapse" data-target=".$from .collapse">
+<h2>Select from these tables.</h2>
+<pre>$from : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24group_by" id="$group_by"> </a><div class="element clickable property protected $group_by" data-toggle="collapse" data-target=".$group_by .collapse">
+<h2>GROUP BY these columns.</h2>
+<pre>$group_by : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24having" id="$having"> </a><div class="element clickable property protected $having" data-toggle="collapse" data-target=".$having .collapse">
+<h2>The list of HAVING conditions.</h2>
+<pre>$having : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24join" id="$join"> </a><div class="element clickable property protected $join" data-toggle="collapse" data-target=".$join .collapse">
+<h2>Use these joins.</h2>
+<pre>$join : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24limit" id="$limit"> </a><div class="element clickable property protected $limit" data-toggle="collapse" data-target=".$limit .collapse">
+<h2>The number of rows to return</h2>
+<pre>$limit : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24offset" id="$offset"> </a><div class="element clickable property protected $offset" data-toggle="collapse" data-target=".$offset .collapse">
+<h2>Return rows after this offset.</h2>
+<pre>$offset : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24order_by" id="$order_by"> </a><div class="element clickable property protected $order_by" data-toggle="collapse" data-target=".$order_by .collapse">
+<h2>ORDER BY these columns.</h2>
+<pre>$order_by : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24paging" id="$paging"> </a><div class="element clickable property protected $paging" data-toggle="collapse" data-target=".$paging .collapse">
+<h2>The number of rows per page.</h2>
+<pre>$paging : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24union" id="$union"> </a><div class="element clickable property protected $union" data-toggle="collapse" data-target=".$union .collapse">
+<h2>An array of union SELECT statements.</h2>
+<pre>$union : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a7</a> and<br>
+            generated on 2012-11-29T11:02:54-02:00.<br></footer></div>
+</div>
+</body>
+</html>

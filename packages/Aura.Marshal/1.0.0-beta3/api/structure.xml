@@ -1,0 +1,2314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project version="2.0.0a7" title="">
+  <file path="Collection/Builder.php" hash="18dea48a0df7425e8ebd20ff26f0fda4" package="Aura\Marshal">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Marshal"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="GenericType">Aura\Marshal\Type\GenericType</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Marshal\Collection" line="21" package="Aura\Marshal">
+      <extends/>
+      <implements>\Aura\Marshal\Collection\BuilderInterface</implements>
+      <name>Builder</name>
+      <full_name>\Aura\Marshal\Collection\Builder</full_name>
+      <docblock line="14">
+        <description><![CDATA[Creates a new collection object for a type.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="14" name="package" description="Aura.Marshal"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal\Collection" line="34" package="Aura\Marshal">
+        <name>newInstance</name>
+        <full_name>newInstance</full_name>
+        <docblock line="23">
+          <description><![CDATA[Creates a new collection object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="23" name="param" description="The type for this collection." type="\Aura\Marshal\Type\GenericType" variable="$type">
+            <type by_reference="false">\Aura\Marshal\Type\GenericType</type>
+          </tag>
+          <tag line="23" name="param" description="Data to load into the collection." type="array" variable="$data">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="23" name="return" description="" type="\Aura\Marshal\Collection\GenericCollection">
+            <type by_reference="false">\Aura\Marshal\Collection\GenericCollection</type>
+          </tag>
+        </docblock>
+        <argument line="34">
+          <name>$type</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Marshal\Type\GenericType</type>
+        </argument>
+        <argument line="34">
+          <name>$data</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Collection/BuilderInterface.php" hash="10d5e3c8d81dff0f42fc311939e832c7" package="Aura\Marshal">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Marshal"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="GenericType">Aura\Marshal\Type\GenericType</namespace-alias>
+    <interface namespace="Aura\Marshal\Collection" line="22" package="Aura\Marshal">
+      <name>BuilderInterface</name>
+      <full_name>\Aura\Marshal\Collection\BuilderInterface</full_name>
+      <docblock line="15">
+        <description><![CDATA[An inteface for collection builder objects.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Marshal"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal\Collection" line="33" package="Aura\Marshal">
+        <name>newInstance</name>
+        <full_name>newInstance</full_name>
+        <docblock line="24">
+          <description><![CDATA[Creates a new collection object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="24" name="param" description="The type for this collection." type="\Aura\Marshal\Type\GenericType" variable="$type">
+            <type by_reference="false">\Aura\Marshal\Type\GenericType</type>
+          </tag>
+          <tag line="24" name="param" description="Data to load into the collection." type="array" variable="$data">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="33">
+          <name>$type</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Marshal\Type\GenericType</type>
+        </argument>
+        <argument line="33">
+          <name>$data</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+    </interface>
+  </file>
+  <file path="Collection/GenericCollection.php" hash="b5bb67fe561b631829e77bd2e4d55d2e" package="Aura\Marshal">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Marshal"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="Data">Aura\Marshal\Data</namespace-alias>
+    <namespace-alias name="GenericType">Aura\Marshal\Type\GenericType</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Marshal\Collection" line="23" package="Aura\Marshal">
+      <extends>\Aura\Marshal\Data</extends>
+      <name>GenericCollection</name>
+      <full_name>\Aura\Marshal\Collection\GenericCollection</full_name>
+      <docblock line="16">
+        <description><![CDATA[Represents a generic collection of records.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="16" name="package" description="Aura.Marshal"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="32" namespace="Aura\Marshal\Collection" package="Default">
+        <name>$type</name>
+        <default><![CDATA[]]></default>
+        <docblock line="25">
+          <description><![CDATA[The type for this collection.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="25" name="var" description="" type="\Aura\Marshal\Type\GenericType">
+            <type by_reference="false">\Aura\Marshal\Type\GenericType</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal\Collection" line="43" package="Aura\Marshal">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="34">
+          <description><![CDATA[Constructor.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="34" name="param" description="An array of records for this collection." type="array" variable="$data">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="34" name="param" description="The type for this collection." type="\Aura\Marshal\Type\GenericType" variable="$type">
+            <type by_reference="false">\Aura\Marshal\Type\GenericType</type>
+          </tag>
+        </docblock>
+        <argument line="43">
+          <name>$data</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+        <argument line="43">
+          <name>$type</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Marshal\Type\GenericType</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal\Collection" line="61" package="Aura\Marshal">
+        <name>offsetGet</name>
+        <full_name>offsetGet</full_name>
+        <docblock line="49">
+          <description><![CDATA[ArrayAccess: Get a key value.]]></description>
+          <long-description><![CDATA[<p>This override from the parent::offsetGet() lets us convert records
+lazily using the IdentityMap for the type.</p>]]></long-description>
+          <tag line="49" name="param" description="The requested key." type="string" variable="$key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="49" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="61">
+          <name>$key</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal\Collection" line="82" package="Aura\Marshal">
+        <name>getIdentityValues</name>
+        <full_name>getIdentityValues</full_name>
+        <docblock line="73">
+          <description><![CDATA[Returns an array of all the identity values for the collection.]]></description>
+          <long-description><![CDATA[<p>This will not convert the collection elements to record objects.</p>]]></long-description>
+          <tag line="73" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal\Collection" line="99" package="Aura\Marshal">
+        <name>getFieldValues</name>
+        <full_name>getFieldValues</full_name>
+        <docblock line="88">
+          <description><![CDATA[Returns an array of all values for a single field in the collection.]]></description>
+          <long-description><![CDATA[<p>This will not convert the collection elements to record objects.</p>]]></long-description>
+          <tag line="88" name="param" description="The field name to retrieve values for." type="string" variable="$field">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="88" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="99">
+          <name>$field</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal\Collection" line="115" package="Aura\Marshal">
+        <name>isEmpty</name>
+        <full_name>isEmpty</full_name>
+        <docblock line="108">
+          <description><![CDATA[Is the collection empty?]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="108" name="return" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal\Collection" line="130" package="Aura\Marshal">
+        <name>appendNewRecord</name>
+        <full_name>appendNewRecord</full_name>
+        <docblock line="120">
+          <description><![CDATA[Adds a new record to the collection (and to the IdentityMap for the
+type).]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="120" name="param" description="Data for the new record." type="array" variable="$data">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="120" name="return" description="" type="object">
+            <type by_reference="false">object</type>
+          </tag>
+        </docblock>
+        <argument line="130">
+          <name>$data</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Data.php" hash="4b5f3da95863a748cc320a34bcc3fb1a" package="Aura\Marshal">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Marshal"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Marshal" line="29" package="Aura\Marshal">
+      <extends/>
+      <implements>\ArrayAccess</implements>
+      <implements>\Countable</implements>
+      <implements>\IteratorAggregate</implements>
+      <name>Data</name>
+      <full_name>\Aura\Marshal\Data</full_name>
+      <docblock line="13">
+        <description><![CDATA[Represents a data set.]]></description>
+        <long-description><![CDATA[<p>This is similar to the SPL ArrayObject, but allows
+you easier access to the underlying data itself. This class serves as a
+base for ...</p>
+
+<ul>
+<li><p>the generic type object, where $data represents an IdentityMap;</p></li>
+<li><p>the generic record object, where $data represents the record fields; and</p></li>
+<li><p>the generic collection object, where $data represents an array of
+records.</p></li>
+</ul>]]></long-description>
+        <tag line="13" name="package" description="Aura.Marshal"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="38" namespace="Aura\Marshal" package="Default">
+        <name>$data</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="31">
+          <description><![CDATA[Key-value pairs of data.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="31" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal" line="47" package="Aura\Marshal">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="40">
+          <description><![CDATA[Constructor.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="40" name="param" description="The data for this object." type="array" variable="$data">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="47">
+          <name>$data</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal" line="61" package="Aura\Marshal">
+        <name>offsetExists</name>
+        <full_name>offsetExists</full_name>
+        <docblock line="52">
+          <description><![CDATA[ArrayAccess: does the requested key exist?]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="52" name="param" description="The requested key." type="int|string" variable="$key">
+            <type by_reference="false">int</type>
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="52" name="return" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+        <argument line="61">
+          <name>$key</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal" line="75" package="Aura\Marshal">
+        <name>offsetGet</name>
+        <full_name>offsetGet</full_name>
+        <docblock line="66">
+          <description><![CDATA[ArrayAccess: get a key value.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="66" name="param" description="The requested key." type="int|string" variable="$key">
+            <type by_reference="false">int</type>
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="66" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="75">
+          <name>$key</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal" line="91" package="Aura\Marshal">
+        <name>offsetSet</name>
+        <full_name>offsetSet</full_name>
+        <docblock line="80">
+          <description><![CDATA[ArrayAccess: set a key value.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="80" name="param" description="The requested key." type="int|string" variable="$key">
+            <type by_reference="false">int</type>
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="80" name="param" description="The value to set it to." type="mixed" variable="$val">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="80" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="91">
+          <name>$key</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="91">
+          <name>$val</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal" line="105" package="Aura\Marshal">
+        <name>offsetUnset</name>
+        <full_name>offsetUnset</full_name>
+        <docblock line="96">
+          <description><![CDATA[ArrayAccess: unset a key.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="96" name="param" description="The requested key." type="int|string" variable="$key">
+            <type by_reference="false">int</type>
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="96" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="105">
+          <name>$key</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal" line="117" package="Aura\Marshal">
+        <name>count</name>
+        <full_name>count</full_name>
+        <docblock line="110">
+          <description><![CDATA[Countable: how many keys are there?]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="110" name="return" description="" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal" line="129" package="Aura\Marshal">
+        <name>getIterator</name>
+        <full_name>getIterator</full_name>
+        <docblock line="122">
+          <description><![CDATA[IteratorAggregate: returns an external iterator for this struct.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="122" name="return" description="" type="\Aura\Marshal\DataIterator">
+            <type by_reference="false">\Aura\Marshal\DataIterator</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="DataIterator.php" hash="f7a79a04f980799451c100444a5e23cf" package="Aura\Marshal">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Marshal"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Marshal" line="20" package="Aura\Marshal">
+      <extends/>
+      <implements>\Iterator</implements>
+      <name>DataIterator</name>
+      <full_name>\Aura\Marshal\DataIterator</full_name>
+      <docblock line="13">
+        <description><![CDATA[An object to allow iteration over the elements of a Data object.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Marshal"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="29" namespace="Aura\Marshal" package="Default">
+        <name>$data</name>
+        <default><![CDATA[]]></default>
+        <docblock line="22">
+          <description><![CDATA[The Data over which we are iterating.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="var" description="" type="\Aura\Marshal\Data">
+            <type by_reference="false">\Aura\Marshal\Data</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="38" namespace="Aura\Marshal" package="Default">
+        <name>$keys</name>
+        <default><![CDATA[]]></default>
+        <docblock line="31">
+          <description><![CDATA[The keys to iterate over in the Data object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="31" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="47" namespace="Aura\Marshal" package="Default">
+        <name>$valid</name>
+        <default><![CDATA[]]></default>
+        <docblock line="40">
+          <description><![CDATA[Is the current iterator position valid?]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="40" name="var" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal" line="58" package="Aura\Marshal">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="49">
+          <description><![CDATA[Constructor.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="49" name="param" description="The Data object over which to iterate." type="\Aura\Marshal\Data" variable="$data">
+            <type by_reference="false">\Aura\Marshal\Data</type>
+          </tag>
+          <tag line="49" name="param" description="The keys in the Data object." type="array" variable="$keys">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="58">
+          <name>$data</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Marshal\Data</type>
+        </argument>
+        <argument line="58">
+          <name>$keys</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal" line="71" package="Aura\Marshal">
+        <name>current</name>
+        <full_name>current</full_name>
+        <docblock line="64">
+          <description><![CDATA[Returns the value at the current iterator position.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="64" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal" line="83" package="Aura\Marshal">
+        <name>key</name>
+        <full_name>key</full_name>
+        <docblock line="76">
+          <description><![CDATA[Returns the current iterator position.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="76" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal" line="95" package="Aura\Marshal">
+        <name>next</name>
+        <full_name>next</full_name>
+        <docblock line="88">
+          <description><![CDATA[Moves the iterator to the next position.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="88" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal" line="107" package="Aura\Marshal">
+        <name>rewind</name>
+        <full_name>rewind</full_name>
+        <docblock line="100">
+          <description><![CDATA[Moves the iterator to the first position.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="100" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal" line="119" package="Aura\Marshal">
+        <name>valid</name>
+        <full_name>valid</full_name>
+        <docblock line="112">
+          <description><![CDATA[Is the current iterator position valid?]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="112" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Exception.php" hash="a054bef56c6a624033116d7f9a504540" package="Aura\Marshal">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Marshal"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Marshal" line="20" package="Aura\Marshal">
+      <extends>\Exception</extends>
+      <name>Exception</name>
+      <full_name>\Aura\Marshal\Exception</full_name>
+      <docblock line="13">
+        <description><![CDATA[A package-level exception.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Marshal"/>
+      </docblock>
+    </class>
+  </file>
+  <file path="Manager.php" hash="b1fbd17b2212c99fd8cceb1fe24a1aac" package="Aura\Marshal">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Marshal"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="TypeBuilder">Aura\Marshal\Type\Builder</namespace-alias>
+    <namespace-alias name="RelationBuilder">Aura\Marshal\Relation\Builder</namespace-alias>
+    <namespace-alias name="GenericType">Aura\Marshal\Type\GenericType</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Marshal" line="24" package="Aura\Marshal">
+      <extends/>
+      <name>Manager</name>
+      <full_name>\Aura\Marshal\Manager</full_name>
+      <docblock line="17">
+        <description><![CDATA[A manager for the types in the domain model.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="17" name="package" description="Aura.Marshal"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="33" namespace="Aura\Marshal" package="Default">
+        <name>$type_builder</name>
+        <default><![CDATA[]]></default>
+        <docblock line="26">
+          <description><![CDATA[A builder for type objects.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="26" name="var" description="" type="\Aura\Marshal\Type\Builder">
+            <type by_reference="false">\Aura\Marshal\Type\Builder</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="42" namespace="Aura\Marshal" package="Default">
+        <name>$relation_builder</name>
+        <default><![CDATA[]]></default>
+        <docblock line="35">
+          <description><![CDATA[A builder for relation objects.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="35" name="var" description="" type="\Aura\Marshal\Relation\Builder">
+            <type by_reference="false">\Aura\Marshal\Relation\Builder</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="52" namespace="Aura\Marshal" package="Default">
+        <name>$types</name>
+        <default><![CDATA[]]></default>
+        <docblock line="44">
+          <description><![CDATA[An array of type definition arrays, which are converted to type
+objects as you request them.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="44" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal" line="148" package="Aura\Marshal">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="54">
+          <description><![CDATA[Constructor.]]></description>
+          <long-description><![CDATA[<p>The $types definition array looks like this:</p>
+
+<pre><code> $types = [
+
+     // the name to use for this type in the manager
+     'some_type_name' =&gt; [
+
+         // the identity field in each record
+         'identity_field' =&gt; 'id',
+
+         // fields to index against
+         'index_fields' =&gt; ['field1', 'field2'],
+
+         // the record class generated by the record builder
+         'record_class' =&gt; 'Aura\Domain\Record',
+
+         // a record builder for the type
+         'record_builder' =&gt; new \Aura\Domain\RecordBuilder,
+
+         // a collection builder for the type
+         'collection_builder' =&gt; new \Aura\Domain\CollectionBuilder,
+
+         // relationship definitons
+         'relation_names' =&gt; [
+             // discussed below
+         ],
+     ),
+
+     'next_type_name' =&gt; [
+         // ...
+     ],
+
+     // ...
+ );
+</code></pre>
+
+<p>The relationship definitions portion looks like this:</p>
+
+<pre><code> $relation_names = [
+
+     'name_for_relation_1' =&gt; [
+
+         // the relationship to the native (parent) type: the parent
+         // belongs_to, has_one, has_many, or has_many_through
+         // of the foreign type. required.
+         'relationship' =&gt; 'has_many',
+
+         // the name of the foreign (related) type in the manager.
+         // optional; by default, uses the relation name as the
+         // foreign type.
+         'foreign_type' =&gt; 'another_type_name',
+
+         // the name of the native (parent) record field to use
+         // when matching foreign (related) records. required.
+         'native_field' =&gt; 'native_field_name',
+
+         // the name of the foreign (related) record field to use
+         // when matching the native (parent) record. required.
+         'foreign_field' =&gt; 'foreign_field_name',
+
+         // -------------------------------------------------------
+         // if you have a has_many_through relationship, add the
+         // following three keys to set up the association mapping.
+
+         // the name of the type through which the native
+         // and foreign types are mapped to each other.
+         'through_type' =&gt; 'mapping_type_name',
+
+         // in the "through" record, the name of the field that
+         // maps to the 'native_field' value
+         'through_native_field' =&gt; 'mapping_native_field_name',
+
+         // in the "through" record, the name of the field that
+         // maps to the 'foreign_field' value
+         'through_foreign_field' =&gt; 'mapping_foreign_field_name',
+     ),
+
+     'name_for_relation_2' =&gt; [
+         // ...
+     ],
+
+     // ...
+ );
+</code></pre>]]></long-description>
+          <tag line="54" name="param" description="A builder for type objects." type="\Aura\Marshal\Type\Builder" variable="$type_builder">
+            <type by_reference="false">\Aura\Marshal\Type\Builder</type>
+          </tag>
+          <tag line="54" name="param" description="A builder for relation objects." type="\Aura\Marshal\Relation\Builder" variable="$relation_builder">
+            <type by_reference="false">\Aura\Marshal\Relation\Builder</type>
+          </tag>
+          <tag line="54" name="param" description="Type definitions." type="array" variable="$types">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="149">
+          <name>$type_builder</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Marshal\Type\Builder</type>
+        </argument>
+        <argument line="150">
+          <name>$relation_builder</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Marshal\Relation\Builder</type>
+        </argument>
+        <argument line="151">
+          <name>$types</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal" line="169" package="Aura\Marshal">
+        <name>setType</name>
+        <full_name>setType</full_name>
+        <docblock line="158">
+          <description><![CDATA[Sets one type in the manager.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="158" name="param" description="The name to use for the type." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="158" name="param" description="An array of type definition information." type="array" variable="$info">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="158" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="169">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="169">
+          <name>$info</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal" line="191" package="Aura\Marshal">
+        <name>setRelation</name>
+        <full_name>setRelation</full_name>
+        <docblock line="178">
+          <description><![CDATA[Sets a one relation for a type in the manager.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="178" name="param" description="The type to set the relation on." type="string" variable="$type">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="178" name="param" description="The name for the relation." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="178" name="param" description="The relation information." type="array" variable="$info">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="178" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="191">
+          <name>$type</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="191">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="191">
+          <name>$info</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal" line="221" package="Aura\Marshal">
+        <name>__get</name>
+        <full_name>__get</full_name>
+        <docblock line="212">
+          <description><![CDATA[Gets a type by name, creating a type object for it as needed.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="212" name="param" description="The type name to retrieve." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="212" name="return" description="" type="\Aura\Marshal\Type\GenericType">
+            <type by_reference="false">\Aura\Marshal\Type\GenericType</type>
+          </tag>
+        </docblock>
+        <argument line="221">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Marshal" line="253" package="Aura\Marshal">
+        <name>buildType</name>
+        <full_name>buildType</full_name>
+        <docblock line="234">
+          <description><![CDATA[Builds a type object from a type definition.]]></description>
+          <long-description><![CDATA[<p>The build process happens in two stages:</p>
+
+<ol>
+<li><p>Use the $type_builder to create the type object.</p></li>
+<li><p>Add relationships from the type definition.</p></li>
+</ol>
+
+<p>The two-stage process helps avoid race conditions where a type may
+have relationships to other type object that might not be in the
+manager yet.</p>]]></long-description>
+          <tag line="234" name="param" description="The type name to build." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="234" name="return" description="" type="\Aura\Marshal\Type\GenericType">
+            <type by_reference="false">\Aura\Marshal\Type\GenericType</type>
+          </tag>
+        </docblock>
+        <argument line="253">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal" line="275" package="Aura\Marshal">
+        <name>getTypes</name>
+        <full_name>getTypes</full_name>
+        <docblock line="268">
+          <description><![CDATA[Returns the names of all types in the manager.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="268" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Record/Builder.php" hash="2a68f9873bfd96e533f6c5b349193f0b" package="Aura\Marshal">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Marshal"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="GenericType">Aura\Marshal\Type\GenericType</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Marshal\Record" line="22" package="Aura\Marshal">
+      <extends/>
+      <implements>\Aura\Marshal\Record\BuilderInterface</implements>
+      <name>Builder</name>
+      <full_name>\Aura\Marshal\Record\Builder</full_name>
+      <docblock line="15">
+        <description><![CDATA[Creates a new record object for a type.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Marshal"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal\Record" line="35" package="Aura\Marshal">
+        <name>newInstance</name>
+        <full_name>newInstance</full_name>
+        <docblock line="24">
+          <description><![CDATA[Creates a new record object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="24" name="param" description="The type for this record." type="\Aura\Marshal\Type\GenericType" variable="$type">
+            <type by_reference="false">\Aura\Marshal\Type\GenericType</type>
+          </tag>
+          <tag line="24" name="param" description="Data to load into the record." type="array|object" variable="$data">
+            <type by_reference="false">array</type>
+            <type by_reference="false">object</type>
+          </tag>
+          <tag line="24" name="return" description="" type="\Aura\Marshal\Record\GenericRecord">
+            <type by_reference="false">\Aura\Marshal\Record\GenericRecord</type>
+          </tag>
+        </docblock>
+        <argument line="35">
+          <name>$type</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Marshal\Type\GenericType</type>
+        </argument>
+        <argument line="35">
+          <name>$data</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Record/BuilderInterface.php" hash="03131bb22c8795212ea48aae83fb949f" package="Aura\Marshal">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Marshal"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="GenericType">Aura\Marshal\Type\GenericType</namespace-alias>
+    <interface namespace="Aura\Marshal\Record" line="22" package="Aura\Marshal">
+      <name>BuilderInterface</name>
+      <full_name>\Aura\Marshal\Record\BuilderInterface</full_name>
+      <docblock line="15">
+        <description><![CDATA[An inteface for RecordBuilder objects.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Marshal"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal\Record" line="34" package="Aura\Marshal">
+        <name>newInstance</name>
+        <full_name>newInstance</full_name>
+        <docblock line="24">
+          <description><![CDATA[Creates a new record object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="24" name="param" description="The type for this record." type="\Aura\Marshal\Type\GenericType" variable="$type">
+            <type by_reference="false">\Aura\Marshal\Type\GenericType</type>
+          </tag>
+          <tag line="24" name="param" description="Data to load into the record. Note that the interface doesn't care what the data looks like." type="mixed" variable="$data">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="34">
+          <name>$type</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Marshal\Type\GenericType</type>
+        </argument>
+        <argument line="34">
+          <name>$data</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </interface>
+  </file>
+  <file path="Record/GenericRecord.php" hash="eea9e64567a987262d65620bf931095f" package="Aura\Marshal">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Marshal"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="Data">Aura\Marshal\Data</namespace-alias>
+    <namespace-alias name="GenericType">Aura\Marshal\Type\GenericType</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Marshal\Record" line="23" package="Aura\Marshal">
+      <extends>\Aura\Marshal\Data</extends>
+      <name>GenericRecord</name>
+      <full_name>\Aura\Marshal\Record\GenericRecord</full_name>
+      <docblock line="16">
+        <description><![CDATA[Represents a single record.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="16" name="package" description="Aura.Marshal"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="32" namespace="Aura\Marshal\Record" package="Default">
+        <name>$type</name>
+        <default><![CDATA[]]></default>
+        <docblock line="25">
+          <description><![CDATA[The type for this record.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="25" name="var" description="" type="\Aura\Marshal\Type\GenericType">
+            <type by_reference="false">\Aura\Marshal\Type\GenericType</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="41" namespace="Aura\Marshal\Record" package="Default">
+        <name>$initial_data</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="34">
+          <description><![CDATA[An array of the data as initially constructed.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="34" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal\Record" line="52" package="Aura\Marshal">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="43">
+          <description><![CDATA[Constructor.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="43" name="param" description="An array of fields for this record." type="array" variable="$data">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="43" name="param" description="The type for this record." type="\Aura\Marshal\Type\GenericType" variable="$type">
+            <type by_reference="false">\Aura\Marshal\Type\GenericType</type>
+          </tag>
+        </docblock>
+        <argument line="52">
+          <name>$data</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+        <argument line="52">
+          <name>$type</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Marshal\Type\GenericType</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal\Record" line="68" package="Aura\Marshal">
+        <name>__get</name>
+        <full_name>__get</full_name>
+        <docblock line="59">
+          <description><![CDATA[Gets the value of a field by name.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="59" name="param" description="The requested field name." type="string" variable="$field">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="59" name="return" description="The field value." type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="68">
+          <name>$field</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal\Record" line="84" package="Aura\Marshal">
+        <name>__set</name>
+        <full_name>__set</full_name>
+        <docblock line="73">
+          <description><![CDATA[Sets a the value of a field by name.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="73" name="param" description="The requested field name." type="string" variable="$field">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="73" name="param" description="The value to set the field to." type="mixed" variable="$value">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="73" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="84">
+          <name>$field</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="84">
+          <name>$value</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal\Record" line="98" package="Aura\Marshal">
+        <name>__isset</name>
+        <full_name>__isset</full_name>
+        <docblock line="89">
+          <description><![CDATA[Does a certain field exist in the record?]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="89" name="param" description="The requested field name." type="string" variable="$field">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="89" name="return" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+        <argument line="98">
+          <name>$field</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal\Record" line="112" package="Aura\Marshal">
+        <name>__unset</name>
+        <full_name>__unset</full_name>
+        <docblock line="103">
+          <description><![CDATA[Unsets a field in the record.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="103" name="param" description="The requested field name." type="string" variable="$field">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="103" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="112">
+          <name>$field</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal\Record" line="128" package="Aura\Marshal">
+        <name>offsetGet</name>
+        <full_name>offsetGet</full_name>
+        <docblock line="117">
+          <description><![CDATA[ArrayAccess: Gets a field value by name; if the field is based on a
+relation to a foreign type, this will get the related record or
+collection.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="117" name="param" description="The requested field name." type="string" variable="$field">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="117" name="return" description="The field value." type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="128">
+          <name>$field</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal\Record" line="154" package="Aura\Marshal">
+        <name>offsetUnset</name>
+        <full_name>offsetUnset</full_name>
+        <docblock line="144">
+          <description><![CDATA[ArrayAccess: Unsets a field in the record; this leaves the array key
+in place and sets it to null.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="144" name="param" description="The requested field name." type="string" variable="$field">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="144" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="154">
+          <name>$field</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal\Record" line="181" package="Aura\Marshal">
+        <name>getChangedFields</name>
+        <full_name>getChangedFields</full_name>
+        <docblock line="159">
+          <description><![CDATA[Returns the fields that have been changed, and their new values.]]></description>
+          <long-description><![CDATA[<p>If a field has been added, it counts as "changed" regardless of its
+new value.</p>
+
+<p>If old and new values for a field are numeric (whether string, integer,
+or float) then they are compare using loose inequality (!=).</p>
+
+<p>In all other cases, old and new values are compared using strict
+inequality (!==).</p>
+
+<p>This complexity results from converting string and numeric values in
+and out of databases.  Coming from the database, a string numeric
+'1' might be filtered to an integer 1 at some point, making it look
+like the value was changed when in practice it has not.</p>]]></long-description>
+          <tag line="159" name="return" description="An array of key-value pairs where the key is the field name and the value is the new (changed) value." type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Relation/AbstractRelation.php" hash="771852eab001372fda26482f82cedb12" package="Aura\Marshal">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Marshal"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="Exception">Aura\Marshal\Exception</namespace-alias>
+    <namespace-alias name="Manager">Aura\Marshal\Manager</namespace-alias>
+    <namespace-alias name="GenericType">Aura\Marshal\Type\GenericType</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Marshal\Relation" line="24" package="Aura\Marshal">
+      <extends/>
+      <name>AbstractRelation</name>
+      <full_name>\Aura\Marshal\Relation\AbstractRelation</full_name>
+      <docblock line="17">
+        <description><![CDATA[Represents a relationship definition between two types.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="17" name="package" description="Aura.Marshal"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="33" namespace="Aura\Marshal\Relation" package="Default">
+        <name>$manager</name>
+        <default><![CDATA[]]></default>
+        <docblock line="26">
+          <description><![CDATA[The type manager object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="26" name="var" description="" type="\Aura\Marshal\Manager">
+            <type by_reference="false">\Aura\Marshal\Manager</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="42" namespace="Aura\Marshal\Relation" package="Default">
+        <name>$foreign_type</name>
+        <default><![CDATA[]]></default>
+        <docblock line="35">
+          <description><![CDATA[The foreign type object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="35" name="var" description="" type="\Aura\Marshal\Type\GenericType">
+            <type by_reference="false">\Aura\Marshal\Type\GenericType</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="51" namespace="Aura\Marshal\Relation" package="Default">
+        <name>$native_field</name>
+        <default><![CDATA[]]></default>
+        <docblock line="44">
+          <description><![CDATA[The field in the native record to match against.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="44" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="60" namespace="Aura\Marshal\Relation" package="Default">
+        <name>$foreign_field</name>
+        <default><![CDATA[]]></default>
+        <docblock line="53">
+          <description><![CDATA[The field in the foreign record to match against.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="53" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal\Relation" line="77" package="Aura\Marshal">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="63">
+          <description><![CDATA[Constructor.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="63" name="param" description="" type="\Aura\Marshal\Relation\type" variable="$type">
+            <type by_reference="false">\Aura\Marshal\Relation\type</type>
+          </tag>
+          <tag line="63" name="param" description="The name of the record field where the related data will be placed." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="63" name="param" description="An array of relationship definition information." type="array" variable="$info">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="63" name="param" description="The type manager." type="\Aura\Marshal\Manager" variable="$manager">
+            <type by_reference="false">\Aura\Marshal\Manager</type>
+          </tag>
+        </docblock>
+        <argument line="77">
+          <name>$type</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="77">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="77">
+          <name>$info</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="77">
+          <name>$manager</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Marshal\Manager</type>
+        </argument>
+      </method>
+    </class>
+    <markers>
+      <fixme line="62">$type of type</fixme>
+    </markers>
+  </file>
+  <file path="Relation/BelongsTo.php" hash="eae8372bf2420703dad9f8d11621db86" package="Aura\Marshal">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Marshal"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Marshal\Relation" line="21" package="Aura\Marshal">
+      <extends>\Aura\Marshal\Relation\AbstractRelation</extends>
+      <implements>\Aura\Marshal\Relation\RelationInterface</implements>
+      <name>BelongsTo</name>
+      <full_name>\Aura\Marshal\Relation\BelongsTo</full_name>
+      <docblock line="13">
+        <description><![CDATA[Represents a relationship where the native record belongs to a foreign
+record; the native record is subordinate to the foreign one.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Marshal"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal\Relation" line="32" package="Aura\Marshal">
+        <name>getForRecord</name>
+        <full_name>getForRecord</full_name>
+        <docblock line="23">
+          <description><![CDATA[Returns the related foreign record for a native record.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="23" name="param" description="The native record." type="mixed" variable="$record">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="23" name="return" description="" type="\Aura\Marshal\Relation\GenericRecord">
+            <type by_reference="false">\Aura\Marshal\Relation\GenericRecord</type>
+          </tag>
+        </docblock>
+        <argument line="32">
+          <name>$record</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Relation/Builder.php" hash="fd072cbb5613a61c5b533a33c4093abe" package="Aura\Marshal">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Marshal"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="Exception">Aura\Marshal\Exception</namespace-alias>
+    <namespace-alias name="Manager">Aura\Marshal\Manager</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Marshal\Relation" line="23" package="Aura\Marshal">
+      <extends/>
+      <name>Builder</name>
+      <full_name>\Aura\Marshal\Relation\Builder</full_name>
+      <docblock line="16">
+        <description><![CDATA[A builder to create relationship definition objects.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="16" name="package" description="Aura.Marshal"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="32" namespace="Aura\Marshal\Relation" package="Default">
+        <name>$relationship_class</name>
+        <default><![CDATA[array('belongs_to' => 'Aura\Marshal\Relation\BelongsTo', 'has_one' => 'Aura\Marshal\Relation\HasOne', 'has_many' => 'Aura\Marshal\Relation\HasMany', 'has_many_through' => 'Aura\Marshal\Relation\HasManyThrough')]]></default>
+        <docblock line="25">
+          <description><![CDATA[A map of relationships to classes.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="25" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal\Relation" line="56" package="Aura\Marshal">
+        <name>newInstance</name>
+        <full_name>newInstance</full_name>
+        <docblock line="40">
+          <description><![CDATA[Builds and returns a relation object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="40" name="param" description="" type="\Aura\Marshal\Relation\type" variable="$type">
+            <type by_reference="false">\Aura\Marshal\Relation\type</type>
+          </tag>
+          <tag line="40" name="param" description="The name of the record field where the related data will be placed." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="40" name="param" description="An array of relationship definition information." type="array" variable="$info">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="40" name="param" description="An type manager." type="\Aura\Marshal\Manager" variable="$manager">
+            <type by_reference="false">\Aura\Marshal\Manager</type>
+          </tag>
+          <tag line="40" name="return" description="" type="\Aura\Marshal\Relation\AbstractRelation">
+            <type by_reference="false">\Aura\Marshal\Relation\AbstractRelation</type>
+          </tag>
+        </docblock>
+        <argument line="56">
+          <name>$type</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="56">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="56">
+          <name>$info</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="56">
+          <name>$manager</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Marshal\Manager</type>
+        </argument>
+      </method>
+    </class>
+    <markers>
+      <fixme line="39">$type of type</fixme>
+    </markers>
+  </file>
+  <file path="Relation/HasMany.php" hash="31b1eee7e5042a2be84f3b9c091ffc85" package="Aura\Marshal">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Marshal"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Marshal\Relation" line="22" package="Aura\Marshal">
+      <extends>\Aura\Marshal\Relation\AbstractRelation</extends>
+      <implements>\Aura\Marshal\Relation\RelationInterface</implements>
+      <name>HasMany</name>
+      <full_name>\Aura\Marshal\Relation\HasMany</full_name>
+      <docblock line="13">
+        <description><![CDATA[Represents a relationship where a native record has many foreign records
+(i.e., a foreign collection); the foreign records are subordinate to the
+native one.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Marshal"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal\Relation" line="33" package="Aura\Marshal">
+        <name>getForRecord</name>
+        <full_name>getForRecord</full_name>
+        <docblock line="24">
+          <description><![CDATA[Returns the related foreign collection for a native record.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="24" name="param" description="The native record." type="mixed" variable="$record">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="24" name="return" description="" type="\Aura\Marshal\Relation\GenericCollection">
+            <type by_reference="false">\Aura\Marshal\Relation\GenericCollection</type>
+          </tag>
+        </docblock>
+        <argument line="33">
+          <name>$record</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Relation/HasManyThrough.php" hash="a635005d6f6a41dcdec85ea1f7bef1b4" package="Aura\Marshal">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Marshal"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="Exception">Aura\Marshal\Exception</namespace-alias>
+    <namespace-alias name="Manager">Aura\Marshal\Manager</namespace-alias>
+    <namespace-alias name="GenericType">Aura\Marshal\Type\GenericType</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Marshal\Relation" line="25" package="Aura\Marshal">
+      <extends>\Aura\Marshal\Relation\AbstractRelation</extends>
+      <implements>\Aura\Marshal\Relation\RelationInterface</implements>
+      <name>HasManyThrough</name>
+      <full_name>\Aura\Marshal\Relation\HasManyThrough</full_name>
+      <docblock line="17">
+        <description><![CDATA[Represents a relationship where a native record has many foreign records
+(i.e., a foreign collection) mapped through an association type.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="17" name="package" description="Aura.Marshal"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="35" namespace="Aura\Marshal\Relation" package="Default">
+        <name>$through_type</name>
+        <default><![CDATA[]]></default>
+        <docblock line="27">
+          <description><![CDATA[Native and foreign records are mapped to each other through this
+association type.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="27" name="var" description="" type="\Aura\Marshal\Type\GenericType">
+            <type by_reference="false">\Aura\Marshal\Type\GenericType</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="45" namespace="Aura\Marshal\Relation" package="Default">
+        <name>$through_native_field</name>
+        <default><![CDATA[]]></default>
+        <docblock line="37">
+          <description><![CDATA[The field name for the native side of the association mapping in the
+"through" type.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="37" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="55" namespace="Aura\Marshal\Relation" package="Default">
+        <name>$through_foreign_field</name>
+        <default><![CDATA[]]></default>
+        <docblock line="47">
+          <description><![CDATA[The field name for the foreign side of the association mapping in the
+"through" type.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="47" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal\Relation" line="71" package="Aura\Marshal">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="58">
+          <description><![CDATA[Constructor.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="58" name="param" description="" type="\Aura\Marshal\Relation\type" variable="$type">
+            <type by_reference="false">\Aura\Marshal\Relation\type</type>
+          </tag>
+          <tag line="58" name="param" description="The name of the record field where the related data will be placed." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="58" name="param" description="An array of relationship definition information." type="array" variable="$info">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="58" name="param" description="The type manager." type="\Aura\Marshal\Manager" variable="$manager">
+            <type by_reference="false">\Aura\Marshal\Manager</type>
+          </tag>
+        </docblock>
+        <argument line="71">
+          <name>$type</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="71">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="71">
+          <name>$info</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="71">
+          <name>$manager</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Marshal\Manager</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal\Relation" line="101" package="Aura\Marshal">
+        <name>getForRecord</name>
+        <full_name>getForRecord</full_name>
+        <docblock line="92">
+          <description><![CDATA[Returns the related foreign collection for a native record.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="92" name="param" description="The native record." type="mixed" variable="$record">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="92" name="return" description="" type="\Aura\Marshal\Relation\GenericCollection">
+            <type by_reference="false">\Aura\Marshal\Relation\GenericCollection</type>
+          </tag>
+        </docblock>
+        <argument line="101">
+          <name>$record</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <markers>
+      <fixme line="57">$type of type</fixme>
+    </markers>
+  </file>
+  <file path="Relation/HasOne.php" hash="9cbe86564a37e10033240c47baed265d" package="Aura\Marshal">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Marshal"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Marshal\Relation" line="21" package="Aura\Marshal">
+      <extends>\Aura\Marshal\Relation\AbstractRelation</extends>
+      <implements>\Aura\Marshal\Relation\RelationInterface</implements>
+      <name>HasOne</name>
+      <full_name>\Aura\Marshal\Relation\HasOne</full_name>
+      <docblock line="13">
+        <description><![CDATA[Represents a relationship where the native record has one of the foreign
+record; the foreign record is subordinate to the native one.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Marshal"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal\Relation" line="32" package="Aura\Marshal">
+        <name>getForRecord</name>
+        <full_name>getForRecord</full_name>
+        <docblock line="23">
+          <description><![CDATA[Returns the related foreign record for a native record.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="23" name="param" description="The native record." type="mixed" variable="$record">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="23" name="return" description="" type="\Aura\Marshal\Relation\GenericRecord">
+            <type by_reference="false">\Aura\Marshal\Relation\GenericRecord</type>
+          </tag>
+        </docblock>
+        <argument line="32">
+          <name>$record</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Relation/RelationInterface.php" hash="1f84d2dbea175a1ea3307c5b0c87814a" package="Aura\Marshal">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Marshal"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <interface namespace="Aura\Marshal\Relation" line="20" package="Aura\Marshal">
+      <name>RelationInterface</name>
+      <full_name>\Aura\Marshal\Relation\RelationInterface</full_name>
+      <docblock line="13">
+        <description><![CDATA[An interface for relationship description objects.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Marshal"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal\Relation" line="32" package="Aura\Marshal">
+        <name>getForRecord</name>
+        <full_name>getForRecord</full_name>
+        <docblock line="22">
+          <description><![CDATA[Returns the foreign record or collection for a native record.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="param" description="The record to get the related record or collection for." type="mixed" variable="$record">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="22" name="return" description="" type="\Aura\Marshal\Relation\GenericRecord|\Aura\Marshal\Relation\GenericCollection">
+            <type by_reference="false">\Aura\Marshal\Relation\GenericRecord</type>
+            <type by_reference="false">\Aura\Marshal\Relation\GenericCollection</type>
+          </tag>
+        </docblock>
+        <argument line="32">
+          <name>$record</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </interface>
+  </file>
+  <file path="Type/Builder.php" hash="5dc40a04aa26a2e2540c4048fb9c62d9" package="Aura\Marshal">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Marshal"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="CollectionBuilder">Aura\Marshal\Collection\Builder</namespace-alias>
+    <namespace-alias name="Exception">Aura\Marshal\Exception</namespace-alias>
+    <namespace-alias name="RecordBuilder">Aura\Marshal\Record\Builder</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Marshal\Type" line="24" package="Aura\Marshal">
+      <extends/>
+      <name>Builder</name>
+      <full_name>\Aura\Marshal\Type\Builder</full_name>
+      <docblock line="17">
+        <description><![CDATA[Builds a type object from an array of description information.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="17" name="package" description="Aura.Marshal"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal\Type" line="52" package="Aura\Marshal">
+        <name>newInstance</name>
+        <full_name>newInstance</full_name>
+        <docblock line="26">
+          <description><![CDATA[Returns a new type instance.]]></description>
+          <long-description><![CDATA[<p>The <code>$info</code> array should have four keys:</p>
+
+<ul>
+<li><p><code>'identity_field'</code> (string): The name of the identity field for
+records of this type. This key is required.</p></li>
+<li><p><code>record_class</code> (string): The name of the record class returned by the
+record Builder. This key is optional, and defaults to
+<code>Aura\Marshal\Record</code>.</p></li>
+<li><p><code>record_builder</code> (Record\BuilderInterface): A builder to create
+record objects for the type. This key is optional, and defaults to a
+new Record\Builder object.</p></li>
+<li><p><code>collection_builder</code> (Collection\BuilderInterface): A
+A builder to create collection objects for the type. This key
+is optional, and defaults to a new Collection\Builder object.</p></li>
+</ul>]]></long-description>
+          <tag line="26" name="param" description="An array of information about the type." type="array" variable="$info">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="26" name="return" description="" type="\Aura\Marshal\Type\GenericType">
+            <type by_reference="false">\Aura\Marshal\Type\GenericType</type>
+          </tag>
+        </docblock>
+        <argument line="52">
+          <name>$info</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Type/GenericType.php" hash="36c36ee4e4b0505fb2f05be2e0d39fb0" package="Aura\Marshal">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Marshal"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="CollectionBuilderInterface">Aura\Marshal\Collection\BuilderInterface</namespace-alias>
+    <namespace-alias name="Data">Aura\Marshal\Data</namespace-alias>
+    <namespace-alias name="Exception">Aura\Marshal\Exception</namespace-alias>
+    <namespace-alias name="RecordBuilderInterface">Aura\Marshal\Record\BuilderInterface</namespace-alias>
+    <namespace-alias name="RelationInterface">Aura\Marshal\Relation\RelationInterface</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Marshal\Type" line="27" package="Aura\Marshal">
+      <extends>\Aura\Marshal\Data</extends>
+      <name>GenericType</name>
+      <full_name>\Aura\Marshal\Type\GenericType</full_name>
+      <docblock line="19">
+        <description><![CDATA[Describes a particular type within the domain, and retains an IdentityMap
+of records for the type.]]></description>
+        <long-description><![CDATA[<p>Converts loaded data to record objects lazily.</p>]]></long-description>
+        <tag line="19" name="package" description="Aura.Marshal"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="36" namespace="Aura\Marshal\Type" package="Default">
+        <name>$collection_builder</name>
+        <default><![CDATA[]]></default>
+        <docblock line="29">
+          <description><![CDATA[A builder to create collection objects for this type.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="29" name="var" description="" type="object">
+            <type by_reference="false">object</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="46" namespace="Aura\Marshal\Type" package="Default">
+        <name>$identity_field</name>
+        <default><![CDATA[]]></default>
+        <docblock line="38">
+          <description><![CDATA[The record field representing its unique identifier value.]]></description>
+          <long-description><![CDATA[<p>The
+IdentityMap will be keyed on these values.</p>]]></long-description>
+          <tag line="38" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="59" namespace="Aura\Marshal\Type" package="Default">
+        <name>$index_identity</name>
+        <default><![CDATA[]]></default>
+        <docblock line="48">
+          <description><![CDATA[An index of records on the identity field.]]></description>
+          <long-description><![CDATA[<p>The format is:</p>
+
+<pre><code> $index_identity[$identity_value] = $offset;
+</code></pre>
+
+<p>Note that we always have only one offset, keyed by identity value.</p>]]></long-description>
+          <tag line="48" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="72" namespace="Aura\Marshal\Type" package="Default">
+        <name>$index_new</name>
+        <default><![CDATA[]]></default>
+        <docblock line="61">
+          <description><![CDATA[An index of all records added via newRecord().]]></description>
+          <long-description><![CDATA[<p>The format is:</p>
+
+<pre><code> $index_new[] = $offset;
+</code></pre>
+
+<p>Note that we always have one offset, and the key is merely sequential.</p>]]></long-description>
+          <tag line="61" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="87" namespace="Aura\Marshal\Type" package="Default">
+        <name>$index_fields</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="74">
+          <description><![CDATA[An array of fields to index on for quicker lookups.]]></description>
+          <long-description><![CDATA[<p>The array format
+is:</p>
+
+<pre><code>$index_fields[$field_name][$field_value] = (array) $offsets;
+</code></pre>
+
+<p>Note that we always have an array of offsets, and the keys are by
+the field name and the values for that field.</p>]]></long-description>
+          <tag line="74" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="96" namespace="Aura\Marshal\Type" package="Default">
+        <name>$record_builder</name>
+        <default><![CDATA[]]></default>
+        <docblock line="89">
+          <description><![CDATA[A builder to create record objects for this type.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="89" name="var" description="" type="object">
+            <type by_reference="false">object</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="106" namespace="Aura\Marshal\Type" package="Default">
+        <name>$record_class</name>
+        <default><![CDATA[]]></default>
+        <docblock line="98">
+          <description><![CDATA[The class expected from the record builder.]]></description>
+          <long-description><![CDATA[<p>This is used to determine
+if elements in the IdentityMap have been converted to record objects.</p>]]></long-description>
+          <tag line="98" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="116" namespace="Aura\Marshal\Type" package="Default">
+        <name>$relation</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="108">
+          <description><![CDATA[An array of relationship descriptions, where the key is a
+field name for the record and the value is a relation object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="108" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal\Type" line="128" package="Aura\Marshal">
+        <name>setIdentityField</name>
+        <full_name>setIdentityField</full_name>
+        <docblock line="118">
+          <description><![CDATA[Sets the name of the field that uniquely identifies each record for
+this type.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="118" name="param" description="The identity field name." type="string" variable="$identity_field">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="118" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="128">
+          <name>$identity_field</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal\Type" line="141" package="Aura\Marshal">
+        <name>getIdentityField</name>
+        <full_name>getIdentityField</full_name>
+        <docblock line="133">
+          <description><![CDATA[Returns the name of the field that uniquely identifies each record of
+this type.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="133" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal\Type" line="156" package="Aura\Marshal">
+        <name>setIndexFields</name>
+        <full_name>setIndexFields</full_name>
+        <docblock line="146">
+          <description><![CDATA[Sets the fields that should be indexed at load() time; removes all
+previous field indexes.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="146" name="param" description="The fields to be indexed." type="array" variable="$fields">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="146" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="156">
+          <name>$fields</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal\Type" line="171" package="Aura\Marshal">
+        <name>getIndexFields</name>
+        <full_name>getIndexFields</full_name>
+        <docblock line="164">
+          <description><![CDATA[Returns the list of indexed field names.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="164" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal\Type" line="186" package="Aura\Marshal">
+        <name>setRecordClass</name>
+        <full_name>setRecordClass</full_name>
+        <docblock line="176">
+          <description><![CDATA[Sets the name of the expected record class; this is used to determine
+if elements in the IdentityMap have been converted to record objects.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="176" name="param" description="The identity field name." type="string" variable="$record_class">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="176" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="186">
+          <name>$record_class</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal\Type" line="198" package="Aura\Marshal">
+        <name>getRecordClass</name>
+        <full_name>getRecordClass</full_name>
+        <docblock line="191">
+          <description><![CDATA[Returns the name of the expected record class.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="191" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal\Type" line="212" package="Aura\Marshal">
+        <name>setRecordBuilder</name>
+        <full_name>setRecordBuilder</full_name>
+        <docblock line="203">
+          <description><![CDATA[Sets the builder object to create record objects.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="203" name="param" description="The builder object." type="\Aura\Marshal\Record\BuilderInterface" variable="$record_builder">
+            <type by_reference="false">\Aura\Marshal\Record\BuilderInterface</type>
+          </tag>
+          <tag line="203" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="212">
+          <name>$record_builder</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Marshal\Record\BuilderInterface</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal\Type" line="224" package="Aura\Marshal">
+        <name>getRecordBuilder</name>
+        <full_name>getRecordBuilder</full_name>
+        <docblock line="217">
+          <description><![CDATA[Returns the builder that creates record objects.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="217" name="return" description="" type="object">
+            <type by_reference="false">object</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal\Type" line="238" package="Aura\Marshal">
+        <name>setCollectionBuilder</name>
+        <full_name>setCollectionBuilder</full_name>
+        <docblock line="229">
+          <description><![CDATA[Sets the builder object to create collection objects.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="229" name="param" description="The builder object." type="\Aura\Marshal\Collection\BuilderInterface" variable="$collection_builder">
+            <type by_reference="false">\Aura\Marshal\Collection\BuilderInterface</type>
+          </tag>
+          <tag line="229" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="238">
+          <name>$collection_builder</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Marshal\Collection\BuilderInterface</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal\Type" line="250" package="Aura\Marshal">
+        <name>getCollectionBuilder</name>
+        <full_name>getCollectionBuilder</full_name>
+        <docblock line="243">
+          <description><![CDATA[Returns the builder that creates collection objects.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="243" name="return" description="" type="object">
+            <type by_reference="false">object</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal\Type" line="281" package="Aura\Marshal">
+        <name>load</name>
+        <full_name>load</full_name>
+        <docblock line="255">
+          <description><![CDATA[Loads the IdentityMap for this type with data for record objects.]]></description>
+          <long-description><![CDATA[<p>Typically, the $data value is a sequential array of associative arrays.
+As long as the $data value can be iterated over and accessed as an
+array, you can pass in any kind of $data.</p>
+
+<p>The elements from $data will be placed into the IdentityMap and indexed
+according to the value of their identity field.</p>
+
+<p>You can call load() multiple times, but records already in the
+IdentityMap will not be overwritten.</p>
+
+<p>The loaded elements are cast to objects; this allows consistent
+addressing of elements before and after conversion to record objects.</p>
+
+<p>The loaded elements will be converted to record objects by the
+record builder only as you request them from the IdentityMap.</p>]]></long-description>
+          <tag line="255" name="param" description="Record data to load into the IdentityMap." type="array" variable="$data">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="255" name="return" description="The identity values from the data elements, regardless of whether they were loaded or not." type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="281">
+          <name>$data</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal\Type" line="337" package="Aura\Marshal">
+        <name>getIdentityValues</name>
+        <full_name>getIdentityValues</full_name>
+        <docblock line="329">
+          <description><![CDATA[Returns the array keys for the for the records in the IdentityMap;
+the keys were generated at load() time from the identity field values.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="329" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal\Type" line="353" package="Aura\Marshal">
+        <name>getFieldValues</name>
+        <full_name>getFieldValues</full_name>
+        <docblock line="342">
+          <description><![CDATA[Returns the values for a particular field for all the records in the
+IdentityMap.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="342" name="param" description="The field name to get values for." type="string" variable="$field">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="342" name="return" description="An array of key-value pairs where the key is the identity value and the value is the requested field value." type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="353">
+          <name>$field</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal\Type" line="375" package="Aura\Marshal">
+        <name>getRecord</name>
+        <full_name>getRecord</full_name>
+        <docblock line="364">
+          <description><![CDATA[Retrieves a single record from the IdentityMap by the value of its
+identity field, converting it to a $record_class object if needed.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="364" name="param" description="The identity value of the record to be retrieved." type="int" variable="$identity_value">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="364" name="return" description="A record object via the record builder." type="object">
+            <type by_reference="false">object</type>
+          </tag>
+        </docblock>
+        <argument line="375">
+          <name>$identity_value</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal\Type" line="403" package="Aura\Marshal">
+        <name>getRecordByField</name>
+        <full_name>getRecordByField</full_name>
+        <docblock line="387">
+          <description><![CDATA[Retrieves the first record from the IdentityMap that matches the value
+of an arbitrary field; it will be converted to a record object
+if it is not already an object of the proper class.]]></description>
+          <long-description><![CDATA[<p>N.b.: This will not be performant for large sets where the field is not
+an identity field and is not indexed.</p>]]></long-description>
+          <tag line="387" name="param" description="The field to match on." type="string" variable="$field">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="387" name="param" description="The value of the field to match on." type="mixed" variable="$value">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="387" name="return" description="A record object via the record builder." type="object">
+            <type by_reference="false">object</type>
+          </tag>
+        </docblock>
+        <argument line="403">
+          <name>$field</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="403">
+          <name>$value</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Marshal\Type" line="436" package="Aura\Marshal">
+        <name>getRecordByOffset</name>
+        <full_name>getRecordByOffset</full_name>
+        <docblock line="426">
+          <description><![CDATA[Retrieves a single record from the IdentityMap by its offset,
+converting it to a $record_class object if needed.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="426" name="param" description="The record offset in the $data array." type="int" variable="$offset">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="426" name="return" description="A record object via the record builder." type="object">
+            <type by_reference="false">object</type>
+          </tag>
+        </docblock>
+        <argument line="436">
+          <name>$offset</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Marshal\Type" line="464" package="Aura\Marshal">
+        <name>getRecordByIndex</name>
+        <full_name>getRecordByIndex</full_name>
+        <docblock line="452">
+          <description><![CDATA[Retrieves the first record from the IdentityMap matching an index
+lookup, converting it to a $record_class object if needed.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="452" name="param" description="The indexed field name." type="string" variable="$field">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="452" name="param" description="The field value to match on." type="string" variable="$value">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="452" name="return" description="A record object via the record builder." type="object">
+            <type by_reference="false">object</type>
+          </tag>
+        </docblock>
+        <argument line="464">
+          <name>$field</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="464">
+          <name>$value</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal\Type" line="484" package="Aura\Marshal">
+        <name>getCollection</name>
+        <full_name>getCollection</full_name>
+        <docblock line="473">
+          <description><![CDATA[Retrieves a collection of elements from the IdentityMap by the values
+of their identity fields; each element will be converted to a record
+object if it is not already an object of the proper class.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="473" name="param" description="An array of identity values to retrieve." type="array" variable="$identity_values">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="473" name="return" description="A collection object via the collection builder." type="object">
+            <type by_reference="false">object</type>
+          </tag>
+        </docblock>
+        <argument line="484">
+          <name>$identity_values</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal\Type" line="523" package="Aura\Marshal">
+        <name>getCollectionByField</name>
+        <full_name>getCollectionByField</full_name>
+        <docblock line="497">
+          <description><![CDATA[Retrieves a collection of objects from the IdentityMap matching the
+value of an arbitrary field; these will be converted to records
+if they are not already objects of the proper class.]]></description>
+          <long-description><![CDATA[<p>The value to be matched can be an array of values, so that you
+can get many values of the field being matched.</p>
+
+<p>If the field is indexed, the order of the returned collection
+will match the order of the values being searched. If the field is not
+indexed, the order of the returned collection will be the same as the
+IdentityMap.</p>
+
+<p>The fastest results are from the identity field; second fastest, from
+an indexed field; slowest are from non-indexed fields, because it has
+to look through the entire IdentityMap to find matches.</p>]]></long-description>
+          <tag line="497" name="param" description="The field to match on." type="string" variable="$field">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="497" name="param" description="The value of the field to match on; if an array, any value in the array will be counted as a match." type="mixed" variable="$values">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="497" name="return" description="A collection object via the collection builder." type="object">
+            <type by_reference="false">object</type>
+          </tag>
+        </docblock>
+        <argument line="523">
+          <name>$field</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="523">
+          <name>$values</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Marshal\Type" line="569" package="Aura\Marshal">
+        <name>getCollectionByIndex</name>
+        <full_name>getCollectionByIndex</full_name>
+        <docblock line="549">
+          <description><![CDATA[Looks through the index for a field to retrieve a collection of
+objects from the IdentityMap; these will be converted to records
+if they are not already objects of the proper class.]]></description>
+          <long-description><![CDATA[<p>N.b.: The value to be matched can be an array of values, so that you
+can get many values of the field being matched.</p>
+
+<p>N.b.: The order of the returned collection will match the order of the
+values being searched, not the order of the records in the IdentityMap.</p>]]></long-description>
+          <tag line="549" name="param" description="The field to match on." type="string" variable="$field">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="549" name="param" description="The value of the field to match on; if an array, any value in the array will be counted as a match." type="mixed" variable="$values">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="549" name="return" description="A collection object via the collection builder." type="object">
+            <type by_reference="false">object</type>
+          </tag>
+        </docblock>
+        <argument line="569">
+          <name>$field</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="569">
+          <name>$values</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal\Type" line="599" package="Aura\Marshal">
+        <name>setRelation</name>
+        <full_name>setRelation</full_name>
+        <docblock line="586">
+          <description><![CDATA[Sets a relationship to another type, assigning it to a field
+name to be used in record objects.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="586" name="param" description="The field name to use for the related record or collection." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="586" name="param" description="The relationship definition object." type="\Aura\Marshal\Relation\RelationInterface" variable="$relation">
+            <type by_reference="false">\Aura\Marshal\Relation\RelationInterface</type>
+          </tag>
+          <tag line="586" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="599">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="599">
+          <name>$relation</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Marshal\Relation\RelationInterface</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal\Type" line="617" package="Aura\Marshal">
+        <name>getRelation</name>
+        <full_name>getRelation</full_name>
+        <docblock line="607">
+          <description><![CDATA[Returns a relationship definition object by name.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="607" name="param" description="The field name to use for the related record or collection." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="607" name="return" description="" type="\Aura\Marshal\Type\AbstractRelation">
+            <type by_reference="false">\Aura\Marshal\Type\AbstractRelation</type>
+          </tag>
+        </docblock>
+        <argument line="617">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal\Type" line="629" package="Aura\Marshal">
+        <name>getRelationNames</name>
+        <full_name>getRelationNames</full_name>
+        <docblock line="622">
+          <description><![CDATA[Returns all the names of the relationship definition objects.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="622" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal\Type" line="648" package="Aura\Marshal">
+        <name>newRecord</name>
+        <full_name>newRecord</full_name>
+        <docblock line="634">
+          <description><![CDATA[Adds a new record to the IdentityMap.]]></description>
+          <long-description><![CDATA[<p>This record will not show up in any indexes, whether by field or
+by primary key. You will see it only by iterating through the
+IdentityMap. Typically this is used to add to a collection, or
+to create a new record from user input.</p>]]></long-description>
+          <tag line="634" name="param" description="Data for the new record." type="array" variable="$data">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="634" name="return" description="" type="object">
+            <type by_reference="false">object</type>
+          </tag>
+        </docblock>
+        <argument line="648">
+          <name>$data</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal\Type" line="664" package="Aura\Marshal">
+        <name>getChangedRecords</name>
+        <full_name>getChangedRecords</full_name>
+        <docblock line="656">
+          <description><![CDATA[Returns an array of all records in the IdentityMap that have been
+modified.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="656" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Marshal\Type" line="687" package="Aura\Marshal">
+        <name>getNewRecords</name>
+        <full_name>getNewRecords</full_name>
+        <docblock line="679">
+          <description><![CDATA[Returns an array of all records in the IdentityMap that were created
+using `newRecord()`.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="679" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <package name="Aura" full_name="Aura">
+    <package name="Marshal" full_name="Aura\Marshal"/>
+  </package>
+  <package name="Default" full_name="Default"/>
+  <namespace name="Aura" full_name="Aura">
+    <namespace name="Marshal" full_name="Aura\Marshal">
+      <namespace name="Collection" full_name="Aura\Marshal\Collection"/>
+      <namespace name="Record" full_name="Aura\Marshal\Record"/>
+      <namespace name="Relation" full_name="Aura\Marshal\Relation"/>
+      <namespace name="Type" full_name="Aura\Marshal\Type"/>
+    </namespace>
+  </namespace>
+  <marker count="0">todo</marker>
+  <marker count="3">fixme</marker>
+  <deprecated count="0"/>
+</project>

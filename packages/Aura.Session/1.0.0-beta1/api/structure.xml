@@ -1,0 +1,817 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project version="2.0.0a7" title="">
+  <file path="CsrfToken.php" hash="7fa5b26648007dc4045943eac0102479" package="Aura\Session">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Session"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="SegmentFactory">Aura\Session\SegmentFactory</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Session" line="22" package="Aura\Session">
+      <extends/>
+      <name>CsrfToken</name>
+      <full_name>\Aura\Session\CsrfToken</full_name>
+      <docblock line="15">
+        <description><![CDATA[Cross-site request forgery token tools.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Session"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="31" namespace="Aura\Session" package="Default">
+        <name>$segment</name>
+        <default><![CDATA[]]></default>
+        <docblock line="24">
+          <description><![CDATA[Session segment for values in this class.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="24" name="var" description="" type="\Aura\Session\Segment">
+            <type by_reference="false">\Aura\Session\Segment</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Session" line="40" package="Aura\Session">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="33">
+          <description><![CDATA[Constructor.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="33" name="param" description="A segment for values in this class." type="\Aura\Session\Segment" variable="$segment">
+            <type by_reference="false">\Aura\Session\Segment</type>
+          </tag>
+        </docblock>
+        <argument line="40">
+          <name>$segment</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Session\Segment</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Session" line="57" package="Aura\Session">
+        <name>isValid</name>
+        <full_name>isValid</full_name>
+        <docblock line="48">
+          <description><![CDATA[Checks whether an incoming CSRF token value is valid.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="48" name="param" description="The incoming token value." type="string" variable="$value">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="48" name="return" description="True if valid, false if not." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+        <argument line="57">
+          <name>$value</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Session" line="69" package="Aura\Session">
+        <name>getValue</name>
+        <full_name>getValue</full_name>
+        <docblock line="62">
+          <description><![CDATA[Gets the value of the outgoing CSRF token.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="62" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Session" line="79" package="Aura\Session">
+        <name>regenerateValue</name>
+        <full_name>regenerateValue</full_name>
+        <docblock line="74">
+          <description><![CDATA[Regenerates the value of the outgoing CSRF token.]]></description>
+          <long-description><![CDATA[]]></long-description>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="CsrfTokenFactory.php" hash="a6d14c65612ee8350a9b01cd79044267" package="Aura\Session">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Session"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Session" line="20" package="Aura\Session">
+      <extends/>
+      <name>CsrfTokenFactory</name>
+      <full_name>\Aura\Session\CsrfTokenFactory</full_name>
+      <docblock line="13">
+        <description><![CDATA[A factory to create CSRF token objects.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Session"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Session" line="31" package="Aura\Session">
+        <name>newInstance</name>
+        <full_name>newInstance</full_name>
+        <docblock line="22">
+          <description><![CDATA[Creates a CsrfToken object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="param" description="The session manager." type="\Aura\Session\Manager" variable="$manager">
+            <type by_reference="false">\Aura\Session\Manager</type>
+          </tag>
+          <tag line="22" name="return" description="" type="\Aura\Session\CsrfToken">
+            <type by_reference="false">\Aura\Session\CsrfToken</type>
+          </tag>
+        </docblock>
+        <argument line="31">
+          <name>$manager</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Session\Manager</type>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Manager.php" hash="e3e07556c7b359eab427d6b03a6897e5" package="Aura\Session">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Session"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Session" line="21" package="Aura\Session">
+      <extends/>
+      <name>Manager</name>
+      <full_name>\Aura\Session\Manager</full_name>
+      <docblock line="13">
+        <description><![CDATA[A central control point for all session segments, PHP session management
+values, and CSRF token checking.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Session"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="30" namespace="Aura\Session" package="Default">
+        <name>$segment</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="23">
+          <description><![CDATA[Segment instances.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="23" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="39" namespace="Aura\Session" package="Default">
+        <name>$segment_factory</name>
+        <default><![CDATA[]]></default>
+        <docblock line="32">
+          <description><![CDATA[A session segment factory.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="32" name="var" description="" type="\Aura\Session\SegmentFactory">
+            <type by_reference="false">\Aura\Session\SegmentFactory</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="48" namespace="Aura\Session" package="Default">
+        <name>$csrf_token</name>
+        <default><![CDATA[]]></default>
+        <docblock line="41">
+          <description><![CDATA[The CSRF token for this session.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="41" name="var" description="" type="\Aura\Session\CsrfToken">
+            <type by_reference="false">\Aura\Session\CsrfToken</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="57" namespace="Aura\Session" package="Default">
+        <name>$csrf_token_factory</name>
+        <default><![CDATA[]]></default>
+        <docblock line="50">
+          <description><![CDATA[A CSRF token factory, for lazy-creating the CSRF token.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="50" name="var" description="" type="\Aura\Session\CsrfTokenFactory">
+            <type by_reference="false">\Aura\Session\CsrfTokenFactory</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="66" namespace="Aura\Session" package="Default">
+        <name>$cookie_params</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="59">
+          <description><![CDATA[Session cookie parameters.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="59" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Session" line="77" package="Aura\Session">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="68">
+          <description><![CDATA[Constructor]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="68" name="param" description="A session segment factory." type="\Aura\Session\SegmentFactory" variable="$segment_factory">
+            <type by_reference="false">\Aura\Session\SegmentFactory</type>
+          </tag>
+          <tag line="68" name="param" description="A CSRF token factory." type="\Aura\Session\CsrfTokenFactory" variable="$csrf_token_factory">
+            <type by_reference="false">\Aura\Session\CsrfTokenFactory</type>
+          </tag>
+        </docblock>
+        <argument line="78">
+          <name>$segment_factory</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Session\SegmentFactory</type>
+        </argument>
+        <argument line="79">
+          <name>$csrf_token_factory</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Session\CsrfTokenFactory</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Session" line="100" package="Aura\Session">
+        <name>getSegment</name>
+        <full_name>getSegment</full_name>
+        <docblock line="86">
+          <description><![CDATA[Gets a named session segment; starts the session if needed.]]></description>
+          <long-description><![CDATA[<p>This is not exactly lazy session-starting. In theory, we shouldn't
+try to start until a read or write, but if you call getSegment(), we
+assume you're going to be reading or writing, so we start a session.</p>]]></long-description>
+          <tag line="86" name="param" description="The name of the session segment, typically a fully-qualified class name." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="86" name="return" description="" type="\Aura\Session\Segment">
+            <type by_reference="false">\Aura\Session\Segment</type>
+          </tag>
+        </docblock>
+        <argument line="100">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Session" line="124" package="Aura\Session">
+        <name>isActive</name>
+        <full_name>isActive</full_name>
+        <docblock line="118">
+          <description><![CDATA[Tells us if a session *exists* (but *not* if it has started yet).]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="118" name="return" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Session" line="136" package="Aura\Session">
+        <name>isStarted</name>
+        <full_name>isStarted</full_name>
+        <docblock line="129">
+          <description><![CDATA[Tells us if a session has started.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="129" name="return" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Session" line="148" package="Aura\Session">
+        <name>start</name>
+        <full_name>start</full_name>
+        <docblock line="141">
+          <description><![CDATA[Starts a new session, or resumes an existing one.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="141" name="return" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Session" line="160" package="Aura\Session">
+        <name>clear</name>
+        <full_name>clear</full_name>
+        <docblock line="153">
+          <description><![CDATA[Clears all session variables across all segments.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="153" name="return" description="" type="null">
+            <type by_reference="false">null</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Session" line="172" package="Aura\Session">
+        <name>commit</name>
+        <full_name>commit</full_name>
+        <docblock line="165">
+          <description><![CDATA[Writes session data from all segments and ends the session.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="165" name="return" description="" type="null">
+            <type by_reference="false">null</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Session" line="184" package="Aura\Session">
+        <name>destroy</name>
+        <full_name>destroy</full_name>
+        <docblock line="177">
+          <description><![CDATA[Destroys the session entirely.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="177" name="return" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Session" line="198" package="Aura\Session">
+        <name>getCsrfToken</name>
+        <full_name>getCsrfToken</full_name>
+        <docblock line="190">
+          <description><![CDATA[Returns the CSRF token, creating it if needed (and thereby starting a
+session).]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="190" name="return" description="" type="\Aura\Session\CsrfToken">
+            <type by_reference="false">\Aura\Session\CsrfToken</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Session" line="223" package="Aura\Session">
+        <name>setCacheExpire</name>
+        <full_name>setCacheExpire</full_name>
+        <docblock line="212">
+          <description><![CDATA[Sets the session cache expire time.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="212" name="param" description="The expiration time in seconds." type="int" variable="$expire">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="212" name="return" description="" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="212" name="see" description="\Aura\Session\session_cache_expire()" refers="\Aura\Session\session_cache_expire()"/>
+        </docblock>
+        <argument line="223">
+          <name>$expire</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Session" line="237" package="Aura\Session">
+        <name>getCacheExpire</name>
+        <full_name>getCacheExpire</full_name>
+        <docblock line="228">
+          <description><![CDATA[Gets the session cache expire time.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="228" name="return" description="The cache expiration time in seconds." type="int">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="228" name="see" description="\Aura\Session\session_cache_expire()" refers="\Aura\Session\session_cache_expire()"/>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Session" line="253" package="Aura\Session">
+        <name>setCacheLimiter</name>
+        <full_name>setCacheLimiter</full_name>
+        <docblock line="242">
+          <description><![CDATA[Sets the session cache limiter value.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="242" name="param" description="The limiter value." type="string" variable="$limiter">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="242" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="242" name="see" description="\Aura\Session\session_cache_limiter()" refers="\Aura\Session\session_cache_limiter()"/>
+        </docblock>
+        <argument line="253">
+          <name>$limiter</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Session" line="267" package="Aura\Session">
+        <name>getCacheLimiter</name>
+        <full_name>getCacheLimiter</full_name>
+        <docblock line="258">
+          <description><![CDATA[Gets the session cache limiter value.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="258" name="return" description="The limiter value." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="258" name="see" description="\Aura\Session\session_cache_limiter()" refers="\Aura\Session\session_cache_limiter()"/>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Session" line="297" package="Aura\Session">
+        <name>setCookieParams</name>
+        <full_name>setCookieParams</full_name>
+        <docblock line="272">
+          <description><![CDATA[Sets the session cookie params.]]></description>
+          <long-description><![CDATA[<p>Param array keys are:</p>
+
+<ul>
+<li><p><code>lifetime</code> : Lifetime of the session cookie, defined in seconds.</p></li>
+<li><p><code>path</code> : Path on the domain where the cookie will work.
+Use a single slash ('/') for all paths on the domain.</p></li>
+<li><p><code>domain</code> : Cookie domain, for example 'www.php.net'.
+To make cookies visible on all subdomains then the domain must be
+prefixed with a dot like '.php.net'.</p></li>
+<li><p><code>secure</code> : If TRUE cookie will only be sent over secure connections.</p></li>
+<li><p><code>httponly</code> : If set to TRUE then PHP will attempt to send the httponly
+flag when setting the session cookie.</p></li>
+</ul>]]></long-description>
+          <tag line="272" name="param" description="The array of session cookie param keys and values." type="array" variable="$params">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="272" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+          <tag line="272" name="see" description="\Aura\Session\session_set_cookie_params()" refers="\Aura\Session\session_set_cookie_params()"/>
+        </docblock>
+        <argument line="297">
+          <name>$params</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Session" line="316" package="Aura\Session">
+        <name>getCookieParams</name>
+        <full_name>getCookieParams</full_name>
+        <docblock line="309">
+          <description><![CDATA[Gets the session cookie params.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="309" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Session" line="328" package="Aura\Session">
+        <name>getId</name>
+        <full_name>getId</full_name>
+        <docblock line="321">
+          <description><![CDATA[Gets the current session id.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="321" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Session" line="341" package="Aura\Session">
+        <name>regenerateId</name>
+        <full_name>regenerateId</full_name>
+        <docblock line="333">
+          <description><![CDATA[Regenerates and replaces the current session id; also regenerates the
+CSRF token value if one exists.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="333" name="return" description="True is regeneration worked, false if not." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Session" line="361" package="Aura\Session">
+        <name>setName</name>
+        <full_name>setName</full_name>
+        <docblock line="350">
+          <description><![CDATA[Sets the current session name.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="350" name="param" description="The session name to use." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="350" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="350" name="see" description="\Aura\Session\session_name()" refers="\Aura\Session\session_name()"/>
+        </docblock>
+        <argument line="361">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Session" line="373" package="Aura\Session">
+        <name>getName</name>
+        <full_name>getName</full_name>
+        <docblock line="366">
+          <description><![CDATA[Returns the current session name.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="366" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Session" line="389" package="Aura\Session">
+        <name>setSavePath</name>
+        <full_name>setSavePath</full_name>
+        <docblock line="378">
+          <description><![CDATA[Sets the session save path.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="378" name="param" description="The new save path." type="string" variable="$path">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="378" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="378" name="see" description="\Aura\Session\session_save_path()" refers="\Aura\Session\session_save_path()"/>
+        </docblock>
+        <argument line="389">
+          <name>$path</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Session" line="403" package="Aura\Session">
+        <name>getSavePath</name>
+        <full_name>getSavePath</full_name>
+        <docblock line="394">
+          <description><![CDATA[Gets the session save path.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="394" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="394" name="see" description="\Aura\Session\session_save_path()" refers="\Aura\Session\session_save_path()"/>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Session" line="421" package="Aura\Session">
+        <name>getStatus</name>
+        <full_name>getStatus</full_name>
+        <docblock line="408">
+          <description><![CDATA[Returns the current session status:]]></description>
+          <long-description><![CDATA[<ul>
+<li><code>PHP_SESSION_DISABLED</code> if sessions are disabled.</li>
+<li><code>PHP_SESSION_NONE</code> if sessions are enabled, but none exists.</li>
+<li><code>PHP_SESSION_ACTIVE</code> if sessions are enabled, and one exists.</li>
+</ul>]]></long-description>
+          <tag line="408" name="return" description="" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="408" name="see" description="\Aura\Session\session_status()" refers="\Aura\Session\session_status()"/>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Segment.php" hash="5e5673cbe999752c61d4aa542f1f4bdc" package="Aura\Session">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Session"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Session" line="20" package="Aura\Session">
+      <extends/>
+      <name>Segment</name>
+      <full_name>\Aura\Session\Segment</full_name>
+      <docblock line="13">
+        <description><![CDATA[A session segment.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Session"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="29" namespace="Aura\Session" package="Default">
+        <name>$name</name>
+        <default><![CDATA[]]></default>
+        <docblock line="22">
+          <description><![CDATA[The segment name.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="38" namespace="Aura\Session" package="Default">
+        <name>$data</name>
+        <default><![CDATA[]]></default>
+        <docblock line="31">
+          <description><![CDATA[The data in the segment.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="31" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Session" line="50" package="Aura\Session">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="40">
+          <description><![CDATA[Constructor]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="40" name="param" description="The name of the segment." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="40" name="param" description="&amp;$data The reference to segment data, typically from $_SESSION." type="array" variable="$data">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="50">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="50">
+          <name>$data</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Session" line="65" package="Aura\Session">
+        <name>__get</name>
+        <full_name>__get</full_name>
+        <docblock line="56">
+          <description><![CDATA[Returns a reference to the value of a key in the segment.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="56" name="param" description="The key in the segment." type="string" variable="$key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="56" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="65">
+          <name>$key</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Session" line="79" package="Aura\Session">
+        <name>__set</name>
+        <full_name>__set</full_name>
+        <docblock line="70">
+          <description><![CDATA[Sets the value of a key in the segment.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="70" name="param" description="The key to set." type="string" variable="$key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="70" name="param" description="The value to set it to." type="mixed" variable="$val">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="79">
+          <name>$key</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="79">
+          <name>$val</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Session" line="93" package="Aura\Session">
+        <name>__isset</name>
+        <full_name>__isset</full_name>
+        <docblock line="84">
+          <description><![CDATA[Check whether a key is set in the segment.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="84" name="param" description="The key to check." type="string" variable="$key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="84" name="return" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+        <argument line="93">
+          <name>$key</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Session" line="107" package="Aura\Session">
+        <name>__unset</name>
+        <full_name>__unset</full_name>
+        <docblock line="98">
+          <description><![CDATA[Unsets a key in the segment.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="98" name="param" description="The key to unset." type="string" variable="$key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="98" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="107">
+          <name>$key</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Session" line="119" package="Aura\Session">
+        <name>clear</name>
+        <full_name>clear</full_name>
+        <docblock line="112">
+          <description><![CDATA[Clear all data from the segment.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="112" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Session" line="131" package="Aura\Session">
+        <name>getName</name>
+        <full_name>getName</full_name>
+        <docblock line="124">
+          <description><![CDATA[Gets the segment name.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="124" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Session" line="145" package="Aura\Session">
+        <name>setFlash</name>
+        <full_name>setFlash</full_name>
+        <docblock line="136">
+          <description><![CDATA[Sets a read-once flash value on the segment.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="136" name="param" description="The key for the flash value." type="string" variable="$key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="136" name="param" description="The flash value itself." type="mixed" variable="$val">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="145">
+          <name>$key</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="145">
+          <name>$val</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Session" line="159" package="Aura\Session">
+        <name>getFlash</name>
+        <full_name>getFlash</full_name>
+        <docblock line="150">
+          <description><![CDATA[Reads the flash value for a key, thereby removing it from the session.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="150" name="param" description="The key for the flash value." type="string" variable="$key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="150" name="return" description="The flash value itself." type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="159">
+          <name>$key</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Session" line="177" package="Aura\Session">
+        <name>hasFlash</name>
+        <full_name>hasFlash</full_name>
+        <docblock line="168">
+          <description><![CDATA[Checks whether a flash key is set, without reading it.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="168" name="param" description="The flash key to check." type="string" variable="$key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="168" name="return" description="True if it is set, false if not." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+        <argument line="177">
+          <name>$key</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Session" line="189" package="Aura\Session">
+        <name>clearFlash</name>
+        <full_name>clearFlash</full_name>
+        <docblock line="182">
+          <description><![CDATA[Clears all flash values.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="182" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="SegmentFactory.php" hash="d68c4155699cf157686b51121533258e" package="Aura\Session">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Session"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Session" line="20" package="Aura\Session">
+      <extends/>
+      <name>SegmentFactory</name>
+      <full_name>\Aura\Session\SegmentFactory</full_name>
+      <docblock line="13">
+        <description><![CDATA[a factory to create Aura\Session\Segment]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Session"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Session" line="31" package="Aura\Session">
+        <name>newInstance</name>
+        <full_name>newInstance</full_name>
+        <docblock line="22">
+          <description><![CDATA[create a Aura\Session\Segment object]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="param" description="" type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="22" name="return" description="" type="\Aura\Session\Segment">
+            <type by_reference="false">\Aura\Session\Segment</type>
+          </tag>
+        </docblock>
+        <argument line="31">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <package name="Aura" full_name="Aura">
+    <package name="Session" full_name="Aura\Session"/>
+  </package>
+  <package name="Default" full_name="Default"/>
+  <namespace name="Aura" full_name="Aura">
+    <namespace name="Session" full_name="Aura\Session"/>
+  </namespace>
+  <marker count="0">todo</marker>
+  <marker count="0">fixme</marker>
+  <deprecated count="0"/>
+</project>

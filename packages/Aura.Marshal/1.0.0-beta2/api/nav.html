@@ -1,0 +1,192 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>DocBlox Documentation</title><link rel="stylesheet" href="css/jquery-ui.css" type="text/css"></link><link rel="stylesheet" href="css/docblox/jquery-ui-1.8.16.custom.css" type="text/css"></link><link rel="stylesheet" href="css/jquery.treeview.css" type="text/css"></link><link rel="stylesheet" href="css/theme.css" type="text/css"></link><script type="text/javascript" src="js/jquery-1.4.2.min.js"></script><script type="text/javascript" src="js/jquery-ui-1.8.2.custom.min.js"></script><script type="text/javascript" src="js/jquery.tools.min.js"></script><script type="text/javascript" src="js/jquery.cookie.js"></script><script type="text/javascript" src="js/jquery.treeview.js"></script><script type="text/javascript">
+            $(document).ready(function() {
+                $(".filetree").treeview({
+                    collapsed: true,
+                    persist: "cookie"
+                });
+
+                $("#accordion").accordion({
+                    collapsible: true,
+                    autoHeight:  false,
+                    fillSpace:   true
+                });
+
+                $(".tabs").tabs();
+            });
+        </script></head><body><script xmlns="" type="text/javascript" src="js/sidebar.js"></script><div xmlns="" id="sidebar">
+<div id="sidebar-header">
+<img src="images/icon48x48.png" id="sidebar-logo" alt="Logo"><h1>DocBlox</h1>
+<div style="clear: both"></div>
+</div>
+<div id="sidebar-nav">
+<h3 id="sidebar-dashboard">
+<img class="icon" src="css/docblox/images/icons/dashboard.png" alt="Dashboard"><a href="content.html" class="link" target="content">Dashboard</a>
+</h3>
+<div style="display: none"></div>
+<h3 id="sidebar-files">
+<img src="css/docblox/images/icons/files.png" alt="Files"><a href="#files">Files</a>
+</h3>
+<div class="sidebar-section">
+<div class="search-bar">
+<a href="#" onclick="$(this).parent().next().find('.collapsable-hitarea').click(); return false;"><img src="images/collapse_all.png" title="Collapse all" alt="Collapse all"></a><a href="#" onclick="$(this).parent().next().find('.expandable-hitarea').click(); return false;"><img src="images/expand_all.png" title="Expand all" alt="Expand all"></a><div><input type="text" onkeyup="tree_search(this);"></div>
+</div>
+<ul class="sidebar-nav-tree">
+<li class="closed">
+<span class="file"><a href="db_Aura_Marshal_Collection_Builder.html" target="content">Aura/Marshal/Collection/Builder.php</a></span><ul id="files_ef481e6dfb733b9f12b81e9e317a698f" class="filetree"><li><span class="class"><a href="db_Aura_Marshal_Collection_Builder.html#%5CAura%5CMarshal%5CCollection%5CBuilder" target="content">Builder<br></a></span></li></ul>
+</li>
+<li class="closed">
+<span class="file"><a href="db_Aura_Marshal_Collection_BuilderInterface.html" target="content">Aura/Marshal/Collection/BuilderInterface.php</a></span><ul id="files_e97e74fae22d03bb2606ca3e922ada92" class="filetree"><li><span class="interface"><a href="db_Aura_Marshal_Collection_BuilderInterface.html#%5CAura%5CMarshal%5CCollection%5CBuilderInterface" target="content">BuilderInterface<br></a></span></li></ul>
+</li>
+<li class="closed">
+<span class="file"><a href="db_Aura_Marshal_Collection_GenericCollection.html" target="content">Aura/Marshal/Collection/GenericCollection.php</a></span><ul id="files_0f0b05541fcb58ac39072bb5329ef222" class="filetree"><li><span class="class"><a href="db_Aura_Marshal_Collection_GenericCollection.html#%5CAura%5CMarshal%5CCollection%5CGenericCollection" target="content">GenericCollection<br></a></span></li></ul>
+</li>
+<li class="closed">
+<span class="file"><a href="db_Aura_Marshal_Data.html" target="content">Aura/Marshal/Data.php</a></span><ul id="files_2359f84b7d20595a5d2f542ce9e26566" class="filetree"><li><span class="class"><a href="db_Aura_Marshal_Data.html#%5CAura%5CMarshal%5CData" target="content">Data<br></a></span></li></ul>
+</li>
+<li class="closed">
+<span class="file"><a href="db_Aura_Marshal_DataIterator.html" target="content">Aura/Marshal/DataIterator.php</a></span><ul id="files_0817f782f4ff7e30acea857234782ec9" class="filetree"><li><span class="class"><a href="db_Aura_Marshal_DataIterator.html#%5CAura%5CMarshal%5CDataIterator" target="content">DataIterator<br></a></span></li></ul>
+</li>
+<li class="closed">
+<span class="file"><a href="db_Aura_Marshal_Exception.html" target="content">Aura/Marshal/Exception.php</a></span><ul id="files_c01fbedfa526bb4d25d0f42c52ddd428" class="filetree"><li><span class="class"><a href="db_Aura_Marshal_Exception.html#%5CAura%5CMarshal%5CException" target="content">Exception<br></a></span></li></ul>
+</li>
+<li class="closed">
+<span class="file"><a href="db_Aura_Marshal_Manager.html" target="content">Aura/Marshal/Manager.php</a></span><ul id="files_a507b7b64b85db2e64762ddf88f1af5e" class="filetree"><li><span class="class"><a href="db_Aura_Marshal_Manager.html#%5CAura%5CMarshal%5CManager" target="content">Manager<br></a></span></li></ul>
+</li>
+<li class="closed">
+<span class="file"><a href="db_Aura_Marshal_Record_Builder.html" target="content">Aura/Marshal/Record/Builder.php</a></span><ul id="files_36d7a4d797fddfdbdffefaa9e5018159" class="filetree"><li><span class="class"><a href="db_Aura_Marshal_Record_Builder.html#%5CAura%5CMarshal%5CRecord%5CBuilder" target="content">Builder<br></a></span></li></ul>
+</li>
+<li class="closed">
+<span class="file"><a href="db_Aura_Marshal_Record_BuilderInterface.html" target="content">Aura/Marshal/Record/BuilderInterface.php</a></span><ul id="files_7bff1cac163a0fdeb8d84e1c061f8e43" class="filetree"><li><span class="interface"><a href="db_Aura_Marshal_Record_BuilderInterface.html#%5CAura%5CMarshal%5CRecord%5CBuilderInterface" target="content">BuilderInterface<br></a></span></li></ul>
+</li>
+<li class="closed">
+<span class="file"><a href="db_Aura_Marshal_Record_GenericRecord.html" target="content">Aura/Marshal/Record/GenericRecord.php</a></span><ul id="files_7cd212ad4f060a476e559f03b4f15190" class="filetree"><li><span class="class"><a href="db_Aura_Marshal_Record_GenericRecord.html#%5CAura%5CMarshal%5CRecord%5CGenericRecord" target="content">GenericRecord<br></a></span></li></ul>
+</li>
+<li class="closed">
+<span class="file"><a href="db_Aura_Marshal_Relation_AbstractRelation.html" target="content">Aura/Marshal/Relation/AbstractRelation.php</a></span><ul id="files_a1ffa0609df7b7a5cd0813a7509280d6" class="filetree"><li><span class="class"><a href="db_Aura_Marshal_Relation_AbstractRelation.html#%5CAura%5CMarshal%5CRelation%5CAbstractRelation" target="content">AbstractRelation<br></a></span></li></ul>
+</li>
+<li class="closed">
+<span class="file"><a href="db_Aura_Marshal_Relation_BelongsTo.html" target="content">Aura/Marshal/Relation/BelongsTo.php</a></span><ul id="files_26bb8f30c4bfd7ff7bb35f1ba16165c4" class="filetree"><li><span class="class"><a href="db_Aura_Marshal_Relation_BelongsTo.html#%5CAura%5CMarshal%5CRelation%5CBelongsTo" target="content">BelongsTo<br></a></span></li></ul>
+</li>
+<li class="closed">
+<span class="file"><a href="db_Aura_Marshal_Relation_Builder.html" target="content">Aura/Marshal/Relation/Builder.php</a></span><ul id="files_af9b28a468d102f69d95b34adda43820" class="filetree"><li><span class="class"><a href="db_Aura_Marshal_Relation_Builder.html#%5CAura%5CMarshal%5CRelation%5CBuilder" target="content">Builder<br></a></span></li></ul>
+</li>
+<li class="closed">
+<span class="file"><a href="db_Aura_Marshal_Relation_HasMany.html" target="content">Aura/Marshal/Relation/HasMany.php</a></span><ul id="files_793cbaa8ce51107f2b353533e9c59af5" class="filetree"><li><span class="class"><a href="db_Aura_Marshal_Relation_HasMany.html#%5CAura%5CMarshal%5CRelation%5CHasMany" target="content">HasMany<br></a></span></li></ul>
+</li>
+<li class="closed">
+<span class="file"><a href="db_Aura_Marshal_Relation_HasManyThrough.html" target="content">Aura/Marshal/Relation/HasManyThrough.php</a></span><ul id="files_611a52b87990d094e1c28ab2dcd0ed3a" class="filetree"><li><span class="class"><a href="db_Aura_Marshal_Relation_HasManyThrough.html#%5CAura%5CMarshal%5CRelation%5CHasManyThrough" target="content">HasManyThrough<br></a></span></li></ul>
+</li>
+<li class="closed">
+<span class="file"><a href="db_Aura_Marshal_Relation_HasOne.html" target="content">Aura/Marshal/Relation/HasOne.php</a></span><ul id="files_e428da22b4a2ecd88ccd1e5116ce2c49" class="filetree"><li><span class="class"><a href="db_Aura_Marshal_Relation_HasOne.html#%5CAura%5CMarshal%5CRelation%5CHasOne" target="content">HasOne<br></a></span></li></ul>
+</li>
+<li class="closed">
+<span class="file"><a href="db_Aura_Marshal_Relation_RelationInterface.html" target="content">Aura/Marshal/Relation/RelationInterface.php</a></span><ul id="files_b1bc3a313a302aca8a1b0937ae2f9025" class="filetree"><li><span class="interface"><a href="db_Aura_Marshal_Relation_RelationInterface.html#%5CAura%5CMarshal%5CRelation%5CRelationInterface" target="content">RelationInterface<br></a></span></li></ul>
+</li>
+<li class="closed">
+<span class="file"><a href="db_Aura_Marshal_Type_Builder.html" target="content">Aura/Marshal/Type/Builder.php</a></span><ul id="files_1a35d9f31f430ca7d34674bf31a9c4ed" class="filetree"><li><span class="class"><a href="db_Aura_Marshal_Type_Builder.html#%5CAura%5CMarshal%5CType%5CBuilder" target="content">Builder<br></a></span></li></ul>
+</li>
+<li class="closed">
+<span class="file"><a href="db_Aura_Marshal_Type_GenericType.html" target="content">Aura/Marshal/Type/GenericType.php</a></span><ul id="files_8949dddb464f9acb971cdfa41653ac83" class="filetree"><li><span class="class"><a href="db_Aura_Marshal_Type_GenericType.html#%5CAura%5CMarshal%5CType%5CGenericType" target="content">GenericType<br></a></span></li></ul>
+</li>
+</ul>
+</div>
+<h3 id="sidebar-packages">
+<img src="css/docblox/images/icons/packages.png" alt="Packages"><a href="#packages">Packages</a>
+</h3>
+<div class="sidebar-section sidebar-tree">
+<div class="search-bar">
+<a href="#" onclick="$(this).parent().next().find('.collapsable-hitarea').click(); return false;"><img src="images/collapse_all.png" title="Collapse all" alt="Collapse all"></a><a href="#" onclick="$(this).parent().next().find('.expandable-hitarea').click(); return false;"><img src="images/expand_all.png" title="Expand all" alt="Expand all"></a><div><input type="text" onkeyup="tree_search(this);"></div>
+</div>
+<ul class="sidebar-nav-tree"><li class="closed">
+<span class="folder">Aura</span><ul><li class="closed">
+<span class="folder">Marshal</span><ul>
+<li><span class="class"><a href="db_Aura_Marshal_Relation_AbstractRelation.html#%5CAura%5CMarshal%5CRelation%5CAbstractRelation" target="content">AbstractRelation</a></span></li>
+<li><span class="class"><a href="db_Aura_Marshal_Relation_BelongsTo.html#%5CAura%5CMarshal%5CRelation%5CBelongsTo" target="content">BelongsTo</a></span></li>
+<li><span class="class"><a href="db_Aura_Marshal_Collection_Builder.html#%5CAura%5CMarshal%5CCollection%5CBuilder" target="content">Builder</a></span></li>
+<li><span class="class"><a href="db_Aura_Marshal_Record_Builder.html#%5CAura%5CMarshal%5CRecord%5CBuilder" target="content">Builder</a></span></li>
+<li><span class="class"><a href="db_Aura_Marshal_Relation_Builder.html#%5CAura%5CMarshal%5CRelation%5CBuilder" target="content">Builder</a></span></li>
+<li><span class="class"><a href="db_Aura_Marshal_Type_Builder.html#%5CAura%5CMarshal%5CType%5CBuilder" target="content">Builder</a></span></li>
+<li><span class="interface"><a href="db_Aura_Marshal_Collection_BuilderInterface.html#%5CAura%5CMarshal%5CCollection%5CBuilderInterface" target="content">BuilderInterface</a></span></li>
+<li><span class="interface"><a href="db_Aura_Marshal_Record_BuilderInterface.html#%5CAura%5CMarshal%5CRecord%5CBuilderInterface" target="content">BuilderInterface</a></span></li>
+<li><span class="class"><a href="db_Aura_Marshal_Data.html#%5CAura%5CMarshal%5CData" target="content">Data</a></span></li>
+<li><span class="class"><a href="db_Aura_Marshal_DataIterator.html#%5CAura%5CMarshal%5CDataIterator" target="content">DataIterator</a></span></li>
+<li><span class="class"><a href="db_Aura_Marshal_Exception.html#%5CAura%5CMarshal%5CException" target="content">Exception</a></span></li>
+<li><span class="class"><a href="db_Aura_Marshal_Collection_GenericCollection.html#%5CAura%5CMarshal%5CCollection%5CGenericCollection" target="content">GenericCollection</a></span></li>
+<li><span class="class"><a href="db_Aura_Marshal_Record_GenericRecord.html#%5CAura%5CMarshal%5CRecord%5CGenericRecord" target="content">GenericRecord</a></span></li>
+<li><span class="class"><a href="db_Aura_Marshal_Type_GenericType.html#%5CAura%5CMarshal%5CType%5CGenericType" target="content">GenericType</a></span></li>
+<li><span class="class"><a href="db_Aura_Marshal_Relation_HasMany.html#%5CAura%5CMarshal%5CRelation%5CHasMany" target="content">HasMany</a></span></li>
+<li><span class="class"><a href="db_Aura_Marshal_Relation_HasManyThrough.html#%5CAura%5CMarshal%5CRelation%5CHasManyThrough" target="content">HasManyThrough</a></span></li>
+<li><span class="class"><a href="db_Aura_Marshal_Relation_HasOne.html#%5CAura%5CMarshal%5CRelation%5CHasOne" target="content">HasOne</a></span></li>
+<li><span class="class"><a href="db_Aura_Marshal_Manager.html#%5CAura%5CMarshal%5CManager" target="content">Manager</a></span></li>
+<li><span class="interface"><a href="db_Aura_Marshal_Relation_RelationInterface.html#%5CAura%5CMarshal%5CRelation%5CRelationInterface" target="content">RelationInterface</a></span></li>
+</ul>
+</li></ul>
+</li></ul>
+</div>
+<h3 id="sidebar-namespaces">
+<img src="css/docblox/images/icons/namespaces.png" alt="Namespaces"><a href="#namespaces">Namespaces</a>
+</h3>
+<div class="sidebar-section sidebar-tree">
+<div class="search-bar">
+<a href="#" onclick="$(this).parent().next().find('.collapsable-hitarea').click(); return false;"><img src="images/collapse_all.png" title="Collapse all" alt="Collapse all"></a><a href="#" onclick="$(this).parent().next().find('.expandable-hitarea').click(); return false;"><img src="images/expand_all.png" title="Expand all" alt="Expand all"></a><div><input type="text" onkeyup="tree_search(this);"></div>
+</div>
+<ul class="sidebar-nav-tree"><li class="closed">
+<span class="folder">Aura</span><ul><li class="closed">
+<span class="folder">Marshal</span><ul>
+<li class="closed">
+<span class="folder">Collection</span><ul>
+<li><span class="class"><a href="db_Aura_Marshal_Collection_Builder.html#%5CAura%5CMarshal%5CCollection%5CBuilder" target="content">Builder</a></span></li>
+<li><span class="interface"><a href="db_Aura_Marshal_Collection_BuilderInterface.html#%5CAura%5CMarshal%5CCollection%5CBuilderInterface" target="content">BuilderInterface</a></span></li>
+<li><span class="class"><a href="db_Aura_Marshal_Collection_GenericCollection.html#%5CAura%5CMarshal%5CCollection%5CGenericCollection" target="content">GenericCollection</a></span></li>
+</ul>
+</li>
+<li class="closed">
+<span class="folder">Record</span><ul>
+<li><span class="class"><a href="db_Aura_Marshal_Record_Builder.html#%5CAura%5CMarshal%5CRecord%5CBuilder" target="content">Builder</a></span></li>
+<li><span class="interface"><a href="db_Aura_Marshal_Record_BuilderInterface.html#%5CAura%5CMarshal%5CRecord%5CBuilderInterface" target="content">BuilderInterface</a></span></li>
+<li><span class="class"><a href="db_Aura_Marshal_Record_GenericRecord.html#%5CAura%5CMarshal%5CRecord%5CGenericRecord" target="content">GenericRecord</a></span></li>
+</ul>
+</li>
+<li class="closed">
+<span class="folder">Relation</span><ul>
+<li><span class="class"><a href="db_Aura_Marshal_Relation_AbstractRelation.html#%5CAura%5CMarshal%5CRelation%5CAbstractRelation" target="content">AbstractRelation</a></span></li>
+<li><span class="class"><a href="db_Aura_Marshal_Relation_BelongsTo.html#%5CAura%5CMarshal%5CRelation%5CBelongsTo" target="content">BelongsTo</a></span></li>
+<li><span class="class"><a href="db_Aura_Marshal_Relation_Builder.html#%5CAura%5CMarshal%5CRelation%5CBuilder" target="content">Builder</a></span></li>
+<li><span class="class"><a href="db_Aura_Marshal_Relation_HasMany.html#%5CAura%5CMarshal%5CRelation%5CHasMany" target="content">HasMany</a></span></li>
+<li><span class="class"><a href="db_Aura_Marshal_Relation_HasManyThrough.html#%5CAura%5CMarshal%5CRelation%5CHasManyThrough" target="content">HasManyThrough</a></span></li>
+<li><span class="class"><a href="db_Aura_Marshal_Relation_HasOne.html#%5CAura%5CMarshal%5CRelation%5CHasOne" target="content">HasOne</a></span></li>
+<li><span class="interface"><a href="db_Aura_Marshal_Relation_RelationInterface.html#%5CAura%5CMarshal%5CRelation%5CRelationInterface" target="content">RelationInterface</a></span></li>
+</ul>
+</li>
+<li class="closed">
+<span class="folder">Type</span><ul>
+<li><span class="class"><a href="db_Aura_Marshal_Type_Builder.html#%5CAura%5CMarshal%5CType%5CBuilder" target="content">Builder</a></span></li>
+<li><span class="class"><a href="db_Aura_Marshal_Type_GenericType.html#%5CAura%5CMarshal%5CType%5CGenericType" target="content">GenericType</a></span></li>
+</ul>
+</li>
+<li><span class="class"><a href="db_Aura_Marshal_Data.html#%5CAura%5CMarshal%5CData" target="content">Data</a></span></li>
+<li><span class="class"><a href="db_Aura_Marshal_DataIterator.html#%5CAura%5CMarshal%5CDataIterator" target="content">DataIterator</a></span></li>
+<li><span class="class"><a href="db_Aura_Marshal_Exception.html#%5CAura%5CMarshal%5CException" target="content">Exception</a></span></li>
+<li><span class="class"><a href="db_Aura_Marshal_Manager.html#%5CAura%5CMarshal%5CManager" target="content">Manager</a></span></li>
+</ul>
+</li></ul>
+</li></ul>
+</div>
+<h3 id="sidebar-charts">
+<img src="css/docblox/images/icons/chart.png" alt="Charts"><a href="#charts">Charts</a>
+</h3>
+<div class="sidebar-section"><ul style="list-style-image: url('css/docblox/images/icons/chart15x12.png');"><li><a href="graph.html" target="content">Class Inheritance Diagram</a></li></ul></div>
+<h3 id="sidebar-reports">
+<img src="css/docblox/images/icons/reports.png" alt="Reports"><a href="#reports">Reports</a>
+</h3>
+<div class="sidebar-section"><ul style="list-style-image: url('css/docblox/images/icons/reports9x12.png');">
+<li><a href="report_markers.html" target="content">Markers (TODO/FIXME)</a></li>
+<li><a href="report_parse_markers.html" target="content">Parsing errors</a></li>
+<li><a href="report_deprecated.html" target="content">Deprecated elements</a></li>
+</ul></div>
+</div>
+<div id="sidebar-footer">
+        Documentation is generated by <a href="http://docblox-project.org" target="_top"><img src="images/icon48x48.png" height="12" align="top" alt="Logo"> DocBlox 0.17.2</a>, images courtesy of <a href="http://glyphish.com/" target="_top">Glyphish</a>
+</div>
+</div></body></html>

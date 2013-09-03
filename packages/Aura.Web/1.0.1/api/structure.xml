@@ -1,0 +1,2404 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project version="2.0.0a7" title="">
+  <file path="Accept.php" hash="66b9a5d8e863b3d1bcf2af0472740c38" package="Aura\Web">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Web"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Web" line="20" package="Aura\Web">
+      <extends/>
+      <name>Accept</name>
+      <full_name>\Aura\Web\Accept</full_name>
+      <docblock line="13">
+        <description><![CDATA[Collection point for information about the Accept headers.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Web"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="29" namespace="Aura\Web" package="Default">
+        <name>$values</name>
+        <default><![CDATA[array('HTTP_ACCEPT' => array(), 'HTTP_ACCEPT_CHARSET' => array(), 'HTTP_ACCEPT_ENCODING' => array(), 'HTTP_ACCEPT_LANGUAGE' => array())]]></default>
+        <docblock line="22">
+          <description><![CDATA[The various accept header values.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web" line="43" package="Aura\Web">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="36">
+          <description><![CDATA[Constructor.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="36" name="param" description="An array of $_SERVER information." type="array" variable="$server">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="43">
+          <name>$server</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web" line="60" package="Aura\Web">
+        <name>getContentType</name>
+        <full_name>getContentType</full_name>
+        <docblock line="53">
+          <description><![CDATA[Returns the acceptable content types as an array ordered by q-values.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="53" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web" line="72" package="Aura\Web">
+        <name>getCharset</name>
+        <full_name>getCharset</full_name>
+        <docblock line="65">
+          <description><![CDATA[Returns the acceptable character sets as an array ordered by q-values.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="65" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web" line="84" package="Aura\Web">
+        <name>getEncoding</name>
+        <full_name>getEncoding</full_name>
+        <docblock line="77">
+          <description><![CDATA[Returns the acceptable encodings as an array ordered by q-values.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="77" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web" line="96" package="Aura\Web">
+        <name>getLanguage</name>
+        <full_name>getLanguage</full_name>
+        <docblock line="89">
+          <description><![CDATA[Returns the acceptable languages as an array ordered by q-values.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="89" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Web" line="112" package="Aura\Web">
+        <name>parse</name>
+        <full_name>parse</full_name>
+        <docblock line="101">
+          <description><![CDATA[Parse an HTTP `Accept*` header and sort by the quality factor, the
+highest being first in the returned array.]]></description>
+          <long-description><![CDATA[<p>The returned data is
+unfiltered.</p>]]></long-description>
+          <tag line="101" name="param" description="The values of the accept header to parse." type="string" variable="$values">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="101" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="112">
+          <name>$values</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Context.php" hash="7fd4d6b0870821e6dcd540ec939ddb57" package="Aura\Web">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Web"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Web" line="20" package="Aura\Web">
+      <extends/>
+      <name>Context</name>
+      <full_name>\Aura\Web\Context</full_name>
+      <docblock line="13">
+        <description><![CDATA[Collection point for information about the web environment.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Web"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="29" namespace="Aura\Web" package="Default">
+        <name>$get</name>
+        <default><![CDATA[]]></default>
+        <docblock line="22">
+          <description><![CDATA[Imported $_GET values.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="38" namespace="Aura\Web" package="Default">
+        <name>$post</name>
+        <default><![CDATA[]]></default>
+        <docblock line="31">
+          <description><![CDATA[Imported $_POST values.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="31" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="47" namespace="Aura\Web" package="Default">
+        <name>$server</name>
+        <default><![CDATA[]]></default>
+        <docblock line="40">
+          <description><![CDATA[Imported $_SERVER values.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="40" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="56" namespace="Aura\Web" package="Default">
+        <name>$cookie</name>
+        <default><![CDATA[]]></default>
+        <docblock line="49">
+          <description><![CDATA[Imported $_COOKIE values.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="49" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="65" namespace="Aura\Web" package="Default">
+        <name>$env</name>
+        <default><![CDATA[]]></default>
+        <docblock line="58">
+          <description><![CDATA[Imported $_ENV values.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="58" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="74" namespace="Aura\Web" package="Default">
+        <name>$files</name>
+        <default><![CDATA[]]></default>
+        <docblock line="67">
+          <description><![CDATA[Imported $_FILES values.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="67" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="86" namespace="Aura\Web" package="Default">
+        <name>$header</name>
+        <default><![CDATA[]]></default>
+        <docblock line="76">
+          <description><![CDATA[Imported $_SERVER['HTTP_*'] values.]]></description>
+          <long-description><![CDATA[<p>Header keys are normalized and lower-cased; keys and values are
+filtered for control characters.</p>]]></long-description>
+          <tag line="76" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="96" namespace="Aura\Web" package="Default">
+        <name>$accept</name>
+        <default><![CDATA[]]></default>
+        <docblock line="88">
+          <description><![CDATA[The parsed http[accept*] headers with each header sorted
+by the quality factor]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="88" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="105" namespace="Aura\Web" package="Default">
+        <name>$input</name>
+        <default><![CDATA[false]]></default>
+        <docblock line="98">
+          <description><![CDATA[The value of `php://input`.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="98" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="119" namespace="Aura\Web" package="Default">
+        <name>$agents</name>
+        <default><![CDATA[array('mobile' => array('Android', 'BlackBerry', 'Blazer', 'Brew', 'IEMobile', 'iPad', 'iPhone', 'iPod', 'KDDI', 'Kindle', 'Maemo', 'MOT-', 'Nokia', 'SymbianOS', 'UP.Browser', 'UP.Link', 'Opera Mobi', 'Opera Mini', 'webOS', 'Playstation', 'PS2', 'Windows CE', 'Polaris', 'SEMC', 'NetFront', 'Fennec'), 'crawler' => array('Ask', 'Baidu', 'Google', 'AdsBot', 'gsa-crawler', 'adidxbot', 'librabot', 'llssbot', 'bingbot', 'Danger hiptop', 'MSMOBOT', 'MSNBot', 'MSR-ISRCCrawler', 'MSRBOT', 'Vancouver', 'Y!J', 'Yahoo', 'mp3Spider', 'Mp3Bot', 'Scooter', 'slurp', 'Y!OASIS', 'YRL_ODP_CRAWLER', 'Yandex', 'Fast', 'Lycos', 'heritrix', 'ia_archiver', 'InternetArchive', 'archive.org_bot', 'Nutch', 'WordPress', 'Wget'))]]></default>
+        <docblock line="107">
+          <description><![CDATA[An array of http user-agents used in matching
+mobile browsers and crawlers]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="107" name="see" description="\Aura\Web\isMobile()" refers="\Aura\Web\isMobile()"/>
+          <tag line="107" name="see" description="\Aura\Web\isCrawler()" refers="\Aura\Web\isCrawler()"/>
+          <tag line="107" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="193" namespace="Aura\Web" package="Default">
+        <name>$is_mobile</name>
+        <default><![CDATA[]]></default>
+        <docblock line="185">
+          <description><![CDATA[A property to hold previous calls to isMobile()
+so you don't have to loop through $this->agents['mobile'] again.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="185" name="var" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="203" namespace="Aura\Web" package="Default">
+        <name>$is_crawler</name>
+        <default><![CDATA[]]></default>
+        <docblock line="195">
+          <description><![CDATA[A property to hold previous calls to isCrawler()
+so you don't have to loop through $this->agents['crawler'] again.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="195" name="var" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web" line="214" package="Aura\Web">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="205">
+          <description><![CDATA[Constructor.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="205" name="param" description="An array of global variables, typically $GLOBALS." type="array" variable="$globals">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="205" name="param" description="An array of override agent values." type="array" variable="$agents">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="214">
+          <name>$globals</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+        <argument line="214">
+          <name>$agents</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web" line="242" package="Aura\Web">
+        <name>__get</name>
+        <full_name>__get</full_name>
+        <docblock line="233">
+          <description><![CDATA[Magic get to make properties read-only.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="233" name="param" description="The property to read." type="string" variable="$key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="233" name="return" description="The property value." type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="242">
+          <name>$key</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web" line="260" package="Aura\Web">
+        <name>isGet</name>
+        <full_name>isGet</full_name>
+        <docblock line="253">
+          <description><![CDATA[Is this a GET request?]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="253" name="return" description="" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web" line="272" package="Aura\Web">
+        <name>isPost</name>
+        <full_name>isPost</full_name>
+        <docblock line="265">
+          <description><![CDATA[Is this a POST request?]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="265" name="return" description="" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web" line="284" package="Aura\Web">
+        <name>isPut</name>
+        <full_name>isPut</full_name>
+        <docblock line="277">
+          <description><![CDATA[Is this a PUT request?]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="277" name="return" description="" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web" line="296" package="Aura\Web">
+        <name>isDelete</name>
+        <full_name>isDelete</full_name>
+        <docblock line="289">
+          <description><![CDATA[Is this a DELETE request?]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="289" name="return" description="" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web" line="308" package="Aura\Web">
+        <name>isHead</name>
+        <full_name>isHead</full_name>
+        <docblock line="301">
+          <description><![CDATA[Is this a HEAD request?]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="301" name="return" description="" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web" line="320" package="Aura\Web">
+        <name>isOptions</name>
+        <full_name>isOptions</full_name>
+        <docblock line="313">
+          <description><![CDATA[Is this an OPTIONS request?]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="313" name="return" description="" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web" line="332" package="Aura\Web">
+        <name>isXhr</name>
+        <full_name>isXhr</full_name>
+        <docblock line="325">
+          <description><![CDATA[Is this an XmlHttpRequest?]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="325" name="return" description="" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web" line="344" package="Aura\Web">
+        <name>isMobile</name>
+        <full_name>isMobile</full_name>
+        <docblock line="337">
+          <description><![CDATA[Is this a mobile device?]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="337" name="return" description="False if not mobile, or the matched pattern if it is." type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web" line="379" package="Aura\Web">
+        <name>isCrawler</name>
+        <full_name>isCrawler</full_name>
+        <docblock line="372">
+          <description><![CDATA[Is this a crawler/bot device?]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="372" name="return" description="False if not a crawler, or the matched pattern if it is." type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web" line="414" package="Aura\Web">
+        <name>isSsl</name>
+        <full_name>isSsl</full_name>
+        <docblock line="407">
+          <description><![CDATA[Is this an SSL request?]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="407" name="return" description="" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web" line="433" package="Aura\Web">
+        <name>getQuery</name>
+        <full_name>getQuery</full_name>
+        <docblock line="420">
+          <description><![CDATA[Retrieves an **unfiltered** value by key from the `$get` property,
+or an alternate default value if that key does not exist.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="420" name="param" description="The $get key to retrieve the value of." type="string" variable="$key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="420" name="param" description="The value to return if the key does not exist." type="string" variable="$alt">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="420" name="return" description="The value of $get[$key], or the alternate default value." type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="433">
+          <name>$key</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+        <argument line="433">
+          <name>$alt</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web" line="451" package="Aura\Web">
+        <name>getPost</name>
+        <full_name>getPost</full_name>
+        <docblock line="438">
+          <description><![CDATA[Retrieves an **unfiltered** value by key from the `$post` property,
+or an alternate default value if that key does not exist.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="438" name="param" description="The $post key to retrieve the value of." type="string" variable="$key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="438" name="param" description="The value to return if the key does not exist." type="string" variable="$alt">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="438" name="return" description="The value of $post[$key], or the alternate default value." type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="451">
+          <name>$key</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+        <argument line="451">
+          <name>$alt</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web" line="469" package="Aura\Web">
+        <name>getFiles</name>
+        <full_name>getFiles</full_name>
+        <docblock line="456">
+          <description><![CDATA[Retrieves an **unfiltered** value by key from the `$files` property,
+or an alternate default value if that key does not exist.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="456" name="param" description="The $files key to retrieve the value of." type="string" variable="$key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="456" name="param" description="The value to return if the key does not exist." type="string" variable="$alt">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="456" name="return" description="The value of $files[$key], or the alternate default value." type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="469">
+          <name>$key</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+        <argument line="469">
+          <name>$alt</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web" line="487" package="Aura\Web">
+        <name>getCookie</name>
+        <full_name>getCookie</full_name>
+        <docblock line="474">
+          <description><![CDATA[Retrieves an **unfiltered** value by key from the `$cookie` property,
+or an alternate default value if that key does not exist.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="474" name="param" description="The $cookie key to retrieve the value of." type="string" variable="$key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="474" name="param" description="The value to return if the key does not exist." type="string" variable="$alt">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="474" name="return" description="The value of $cookie[$key], or the alternate default value." type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="487">
+          <name>$key</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+        <argument line="487">
+          <name>$alt</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web" line="505" package="Aura\Web">
+        <name>getEnv</name>
+        <full_name>getEnv</full_name>
+        <docblock line="492">
+          <description><![CDATA[Retrieves an **unfiltered** value by key from the `$env` property,
+or an alternate default value if that key does not exist.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="492" name="param" description="The $env key to retrieve the value of." type="string" variable="$key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="492" name="param" description="The value to return if the key does not exist." type="string" variable="$alt">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="492" name="return" description="The value of $env[$key], or the alternate default value." type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="505">
+          <name>$key</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+        <argument line="505">
+          <name>$alt</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web" line="523" package="Aura\Web">
+        <name>getServer</name>
+        <full_name>getServer</full_name>
+        <docblock line="510">
+          <description><![CDATA[Retrieves an **unfiltered** value by key from the `$server` property,
+or an alternate default value if that key does not exist.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="510" name="param" description="The $server key to retrieve the value of." type="string" variable="$key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="510" name="param" description="The value to return if the key does not exist." type="string" variable="$alt">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="510" name="return" description="The value of $server[$key], or the alternate default value." type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="523">
+          <name>$key</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+        <argument line="523">
+          <name>$alt</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web" line="535" package="Aura\Web">
+        <name>getInput</name>
+        <full_name>getInput</full_name>
+        <docblock line="528">
+          <description><![CDATA[Retrieves the unfiltered `$input` property.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="528" name="return" description="The value of $input." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web" line="552" package="Aura\Web">
+        <name>getJsonInput</name>
+        <full_name>getJsonInput</full_name>
+        <docblock line="540">
+          <description><![CDATA[Retrieves the `$input` property after applying `json_decode()`.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="540" name="param" description="When true, returned objects will be converted into associative arrays." type="bool" variable="$assoc">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="540" name="param" description="Recursion depth." type="int" variable="$depth">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="540" name="return" description="The `json_decode()` results." type="object">
+            <type by_reference="false">object</type>
+          </tag>
+        </docblock>
+        <argument line="552">
+          <name>$assoc</name>
+          <default><![CDATA[false]]></default>
+          <type/>
+        </argument>
+        <argument line="552">
+          <name>$depth</name>
+          <default><![CDATA[512]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web" line="570" package="Aura\Web">
+        <name>getHeader</name>
+        <full_name>getHeader</full_name>
+        <docblock line="557">
+          <description><![CDATA[Retrieves an **unfiltered** value by key from the `$header` property,
+or an alternate default value if that key does not exist.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="557" name="param" description="The $http key to retrieve the value of." type="string" variable="$key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="557" name="param" description="The value to return if the key does not exist." type="string" variable="$alt">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="557" name="return" description="The value of $header[$key], or the alternate default value." type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="570">
+          <name>$key</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+        <argument line="570">
+          <name>$alt</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Web" line="583" package="Aura\Web">
+        <name>setHeader</name>
+        <full_name>setHeader</full_name>
+        <docblock line="576">
+          <description><![CDATA[Set the "fake" `$header` property.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="576" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Web" line="621" package="Aura\Web">
+        <name>httpMethodOverride</name>
+        <full_name>httpMethodOverride</full_name>
+        <docblock line="613">
+          <description><![CDATA[Overrides the REQUEST_METHOD with X-HTTP-Method-Override header or
+$_POST value.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="613" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Web" line="658" package="Aura\Web">
+        <name>rebuildFiles</name>
+        <full_name>rebuildFiles</full_name>
+        <docblock line="645">
+          <description><![CDATA[Recursive method to rebuild $_FILES structure to be more like $_POST.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="645" name="param" description="The source $_FILES array, perhaps from a sub- element of that array/" type="array" variable="$src">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="645" name="param" description="&amp;$tgt Where we will store the restructured data when we find it." type="array" variable="$tgt">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="645" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="658">
+          <name>$src</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="658">
+          <name>$tgt</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Web" line="713" package="Aura\Web">
+        <name>getValue</name>
+        <full_name>getValue</full_name>
+        <docblock line="697">
+          <description><![CDATA[Common method to get a property value and return it.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="697" name="param" description="The property variable to fetch from: get, post, etc." type="string" variable="$var">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="697" name="param" description="The array key, if any, to get the value of." type="string" variable="$key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="697" name="param" description="The alternative default value to return if the requested key does not exist." type="string" variable="$alt">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="697" name="return" description="The requested value, or the alternative default value." type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="713">
+          <name>$var</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="713">
+          <name>$key</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="713">
+          <name>$alt</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web" line="737" package="Aura\Web">
+        <name>getUrl</name>
+        <full_name>getUrl</full_name>
+        <docblock line="730">
+          <description><![CDATA[Get the context URL.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="730" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Controller/AbstractController.php" hash="ebc9b84a5104b4bab3b10c040c0ac6bb" package="Aura\Web">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Web"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="Accept">Aura\Web\Accept</namespace-alias>
+    <namespace-alias name="Context">Aura\Web\Context</namespace-alias>
+    <namespace-alias name="RendererInterface">Aura\Web\Renderer\RendererInterface</namespace-alias>
+    <namespace-alias name="Response">Aura\Web\Response</namespace-alias>
+    <namespace-alias name="SignalInterface">Aura\Web\SignalInterface</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Web\Controller" line="26" package="Aura\Web">
+      <extends/>
+      <implements>\Aura\Web\Controller\ControllerInterface</implements>
+      <name>AbstractController</name>
+      <full_name>\Aura\Web\Controller\AbstractController</full_name>
+      <docblock line="19">
+        <description><![CDATA[An abstract controller class, suitable for Page and Application controllers.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="19" name="package" description="Aura.Web"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="35" namespace="Aura\Web\Controller" package="Default">
+        <name>$accept</name>
+        <default><![CDATA[]]></default>
+        <docblock line="28">
+          <description><![CDATA[The Accept object for tracking accept header values.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="28" name="var" description="" type="\Aura\Web\Accept">
+            <type by_reference="false">\Aura\Web\Accept</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="44" namespace="Aura\Web\Controller" package="Default">
+        <name>$context</name>
+        <default><![CDATA[]]></default>
+        <docblock line="37">
+          <description><![CDATA[The context of the request environment.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="37" name="var" description="" type="\Aura\Web\Context">
+            <type by_reference="false">\Aura\Web\Context</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="53" namespace="Aura\Web\Controller" package="Default">
+        <name>$data</name>
+        <default><![CDATA[]]></default>
+        <docblock line="46">
+          <description><![CDATA[Collection point for data, typically for rendering the page.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="46" name="var" description="" type="\Aura\Web\Controller\StdClass">
+            <type by_reference="false">\Aura\Web\Controller\StdClass</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="62" namespace="Aura\Web\Controller" package="Default">
+        <name>$params</name>
+        <default><![CDATA[]]></default>
+        <docblock line="55">
+          <description><![CDATA[Path-info parameters, typically from the route.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="55" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="71" namespace="Aura\Web\Controller" package="Default">
+        <name>$renderer</name>
+        <default><![CDATA[]]></default>
+        <docblock line="64">
+          <description><![CDATA[A rendering strategy object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="64" name="var" description="" type="\Aura\Web\Renderer\RendererInterface">
+            <type by_reference="false">\Aura\Web\Renderer\RendererInterface</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="80" namespace="Aura\Web\Controller" package="Default">
+        <name>$response</name>
+        <default><![CDATA[]]></default>
+        <docblock line="73">
+          <description><![CDATA[A data transfer object for the eventual HTTP response.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="73" name="var" description="" type="\Aura\Web\Response">
+            <type by_reference="false">\Aura\Web\Response</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="89" namespace="Aura\Web\Controller" package="Default">
+        <name>$signal</name>
+        <default><![CDATA[]]></default>
+        <docblock line="82">
+          <description><![CDATA[A signal manager.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="82" name="var" description="" type="\Aura\Web\SignalInterface">
+            <type by_reference="false">\Aura\Web\SignalInterface</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web\Controller" line="108" package="Aura\Web">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="91">
+          <description><![CDATA[Constructor.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="91" name="param" description="The request environment." type="\Aura\Web\Context" variable="$context">
+            <type by_reference="false">\Aura\Web\Context</type>
+          </tag>
+          <tag line="91" name="param" description="The accept-headers object." type="\Aura\Web\Accept" variable="$accept">
+            <type by_reference="false">\Aura\Web\Accept</type>
+          </tag>
+          <tag line="91" name="param" description="A response transfer object." type="\Aura\Web\Response" variable="$response">
+            <type by_reference="false">\Aura\Web\Response</type>
+          </tag>
+          <tag line="91" name="param" description="A signal manager." type="\Aura\Web\SignalInterface" variable="$signal">
+            <type by_reference="false">\Aura\Web\SignalInterface</type>
+          </tag>
+          <tag line="91" name="param" description="A renderer strategy object." type="\Aura\Web\Renderer\RendererInterface" variable="$renderer">
+            <type by_reference="false">\Aura\Web\Renderer\RendererInterface</type>
+          </tag>
+          <tag line="91" name="param" description="The path-info parameters." type="array" variable="$params">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="109">
+          <name>$context</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Web\Context</type>
+        </argument>
+        <argument line="110">
+          <name>$accept</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Web\Accept</type>
+        </argument>
+        <argument line="111">
+          <name>$response</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Web\Response</type>
+        </argument>
+        <argument line="112">
+          <name>$signal</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Web\SignalInterface</type>
+        </argument>
+        <argument line="113">
+          <name>$renderer</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Web\Renderer\RendererInterface</type>
+        </argument>
+        <argument line="114">
+          <name>$params</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Web\Controller" line="133" package="Aura\Web">
+        <name>init</name>
+        <full_name>init</full_name>
+        <docblock line="126">
+          <description><![CDATA[Post-constructor initialization.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="126" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web\Controller" line="145" package="Aura\Web">
+        <name>getAccept</name>
+        <full_name>getAccept</full_name>
+        <docblock line="138">
+          <description><![CDATA[Returns the Accept object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="138" name="return" description="" type="\Aura\Web\Accept">
+            <type by_reference="false">\Aura\Web\Accept</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web\Controller" line="157" package="Aura\Web">
+        <name>getContext</name>
+        <full_name>getContext</full_name>
+        <docblock line="150">
+          <description><![CDATA[Returns the Context object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="150" name="return" description="" type="\Aura\Web\Context">
+            <type by_reference="false">\Aura\Web\Context</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web\Controller" line="169" package="Aura\Web">
+        <name>getData</name>
+        <full_name>getData</full_name>
+        <docblock line="162">
+          <description><![CDATA[Returns the data collection object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="162" name="return" description="" type="object">
+            <type by_reference="false">object</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web\Controller" line="181" package="Aura\Web">
+        <name>getParams</name>
+        <full_name>getParams</full_name>
+        <docblock line="174">
+          <description><![CDATA[Returns the params.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="174" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web\Controller" line="193" package="Aura\Web">
+        <name>getResponse</name>
+        <full_name>getResponse</full_name>
+        <docblock line="186">
+          <description><![CDATA[Returns the Response object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="186" name="return" description="" type="\Aura\Web\Response">
+            <type by_reference="false">\Aura\Web\Response</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web\Controller" line="205" package="Aura\Web">
+        <name>getSignal</name>
+        <full_name>getSignal</full_name>
+        <docblock line="198">
+          <description><![CDATA[Returns the SignalInterface object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="198" name="return" description="" type="\Aura\Web\SignalInterface">
+            <type by_reference="false">\Aura\Web\SignalInterface</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web\Controller" line="217" package="Aura\Web">
+        <name>getRenderer</name>
+        <full_name>getRenderer</full_name>
+        <docblock line="210">
+          <description><![CDATA[Returns the RendererInterface object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="210" name="return" description="" type="\Aura\Web\Renderer\RendererInterface">
+            <type by_reference="false">\Aura\Web\Renderer\RendererInterface</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="true" static="false" visibility="public" namespace="Aura\Web\Controller" line="229" package="Aura\Web">
+        <name>exec</name>
+        <full_name>exec</full_name>
+        <docblock line="222">
+          <description><![CDATA[Executes the controller.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="222" name="return" description="" type="\Aura\Web\Response">
+            <type by_reference="false">\Aura\Web\Response</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="true" static="false" visibility="protected" namespace="Aura\Web\Controller" line="238" package="Aura\Web">
+        <name>render</name>
+        <full_name>render</full_name>
+        <docblock line="231">
+          <description><![CDATA[Renders the controller output, generally into the Response object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="231" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Controller/AbstractPage.php" hash="3ef505dd3ccea050f1211466f0b3f470" package="Aura\Web">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Web"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="WebException">Aura\Web\Exception</namespace-alias>
+    <namespace-alias name="RendererInterface">Aura\Web\Renderer\RendererInterface</namespace-alias>
+    <namespace-alias name="Exception">Exception</namespace-alias>
+    <namespace-alias name="ReflectionMethod">ReflectionMethod</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Web\Controller" line="25" package="Aura\Web">
+      <extends>\Aura\Web\Controller\AbstractController</extends>
+      <name>AbstractPage</name>
+      <full_name>\Aura\Web\Controller\AbstractPage</full_name>
+      <docblock line="18">
+        <description><![CDATA[A page controller.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="18" name="package" description="Aura.Web"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="34" namespace="Aura\Web\Controller" package="Default">
+        <name>$action</name>
+        <default><![CDATA[]]></default>
+        <docblock line="27">
+          <description><![CDATA[The action to perform, typically discovered from the params.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="27" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="43" namespace="Aura\Web\Controller" package="Default">
+        <name>$format</name>
+        <default><![CDATA[]]></default>
+        <docblock line="36">
+          <description><![CDATA[The page format to render, typically discovered from the params.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="36" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="52" namespace="Aura\Web\Controller" package="Default">
+        <name>$exception</name>
+        <default><![CDATA[]]></default>
+        <docblock line="45">
+          <description><![CDATA[The exception caught inside `exec()`.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="45" name="var" description="" type="\Exception">
+            <type by_reference="false">\Exception</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Web\Controller" line="62" package="Aura\Web">
+        <name>init</name>
+        <full_name>init</full_name>
+        <docblock line="55">
+          <description><![CDATA[Initialize after construction.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="55" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web\Controller" line="102" package="Aura\Web">
+        <name>getAction</name>
+        <full_name>getAction</full_name>
+        <docblock line="95">
+          <description><![CDATA[Returns the action, typically discovered from the params.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="95" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web\Controller" line="114" package="Aura\Web">
+        <name>getFormat</name>
+        <full_name>getFormat</full_name>
+        <docblock line="107">
+          <description><![CDATA[Returns the page format, typically discovered from the params.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="107" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web\Controller" line="126" package="Aura\Web">
+        <name>getException</name>
+        <full_name>getException</full_name>
+        <docblock line="119">
+          <description><![CDATA[Returns the exception caught by exec().]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="119" name="return" description="" type="\Exception">
+            <type by_reference="false">\Exception</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web\Controller" line="159" package="Aura\Web">
+        <name>exec</name>
+        <full_name>exec</full_name>
+        <docblock line="131">
+          <description><![CDATA[Executes the action and all hooks:]]></description>
+          <long-description><![CDATA[<ul>
+<li><p>signals <code>pre_exec</code>, thereby calling <code>preExec()</code></p></li>
+<li><p>signals <code>pre_action</code>, thereby calling <code>preAction()</code></p></li>
+<li><p>calls <code>action()</code> to find and invoke the action method</p></li>
+<li><p>signals <code>post_action</code>, thereby calling <code>postAction()</code></p></li>
+<li><p>signals <code>pre_render</code>, thereby calling <code>preRender()</code></p></li>
+<li><p>calls <code>render()</code> to render a view (does nothing by default)</p></li>
+<li><p>signals <code>post_render</code>, thereby calling <code>postRender()</code></p></li>
+<li><p>signals <code>post_exec</code>, thereby calling <code>postExec()</code></p></li>
+<li><p>signals <code>catch_exception</code> when a exception is thrown, thereby
+calling <code>catchException()</code></p></li>
+<li><p>returns the Response transfer object</p></li>
+</ul>]]></long-description>
+          <tag line="131" name="return" description="" type="\Aura\Web\Controller\Response">
+            <type by_reference="false">\Aura\Web\Controller\Response</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Web\Controller" line="200" package="Aura\Web">
+        <name>action</name>
+        <full_name>action</full_name>
+        <docblock line="191">
+          <description><![CDATA[Determines the action method, then invokes it.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="191" name="param" description="The name of the action to invoke." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="191" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="200">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Web\Controller" line="218" package="Aura\Web">
+        <name>invokeMethod</name>
+        <full_name>invokeMethod</full_name>
+        <docblock line="209">
+          <description><![CDATA[Invokes a method by name, matching method params to `$this->params`.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="209" name="param" description="The method name to execute, typically an action." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="209" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="218">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Web\Controller" line="241" package="Aura\Web">
+        <name>render</name>
+        <full_name>render</full_name>
+        <docblock line="234">
+          <description><![CDATA[Renders the page into the response object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="234" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web\Controller" line="253" package="Aura\Web">
+        <name>preExec</name>
+        <full_name>preExec</full_name>
+        <docblock line="246">
+          <description><![CDATA[Runs at the beginning of `exec()` before `preAction()`.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="246" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web\Controller" line="264" package="Aura\Web">
+        <name>preAction</name>
+        <full_name>preAction</full_name>
+        <docblock line="257">
+          <description><![CDATA[Runs after `preExec()` and before the main `action()`.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="257" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web\Controller" line="275" package="Aura\Web">
+        <name>postAction</name>
+        <full_name>postAction</full_name>
+        <docblock line="268">
+          <description><![CDATA[Runs after the main `action()` and before `preRender()`.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="268" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web\Controller" line="286" package="Aura\Web">
+        <name>preRender</name>
+        <full_name>preRender</full_name>
+        <docblock line="279">
+          <description><![CDATA[Runs after `postAction()` and before `render()`.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="279" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web\Controller" line="297" package="Aura\Web">
+        <name>postRender</name>
+        <full_name>postRender</full_name>
+        <docblock line="290">
+          <description><![CDATA[Runs after `render()` and before `postExec()`.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="290" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web\Controller" line="308" package="Aura\Web">
+        <name>postExec</name>
+        <full_name>postExec</full_name>
+        <docblock line="301">
+          <description><![CDATA[Runs at the end of `exec()` after `postRender()`.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="301" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web\Controller" line="319" package="Aura\Web">
+        <name>catchException</name>
+        <full_name>catchException</full_name>
+        <docblock line="312">
+          <description><![CDATA[Runs when `exec()` catches an exception.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="312" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Controller/ControllerInterface.php" hash="c7df598a0b2faa7effa0e296c1451082" package="Aura\Web">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Web"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <interface namespace="Aura\Web\Controller" line="20" package="Aura\Web">
+      <name>ControllerInterface</name>
+      <full_name>\Aura\Web\Controller\ControllerInterface</full_name>
+      <docblock line="13">
+        <description><![CDATA[An interface for web controllers.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Web"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web\Controller" line="29" package="Aura\Web">
+        <name>getAccept</name>
+        <full_name>getAccept</full_name>
+        <docblock line="22">
+          <description><![CDATA[Returns the Accept object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="return" description="" type="\Aura\Web\Controller\Accept">
+            <type by_reference="false">\Aura\Web\Controller\Accept</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web\Controller" line="38" package="Aura\Web">
+        <name>getContext</name>
+        <full_name>getContext</full_name>
+        <docblock line="31">
+          <description><![CDATA[Returns the Context object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="31" name="return" description="" type="\Aura\Web\Controller\Context">
+            <type by_reference="false">\Aura\Web\Controller\Context</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web\Controller" line="47" package="Aura\Web">
+        <name>getData</name>
+        <full_name>getData</full_name>
+        <docblock line="40">
+          <description><![CDATA[Returns the data collection object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="40" name="return" description="" type="object">
+            <type by_reference="false">object</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web\Controller" line="56" package="Aura\Web">
+        <name>getParams</name>
+        <full_name>getParams</full_name>
+        <docblock line="49">
+          <description><![CDATA[Returns the params.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="49" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web\Controller" line="65" package="Aura\Web">
+        <name>getResponse</name>
+        <full_name>getResponse</full_name>
+        <docblock line="58">
+          <description><![CDATA[Returns the Response object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="58" name="return" description="" type="\Aura\Web\Controller\Response">
+            <type by_reference="false">\Aura\Web\Controller\Response</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web\Controller" line="74" package="Aura\Web">
+        <name>getSignal</name>
+        <full_name>getSignal</full_name>
+        <docblock line="67">
+          <description><![CDATA[Returns the SignalInterface object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="67" name="return" description="" type="\Aura\Web\Controller\SignalInterface">
+            <type by_reference="false">\Aura\Web\Controller\SignalInterface</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web\Controller" line="83" package="Aura\Web">
+        <name>exec</name>
+        <full_name>exec</full_name>
+        <docblock line="76">
+          <description><![CDATA[Executes the controller.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="76" name="return" description="" type="\Aura\Web\Controller\Response">
+            <type by_reference="false">\Aura\Web\Controller\Response</type>
+          </tag>
+        </docblock>
+      </method>
+    </interface>
+  </file>
+  <file path="Exception/Context.php" hash="a25f0d311cf61cdfe318009ad174553b" package="Aura\Web">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Web"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="Exception">Aura\Web\Exception</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Web\Exception" line="22" package="Aura\Web">
+      <extends>\Aura\Web\Exception</extends>
+      <name>Context</name>
+      <full_name>\Aura\Web\Exception\Context</full_name>
+      <docblock line="15">
+        <description><![CDATA[Context Exception]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Web"/>
+      </docblock>
+    </class>
+  </file>
+  <file path="Exception/NoMethodForAction.php" hash="740827668e87dc342fe51bff92fd2c33" package="Aura\Web">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Web"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="Exception">Aura\Web\Exception</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Web\Exception" line="22" package="Aura\Web">
+      <extends>\Aura\Web\Exception</extends>
+      <name>NoMethodForAction</name>
+      <full_name>\Aura\Web\Exception\NoMethodForAction</full_name>
+      <docblock line="15">
+        <description><![CDATA[No method for action exception]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Web"/>
+      </docblock>
+    </class>
+  </file>
+  <file path="Exception.php" hash="78833e750ddf76ba7b5de38fe71a53e5" package="Aura\Web">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Web"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Web" line="20" package="Aura\Web">
+      <extends>\Exception</extends>
+      <name>Exception</name>
+      <full_name>\Aura\Web\Exception</full_name>
+      <docblock line="13">
+        <description><![CDATA[Package-specific exception.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Web"/>
+      </docblock>
+    </class>
+  </file>
+  <file path="Renderer/AbstractRenderer.php" hash="fc6664f3f8359c4d966da90e71872ec8" package="Aura\Web">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Web"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="ControllerInterface">Aura\Web\Controller\ControllerInterface</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Web\Renderer" line="22" package="Aura\Web">
+      <extends/>
+      <implements>\Aura\Web\Renderer\RendererInterface</implements>
+      <name>AbstractRenderer</name>
+      <full_name>\Aura\Web\Renderer\AbstractRenderer</full_name>
+      <docblock line="15">
+        <description><![CDATA[An abstract renderer strategy.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Web"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="31" namespace="Aura\Web\Renderer" package="Default">
+        <name>$controller</name>
+        <default><![CDATA[]]></default>
+        <docblock line="24">
+          <description><![CDATA[The controller being rendered.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="24" name="var" description="" type="\Aura\Web\Controller\ControllerInterface">
+            <type by_reference="false">\Aura\Web\Controller\ControllerInterface</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web\Renderer" line="42" package="Aura\Web">
+        <name>setController</name>
+        <full_name>setController</full_name>
+        <docblock line="33">
+          <description><![CDATA[Sets the controller to be rendered.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="33" name="param" description="The controller to be rendered." type="\Aura\Web\Controller\ControllerInterface" variable="$controller">
+            <type by_reference="false">\Aura\Web\Controller\ControllerInterface</type>
+          </tag>
+          <tag line="33" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="42">
+          <name>$controller</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Web\Controller\ControllerInterface</type>
+        </argument>
+      </method>
+      <method final="false" abstract="true" static="false" visibility="public" namespace="Aura\Web\Renderer" line="54" package="Aura\Web">
+        <name>exec</name>
+        <full_name>exec</full_name>
+        <docblock line="47">
+          <description><![CDATA[Executes the renderer.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="47" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Renderer/None.php" hash="e6b227601e72febc5b4de8fa5619b8a5" package="Aura\Web">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Web"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Web\Renderer" line="20" package="Aura\Web">
+      <extends>\Aura\Web\Renderer\AbstractRenderer</extends>
+      <name>None</name>
+      <full_name>\Aura\Web\Renderer\None</full_name>
+      <docblock line="13">
+        <description><![CDATA[A default strategy that does no rendering at all.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Web"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web\Renderer" line="29" package="Aura\Web">
+        <name>exec</name>
+        <full_name>exec</full_name>
+        <docblock line="22">
+          <description><![CDATA[Executes the renderer.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Renderer/RendererInterface.php" hash="926613df1f38427e6e4117d1f9c573d4" package="Aura\Web">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Web"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="ControllerInterface">Aura\Web\Controller\ControllerInterface</namespace-alias>
+    <interface namespace="Aura\Web\Renderer" line="22" package="Aura\Web">
+      <name>RendererInterface</name>
+      <full_name>\Aura\Web\Renderer\RendererInterface</full_name>
+      <docblock line="15">
+        <description><![CDATA[An interface for renderer strategies.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Web"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web\Renderer" line="33" package="Aura\Web">
+        <name>setController</name>
+        <full_name>setController</full_name>
+        <docblock line="24">
+          <description><![CDATA[Sets the controller to be rendered.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="24" name="param" description="The controller to be rendered." type="\Aura\Web\Controller\ControllerInterface" variable="$controller">
+            <type by_reference="false">\Aura\Web\Controller\ControllerInterface</type>
+          </tag>
+          <tag line="24" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="33">
+          <name>$controller</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Web\Controller\ControllerInterface</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web\Renderer" line="42" package="Aura\Web">
+        <name>exec</name>
+        <full_name>exec</full_name>
+        <docblock line="35">
+          <description><![CDATA[Executes the renderer.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="35" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+    </interface>
+  </file>
+  <file path="Response.php" hash="414b0839f221591e24b07bceab902094" package="Aura\Web">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Web"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Web" line="21" package="Aura\Web">
+      <extends/>
+      <name>Response</name>
+      <full_name>\Aura\Web\Response</full_name>
+      <docblock line="13">
+        <description><![CDATA[Retains information about the controller results for transfer to an actual
+HTTP response object.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Web"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="47" namespace="Aura\Web" package="Default">
+        <name>$cache</name>
+        <default><![CDATA[null]]></default>
+        <docblock line="23">
+          <description><![CDATA[Should the response disable browser caching?]]></description>
+          <long-description><![CDATA[<p>When <code>false</code>, the <code>getHeaders()</code> method will set these headers in its
+return value (note that they are not added to <code>$headers</code> directly):</p>
+
+<p>{{code:
+    Pragma: no-cache
+    Cache-Control: no-store, no-cache, must-revalidate
+    Cache-Control: post-check=0, pre-check=0
+    Expires: 1
+}}</p>
+
+<p>When true or null, the <code>getHeaders()</code> method will make no changes to
+the existing headers.</p>]]></long-description>
+          <tag line="23" name="var" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="23" name="see" description="\Aura\Web\setCache()" refers="\Aura\Web\setCache()"/>
+          <tag line="23" name="see" description="\Aura\Web\setRedirectAfterPost()" refers="\Aura\Web\setRedirectAfterPost()"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="56" namespace="Aura\Web" package="Default">
+        <name>$content</name>
+        <default><![CDATA[null]]></default>
+        <docblock line="49">
+          <description><![CDATA[The response body content.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="49" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="65" namespace="Aura\Web" package="Default">
+        <name>$content_type</name>
+        <default><![CDATA[null]]></default>
+        <docblock line="58">
+          <description><![CDATA[The Content-Type of the response.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="58" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="74" namespace="Aura\Web" package="Default">
+        <name>$cookies</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="67">
+          <description><![CDATA[The response cookies.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="67" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="83" namespace="Aura\Web" package="Default">
+        <name>$cookies_httponly</name>
+        <default><![CDATA[true]]></default>
+        <docblock line="76">
+          <description><![CDATA[Whether or not cookies should default to being sent by HTTP only.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="76" name="var" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="92" namespace="Aura\Web" package="Default">
+        <name>$headers</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="85">
+          <description><![CDATA[The response headers (less the cookies).]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="85" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="101" namespace="Aura\Web" package="Default">
+        <name>$redirect</name>
+        <default><![CDATA['']]></default>
+        <docblock line="94">
+          <description><![CDATA[Redirect to this location.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="94" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="110" namespace="Aura\Web" package="Default">
+        <name>$status_code</name>
+        <default><![CDATA[200]]></default>
+        <docblock line="103">
+          <description><![CDATA[The response status code.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="103" name="var" description="" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="119" namespace="Aura\Web" package="Default">
+        <name>$status_text</name>
+        <default><![CDATA[null]]></default>
+        <docblock line="112">
+          <description><![CDATA[The response status text.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="112" name="var" description="" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="128" namespace="Aura\Web" package="Default">
+        <name>$version</name>
+        <default><![CDATA['1.1']]></default>
+        <docblock line="121">
+          <description><![CDATA[The HTTP version to send as.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="121" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web" line="148" package="Aura\Web">
+        <name>setCache</name>
+        <full_name>setCache</full_name>
+        <docblock line="130">
+          <description><![CDATA[Should the response disable HTTP caching?]]></description>
+          <long-description><![CDATA[<p>When <code>false</code>, the <code>getHeaders()</code> method will add these headers:</p>
+
+<pre><code>Pragma: no-cache
+Cache-Control: no-store, no-cache, must-revalidate
+Cache-Control: post-check=0, pre-check=0
+Expires: 1
+</code></pre>]]></long-description>
+          <tag line="130" name="param" description="When true, disable browser caching." type="bool" variable="$flag">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="130" name="see" description="\Aura\Web\redirectPost()" refers="\Aura\Web\redirectPost()"/>
+          <tag line="130" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="148">
+          <name>$flag</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web" line="164" package="Aura\Web">
+        <name>getCache</name>
+        <full_name>getCache</full_name>
+        <docblock line="157">
+          <description><![CDATA[Is caching turned off?]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="157" name="return" description="Note that this is a ternary: true, false, or null." type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web" line="178" package="Aura\Web">
+        <name>setContent</name>
+        <full_name>setContent</full_name>
+        <docblock line="169">
+          <description><![CDATA[Sets the content of the response.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="169" name="param" description="The body content of the response." type="string" variable="$content">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="169" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="178">
+          <name>$content</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web" line="190" package="Aura\Web">
+        <name>getContent</name>
+        <full_name>getContent</full_name>
+        <docblock line="183">
+          <description><![CDATA[Gets the content of the response.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="183" name="return" description="The body content of the response." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web" line="206" package="Aura\Web">
+        <name>setContentType</name>
+        <full_name>setContentType</full_name>
+        <docblock line="195">
+          <description><![CDATA[Sets the Content-Type of the response.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="195" name="param" description="The Content-Type of the response." type="string" variable="$type">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="195" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+          <tag line="195" name="see" description="\Aura\Web\negotiateContentType()" refers="\Aura\Web\negotiateContentType()"/>
+        </docblock>
+        <argument line="206">
+          <name>$type</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web" line="218" package="Aura\Web">
+        <name>getContentType</name>
+        <full_name>getContentType</full_name>
+        <docblock line="211">
+          <description><![CDATA[Gets the Content-Type of the response.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="211" name="return" description="The Content-Type of the response." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web" line="249" package="Aura\Web">
+        <name>setCookie</name>
+        <full_name>setCookie</full_name>
+        <docblock line="223">
+          <description><![CDATA[Sets a cookie value in `$cookies`.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="223" name="param" description="The name of the cookie." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="223" name="param" description="The value of the cookie." type="string" variable="$value">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="223" name="param" description="The Unix timestamp after which the cookie expires. If non-numeric, the method uses strtotime() on the value." type="int|string" variable="$expire">
+            <type by_reference="false">int</type>
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="223" name="param" description="The path on the server in which the cookie will be available on." type="string" variable="$path">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="223" name="param" description="The domain that the cookie is available on." type="string" variable="$domain">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="223" name="param" description="Indicates that the cookie should only be transmitted over a secure HTTPS connection." type="bool" variable="$secure">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="223" name="param" description="When true, the cookie will be made accessible only through the HTTP protocol. This means that the cookie won't be accessible by scripting languages, such as JavaScript." type="bool" variable="$httponly">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="223" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="250">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="251">
+          <name>$value</name>
+          <default><![CDATA['']]></default>
+          <type/>
+        </argument>
+        <argument line="252">
+          <name>$expire</name>
+          <default><![CDATA[0]]></default>
+          <type/>
+        </argument>
+        <argument line="253">
+          <name>$path</name>
+          <default><![CDATA['']]></default>
+          <type/>
+        </argument>
+        <argument line="254">
+          <name>$domain</name>
+          <default><![CDATA['']]></default>
+          <type/>
+        </argument>
+        <argument line="255">
+          <name>$secure</name>
+          <default><![CDATA[false]]></default>
+          <type/>
+        </argument>
+        <argument line="256">
+          <name>$httponly</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web" line="277" package="Aura\Web">
+        <name>getCookie</name>
+        <full_name>getCookie</full_name>
+        <docblock line="268">
+          <description><![CDATA[Gets one cookie for the response.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="268" name="param" description="The cookie name." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="268" name="return" description="A cookie descriptor." type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="277">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web" line="304" package="Aura\Web">
+        <name>getCookies</name>
+        <full_name>getCookies</full_name>
+        <docblock line="297">
+          <description><![CDATA[Gets all cookies for the response.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="297" name="return" description="A sequential array of cookie descriptors." type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web" line="323" package="Aura\Web">
+        <name>setCookiesHttponly</name>
+        <full_name>setCookiesHttponly</full_name>
+        <docblock line="313">
+          <description><![CDATA[By default, should cookies be sent by HTTP only?]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="313" name="param" description="True to send by HTTP only, false to send by any method." type="bool" variable="$flag">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="313" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="323">
+          <name>$flag</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web" line="339" package="Aura\Web">
+        <name>setHeader</name>
+        <full_name>setHeader</full_name>
+        <docblock line="328">
+          <description><![CDATA[Sets a header value in `$headers`.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="328" name="param" description="The header label." type="string" variable="$key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="328" name="param" description="The value for the header." type="string" variable="$val">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="328" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="339">
+          <name>$key</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="339">
+          <name>$val</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web" line="357" package="Aura\Web">
+        <name>addHeader</name>
+        <full_name>addHeader</full_name>
+        <docblock line="346">
+          <description><![CDATA[Adds to a header value in $this->headers.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="346" name="param" description="The header label, such as &quot;Content-Type&quot;." type="string" variable="$key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="346" name="param" description="The value for the header." type="string" variable="$val">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="346" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="357">
+          <name>$key</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="357">
+          <name>$val</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web" line="376" package="Aura\Web">
+        <name>getHeader</name>
+        <full_name>getHeader</full_name>
+        <docblock line="365">
+          <description><![CDATA[Returns the value of a single header.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="365" name="param" description="The header name." type="string" variable="$key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="365" name="return" description="A string if the header has only one value, or an array if the header has multiple values, or null if the header does not exist." type="string|array">
+            <type by_reference="false">string</type>
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="376">
+          <name>$key</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web" line="394" package="Aura\Web">
+        <name>getHeaders</name>
+        <full_name>getHeaders</full_name>
+        <docblock line="385">
+          <description><![CDATA[Returns the array of all headers to be sent with the response.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="385" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="385" name="todo" description="Add case for cache === true (hm, or cache === array)."/>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web" line="433" package="Aura\Web">
+        <name>setRedirect</name>
+        <full_name>setRedirect</full_name>
+        <docblock line="418">
+          <description><![CDATA[Set a location that the response should redirect to, along with a
+a status code and status text.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="418" name="param" description="The URI to redirect to." type="string" variable="$uri">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="418" name="param" description="The HTTP status code to redirect with; default is `302`." type="int" variable="$code">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="418" name="param" description="The HTTP status text; default is `'Found'`." type="string" variable="$text">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="418" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="433">
+          <name>$uri</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="433">
+          <name>$code</name>
+          <default><![CDATA[302]]></default>
+          <type/>
+        </argument>
+        <argument line="433">
+          <name>$text</name>
+          <default><![CDATA['Found']]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web" line="455" package="Aura\Web">
+        <name>setRedirectAfterPost</name>
+        <full_name>setRedirectAfterPost</full_name>
+        <docblock line="440">
+          <description><![CDATA[Set a location that the response should redirect to, along with a
+a status code and status text, *and* sets caching to false.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="440" name="param" description="The URI to redirect to." type="string" variable="$uri">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="440" name="param" description="The HTTP status code to redirect with; default is `303`." type="int|string" variable="$code">
+            <type by_reference="false">int</type>
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="440" name="param" description="The HTTP status text; default is `'See Other'`." type="string" variable="$text">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="440" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="455">
+          <name>$uri</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="455">
+          <name>$code</name>
+          <default><![CDATA['303']]></default>
+          <type/>
+        </argument>
+        <argument line="455">
+          <name>$text</name>
+          <default><![CDATA['See Other']]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web" line="468" package="Aura\Web">
+        <name>isRedirect</name>
+        <full_name>isRedirect</full_name>
+        <docblock line="461">
+          <description><![CDATA[Is the response set to issue a redirect?]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="461" name="return" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web" line="480" package="Aura\Web">
+        <name>getRedirect</name>
+        <full_name>getRedirect</full_name>
+        <docblock line="473">
+          <description><![CDATA[Returns the redirect location, if any.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="473" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web" line="494" package="Aura\Web">
+        <name>setStatusCode</name>
+        <full_name>setStatusCode</full_name>
+        <docblock line="485">
+          <description><![CDATA[Sets the HTTP status code to for the response.]]></description>
+          <long-description><![CDATA[<p>Automatically resets the status text to null.</p>]]></long-description>
+          <tag line="485" name="param" description="An HTTP status code, such as 200, 302, 404, etc." type="int" variable="$code">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+        <argument line="494">
+          <name>$code</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web" line="512" package="Aura\Web">
+        <name>getStatusCode</name>
+        <full_name>getStatusCode</full_name>
+        <docblock line="505">
+          <description><![CDATA[Returns the HTTP status code for the response.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="505" name="return" description="" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web" line="526" package="Aura\Web">
+        <name>setStatusText</name>
+        <full_name>setStatusText</full_name>
+        <docblock line="517">
+          <description><![CDATA[Sets the HTTP status text for the response.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="517" name="param" description="The status text." type="string" variable="$text">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="517" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="526">
+          <name>$text</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web" line="540" package="Aura\Web">
+        <name>getStatusText</name>
+        <full_name>getStatusText</full_name>
+        <docblock line="533">
+          <description><![CDATA[Returns the HTTP status text for the response.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="533" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web" line="554" package="Aura\Web">
+        <name>setVersion</name>
+        <full_name>setVersion</full_name>
+        <docblock line="545">
+          <description><![CDATA[Sets the HTTP version for the response to '1.0' or '1.1'.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="545" name="param" description="The HTTP version to use for this response." type="string" variable="$version">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="545" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="554">
+          <name>$version</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web" line="571" package="Aura\Web">
+        <name>getVersion</name>
+        <full_name>getVersion</full_name>
+        <docblock line="564">
+          <description><![CDATA[Returns the HTTP version for the response.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="564" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Web" line="585" package="Aura\Web">
+        <name>headerLabel</name>
+        <full_name>headerLabel</full_name>
+        <docblock line="576">
+          <description><![CDATA[Normalizes and sanitizes a header label.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="576" name="param" description="The header label to be sanitized." type="string" variable="$label">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="576" name="return" description="The sanitized header label." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="585">
+          <name>$label</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Web" line="602" package="Aura\Web">
+        <name>headerValue</name>
+        <full_name>headerValue</full_name>
+        <docblock line="593">
+          <description><![CDATA[Sanitizes a header value.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="593" name="param" description="The header value to be sanitized." type="string" variable="$value">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="593" name="return" description="The sanitized header value." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="602">
+          <name>$value</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Signal.php" hash="eb9c2c1f298d5fb1b93cc770bcf08030" package="Aura\Web">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Web"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Web" line="20" package="Aura\Web">
+      <extends/>
+      <implements>\Aura\Web\SignalInterface</implements>
+      <name>Signal</name>
+      <full_name>\Aura\Web\Signal</full_name>
+      <docblock line="13">
+        <description><![CDATA[A basic signal manager for executing controller hooks.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Web"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="29" namespace="Aura\Web" package="Default">
+        <name>$handlers</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="22">
+          <description><![CDATA[The signal handlers to be executed.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web" line="45" package="Aura\Web">
+        <name>handler</name>
+        <full_name>handler</full_name>
+        <docblock line="31">
+          <description><![CDATA[Adds a handler to the list.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="31" name="param" description="The object sending the signal." type="object" variable="$origin">
+            <type by_reference="false">object</type>
+          </tag>
+          <tag line="31" name="param" description="The signal being sent." type="string" variable="$signal">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="31" name="param" description="The callback to execute when the signal is sent." type="\Aura\Web\callable" variable="$callback">
+            <type by_reference="false">\Aura\Web\callable</type>
+          </tag>
+          <tag line="31" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="45">
+          <name>$origin</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="45">
+          <name>$signal</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="45">
+          <name>$callback</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web" line="61" package="Aura\Web">
+        <name>send</name>
+        <full_name>send</full_name>
+        <docblock line="50">
+          <description><![CDATA[Sends a signal to the handlers.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="50" name="param" description="The object sending the signal." type="object" variable="$origin">
+            <type by_reference="false">object</type>
+          </tag>
+          <tag line="50" name="param" description="The signal being sent." type="string" variable="$signal">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="50" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="61">
+          <name>$origin</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="61">
+          <name>$signal</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="SignalInterface.php" hash="95e5b3191bf5722438abf73d9cdd614f" package="Aura\Web">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Web"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <interface namespace="Aura\Web" line="20" package="Aura\Web">
+      <name>SignalInterface</name>
+      <full_name>\Aura\Web\SignalInterface</full_name>
+      <docblock line="13">
+        <description><![CDATA[An interface for signal managers.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Web"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web" line="36" package="Aura\Web">
+        <name>handler</name>
+        <full_name>handler</full_name>
+        <docblock line="22">
+          <description><![CDATA[Adds a handler to the list.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="param" description="The object sending the signal." type="object" variable="$origin">
+            <type by_reference="false">object</type>
+          </tag>
+          <tag line="22" name="param" description="The signal being sent." type="string" variable="$signal">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="22" name="param" description="The callback to execute when the signal is sent." type="\Aura\Web\callable" variable="$callback">
+            <type by_reference="false">\Aura\Web\callable</type>
+          </tag>
+          <tag line="22" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="36">
+          <name>$origin</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="36">
+          <name>$signal</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="36">
+          <name>$callback</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Web" line="49" package="Aura\Web">
+        <name>send</name>
+        <full_name>send</full_name>
+        <docblock line="38">
+          <description><![CDATA[Sends a signal to the handlers.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="38" name="param" description="The object sending the signal." type="object" variable="$origin">
+            <type by_reference="false">object</type>
+          </tag>
+          <tag line="38" name="param" description="The signal being sent." type="string" variable="$signal">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="38" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="49">
+          <name>$origin</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="49">
+          <name>$signal</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </interface>
+  </file>
+  <package name="Aura" full_name="Aura">
+    <package name="Web" full_name="Aura\Web"/>
+  </package>
+  <package name="Default" full_name="Default"/>
+  <namespace name="Aura" full_name="Aura">
+    <namespace name="Web" full_name="Aura\Web">
+      <namespace name="Controller" full_name="Aura\Web\Controller"/>
+      <namespace name="Exception" full_name="Aura\Web\Exception"/>
+      <namespace name="Renderer" full_name="Aura\Web\Renderer"/>
+    </namespace>
+  </namespace>
+  <marker count="1">todo</marker>
+  <marker count="0">fixme</marker>
+  <deprecated count="0"/>
+</project>

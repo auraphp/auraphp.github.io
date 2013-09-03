@@ -1,0 +1,468 @@
+<!DOCTYPE html><html xmlns:date="http://exslt.org/dates-and-times" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » \Aura\Filter\RuleCollection</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Namespaces</a></li>
+<li><a href="../namespaces/Aura.html"><i class="icon-th"></i> Aura</a></li>
+<li><a>Packages</a></li>
+<li><a href="../packages/Aura.html"><i class="icon-folder-open"></i> Aura</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">0</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul><li>todo 
+                <span class="label label-info">2</span>
+</li></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods</li>
+<li class="method public "><a href="#__construct" title="__construct :: Constructor."><span class="description">Constructor.</span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#addHardRule" title="addHardRule :: Add a rule; if it fails, stop applying rules on that field."><span class="description">Add a rule; if it fails, stop applying rules on that field.</span><pre>addHardRule()</pre></a></li>
+<li class="method public "><a href="#addSoftRule" title="addSoftRule :: Add a rule; keep applying all other rules even if it fails."><span class="description">Add a rule; keep applying all other rules even if it fails.</span><pre>addSoftRule()</pre></a></li>
+<li class="method public "><a href="#addStopRule" title="addStopRule :: Add a rule; if it fails, stop applying rules on all remaining data."><span class="description">Add a rule; if it fails, stop applying rules on all remaining data.</span><pre>addStopRule()</pre></a></li>
+<li class="method public "><a href="#getMessages" title="getMessages :: Returns the array of failure messages."><span class="description">Returns the array of failure messages.</span><pre>getMessages()</pre></a></li>
+<li class="method public "><a href="#getRuleLocator" title="getRuleLocator :: Returns the rule locator."><span class="description">Returns the rule locator.</span><pre>getRuleLocator()</pre></a></li>
+<li class="method public "><a href="#getRules" title="getRules :: Returns the collection of rules to be applied."><span class="description">Returns the collection of rules to be applied.</span><pre>getRules()</pre></a></li>
+<li class="method public "><a href="#getTranslator" title="getTranslator :: Returns the translator."><span class="description">Returns the translator.</span><pre>getTranslator()</pre></a></li>
+<li class="method public "><a href="#setRule" title="setRule :: Sets a single rule, encapsulated by a closure, for the rule."><span class="description">Sets a single rule, encapsulated by a closure, for the rule.</span><pre>setRule()</pre></a></li>
+<li class="method public "><a href="#useFieldMessage" title="useFieldMessage :: Use a custom message for a field when it fails any of its rules; this
+single message will replace all the various rule messages."><span class="description">Use a custom message for a field when it fails any of its rules; this
+single message will replace all the various rule messages.</span><pre>useFieldMessage()</pre></a></li>
+<li class="method public "><a href="#value" title="value :: Convenience method to apply a rule directly to an individual value."><span class="description">Convenience method to apply a rule directly to an individual value.</span><pre>value()</pre></a></li>
+<li class="method public "><a href="#values" title="values :: Applies the rules to the field values of a data object or array; note
+that sanitizing filters may modify the values in place."><span class="description">Applies the rules to the field values of a data object or array; note
+that sanitizing filters may modify the values in place.</span><pre>values()</pre></a></li>
+<li class="nav-header protected">» Protected</li>
+<li class="method protected "><a href="#addMessage" title="addMessage :: Adds a failure message for a field."><span class="description">Adds a failure message for a field.</span><pre>addMessage()</pre></a></li>
+<li class="method protected "><a href="#addRule" title="addRule :: Add a rule."><span class="description">Add a rule.</span><pre>addRule()</pre></a></li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties</li>
+<li class="nav-header protected">» Protected</li>
+<li class="property protected "><a href="#%24field_messages" title="$field_messages :: Alternative messages to use when a field fails its filters."><span class="description">Alternative messages to use when a field fails its filters.</span><pre>$field_messages</pre></a></li>
+<li class="property protected "><a href="#%24hardrule" title="$hardrule :: Fields that have failed on a hard rule."><span class="description">Fields that have failed on a hard rule.</span><pre>$hardrule</pre></a></li>
+<li class="property protected "><a href="#%24messages" title="$messages :: Messages from failed rules."><span class="description">Messages from failed rules.</span><pre>$messages</pre></a></li>
+<li class="property protected "><a href="#%24rule_locator" title="$rule_locator :: A RuleLocator object."><span class="description">A RuleLocator object.</span><pre>$rule_locator</pre></a></li>
+<li class="property protected "><a href="#%24rules" title="$rules :: The rules to be applied to a data object."><span class="description">The rules to be applied to a data object.</span><pre>$rules</pre></a></li>
+<li class="property protected "><a href="#%24translator" title="$translator :: A Translator object."><span class="description">A Translator object.</span><pre>$translator</pre></a></li>
+<li class="nav-header">
+<i class="icon-custom icon-constant"></i> Constants</li>
+<li class="constant  "><a href="#FIX" title="FIX :: Sanitize the value according to the rule."><span class="description">Sanitize the value according to the rule.</span><pre>FIX</pre></a></li>
+<li class="constant  "><a href="#FIX_BLANK_OR" title="FIX_BLANK_OR :: Sanitize the value to `null` if blank, or according to the rule if not."><span class="description">Sanitize the value to `null` if blank, or according to the rule if not.</span><pre>FIX_BLANK_OR</pre></a></li>
+<li class="constant  "><a href="#HARD_RULE" title="HARD_RULE :: Stop filtering on a field when a rule fails."><span class="description">Stop filtering on a field when a rule fails.</span><pre>HARD_RULE</pre></a></li>
+<li class="constant  "><a href="#IS" title="IS :: Apply a rule to check if the value is valid."><span class="description">Apply a rule to check if the value is valid.</span><pre>IS</pre></a></li>
+<li class="constant  "><a href="#IS_BLANK_OR" title="IS_BLANK_OR :: Apply a rule to check if the value is blank **or** is valid."><span class="description">Apply a rule to check if the value is blank **or** is valid.</span><pre>IS_BLANK_OR</pre></a></li>
+<li class="constant  "><a href="#IS_NOT" title="IS_NOT :: Apply a rule to check if the value **is not** valid."><span class="description">Apply a rule to check if the value **is not** valid.</span><pre>IS_NOT</pre></a></li>
+<li class="constant  "><a href="#SOFT_RULE" title="SOFT_RULE :: Continue filtering on a field when a rule fails."><span class="description">Continue filtering on a field when a rule fails.</span><pre>SOFT_RULE</pre></a></li>
+<li class="constant  "><a href="#STOP_RULE" title="STOP_RULE :: Stop filtering on all fields when a rule fails."><span class="description">Stop filtering on all fields when a rule fails.</span><pre>STOP_RULE</pre></a></li>
+</ul>
+</div>
+<div class="span8">
+<a name="%5CAura%5CFilter%5CRuleCollection" id="\Aura\Filter\RuleCollection"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/Aura.html">Aura</a></li>
+<span class="divider">\</span><li><a href="../namespaces/Aura.Filter.html">Filter</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/Aura.Filter.RuleCollection.html">RuleCollection</a>
+</li>
+</ul>
+<div href="../classes/Aura.Filter.RuleCollection.html" class="element class">
+<p class="short_description">A collection of rules to be applied to a data object.</p>
+<div class="details">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>package</th>
+<td><a href="../packages/Aura.Filter.html">Aura.Filter</a></td>
+</tr>
+<tr>
+<th>license</th>
+<td><a href="http://opensource.org/licenses/bsd-license.php">BSD</a></td>
+</tr>
+</table>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a name="__construct" id="__construct"></a><div class="element clickable method public __construct" data-toggle="collapse" data-target=".__construct .collapse">
+<h2>Constructor.</h2>
+<pre>__construct(Aura\Filter\RuleLocator $rule_locator, Aura\Filter\TranslatorInterface $translator) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$rule_locator</h4>
+<code><a href="../classes/Aura.Filter.RuleLocator.html">\Aura\Filter\RuleLocator</a></code><p>The rule locator.</p></div>
+<div class="subelement argument">
+<h4>$translator</h4>
+<code><a href="../classes/Aura.Filter.TranslatorInterface.html">\Aura\Filter\TranslatorInterface</a></code><p>The message translator.</p></div>
+</div></div>
+</div>
+<a name="addHardRule" id="addHardRule"></a><div class="element clickable method public addHardRule" data-toggle="collapse" data-target=".addHardRule .collapse">
+<h2>Add a rule; if it fails, stop applying rules on that field.</h2>
+<pre>addHardRule(string $field, string $method, string $name) : \Aura\Filter\$this</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$field</h4>
+<code>string</code>
+</div>
+<div class="subelement argument">
+<h4>$method</h4>
+<code>string</code>
+</div>
+<div class="subelement argument">
+<h4>$name</h4>
+<code>string</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\Aura\Filter\$this</code></div>
+</div></div>
+</div>
+<a name="addSoftRule" id="addSoftRule"></a><div class="element clickable method public addSoftRule" data-toggle="collapse" data-target=".addSoftRule .collapse">
+<h2>Add a rule; keep applying all other rules even if it fails.</h2>
+<pre>addSoftRule(string $field, string $method, string $name) : \Aura\Filter\$this</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$field</h4>
+<code>string</code>
+</div>
+<div class="subelement argument">
+<h4>$method</h4>
+<code>string</code>
+</div>
+<div class="subelement argument">
+<h4>$name</h4>
+<code>string</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\Aura\Filter\$this</code></div>
+</div></div>
+</div>
+<a name="addStopRule" id="addStopRule"></a><div class="element clickable method public addStopRule" data-toggle="collapse" data-target=".addStopRule .collapse">
+<h2>Add a rule; if it fails, stop applying rules on all remaining data.</h2>
+<pre>addStopRule(string $field, string $method, string $name) : \Aura\Filter\$this</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$field</h4>
+<code>string</code>
+</div>
+<div class="subelement argument">
+<h4>$method</h4>
+<code>string</code>
+</div>
+<div class="subelement argument">
+<h4>$name</h4>
+<code>string</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\Aura\Filter\$this</code></div>
+</div></div>
+</div>
+<a name="getMessages" id="getMessages"></a><div class="element clickable method public getMessages" data-toggle="collapse" data-target=".getMessages .collapse">
+<h2>Returns the array of failure messages.</h2>
+<pre>getMessages(string $field) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$field</h4>
+<code>string</code><p>Return messages just for this field; if empty, return messages for all fields.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a name="getRuleLocator" id="getRuleLocator"></a><div class="element clickable method public getRuleLocator" data-toggle="collapse" data-target=".getRuleLocator .collapse">
+<h2>Returns the rule locator.</h2>
+<pre>getRuleLocator() : <a href="../classes/Aura.Filter.RuleLocator.html">\Aura\Filter\RuleLocator</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/Aura.Filter.RuleLocator.html">\Aura\Filter\RuleLocator</a></code></div>
+</div></div>
+</div>
+<a name="getRules" id="getRules"></a><div class="element clickable method public getRules" data-toggle="collapse" data-target=".getRules .collapse">
+<h2>Returns the collection of rules to be applied.</h2>
+<pre>getRules() : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a name="getTranslator" id="getTranslator"></a><div class="element clickable method public getTranslator" data-toggle="collapse" data-target=".getTranslator .collapse">
+<h2>Returns the translator.</h2>
+<pre>getTranslator() : <a href="../classes/Aura.Filter.TranslatorInterface.html">\Aura\Filter\TranslatorInterface</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/Aura.Filter.TranslatorInterface.html">\Aura\Filter\TranslatorInterface</a></code></div>
+</div></div>
+</div>
+<a name="setRule" id="setRule"></a><div class="element clickable method public setRule" data-toggle="collapse" data-target=".setRule .collapse">
+<h2>Sets a single rule, encapsulated by a closure, for the rule.</h2>
+<pre>setRule(string $field, string $message, Closure $closure) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$field</h4>
+<code>string</code><p>The field for the rule.</p></div>
+<div class="subelement argument">
+<h4>$message</h4>
+<code>string</code><p>The message when the rule fails.</p></div>
+<div class="subelement argument">
+<h4>$closure</h4>
+<code><a href="http://php.net/manual/en/class.closure.php">\Closure</a></code><p>The closure to use for the rule.</p></div>
+</div></div>
+</div>
+<a name="useFieldMessage" id="useFieldMessage"></a><div class="element clickable method public useFieldMessage" data-toggle="collapse" data-target=".useFieldMessage .collapse">
+<h2>Use a custom message for a field when it fails any of its rules; this
+single message will replace all the various rule messages.</h2>
+<pre>useFieldMessage(string $field, string $message) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$field</h4>
+<code>string</code><p>The field name.</p></div>
+<div class="subelement argument">
+<h4>$message</h4>
+<code>string</code><p>The message to use when the field fails any of its rules.</p></div>
+</div></div>
+</div>
+<a name="value" id="value"></a><div class="element clickable method public value" data-toggle="collapse" data-target=".value .collapse">
+<h2>Convenience method to apply a rule directly to an individual value.</h2>
+<pre>value(mixed $value, string $method, string $name) : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>mixed</code><p>&$value Apply the rule to this value; the rule may modify the value in place.</p>
+</div>
+<div class="subelement argument">
+<h4>$method</h4>
+<code>string</code><p>The rule method to use; e.g., Filter::IS.</p></div>
+<div class="subelement argument">
+<h4>$name</h4>
+<code>string</code><p>The of the rule to apply.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>bool</code>True if the rule was applied successfully, false if not.</div>
+</div></div>
+</div>
+<a name="values" id="values"></a><div class="element clickable method public values" data-toggle="collapse" data-target=".values .collapse">
+<h2>Applies the rules to the field values of a data object or array; note
+that sanitizing filters may modify the values in place.</h2>
+<pre>values(object | array $data) : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>objectarray</code><p>&$data The data object or array to be filtered.</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>boolean</code>True if all rules were applied without error; false if there was at least one error.</div>
+</div></div>
+</div>
+<a name="addMessage" id="addMessage"></a><div class="element clickable method protected addMessage" data-toggle="collapse" data-target=".addMessage .collapse">
+<h2>Adds a failure message for a field.</h2>
+<pre>addMessage(string $field, Aura\Filter\RuleInterface $rule) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$field</h4>
+<code>string</code><p>The field that failed.</p></div>
+<div class="subelement argument">
+<h4>$rule</h4>
+<code><a href="../classes/Aura.Filter.RuleInterface.html">\Aura\Filter\RuleInterface</a></code><p>The rule that the field failed to apss.</p></div>
+</div></div>
+</div>
+<a name="addRule" id="addRule"></a><div class="element clickable method protected addRule" data-toggle="collapse" data-target=".addRule .collapse">
+<h2>Add a rule.</h2>
+<pre>addRule(string $field, string $method, string $name, string $params, string $type) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$field</h4>
+<code>string</code><p>The field name.</p></div>
+<div class="subelement argument">
+<h4>$method</h4>
+<code>string</code><p>The rule method to use (is, isNot, isBlankOr, etc).</p>
+</div>
+<div class="subelement argument">
+<h4>$name</h4>
+<code>string</code><p>The name of the rule to apply.</p></div>
+<div class="subelement argument">
+<h4>$params</h4>
+<code>string</code><p>Params for the rule.</p></div>
+<div class="subelement argument">
+<h4>$type</h4>
+<code>string</code><p>The rule type: soft, hard, stop.</p></div>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a name="%24field_messages" id="$field_messages"> </a><div class="element clickable property protected $field_messages" data-toggle="collapse" data-target=".$field_messages .collapse">
+<h2>Alternative messages to use when a field fails its filters.</h2>
+<pre>$field_messages : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24hardrule" id="$hardrule"> </a><div class="element clickable property protected $hardrule" data-toggle="collapse" data-target=".$hardrule .collapse">
+<h2>Fields that have failed on a hard rule.</h2>
+<pre>$hardrule : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24messages" id="$messages"> </a><div class="element clickable property protected $messages" data-toggle="collapse" data-target=".$messages .collapse">
+<h2>Messages from failed rules.</h2>
+<pre>$messages : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24rule_locator" id="$rule_locator"> </a><div class="element clickable property protected $rule_locator" data-toggle="collapse" data-target=".$rule_locator .collapse">
+<h2>A RuleLocator object.</h2>
+<pre>$rule_locator : <a href="../classes/Aura.Filter.RuleLocator.html">\Aura\Filter\RuleLocator</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24rules" id="$rules"> </a><div class="element clickable property protected $rules" data-toggle="collapse" data-target=".$rules .collapse">
+<h2>The rules to be applied to a data object.</h2>
+<pre>$rules : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24translator" id="$translator"> </a><div class="element clickable property protected $translator" data-toggle="collapse" data-target=".$translator .collapse">
+<h2>A Translator object.</h2>
+<pre>$translator : <a href="../classes/Aura.Filter.TranslatorInterface.html">\Aura\Filter\TranslatorInterface</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<h3>
+<i class="icon-custom icon-constant"></i> Constants</h3>
+<a name="FIX" id="FIX"> </a><div class="element clickable constant  FIX" data-toggle="collapse" data-target=".FIX .collapse">
+<h2>Sanitize the value according to the rule.</h2>
+<pre>FIX </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="FIX_BLANK_OR" id="FIX_BLANK_OR"> </a><div class="element clickable constant  FIX_BLANK_OR" data-toggle="collapse" data-target=".FIX_BLANK_OR .collapse">
+<h2>Sanitize the value to `null` if blank, or according to the rule if not.</h2>
+<pre>FIX_BLANK_OR </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="HARD_RULE" id="HARD_RULE"> </a><div class="element clickable constant  HARD_RULE" data-toggle="collapse" data-target=".HARD_RULE .collapse">
+<h2>Stop filtering on a field when a rule fails.</h2>
+<pre>HARD_RULE </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="IS" id="IS"> </a><div class="element clickable constant  IS" data-toggle="collapse" data-target=".IS .collapse">
+<h2>Apply a rule to check if the value is valid.</h2>
+<pre>IS </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="IS_BLANK_OR" id="IS_BLANK_OR"> </a><div class="element clickable constant  IS_BLANK_OR" data-toggle="collapse" data-target=".IS_BLANK_OR .collapse">
+<h2>Apply a rule to check if the value is blank **or** is valid.</h2>
+<pre>IS_BLANK_OR </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="IS_NOT" id="IS_NOT"> </a><div class="element clickable constant  IS_NOT" data-toggle="collapse" data-target=".IS_NOT .collapse">
+<h2>Apply a rule to check if the value **is not** valid.</h2>
+<pre>IS_NOT </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="SOFT_RULE" id="SOFT_RULE"> </a><div class="element clickable constant  SOFT_RULE" data-toggle="collapse" data-target=".SOFT_RULE .collapse">
+<h2>Continue filtering on a field when a rule fails.</h2>
+<pre>SOFT_RULE </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="STOP_RULE" id="STOP_RULE"> </a><div class="element clickable constant  STOP_RULE" data-toggle="collapse" data-target=".STOP_RULE .collapse">
+<h2>Stop filtering on all fields when a rule fails.</h2>
+<pre>STOP_RULE </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a7</a> and<br>
+            generated on 2013-05-09T16:12:04-05:00.<br></footer></div>
+</div>
+</body>
+</html>

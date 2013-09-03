@@ -1,0 +1,1203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project version="2.0.0a7" title="">
+  <file path="Config.php" hash="f0014a6eb11eae70e91b2a4b7f3fb4de" package="Aura\Di">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Di"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Di" line="20" package="Aura\Di">
+      <extends/>
+      <implements>\Aura\Di\ConfigInterface</implements>
+      <name>Config</name>
+      <full_name>\Aura\Di\Config</full_name>
+      <docblock line="13">
+        <description><![CDATA[Retains and unifies class configurations.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Di"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="30" namespace="Aura\Di" package="Default">
+        <name>$params</name>
+        <default><![CDATA[]]></default>
+        <docblock line="22">
+          <description><![CDATA[Constructor params from external configuration in the form
+`$params[$class][$name] = $value`.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="var" description="" type="\ArrayObject">
+            <type by_reference="false">\ArrayObject</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="40" namespace="Aura\Di" package="Default">
+        <name>$reflect</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="32">
+          <description><![CDATA[An array of retained ReflectionClass instances; this is as much for
+the Forge as it is for Config.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="32" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="49" namespace="Aura\Di" package="Default">
+        <name>$setter</name>
+        <default><![CDATA[]]></default>
+        <docblock line="42">
+          <description><![CDATA[Setter definitions in the form of `$setter[$class][$method] = $value`.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="42" name="var" description="" type="\ArrayObject">
+            <type by_reference="false">\ArrayObject</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="59" namespace="Aura\Di" package="Default">
+        <name>$unified</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="51">
+          <description><![CDATA[Constructor params and setter definitions, unified across class
+defaults, inheritance hierarchies, and external configurations.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="51" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Di" line="66" package="Aura\Di">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="61">
+          <description><![CDATA[Constructor.]]></description>
+          <long-description><![CDATA[]]></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Di" line="79" package="Aura\Di">
+        <name>__clone</name>
+        <full_name>__clone</full_name>
+        <docblock line="71">
+          <description><![CDATA[When cloning this object, reset the params and setter values (but
+leave the reflection values in place).]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="71" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Di" line="91" package="Aura\Di">
+        <name>reset</name>
+        <full_name>reset</full_name>
+        <docblock line="84">
+          <description><![CDATA[Resets the params and setter values.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="84" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Di" line="106" package="Aura\Di">
+        <name>getParams</name>
+        <full_name>getParams</full_name>
+        <docblock line="99">
+          <description><![CDATA[Gets the $params property.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="99" name="return" description="" type="\ArrayObject">
+            <type by_reference="false">\ArrayObject</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Di" line="118" package="Aura\Di">
+        <name>getSetter</name>
+        <full_name>getSetter</full_name>
+        <docblock line="111">
+          <description><![CDATA[Gets the $setter property.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="111" name="return" description="" type="\ArrayObject">
+            <type by_reference="false">\ArrayObject</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Di" line="132" package="Aura\Di">
+        <name>getReflect</name>
+        <full_name>getReflect</full_name>
+        <docblock line="123">
+          <description><![CDATA[Returns a \ReflectionClass for a named class.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="123" name="param" description="The class to reflect on." type="string" variable="$class">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="123" name="return" description="" type="\ReflectionClass">
+            <type by_reference="false">\ReflectionClass</type>
+          </tag>
+        </docblock>
+        <argument line="132">
+          <name>$class</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Di" line="150" package="Aura\Di">
+        <name>fetch</name>
+        <full_name>fetch</full_name>
+        <docblock line="140">
+          <description><![CDATA[Fetches the unified constructor params and setter values for a class.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="140" name="param" description="The class name to fetch values for." type="string" variable="$class">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="140" name="return" description="An array with two elements; 0 is the constructor values for the class, and 1 is the setter methods and values for the class." type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="150">
+          <name>$class</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="ConfigInterface.php" hash="a5cf03520c9e396098daa89ff824228f" package="Aura\Di">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Di"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <interface namespace="Aura\Di" line="20" package="Aura\Di">
+      <name>ConfigInterface</name>
+      <full_name>\Aura\Di\ConfigInterface</full_name>
+      <docblock line="13">
+        <description><![CDATA[Retains and unifies class constructor parameter values with external values.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Di"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Di" line="31" package="Aura\Di">
+        <name>fetch</name>
+        <full_name>fetch</full_name>
+        <docblock line="22">
+          <description><![CDATA[Fetches the unified constructor values and external values.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="param" description="The class name to fetch values for." type="string" variable="$class">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="22" name="return" description="An associative array of constructor values for the class." type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="31">
+          <name>$class</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Di" line="40" package="Aura\Di">
+        <name>getParams</name>
+        <full_name>getParams</full_name>
+        <docblock line="33">
+          <description><![CDATA[Gets the $params property.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="33" name="return" description="" type="\ArrayObject">
+            <type by_reference="false">\ArrayObject</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Di" line="49" package="Aura\Di">
+        <name>getSetter</name>
+        <full_name>getSetter</full_name>
+        <docblock line="42">
+          <description><![CDATA[Gets the $setter property.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="42" name="return" description="" type="\ArrayObject">
+            <type by_reference="false">\ArrayObject</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Di" line="61" package="Aura\Di">
+        <name>getReflect</name>
+        <full_name>getReflect</full_name>
+        <docblock line="51">
+          <description><![CDATA[Gets a retained ReflectionClass; if not already retained, creates and
+retains one before returning it.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="51" name="param" description="The class to reflect on." type="string" variable="$class">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="51" name="return" description="" type="\ReflectionClass">
+            <type by_reference="false">\ReflectionClass</type>
+          </tag>
+        </docblock>
+        <argument line="61">
+          <name>$class</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </interface>
+  </file>
+  <file path="Container.php" hash="2b771509dac18ff172ed5e7051c2587a" package="Aura\Di">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Di"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Di" line="20" package="Aura\Di">
+      <extends/>
+      <implements>\Aura\Di\ContainerInterface</implements>
+      <name>Container</name>
+      <full_name>\Aura\Di\Container</full_name>
+      <docblock line="13">
+        <description><![CDATA[Dependency injection container.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Di"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="29" namespace="Aura\Di" package="Default">
+        <name>$forge</name>
+        <default><![CDATA[]]></default>
+        <docblock line="22">
+          <description><![CDATA[A Forge object to create classes through reflection.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="39" namespace="Aura\Di" package="Default">
+        <name>$params</name>
+        <default><![CDATA[]]></default>
+        <docblock line="31">
+          <description><![CDATA[A convenient reference to the Config::$params object, which itself
+is contained by the Forge object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="31" name="var" description="" type="\ArrayObject">
+            <type by_reference="false">\ArrayObject</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="49" namespace="Aura\Di" package="Default">
+        <name>$setter</name>
+        <default><![CDATA[]]></default>
+        <docblock line="41">
+          <description><![CDATA[A convenient reference to the Config::$setter object, which itself
+is contained by the Forge object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="41" name="var" description="" type="\ArrayObject">
+            <type by_reference="false">\ArrayObject</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="58" namespace="Aura\Di" package="Default">
+        <name>$defs</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="51">
+          <description><![CDATA[Retains named service definitions.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="51" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="67" namespace="Aura\Di" package="Default">
+        <name>$services</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="60">
+          <description><![CDATA[Retains the actual service objects.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="60" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="81" namespace="Aura\Di" package="Default">
+        <name>$locked</name>
+        <default><![CDATA[false]]></default>
+        <docblock line="69">
+          <description><![CDATA[Is the Container locked?  (When locked, you cannot access configuration
+properties from outside the object, and cannot set services.)]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="69" name="var" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="69" name="see" description="\Aura\Di\__get()" refers="\Aura\Di\__get()"/>
+          <tag line="69" name="see" description="\Aura\Di\set()" refers="\Aura\Di\set()"/>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Di" line="91" package="Aura\Di">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="83">
+          <description><![CDATA[Constructor.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="83" name="param" description="A forge for creating objects using keyword parameter configuration." type="\Aura\Di\ForgeInterface" variable="$forge">
+            <type by_reference="false">\Aura\Di\ForgeInterface</type>
+          </tag>
+        </docblock>
+        <argument line="91">
+          <name>$forge</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Di\ForgeInterface</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Di" line="108" package="Aura\Di">
+        <name>__get</name>
+        <full_name>__get</full_name>
+        <docblock line="98">
+          <description><![CDATA[Magic get to provide access to the Config::$params and $setter
+objects.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="98" name="param" description="The property to retrieve ('params' or 'setter')." type="string" variable="$key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="98" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="108">
+          <name>$key</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Di" line="129" package="Aura\Di">
+        <name>__clone</name>
+        <full_name>__clone</full_name>
+        <docblock line="121">
+          <description><![CDATA[When cloning this Container, *do not* make a copy of the service
+objects.]]></description>
+          <long-description><![CDATA[<p>Leave the configuration and definitions intact.</p>]]></long-description>
+          <tag line="121" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Di" line="143" package="Aura\Di">
+        <name>lock</name>
+        <full_name>lock</full_name>
+        <docblock line="135">
+          <description><![CDATA[Lock the Container so that configuration cannot be accessed externally,
+and no new service definitions can be added.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="135" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Di" line="155" package="Aura\Di">
+        <name>isLocked</name>
+        <full_name>isLocked</full_name>
+        <docblock line="148">
+          <description><![CDATA[Is the Container locked?]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="148" name="return" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Di" line="167" package="Aura\Di">
+        <name>getForge</name>
+        <full_name>getForge</full_name>
+        <docblock line="160">
+          <description><![CDATA[Gets the Forge object used for creating new instances.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="160" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Di" line="181" package="Aura\Di">
+        <name>has</name>
+        <full_name>has</full_name>
+        <docblock line="172">
+          <description><![CDATA[Does a particular service definition exist?]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="172" name="param" description="The service key to look up." type="string" variable="$key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="172" name="return" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+        <argument line="181">
+          <name>$key</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Di" line="206" package="Aura\Di">
+        <name>set</name>
+        <full_name>set</full_name>
+        <docblock line="186">
+          <description><![CDATA[Sets a service definition by name.]]></description>
+          <long-description><![CDATA[<p>If you set a service as a Closure,
+it is automatically treated as a Lazy. (Note that is has to be a
+Closure, not just any callable, to be treated as a Lazy; this is
+because the actual service object itself might be callable via an
+__invoke() method.)</p>]]></long-description>
+          <tag line="186" name="param" description="The service key." type="string" variable="$key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="186" name="param" description="The service object; if a Closure, is treated as a Lazy." type="object" variable="$val">
+            <type by_reference="false">object</type>
+          </tag>
+          <tag line="186" name="throws" description="when the Container is locked." type="\Aura\Di\Exception\ContainerLocked">
+            <type by_reference="false">\Aura\Di\Exception\ContainerLocked</type>
+          </tag>
+          <tag line="186" name="throws" description="" type="\Aura\Di\Exception\Service">
+            <type by_reference="false">\Aura\Di\Exception\Service</type>
+          </tag>
+          <tag line="186" name="return" description="" type="\Aura\Di\$this">
+            <type by_reference="false">\Aura\Di\$this</type>
+          </tag>
+        </docblock>
+        <argument line="206">
+          <name>$key</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="206">
+          <name>$val</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Di" line="237" package="Aura\Di">
+        <name>get</name>
+        <full_name>get</full_name>
+        <docblock line="225">
+          <description><![CDATA[Gets a service object by key, lazy-loading it as needed.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="225" name="param" description="The service to get." type="string" variable="$key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="225" name="return" description="" type="object">
+            <type by_reference="false">object</type>
+          </tag>
+          <tag line="225" name="throws" description="when the requested service does not exist." type="\Aura\Di\Exception\ServiceNotFound">
+            <type by_reference="false">\Aura\Di\Exception\ServiceNotFound</type>
+          </tag>
+        </docblock>
+        <argument line="237">
+          <name>$key</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Di" line="267" package="Aura\Di">
+        <name>getServices</name>
+        <full_name>getServices</full_name>
+        <docblock line="260">
+          <description><![CDATA[Gets the list of instantiated services.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="260" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Di" line="279" package="Aura\Di">
+        <name>getDefs</name>
+        <full_name>getDefs</full_name>
+        <docblock line="272">
+          <description><![CDATA[Gets the list of service definitions.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="272" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Di" line="302" package="Aura\Di">
+        <name>lazyGet</name>
+        <full_name>lazyGet</full_name>
+        <docblock line="284">
+          <description><![CDATA[Returns a Lazy that gets a service.]]></description>
+          <long-description><![CDATA[<p>This allows you to replace the
+following idiom ...</p>
+
+<pre><code> $di-&gt;params['ClassName']['param_name'] = new Lazy(function() use ($di)) {
+     return $di-&gt;get('service');
+ }
+</code></pre>
+
+<p>... with the following:</p>
+
+<pre><code> $di-&gt;params['ClassName']['param_name'] = $di-&gt;lazyGet('service');
+</code></pre>]]></long-description>
+          <tag line="284" name="param" description="The service name; it does not need to exist yet." type="string" variable="$key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="284" name="return" description="A lazy-load object that gets the named service." type="\Aura\Di\Lazy">
+            <type by_reference="false">\Aura\Di\Lazy</type>
+          </tag>
+        </docblock>
+        <argument line="302">
+          <name>$key</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Di" line="324" package="Aura\Di">
+        <name>newInstance</name>
+        <full_name>newInstance</full_name>
+        <docblock line="310">
+          <description><![CDATA[Returns a new instance of the specified class, optionally
+with additional override parameters.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="310" name="param" description="The type of class of instantiate." type="string" variable="$class">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="310" name="param" description="Override parameters for the instance." type="array" variable="$params">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="310" name="param" description="Override setters for the instance." type="array" variable="$setters">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="310" name="return" description="An instance of the requested class." type="object">
+            <type by_reference="false">object</type>
+          </tag>
+        </docblock>
+        <argument line="324">
+          <name>$class</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="324">
+          <name>$params</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+        <argument line="324">
+          <name>$setters</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Di" line="351" package="Aura\Di">
+        <name>lazyNew</name>
+        <full_name>lazyNew</full_name>
+        <docblock line="329">
+          <description><![CDATA[Returns a Lazy that creates a new instance.]]></description>
+          <long-description><![CDATA[<p>This allows you to replace
+the following idiom:</p>
+
+<pre><code> $di-&gt;params['ClassName']['param_name'] = Lazy(function() use ($di)) {
+     return $di-&gt;newInstance('OtherClass', [...]);
+ }
+</code></pre>
+
+<p>... with the following:</p>
+
+<pre><code> $di-&gt;params['ClassName']['param_name'] = $di-&gt;lazyNew('OtherClass', [...]);
+</code></pre>]]></long-description>
+          <tag line="329" name="param" description="The type of class of instantiate." type="string" variable="$class">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="329" name="param" description="Override parameters for the instance." type="array" variable="$params">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="329" name="param" description="Override setters for the instance" type="array" variable="$setters">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="329" name="return" description="A lazy-load object that creates the new instance." type="\Aura\Di\Lazy">
+            <type by_reference="false">\Aura\Di\Lazy</type>
+          </tag>
+        </docblock>
+        <argument line="351">
+          <name>$class</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="351">
+          <name>$params</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+        <argument line="351">
+          <name>$setters</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="ContainerInterface.php" hash="e809000a6a44c6a242a0acbba9100b9d" package="Aura\Di">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Di"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <interface namespace="Aura\Di" line="20" package="Aura\Di">
+      <name>ContainerInterface</name>
+      <full_name>\Aura\Di\ContainerInterface</full_name>
+      <docblock line="13">
+        <description><![CDATA[Interface for dependency injection containers.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Di"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Di" line="30" package="Aura\Di">
+        <name>lock</name>
+        <full_name>lock</full_name>
+        <docblock line="22">
+          <description><![CDATA[Lock the Container so that configuration cannot be accessed externally,
+and no new service definitions can be added.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Di" line="39" package="Aura\Di">
+        <name>isLocked</name>
+        <full_name>isLocked</full_name>
+        <docblock line="32">
+          <description><![CDATA[Is the Container locked?]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="32" name="return" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Di" line="48" package="Aura\Di">
+        <name>getForge</name>
+        <full_name>getForge</full_name>
+        <docblock line="41">
+          <description><![CDATA[Gets the Forge object used for creating new instances.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="41" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Di" line="59" package="Aura\Di">
+        <name>has</name>
+        <full_name>has</full_name>
+        <docblock line="50">
+          <description><![CDATA[Does a particular service exist?]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="50" name="param" description="The service key to look up." type="string" variable="$key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="50" name="return" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+        <argument line="59">
+          <name>$key</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Di" line="70" package="Aura\Di">
+        <name>set</name>
+        <full_name>set</full_name>
+        <docblock line="61">
+          <description><![CDATA[Sets a service object by name.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="61" name="param" description="The service key." type="string" variable="$key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="61" name="param" description="The service object." type="object" variable="$val">
+            <type by_reference="false">object</type>
+          </tag>
+        </docblock>
+        <argument line="70">
+          <name>$key</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="70">
+          <name>$val</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Di" line="84" package="Aura\Di">
+        <name>get</name>
+        <full_name>get</full_name>
+        <docblock line="72">
+          <description><![CDATA[Gets a service object by key, lazy-loading it as needed.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="72" name="param" description="The service to get." type="string" variable="$key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="72" name="return" description="" type="object">
+            <type by_reference="false">object</type>
+          </tag>
+          <tag line="72" name="throws" description="when the requested service does not exist." type="\Aura\Di\Exception\ServiceNotFound">
+            <type by_reference="false">\Aura\Di\Exception\ServiceNotFound</type>
+          </tag>
+        </docblock>
+        <argument line="84">
+          <name>$key</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Di" line="93" package="Aura\Di">
+        <name>getServices</name>
+        <full_name>getServices</full_name>
+        <docblock line="86">
+          <description><![CDATA[Gets the list of services provided.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="86" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Di" line="102" package="Aura\Di">
+        <name>getDefs</name>
+        <full_name>getDefs</full_name>
+        <docblock line="95">
+          <description><![CDATA[Gets the list of service definitions.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="95" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Di" line="113" package="Aura\Di">
+        <name>lazyGet</name>
+        <full_name>lazyGet</full_name>
+        <docblock line="104">
+          <description><![CDATA[Returns a Lazy that gets a service.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="104" name="param" description="The service name; it does not need to exist yet." type="string" variable="$key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="104" name="return" description="A lazy-load object that gets the named service." type="\Aura\Di\Lazy">
+            <type by_reference="false">\Aura\Di\Lazy</type>
+          </tag>
+        </docblock>
+        <argument line="113">
+          <name>$key</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Di" line="129" package="Aura\Di">
+        <name>newInstance</name>
+        <full_name>newInstance</full_name>
+        <docblock line="115">
+          <description><![CDATA[Returns a new instance of the specified class, optionally
+with additional override parameters.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="115" name="param" description="The type of class of instantiate." type="string" variable="$class">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="115" name="param" description="Override parameters for the instance." type="array" variable="$params">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="115" name="param" description="Override setters for the instance." type="array" variable="$setters">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="115" name="return" description="An instance of the requested class." type="object">
+            <type by_reference="false">object</type>
+          </tag>
+        </docblock>
+        <argument line="129">
+          <name>$class</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="129">
+          <name>$params</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+        <argument line="129">
+          <name>$setters</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Di" line="144" package="Aura\Di">
+        <name>lazyNew</name>
+        <full_name>lazyNew</full_name>
+        <docblock line="131">
+          <description><![CDATA[Returns a Lazy that creates a new instance.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="131" name="param" description="The type of class of instantiate." type="string" variable="$class">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="131" name="param" description="Override parameters for the instance." type="array" variable="$params">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="131" name="param" description="Override setters for the instance." type="array" variable="$setters">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="131" name="return" description="A lazy-load object that creates the new instance." type="\Aura\Di\Lazy">
+            <type by_reference="false">\Aura\Di\Lazy</type>
+          </tag>
+        </docblock>
+        <argument line="144">
+          <name>$class</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="144">
+          <name>$params</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+        <argument line="144">
+          <name>$setters</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+    </interface>
+  </file>
+  <file path="Exception/ContainerExists.php" hash="ec54ebeef1bf9677c54d622805b64c96" package="Aura\Di">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Di"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="Exception">Aura\Di\Exception</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Di\Exception" line="21" package="Aura\Di">
+      <extends>\Aura\Di\Exception</extends>
+      <name>ContainerExists</name>
+      <full_name>\Aura\Di\Exception\ContainerExists</full_name>
+      <docblock line="14">
+        <description><![CDATA[The named DI container already exists.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="14" name="package" description="Aura.Di"/>
+      </docblock>
+    </class>
+  </file>
+  <file path="Exception/ContainerLocked.php" hash="ac2b32688e7c5ac3c92eb2359a832572" package="Aura\Di">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Di"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="Exception">Aura\Di\Exception</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Di\Exception" line="21" package="Aura\Di">
+      <extends>\Aura\Di\Exception</extends>
+      <name>ContainerLocked</name>
+      <full_name>\Aura\Di\Exception\ContainerLocked</full_name>
+      <docblock line="14">
+        <description><![CDATA[The DI container is locked.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="14" name="package" description="Aura.Di"/>
+      </docblock>
+    </class>
+  </file>
+  <file path="Exception/ContainerNotFound.php" hash="cc8827549b156650ac0501b3f24c9790" package="Aura\Di">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Di"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="Exception">Aura\Di\Exception</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Di\Exception" line="21" package="Aura\Di">
+      <extends>\Aura\Di\Exception</extends>
+      <name>ContainerNotFound</name>
+      <full_name>\Aura\Di\Exception\ContainerNotFound</full_name>
+      <docblock line="14">
+        <description><![CDATA[The named DI container was not found.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="14" name="package" description="Aura.Di"/>
+      </docblock>
+    </class>
+  </file>
+  <file path="Exception/ServiceInvalid.php" hash="37ecbb7c0b1cd765415480687c0229d8" package="Aura\Di">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Di"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="Exception">Aura\Di\Exception</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Di\Exception" line="21" package="Aura\Di">
+      <extends>\Aura\Di\Exception</extends>
+      <name>ServiceInvalid</name>
+      <full_name>\Aura\Di\Exception\ServiceInvalid</full_name>
+      <docblock line="14">
+        <description><![CDATA[The service definition is not valid.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="14" name="package" description="Aura.Di"/>
+      </docblock>
+    </class>
+  </file>
+  <file path="Exception/ServiceNotFound.php" hash="6e95d8b020a3f22d82c674a8ca5e2b08" package="Aura\Di">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Di"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="Exception">Aura\Di\Exception</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Di\Exception" line="21" package="Aura\Di">
+      <extends>\Aura\Di\Exception</extends>
+      <name>ServiceNotFound</name>
+      <full_name>\Aura\Di\Exception\ServiceNotFound</full_name>
+      <docblock line="14">
+        <description><![CDATA[The named service was not found.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="14" name="package" description="Aura.Di"/>
+      </docblock>
+    </class>
+  </file>
+  <file path="Exception.php" hash="2ab750d0cd21b5518789f498ada99f4c" package="Aura\Di">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Di"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Di" line="20" package="Aura\Di">
+      <extends>\Exception</extends>
+      <name>Exception</name>
+      <full_name>\Aura\Di\Exception</full_name>
+      <docblock line="13">
+        <description><![CDATA[Generic package exception.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Di"/>
+      </docblock>
+    </class>
+  </file>
+  <file path="Forge.php" hash="649f567680e240528243a525696c36cd" package="Aura\Di">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Di"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Di" line="20" package="Aura\Di">
+      <extends/>
+      <implements>\Aura\Di\ForgeInterface</implements>
+      <name>Forge</name>
+      <full_name>\Aura\Di\Forge</full_name>
+      <docblock line="13">
+        <description><![CDATA[Creates objects using reflection and the specified configuration values.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Di"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="30" namespace="Aura\Di" package="Default">
+        <name>$config</name>
+        <default><![CDATA[]]></default>
+        <docblock line="22">
+          <description><![CDATA[A Config object to get parameters for object instantiation and
+\ReflectionClass instances.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="var" description="" type="\Aura\Di\Config">
+            <type by_reference="false">\Aura\Di\Config</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Di" line="39" package="Aura\Di">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="32">
+          <description><![CDATA[Constructor.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="32" name="param" description="A configuration object." type="\Aura\Di\ConfigInterface" variable="$config">
+            <type by_reference="false">\Aura\Di\ConfigInterface</type>
+          </tag>
+        </docblock>
+        <argument line="39">
+          <name>$config</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Di\ConfigInterface</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Di" line="51" package="Aura\Di">
+        <name>__clone</name>
+        <full_name>__clone</full_name>
+        <docblock line="44">
+          <description><![CDATA[When cloning this Forge, create a separate Config object for the clone.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="44" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Di" line="63" package="Aura\Di">
+        <name>getConfig</name>
+        <full_name>getConfig</full_name>
+        <docblock line="56">
+          <description><![CDATA[Gets the injected Config object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="56" name="return" description="" type="\Aura\Di\ConfigInterface">
+            <type by_reference="false">\Aura\Di\ConfigInterface</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Di" line="88" package="Aura\Di">
+        <name>newInstance</name>
+        <full_name>newInstance</full_name>
+        <docblock line="68">
+          <description><![CDATA[Creates and returns a new instance of a class using reflection and
+the configuration parameters, optionally with overriding params.]]></description>
+          <long-description><![CDATA[<p>Parameters that are Lazy are invoked before instantiation.</p>]]></long-description>
+          <tag line="68" name="param" description="The class to instantiate." type="string" variable="$class">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="68" name="param" description="An associative array of override parameters where the key is the name of the constructor parameter and the value is the parameter value to use." type="array" variable="$params">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="68" name="param" description="An associative array of override setters where the key is the name of the setter method to call and the value is the value to be passed to the setter method." type="array" variable="$setters">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="68" name="return" description="" type="object">
+            <type by_reference="false">object</type>
+          </tag>
+        </docblock>
+        <argument line="88">
+          <name>$class</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="88">
+          <name>$params</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+        <argument line="88">
+          <name>$setters</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="ForgeInterface.php" hash="6c725582300f6e4aa97e7473d6e76494" package="Aura\Di">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Di"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <interface namespace="Aura\Di" line="20" package="Aura\Di">
+      <name>ForgeInterface</name>
+      <full_name>\Aura\Di\ForgeInterface</full_name>
+      <docblock line="13">
+        <description><![CDATA[Defines the interface for Forge dependencies.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Di"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Di" line="29" package="Aura\Di">
+        <name>getConfig</name>
+        <full_name>getConfig</full_name>
+        <docblock line="22">
+          <description><![CDATA[Gets the injected Config object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="return" description="" type="\Aura\Di\ConfigInterface">
+            <type by_reference="false">\Aura\Di\ConfigInterface</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Di" line="49" package="Aura\Di">
+        <name>newInstance</name>
+        <full_name>newInstance</full_name>
+        <docblock line="31">
+          <description><![CDATA[Creates and returns a new instance of a class using reflection and
+the configuration parameters, optionally with overriding params.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="31" name="param" description="The class to instantiate." type="string" variable="$class">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="31" name="param" description="An associative array of override parameters where the key is the name of the constructor parameter and the value is the parameter value to use." type="array" variable="$params">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="31" name="param" description="An associative array of override setters where the key is the name of the setter method to call and the value is the value to be passed to the setter method." type="array" variable="$setters">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="31" name="return" description="" type="object">
+            <type by_reference="false">object</type>
+          </tag>
+        </docblock>
+        <argument line="49">
+          <name>$class</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="49">
+          <name>$params</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+        <argument line="49">
+          <name>$setters</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+    </interface>
+  </file>
+  <file path="Lazy.php" hash="a832be8242036d27a3387b108b67052c" package="Aura\Di">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Di"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Di" line="20" package="Aura\Di">
+      <extends/>
+      <name>Lazy</name>
+      <full_name>\Aura\Di\Lazy</full_name>
+      <docblock line="13">
+        <description><![CDATA[Wraps a callable specifically for the purpose of lazy-loading an object.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Di"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="29" namespace="Aura\Di" package="Default">
+        <name>$callable</name>
+        <default><![CDATA[]]></default>
+        <docblock line="22">
+          <description><![CDATA[A callable to create an object instance.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="var" description="" type="\Aura\Di\callable">
+            <type by_reference="false">\Aura\Di\callable</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Di" line="40" package="Aura\Di">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="31">
+          <description><![CDATA[Constructor.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="31" name="param" description="A callable to create an object instance." type="\Aura\Di\callable" variable="$callable">
+            <type by_reference="false">\Aura\Di\callable</type>
+          </tag>
+          <tag line="31" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="40">
+          <name>$callable</name>
+          <default><![CDATA[]]></default>
+          <type>callable</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Di" line="52" package="Aura\Di">
+        <name>__invoke</name>
+        <full_name>__invoke</full_name>
+        <docblock line="45">
+          <description><![CDATA[Invokes the closure to create the instance.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="45" name="return" description="The object created by the closure." type="object">
+            <type by_reference="false">object</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <package name="Aura" full_name="Aura">
+    <package name="Di" full_name="Aura\Di"/>
+  </package>
+  <package name="Default" full_name="Default"/>
+  <namespace name="Aura" full_name="Aura">
+    <namespace name="Di" full_name="Aura\Di">
+      <namespace name="Exception" full_name="Aura\Di\Exception"/>
+    </namespace>
+  </namespace>
+  <marker count="0">todo</marker>
+  <marker count="0">fixme</marker>
+  <deprecated count="0"/>
+</project>

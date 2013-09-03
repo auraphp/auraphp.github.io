@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project version="2.0.0a7" title="">
+  <file path="Exception/AlreadyLoaded.php" hash="9b3a6ddd1e5f4c7e6f0d3f39dd839a28" package="Aura\Autoload">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Autoload"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="Exception">Aura\Autoload\Exception</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Autoload\Exception" line="22" package="Aura\Autoload">
+      <extends>\Aura\Autoload\Exception</extends>
+      <name>AlreadyLoaded</name>
+      <full_name>\Aura\Autoload\Exception\AlreadyLoaded</full_name>
+      <docblock line="15">
+        <description><![CDATA[Indicates a class has already been loaded.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Autoload"/>
+      </docblock>
+    </class>
+  </file>
+  <file path="Exception/NotDeclared.php" hash="bc33a12e9135dac357c23bbb433c267d" package="Aura\Autoload">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Autoload"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="Exception">Aura\Autoload\Exception</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Autoload\Exception" line="22" package="Aura\Autoload">
+      <extends>\Aura\Autoload\Exception</extends>
+      <name>NotDeclared</name>
+      <full_name>\Aura\Autoload\Exception\NotDeclared</full_name>
+      <docblock line="15">
+        <description><![CDATA[Indicates the loader did not find a class definition after loading a file.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Autoload"/>
+      </docblock>
+    </class>
+  </file>
+  <file path="Exception/NotReadable.php" hash="c832e59454d010389fe70110c2ede73b" package="Aura\Autoload">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Autoload"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="Exception">Aura\Autoload\Exception</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Autoload\Exception" line="22" package="Aura\Autoload">
+      <extends>\Aura\Autoload\Exception</extends>
+      <name>NotReadable</name>
+      <full_name>\Aura\Autoload\Exception\NotReadable</full_name>
+      <docblock line="15">
+        <description><![CDATA[Indicates the Loader failed to find a class file.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Autoload"/>
+      </docblock>
+    </class>
+  </file>
+  <file path="Exception.php" hash="44cfb86fb8924b9c24fdc8a74537e388" package="Aura\Autoload">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Autoload"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Autoload" line="20" package="Aura\Autoload">
+      <extends>\Exception</extends>
+      <name>Exception</name>
+      <full_name>\Aura\Autoload\Exception</full_name>
+      <docblock line="13">
+        <description><![CDATA[Generic package exception.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Autoload"/>
+      </docblock>
+    </class>
+  </file>
+  <file path="Loader.php" hash="dd48624b2749c27f0df97452f84dee1e" package="Aura\Autoload">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Autoload"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <include line="341" type="Require" package="Default">
+      <name/>
+    </include>
+    <class final="false" abstract="false" namespace="Aura\Autoload" line="21" package="Aura\Autoload">
+      <extends/>
+      <name>Loader</name>
+      <full_name>\Aura\Autoload\Loader</full_name>
+      <docblock line="13">
+        <description><![CDATA[An SPL autoloader adhering to [PSR-0](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md)
+and <https://wiki.php.net/rfc/splclassloader>.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Autoload"/>
+      </docblock>
+      <constant namespace="Aura\Autoload" line="30" package="Aura\Autoload">
+        <name>MODE_SILENT</name>
+        <full_name>MODE_SILENT</full_name>
+        <value><![CDATA[0]]></value>
+        <docblock line="23">
+          <description><![CDATA[Operational mode where no exceptions are thrown under error conditions.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="23" name="const" description=""/>
+        </docblock>
+      </constant>
+      <constant namespace="Aura\Autoload" line="40" package="Aura\Autoload">
+        <name>MODE_NORMAL</name>
+        <full_name>MODE_NORMAL</full_name>
+        <value><![CDATA[1]]></value>
+        <docblock line="32">
+          <description><![CDATA[Operatinal mode where an exception is thrown when a class file is not
+found.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="32" name="const" description=""/>
+        </docblock>
+      </constant>
+      <constant namespace="Aura\Autoload" line="50" package="Aura\Autoload">
+        <name>MODE_DEBUG</name>
+        <full_name>MODE_DEBUG</full_name>
+        <value><![CDATA[2]]></value>
+        <docblock line="42">
+          <description><![CDATA[Operatinal mode where an exception is thrown when a class file is not
+found, or if after loading the file the class is still not declared.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="42" name="const" description=""/>
+        </docblock>
+      </constant>
+      <property final="false" static="false" visibility="protected" line="60" namespace="Aura\Autoload" package="Default">
+        <name>$loaded</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="52">
+          <description><![CDATA[Classes and interfaces loaded by the autoloader; the key is the class
+name and the value is the file name.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="52" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="69" namespace="Aura\Autoload" package="Default">
+        <name>$paths</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="62">
+          <description><![CDATA[A map of class name prefixes to directory paths.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="62" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="78" namespace="Aura\Autoload" package="Default">
+        <name>$classes</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="71">
+          <description><![CDATA[A map of exact class names to their file paths.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="71" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="87" namespace="Aura\Autoload" package="Default">
+        <name>$mode</name>
+        <default><![CDATA[self::MODE_NORMAL]]></default>
+        <docblock line="80">
+          <description><![CDATA[The operational mode.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="80" name="var" description="" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="96" namespace="Aura\Autoload" package="Default">
+        <name>$tried_paths</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="89">
+          <description><![CDATA[A log of paths that have been tried during load(), for debug use.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="89" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Autoload" line="105" package="Aura\Autoload">
+        <name>setMode</name>
+        <full_name>setMode</full_name>
+        <docblock line="98">
+          <description><![CDATA[Sets the autoloader operational mode.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="98" name="param" description="Autoloader operational mode." type="int" variable="$mode">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+        <argument line="105">
+          <name>$mode</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Autoload" line="117" package="Aura\Autoload">
+        <name>isDebug</name>
+        <full_name>isDebug</full_name>
+        <docblock line="110">
+          <description><![CDATA[Is the autoloader in debug mode?]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="110" name="return" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Autoload" line="129" package="Aura\Autoload">
+        <name>isSilent</name>
+        <full_name>isSilent</full_name>
+        <docblock line="122">
+          <description><![CDATA[Is the autoloader in silent mode?]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="122" name="return" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Autoload" line="143" package="Aura\Autoload">
+        <name>register</name>
+        <full_name>register</full_name>
+        <docblock line="134">
+          <description><![CDATA[Registers this autoloader with SPL.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="134" name="param" description="True to prepend to the autoload stack." type="bool" variable="$prepend">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="134" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="143">
+          <name>$prepend</name>
+          <default><![CDATA[false]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Autoload" line="155" package="Aura\Autoload">
+        <name>unregister</name>
+        <full_name>unregister</full_name>
+        <docblock line="148">
+          <description><![CDATA[Unregisters this autoloader from SPL.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="148" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Autoload" line="175" package="Aura\Autoload">
+        <name>add</name>
+        <full_name>add</full_name>
+        <docblock line="160">
+          <description><![CDATA[Adds a directory path for a class name prefix.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="160" name="param" description="The class name prefix, e.g. 'Aura\Framework\\' or 'Zend_'." type="string" variable="$prefix">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="160" name="param" description="The directory path leading to the classes with that prefix, e.g. `'/path/to/system/package/Aura.Framework-dev/src'`. Note that the classes must thereafter be in subdirectories of their own, e.g. `'/Aura/Framework/'." type="array|string" variable="$paths">
+            <type by_reference="false">array</type>
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="160" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="175">
+          <name>$prefix</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="175">
+          <name>$paths</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Autoload" line="208" package="Aura\Autoload">
+        <name>setPaths</name>
+        <full_name>setPaths</full_name>
+        <docblock line="186">
+          <description><![CDATA[Sets all class name prefixes and their paths.]]></description>
+          <long-description><![CDATA[<p>This overwrites the
+existing mappings.</p>
+
+<p>Paths can a string or an array. For example:</p>
+
+<pre><code> $loader-&gt;setPaths([
+     'Zend_'=&gt; '/path/to/zend/library',
+     'Aura\\' =&gt; [
+         '/path/to/project/Aura.Router/src/',
+         '/path/to/project/Aura.Di/src/'
+     ],
+     'Vendor\\' =&gt; [
+         '/path/to/project/Vendor.Package/src/',
+     ],
+     'Symfony\Component' =&gt; 'path/to/Symfony/Component',
+ ]);
+</code></pre>]]></long-description>
+          <tag line="186" name="param" description="An associative array of class names and paths." type="array" variable="$paths">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="208">
+          <name>$paths</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Autoload" line="222" package="Aura\Autoload">
+        <name>getPaths</name>
+        <full_name>getPaths</full_name>
+        <docblock line="215">
+          <description><![CDATA[Returns the list of all class name prefixes and their paths.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="215" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Autoload" line="238" package="Aura\Autoload">
+        <name>setClass</name>
+        <full_name>setClass</full_name>
+        <docblock line="227">
+          <description><![CDATA[Sets the exact file path for an exact class name.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="227" name="param" description="The exact class name." type="string" variable="$class">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="227" name="param" description="The file path to that class." type="string" variable="$path">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="227" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="238">
+          <name>$class</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="238">
+          <name>$path</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Autoload" line="254" package="Aura\Autoload">
+        <name>setClasses</name>
+        <full_name>setClasses</full_name>
+        <docblock line="243">
+          <description><![CDATA[Sets all file paths for all class names; this overwrites all previous
+exact mappings.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="243" name="param" description="An array of class-to-file mappings where the key is the class name and the value is the file path." type="array" variable="$classes">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="243" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="254">
+          <name>$classes</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Autoload" line="269" package="Aura\Autoload">
+        <name>addClasses</name>
+        <full_name>addClasses</full_name>
+        <docblock line="259">
+          <description><![CDATA[Adds file paths for class names to the existing exact mappings.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="259" name="param" description="An array of class-to-file mappings where the key is the class name and the value is the file path." type="array" variable="$classes">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="259" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="269">
+          <name>$classes</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Autoload" line="281" package="Aura\Autoload">
+        <name>getClasses</name>
+        <full_name>getClasses</full_name>
+        <docblock line="274">
+          <description><![CDATA[Returns the list of exact class names and their paths.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="274" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Autoload" line="294" package="Aura\Autoload">
+        <name>getLoaded</name>
+        <full_name>getLoaded</full_name>
+        <docblock line="286">
+          <description><![CDATA[Returns the list of classes and interfaces loaded by the autoloader.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="286" name="return" description="An array of key-value pairs where the key is the class or interface name and the value is the file name." type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Autoload" line="312" package="Aura\Autoload">
+        <name>load</name>
+        <full_name>load</full_name>
+        <docblock line="299">
+          <description><![CDATA[Loads a class or interface using the class name prefix and path,
+falling back to the include-path if not found.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="299" name="param" description="The class or interface to load." type="string" variable="$spec">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="299" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+          <tag line="299" name="throws" description="when the file for the class or interface is not found." type="\Aura\Autoload\Exception\NotReadable">
+            <type by_reference="false">\Aura\Autoload\Exception\NotReadable</type>
+          </tag>
+        </docblock>
+        <argument line="312">
+          <name>$spec</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Autoload" line="368" package="Aura\Autoload">
+        <name>isDeclared</name>
+        <full_name>isDeclared</full_name>
+        <docblock line="359">
+          <description><![CDATA[Tells if a class, interface or trait exists.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="359" name="param" description="The class or interface." type="string" variable="$spec">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="359" name="return" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+        <argument line="368">
+          <name>$spec</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Autoload" line="385" package="Aura\Autoload">
+        <name>find</name>
+        <full_name>find</full_name>
+        <docblock line="375">
+          <description><![CDATA[Finds the path to a class or interface using the class prefix paths and
+include-path.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="375" name="param" description="The class or interface to find." type="string" variable="$spec">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="375" name="return" description="absolute path to the class or interface." type="\Aura\Autoload\The">
+            <type by_reference="false">\Aura\Autoload\The</type>
+          </tag>
+        </docblock>
+        <argument line="385">
+          <name>$spec</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Autoload" line="448" package="Aura\Autoload">
+        <name>classToFile</name>
+        <full_name>classToFile</full_name>
+        <docblock line="439">
+          <description><![CDATA[PSR-0 compliant class-to-file inflector.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="439" name="param" description="The name of the class or interface to load." type="string" variable="$spec">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="439" name="return" description="The filename version of the class or interface." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="448">
+          <name>$spec</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <package name="Aura" full_name="Aura">
+    <package name="Autoload" full_name="Aura\Autoload"/>
+  </package>
+  <package name="Default" full_name="Default"/>
+  <namespace name="Aura" full_name="Aura">
+    <namespace name="Autoload" full_name="Aura\Autoload">
+      <namespace name="Exception" full_name="Aura\Autoload\Exception"/>
+    </namespace>
+  </namespace>
+  <marker count="0">todo</marker>
+  <marker count="0">fixme</marker>
+  <deprecated count="0"/>
+</project>

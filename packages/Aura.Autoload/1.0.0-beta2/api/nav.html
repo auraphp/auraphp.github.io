@@ -1,0 +1,110 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>DocBlox Documentation</title><link rel="stylesheet" href="css/jquery-ui.css" type="text/css"></link><link rel="stylesheet" href="css/docblox/jquery-ui-1.8.16.custom.css" type="text/css"></link><link rel="stylesheet" href="css/jquery.treeview.css" type="text/css"></link><link rel="stylesheet" href="css/theme.css" type="text/css"></link><script type="text/javascript" src="js/jquery-1.4.2.min.js"></script><script type="text/javascript" src="js/jquery-ui-1.8.2.custom.min.js"></script><script type="text/javascript" src="js/jquery.tools.min.js"></script><script type="text/javascript" src="js/jquery.cookie.js"></script><script type="text/javascript" src="js/jquery.treeview.js"></script><script type="text/javascript">
+            $(document).ready(function() {
+                $(".filetree").treeview({
+                    collapsed: true,
+                    persist: "cookie"
+                });
+
+                $("#accordion").accordion({
+                    collapsible: true,
+                    autoHeight:  false,
+                    fillSpace:   true
+                });
+
+                $(".tabs").tabs();
+            });
+        </script></head><body><script xmlns="" type="text/javascript" src="js/sidebar.js"></script><div xmlns="" id="sidebar">
+<div id="sidebar-header">
+<img src="images/icon48x48.png" id="sidebar-logo" alt="Logo"><h1>DocBlox</h1>
+<div style="clear: both"></div>
+</div>
+<div id="sidebar-nav">
+<h3 id="sidebar-dashboard">
+<img class="icon" src="css/docblox/images/icons/dashboard.png" alt="Dashboard"><a href="content.html" class="link" target="content">Dashboard</a>
+</h3>
+<div style="display: none"></div>
+<h3 id="sidebar-files">
+<img src="css/docblox/images/icons/files.png" alt="Files"><a href="#files">Files</a>
+</h3>
+<div class="sidebar-section">
+<div class="search-bar">
+<a href="#" onclick="$(this).parent().next().find('.collapsable-hitarea').click(); return false;"><img src="images/collapse_all.png" title="Collapse all" alt="Collapse all"></a><a href="#" onclick="$(this).parent().next().find('.expandable-hitarea').click(); return false;"><img src="images/expand_all.png" title="Expand all" alt="Expand all"></a><div><input type="text" onkeyup="tree_search(this);"></div>
+</div>
+<ul class="sidebar-nav-tree">
+<li class="closed">
+<span class="file"><a href="db_Aura_Autoload_Exception.html" target="content">Aura/Autoload/Exception.php</a></span><ul id="files_eb49f0026d17f9266c6d255329b881a4" class="filetree"><li><span class="class"><a href="db_Aura_Autoload_Exception.html#%5CAura%5CAutoload%5CException" target="content">Exception<br></a></span></li></ul>
+</li>
+<li class="closed">
+<span class="file"><a href="db_Aura_Autoload_Exception_AlreadyLoaded.html" target="content">Aura/Autoload/Exception/AlreadyLoaded.php</a></span><ul id="files_7e3cab95b603b3c2af2c0fcc9759aa48" class="filetree"><li><span class="class"><a href="db_Aura_Autoload_Exception_AlreadyLoaded.html#%5CAura%5CAutoload%5CException%5CAlreadyLoaded" target="content">AlreadyLoaded<br></a></span></li></ul>
+</li>
+<li class="closed">
+<span class="file"><a href="db_Aura_Autoload_Exception_NotDeclared.html" target="content">Aura/Autoload/Exception/NotDeclared.php</a></span><ul id="files_67fd5557fc92e9d2ca2fbbe8f91b15a5" class="filetree"><li><span class="class"><a href="db_Aura_Autoload_Exception_NotDeclared.html#%5CAura%5CAutoload%5CException%5CNotDeclared" target="content">NotDeclared<br></a></span></li></ul>
+</li>
+<li class="closed">
+<span class="file"><a href="db_Aura_Autoload_Exception_NotReadable.html" target="content">Aura/Autoload/Exception/NotReadable.php</a></span><ul id="files_d9425a00148745a628085ca352577924" class="filetree"><li><span class="class"><a href="db_Aura_Autoload_Exception_NotReadable.html#%5CAura%5CAutoload%5CException%5CNotReadable" target="content">NotReadable<br></a></span></li></ul>
+</li>
+<li class="closed">
+<span class="file"><a href="db_Aura_Autoload_Loader.html" target="content">Aura/Autoload/Loader.php</a></span><ul id="files_7cd2ed2aefd7eade8be1e9f23cb90bfd" class="filetree"><li><span class="class"><a href="db_Aura_Autoload_Loader.html#%5CAura%5CAutoload%5CLoader" target="content">Loader<br></a></span></li></ul>
+</li>
+</ul>
+</div>
+<h3 id="sidebar-packages">
+<img src="css/docblox/images/icons/packages.png" alt="Packages"><a href="#packages">Packages</a>
+</h3>
+<div class="sidebar-section sidebar-tree">
+<div class="search-bar">
+<a href="#" onclick="$(this).parent().next().find('.collapsable-hitarea').click(); return false;"><img src="images/collapse_all.png" title="Collapse all" alt="Collapse all"></a><a href="#" onclick="$(this).parent().next().find('.expandable-hitarea').click(); return false;"><img src="images/expand_all.png" title="Expand all" alt="Expand all"></a><div><input type="text" onkeyup="tree_search(this);"></div>
+</div>
+<ul class="sidebar-nav-tree"><li class="closed">
+<span class="folder">Aura</span><ul><li class="closed">
+<span class="folder">Autoload</span><ul>
+<li><span class="class"><a href="db_Aura_Autoload_Exception_AlreadyLoaded.html#%5CAura%5CAutoload%5CException%5CAlreadyLoaded" target="content">AlreadyLoaded</a></span></li>
+<li><span class="class"><a href="db_Aura_Autoload_Exception.html#%5CAura%5CAutoload%5CException" target="content">Exception</a></span></li>
+<li><span class="class"><a href="db_Aura_Autoload_Loader.html#%5CAura%5CAutoload%5CLoader" target="content">Loader</a></span></li>
+<li><span class="class"><a href="db_Aura_Autoload_Exception_NotDeclared.html#%5CAura%5CAutoload%5CException%5CNotDeclared" target="content">NotDeclared</a></span></li>
+<li><span class="class"><a href="db_Aura_Autoload_Exception_NotReadable.html#%5CAura%5CAutoload%5CException%5CNotReadable" target="content">NotReadable</a></span></li>
+</ul>
+</li></ul>
+</li></ul>
+</div>
+<h3 id="sidebar-namespaces">
+<img src="css/docblox/images/icons/namespaces.png" alt="Namespaces"><a href="#namespaces">Namespaces</a>
+</h3>
+<div class="sidebar-section sidebar-tree">
+<div class="search-bar">
+<a href="#" onclick="$(this).parent().next().find('.collapsable-hitarea').click(); return false;"><img src="images/collapse_all.png" title="Collapse all" alt="Collapse all"></a><a href="#" onclick="$(this).parent().next().find('.expandable-hitarea').click(); return false;"><img src="images/expand_all.png" title="Expand all" alt="Expand all"></a><div><input type="text" onkeyup="tree_search(this);"></div>
+</div>
+<ul class="sidebar-nav-tree"><li class="closed">
+<span class="folder">Aura</span><ul><li class="closed">
+<span class="folder">Autoload</span><ul>
+<li class="closed">
+<span class="folder">Exception</span><ul>
+<li><span class="class"><a href="db_Aura_Autoload_Exception_AlreadyLoaded.html#%5CAura%5CAutoload%5CException%5CAlreadyLoaded" target="content">AlreadyLoaded</a></span></li>
+<li><span class="class"><a href="db_Aura_Autoload_Exception_NotDeclared.html#%5CAura%5CAutoload%5CException%5CNotDeclared" target="content">NotDeclared</a></span></li>
+<li><span class="class"><a href="db_Aura_Autoload_Exception_NotReadable.html#%5CAura%5CAutoload%5CException%5CNotReadable" target="content">NotReadable</a></span></li>
+</ul>
+</li>
+<li><span class="class"><a href="db_Aura_Autoload_Exception.html#%5CAura%5CAutoload%5CException" target="content">Exception</a></span></li>
+<li><span class="class"><a href="db_Aura_Autoload_Loader.html#%5CAura%5CAutoload%5CLoader" target="content">Loader</a></span></li>
+</ul>
+</li></ul>
+</li></ul>
+</div>
+<h3 id="sidebar-charts">
+<img src="css/docblox/images/icons/chart.png" alt="Charts"><a href="#charts">Charts</a>
+</h3>
+<div class="sidebar-section"><ul style="list-style-image: url('css/docblox/images/icons/chart15x12.png');"><li><a href="graph.html" target="content">Class Inheritance Diagram</a></li></ul></div>
+<h3 id="sidebar-reports">
+<img src="css/docblox/images/icons/reports.png" alt="Reports"><a href="#reports">Reports</a>
+</h3>
+<div class="sidebar-section"><ul style="list-style-image: url('css/docblox/images/icons/reports9x12.png');">
+<li><a href="report_markers.html" target="content">Markers (TODO/FIXME)</a></li>
+<li><a href="report_parse_markers.html" target="content">Parsing errors</a></li>
+<li><a href="report_deprecated.html" target="content">Deprecated elements</a></li>
+</ul></div>
+</div>
+<div id="sidebar-footer">
+        Documentation is generated by <a href="http://docblox-project.org" target="_top"><img src="images/icon48x48.png" height="12" align="top" alt="Logo"> DocBlox 0.17.2</a>, images courtesy of <a href="http://glyphish.com/" target="_top">Glyphish</a>
+</div>
+</div></body></html>

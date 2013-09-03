@@ -1,0 +1,842 @@
+<!DOCTYPE html><html xmlns:date="http://exslt.org/dates-and-times" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » \Aura\Marshal\Type\GenericType</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Namespaces</a></li>
+<li><a href="../namespaces/Aura.html"><i class="icon-th"></i> Aura</a></li>
+<li><a>Packages</a></li>
+<li><a href="../packages/Aura.html"><i class="icon-folder-open"></i> Aura</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">0</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods</li>
+<li class="method public "><a href="#__construct" title="__construct :: Constructor; overrides the parent entirely."><span class="description">Constructor; overrides the parent entirely.</span><pre>__construct()</pre></a></li>
+<li class="method public inherited"><a href="#count" title="count :: Countable: how many keys are there?"><span class="description">Countable: how many keys are there?</span><pre>count()</pre></a></li>
+<li class="method public "><a href="#getChangedEntities" title="getChangedEntities :: Returns an array of all entities in the IdentityMap that have been
+modified."><span class="description">Returns an array of all entities in the IdentityMap that have been
+modified.</span><pre>getChangedEntities()</pre></a></li>
+<li class="method public "><a href="#getChangedFields" title="getChangedFields :: Returns the changed fields and their values for an entity."><span class="description">Returns the changed fields and their values for an entity.</span><pre>getChangedFields()</pre></a></li>
+<li class="method public "><a href="#getCollection" title="getCollection :: Retrieves a collection of elements from the IdentityMap by the values
+of their identity fields; each element will be converted to a entity
+object if it is not already an object of the proper class."><span class="description">Retrieves a collection of elements from the IdentityMap by the values
+of their identity fields; each element will be converted to a entity
+object if it is not already an object of the proper class.</span><pre>getCollection()</pre></a></li>
+<li class="method public "><a href="#getCollectionBuilder" title="getCollectionBuilder :: Returns the builder that creates collection objects."><span class="description">Returns the builder that creates collection objects.</span><pre>getCollectionBuilder()</pre></a></li>
+<li class="method public "><a href="#getCollectionByField" title="getCollectionByField :: Retrieves a collection of objects from the IdentityMap matching the
+value of an arbitrary field; these will be converted to entities
+if they are not already objects of the proper class."><span class="description">Retrieves a collection of objects from the IdentityMap matching the
+value of an arbitrary field; these will be converted to entities
+if they are not already objects of the proper class.</span><pre>getCollectionByField()</pre></a></li>
+<li class="method public "><a href="#getEntity" title="getEntity :: Retrieves a single entity from the IdentityMap by the value of its
+identity field."><span class="description">Retrieves a single entity from the IdentityMap by the value of its
+identity field.</span><pre>getEntity()</pre></a></li>
+<li class="method public "><a href="#getEntityBuilder" title="getEntityBuilder :: Returns the builder that creates entity objects."><span class="description">Returns the builder that creates entity objects.</span><pre>getEntityBuilder()</pre></a></li>
+<li class="method public "><a href="#getEntityByField" title="getEntityByField :: Retrieves the first entity from the IdentityMap that matches the value
+of an arbitrary field; it will be converted to a entity object
+if it is not already an object of the proper class."><span class="description">Retrieves the first entity from the IdentityMap that matches the value
+of an arbitrary field; it will be converted to a entity object
+if it is not already an object of the proper class.</span><pre>getEntityByField()</pre></a></li>
+<li class="method public "><a href="#getFieldValues" title="getFieldValues :: Returns the values for a particular field for all the entities in the
+IdentityMap."><span class="description">Returns the values for a particular field for all the entities in the
+IdentityMap.</span><pre>getFieldValues()</pre></a></li>
+<li class="method public "><a href="#getIdentityField" title="getIdentityField :: Returns the name of the field that uniquely identifies each entity of
+this type."><span class="description">Returns the name of the field that uniquely identifies each entity of
+this type.</span><pre>getIdentityField()</pre></a></li>
+<li class="method public "><a href="#getIdentityValues" title="getIdentityValues :: Returns the array keys for the for the entities in the IdentityMap;
+the keys were generated at load() time from the identity field values."><span class="description">Returns the array keys for the for the entities in the IdentityMap;
+the keys were generated at load() time from the identity field values.</span><pre>getIdentityValues()</pre></a></li>
+<li class="method public "><a href="#getIndexFields" title="getIndexFields :: Returns the list of indexed field names."><span class="description">Returns the list of indexed field names.</span><pre>getIndexFields()</pre></a></li>
+<li class="method public "><a href="#getInitialData" title="getInitialData :: Returns the initial data for a given entity."><span class="description">Returns the initial data for a given entity.</span><pre>getInitialData()</pre></a></li>
+<li class="method public inherited"><a href="#getIterator" title="getIterator :: IteratorAggregate: returns an external iterator for this struct."><span class="description">IteratorAggregate: returns an external iterator for this struct.</span><pre>getIterator()</pre></a></li>
+<li class="method public "><a href="#getLazyBuilder" title="getLazyBuilder :: Returns the lazy builder that creates lazy objects."><span class="description">Returns the lazy builder that creates lazy objects.</span><pre>getLazyBuilder()</pre></a></li>
+<li class="method public "><a href="#getNewEntities" title="getNewEntities :: Returns an array of all entities in the IdentityMap that were created
+using `newEntity()`."><span class="description">Returns an array of all entities in the IdentityMap that were created
+using `newEntity()`.</span><pre>getNewEntities()</pre></a></li>
+<li class="method public "><a href="#getRelation" title="getRelation :: Returns a relationship definition object by name."><span class="description">Returns a relationship definition object by name.</span><pre>getRelation()</pre></a></li>
+<li class="method public "><a href="#getRelations" title="getRelations :: Returns the array of all relationship definition objects."><span class="description">Returns the array of all relationship definition objects.</span><pre>getRelations()</pre></a></li>
+<li class="method public "><a href="#load" title="load :: Loads the IdentityMap for this type with data for entity objects."><span class="description">Loads the IdentityMap for this type with data for entity objects.</span><pre>load()</pre></a></li>
+<li class="method public "><a href="#loadCollection" title="loadCollection :: Loads an entity collection into the identity map."><span class="description">Loads an entity collection into the identity map.</span><pre>loadCollection()</pre></a></li>
+<li class="method public "><a href="#loadEntity" title="loadEntity :: Loads a single entity into the identity map."><span class="description">Loads a single entity into the identity map.</span><pre>loadEntity()</pre></a></li>
+<li class="method public "><a href="#newEntity" title="newEntity :: Adds a new entity to the IdentityMap."><span class="description">Adds a new entity to the IdentityMap.</span><pre>newEntity()</pre></a></li>
+<li class="method public inherited"><a href="#offsetExists" title="offsetExists :: ArrayAccess: does the requested key exist?"><span class="description">ArrayAccess: does the requested key exist?</span><pre>offsetExists()</pre></a></li>
+<li class="method public inherited"><a href="#offsetGet" title="offsetGet :: ArrayAccess: get a key value."><span class="description">ArrayAccess: get a key value.</span><pre>offsetGet()</pre></a></li>
+<li class="method public inherited"><a href="#offsetSet" title="offsetSet :: ArrayAccess: set a key value."><span class="description">ArrayAccess: set a key value.</span><pre>offsetSet()</pre></a></li>
+<li class="method public inherited"><a href="#offsetUnset" title="offsetUnset :: ArrayAccess: unset a key."><span class="description">ArrayAccess: unset a key.</span><pre>offsetUnset()</pre></a></li>
+<li class="method public "><a href="#setCollectionBuilder" title="setCollectionBuilder :: Sets the builder object to create collection objects."><span class="description">Sets the builder object to create collection objects.</span><pre>setCollectionBuilder()</pre></a></li>
+<li class="method public "><a href="#setEntityBuilder" title="setEntityBuilder :: Sets the builder object to create entity objects."><span class="description">Sets the builder object to create entity objects.</span><pre>setEntityBuilder()</pre></a></li>
+<li class="method public "><a href="#setIdentityField" title="setIdentityField :: Sets the name of the field that uniquely identifies each entity for
+this type."><span class="description">Sets the name of the field that uniquely identifies each entity for
+this type.</span><pre>setIdentityField()</pre></a></li>
+<li class="method public "><a href="#setIndexFields" title="setIndexFields :: Sets the fields that should be indexed at load() time; removes all
+previous field indexes."><span class="description">Sets the fields that should be indexed at load() time; removes all
+previous field indexes.</span><pre>setIndexFields()</pre></a></li>
+<li class="method public "><a href="#setLazyBuilder" title="setLazyBuilder :: Sets the lazy builder to create lazy objects."><span class="description">Sets the lazy builder to create lazy objects.</span><pre>setLazyBuilder()</pre></a></li>
+<li class="method public "><a href="#setRelation" title="setRelation :: Sets a relationship to another type, assigning it to a field
+name to be used in entity objects."><span class="description">Sets a relationship to another type, assigning it to a field
+name to be used in entity objects.</span><pre>setRelation()</pre></a></li>
+<li class="nav-header protected">» Protected</li>
+<li class="method protected "><a href="#getCollectionByIndex" title="getCollectionByIndex :: Looks through the index for a field to retrieve a collection of
+objects from the IdentityMap; these will be converted to entities
+if they are not already objects of the proper class."><span class="description">Looks through the index for a field to retrieve a collection of
+objects from the IdentityMap; these will be converted to entities
+if they are not already objects of the proper class.</span><pre>getCollectionByIndex()</pre></a></li>
+<li class="method protected "><a href="#getEntityByIndex" title="getEntityByIndex :: Retrieves the first entity from the IdentityMap matching an index
+lookup."><span class="description">Retrieves the first entity from the IdentityMap matching an index
+lookup.</span><pre>getEntityByIndex()</pre></a></li>
+<li class="method protected "><a href="#loadData" title="loadData :: Loads an entity into the identity map."><span class="description">Loads an entity into the identity map.</span><pre>loadData()</pre></a></li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties</li>
+<li class="nav-header protected">» Protected</li>
+<li class="property protected "><a href="#%24collection_builder" title="$collection_builder :: A builder to create collection objects for this type."><span class="description">A builder to create collection objects for this type.</span><pre>$collection_builder</pre></a></li>
+<li class="property protected inherited"><a href="#%24data" title="$data :: Key-value pairs of data."><span class="description">Key-value pairs of data.</span><pre>$data</pre></a></li>
+<li class="property protected "><a href="#%24entity_builder" title="$entity_builder :: A builder to create entity objects for this type."><span class="description">A builder to create entity objects for this type.</span><pre>$entity_builder</pre></a></li>
+<li class="property protected "><a href="#%24identity_field" title="$identity_field :: The entity field representing its unique identifier value."><span class="description">The entity field representing its unique identifier value.</span><pre>$identity_field</pre></a></li>
+<li class="property protected "><a href="#%24index_fields" title="$index_fields :: An array of fields to index on for quicker lookups."><span class="description">An array of fields to index on for quicker lookups.</span><pre>$index_fields</pre></a></li>
+<li class="property protected "><a href="#%24index_identity" title="$index_identity :: An index of entities on the identity field."><span class="description">An index of entities on the identity field.</span><pre>$index_identity</pre></a></li>
+<li class="property protected "><a href="#%24index_new" title="$index_new :: An index of all entities added via newEntity()."><span class="description">An index of all entities added via newEntity().</span><pre>$index_new</pre></a></li>
+<li class="property protected "><a href="#%24initial_data" title="$initial_data :: An object store of the initial data for entity in the IdentityMap."><span class="description">An object store of the initial data for entity in the IdentityMap.</span><pre>$initial_data</pre></a></li>
+<li class="property protected "><a href="#%24lazy_builder" title="$lazy_builder :: A builder to create Lazy objects."><span class="description">A builder to create Lazy objects.</span><pre>$lazy_builder</pre></a></li>
+<li class="property protected "><a href="#%24relations" title="$relations :: An array of relationship descriptions, where the key is a
+field name for the entity and the value is a relation object."><span class="description">An array of relationship descriptions, where the key is a
+field name for the entity and the value is a relation object.</span><pre>$relations</pre></a></li>
+</ul>
+</div>
+<div class="span8">
+<a name="%5CAura%5CMarshal%5CType%5CGenericType" id="\Aura\Marshal\Type\GenericType"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/Aura.html">Aura</a></li>
+<span class="divider">\</span><li><a href="../namespaces/Aura.Marshal.html">Marshal</a></li>
+<span class="divider">\</span><li><a href="../namespaces/Aura.Marshal.Type.html">Type</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/Aura.Marshal.Type.GenericType.html">GenericType</a>
+</li>
+</ul>
+<div href="../classes/Aura.Marshal.Type.GenericType.html" class="element class">
+<p class="short_description">Describes a particular type within the domain, and retains an IdentityMap
+of entities for the type.</p>
+<div class="details">
+<p class="long_description"><p>Converts loaded data to entity objects lazily.</p></p>
+<table class="table table-bordered"><tr>
+<th>package</th>
+<td><a href="../packages/Aura.Marshal.html">Aura.Marshal</a></td>
+</tr></table>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a name="__construct" id="__construct"></a><div class="element clickable method public __construct" data-toggle="collapse" data-target=".__construct .collapse">
+<h2>Constructor; overrides the parent entirely.</h2>
+<pre>__construct(array $data) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>array</code><p>The initial data for all entities in the type.</p></div>
+</div></div>
+</div>
+<a name="count" id="count"></a><div class="element clickable method public count" data-toggle="collapse" data-target=".count .collapse">
+<h2>Countable: how many keys are there?</h2>
+<pre>count() : int</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Marshal\Data::count()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>int</code></div>
+</div></div>
+</div>
+<a name="getChangedEntities" id="getChangedEntities"></a><div class="element clickable method public getChangedEntities" data-toggle="collapse" data-target=".getChangedEntities .collapse">
+<h2>Returns an array of all entities in the IdentityMap that have been
+modified.</h2>
+<pre>getChangedEntities() : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a name="getChangedFields" id="getChangedFields"></a><div class="element clickable method public getChangedFields" data-toggle="collapse" data-target=".getChangedFields .collapse">
+<h2>Returns the changed fields and their values for an entity.</h2>
+<pre>getChangedFields(object $entity) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$entity</h4>
+<code>object</code><p>The entity to find changes for.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>An array of key-value pairs where the key is the field name and the value is the changed value.</div>
+</div></div>
+</div>
+<a name="getCollection" id="getCollection"></a><div class="element clickable method public getCollection" data-toggle="collapse" data-target=".getCollection .collapse">
+<h2>Retrieves a collection of elements from the IdentityMap by the values
+of their identity fields; each element will be converted to a entity
+object if it is not already an object of the proper class.</h2>
+<pre>getCollection(array $identity_values) : object</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$identity_values</h4>
+<code>array</code><p>An array of identity values to retrieve.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>object</code>A collection object via the collection builder.</div>
+</div></div>
+</div>
+<a name="getCollectionBuilder" id="getCollectionBuilder"></a><div class="element clickable method public getCollectionBuilder" data-toggle="collapse" data-target=".getCollectionBuilder .collapse">
+<h2>Returns the builder that creates collection objects.</h2>
+<pre>getCollectionBuilder() : <a href="../classes/Aura.Marshal.Collection.BuilderInterface.html">\Aura\Marshal\Collection\BuilderInterface</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/Aura.Marshal.Collection.BuilderInterface.html">\Aura\Marshal\Collection\BuilderInterface</a></code></div>
+</div></div>
+</div>
+<a name="getCollectionByField" id="getCollectionByField"></a><div class="element clickable method public getCollectionByField" data-toggle="collapse" data-target=".getCollectionByField .collapse">
+<h2>Retrieves a collection of objects from the IdentityMap matching the
+value of an arbitrary field; these will be converted to entities
+if they are not already objects of the proper class.</h2>
+<pre>getCollectionByField(string $field, mixed $values) : object</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>The value to be matched can be an array of values, so that you
+can get many values of the field being matched.</p>
+
+<p>If the field is indexed, the order of the returned collection
+will match the order of the values being searched. If the field is not
+indexed, the order of the returned collection will be the same as the
+IdentityMap.</p>
+
+<p>The fastest results are from the identity field; second fastest, from
+an indexed field; slowest are from non-indexed fields, because it has
+to look through the entire IdentityMap to find matches.</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$field</h4>
+<code>string</code><p>The field to match on.</p></div>
+<div class="subelement argument">
+<h4>$values</h4>
+<code>mixed</code><p>The value of the field to match on; if an array, any value in the array will be counted as a match.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>object</code>A collection object via the collection builder.</div>
+</div></div>
+</div>
+<a name="getEntity" id="getEntity"></a><div class="element clickable method public getEntity" data-toggle="collapse" data-target=".getEntity .collapse">
+<h2>Retrieves a single entity from the IdentityMap by the value of its
+identity field.</h2>
+<pre>getEntity(int $identity_value) : object</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$identity_value</h4>
+<code>int</code><p>The identity value of the entity to be retrieved.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>object</code>A entity object via the entity builder.</div>
+</div></div>
+</div>
+<a name="getEntityBuilder" id="getEntityBuilder"></a><div class="element clickable method public getEntityBuilder" data-toggle="collapse" data-target=".getEntityBuilder .collapse">
+<h2>Returns the builder that creates entity objects.</h2>
+<pre>getEntityBuilder() : object</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>object</code></div>
+</div></div>
+</div>
+<a name="getEntityByField" id="getEntityByField"></a><div class="element clickable method public getEntityByField" data-toggle="collapse" data-target=".getEntityByField .collapse">
+<h2>Retrieves the first entity from the IdentityMap that matches the value
+of an arbitrary field; it will be converted to a entity object
+if it is not already an object of the proper class.</h2>
+<pre>getEntityByField(string $field, mixed $value) : object</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>N.b.: This will not be performant for large sets where the field is not
+an identity field and is not indexed.</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$field</h4>
+<code>string</code><p>The field to match on.</p></div>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>mixed</code><p>The value of the field to match on.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>object</code>A entity object via the entity builder.</div>
+</div></div>
+</div>
+<a name="getFieldValues" id="getFieldValues"></a><div class="element clickable method public getFieldValues" data-toggle="collapse" data-target=".getFieldValues .collapse">
+<h2>Returns the values for a particular field for all the entities in the
+IdentityMap.</h2>
+<pre>getFieldValues(string $field) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$field</h4>
+<code>string</code><p>The field name to get values for.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>An array of key-value pairs where the key is the identity value and the value is the requested field value.</div>
+</div></div>
+</div>
+<a name="getIdentityField" id="getIdentityField"></a><div class="element clickable method public getIdentityField" data-toggle="collapse" data-target=".getIdentityField .collapse">
+<h2>Returns the name of the field that uniquely identifies each entity of
+this type.</h2>
+<pre>getIdentityField() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="getIdentityValues" id="getIdentityValues"></a><div class="element clickable method public getIdentityValues" data-toggle="collapse" data-target=".getIdentityValues .collapse">
+<h2>Returns the array keys for the for the entities in the IdentityMap;
+the keys were generated at load() time from the identity field values.</h2>
+<pre>getIdentityValues() : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a name="getIndexFields" id="getIndexFields"></a><div class="element clickable method public getIndexFields" data-toggle="collapse" data-target=".getIndexFields .collapse">
+<h2>Returns the list of indexed field names.</h2>
+<pre>getIndexFields() : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a name="getInitialData" id="getInitialData"></a><div class="element clickable method public getInitialData" data-toggle="collapse" data-target=".getInitialData .collapse">
+<h2>Returns the initial data for a given entity.</h2>
+<pre>getInitialData(object $entity) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$entity</h4>
+<code>object</code><p>The entity to find initial data for.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>The initial data for the entity.</div>
+</div></div>
+</div>
+<a name="getIterator" id="getIterator"></a><div class="element clickable method public getIterator" data-toggle="collapse" data-target=".getIterator .collapse">
+<h2>IteratorAggregate: returns an external iterator for this struct.</h2>
+<pre>getIterator() : <a href="../classes/Aura.Marshal.DataIterator.html">\Aura\Marshal\DataIterator</a></pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Marshal\Data::getIterator()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/Aura.Marshal.DataIterator.html">\Aura\Marshal\DataIterator</a></code></div>
+</div></div>
+</div>
+<a name="getLazyBuilder" id="getLazyBuilder"></a><div class="element clickable method public getLazyBuilder" data-toggle="collapse" data-target=".getLazyBuilder .collapse">
+<h2>Returns the lazy builder that creates lazy objects.</h2>
+<pre>getLazyBuilder() : <a href="../classes/Aura.Marshal.Lazy.BuilderInterface.html">\Aura\Marshal\Lazy\BuilderInterface</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/Aura.Marshal.Lazy.BuilderInterface.html">\Aura\Marshal\Lazy\BuilderInterface</a></code></div>
+</div></div>
+</div>
+<a name="getNewEntities" id="getNewEntities"></a><div class="element clickable method public getNewEntities" data-toggle="collapse" data-target=".getNewEntities .collapse">
+<h2>Returns an array of all entities in the IdentityMap that were created
+using `newEntity()`.</h2>
+<pre>getNewEntities() : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a name="getRelation" id="getRelation"></a><div class="element clickable method public getRelation" data-toggle="collapse" data-target=".getRelation .collapse">
+<h2>Returns a relationship definition object by name.</h2>
+<pre>getRelation(string $name) : <a href="../classes/Aura.Marshal.Relation.RelationInterface.html">\Aura\Marshal\Relation\RelationInterface</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$name</h4>
+<code>string</code><p>The field name to use for the related entity or collection.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/Aura.Marshal.Relation.RelationInterface.html">\Aura\Marshal\Relation\RelationInterface</a></code></div>
+</div></div>
+</div>
+<a name="getRelations" id="getRelations"></a><div class="element clickable method public getRelations" data-toggle="collapse" data-target=".getRelations .collapse">
+<h2>Returns the array of all relationship definition objects.</h2>
+<pre>getRelations() : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a name="load" id="load"></a><div class="element clickable method public load" data-toggle="collapse" data-target=".load .collapse">
+<h2>Loads the IdentityMap for this type with data for entity objects.</h2>
+<pre>load(array $data, string $return_field) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Typically, the $data value is a sequential array of associative arrays.
+As long as the $data value can be iterated over and accessed as an
+array, you can pass in any kind of $data.</p>
+
+<p>The elements from $data will be placed into the IdentityMap and indexed
+according to the value of their identity field.</p>
+
+<p>You can call load() multiple times, but entities already in the
+IdentityMap will not be overwritten.</p>
+
+<p>The loaded elements are cast to objects; this allows consistent
+addressing of elements before and after conversion to entity objects.</p>
+
+<p>The loaded elements will be converted to entity objects by the
+entity builder only as you request them from the IdentityMap.</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>array</code><p>Entity data to load into the IdentityMap.</p></div>
+<div class="subelement argument">
+<h4>$return_field</h4>
+<code>string</code><p>Return values from this field; if empty, return values from the identity field (the default).</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>The return values from the data elements, regardless of whether they were loaded or not.</div>
+</div></div>
+</div>
+<a name="loadCollection" id="loadCollection"></a><div class="element clickable method public loadCollection" data-toggle="collapse" data-target=".loadCollection .collapse">
+<h2>Loads an entity collection into the identity map.</h2>
+<pre>loadCollection(array $data) : object</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>array</code><p>The initial data for the entities.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>object</code>The newly-loaded collection.</div>
+</div></div>
+</div>
+<a name="loadEntity" id="loadEntity"></a><div class="element clickable method public loadEntity" data-toggle="collapse" data-target=".loadEntity .collapse">
+<h2>Loads a single entity into the identity map.</h2>
+<pre>loadEntity(array $initial_data) : object</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$initial_data</h4>
+<code>array</code><p>The initial data for the entity.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>object</code>The newly-loaded entity.</div>
+</div></div>
+</div>
+<a name="newEntity" id="newEntity"></a><div class="element clickable method public newEntity" data-toggle="collapse" data-target=".newEntity .collapse">
+<h2>Adds a new entity to the IdentityMap.</h2>
+<pre>newEntity(array $data) : object</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>This entity will not show up in any indexes, whether by field or
+by primary key. You will see it only by iterating through the
+IdentityMap. Typically this is used to add to a collection, or
+to create a new entity from user input.</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>array</code><p>Data for the new entity.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>object</code></div>
+</div></div>
+</div>
+<a name="offsetExists" id="offsetExists"></a><div class="element clickable method public offsetExists" data-toggle="collapse" data-target=".offsetExists .collapse">
+<h2>ArrayAccess: does the requested key exist?</h2>
+<pre>offsetExists(int | string $key) : bool</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Marshal\Data::offsetExists()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$key</h4>
+<code>intstring</code><p>The requested key.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>bool</code></div>
+</div></div>
+</div>
+<a name="offsetGet" id="offsetGet"></a><div class="element clickable method public offsetGet" data-toggle="collapse" data-target=".offsetGet .collapse">
+<h2>ArrayAccess: get a key value.</h2>
+<pre>offsetGet(int | string $key) : mixed</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Marshal\Data::offsetGet()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$key</h4>
+<code>intstring</code><p>The requested key.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a name="offsetSet" id="offsetSet"></a><div class="element clickable method public offsetSet" data-toggle="collapse" data-target=".offsetSet .collapse">
+<h2>ArrayAccess: set a key value.</h2>
+<pre>offsetSet(int | string $key, mixed $val) : void</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Marshal\Data::offsetSet()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$key</h4>
+<code>intstring</code><p>The requested key.</p></div>
+<div class="subelement argument">
+<h4>$val</h4>
+<code>mixed</code><p>The value to set it to.</p></div>
+</div></div>
+</div>
+<a name="offsetUnset" id="offsetUnset"></a><div class="element clickable method public offsetUnset" data-toggle="collapse" data-target=".offsetUnset .collapse">
+<h2>ArrayAccess: unset a key.</h2>
+<pre>offsetUnset(int | string $key) : void</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Marshal\Data::offsetUnset()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$key</h4>
+<code>intstring</code><p>The requested key.</p></div>
+</div></div>
+</div>
+<a name="setCollectionBuilder" id="setCollectionBuilder"></a><div class="element clickable method public setCollectionBuilder" data-toggle="collapse" data-target=".setCollectionBuilder .collapse">
+<h2>Sets the builder object to create collection objects.</h2>
+<pre>setCollectionBuilder(Aura\Marshal\Collection\BuilderInterface $collection_builder) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$collection_builder</h4>
+<code><a href="../classes/Aura.Marshal.Collection.BuilderInterface.html">\Aura\Marshal\Collection\BuilderInterface</a></code><p>The builder object.</p></div>
+</div></div>
+</div>
+<a name="setEntityBuilder" id="setEntityBuilder"></a><div class="element clickable method public setEntityBuilder" data-toggle="collapse" data-target=".setEntityBuilder .collapse">
+<h2>Sets the builder object to create entity objects.</h2>
+<pre>setEntityBuilder(Aura\Marshal\Entity\BuilderInterface $entity_builder) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$entity_builder</h4>
+<code><a href="../classes/Aura.Marshal.Entity.BuilderInterface.html">\Aura\Marshal\Entity\BuilderInterface</a></code><p>The builder object.</p></div>
+</div></div>
+</div>
+<a name="setIdentityField" id="setIdentityField"></a><div class="element clickable method public setIdentityField" data-toggle="collapse" data-target=".setIdentityField .collapse">
+<h2>Sets the name of the field that uniquely identifies each entity for
+this type.</h2>
+<pre>setIdentityField(string $identity_field) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$identity_field</h4>
+<code>string</code><p>The identity field name.</p></div>
+</div></div>
+</div>
+<a name="setIndexFields" id="setIndexFields"></a><div class="element clickable method public setIndexFields" data-toggle="collapse" data-target=".setIndexFields .collapse">
+<h2>Sets the fields that should be indexed at load() time; removes all
+previous field indexes.</h2>
+<pre>setIndexFields(array $fields) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$fields</h4>
+<code>array</code><p>The fields to be indexed.</p></div>
+</div></div>
+</div>
+<a name="setLazyBuilder" id="setLazyBuilder"></a><div class="element clickable method public setLazyBuilder" data-toggle="collapse" data-target=".setLazyBuilder .collapse">
+<h2>Sets the lazy builder to create lazy objects.</h2>
+<pre>setLazyBuilder(Aura\Marshal\Lazy\BuilderInterface $lazy_builder) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$lazy_builder</h4>
+<code><a href="../classes/Aura.Marshal.Lazy.BuilderInterface.html">\Aura\Marshal\Lazy\BuilderInterface</a></code><p>The lazy builder.</p></div>
+</div></div>
+</div>
+<a name="setRelation" id="setRelation"></a><div class="element clickable method public setRelation" data-toggle="collapse" data-target=".setRelation .collapse">
+<h2>Sets a relationship to another type, assigning it to a field
+name to be used in entity objects.</h2>
+<pre>setRelation(string $name, Aura\Marshal\Relation\RelationInterface $relation) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$name</h4>
+<code>string</code><p>The field name to use for the related entity or collection.</p></div>
+<div class="subelement argument">
+<h4>$relation</h4>
+<code><a href="../classes/Aura.Marshal.Relation.RelationInterface.html">\Aura\Marshal\Relation\RelationInterface</a></code><p>The relationship definition object.</p></div>
+</div></div>
+</div>
+<a name="getCollectionByIndex" id="getCollectionByIndex"></a><div class="element clickable method protected getCollectionByIndex" data-toggle="collapse" data-target=".getCollectionByIndex .collapse">
+<h2>Looks through the index for a field to retrieve a collection of
+objects from the IdentityMap; these will be converted to entities
+if they are not already objects of the proper class.</h2>
+<pre>getCollectionByIndex(string $field, mixed $values) : object</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>N.b.: The value to be matched can be an array of values, so that you
+can get many values of the field being matched.</p>
+
+<p>N.b.: The order of the returned collection will match the order of the
+values being searched, not the order of the entities in the IdentityMap.</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$field</h4>
+<code>string</code><p>The field to match on.</p></div>
+<div class="subelement argument">
+<h4>$values</h4>
+<code>mixed</code><p>The value of the field to match on; if an array, any value in the array will be counted as a match.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>object</code>A collection object via the collection builder.</div>
+</div></div>
+</div>
+<a name="getEntityByIndex" id="getEntityByIndex"></a><div class="element clickable method protected getEntityByIndex" data-toggle="collapse" data-target=".getEntityByIndex .collapse">
+<h2>Retrieves the first entity from the IdentityMap matching an index
+lookup.</h2>
+<pre>getEntityByIndex(string $field, string $value) : object</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$field</h4>
+<code>string</code><p>The indexed field name.</p></div>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>string</code><p>The field value to match on.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>object</code>A entity object via the entity builder.</div>
+</div></div>
+</div>
+<a name="loadData" id="loadData"></a><div class="element clickable method protected loadData" data-toggle="collapse" data-target=".loadData .collapse">
+<h2>Loads an entity into the identity map.</h2>
+<pre>loadData(array $initial_data, string $identity_field, array $index_fields) : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$initial_data</h4>
+<code>array</code><p>The initial data for the entity.</p></div>
+<div class="subelement argument">
+<h4>$identity_field</h4>
+<code>string</code><p>The identity field for the entity.</p></div>
+<div class="subelement argument">
+<h4>$index_fields</h4>
+<code>array</code><p>The fields to index on.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>int</code>The identity map offset of the new entity.</div>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a name="%24collection_builder" id="$collection_builder"> </a><div class="element clickable property protected $collection_builder" data-toggle="collapse" data-target=".$collection_builder .collapse">
+<h2>A builder to create collection objects for this type.</h2>
+<pre>$collection_builder : object</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24data" id="$data"> </a><div class="element clickable property protected $data" data-toggle="collapse" data-target=".$data .collapse">
+<h2>Key-value pairs of data.</h2>
+<pre>$data : array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Marshal\Data::$$data</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24entity_builder" id="$entity_builder"> </a><div class="element clickable property protected $entity_builder" data-toggle="collapse" data-target=".$entity_builder .collapse">
+<h2>A builder to create entity objects for this type.</h2>
+<pre>$entity_builder : <a href="../classes/Aura.Marshal.Entity.BuilderInterface.html">\Aura\Marshal\Entity\BuilderInterface</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24identity_field" id="$identity_field"> </a><div class="element clickable property protected $identity_field" data-toggle="collapse" data-target=".$identity_field .collapse">
+<h2>The entity field representing its unique identifier value.</h2>
+<pre>$identity_field : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"><p>The
+IdentityMap will be keyed on these values.</p></p></div></div>
+</div>
+<a name="%24index_fields" id="$index_fields"> </a><div class="element clickable property protected $index_fields" data-toggle="collapse" data-target=".$index_fields .collapse">
+<h2>An array of fields to index on for quicker lookups.</h2>
+<pre>$index_fields : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"><p>The array format
+is:</p>
+
+<pre><code>$index_fields[$field_name][$field_value] = (array) $offsets;
+</code></pre>
+
+<p>Note that we always have an array of offsets, and the keys are by
+the field name and the values for that field.</p></p></div></div>
+</div>
+<a name="%24index_identity" id="$index_identity"> </a><div class="element clickable property protected $index_identity" data-toggle="collapse" data-target=".$index_identity .collapse">
+<h2>An index of entities on the identity field.</h2>
+<pre>$index_identity : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"><p>The format is:</p>
+
+<pre><code> $index_identity[$identity_value] = $offset;
+</code></pre>
+
+<p>Note that we always have only one offset, keyed by identity value.</p></p></div></div>
+</div>
+<a name="%24index_new" id="$index_new"> </a><div class="element clickable property protected $index_new" data-toggle="collapse" data-target=".$index_new .collapse">
+<h2>An index of all entities added via newEntity().</h2>
+<pre>$index_new : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"><p>The format is:</p>
+
+<pre><code> $index_new[] = $offset;
+</code></pre>
+
+<p>Note that we always have one offset, and the key is merely sequential.</p></p></div></div>
+</div>
+<a name="%24initial_data" id="$initial_data"> </a><div class="element clickable property protected $initial_data" data-toggle="collapse" data-target=".$initial_data .collapse">
+<h2>An object store of the initial data for entity in the IdentityMap.</h2>
+<pre>$initial_data : <a href="http://php.net/manual/en/class.splobjectstorage.php">\SplObjectStorage</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24lazy_builder" id="$lazy_builder"> </a><div class="element clickable property protected $lazy_builder" data-toggle="collapse" data-target=".$lazy_builder .collapse">
+<h2>A builder to create Lazy objects.</h2>
+<pre>$lazy_builder : <a href="../classes/Aura.Marshal.Lazy.BuilderInterface.html">\Aura\Marshal\Lazy\BuilderInterface</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24relations" id="$relations"> </a><div class="element clickable property protected $relations" data-toggle="collapse" data-target=".$relations .collapse">
+<h2>An array of relationship descriptions, where the key is a
+field name for the entity and the value is a relation object.</h2>
+<pre>$relations : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a7</a> and<br>
+            generated on 2012-11-28T13:54:53-02:00.<br></footer></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,2936 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project version="2.0.0a7" title="">
+  <file path="AbstractRule.php" hash="6f1b1085705f30643878ebcd0624f9a6" package="Aura\Filter">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Filter"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="StdClass">StdClass</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Filter" line="22" package="Aura\Filter">
+      <extends/>
+      <implements>\Aura\Filter\RuleInterface</implements>
+      <name>AbstractRule</name>
+      <full_name>\Aura\Filter\AbstractRule</full_name>
+      <docblock line="15">
+        <description><![CDATA[Abstract Rule]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Filter"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="31" namespace="Aura\Filter" package="Default">
+        <name>$data</name>
+        <default><![CDATA[]]></default>
+        <docblock line="24">
+          <description><![CDATA[The full set of data to be filtered.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="24" name="var" description="" type="object">
+            <type by_reference="false">object</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="40" namespace="Aura\Filter" package="Default">
+        <name>$field</name>
+        <default><![CDATA[]]></default>
+        <docblock line="33">
+          <description><![CDATA[The field to be filtered within the data.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="33" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="49" namespace="Aura\Filter" package="Default">
+        <name>$message</name>
+        <default><![CDATA[]]></default>
+        <docblock line="42">
+          <description><![CDATA[The message to use validate or sanitize fails.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="42" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Filter" line="62" package="Aura\Filter">
+        <name>prep</name>
+        <full_name>prep</full_name>
+        <docblock line="51">
+          <description><![CDATA[Prepare the rule for reuse.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="51" name="param" description="The full set of data to be filtered." type="\StdClass" variable="$data">
+            <type by_reference="false">\StdClass</type>
+          </tag>
+          <tag line="51" name="param" description="The field to be filtered within the data." type="string" variable="$field">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="51" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="62">
+          <name>$data</name>
+          <default><![CDATA[]]></default>
+          <type>StdClass</type>
+        </argument>
+        <argument line="62">
+          <name>$field</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Filter" line="76" package="Aura\Filter">
+        <name>getMessage</name>
+        <full_name>getMessage</full_name>
+        <docblock line="68">
+          <description><![CDATA[Get the error message; note that this returns the message whether or
+not there was an error when validating or sanitizing.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="68" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Filter" line="89" package="Aura\Filter">
+        <name>getValue</name>
+        <full_name>getValue</full_name>
+        <docblock line="81">
+          <description><![CDATA[Get the value of the field being filtered, or null if the field is
+not set in the data.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="81" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Filter" line="108" package="Aura\Filter">
+        <name>setValue</name>
+        <full_name>setValue</full_name>
+        <docblock line="99">
+          <description><![CDATA[Set value of field, creating it in the data if needed.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="99" name="param" description="The new value of the field." type="string" variable="$value">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="99" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="108">
+          <name>$value</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Filter" line="121" package="Aura\Filter">
+        <name>is</name>
+        <full_name>is</full_name>
+        <docblock line="114">
+          <description><![CDATA[Is the value valid?]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="114" name="return" description="True if valid, false if not valid." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Filter" line="133" package="Aura\Filter">
+        <name>isNot</name>
+        <full_name>isNot</full_name>
+        <docblock line="126">
+          <description><![CDATA[Is the value *not* valid?]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="126" name="return" description="True if not valid, false if valid." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Filter" line="145" package="Aura\Filter">
+        <name>isBlankOr</name>
+        <full_name>isBlankOr</full_name>
+        <docblock line="138">
+          <description><![CDATA[Is the value blank, or otherwise valid?]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="138" name="return" description="True if blank or valid, false if not." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Filter" line="161" package="Aura\Filter">
+        <name>fix</name>
+        <full_name>fix</full_name>
+        <docblock line="154">
+          <description><![CDATA[Sanitize the value, transforming it as needed.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="154" name="return" description="True if the value was sanitized, false if not." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Filter" line="175" package="Aura\Filter">
+        <name>fixBlankOr</name>
+        <full_name>fixBlankOr</full_name>
+        <docblock line="166">
+          <description><![CDATA[If the value is blank, set to null; sanitize if not blank, transforming
+it as needed.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="166" name="return" description="True if the value was set to null or sanitized, false if not." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter" line="196" package="Aura\Filter">
+        <name>isBlank</name>
+        <full_name>isBlank</full_name>
+        <docblock line="185">
+          <description><![CDATA[Is the value blank?]]></description>
+          <long-description><![CDATA[<p>Blank is null, empty string, or a string of only whitespace. Non-null
+non-string values are not blank; e.g., integer zero, float zero, an
+empty array, boolean false, etc. are not blank.</p>]]></long-description>
+          <tag line="185" name="return" description="True if blank, false if not." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Exception/RuleNotMapped.php" hash="ab6bf13771204dc086e495f9d98654c8" package="Aura\Filter">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Filter"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="Exception">Aura\Filter\Exception</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Filter\Exception" line="22" package="Aura\Filter">
+      <extends>\Aura\Filter\Exception</extends>
+      <name>RuleNotMapped</name>
+      <full_name>\Aura\Filter\Exception\RuleNotMapped</full_name>
+      <docblock line="15">
+        <description><![CDATA[Rule not mapped exception.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Filter"/>
+      </docblock>
+    </class>
+  </file>
+  <file path="Exception.php" hash="c1d66f124034aab6c2f9b55843cc119a" package="Aura\Autoload">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Autoload"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Filter" line="20" package="Aura\Filter">
+      <extends>\Exception</extends>
+      <name>Exception</name>
+      <full_name>\Aura\Filter\Exception</full_name>
+      <docblock line="13">
+        <description><![CDATA[Generic package exception.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Filter"/>
+      </docblock>
+    </class>
+  </file>
+  <file path="Rule/Alnum.php" hash="0dc3949b856ca17b432ef53d3ce4c128" package="Aura\Filter">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Filter"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="AbstractRule">Aura\Filter\AbstractRule</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Filter\Rule" line="24" package="Aura\Filter">
+      <extends>\Aura\Filter\AbstractRule</extends>
+      <name>Alnum</name>
+      <full_name>\Aura\Filter\Rule\Alnum</full_name>
+      <docblock line="15">
+        <description><![CDATA[Rule for alphanumeric characters.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Filter"/>
+        <tag line="15" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="32" namespace="Aura\Filter\Rule" package="Default">
+        <name>$message</name>
+        <default><![CDATA['FILTER_ALNUM']]></default>
+        <docblock line="26">
+          <description><![CDATA[Error message]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="26" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="41" package="Aura\Filter">
+        <name>validate</name>
+        <full_name>validate</full_name>
+        <docblock line="34">
+          <description><![CDATA[Validates that the value is only letters (upper/lower case) and digits.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="34" name="return" description="True if valid, false if not." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="57" package="Aura\Filter">
+        <name>sanitize</name>
+        <full_name>sanitize</full_name>
+        <docblock line="50">
+          <description><![CDATA[Strips non-alphanumeric characters from the value.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="50" name="return" description="True if the value was fixed, false if not." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Rule/Alpha.php" hash="3b3102e1d95c9ea5df1a39353deb43ab" package="Aura\Filter">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Filter"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="AbstractRule">Aura\Filter\AbstractRule</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Filter\Rule" line="24" package="Aura\Filter">
+      <extends>\Aura\Filter\AbstractRule</extends>
+      <name>Alpha</name>
+      <full_name>\Aura\Filter\Rule\Alpha</full_name>
+      <docblock line="15">
+        <description><![CDATA[Rule for alphabetic characters.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Filter"/>
+        <tag line="15" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="32" namespace="Aura\Filter\Rule" package="Default">
+        <name>$message</name>
+        <default><![CDATA['FILTER_ALPHA']]></default>
+        <docblock line="26">
+          <description><![CDATA[Error message]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="26" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="41" package="Aura\Filter">
+        <name>validate</name>
+        <full_name>validate</full_name>
+        <docblock line="34">
+          <description><![CDATA[Validates that the value is letters only (upper or lower case).]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="34" name="return" description="True if valid, false if not." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="57" package="Aura\Filter">
+        <name>sanitize</name>
+        <full_name>sanitize</full_name>
+        <docblock line="50">
+          <description><![CDATA[Strips non-alphabetic characters from the value.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="50" name="return" description="True if the value was fixed, false if not." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Rule/Between.php" hash="7aaed81d895decb6a5bafbe083b100cc" package="Aura\Filter">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Filter"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="AbstractRule">Aura\Filter\AbstractRule</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Filter\Rule" line="24" package="Aura\Filter">
+      <extends>\Aura\Filter\AbstractRule</extends>
+      <name>Between</name>
+      <full_name>\Aura\Filter\Rule\Between</full_name>
+      <docblock line="15">
+        <description><![CDATA[Validates that a value is within a given range.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Filter"/>
+        <tag line="15" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="32" namespace="Aura\Filter\Rule" package="Default">
+        <name>$message</name>
+        <default><![CDATA['FILTER_BETWEEN']]></default>
+        <docblock line="26">
+          <description><![CDATA[Error message]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="26" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="45" package="Aura\Filter">
+        <name>validate</name>
+        <full_name>validate</full_name>
+        <docblock line="34">
+          <description><![CDATA[Validates that the value is within a given range.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="34" name="param" description="The minimum valid value." type="mixed" variable="$min">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="34" name="param" description="The maximum valid value." type="mixed" variable="$max">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="34" name="return" description="True if valid, false if not." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+        <argument line="45">
+          <name>$min</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="45">
+          <name>$max</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="66" package="Aura\Filter">
+        <name>sanitize</name>
+        <full_name>sanitize</full_name>
+        <docblock line="54">
+          <description><![CDATA[If the value is < min , will set the min value,
+and if value is greater than max, set the max value]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="54" name="param" description="The minimum valid value." type="mixed" variable="$min">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="54" name="param" description="The maximum valid value." type="mixed" variable="$max">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="54" name="return" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+        <argument line="66">
+          <name>$min</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="66">
+          <name>$max</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Rule/Blank.php" hash="1fab88f4f1815adc9900de71e19250c3" package="Aura\Filter">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Filter"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="AbstractRule">Aura\Filter\AbstractRule</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Filter\Rule" line="25" package="Aura\Filter">
+      <extends>\Aura\Filter\AbstractRule</extends>
+      <name>Blank</name>
+      <full_name>\Aura\Filter\Rule\Blank</full_name>
+      <docblock line="15">
+        <description><![CDATA[Validates that a value is blank (null, empty string, or string of only
+whitespace characters).]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Filter"/>
+        <tag line="15" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="33" namespace="Aura\Filter\Rule" package="Default">
+        <name>$message</name>
+        <default><![CDATA['FILTER_BLANK']]></default>
+        <docblock line="27">
+          <description><![CDATA[Error message]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="27" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="47" package="Aura\Filter">
+        <name>validate</name>
+        <full_name>validate</full_name>
+        <docblock line="35">
+          <description><![CDATA[Validates that the value is null, or is a string composed only of
+whitespace.]]></description>
+          <long-description><![CDATA[<p>Non-strings and non-nulls never validate as blank; this includes
+integers, floats, numeric zero, boolean true and false, any array with
+zero or more elements, and all objects and resources.</p>]]></long-description>
+          <tag line="35" name="return" description="True if valid, false if not." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="58" package="Aura\Filter">
+        <name>sanitize</name>
+        <full_name>sanitize</full_name>
+        <docblock line="52">
+          <description><![CDATA[set value to null]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="52" name="return" description="" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Rule/Bool.php" hash="10d8ae65611cf8cf0098a5c15687fa21" package="Aura\Filter">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Filter"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="AbstractRule">Aura\Filter\AbstractRule</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Filter\Rule" line="24" package="Aura\Filter">
+      <extends>\Aura\Filter\AbstractRule</extends>
+      <name>Bool</name>
+      <full_name>\Aura\Filter\Rule\Bool</full_name>
+      <docblock line="15">
+        <description><![CDATA[Rule for booleans.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Filter"/>
+        <tag line="15" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="32" namespace="Aura\Filter\Rule" package="Default">
+        <name>$message</name>
+        <default><![CDATA['FILTER_BOOL']]></default>
+        <docblock line="26">
+          <description><![CDATA[Error message]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="26" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="41" namespace="Aura\Filter\Rule" package="Default">
+        <name>$true</name>
+        <default><![CDATA[array('1', 'on', 'true', 't', 'yes', 'y')]]></default>
+        <docblock line="34">
+          <description><![CDATA[Pseudo-true representations.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="34" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="50" namespace="Aura\Filter\Rule" package="Default">
+        <name>$false</name>
+        <default><![CDATA[array('0', 'off', 'false', 'f', 'no', 'n')]]></default>
+        <docblock line="43">
+          <description><![CDATA[Pseudo-false representations; `null` and empty-string are *not* included.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="43" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="59" package="Aura\Filter">
+        <name>validate</name>
+        <full_name>validate</full_name>
+        <docblock line="52">
+          <description><![CDATA[Validates that the value is a boolean representation.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="52" name="return" description="True if valid, false if not." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="91" package="Aura\Filter">
+        <name>sanitize</name>
+        <full_name>sanitize</full_name>
+        <docblock line="82">
+          <description><![CDATA[Forces the value to a boolean.]]></description>
+          <long-description><![CDATA[<p>Note that this recognizes $this->true and $this->false values.</p>]]></long-description>
+          <tag line="82" name="return" description="True if the value was fixed, false if not." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Rule/CreditCard.php" hash="437f1e34e8419e4c453a9be5bda52857" package="Aura\Filter">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Filter"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="AbstractRule">Aura\Filter\AbstractRule</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Filter\Rule" line="24" package="Aura\Filter">
+      <extends>\Aura\Filter\AbstractRule</extends>
+      <name>CreditCard</name>
+      <full_name>\Aura\Filter\Rule\CreditCard</full_name>
+      <docblock line="15">
+        <description><![CDATA[Rule for alphanumeric characters.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Filter"/>
+        <tag line="15" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="32" namespace="Aura\Filter\Rule" package="Default">
+        <name>$message</name>
+        <default><![CDATA['FILTER_CREDIT_CARD']]></default>
+        <docblock line="26">
+          <description><![CDATA[Error message]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="26" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="41" package="Aura\Filter">
+        <name>validate</name>
+        <full_name>validate</full_name>
+        <docblock line="34">
+          <description><![CDATA[Validates that the value is only letters (upper/lower case) and digits.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="34" name="return" description="True if valid, false if not." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="73" package="Aura\Filter">
+        <name>sanitize</name>
+        <full_name>sanitize</full_name>
+        <docblock line="66">
+          <description><![CDATA[Can't fix credit card numbers.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="66" name="return" description="" type="false">
+            <type by_reference="false">false</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Rule/DateTime.php" hash="07ad06713e5316dbcbca0412a0b03f79" package="Aura\Filter">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Filter"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="AbstractRule">Aura\Filter\AbstractRule</namespace-alias>
+    <namespace-alias name="PhpDateTime">DateTime</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Filter\Rule" line="26" package="Aura\Filter">
+      <extends>\Aura\Filter\AbstractRule</extends>
+      <name>DateTime</name>
+      <full_name>\Aura\Filter\Rule\DateTime</full_name>
+      <docblock line="17">
+        <description><![CDATA[Validate and Sanitize date time]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="17" name="package" description="Aura.Filter"/>
+        <tag line="17" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="35" namespace="Aura\Filter\Rule" package="Default">
+        <name>$message</name>
+        <default><![CDATA['FILTER_DATETIME']]></default>
+        <docblock line="28">
+          <description><![CDATA[Error message]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="28" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="46" package="Aura\Filter">
+        <name>validate</name>
+        <full_name>validate</full_name>
+        <docblock line="37">
+          <description><![CDATA[validate datetime of default format Y-m-d H:i:s]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="37" name="param" description="" type="string" variable="$format">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="37" name="return" description="" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+        <argument line="46">
+          <name>$format</name>
+          <default><![CDATA['Y-m-d H:i:s']]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="72" package="Aura\Filter">
+        <name>sanitize</name>
+        <full_name>sanitize</full_name>
+        <docblock line="65">
+          <description><![CDATA[sanitize datetime to default format Y-m-d H:i:s]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="65" name="param" description="" type="string" variable="$format">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="65" name="return" description="" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+        <argument line="72">
+          <name>$format</name>
+          <default><![CDATA['Y-m-d H:i:s']]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Rule/Email.php" hash="2506afd40c3023610923e933cc4eedba" package="Aura\Filter">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Filter"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="AbstractRule">Aura\Filter\AbstractRule</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Filter\Rule" line="24" package="Aura\Filter">
+      <extends>\Aura\Filter\AbstractRule</extends>
+      <name>Email</name>
+      <full_name>\Aura\Filter\Rule\Email</full_name>
+      <docblock line="15">
+        <description><![CDATA[Validates that a value is an email address.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Filter"/>
+        <tag line="15" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="32" namespace="Aura\Filter\Rule" package="Default">
+        <name>$message</name>
+        <default><![CDATA['FILTER_EMAIL']]></default>
+        <docblock line="26">
+          <description><![CDATA[Error message]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="26" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="41" namespace="Aura\Filter\Rule" package="Default">
+        <name>$expr</name>
+        <default><![CDATA[]]></default>
+        <docblock line="34">
+          <description><![CDATA[The email validation regex.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="34" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Filter\Rule" line="50" package="Aura\Filter">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="43">
+          <description><![CDATA[Post-construction tasks to complete object construction.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="43" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="87" package="Aura\Filter">
+        <name>validate</name>
+        <full_name>validate</full_name>
+        <docblock line="78">
+          <description><![CDATA[Validates that the value is an email address.]]></description>
+          <long-description><![CDATA[<p>Taken directly from <a href="http://www.iamcal.com/publish/articles/php/parsing_email/">http://www.iamcal.com/publish/articles/php/parsing_email/</a>.</p>]]></long-description>
+          <tag line="78" name="return" description="True if valid, false if not." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="98" package="Aura\Filter">
+        <name>sanitize</name>
+        <full_name>sanitize</full_name>
+        <docblock line="92">
+          <description><![CDATA[can't fix emails]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="92" name="return" description="" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Rule/EqualToField.php" hash="6ebb420b62b562fa063f675fdd44bd19" package="Aura\Filter">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Filter"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="AbstractRule">Aura\Filter\AbstractRule</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Filter\Rule" line="25" package="Aura\Filter">
+      <extends>\Aura\Filter\AbstractRule</extends>
+      <name>EqualToField</name>
+      <full_name>\Aura\Filter\Rule\EqualToField</full_name>
+      <docblock line="15">
+        <description><![CDATA[Validates that this value is equal to some other element in the filter
+chain (note that equality is not strict, so type does not matter).]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Filter"/>
+        <tag line="15" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="33" namespace="Aura\Filter\Rule" package="Default">
+        <name>$message</name>
+        <default><![CDATA['FILTER_EQUAL_TO_FIELD']]></default>
+        <docblock line="27">
+          <description><![CDATA[Error message]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="27" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="51" package="Aura\Filter">
+        <name>validate</name>
+        <full_name>validate</full_name>
+        <docblock line="35">
+          <description><![CDATA[Validates that this value is equal to some other element in the filter
+chain (note that equality is *not* strict, so type does not matter).]]></description>
+          <long-description><![CDATA[<p>If the other element does not exist in $this->data, or is null, the
+validation will fail.</p>]]></long-description>
+          <tag line="35" name="param" description="Check against the value of this element in $this-&gt;data." type="string" variable="$other_field">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="35" name="return" description="True if the values are equal, false if not equal." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="35" name="return" description="True if the values are equal, false if not equal." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+        <argument line="51">
+          <name>$other_field</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="68" package="Aura\Filter">
+        <name>sanitize</name>
+        <full_name>sanitize</full_name>
+        <docblock line="61">
+          <description><![CDATA[force the field to the value of the other field]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="61" name="param" description="" type="string" variable="$other_field">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="61" name="return" description="" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+        <argument line="68">
+          <name>$other_field</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Rule/EqualToValue.php" hash="ee9be81030a72370305292ccc46b9ab7" package="Aura\Filter">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Filter"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="AbstractRule">Aura\Filter\AbstractRule</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Filter\Rule" line="25" package="Aura\Filter">
+      <extends>\Aura\Filter\AbstractRule</extends>
+      <name>EqualToValue</name>
+      <full_name>\Aura\Filter\Rule\EqualToValue</full_name>
+      <docblock line="15">
+        <description><![CDATA[Validates that this value is equal to some other element in the filter
+chain (note that equality is not strict, so type does not matter).]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Filter"/>
+        <tag line="15" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="33" namespace="Aura\Filter\Rule" package="Default">
+        <name>$message</name>
+        <default><![CDATA['FILTER_EQUAL_TO_VALUE']]></default>
+        <docblock line="27">
+          <description><![CDATA[Error message]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="27" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="43" package="Aura\Filter">
+        <name>validate</name>
+        <full_name>validate</full_name>
+        <docblock line="35">
+          <description><![CDATA[check whether the value is equal]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="35" name="param" description="" type="mixed" variable="$other_value">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="35" name="return" description="" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+        <argument line="43">
+          <name>$other_value</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="56" package="Aura\Filter">
+        <name>sanitize</name>
+        <full_name>sanitize</full_name>
+        <docblock line="48">
+          <description><![CDATA[force the field to the value of the other field]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="48" name="param" description="" type="mixed" variable="$other_value">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="48" name="return" description="" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+        <argument line="56">
+          <name>$other_value</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Rule/Float.php" hash="582476fae631903367b8ab0c9a382390" package="Aura\Filter">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Filter"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="AbstractRule">Aura\Filter\AbstractRule</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Filter\Rule" line="24" package="Aura\Filter">
+      <extends>\Aura\Filter\AbstractRule</extends>
+      <name>Float</name>
+      <full_name>\Aura\Filter\Rule\Float</full_name>
+      <docblock line="15">
+        <description><![CDATA[Rule for floats.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Filter"/>
+        <tag line="15" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="32" namespace="Aura\Filter\Rule" package="Default">
+        <name>$message</name>
+        <default><![CDATA['FILTER_FLOAT']]></default>
+        <docblock line="26">
+          <description><![CDATA[Error message]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="26" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="41" package="Aura\Filter">
+        <name>validate</name>
+        <full_name>validate</full_name>
+        <docblock line="34">
+          <description><![CDATA[Validates that the value represents a float.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="34" name="return" description="True if valid, false if not." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="66" package="Aura\Filter">
+        <name>sanitize</name>
+        <full_name>sanitize</full_name>
+        <docblock line="53">
+          <description><![CDATA[Forces the value to a float.]]></description>
+          <long-description><![CDATA[<p>Attempts to extract a valid float from the given value, using an
+algorithm somewhat less naive that "remove all characters that are not
+'0-9.,eE+-'".  The result may not be expected, but it will be a float.</p>]]></long-description>
+          <tag line="53" name="return" description="True if the value was fixed, false if not." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="53" name="todo" description="Extract scientific notation from weird strings?"/>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Rule/InKeys.php" hash="e29124143411449e9b92db32e321e76f" package="Aura\Filter">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Filter"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="AbstractRule">Aura\Filter\AbstractRule</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Filter\Rule" line="24" package="Aura\Filter">
+      <extends>\Aura\Filter\AbstractRule</extends>
+      <name>InKeys</name>
+      <full_name>\Aura\Filter\Rule\InKeys</full_name>
+      <docblock line="15">
+        <description><![CDATA[Validates that the value is a key in the list of allowed options.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Filter"/>
+        <tag line="15" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="32" namespace="Aura\Filter\Rule" package="Default">
+        <name>$message</name>
+        <default><![CDATA['FILTER_IN_KEYS']]></default>
+        <docblock line="26">
+          <description><![CDATA[Error message]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="26" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="47" package="Aura\Filter">
+        <name>validate</name>
+        <full_name>validate</full_name>
+        <docblock line="34">
+          <description><![CDATA[Validates that the value is a key in a given array.]]></description>
+          <long-description><![CDATA[<p>Given an array (second parameter), the value (first parameter) must
+match at least one of the array keys.</p>]]></long-description>
+          <tag line="34" name="param" description="An array of key-value pairs; the value must match one of the keys in this array." type="array" variable="$array">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="34" name="return" description="True if valid, false if not." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+        <argument line="47">
+          <name>$array</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="58" package="Aura\Filter">
+        <name>sanitize</name>
+        <full_name>sanitize</full_name>
+        <docblock line="52">
+          <description><![CDATA[cannot fix the value]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="52" name="return" description="" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Rule/Int.php" hash="09fbd3e933baefa0566d914f87dfedb6" package="Aura\Filter">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Filter"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="AbstractRule">Aura\Filter\AbstractRule</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Filter\Rule" line="24" package="Aura\Filter">
+      <extends>\Aura\Filter\AbstractRule</extends>
+      <name>Int</name>
+      <full_name>\Aura\Filter\Rule\Int</full_name>
+      <docblock line="15">
+        <description><![CDATA[Sanitizes a value to an integer.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Filter"/>
+        <tag line="15" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="32" namespace="Aura\Filter\Rule" package="Default">
+        <name>$message</name>
+        <default><![CDATA['FILTER_INT']]></default>
+        <docblock line="26">
+          <description><![CDATA[Error message]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="26" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="41" package="Aura\Filter">
+        <name>validate</name>
+        <full_name>validate</full_name>
+        <docblock line="34">
+          <description><![CDATA[Validates that the value represents an integer.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="34" name="return" description="True if valid, false if not." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="64" package="Aura\Filter">
+        <name>sanitize</name>
+        <full_name>sanitize</full_name>
+        <docblock line="53">
+          <description><![CDATA[Forces the value to an integer.]]></description>
+          <long-description><![CDATA[<p>Attempts to extract a valid integer from the given value, using an
+algorithm somewhat less naive that "remove all characters that are not
+'0-9+-'".  The result may not be expected, but it will be a integer.</p>]]></long-description>
+          <tag line="53" name="return" description="True if the value was fixed, false if not." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Rule/InValues.php" hash="3b8594cbf34fcd14e81bfcfb24a474ee" package="Aura\Filter">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Filter"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="AbstractRule">Aura\Filter\AbstractRule</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Filter\Rule" line="24" package="Aura\Filter">
+      <extends>\Aura\Filter\AbstractRule</extends>
+      <name>InValues</name>
+      <full_name>\Aura\Filter\Rule\InValues</full_name>
+      <docblock line="15">
+        <description><![CDATA[Validates that a value is in a list of allowed values.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Filter"/>
+        <tag line="15" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="32" namespace="Aura\Filter\Rule" package="Default">
+        <name>$message</name>
+        <default><![CDATA['FILTER_IN_VALUES']]></default>
+        <docblock line="26">
+          <description><![CDATA[Error message]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="26" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="47" package="Aura\Filter">
+        <name>validate</name>
+        <full_name>validate</full_name>
+        <docblock line="34">
+          <description><![CDATA[Validates that the value is in a given array.]]></description>
+          <long-description><![CDATA[<p>Strict checking is enforced, so a string "1" is not the same as
+an integer 1.  This helps to avoid matching between 0, false, null,
+and empty string.</p>]]></long-description>
+          <tag line="34" name="param" description="An array of allowed values." type="array" variable="$array">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="34" name="return" description="True if valid, false if not." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+        <argument line="47">
+          <name>$array</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="57" package="Aura\Filter">
+        <name>sanitize</name>
+        <full_name>sanitize</full_name>
+        <docblock line="52">
+          <description><![CDATA[cannot fix the value]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="52" name="return" description="" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Rule/Ipv4.php" hash="495f2dc75b27266894c7a262673cd702" package="Aura\Filter">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Filter"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="AbstractRule">Aura\Filter\AbstractRule</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Filter\Rule" line="24" package="Aura\Filter">
+      <extends>\Aura\Filter\AbstractRule</extends>
+      <name>Ipv4</name>
+      <full_name>\Aura\Filter\Rule\Ipv4</full_name>
+      <docblock line="15">
+        <description><![CDATA[Sanitizes a value to an IPv4 address.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Filter"/>
+        <tag line="15" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="32" namespace="Aura\Filter\Rule" package="Default">
+        <name>$message</name>
+        <default><![CDATA['FILTER_IPV4']]></default>
+        <docblock line="26">
+          <description><![CDATA[Error message]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="26" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="41" package="Aura\Filter">
+        <name>validate</name>
+        <full_name>validate</full_name>
+        <docblock line="34">
+          <description><![CDATA[Validates that the value is a legal IPv4 address.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="34" name="return" description="True if valid, false if not." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="63" package="Aura\Filter">
+        <name>sanitize</name>
+        <full_name>sanitize</full_name>
+        <docblock line="56">
+          <description><![CDATA[Forces the value to an IPv4 address.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="56" name="return" description="True if the value was fixed, false if not." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Rule/Max.php" hash="d71ef5880763648911a2629e1e23b931" package="Aura\Filter">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Filter"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="AbstractRule">Aura\Filter\AbstractRule</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Filter\Rule" line="24" package="Aura\Filter">
+      <extends>\Aura\Filter\AbstractRule</extends>
+      <name>Max</name>
+      <full_name>\Aura\Filter\Rule\Max</full_name>
+      <docblock line="15">
+        <description><![CDATA[Validates that a value is less than than or equal to a maximum.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Filter"/>
+        <tag line="15" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="32" namespace="Aura\Filter\Rule" package="Default">
+        <name>$message</name>
+        <default><![CDATA['FILTER_MAX']]></default>
+        <docblock line="26">
+          <description><![CDATA[Error message]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="26" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="43" package="Aura\Filter">
+        <name>validate</name>
+        <full_name>validate</full_name>
+        <docblock line="34">
+          <description><![CDATA[Validates that the value is less than than or equal to a maximum.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="34" name="param" description="The maximum valid value." type="mixed" variable="$max">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="34" name="return" description="True if valid, false if not." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+        <argument line="43">
+          <name>$max</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="60" package="Aura\Filter">
+        <name>sanitize</name>
+        <full_name>sanitize</full_name>
+        <docblock line="52">
+          <description><![CDATA[Sanitizes to maximum value if values is greater than max]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="52" name="param" description="The maximum valid value." type="mixed" variable="$max">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="52" name="return" description="" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+        <argument line="60">
+          <name>$max</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Rule/Min.php" hash="86f52563f9fd16db20ed805637bef8aa" package="Aura\Filter">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Filter"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="AbstractRule">Aura\Filter\AbstractRule</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Filter\Rule" line="24" package="Aura\Filter">
+      <extends>\Aura\Filter\AbstractRule</extends>
+      <name>Min</name>
+      <full_name>\Aura\Filter\Rule\Min</full_name>
+      <docblock line="15">
+        <description><![CDATA[Validates that a value is greater than or equal to a minimum.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Filter"/>
+        <tag line="15" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="32" namespace="Aura\Filter\Rule" package="Default">
+        <name>$message</name>
+        <default><![CDATA['FILTER_MIN']]></default>
+        <docblock line="26">
+          <description><![CDATA[Error message]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="26" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="43" package="Aura\Filter">
+        <name>validate</name>
+        <full_name>validate</full_name>
+        <docblock line="34">
+          <description><![CDATA[Validates that the value is greater than or equal to a minimum.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="34" name="param" description="The minimum valid value." type="mixed" variable="$min">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="34" name="return" description="True if valid, false if not." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+        <argument line="43">
+          <name>$min</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="60" package="Aura\Filter">
+        <name>sanitize</name>
+        <full_name>sanitize</full_name>
+        <docblock line="52">
+          <description><![CDATA[check whether the value is less than min, if so set to min]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="52" name="param" description="" type="int" variable="$min">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="52" name="return" description="" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+        <argument line="60">
+          <name>$min</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Rule/Regex.php" hash="34624a4f5a71133a9b1646501786de2b" package="Aura\Filter">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Filter"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="AbstractRule">Aura\Filter\AbstractRule</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Filter\Rule" line="24" package="Aura\Filter">
+      <extends>\Aura\Filter\AbstractRule</extends>
+      <name>Regex</name>
+      <full_name>\Aura\Filter\Rule\Regex</full_name>
+      <docblock line="15">
+        <description><![CDATA[Sanitizes a value to a string using preg_replace().]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Filter"/>
+        <tag line="15" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="32" namespace="Aura\Filter\Rule" package="Default">
+        <name>$message</name>
+        <default><![CDATA['FILTER_REGEX']]></default>
+        <docblock line="26">
+          <description><![CDATA[Error message]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="26" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="46" package="Aura\Filter">
+        <name>validate</name>
+        <full_name>validate</full_name>
+        <docblock line="34">
+          <description><![CDATA[Validates the value against a regular expression.]]></description>
+          <long-description><![CDATA[<p>Uses [[php::preg_match() | ]] to compare the value against the given
+regular epxression.</p>]]></long-description>
+          <tag line="34" name="param" description="The regular expression to validate against." type="string" variable="$expr">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="34" name="return" description="True if the value matches the expression, false if not." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+        <argument line="46">
+          <name>$expr</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="66" package="Aura\Filter">
+        <name>sanitize</name>
+        <full_name>sanitize</full_name>
+        <docblock line="55">
+          <description><![CDATA[Applies [[php::preg_replace() | ]] to the value.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="55" name="param" description="The regular expression pattern to apply." type="string" variable="$expr">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="55" name="param" description="Replace the found pattern with this string." type="string" variable="$replace">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="55" name="return" description="True if the value was fixed, false if not." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+        <argument line="66">
+          <name>$expr</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="66">
+          <name>$replace</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Rule/StrictEqualToField.php" hash="76869cfb139fbf7b51cabfd9b7c77de6" package="Aura\Filter">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Filter"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="AbstractRule">Aura\Filter\AbstractRule</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Filter\Rule" line="25" package="Aura\Filter">
+      <extends>\Aura\Filter\AbstractRule</extends>
+      <name>StrictEqualToField</name>
+      <full_name>\Aura\Filter\Rule\StrictEqualToField</full_name>
+      <docblock line="15">
+        <description><![CDATA[Validates that this value is equal to some other element in the filter
+chain (note that equality is not strict, so type does not matter).]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Filter"/>
+        <tag line="15" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="33" namespace="Aura\Filter\Rule" package="Default">
+        <name>$message</name>
+        <default><![CDATA['FILTER_STRICT_EQUAL_TO_FIELD']]></default>
+        <docblock line="27">
+          <description><![CDATA[Error message]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="27" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="49" package="Aura\Filter">
+        <name>validate</name>
+        <full_name>validate</full_name>
+        <docblock line="35">
+          <description><![CDATA[Validates that this value is equal in value and type to some other
+element in the filter chain.]]></description>
+          <long-description><![CDATA[<p>If the other element does not exist in $this->data, or is null, the
+validation will fail.</p>]]></long-description>
+          <tag line="35" name="param" description="Check against the value of this element in $this-&gt;data." type="string" variable="$other_field">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="35" name="return" description="True if the values are equal, false if not equal." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+        <argument line="49">
+          <name>$other_field</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="67" package="Aura\Filter">
+        <name>sanitize</name>
+        <full_name>sanitize</full_name>
+        <docblock line="59">
+          <description><![CDATA[force the field to the value of the other field]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="59" name="param" description="" type="string" variable="$other_field">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="59" name="return" description="" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+        <argument line="67">
+          <name>$other_field</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Rule/StrictEqualToValue.php" hash="d6b130be706dacaed35b53e2661f406c" package="Aura\Filter">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Filter"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="AbstractRule">Aura\Filter\AbstractRule</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Filter\Rule" line="25" package="Aura\Filter">
+      <extends>\Aura\Filter\AbstractRule</extends>
+      <name>StrictEqualToValue</name>
+      <full_name>\Aura\Filter\Rule\StrictEqualToValue</full_name>
+      <docblock line="15">
+        <description><![CDATA[Validates that this value is equal to some other element in the filter
+chain (note that equality is not strict, so type does not matter).]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Filter"/>
+        <tag line="15" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="33" namespace="Aura\Filter\Rule" package="Default">
+        <name>$message</name>
+        <default><![CDATA['FILTER_STRICT_EQUAL_TO_VALUE']]></default>
+        <docblock line="27">
+          <description><![CDATA[Error message]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="27" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="43" package="Aura\Filter">
+        <name>validate</name>
+        <full_name>validate</full_name>
+        <docblock line="35">
+          <description><![CDATA[check the values strictly on type and value]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="35" name="param" description="" type="string" variable="$other_value">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="35" name="return" description="" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+        <argument line="43">
+          <name>$other_value</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="56" package="Aura\Filter">
+        <name>sanitize</name>
+        <full_name>sanitize</full_name>
+        <docblock line="48">
+          <description><![CDATA[force the field to the value of the other field]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="48" name="param" description="" type="string" variable="$other_value">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="48" name="return" description="" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+        <argument line="56">
+          <name>$other_value</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Rule/String.php" hash="0f56837d5de9d9fb4b3afd79a6f6bc85" package="Aura\Filter">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Filter"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="AbstractRule">Aura\Filter\AbstractRule</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Filter\Rule" line="24" package="Aura\Filter">
+      <extends>\Aura\Filter\AbstractRule</extends>
+      <name>String</name>
+      <full_name>\Aura\Filter\Rule\String</full_name>
+      <docblock line="15">
+        <description><![CDATA[Forces a value to a string, no encoding or escaping.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Filter"/>
+        <tag line="15" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="32" namespace="Aura\Filter\Rule" package="Default">
+        <name>$message</name>
+        <default><![CDATA['FILTER_STRING']]></default>
+        <docblock line="26">
+          <description><![CDATA[Error message]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="26" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="46" package="Aura\Filter">
+        <name>validate</name>
+        <full_name>validate</full_name>
+        <docblock line="34">
+          <description><![CDATA[Validates that the value can be represented as a string.]]></description>
+          <long-description><![CDATA[<p>Essentially, this means any scalar value is valid (no arrays, objects,
+resources, etc).</p>]]></long-description>
+          <tag line="34" name="return" description="True if valid, false if not." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="34" name="todo" description="allow for __toString() implementations"/>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="61" package="Aura\Filter">
+        <name>sanitize</name>
+        <full_name>sanitize</full_name>
+        <docblock line="51">
+          <description><![CDATA[Forces the value to a string, optionally applying str_replace().]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="51" name="param" description="" type="string" variable="$find">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="51" name="param" description="" type="string" variable="$replace">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="51" name="return" description="True if the value was fixed, false if not." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+        <argument line="61">
+          <name>$find</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+        <argument line="61">
+          <name>$replace</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Rule/Strlen.php" hash="6b58e34714efc5c145a809685dcc261b" package="Aura\Filter">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Filter"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="AbstractRule">Aura\Filter\AbstractRule</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Filter\Rule" line="24" package="Aura\Filter">
+      <extends>\Aura\Filter\AbstractRule</extends>
+      <name>Strlen</name>
+      <full_name>\Aura\Filter\Rule\Strlen</full_name>
+      <docblock line="15">
+        <description><![CDATA[Validates that a value's length is within a given range.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Filter"/>
+        <tag line="15" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="32" namespace="Aura\Filter\Rule" package="Default">
+        <name>$message</name>
+        <default><![CDATA['FILTER_STRLEN']]></default>
+        <docblock line="26">
+          <description><![CDATA[Error message]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="26" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="43" package="Aura\Filter">
+        <name>validate</name>
+        <full_name>validate</full_name>
+        <docblock line="34">
+          <description><![CDATA[Validates that the length of the value is within a given range.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="34" name="param" description="The minimum valid length." type="mixed" variable="$len">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="34" name="return" description="True if valid, false if not." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+        <argument line="43">
+          <name>$len</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="64" package="Aura\Filter">
+        <name>sanitize</name>
+        <full_name>sanitize</full_name>
+        <docblock line="52">
+          <description><![CDATA[Sanitize to the length given]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="52" name="param" description="" type="int" variable="$len">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="52" name="param" description="" type="int" variable="$pad_string">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="52" name="param" description="" type="\Aura\Filter\Rule\constant" variable="$pad_type">
+            <type by_reference="false">\Aura\Filter\Rule\constant</type>
+          </tag>
+          <tag line="52" name="return" description="" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+        <argument line="64">
+          <name>$len</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="64">
+          <name>$pad_string</name>
+          <default><![CDATA[' ']]></default>
+          <type/>
+        </argument>
+        <argument line="64">
+          <name>$pad_type</name>
+          <default><![CDATA[STR_PAD_RIGHT]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Rule/StrlenBetween.php" hash="1387374a1c724c7828b7887da2537685" package="Aura\Filter">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Filter"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="AbstractRule">Aura\Filter\AbstractRule</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Filter\Rule" line="24" package="Aura\Filter">
+      <extends>\Aura\Filter\AbstractRule</extends>
+      <name>StrlenBetween</name>
+      <full_name>\Aura\Filter\Rule\StrlenBetween</full_name>
+      <docblock line="15">
+        <description><![CDATA[Validates that a value's length is within a given range.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Filter"/>
+        <tag line="15" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="32" namespace="Aura\Filter\Rule" package="Default">
+        <name>$message</name>
+        <default><![CDATA['FILTER_STRLEN_BETWEEN']]></default>
+        <docblock line="26">
+          <description><![CDATA[Error message]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="26" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="45" package="Aura\Filter">
+        <name>validate</name>
+        <full_name>validate</full_name>
+        <docblock line="34">
+          <description><![CDATA[Validates that the length of the value is within a given range.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="34" name="param" description="The minimum valid length." type="mixed" variable="$min">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="34" name="param" description="The maximum valid length." type="mixed" variable="$max">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="34" name="return" description="True if valid, false if not." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+        <argument line="45">
+          <name>$min</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="45">
+          <name>$max</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="69" package="Aura\Filter">
+        <name>sanitize</name>
+        <full_name>sanitize</full_name>
+        <docblock line="55">
+          <description><![CDATA[Sanitize]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="55" name="param" description="" type="int" variable="$min">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="55" name="param" description="" type="int" variable="$max">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="55" name="param" description="" type="string" variable="$pad_string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="55" name="param" description="" type="\Aura\Filter\Rule\constant" variable="$pad_type">
+            <type by_reference="false">\Aura\Filter\Rule\constant</type>
+          </tag>
+          <tag line="55" name="return" description="" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+        <argument line="69">
+          <name>$min</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="69">
+          <name>$max</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="69">
+          <name>$pad_string</name>
+          <default><![CDATA[' ']]></default>
+          <type/>
+        </argument>
+        <argument line="69">
+          <name>$pad_type</name>
+          <default><![CDATA[STR_PAD_RIGHT]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Rule/StrlenMax.php" hash="5964f8fb834af71348f96834b3134141" package="Aura\Filter">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Filter"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="AbstractRule">Aura\Filter\AbstractRule</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Filter\Rule" line="24" package="Aura\Filter">
+      <extends>\Aura\Filter\AbstractRule</extends>
+      <name>StrlenMax</name>
+      <full_name>\Aura\Filter\Rule\StrlenMax</full_name>
+      <docblock line="15">
+        <description><![CDATA[Validates that a value is no longer than a certain length.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Filter"/>
+        <tag line="15" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="32" namespace="Aura\Filter\Rule" package="Default">
+        <name>$message</name>
+        <default><![CDATA['FILTER_STRLEN_MAX']]></default>
+        <docblock line="26">
+          <description><![CDATA[Error message]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="26" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="44" package="Aura\Filter">
+        <name>validate</name>
+        <full_name>validate</full_name>
+        <docblock line="34">
+          <description><![CDATA[Validates that a string is no longer than a certain length.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="34" name="param" description="The value must have no more than this many characters." type="mixed" variable="$max">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="34" name="return" description="True if valid, false if not." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+        <argument line="44">
+          <name>$max</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="61" package="Aura\Filter">
+        <name>sanitize</name>
+        <full_name>sanitize</full_name>
+        <docblock line="53">
+          <description><![CDATA[If the value is greater than max, set to max value]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="53" name="param" description="" type="int" variable="$max">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="53" name="return" description="" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+        <argument line="61">
+          <name>$max</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Rule/StrlenMin.php" hash="6212a4528cb1abd2b1ccfa0ecb524e37" package="Aura\Filter">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Filter"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="AbstractRule">Aura\Filter\AbstractRule</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Filter\Rule" line="24" package="Aura\Filter">
+      <extends>\Aura\Filter\AbstractRule</extends>
+      <name>StrlenMin</name>
+      <full_name>\Aura\Filter\Rule\StrlenMin</full_name>
+      <docblock line="15">
+        <description><![CDATA[Validates that a value is no longer than a certain length.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Filter"/>
+        <tag line="15" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="32" namespace="Aura\Filter\Rule" package="Default">
+        <name>$message</name>
+        <default><![CDATA['FILTER_STRLEN_MIN']]></default>
+        <docblock line="26">
+          <description><![CDATA[Error message]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="26" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="44" package="Aura\Filter">
+        <name>validate</name>
+        <full_name>validate</full_name>
+        <docblock line="34">
+          <description><![CDATA[Validates that a string is no longer than a certain length.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="34" name="param" description="The value must have no more than this many characters." type="mixed" variable="$min">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="34" name="return" description="True if valid, false if not." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+        <argument line="44">
+          <name>$min</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="65" package="Aura\Filter">
+        <name>sanitize</name>
+        <full_name>sanitize</full_name>
+        <docblock line="53">
+          <description><![CDATA[fix to min length]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="53" name="param" description="" type="int" variable="$min">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="53" name="param" description="" type="string" variable="$pad_string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="53" name="param" description="" type="\Aura\Filter\Rule\constant" variable="$pad_type">
+            <type by_reference="false">\Aura\Filter\Rule\constant</type>
+          </tag>
+          <tag line="53" name="return" description="" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+        <argument line="65">
+          <name>$min</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="65">
+          <name>$pad_string</name>
+          <default><![CDATA[' ']]></default>
+          <type/>
+        </argument>
+        <argument line="65">
+          <name>$pad_type</name>
+          <default><![CDATA[STR_PAD_RIGHT]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Rule/Trim.php" hash="0c294e88d9e520ebbcdb882f7543d1fc" package="Aura\Filter">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Filter"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="AbstractRule">Aura\Filter\AbstractRule</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Filter\Rule" line="24" package="Aura\Filter">
+      <extends>\Aura\Filter\AbstractRule</extends>
+      <name>Trim</name>
+      <full_name>\Aura\Filter\Rule\Trim</full_name>
+      <docblock line="15">
+        <description><![CDATA[Sanitizes a value to a string using trim().]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Filter"/>
+        <tag line="15" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="32" namespace="Aura\Filter\Rule" package="Default">
+        <name>$message</name>
+        <default><![CDATA['FILTER_TRIM']]></default>
+        <docblock line="26">
+          <description><![CDATA[Error message]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="26" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="40" namespace="Aura\Filter\Rule" package="Default">
+        <name>$chars</name>
+        <default><![CDATA[" \t\n\r\0\x0B"]]></default>
+        <docblock line="34">
+          <description><![CDATA[same as PHP trim()]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="34" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="51" package="Aura\Filter">
+        <name>validate</name>
+        <full_name>validate</full_name>
+        <docblock line="42">
+          <description><![CDATA[Is the value already trimmed?]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="42" name="param" description="" type="string" variable="$chars">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="42" name="return" description="True if valid, false if not." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+        <argument line="51">
+          <name>$chars</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Filter\Rule" line="72" package="Aura\Filter">
+        <name>sanitize</name>
+        <full_name>sanitize</full_name>
+        <docblock line="63">
+          <description><![CDATA[Trims characters from the beginning and end of the value.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="63" name="param" description="" type="string" variable="$chars">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="63" name="return" description="True if the value was fixed, false if not." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+        <argument line="72">
+          <name>$chars</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Rule/Upload.php" hash="f3193e6a8d6af5888cba14ec05e3f2d6" package="Aura\Filter">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Filter"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="AbstractRule">Aura\Filter\AbstractRule</namespace-alias>
+    <namespace-alias name="StdClass">StdClass</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Filter\Rule" line="26" package="Aura\Filter">
+      <extends>\Aura\Filter\AbstractRule</extends>
+      <name>Upload</name>
+      <full_name>\Aura\Filter\Rule\Upload</full_name>
+      <docblock line="17">
+        <description><![CDATA[Sanitizes a file-upload information array.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="17" name="package" description="Aura.Filter"/>
+        <tag line="17" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="34" namespace="Aura\Filter\Rule" package="Default">
+        <name>$message</name>
+        <default><![CDATA['FILTER_UPLOAD']]></default>
+        <docblock line="28">
+          <description><![CDATA[Error message]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="28" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="43" namespace="Aura\Filter\Rule" package="Default">
+        <name>$error_message</name>
+        <default><![CDATA[array(UPLOAD_ERR_INI_SIZE => 'FILTER_UPLOAD_ERR_INI_SIZE', UPLOAD_ERR_FORM_SIZE => 'FILTER_UPLOAD_ERR_FORM_SIZE', UPLOAD_ERR_PARTIAL => 'FILTER_UPLOAD_ERR_PARTIAL', UPLOAD_ERR_NO_FILE => 'FILTER_UPLOAD_ERR_NO_FILE', UPLOAD_ERR_NO_TMP_DIR => 'FILTER_UPLOAD_ERR_NO_TMP_DIR', UPLOAD_ERR_CANT_WRITE => 'FILTER_UPLOAD_ERR_CANT_WRITE', UPLOAD_ERR_EXTENSION => 'FILTER_UPLOAD_ERR_EXTENSION')]]></default>
+        <docblock line="36">
+          <description><![CDATA[Upload error codes matched with locale string keys.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="36" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Filter\Rule" line="61" package="Aura\Filter">
+        <name>prep</name>
+        <full_name>prep</full_name>
+        <docblock line="53">
+          <description><![CDATA[prepare the rule for reuse]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="53" name="param" description="" type="\StdClass" variable="$data">
+            <type by_reference="false">\StdClass</type>
+          </tag>
+          <tag line="53" name="param" description="" type="string" variable="$field">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="61">
+          <name>$data</name>
+          <default><![CDATA[]]></default>
+          <type>StdClass</type>
+        </argument>
+        <argument line="61">
+          <name>$field</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="78" package="Aura\Filter">
+        <name>validate</name>
+        <full_name>validate</full_name>
+        <docblock line="67">
+          <description><![CDATA[Validates that the value is an array of file-upload information, and
+if a file is referred to, that is actually an uploaded file.]]></description>
+          <long-description><![CDATA[<p>The required keys are 'error', 'name', 'size', 'tmp_name', 'type'. More
+or fewer or different keys than this will return a "malformed" error.</p>]]></long-description>
+          <tag line="67" name="return" description="True if valid, false if not." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="122" package="Aura\Filter">
+        <name>sanitize</name>
+        <full_name>sanitize</full_name>
+        <docblock line="114">
+          <description><![CDATA[Sanitizes a file-upload information array.]]></description>
+          <long-description><![CDATA[<p>If no file has been
+uploaded, the information will be returned as null.</p>]]></long-description>
+          <tag line="114" name="return" description="True if the value was fixed, false if not." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="146" package="Aura\Filter">
+        <name>preCheck</name>
+        <full_name>preCheck</full_name>
+        <docblock line="137">
+          <description><![CDATA[check before the file is uploaded]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="137" name="param" description="" type="string" variable="$value">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="137" name="return" description="" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+        <argument line="146">
+          <name>$value</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="185" package="Aura\Filter">
+        <name>isUploadedFile</name>
+        <full_name>isUploadedFile</full_name>
+        <docblock line="177">
+          <description><![CDATA[check whether the file was uploaded via HTTP POST]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="177" name="param" description="" type="string" variable="$file">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="177" name="return" description="" type="\Aura\Filter\Rule\type">
+            <type by_reference="false">\Aura\Filter\Rule\type</type>
+          </tag>
+        </docblock>
+        <argument line="185">
+          <name>$file</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Rule/Url.php" hash="bd28952b0d03518a16c78ba82b3e7bbf" package="Aura\Filter">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Filter"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="AbstractRule">Aura\Filter\AbstractRule</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Filter\Rule" line="24" package="Aura\Filter">
+      <extends>\Aura\Filter\AbstractRule</extends>
+      <name>Url</name>
+      <full_name>\Aura\Filter\Rule\Url</full_name>
+      <docblock line="15">
+        <description><![CDATA[Validates that a value is a URL.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Filter"/>
+        <tag line="15" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="32" namespace="Aura\Filter\Rule" package="Default">
+        <name>$message</name>
+        <default><![CDATA['FILTER_URL']]></default>
+        <docblock line="26">
+          <description><![CDATA[Error message]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="26" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="44" package="Aura\Filter">
+        <name>validate</name>
+        <full_name>validate</full_name>
+        <docblock line="34">
+          <description><![CDATA[Validates the value as a URL.]]></description>
+          <long-description><![CDATA[<p>The value must match a generic URL format; for example,
+<code>http://example.com</code>, <code>mms://example.org</code>, and so on.</p>]]></long-description>
+          <tag line="34" name="return" description="True if valid, false if not." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="82" package="Aura\Filter">
+        <name>sanitize</name>
+        <full_name>sanitize</full_name>
+        <docblock line="76">
+          <description><![CDATA[cannot fix URLs]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="76" name="return" description="" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Rule/Word.php" hash="dfb1d60f4e0793f62b860dd5cfe05aaa" package="Aura\Filter">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Filter"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="AbstractRule">Aura\Filter\AbstractRule</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Filter\Rule" line="24" package="Aura\Filter">
+      <extends>\Aura\Filter\AbstractRule</extends>
+      <name>Word</name>
+      <full_name>\Aura\Filter\Rule\Word</full_name>
+      <docblock line="15">
+        <description><![CDATA[Sanitizes a value to a string with only word characters.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Filter"/>
+        <tag line="15" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="32" namespace="Aura\Filter\Rule" package="Default">
+        <name>$message</name>
+        <default><![CDATA['FILTER_WORD']]></default>
+        <docblock line="26">
+          <description><![CDATA[Error message]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="26" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="44" package="Aura\Filter">
+        <name>validate</name>
+        <full_name>validate</full_name>
+        <docblock line="34">
+          <description><![CDATA[Validates that the value is composed only of word characters.]]></description>
+          <long-description><![CDATA[<p>These include a-z, A-Z, 0-9, and underscore, indicated by a
+regular expression "\w".</p>]]></long-description>
+          <tag line="34" name="return" description="True if valid, false if not." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter\Rule" line="61" package="Aura\Filter">
+        <name>sanitize</name>
+        <full_name>sanitize</full_name>
+        <docblock line="54">
+          <description><![CDATA[Strips non-word characters within the value.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="54" name="return" description="True if the value was fixed, false if not." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="RuleCollection.php" hash="55800ce3c5719e553685269b6949525b" package="Aura\Filter">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Filter"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="InvalidArgumentException">InvalidArgumentException</namespace-alias>
+    <namespace-alias name="StdClass">StdClass</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Filter" line="25" package="Aura\Filter">
+      <extends/>
+      <name>RuleCollection</name>
+      <full_name>\Aura\Filter\RuleCollection</full_name>
+      <docblock line="16">
+        <description><![CDATA[A collection of rules to be applied to a data object.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="16" name="package" description="Aura.Filter"/>
+        <tag line="16" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+      </docblock>
+      <constant namespace="Aura\Filter" line="30" package="Aura\Filter">
+        <name>HARD_RULE</name>
+        <full_name>HARD_RULE</full_name>
+        <value><![CDATA['HARD_RULE']]></value>
+        <docblock line="27">
+          <description><![CDATA[Stop filtering on a field when a rule fails.]]></description>
+          <long-description><![CDATA[]]></long-description>
+        </docblock>
+      </constant>
+      <constant namespace="Aura\Filter" line="35" package="Aura\Filter">
+        <name>SOFT_RULE</name>
+        <full_name>SOFT_RULE</full_name>
+        <value><![CDATA['SOFT_RULE']]></value>
+        <docblock line="32">
+          <description><![CDATA[Continue filtering on a field when a rule fails.]]></description>
+          <long-description><![CDATA[]]></long-description>
+        </docblock>
+      </constant>
+      <constant namespace="Aura\Filter" line="40" package="Aura\Filter">
+        <name>STOP_RULE</name>
+        <full_name>STOP_RULE</full_name>
+        <value><![CDATA['STOP_RULE']]></value>
+        <docblock line="37">
+          <description><![CDATA[Stop filtering on all fields when a rule fails.]]></description>
+          <long-description><![CDATA[]]></long-description>
+        </docblock>
+      </constant>
+      <constant namespace="Aura\Filter" line="45" package="Aura\Filter">
+        <name>IS</name>
+        <full_name>IS</full_name>
+        <value><![CDATA['is']]></value>
+        <docblock line="42">
+          <description><![CDATA[Apply a rule to check if the value is valid.]]></description>
+          <long-description><![CDATA[]]></long-description>
+        </docblock>
+      </constant>
+      <constant namespace="Aura\Filter" line="50" package="Aura\Filter">
+        <name>IS_NOT</name>
+        <full_name>IS_NOT</full_name>
+        <value><![CDATA['isNot']]></value>
+        <docblock line="47">
+          <description><![CDATA[Apply a rule to check if the value **is not** valid.]]></description>
+          <long-description><![CDATA[]]></long-description>
+        </docblock>
+      </constant>
+      <constant namespace="Aura\Filter" line="55" package="Aura\Filter">
+        <name>IS_BLANK_OR</name>
+        <full_name>IS_BLANK_OR</full_name>
+        <value><![CDATA['isBlankOr']]></value>
+        <docblock line="52">
+          <description><![CDATA[Apply a rule to check if the value is blank **or** is valid.]]></description>
+          <long-description><![CDATA[]]></long-description>
+        </docblock>
+      </constant>
+      <constant namespace="Aura\Filter" line="60" package="Aura\Filter">
+        <name>FIX</name>
+        <full_name>FIX</full_name>
+        <value><![CDATA['fix']]></value>
+        <docblock line="57">
+          <description><![CDATA[Sanitize the value according to the rule.]]></description>
+          <long-description><![CDATA[]]></long-description>
+        </docblock>
+      </constant>
+      <constant namespace="Aura\Filter" line="65" package="Aura\Filter">
+        <name>FIX_BLANK_OR</name>
+        <full_name>FIX_BLANK_OR</full_name>
+        <value><![CDATA['fixBlankOr']]></value>
+        <docblock line="62">
+          <description><![CDATA[Sanitize the value to `null` if blank, or according to the rule if not.]]></description>
+          <long-description><![CDATA[]]></long-description>
+        </docblock>
+      </constant>
+      <property final="false" static="false" visibility="protected" line="74" namespace="Aura\Filter" package="Default">
+        <name>$rules</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="67">
+          <description><![CDATA[The rules to be applied to a data object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="67" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="83" namespace="Aura\Filter" package="Default">
+        <name>$messages</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="76">
+          <description><![CDATA[Error messages from failed rules.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="76" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="92" namespace="Aura\Filter" package="Default">
+        <name>$hardrule</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="85">
+          <description><![CDATA[Fields that have errored on a hard rule.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="85" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="100" namespace="Aura\Filter" package="Default">
+        <name>$rule_locator</name>
+        <default><![CDATA[]]></default>
+        <docblock line="94">
+          <description><![CDATA[A RuleLocator object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="94" name="var" description="" type="\Aura\Filter\RuleLocator">
+            <type by_reference="false">\Aura\Filter\RuleLocator</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Filter" line="109" package="Aura\Filter">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="102">
+          <description><![CDATA[Constructor.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="102" name="param" description="" type="\Aura\Filter\RuleLocator" variable="$rule_locator">
+            <type by_reference="false">\Aura\Filter\RuleLocator</type>
+          </tag>
+        </docblock>
+        <argument line="109">
+          <name>$rule_locator</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Filter\RuleLocator</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Filter" line="127" package="Aura\Filter">
+        <name>addSoftRule</name>
+        <full_name>addSoftRule</full_name>
+        <docblock line="114">
+          <description><![CDATA[Add a rule; keep applying all other rules even if it fails.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="114" name="param" description="" type="string" variable="$field">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="114" name="param" description="" type="string" variable="$method">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="114" name="param" description="" type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="114" name="return" description="" type="\Aura\Filter\$this">
+            <type by_reference="false">\Aura\Filter\$this</type>
+          </tag>
+        </docblock>
+        <argument line="127">
+          <name>$field</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="127">
+          <name>$method</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="127">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Filter" line="150" package="Aura\Filter">
+        <name>addHardRule</name>
+        <full_name>addHardRule</full_name>
+        <docblock line="137">
+          <description><![CDATA[Add a rule; if it fails, stop applying rules on that field.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="137" name="param" description="" type="string" variable="$field">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="137" name="param" description="" type="string" variable="$method">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="137" name="param" description="" type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="137" name="return" description="" type="\Aura\Filter\$this">
+            <type by_reference="false">\Aura\Filter\$this</type>
+          </tag>
+        </docblock>
+        <argument line="150">
+          <name>$field</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="150">
+          <name>$method</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="150">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Filter" line="173" package="Aura\Filter">
+        <name>addStopRule</name>
+        <full_name>addStopRule</full_name>
+        <docblock line="160">
+          <description><![CDATA[Add a rule; if it fails, stop applying rules on all remaining data.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="160" name="param" description="" type="string" variable="$field">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="160" name="param" description="" type="string" variable="$method">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="160" name="param" description="" type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="160" name="return" description="" type="\Aura\Filter\$this">
+            <type by_reference="false">\Aura\Filter\$this</type>
+          </tag>
+        </docblock>
+        <argument line="173">
+          <name>$field</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="173">
+          <name>$method</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="173">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Filter" line="190" package="Aura\Filter">
+        <name>getRules</name>
+        <full_name>getRules</full_name>
+        <docblock line="183">
+          <description><![CDATA[Returns the collection of rules to be applied.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="183" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Filter" line="201" package="Aura\Filter">
+        <name>getRuleLocator</name>
+        <full_name>getRuleLocator</full_name>
+        <docblock line="195">
+          <description><![CDATA[Return RuleLocator object]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="195" name="return" description="" type="\Aura\Filter\RuleLocator">
+            <type by_reference="false">\Aura\Filter\RuleLocator</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Filter" line="221" package="Aura\Filter">
+        <name>addRule</name>
+        <full_name>addRule</full_name>
+        <docblock line="206">
+          <description><![CDATA[Add a rule.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="206" name="param" description="" type="string" variable="$field">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="206" name="param" description="" type="string" variable="$method">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="206" name="param" description="" type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="206" name="param" description="" type="string" variable="$params">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="206" name="param" description="The rule type: soft, hard, stop." type="string" variable="$type">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="221">
+          <name>$field</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="221">
+          <name>$method</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="221">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="221">
+          <name>$params</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="221">
+          <name>$type</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Filter" line="244" package="Aura\Filter">
+        <name>values</name>
+        <full_name>values</full_name>
+        <docblock line="233">
+          <description><![CDATA[Applies the rules to the field values of a data object or array; note
+that sanitizing filters may modify the values in place.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="233" name="param" description="&amp;$data The data object or array to be filtered." type="object|array" variable="$data">
+            <type by_reference="false">object</type>
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="233" name="return" description="True if all rules were applied without error; false if there was at least one error." type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+        <argument line="244">
+          <name>$data</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Filter" line="317" package="Aura\Filter">
+        <name>getMessages</name>
+        <full_name>getMessages</full_name>
+        <docblock line="310">
+          <description><![CDATA[Returns the array of failure messages.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="310" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Filter" line="336" package="Aura\Filter">
+        <name>value</name>
+        <full_name>value</full_name>
+        <docblock line="322">
+          <description><![CDATA[Convenience method to apply a rule directly to an individual value.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="322" name="param" description="&amp;$value Apply the rule to this value; the rule may modify the value in place." type="mixed" variable="$value">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="322" name="param" description="The rule method to use; e.g., Filter::IS." type="string" variable="$method">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="322" name="param" description="The of the rule to apply." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="322" name="return" description="True if the rule was applied successfully, false if not." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+        <argument line="336">
+          <name>$value</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="336">
+          <name>$method</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="336">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="RuleInterface.php" hash="7244155ae1f1ab0571f6bddf2bdd68cb" package="Aura\Filter">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Filter"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="StdClass">StdClass</namespace-alias>
+    <interface namespace="Aura\Filter" line="22" package="Aura\Filter">
+      <name>RuleInterface</name>
+      <full_name>\Aura\Filter\RuleInterface</full_name>
+      <docblock line="15">
+        <description><![CDATA[Rule Interface]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Filter"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Filter" line="35" package="Aura\Filter">
+        <name>prep</name>
+        <full_name>prep</full_name>
+        <docblock line="24">
+          <description><![CDATA[Prepare the rule for reuse.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="24" name="param" description="The full set of data to be filtered." type="\StdClass" variable="$data">
+            <type by_reference="false">\StdClass</type>
+          </tag>
+          <tag line="24" name="param" description="The field to be filtered within the data." type="string" variable="$field">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="24" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="35">
+          <name>$data</name>
+          <default><![CDATA[]]></default>
+          <type>StdClass</type>
+        </argument>
+        <argument line="35">
+          <name>$field</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Filter" line="45" package="Aura\Filter">
+        <name>getMessage</name>
+        <full_name>getMessage</full_name>
+        <docblock line="37">
+          <description><![CDATA[Get the error message; note that this returns the message whether or
+not there was an error when validating or sanitizing.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="37" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Filter" line="55" package="Aura\Filter">
+        <name>getValue</name>
+        <full_name>getValue</full_name>
+        <docblock line="47">
+          <description><![CDATA[Get the value of the field being filtered, or null if the field is
+not set in the data.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="47" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Filter" line="66" package="Aura\Filter">
+        <name>setValue</name>
+        <full_name>setValue</full_name>
+        <docblock line="57">
+          <description><![CDATA[Set value of field, creating it in the data if needed.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="57" name="param" description="The new value of the field." type="string" variable="$value">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="57" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="66">
+          <name>$value</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Filter" line="75" package="Aura\Filter">
+        <name>is</name>
+        <full_name>is</full_name>
+        <docblock line="68">
+          <description><![CDATA[Is the value valid?]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="68" name="return" description="True if valid, false if not valid." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Filter" line="84" package="Aura\Filter">
+        <name>isNot</name>
+        <full_name>isNot</full_name>
+        <docblock line="77">
+          <description><![CDATA[Is the value *not* valid?]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="77" name="return" description="True if not valid, false if valid." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Filter" line="93" package="Aura\Filter">
+        <name>isBlankOr</name>
+        <full_name>isBlankOr</full_name>
+        <docblock line="86">
+          <description><![CDATA[Is the value blank, or otherwise valid?]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="86" name="return" description="True if blank or valid, false if not." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Filter" line="102" package="Aura\Filter">
+        <name>fix</name>
+        <full_name>fix</full_name>
+        <docblock line="95">
+          <description><![CDATA[Sanitize the value, transforming it as needed.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="95" name="return" description="True if the value was sanitized, false if not." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Filter" line="113" package="Aura\Filter">
+        <name>fixBlankOr</name>
+        <full_name>fixBlankOr</full_name>
+        <docblock line="104">
+          <description><![CDATA[If the value is blank, set to null; sanitize if not blank, transforming
+it as needed.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="104" name="return" description="True if the value was set to null or sanitized, false if not." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+    </interface>
+  </file>
+  <file path="RuleLocator.php" hash="59c0625308438750ee4f4ad9a353eb48" package="Aura\Filter">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Filter"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Filter" line="20" package="Aura\Filter">
+      <extends/>
+      <name>RuleLocator</name>
+      <full_name>\Aura\Filter\RuleLocator</full_name>
+      <docblock line="13">
+        <description><![CDATA[A ServiceLocator implementation for loading and retaining rule objects.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Filter"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="29" namespace="Aura\Filter" package="Default">
+        <name>$registry</name>
+        <default><![CDATA[]]></default>
+        <docblock line="22">
+          <description><![CDATA[A registry to retain rule objects.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Filter" line="42" package="Aura\Filter">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="31">
+          <description><![CDATA[Constructor.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="31" name="param" description="An array of key-value pairs where the key is the rule name (doubles as a method name) and the value is the rule object. The value may also be a closure that returns a rule object. Note that is has to be a closure, not just any callable, because the rule object itself might be callable." type="array" variable="$registry">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="42">
+          <name>$registry</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Filter" line="59" package="Aura\Filter">
+        <name>merge</name>
+        <full_name>merge</full_name>
+        <docblock line="47">
+          <description><![CDATA[Merges a new registry of rules over the old registry; new rules will
+override old ones.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="47" name="param" description="An array of key-value pairs where the key is the rule name (doubles as a method name) and the value is the rule object. The value may also be a closure that returns a rule object. Note that is has to be a closure, not just any callable, because the rule object itself might be callable." type="array" variable="$registry">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="59">
+          <name>$registry</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Filter" line="79" package="Aura\Filter">
+        <name>set</name>
+        <full_name>set</full_name>
+        <docblock line="66">
+          <description><![CDATA[Sets one rule into the registry by name.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="66" name="param" description="The rule name; this doubles as a method name when called from a template." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="66" name="param" description="The rule specification, typically a closure that builds and returns a rule object." type="string" variable="$spec">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="66" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="79">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="79">
+          <name>$spec</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Filter" line="93" package="Aura\Filter">
+        <name>get</name>
+        <full_name>get</full_name>
+        <docblock line="84">
+          <description><![CDATA[Gets a rule from the registry by name.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="84" name="param" description="The rule to retrieve." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="84" name="return" description="A rule object." type="\Aura\Filter\AbstractRule">
+            <type by_reference="false">\Aura\Filter\AbstractRule</type>
+          </tag>
+        </docblock>
+        <argument line="93">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <package name="Aura" full_name="Aura">
+    <package name="Autoload" full_name="Aura\Autoload"/>
+    <package name="Filter" full_name="Aura\Filter"/>
+  </package>
+  <package name="Default" full_name="Default"/>
+  <namespace name="Aura" full_name="Aura">
+    <namespace name="Filter" full_name="Aura\Filter">
+      <namespace name="Exception" full_name="Aura\Filter\Exception"/>
+      <namespace name="Rule" full_name="Aura\Filter\Rule"/>
+    </namespace>
+  </namespace>
+  <marker count="2">todo</marker>
+  <marker count="0">fixme</marker>
+  <deprecated count="0"/>
+</project>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project version="2.0.0a7" title="">
+  <file path="Cli/Hello/Command.php" hash="c8b0994944e22c10f4822d7b1ee82106" package="Aura\Demo">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Demo"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="AbstractCommand">Aura\Framework\Cli\AbstractCommand</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Demo\Cli\Hello" line="22" package="Aura\Demo">
+      <extends>\Aura\Framework\Cli\AbstractCommand</extends>
+      <name>Command</name>
+      <full_name>\Aura\Demo\Cli\Hello\Command</full_name>
+      <docblock line="15">
+        <description><![CDATA[A simple CLI command to output "Hello, World!"]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Demo"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Demo\Cli\Hello" line="31" package="Aura\Demo">
+        <name>action</name>
+        <full_name>action</full_name>
+        <docblock line="24">
+          <description><![CDATA[Sends "Hello World!" to standard output.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="24" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Web/Hello/Page.php" hash="a8a12b0d11ccd16517f68602e2059560" package="Aura\Demo">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Demo"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="AbstractPage">Aura\Framework\Web\Controller\AbstractPage</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Demo\Web\Hello" line="22" package="Aura\Demo">
+      <extends>\Aura\Framework\Web\Controller\AbstractPage</extends>
+      <name>Page</name>
+      <full_name>\Aura\Demo\Web\Hello\Page</full_name>
+      <docblock line="15">
+        <description><![CDATA[A basic controller to show "Hello world" or an image asset.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Demo"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Demo\Web\Hello" line="31" package="Aura\Demo">
+        <name>actionIndex</name>
+        <full_name>actionIndex</full_name>
+        <docblock line="24">
+          <description><![CDATA[Sets the inner view to "index" and does nothing else.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="24" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Demo\Web\Hello" line="43" package="Aura\Demo">
+        <name>actionLogo</name>
+        <full_name>actionLogo</full_name>
+        <docblock line="36">
+          <description><![CDATA[Sets the inner view to "logo" and does nothing else.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="36" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <package name="Aura" full_name="Aura">
+    <package name="Demo" full_name="Aura\Demo"/>
+  </package>
+  <namespace name="Aura" full_name="Aura">
+    <namespace name="Demo" full_name="Aura\Demo">
+      <namespace name="Cli" full_name="Aura\Demo\Cli">
+        <namespace name="Hello" full_name="Aura\Demo\Cli\Hello"/>
+      </namespace>
+      <namespace name="Web" full_name="Aura\Demo\Web">
+        <namespace name="Hello" full_name="Aura\Demo\Web\Hello"/>
+      </namespace>
+    </namespace>
+  </namespace>
+  <marker count="0">todo</marker>
+  <marker count="0">fixme</marker>
+  <deprecated count="0"/>
+</project>

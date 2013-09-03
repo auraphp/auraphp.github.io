@@ -1,0 +1,1073 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project version="2.0.0a7" title="">
+  <file path="Definition.php" hash="5acf53dde4bb60decb11d8eda8fdf6a5" package="Aura\Router">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Router"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Router" line="24" package="Aura\Router">
+      <extends/>
+      <name>Definition</name>
+      <full_name>\Aura\Router\Definition</full_name>
+      <docblock line="13">
+        <description><![CDATA[Represents a route definition, either a single route or a set of attached
+routes.]]></description>
+        <long-description><![CDATA[<p>In general, you should never need to instantiate a Definition directly. Use
+the DefinitionFactory instead, or the Map.</p>]]></long-description>
+        <tag line="13" name="package" description="Aura.Router"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="33" namespace="Aura\Router" package="Default">
+        <name>$type</name>
+        <default><![CDATA[]]></default>
+        <docblock line="26">
+          <description><![CDATA[The type of definition, typically 'single' or 'attach'.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="26" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="42" namespace="Aura\Router" package="Default">
+        <name>$spec</name>
+        <default><![CDATA[]]></default>
+        <docblock line="35">
+          <description><![CDATA[The spec for the definition.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="35" name="var" description="" type="array|\Aura\Router\callable">
+            <type by_reference="false">array</type>
+            <type by_reference="false">\Aura\Router\callable</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="51" namespace="Aura\Router" package="Default">
+        <name>$path_prefix</name>
+        <default><![CDATA[]]></default>
+        <docblock line="44">
+          <description><![CDATA[For 'attach' definitions, the prefix for all attached route paths.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="44" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Router" line="64" package="Aura\Router">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="53">
+          <description><![CDATA[Constructor.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="53" name="param" description="The definition type." type="string" variable="$type">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="53" name="param" description="The definition spec." type="array|\Aura\Router\callable" variable="$spec">
+            <type by_reference="false">array</type>
+            <type by_reference="false">\Aura\Router\callable</type>
+          </tag>
+          <tag line="53" name="param" description="The prefix for 'attach' paths." type="string" variable="$path_prefix">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="64">
+          <name>$type</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="64">
+          <name>$spec</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="64">
+          <name>$path_prefix</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Router" line="78" package="Aura\Router">
+        <name>getType</name>
+        <full_name>getType</full_name>
+        <docblock line="71">
+          <description><![CDATA[Returns the definition type.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="71" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Router" line="91" package="Aura\Router">
+        <name>getSpec</name>
+        <full_name>getSpec</full_name>
+        <docblock line="83">
+          <description><![CDATA[Returns the definition spec, converting callable along the way, and
+setting the path_prefix on 'attach' definitions.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="83" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="DefinitionFactory.php" hash="aa5b6292cb3186130f7be657fcffca59" package="Aura\Router">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Router"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Router" line="20" package="Aura\Router">
+      <extends/>
+      <name>DefinitionFactory</name>
+      <full_name>\Aura\Router\DefinitionFactory</full_name>
+      <docblock line="13">
+        <description><![CDATA[A factory to create Definition objects.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Router"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Router" line="37" package="Aura\Router">
+        <name>newInstance</name>
+        <full_name>newInstance</full_name>
+        <docblock line="22">
+          <description><![CDATA[Returns a new Definition instance.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="param" description="The type of definition, 'single' or 'attach'." type="string" variable="$type">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="22" name="param" description="The definition spec: either an array, or a callable that returns an array." type="array|\Aura\Router\callable" variable="$spec">
+            <type by_reference="false">array</type>
+            <type by_reference="false">\Aura\Router\callable</type>
+          </tag>
+          <tag line="22" name="param" description="For 'attach' definitions, use this as the prefix for attached paths." type="string" variable="$path_prefix">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="22" name="return" description="" type="\Aura\Router\Route">
+            <type by_reference="false">\Aura\Router\Route</type>
+          </tag>
+        </docblock>
+        <argument line="37">
+          <name>$type</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="37">
+          <name>$spec</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="37">
+          <name>$path_prefix</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Exception/RouteNotFound.php" hash="5805c2da3cab52f6975bfb5efc3ead8a" package="Aura\Router">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Router"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="Exception">Aura\Router\Exception</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Router\Exception" line="22" package="Aura\Router">
+      <extends>\Aura\Router\Exception</extends>
+      <name>RouteNotFound</name>
+      <full_name>\Aura\Router\Exception\RouteNotFound</full_name>
+      <docblock line="15">
+        <description><![CDATA[A route name was not found.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Router"/>
+      </docblock>
+    </class>
+  </file>
+  <file path="Exception/UnexpectedType.php" hash="3b4314c51152be89602ab7faedcd984d" package="Aura\Router">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Router"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="Exception">Aura\Router\Exception</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Router\Exception" line="22" package="Aura\Router">
+      <extends>\Aura\Router\Exception</extends>
+      <name>UnexpectedType</name>
+      <full_name>\Aura\Router\Exception\UnexpectedType</full_name>
+      <docblock line="15">
+        <description><![CDATA[A different variable type was expected.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Router"/>
+      </docblock>
+    </class>
+  </file>
+  <file path="Exception.php" hash="976498a51c97194f2f6c8d9f7d307c5b" package="Aura\Router">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Router"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Router" line="20" package="Aura\Router">
+      <extends>\Exception</extends>
+      <name>Exception</name>
+      <full_name>\Aura\Router\Exception</full_name>
+      <docblock line="13">
+        <description><![CDATA[Package-specific exception.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Router"/>
+      </docblock>
+    </class>
+  </file>
+  <file path="Map.php" hash="15969f80294a46cd42ba8628047102b6" package="Aura\Router">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Router"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="Exception">Aura\Router\Exception</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Router" line="22" package="Aura\Router">
+      <extends/>
+      <name>Map</name>
+      <full_name>\Aura\Router\Map</full_name>
+      <docblock line="15">
+        <description><![CDATA[A collection point for URI routes.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="15" name="package" description="Aura.Router"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="31" namespace="Aura\Router" package="Default">
+        <name>$attach_common</name>
+        <default><![CDATA[null]]></default>
+        <docblock line="24">
+          <description><![CDATA[Currently processing this attached common route information.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="24" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="40" namespace="Aura\Router" package="Default">
+        <name>$attach_routes</name>
+        <default><![CDATA[null]]></default>
+        <docblock line="33">
+          <description><![CDATA[Currently processing these attached routes.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="33" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="49" namespace="Aura\Router" package="Default">
+        <name>$definitions</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="42">
+          <description><![CDATA[Route definitions; these will be converted into objects.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="42" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="58" namespace="Aura\Router" package="Default">
+        <name>$route_factory</name>
+        <default><![CDATA[]]></default>
+        <docblock line="51">
+          <description><![CDATA[A RouteFactory for creating route objects.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="51" name="var" description="" type="\Aura\Router\RouteFactory">
+            <type by_reference="false">\Aura\Router\RouteFactory</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="67" namespace="Aura\Router" package="Default">
+        <name>$routes</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="60">
+          <description><![CDATA[Route objects created from the definitons.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="60" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="76" namespace="Aura\Router" package="Default">
+        <name>$log</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="69">
+          <description><![CDATA[Logging information about which routes were attempted to match.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="69" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Router" line="92" package="Aura\Router">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="78">
+          <description><![CDATA[Constructor.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="78" name="param" description="A factory for creating definition objects." type="\Aura\Router\DefinitionFactory" variable="$definition_factory">
+            <type by_reference="false">\Aura\Router\DefinitionFactory</type>
+          </tag>
+          <tag line="78" name="param" description="A factory for creating route objects." type="\Aura\Router\RouteFactory" variable="$route_factory">
+            <type by_reference="false">\Aura\Router\RouteFactory</type>
+          </tag>
+          <tag line="78" name="param" description="A series of route definitions to be attached to the router." type="array" variable="$attach">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="93">
+          <name>$definition_factory</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Router\DefinitionFactory</type>
+        </argument>
+        <argument line="94">
+          <name>$route_factory</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Router\RouteFactory</type>
+        </argument>
+        <argument line="95">
+          <name>$attach</name>
+          <default><![CDATA[null]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Router" line="118" package="Aura\Router">
+        <name>add</name>
+        <full_name>add</full_name>
+        <docblock line="104">
+          <description><![CDATA[Adds a single route definition to the stack.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="104" name="param" description="The route name for `generate()` lookups." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="104" name="param" description="The route path." type="string" variable="$path">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="104" name="param" description="The rest of the route definition, with keys for `params`, `values`, etc." type="array" variable="$spec">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="104" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="118">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="118">
+          <name>$path</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="118">
+          <name>$spec</name>
+          <default><![CDATA[null]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Router" line="150" package="Aura\Router">
+        <name>attach</name>
+        <full_name>attach</full_name>
+        <docblock line="137">
+          <description><![CDATA[Attaches several routes at once to a specific path prefix.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="137" name="param" description="The path that the routes should be attached to." type="string" variable="$path_prefix">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="137" name="param" description="An array of common route information, with an additional `routes` key to define the routes themselves." type="array" variable="$spec">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="137" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="150">
+          <name>$path_prefix</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="150">
+          <name>$spec</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Router" line="171" package="Aura\Router">
+        <name>match</name>
+        <full_name>match</full_name>
+        <docblock line="159">
+          <description><![CDATA[Gets a route that matches a given path and other server conditions.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="159" name="param" description="The path to match against." type="string" variable="$path">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="159" name="param" description="An array copy of $_SERVER." type="array" variable="$server">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="159" name="return" description="Returns a Route object when it finds a match, or boolean false if there is no match." type="\Aura\Router\Route|false">
+            <type by_reference="false">\Aura\Router\Route</type>
+            <type by_reference="false">false</type>
+          </tag>
+        </docblock>
+        <argument line="171">
+          <name>$path</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="171">
+          <name>$server</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Router" line="211" package="Aura\Router">
+        <name>generate</name>
+        <full_name>generate</full_name>
+        <docblock line="197">
+          <description><![CDATA[Looks up a route by name, and interpolates data into it to return
+a URI path.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="197" name="param" description="The route name to look up." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="197" name="param" description="The data to interpolate into the URI; data keys map to param tokens in the path." type="array" variable="$data">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="197" name="return" description="A URI path string if the route name is found, or boolean false if not." type="string|false">
+            <type by_reference="false">string</type>
+            <type by_reference="false">false</type>
+          </tag>
+        </docblock>
+        <argument line="211">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="211">
+          <name>$data</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Router" line="240" package="Aura\Router">
+        <name>setRoutes</name>
+        <full_name>setRoutes</full_name>
+        <docblock line="230">
+          <description><![CDATA[Reset the map to use an array of Route objects.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="230" name="param" description="Use this array of route objects, likely generated from `getRoutes()`." type="array" variable="$routes">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="230" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="240">
+          <name>$routes</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Router" line="256" package="Aura\Router">
+        <name>getRoutes</name>
+        <full_name>getRoutes</full_name>
+        <docblock line="248">
+          <description><![CDATA[Get the array of Route objects in this map, likely for caching and
+re-setting via `setRoutes()`.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="248" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Router" line="272" package="Aura\Router">
+        <name>getLog</name>
+        <full_name>getLog</full_name>
+        <docblock line="265">
+          <description><![CDATA[Get the log of attempted route matches.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="265" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Router" line="286" package="Aura\Router">
+        <name>logRoute</name>
+        <full_name>logRoute</full_name>
+        <docblock line="277">
+          <description><![CDATA[Add a route to the log of attempted matches.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="277" name="param" description="Route object" type="\Aura\Router\Route" variable="$route">
+            <type by_reference="false">\Aura\Router\Route</type>
+          </tag>
+          <tag line="277" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="286">
+          <name>$route</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Router\Route</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Router" line="300" package="Aura\Router">
+        <name>createNextRoute</name>
+        <full_name>createNextRoute</full_name>
+        <docblock line="291">
+          <description><![CDATA[Gets the next Route object in the stack, converting definitions to
+Route objects as needed.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="291" name="return" description="A Route object, or boolean false at the end of the stack." type="\Aura\Router\Route|false">
+            <type by_reference="false">\Aura\Router\Route</type>
+            <type by_reference="false">false</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Router" line="335" package="Aura\Router">
+        <name>getNextDefinition</name>
+        <full_name>getNextDefinition</full_name>
+        <docblock line="328">
+          <description><![CDATA[Gets the next route definition from the stack.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="328" name="return" description="A route definition." type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Router" line="370" package="Aura\Router">
+        <name>getNextAttach</name>
+        <full_name>getNextAttach</full_name>
+        <docblock line="363">
+          <description><![CDATA[Gets the next attached route definition.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="363" name="return" description="A route definition." type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Route.php" hash="dfba49ff371fe4e46f5b61a060de3058" package="Aura\Router">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Router"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <namespace-alias name="Closure">Closure</namespace-alias>
+    <class final="false" abstract="false" namespace="Aura\Router" line="25" package="Aura\Router">
+      <extends/>
+      <name>Route</name>
+      <full_name>\Aura\Router\Route</full_name>
+      <docblock line="15">
+        <description><![CDATA[Represents an individual route with a name, path, params, values, etc.]]></description>
+        <long-description><![CDATA[<p>In general, you should never need to instantiate a Route directly. Use the
+RouteFactory instead, or the Map.</p>]]></long-description>
+        <tag line="15" name="package" description="Aura.Router"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="34" namespace="Aura\Router" package="Default">
+        <name>$name</name>
+        <default><![CDATA[]]></default>
+        <docblock line="27">
+          <description><![CDATA[The name for this Route.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="27" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="43" namespace="Aura\Router" package="Default">
+        <name>$path</name>
+        <default><![CDATA[]]></default>
+        <docblock line="36">
+          <description><![CDATA[The path for this Route with param tokens.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="36" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="52" namespace="Aura\Router" package="Default">
+        <name>$params</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="45">
+          <description><![CDATA[A map of param tokens to their regex subpatterns.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="45" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="63" namespace="Aura\Router" package="Default">
+        <name>$values</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="54">
+          <description><![CDATA[A map of param tokens to their default values; if this Route is
+matched, these will retain the corresponding values from the param
+tokens in the matching path.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="54" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="73" namespace="Aura\Router" package="Default">
+        <name>$method</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="65">
+          <description><![CDATA[The `REQUEST_METHOD` value must match one of the methods in this array;
+method; e.g., `'GET'` or `['POST', 'DELETE']`.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="65" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="84" namespace="Aura\Router" package="Default">
+        <name>$secure</name>
+        <default><![CDATA[null]]></default>
+        <docblock line="75">
+          <description><![CDATA[When true, the `HTTPS` value must be `on`, or the `SERVER_PORT` must be
+443.]]></description>
+          <long-description><![CDATA[<p>When false, neither of those values may be present.  When null,
+it is ignored.</p>]]></long-description>
+          <tag line="75" name="var" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="100" namespace="Aura\Router" package="Default">
+        <name>$is_match</name>
+        <default><![CDATA[]]></default>
+        <docblock line="86">
+          <description><![CDATA[A callable to provide custom matching logic against the
+server values and matched params from this Route.]]></description>
+          <long-description><![CDATA[<p>The signature must be
+<code>function(array $server, \ArrayObject $matches)</code> and must return a
+boolean: true to accept this Route match, or false to deny the match.
+Note that this allows a wide range of manipulations, and further allows
+the developer to modify the matched params as needed.</p>]]></long-description>
+          <tag line="86" name="var" description="" type="\Aura\Router\callable">
+            <type by_reference="false">\Aura\Router\callable</type>
+          </tag>
+          <tag line="86" name="see" description="\Aura\Router\isMatch()" refers="\Aura\Router\isMatch()"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="115" namespace="Aura\Router" package="Default">
+        <name>$generate</name>
+        <default><![CDATA[]]></default>
+        <docblock line="102">
+          <description><![CDATA[A callable to modify path-generation values.]]></description>
+          <long-description><![CDATA[<p>The signature
+must be <code>function($route, array $data)</code>; its return value is an array
+of data to be used in the path. The <code>$route</code> is this Route object, and
+<code>$data</code> is the set of key-value pairs to be interpolated into the path
+as provided by the caller.</p>]]></long-description>
+          <tag line="102" name="var" description="" type="\Aura\Router\callable">
+            <type by_reference="false">\Aura\Router\callable</type>
+          </tag>
+          <tag line="102" name="see" description="\Aura\Router\generate()" refers="\Aura\Router\generate()"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="125" namespace="Aura\Router" package="Default">
+        <name>$routable</name>
+        <default><![CDATA[]]></default>
+        <docblock line="117">
+          <description><![CDATA[If routable, this route should be used in matching.]]></description>
+          <long-description><![CDATA[<p>If not, it should
+be used only to generate a path.</p>]]></long-description>
+          <tag line="117" name="var" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="134" namespace="Aura\Router" package="Default">
+        <name>$name_prefix</name>
+        <default><![CDATA[]]></default>
+        <docblock line="127">
+          <description><![CDATA[A prefix for the Route name, generally from attached route groups.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="127" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="143" namespace="Aura\Router" package="Default">
+        <name>$path_prefix</name>
+        <default><![CDATA[]]></default>
+        <docblock line="136">
+          <description><![CDATA[A prefix for the Route path, generally from attached route groups.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="136" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="153" namespace="Aura\Router" package="Default">
+        <name>$regex</name>
+        <default><![CDATA[]]></default>
+        <docblock line="145">
+          <description><![CDATA[The $path property converted to a regular expression, using the $params
+subpatterns.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="145" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="164" namespace="Aura\Router" package="Default">
+        <name>$matches</name>
+        <default><![CDATA[]]></default>
+        <docblock line="155">
+          <description><![CDATA[All param matches found in the path during the `isMatch()` process.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="155" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="155" name="see" description="\Aura\Router\isMatch()" refers="\Aura\Router\isMatch()"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="173" namespace="Aura\Router" package="Default">
+        <name>$debug</name>
+        <default><![CDATA[]]></default>
+        <docblock line="166">
+          <description><![CDATA[Retain debugging information about why the route did not match.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="166" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="182" namespace="Aura\Router" package="Default">
+        <name>$wildcard</name>
+        <default><![CDATA[]]></default>
+        <docblock line="175">
+          <description><![CDATA[The name of the wildcard param, if any.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="175" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Router" line="215" package="Aura\Router">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="184">
+          <description><![CDATA[Constructor.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="184" name="param" description="The name for this Route." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="184" name="param" description="The path for this Route with param token placeholders." type="string" variable="$path">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="184" name="param" description="Map of param tokens to regex subpatterns." type="array" variable="$params">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="184" name="param" description="Default values for params." type="array" variable="$values">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="184" name="param" description="The server REQUUEST_METHOD must be one of these values." type="string|array" variable="$method">
+            <type by_reference="false">string</type>
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="184" name="param" description="If true, the server must indicate an HTTPS request." type="bool" variable="$secure">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="184" name="param" description="If true, this Route can be matched; if not, it can be used only to generate a path." type="bool" variable="$routable">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="184" name="param" description="A custom callable to evaluate the route." type="\Aura\Router\callable" variable="$is_match">
+            <type by_reference="false">\Aura\Router\callable</type>
+          </tag>
+          <tag line="184" name="param" description="A custom callable to generate a path." type="\Aura\Router\callable" variable="$generate">
+            <type by_reference="false">\Aura\Router\callable</type>
+          </tag>
+          <tag line="184" name="param" description="A prefix for the name." type="string" variable="$name_prefix">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="184" name="param" description="A prefix for the path." type="string" variable="$path_prefix">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="184" name="return" description="" type="\Aura\Router\Route">
+            <type by_reference="false">\Aura\Router\Route</type>
+          </tag>
+        </docblock>
+        <argument line="216">
+          <name>$name</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+        <argument line="217">
+          <name>$path</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+        <argument line="218">
+          <name>$params</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+        <argument line="219">
+          <name>$values</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+        <argument line="220">
+          <name>$method</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+        <argument line="221">
+          <name>$secure</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+        <argument line="222">
+          <name>$routable</name>
+          <default><![CDATA[true]]></default>
+          <type/>
+        </argument>
+        <argument line="223">
+          <name>$is_match</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+        <argument line="224">
+          <name>$generate</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+        <argument line="225">
+          <name>$name_prefix</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+        <argument line="226">
+          <name>$path_prefix</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Router" line="271" package="Aura\Router">
+        <name>__get</name>
+        <full_name>__get</full_name>
+        <docblock line="262">
+          <description><![CDATA[Magic read-only for all properties.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="262" name="param" description="The property to read from." type="string" variable="$key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="262" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="271">
+          <name>$key</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Router" line="289" package="Aura\Router">
+        <name>isMatch</name>
+        <full_name>isMatch</full_name>
+        <docblock line="276">
+          <description><![CDATA[Checks if a given path and server values are a match for this
+Route.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="276" name="param" description="The path to check against this Route." type="string" variable="$path">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="276" name="param" description="A copy of $_SERVER so that this Route can check against the server values." type="array" variable="$server">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="276" name="return" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+        <argument line="289">
+          <name>$path</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="289">
+          <name>$server</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Router" line="350" package="Aura\Router">
+        <name>generate</name>
+        <full_name>generate</full_name>
+        <docblock line="338">
+          <description><![CDATA[Gets the path for this Route with data replacements for param tokens.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="338" name="param" description="An array of key-value pairs to interpolate into the param tokens in the path for this Route. Keys that do not map to params are discarded; param tokens that have no mapped key are left in place." type="array" variable="$data">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="338" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="350">
+          <name>$data</name>
+          <default><![CDATA[null]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Router" line="377" package="Aura\Router">
+        <name>setRegex</name>
+        <full_name>setRegex</full_name>
+        <docblock line="370">
+          <description><![CDATA[Sets the regular expression for this Route based on its params.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="370" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Router" line="448" package="Aura\Router">
+        <name>isRegexMatch</name>
+        <full_name>isRegexMatch</full_name>
+        <docblock line="439">
+          <description><![CDATA[Checks that the path matches the Route regex.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="439" name="param" description="The path to match against." type="string" variable="$path">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="439" name="return" description="True on a match, false if not." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+        <argument line="448">
+          <name>$path</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Router" line="467" package="Aura\Router">
+        <name>isMethodMatch</name>
+        <full_name>isMethodMatch</full_name>
+        <docblock line="458">
+          <description><![CDATA[Checks that the Route `$method` matches the corresponding server value.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="458" name="param" description="A copy of $_SERVER." type="array" variable="$server">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="458" name="return" description="True on a match, false if not." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+        <argument line="467">
+          <name>$server</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Router" line="491" package="Aura\Router">
+        <name>isSecureMatch</name>
+        <full_name>isSecureMatch</full_name>
+        <docblock line="482">
+          <description><![CDATA[Checks that the Route `$secure` matches the corresponding server values.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="482" name="param" description="A copy of $_SERVER." type="array" variable="$server">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="482" name="return" description="True on a match, false if not." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+        <argument line="491">
+          <name>$server</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Router" line="521" package="Aura\Router">
+        <name>isCustomMatch</name>
+        <full_name>isCustomMatch</full_name>
+        <docblock line="511">
+          <description><![CDATA[Checks that the custom Route `$is_match` callable returns true, given
+the server values.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="511" name="param" description="A copy of $_SERVER." type="array" variable="$server">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="511" name="return" description="True on a match, false if not." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+        <argument line="521">
+          <name>$server</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="RouteFactory.php" hash="f33ebe5f409cfe0687f0433e8fc6f872" package="Aura\Router">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Router"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Router" line="20" package="Aura\Router">
+      <extends/>
+      <name>RouteFactory</name>
+      <full_name>\Aura\Router\RouteFactory</full_name>
+      <docblock line="13">
+        <description><![CDATA[A factory to create Route objects.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Router"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="29" namespace="Aura\Router" package="Default">
+        <name>$params</name>
+        <default><![CDATA[array('name' => null, 'path' => null, 'params' => null, 'values' => null, 'method' => null, 'secure' => null, 'routable' => true, 'is_match' => null, 'generate' => null, 'name_prefix' => null, 'path_prefix' => null)]]></default>
+        <docblock line="22">
+          <description><![CDATA[An array of default parameters for Route objects.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Router" line="53" package="Aura\Router">
+        <name>newInstance</name>
+        <full_name>newInstance</full_name>
+        <docblock line="43">
+          <description><![CDATA[Returns a new Route instance.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="43" name="param" description="An array of key-value pairs corresponding to the Route parameters." type="array" variable="$params">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="43" name="return" description="" type="\Aura\Router\Route">
+            <type by_reference="false">\Aura\Router\Route</type>
+          </tag>
+        </docblock>
+        <argument line="53">
+          <name>$params</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <package name="Aura" full_name="Aura">
+    <package name="Router" full_name="Aura\Router"/>
+  </package>
+  <package name="Default" full_name="Default"/>
+  <namespace name="Aura" full_name="Aura">
+    <namespace name="Router" full_name="Aura\Router">
+      <namespace name="Exception" full_name="Aura\Router\Exception"/>
+    </namespace>
+  </namespace>
+  <marker count="0">todo</marker>
+  <marker count="0">fixme</marker>
+  <deprecated count="0"/>
+</project>

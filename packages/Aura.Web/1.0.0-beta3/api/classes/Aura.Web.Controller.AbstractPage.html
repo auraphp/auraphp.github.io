@@ -1,0 +1,409 @@
+<!DOCTYPE html><html xmlns:date="http://exslt.org/dates-and-times" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » \Aura\Web\Controller\AbstractPage</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Namespaces</a></li>
+<li><a href="../namespaces/Aura.html"><i class="icon-th"></i> Aura</a></li>
+<li><a>Packages</a></li>
+<li><a href="../packages/Aura.html"><i class="icon-folder-open"></i> Aura</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">0</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul><li>todo 
+                <span class="label label-info">1</span>
+</li></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods</li>
+<li class="method public inherited"><a href="#__construct" title="__construct :: Constructor."><span class="description">Constructor.</span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#exec" title="exec :: Executes the action and all hooks:"><span class="description">Executes the action and all hooks:</span><pre>exec()</pre></a></li>
+<li class="method public "><a href="#getAction" title="getAction :: Returns the action, typically discovered from the params."><span class="description">Returns the action, typically discovered from the params.</span><pre>getAction()</pre></a></li>
+<li class="method public inherited"><a href="#getContext" title="getContext :: Returns the Context object."><span class="description">Returns the Context object.</span><pre>getContext()</pre></a></li>
+<li class="method public inherited"><a href="#getData" title="getData :: Returns the data collection object."><span class="description">Returns the data collection object.</span><pre>getData()</pre></a></li>
+<li class="method public "><a href="#getFormat" title="getFormat :: Returns the page format, typically discovered from the params."><span class="description">Returns the page format, typically discovered from the params.</span><pre>getFormat()</pre></a></li>
+<li class="method public inherited"><a href="#getParams" title="getParams :: Returns the params."><span class="description">Returns the params.</span><pre>getParams()</pre></a></li>
+<li class="method public inherited"><a href="#getResponse" title="getResponse :: Returns the Response object."><span class="description">Returns the Response object.</span><pre>getResponse()</pre></a></li>
+<li class="method public inherited"><a href="#getSignal" title="getSignal :: Returns the SignalInterface object."><span class="description">Returns the SignalInterface object.</span><pre>getSignal()</pre></a></li>
+<li class="method public "><a href="#postAction" title="postAction :: Runs after `action()` and before `preRender()`."><span class="description">Runs after `action()` and before `preRender()`.</span><pre>postAction()</pre></a></li>
+<li class="method public "><a href="#postExec" title="postExec :: Runs at the end of `exec()` after `postRender()`."><span class="description">Runs at the end of `exec()` after `postRender()`.</span><pre>postExec()</pre></a></li>
+<li class="method public "><a href="#postRender" title="postRender :: Runs after `render()` and before `postExec()`."><span class="description">Runs after `render()` and before `postExec()`.</span><pre>postRender()</pre></a></li>
+<li class="method public "><a href="#preAction" title="preAction :: Runs after `preExec()` and before `action()`."><span class="description">Runs after `preExec()` and before `action()`.</span><pre>preAction()</pre></a></li>
+<li class="method public "><a href="#preExec" title="preExec :: Runs at the beginning of `exec()` before `preAction()`."><span class="description">Runs at the beginning of `exec()` before `preAction()`.</span><pre>preExec()</pre></a></li>
+<li class="method public "><a href="#preRender" title="preRender :: Runs after `postAction()` and before `render()`."><span class="description">Runs after `postAction()` and before `render()`.</span><pre>preRender()</pre></a></li>
+<li class="nav-header protected">» Protected</li>
+<li class="method protected "><a href="#action" title="action :: Determines the action method, then invokes it."><span class="description">Determines the action method, then invokes it.</span><pre>action()</pre></a></li>
+<li class="method protected "><a href="#init" title="init :: Initialize after construction."><span class="description">Initialize after construction.</span><pre>init()</pre></a></li>
+<li class="method protected "><a href="#invokeMethod" title="invokeMethod :: Invokes a method by name, matching method params to `$this-&gt;params`."><span class="description">Invokes a method by name, matching method params to `$this-&gt;params`.</span><pre>invokeMethod()</pre></a></li>
+<li class="method protected "><a href="#render" title="render :: Renders the page into the response object."><span class="description">Renders the page into the response object.</span><pre>render()</pre></a></li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties</li>
+<li class="nav-header protected">» Protected</li>
+<li class="property protected "><a href="#%24action" title="$action :: The action to perform, typically discovered from the params."><span class="description">The action to perform, typically discovered from the params.</span><pre>$action</pre></a></li>
+<li class="property protected inherited"><a href="#%24context" title="$context :: The context of the request environment."><span class="description">The context of the request environment.</span><pre>$context</pre></a></li>
+<li class="property protected inherited"><a href="#%24data" title="$data :: Collection point for data, typically for rendering the page."><span class="description">Collection point for data, typically for rendering the page.</span><pre>$data</pre></a></li>
+<li class="property protected "><a href="#%24format" title="$format :: The page format to render, typically discovered from the params."><span class="description">The page format to render, typically discovered from the params.</span><pre>$format</pre></a></li>
+<li class="property protected inherited"><a href="#%24params" title="$params :: Path-info parameters, typically from the route."><span class="description">Path-info parameters, typically from the route.</span><pre>$params</pre></a></li>
+<li class="property protected inherited"><a href="#%24renderer" title="$renderer :: A rendering strategy object."><span class="description">A rendering strategy object.</span><pre>$renderer</pre></a></li>
+<li class="property protected inherited"><a href="#%24response" title="$response :: A data transfer object for the eventual HTTP response."><span class="description">A data transfer object for the eventual HTTP response.</span><pre>$response</pre></a></li>
+</ul>
+</div>
+<div class="span8">
+<a name="%5CAura%5CWeb%5CController%5CAbstractPage" id="\Aura\Web\Controller\AbstractPage"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/Aura.html">Aura</a></li>
+<span class="divider">\</span><li><a href="../namespaces/Aura.Web.html">Web</a></li>
+<span class="divider">\</span><li><a href="../namespaces/Aura.Web.Controller.html">Controller</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/Aura.Web.Controller.AbstractPage.html">AbstractPage</a>
+</li>
+</ul>
+<div href="../classes/Aura.Web.Controller.AbstractPage.html" class="element class">
+<p class="short_description">A page controller.</p>
+<div class="details">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>package</th>
+<td><a href="../packages/Aura.Web.html">Aura.Web</a></td>
+</tr></table>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a name="__construct" id="__construct"></a><div class="element clickable method public __construct" data-toggle="collapse" data-target=".__construct .collapse">
+<h2>Constructor.</h2>
+<pre>__construct(Aura\Web\Context $context, Aura\Web\Response $response, Aura\Web\SignalInterface $signal, Aura\Web\Renderer\RendererInterface $renderer, array $params) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Web\Controller\AbstractController::__construct()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$context</h4>
+<code><a href="../classes/Aura.Web.Context.html">\Aura\Web\Context</a></code><p>The request environment.</p></div>
+<div class="subelement argument">
+<h4>$response</h4>
+<code><a href="../classes/Aura.Web.Response.html">\Aura\Web\Response</a></code><p>A response transfer object.</p></div>
+<div class="subelement argument">
+<h4>$signal</h4>
+<code><a href="../classes/Aura.Web.SignalInterface.html">\Aura\Web\SignalInterface</a></code><p>A signal manager.</p></div>
+<div class="subelement argument">
+<h4>$renderer</h4>
+<code><a href="../classes/Aura.Web.Renderer.RendererInterface.html">\Aura\Web\Renderer\RendererInterface</a></code><p>A renderer strategy object.</p></div>
+<div class="subelement argument">
+<h4>$params</h4>
+<code>array</code><p>The path-info parameters.</p>
+</div>
+</div></div>
+</div>
+<a name="exec" id="exec"></a><div class="element clickable method public exec" data-toggle="collapse" data-target=".exec .collapse">
+<h2>Executes the action and all hooks:</h2>
+<pre>exec() : \Aura\Web\Controller\Response</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><ul>
+<li><p>signals <code>pre_exec</code>, thereby calling <code>preExec()</code></p></li>
+<li><p>signals <code>pre_action</code>, thereby calling <code>preAction()</code></p></li>
+<li><p>calls <code>action()</code> to find and invoke the action method</p></li>
+<li><p>signals <code>post_action</code>, thereby calling <code>postAction()</code></p></li>
+<li><p>signals <code>pre_render</code>, thereby calling <code>preRender()</code></p></li>
+<li><p>calls <code>render()</code> to render a view (does nothing by default)</p></li>
+<li><p>signals <code>post_render</code>, thereby calling <code>postRender()</code></p></li>
+<li><p>signals <code>post_exec</code>, thereby calling <code>postExec()</code></p></li>
+<li><p>returns the Response transfer object</p></li>
+</ul></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>\Aura\Web\Controller\Response</code></div>
+</div></div>
+</div>
+<a name="getAction" id="getAction"></a><div class="element clickable method public getAction" data-toggle="collapse" data-target=".getAction .collapse">
+<h2>Returns the action, typically discovered from the params.</h2>
+<pre>getAction() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="getContext" id="getContext"></a><div class="element clickable method public getContext" data-toggle="collapse" data-target=".getContext .collapse">
+<h2>Returns the Context object.</h2>
+<pre>getContext() : <a href="../classes/Aura.Web.Context.html">\Aura\Web\Context</a></pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Web\Controller\AbstractController::getContext()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/Aura.Web.Context.html">\Aura\Web\Context</a></code></div>
+</div></div>
+</div>
+<a name="getData" id="getData"></a><div class="element clickable method public getData" data-toggle="collapse" data-target=".getData .collapse">
+<h2>Returns the data collection object.</h2>
+<pre>getData() : object</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Web\Controller\AbstractController::getData()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>object</code></div>
+</div></div>
+</div>
+<a name="getFormat" id="getFormat"></a><div class="element clickable method public getFormat" data-toggle="collapse" data-target=".getFormat .collapse">
+<h2>Returns the page format, typically discovered from the params.</h2>
+<pre>getFormat() : \Aura\Web\Controller\StdClass</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>\Aura\Web\Controller\StdClass</code></div>
+</div></div>
+</div>
+<a name="getParams" id="getParams"></a><div class="element clickable method public getParams" data-toggle="collapse" data-target=".getParams .collapse">
+<h2>Returns the params.</h2>
+<pre>getParams() : array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Web\Controller\AbstractController::getParams()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a name="getResponse" id="getResponse"></a><div class="element clickable method public getResponse" data-toggle="collapse" data-target=".getResponse .collapse">
+<h2>Returns the Response object.</h2>
+<pre>getResponse() : <a href="../classes/Aura.Web.Response.html">\Aura\Web\Response</a></pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Web\Controller\AbstractController::getResponse()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/Aura.Web.Response.html">\Aura\Web\Response</a></code></div>
+</div></div>
+</div>
+<a name="getSignal" id="getSignal"></a><div class="element clickable method public getSignal" data-toggle="collapse" data-target=".getSignal .collapse">
+<h2>Returns the SignalInterface object.</h2>
+<pre>getSignal() : <a href="../classes/Aura.Web.SignalInterface.html">\Aura\Web\SignalInterface</a></pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Web\Controller\AbstractController::getSignal()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/Aura.Web.SignalInterface.html">\Aura\Web\SignalInterface</a></code></div>
+</div></div>
+</div>
+<a name="postAction" id="postAction"></a><div class="element clickable method public postAction" data-toggle="collapse" data-target=".postAction .collapse">
+<h2>Runs after `action()` and before `preRender()`.</h2>
+<pre>postAction() : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="postExec" id="postExec"></a><div class="element clickable method public postExec" data-toggle="collapse" data-target=".postExec .collapse">
+<h2>Runs at the end of `exec()` after `postRender()`.</h2>
+<pre>postExec() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a name="postRender" id="postRender"></a><div class="element clickable method public postRender" data-toggle="collapse" data-target=".postRender .collapse">
+<h2>Runs after `render()` and before `postExec()`.</h2>
+<pre>postRender() : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="preAction" id="preAction"></a><div class="element clickable method public preAction" data-toggle="collapse" data-target=".preAction .collapse">
+<h2>Runs after `preExec()` and before `action()`.</h2>
+<pre>preAction() : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="preExec" id="preExec"></a><div class="element clickable method public preExec" data-toggle="collapse" data-target=".preExec .collapse">
+<h2>Runs at the beginning of `exec()` before `preAction()`.</h2>
+<pre>preExec() : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="preRender" id="preRender"></a><div class="element clickable method public preRender" data-toggle="collapse" data-target=".preRender .collapse">
+<h2>Runs after `postAction()` and before `render()`.</h2>
+<pre>preRender() : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="action" id="action"></a><div class="element clickable method protected action" data-toggle="collapse" data-target=".action .collapse">
+<h2>Determines the action method, then invokes it.</h2>
+<pre>action() : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="init" id="init"></a><div class="element clickable method protected init" data-toggle="collapse" data-target=".init .collapse">
+<h2>Initialize after construction.</h2>
+<pre>init() : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="invokeMethod" id="invokeMethod"></a><div class="element clickable method protected invokeMethod" data-toggle="collapse" data-target=".invokeMethod .collapse">
+<h2>Invokes a method by name, matching method params to `$this-&gt;params`.</h2>
+<pre>invokeMethod(string $name) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$name</h4>
+<code>string</code><p>The method name to execute, typcially an action.</p></div>
+</div></div>
+</div>
+<a name="render" id="render"></a><div class="element clickable method protected render" data-toggle="collapse" data-target=".render .collapse">
+<h2>Renders the page into the response object.</h2>
+<pre>render() : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a name="%24action" id="$action"> </a><div class="element clickable property protected $action" data-toggle="collapse" data-target=".$action .collapse">
+<h2>The action to perform, typically discovered from the params.</h2>
+<pre>$action : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24context" id="$context"> </a><div class="element clickable property protected $context" data-toggle="collapse" data-target=".$context .collapse">
+<h2>The context of the request environment.</h2>
+<pre>$context : <a href="../classes/Aura.Web.Context.html">\Aura\Web\Context</a></pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Web\Controller\AbstractController::$$context</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24data" id="$data"> </a><div class="element clickable property protected $data" data-toggle="collapse" data-target=".$data .collapse">
+<h2>Collection point for data, typically for rendering the page.</h2>
+<pre>$data : \Aura\Web\Controller\StdClass</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Web\Controller\AbstractController::$$data</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24format" id="$format"> </a><div class="element clickable property protected $format" data-toggle="collapse" data-target=".$format .collapse">
+<h2>The page format to render, typically discovered from the params.</h2>
+<pre>$format : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24params" id="$params"> </a><div class="element clickable property protected $params" data-toggle="collapse" data-target=".$params .collapse">
+<h2>Path-info parameters, typically from the route.</h2>
+<pre>$params : array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Web\Controller\AbstractController::$$params</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24renderer" id="$renderer"> </a><div class="element clickable property protected $renderer" data-toggle="collapse" data-target=".$renderer .collapse">
+<h2>A rendering strategy object.</h2>
+<pre>$renderer : <a href="../classes/Aura.Web.Renderer.RendererInterface.html">\Aura\Web\Renderer\RendererInterface</a></pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Web\Controller\AbstractController::$$renderer</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24response" id="$response"> </a><div class="element clickable property protected $response" data-toggle="collapse" data-target=".$response .collapse">
+<h2>A data transfer object for the eventual HTTP response.</h2>
+<pre>$response : <a href="../classes/Aura.Web.Response.html">\Aura\Web\Response</a></pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Aura\Web\Controller\AbstractController::$$response</td>
+</tr></table>
+</div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a7</a> and<br>
+            generated on 2012-07-30T23:51:39-05:00.<br></footer></div>
+</div>
+</body>
+</html>

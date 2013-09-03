@@ -1,0 +1,714 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project version="2.0.0a7" title="">
+  <file path="Exception.php" hash="66ca3f5a0b13440d853203ad569426fc" package="Aura\Signal">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Signal"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Signal" line="20" package="Aura\Signal">
+      <extends>\Exception</extends>
+      <name>Exception</name>
+      <full_name>\Aura\Signal\Exception</full_name>
+      <docblock line="13">
+        <description><![CDATA[Generic package exception.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Signal"/>
+      </docblock>
+    </class>
+  </file>
+  <file path="Handler.php" hash="93cb8e6d3c540c471ebb699639b84c74" package="Aura\Signal">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Signal"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Signal" line="20" package="Aura\Signal">
+      <extends/>
+      <name>Handler</name>
+      <full_name>\Aura\Signal\Handler</full_name>
+      <docblock line="13">
+        <description><![CDATA[A signal Handler definition.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Signal"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="32" namespace="Aura\Signal" package="Default">
+        <name>$sender</name>
+        <default><![CDATA[]]></default>
+        <docblock line="22">
+          <description><![CDATA[Handle signals from this sender.]]></description>
+          <long-description><![CDATA[<p>This can be an object, in which case
+the Handler will match only signals from that object, or a class name,
+in which case the Handler will match signals from any instance of that
+class.</p>]]></long-description>
+          <tag line="22" name="var" description="" type="object|string">
+            <type by_reference="false">object</type>
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="41" namespace="Aura\Signal" package="Default">
+        <name>$signal</name>
+        <default><![CDATA[]]></default>
+        <docblock line="34">
+          <description><![CDATA[Handle this signal from the sender.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="34" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="50" namespace="Aura\Signal" package="Default">
+        <name>$callback</name>
+        <default><![CDATA[]]></default>
+        <docblock line="43">
+          <description><![CDATA[Use this callback to handle the signal.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="43" name="var" description="" type="callback">
+            <type by_reference="false">callback</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Signal" line="63" package="Aura\Signal">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="52">
+          <description><![CDATA[Constructor.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="52" name="param" description="Handle signals from this sender." type="object|string" variable="$sender">
+            <type by_reference="false">object</type>
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="52" name="param" description="Handle this specific signal." type="string" variable="$signal">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="52" name="param" description="Use this callback to handle the signal." type="callback" variable="$callback">
+            <type by_reference="false">callback</type>
+          </tag>
+        </docblock>
+        <argument line="63">
+          <name>$sender</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="63">
+          <name>$signal</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="63">
+          <name>$callback</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Signal" line="79" package="Aura\Signal">
+        <name>__get</name>
+        <full_name>__get</full_name>
+        <docblock line="70">
+          <description><![CDATA[Make properties available as magic read-only.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="70" name="param" description="The property name." type="string" variable="$key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="70" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="79">
+          <name>$key</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Signal" line="101" package="Aura\Signal">
+        <name>exec</name>
+        <full_name>exec</full_name>
+        <docblock line="84">
+          <description><![CDATA[Execute the handler: if the originating object matches the required
+sender, and the signal matches the required signal, then run the
+callback and return the results.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="84" name="param" description="The originating object that sent the signal." type="object" variable="$origin">
+            <type by_reference="false">object</type>
+          </tag>
+          <tag line="84" name="param" description="The signal sent by the originating object." type="string" variable="$signal">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="84" name="param" description="Arguments for the callback, which will be invoked if the sender and signal match this Handler." type="array" variable="$args">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="84" name="return" description="An array of parameters suitable for creating a Result object, or null if the origin and signal did not match this Handler." type="null|array">
+            <type by_reference="false">null</type>
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="101">
+          <name>$origin</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="101">
+          <name>$signal</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="101">
+          <name>$args</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="HandlerFactory.php" hash="6b1006e980d156518ef2c7bef6b7afd7" package="Aura\Signal">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Signal"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Signal" line="20" package="Aura\Signal">
+      <extends/>
+      <name>HandlerFactory</name>
+      <full_name>\Aura\Signal\HandlerFactory</full_name>
+      <docblock line="13">
+        <description><![CDATA[A factory to create Handler objects.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Signal"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="29" namespace="Aura\Signal" package="Default">
+        <name>$params</name>
+        <default><![CDATA[array('sender' => null, 'signal' => null, 'callback' => null)]]></default>
+        <docblock line="22">
+          <description><![CDATA[An array of default parameters for Handler objects.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Signal" line="45" package="Aura\Signal">
+        <name>newInstance</name>
+        <full_name>newInstance</full_name>
+        <docblock line="35">
+          <description><![CDATA[Creates and returns a new Handler object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="35" name="param" description="An array of key-value pairs corresponding to Handler constructor params." type="array" variable="$params">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="35" name="return" description="" type="\Aura\Signal\Handler">
+            <type by_reference="false">\Aura\Signal\Handler</type>
+          </tag>
+        </docblock>
+        <argument line="45">
+          <name>$params</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Manager.php" hash="52fdd89592a27319dd55a2a1ec6ba89d" package="Aura\Signal">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Signal"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Signal" line="20" package="Aura\Signal">
+      <extends/>
+      <name>Manager</name>
+      <full_name>\Aura\Signal\Manager</full_name>
+      <docblock line="13">
+        <description><![CDATA[Processes signals through to Handler objects.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Signal"/>
+      </docblock>
+      <constant namespace="Aura\Signal" line="29" package="Aura\Signal">
+        <name>STOP</name>
+        <full_name>STOP</full_name>
+        <value><![CDATA['Aura\Signal\Manager::STOP']]></value>
+        <docblock line="22">
+          <description><![CDATA[Indicates that the signal should not call more Handler instances.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="const" description="string"/>
+        </docblock>
+      </constant>
+      <property final="false" static="false" visibility="protected" line="38" namespace="Aura\Signal" package="Default">
+        <name>$handler_factory</name>
+        <default><![CDATA[]]></default>
+        <docblock line="31">
+          <description><![CDATA[A factory to create Handler objects.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="31" name="var" description="" type="\Aura\Signal\HandlerFactory">
+            <type by_reference="false">\Aura\Signal\HandlerFactory</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="47" namespace="Aura\Signal" package="Default">
+        <name>$handlers</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="40">
+          <description><![CDATA[An array of Handler instances that respond to class signals.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="40" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="57" namespace="Aura\Signal" package="Default">
+        <name>$result_collection</name>
+        <default><![CDATA[]]></default>
+        <docblock line="49">
+          <description><![CDATA[A prototype ResultCollection; this will be cloned by `send()` to retain
+the Result objects from Handler instances.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="49" name="var" description="" type="\Aura\Signal\ResultCollection">
+            <type by_reference="false">\Aura\Signal\ResultCollection</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="66" namespace="Aura\Signal" package="Default">
+        <name>$result_factory</name>
+        <default><![CDATA[]]></default>
+        <docblock line="59">
+          <description><![CDATA[A factory to create Result objects.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="59" name="var" description="" type="\Aura\Signal\ResultFactory">
+            <type by_reference="false">\Aura\Signal\ResultFactory</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="75" namespace="Aura\Signal" package="Default">
+        <name>$results</name>
+        <default><![CDATA[]]></default>
+        <docblock line="68">
+          <description><![CDATA[A ResultCollection from the last signal sent.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="68" name="var" description="" type="\Aura\Signal\ResultCollection">
+            <type by_reference="false">\Aura\Signal\ResultCollection</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="84" namespace="Aura\Signal" package="Default">
+        <name>$sorted</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="77">
+          <description><![CDATA[Have the handlers for a signal been sorted by position?]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="77" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Signal" line="100" package="Aura\Signal">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="86">
+          <description><![CDATA[Constructor.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="86" name="param" description="A factory to create Handler objects." type="\Aura\Signal\HandlerFactory" variable="$handler_factory">
+            <type by_reference="false">\Aura\Signal\HandlerFactory</type>
+          </tag>
+          <tag line="86" name="param" description="A factory to create Result objects." type="\Aura\Signal\ResultFactory" variable="$result_factory">
+            <type by_reference="false">\Aura\Signal\ResultFactory</type>
+          </tag>
+          <tag line="86" name="param" description="A prototype ResultCollection." type="\Aura\Signal\ResultCollection" variable="$result_collection">
+            <type by_reference="false">\Aura\Signal\ResultCollection</type>
+          </tag>
+          <tag line="86" name="param" description="An array describing Handler params." type="array" variable="$handlers">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="101">
+          <name>$handler_factory</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Signal\HandlerFactory</type>
+        </argument>
+        <argument line="102">
+          <name>$result_factory</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Signal\ResultFactory</type>
+        </argument>
+        <argument line="103">
+          <name>$result_collection</name>
+          <default><![CDATA[]]></default>
+          <type>Aura\Signal\ResultCollection</type>
+        </argument>
+        <argument line="104">
+          <name>$handlers</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Signal" line="140" package="Aura\Signal">
+        <name>handler</name>
+        <full_name>handler</full_name>
+        <docblock line="121">
+          <description><![CDATA[Adds a Handler to respond to a sender signal.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="121" name="param" description="The class or object sender of the signal. If a class, inheritance will be honored, and '*' will be interpreted as &quot;any class.&quot;" type="string|object" variable="$sender">
+            <type by_reference="false">string</type>
+            <type by_reference="false">object</type>
+          </tag>
+          <tag line="121" name="param" description="The name of the signal for that sender." type="string" variable="$signal">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="121" name="param" description="The callback to execute when the signal is received." type="callback" variable="$callback">
+            <type by_reference="false">callback</type>
+          </tag>
+          <tag line="121" name="param" description="The handler processing position; lower numbers are processed first. Use this to force a handler to be used before or after others." type="int" variable="$position">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="121" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="140">
+          <name>$sender</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="140">
+          <name>$signal</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="140">
+          <name>$callback</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="140">
+          <name>$position</name>
+          <default><![CDATA[5000]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Signal" line="161" package="Aura\Signal">
+        <name>getHandlers</name>
+        <full_name>getHandlers</full_name>
+        <docblock line="151">
+          <description><![CDATA[Gets Handler instances for the Manager.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="151" name="param" description="Only get Handler instances for this signal; if null, get all Handler instances." type="string" variable="$signal">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="151" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="161">
+          <name>$signal</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Signal" line="192" package="Aura\Signal">
+        <name>send</name>
+        <full_name>send</full_name>
+        <docblock line="178">
+          <description><![CDATA[Invokes the Handler objects for a sender and signal.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="178" name="param" description="The object sending the signal. Note that this is always an object, not a class name." type="object" variable="$origin">
+            <type by_reference="false">object</type>
+          </tag>
+          <tag line="178" name="param" description="The name of the signal from that origin." type="string" variable="$signal">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="178" name="params" description="Arguments to pass to the Handler callback."/>
+          <tag line="178" name="return" description="The results from each of the Handler objects." type="\Aura\Signal\ResultCollection">
+            <type by_reference="false">\Aura\Signal\ResultCollection</type>
+          </tag>
+        </docblock>
+        <argument line="192">
+          <name>$origin</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="192">
+          <name>$signal</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Aura\Signal" line="219" package="Aura\Signal">
+        <name>process</name>
+        <full_name>process</full_name>
+        <docblock line="207">
+          <description><![CDATA[Invokes the Handler objects for a sender and signal.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="207" name="param" description="The object sending the signal. Note that this is always an object, not a class name." type="object" variable="$origin">
+            <type by_reference="false">object</type>
+          </tag>
+          <tag line="207" name="param" description="The name of the signal from that origin." type="string" variable="$signal">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="207" name="param" description="Arguments to pass to the Handler callback." type="\Aura\Signal\$args" variable="$args">
+            <type by_reference="false">\Aura\Signal\$args</type>
+          </tag>
+        </docblock>
+        <argument line="219">
+          <name>$origin</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="219">
+          <name>$signal</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="219">
+          <name>$args</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Signal" line="270" package="Aura\Signal">
+        <name>getResults</name>
+        <full_name>getResults</full_name>
+        <docblock line="263">
+          <description><![CDATA[Returns the ResultCollection from the last signal processing.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="263" name="return" description="" type="\Aura\Signal\ResultCollection">
+            <type by_reference="false">\Aura\Signal\ResultCollection</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Result.php" hash="777e71283f9971d451a9713525417771" package="Aura\Signal">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Signal"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Signal" line="20" package="Aura\Signal">
+      <extends/>
+      <name>Result</name>
+      <full_name>\Aura\Signal\Result</full_name>
+      <docblock line="13">
+        <description><![CDATA[Represents a Result from a Handler.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Signal"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="29" namespace="Aura\Signal" package="Default">
+        <name>$origin</name>
+        <default><![CDATA[]]></default>
+        <docblock line="22">
+          <description><![CDATA[The origin object that actually sent the signal.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="var" description="" type="object">
+            <type by_reference="false">object</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="38" namespace="Aura\Signal" package="Default">
+        <name>$sender</name>
+        <default><![CDATA[]]></default>
+        <docblock line="31">
+          <description><![CDATA[The sender defined by the Handler.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="31" name="var" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="47" namespace="Aura\Signal" package="Default">
+        <name>$signal</name>
+        <default><![CDATA[]]></default>
+        <docblock line="40">
+          <description><![CDATA[The signal defined by the Handler and sent by the origin.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="40" name="var" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="56" namespace="Aura\Signal" package="Default">
+        <name>$value</name>
+        <default><![CDATA[]]></default>
+        <docblock line="49">
+          <description><![CDATA[The value returned by the Handler callback, if any.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="49" name="var" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Signal" line="72" package="Aura\Signal">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="58">
+          <description><![CDATA[Constructor.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="58" name="param" description="The origin object that sent the signal." type="object" variable="$origin">
+            <type by_reference="false">object</type>
+          </tag>
+          <tag line="58" name="param" description="The sender as defined by the Handler." type="mixed" variable="$sender">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="58" name="param" description="The signal defined by the Handler and sent by the origin." type="string" variable="$signal">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="58" name="param" description="The value returned by the Handler callback." type="mixed" variable="$value">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="72">
+          <name>$origin</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="72">
+          <name>$sender</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="72">
+          <name>$signal</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="72">
+          <name>$value</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Signal" line="89" package="Aura\Signal">
+        <name>__get</name>
+        <full_name>__get</full_name>
+        <docblock line="80">
+          <description><![CDATA[Make the properties available as magic read-only.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="80" name="param" description="The property name." type="string" variable="$key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="80" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="89">
+          <name>$key</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="ResultCollection.php" hash="9eb567dfc7685a459a2f4ba3697b4aea" package="Aura\Signal">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Signal"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Signal" line="20" package="Aura\Signal">
+      <extends>\ArrayObject</extends>
+      <name>ResultCollection</name>
+      <full_name>\Aura\Signal\ResultCollection</full_name>
+      <docblock line="13">
+        <description><![CDATA[Represents a collection of Result objects.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Signal"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Signal" line="31" package="Aura\Signal">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="22">
+          <description><![CDATA[override to avoid problems with Forge::newInstance() throwing
+Fatal error: Uncaught exception 'InvalidArgumentException'
+with message 'Passed variable is not an array or object, using
+empty array instead' in
+~/system/package/Aura.Di/src/Aura/Di/Forge.php on line 103]]></description>
+          <long-description><![CDATA[]]></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Signal" line="43" package="Aura\Signal">
+        <name>getLast</name>
+        <full_name>getLast</full_name>
+        <docblock line="36">
+          <description><![CDATA[Returns the last Result in the collection.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="36" name="return" description="" type="\Aura\Signal\Result">
+            <type by_reference="false">\Aura\Signal\Result</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Signal" line="58" package="Aura\Signal">
+        <name>isStopped</name>
+        <full_name>isStopped</full_name>
+        <docblock line="51">
+          <description><![CDATA[Tells if the ResultCollection was stopped during processing.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="51" name="return" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="ResultFactory.php" hash="8508cd1ecff69a7c6cf5726c08ead67e" package="Aura\Signal">
+    <docblock line="2">
+      <description><![CDATA[This file is part of the Aura Project for PHP.]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="Aura.Signal"/>
+      <tag line="2" name="license" description="http://opensource.org/licenses/bsd-license.php BSD"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Aura\Signal" line="20" package="Aura\Signal">
+      <extends/>
+      <name>ResultFactory</name>
+      <full_name>\Aura\Signal\ResultFactory</full_name>
+      <docblock line="13">
+        <description><![CDATA[A factory to create Result objects.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="Aura.Signal"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="29" namespace="Aura\Signal" package="Default">
+        <name>$params</name>
+        <default><![CDATA[array('origin' => null, 'sender' => null, 'signal' => null, 'value' => null)]]></default>
+        <docblock line="22">
+          <description><![CDATA[An array of default parameters for Result objects.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Aura\Signal" line="46" package="Aura\Signal">
+        <name>newInstance</name>
+        <full_name>newInstance</full_name>
+        <docblock line="36">
+          <description><![CDATA[Creates and returns a new Option object.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="36" name="param" description="An array of key-value pairs corresponding to Result constructor params." type="array" variable="$params">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="36" name="return" description="" type="\Aura\Signal\Result">
+            <type by_reference="false">\Aura\Signal\Result</type>
+          </tag>
+        </docblock>
+        <argument line="46">
+          <name>$params</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <package name="Aura" full_name="Aura">
+    <package name="Signal" full_name="Aura\Signal"/>
+  </package>
+  <package name="Default" full_name="Default"/>
+  <namespace name="Aura" full_name="Aura">
+    <namespace name="Signal" full_name="Aura\Signal"/>
+  </namespace>
+  <marker count="0">todo</marker>
+  <marker count="0">fixme</marker>
+  <deprecated count="0"/>
+</project>
