@@ -212,12 +212,12 @@ $map->add("read", "/blog/read/{:id}{:format}", [
 		},
 		"format" => ".html",
 	],
-));
+]);
 {% endhighlight %}
 
 When you are using Aura.Router as a micro-framework, the dispatcher will look like
 
-{% endhighlight %}
+{% highlight php %}
 <?php
 $params = $route->values;
 $controller = $params["controller"];
@@ -471,7 +471,7 @@ $router_map->attach('/blog', [
         'read'   => '/{:id}{:format}',
         'edit'   => '/{:id}/edit',
     ],
-));
+]);
 {% endhighlight %}
 
 
