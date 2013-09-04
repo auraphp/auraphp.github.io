@@ -27,14 +27,38 @@ Group](http://www.php-fig.org/):
 [PSR-2](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md).
 
 
-Techniques
-----------
+Driving Principles
+------------------
+
+### In General
+
+- Libraries first, framework later
+
+- No dependencies on any other package (self-contained)
+
+- Carry data across package boundaries using data transfer objects
+
+- Use a separated interface for shared tools (signal, log, cache, etc)
+
+- Tests and assets encapsulated within package
+
+### Class Idioms
+
+- Follow PSR-0, PSR-1, PSR-2, etc.
 
 - No use of public properties, unless they are magic via `__get()/__set()`
 
 - No use of underscore with protected elements
 
+- No use of globals within packages (e.g., $_SERVER)
+
 - Use of the pre-existing Solar [vocabulary for methods](http://solarphp.com/manual/appendix-standards.naming.methods)
+
+### Dependency Injection and Factories
+
+- Classes *either* create objects *or* operate on those objects, never both
+
+- Use explicit configuration more often than implicit convention
 
 - Use [dependency injection](https://github.com/auraphp/Aura.Di) proper
   instead of service locator
@@ -42,14 +66,9 @@ Techniques
 - Compose functionality as much as possible through dependency injection,
   instead of through inheritance and base classes
 
-- Find effective and reasonable uses for closures/anonymous functions,
-  primarily for object creation within the dependency injector service
-  definitions
-
-- Use explicit configuration more often than implicit convention
-
 - Use factories as object creators in general, rather than as adapter creators
   in specific
 
-- Windows Vista/7 support as-we-go, so that Windows users are part of the
-  community from the very beginning
+- Effective and reasonable usage of closures/anonymous functions,
+  primarily for object creation within the dependency injector service
+  definitions
