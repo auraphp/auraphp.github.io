@@ -39,8 +39,8 @@ foreach ($packages as $package => $version) {
         "https://raw.github.com/auraphp/{$package}/master/composer.json"
     ));
     $name = substr($package, 5);
-    $html[] = "[{$name}](/{$package}) | "
-            . "[{$version}](/{$package}/version/{$version}/api) | "
+    $html[] = "[{$name}](/packages/{$package}/{$version}) | "
+            . "[{$version}](/packages/{$package}/{$version}/api) | "
             . str_replace("\n", " ", $json->description) . " | "
             . "{$json->time} | "
             . "[.zip](https://github.com/auraphp/{$package}/zipball/{$version}), "
