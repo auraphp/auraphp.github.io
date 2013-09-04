@@ -45,7 +45,7 @@
                         <ul class="nav">
                             <li {% if page.active == 'home'      %}class="active"{% endif %}><a href="/">Home</a></li>
                             <li {% if page.active == 'about'     %}class="active"{% endif %}><a href="/about">About</a></li>
-                            <li {% if page.active == 'packages'  %}class="active {% endif %}dropdown">
+                            <li class="{% if page.active == 'packages'  %}active {% endif %}dropdown">
                                 <a href="/packages" class="dropdown-toggle" data-toggle="dropdown">Packages <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="/packages">Package Overview</a></li>
