@@ -60,27 +60,28 @@ Aura Filter incorporates the concept of "blank" values, as distinct from
 a string composed of only whitespace characters. Thus, the following are
 blank:
 
-    
-    <?php
-    $blank = [
-        null,           // a null value
-        '',             // an empty string
-        " \r \n \t ",   // a whitespace-only string
-    ];
+```php
+<?php
+$blank = [
+    null,           // a null value
+    '',             // an empty string
+    " \r \n \t ",   // a whitespace-only string
+];
+```
 
 Integers, floats, booleans, and other non-strings are never counted as blank,
 even if they evaluate to zero:
 
-    
-    <?php
-    $not_blank = [
-        0,              // integer
-        0.00,           // float
-        false,          // boolean false
-        [],             // empty array
-        (object) [],    // an object
-    ];
-
+```php
+<?php
+$not_blank = [
+    0,              // integer
+    0.00,           // float
+    false,          // boolean false
+    [],             // empty array
+    (object) [],    // an object
+];
+```
 
 ## Available Rules ##
 
@@ -276,49 +277,50 @@ By default when a rule fails, the messages you will be getting are from the
 `intl/en_US.php`. But you can also provide a single custom message for 
 all the failures.
 
-    
-    $filter->useFieldMessage('field', 'Custom Message');
-
+```php
+$filter->useFieldMessage('field', 'Custom Message');
+```
 
 Example:
 
-    
-    $filter->addSoftRule('username', $filter::IS, 'alnum');
-    $filter->addSoftRule('username', $filter::IS, 'strlenBetween', 6, 12);
-    $data = (object) [
-        'username' => ' sds',
-    ];
-    
-    $filter->useFieldMessage('username', 'User name already exists');
-    // filter the object and see if there were failures
-    $success = $filter->values($data);
-    if (! $success) {
-        $messages = $filter->getMessages();
-        var_export($messages);
-    }
+```php
+$filter->addSoftRule('username', $filter::IS, 'alnum');
+$filter->addSoftRule('username', $filter::IS, 'strlenBetween', 6, 12);
+$data = (object) [
+    'username' => ' sds',
+];
 
+$filter->useFieldMessage('username', 'User name already exists');
+// filter the object and see if there were failures
+$success = $filter->values($data);
+if (! $success) {
+    $messages = $filter->getMessages();
+    var_export($messages);
+}
+```
 
 As you have used `useFieldMessage` you will see 
 
-    
-    array (
-      'username' => 
-      array (
-        0 => 'User name already exists',
-      ),
-    )
-
+```php
+array (
+  'username' => 
+  array (
+    0 => 'User name already exists',
+  ),
+)
+```
 
 instead of 
 
-    
-    array (
-      'username' => 
-      array (
-        0 => 'Please use only alphanumeric characters.',
-        1 => 'Please use between 6 and 12 characters.',
-      ),
-    )
+```php
+array (
+  'username' => 
+  array (
+    0 => 'Please use only alphanumeric characters.',
+    1 => 'Please use between 6 and 12 characters.',
+  ),
+)
+```
 
 ## Creating and Using Custom Rules ##
 
@@ -349,87 +351,87 @@ Writing a rule class is straightforward:
 
 Here is an example of a hexadecimal rule:
 
+```php    
+<?php
+namespace Example\Package\Filter\Rule;
+
+use Aura\Filter\AbstractRule;
+
+class Hex extends AbstractRule
+{
+    protected $message = 'FILTER_HEX';
     
-    <?php
-    namespace Example\Package\Filter\Rule;
-    
-    use Aura\Filter\AbstractRule;
-    
-    class Hex extends AbstractRule
+    public function validate($max = null)
     {
-        protected $message = 'FILTER_HEX';
-        
-        public function validate($max = null)
-        {
-            // must be scalar
-            $value = $this->getValue();
-            if (! is_scalar($value)) {
-                return false;
-            }
-        
-            // must be hex
-            $hex = ctype_xdigit($value);
-            if (! $hex) {
-                return false;
-            }
-        
-            // must be no longer than $max chars
-            if ($max && strlen($value) > $max) {
-                return false;
-            }
-        
-            // done!
-            return true;
+        // must be scalar
+        $value = $this->getValue();
+        if (! is_scalar($value)) {
+            return false;
         }
     
-        public function sanitize($max = null)
-        {
-            // must be scalar
-            $value = $this->getValue();
-            if (! is_scalar($value)) {
-                // sanitizing failed
-                return false;
-            }
-        
-            // strip out non-hex characters
-            $value = preg_replace('/[^0-9a-f]/i', '', $value);
-            if ($value === '') {
-                // failed to sanitize to a hex value
-                return false;
-            }
-        
-            // now check length and chop if needed
-            if ($max && strlen($value) > $max) {
-                $value = substr($value, 0, $max);
-            }
-        
-            // retain the sanitized value, and done!
-            $this->setValue($value);
-            return true;
+        // must be hex
+        $hex = ctype_xdigit($value);
+        if (! $hex) {
+            return false;
         }
+    
+        // must be no longer than $max chars
+        if ($max && strlen($value) > $max) {
+            return false;
+        }
+    
+        // done!
+        return true;
     }
 
+    public function sanitize($max = null)
+    {
+        // must be scalar
+        $value = $this->getValue();
+        if (! is_scalar($value)) {
+            // sanitizing failed
+            return false;
+        }
+    
+        // strip out non-hex characters
+        $value = preg_replace('/[^0-9a-f]/i', '', $value);
+        if ($value === '') {
+            // failed to sanitize to a hex value
+            return false;
+        }
+    
+        // now check length and chop if needed
+        if ($max && strlen($value) > $max) {
+            $value = substr($value, 0, $max);
+        }
+    
+        // retain the sanitized value, and done!
+        $this->setValue($value);
+        return true;
+    }
+}
+```
 
 ## Set The Class As A Service ##
 
 Now we set the rule class into the `RuleLocator`.
 
-    
-    <?php
-    $locator = $filter->getRuleLocator();
-    $locator->set('hex', function () {
-        return new Example\Package\Filter\Rule\Hex;
-    });
-
+```php
+<?php
+$locator = $filter->getRuleLocator();
+$locator->set('hex', function () {
+    return new Example\Package\Filter\Rule\Hex;
+});
+```
 
 ## Apply The New Rule ##
 
 Finally, we can use the rule in our filter:
 
-    
-    <?php
-    // the 'color' field must be a hex value of no more than 6 digits
-    $filter->addHardRule('color', $filter::IS, 'hex', 6);
-
+```php
+<?php
+// the 'color' field must be a hex value of no more than 6 digits
+$filter->addHardRule('color', $filter::IS, 'hex', 6);
+```
 
 That is all!

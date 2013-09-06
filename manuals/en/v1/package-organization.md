@@ -127,23 +127,24 @@ the routes. Its time to add it in the configuration.
 
 Open the editor and paste the below contents 
 
-    
-    <?php
-    /** Example Package configs */
-    
-    // add the package to the autoloader
-    $loader->add('Example\Package\\', dirname(__DIR__) . DIRECTORY_SEPARATOR . 'src');
-    
-    // add a route to the page and action
-    $di->get('router_map')->add('example_package_greet', '/greet', [
-        'values' => [
-            'controller' => 'greet',
-            'action' => 'index',
-        ],
-    ]);
-    
-    // map the 'greet' controller value to a page controller class
-    $di->params['Aura\Framework\Web\Controller\Factory']['map']['greet'] = 'Example\Package\Web\Greet\Page';
+```php
+<?php
+/** Example Package configs */
+
+// add the package to the autoloader
+$loader->add('Example\Package\\', dirname(__DIR__) . DIRECTORY_SEPARATOR . 'src');
+
+// add a route to the page and action
+$di->get('router_map')->add('example_package_greet', '/greet', [
+    'values' => [
+        'controller' => 'greet',
+        'action' => 'index',
+    ],
+]);
+
+// map the 'greet' controller value to a page controller class
+$di->params['Aura\Framework\Web\Controller\Factory']['map']['greet'] = 'Example\Package\Web\Greet\Page';
+```
 
 Save the files as `default.php` in `Example.Package/config` folder.
 

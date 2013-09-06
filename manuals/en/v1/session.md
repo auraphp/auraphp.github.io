@@ -1,7 +1,6 @@
 ---
 layout: site
 title: Session
-permalink: /session/
 ---
 
 #Session#
@@ -16,42 +15,44 @@ The controller doesn't have `Aura\Session\Manager` object. So let us add a
 method `setSessionManager` in the controller to make use of setter 
 injection. 
 
-    
-    <?php
-    namespace Example\Package\Web;
-    
-    use Aura\Framework\Web\Controller\AbstractPage;
-    use Aura\Session\Manager as SessionManager;
-    
-    abstract class PageController extends AbstractPage
-    {        
-        protected $session_manager;
-    
-        public function setSessionManager(SessionManager $session_manager)
-        {
-            $this->session_manager = $session_manager;
-        }
-        
-        public function getSessionManager()
-        {
-            return $this->session_manager;
-        }
-        
-        // .. rest of your methods 
+```php
+<?php
+namespace Example\Package\Web;
+
+use Aura\Framework\Web\Controller\AbstractPage;
+use Aura\Session\Manager as SessionManager;
+
+abstract class PageController extends AbstractPage
+{        
+    protected $session_manager;
+
+    public function setSessionManager(SessionManager $session_manager)
+    {
+        $this->session_manager = $session_manager;
     }
+    
+    public function getSessionManager()
+    {
+        return $this->session_manager;
+    }
+    
+    // .. rest of your methods 
+}
+```
     
 ### Configuration ###
 
-    
-    // Session Manager
-    $di->setter['Example\Package\Web\PageController']['setSessionManager'] = $di->lazyGet('session_manager');
-
+```php
+// Session Manager
+$di->setter['Example\Package\Web\PageController']['setSessionManager'] = $di->lazyGet('session_manager');
+```
 
 And now we can get the object of `Aura\Session\Manager` inside controller 
 as 
     
-    
-    $session = $this->getSessionManager();
+```php
+$session = $this->getSessionManager();
+```
     
 and make use of it.
 
@@ -60,42 +61,45 @@ and make use of it.
 In-order to get session manager we need to create a view helper and 
 inject the `Aura\Session\Manager` object.
 
+```php
+<?php
+namespace Example\Package\View\Helper;
+
+use Aura\View\Helper\AbstractHelper;
+use Aura\Session\Manager;
+
+class SessionManager extends AbstractHelper
+{
+    protected $session_manager;
     
-    <?php
-    namespace Example\Package\View\Helper;
-    
-    use Aura\View\Helper\AbstractHelper;
-    use Aura\Session\Manager;
-    
-    class SessionManager extends AbstractHelper
+    public function __construct(Manager $session_manager)
     {
-        protected $session_manager;
-        
-        public function __construct(Manager $session_manager)
-        {
-            $this->session_manager = $session_manager;
-        }
-        
-        public function __invoke()
-        {
-            return $this->session_manager;
-        }
+        $this->session_manager = $session_manager;
     }
+    
+    public function __invoke()
+    {
+        return $this->session_manager;
+    }
+}
+```
 
 ### Configuration ###
 
-    
-    $di->params['Example\Package\View\Helper\SessionManager']['session_manager'] = $di->lazyGet('session_manager');
-    
-    $di->params['Aura\View\HelperLocator']['registry']['sessionManager'] = function () use ($di) {
-        return $di->newInstance('Example\Package\View\Helper\SessionManager');
-    };
+```php
+$di->params['Example\Package\View\Helper\SessionManager']['session_manager'] = $di->lazyGet('session_manager');
+
+$di->params['Aura\View\HelperLocator']['registry']['sessionManager'] = function () use ($di) {
+    return $di->newInstance('Example\Package\View\Helper\SessionManager');
+};
+```
     
 And once you are done with the configuration, you can get the 
 `Aura\Session\Manger` object within the view like 
 
-    
+```php
     $this->sessionManger();
+```
 
 ## Segments ##
 
@@ -104,32 +108,32 @@ superglobal. For example, if you ask for a segment named `ClassName`, the
 segment will be a reference to `$_SESSION['ClassName']`. All values in the
 `ClassName` segment will be stored in an array under that key.
 
-    
-    <?php
-    // get a session segment; starts the session if it is not already,
-    // and creates the $_SESSION key if it does not exist.
-    $segment = $session->newSegment('Vendor\Package\ClassName');
-    
-    // set some values on the segment
-    $segment->foo = 'bar';
-    $segment->baz = 'dib';
-    
-    // the $_SESSION superglobal is now:
-    // $_SESSION = [
-    //      'Vendor\Package\ClassName' => [
-    //          'foo' => 'bar',
-    //          'baz' => 'dib',
-    //      ],
-    // ];
-    
-    // get the values from the segment
-    echo $segment->foo; // 'bar'
-    
-    // because the segment is a reference to $_SESSION, you can modify
-    // the superglobal directly and the segment values will also change.
-    $_SESSION['Vendor\Package\ClassName']['zim'] = 'gir'
-    echo $segment->zim; // 'gir'
+```php
+<?php
+// get a session segment; starts the session if it is not already,
+// and creates the $_SESSION key if it does not exist.
+$segment = $session->newSegment('Vendor\Package\ClassName');
 
+// set some values on the segment
+$segment->foo = 'bar';
+$segment->baz = 'dib';
+
+// the $_SESSION superglobal is now:
+// $_SESSION = [
+//      'Vendor\Package\ClassName' => [
+//          'foo' => 'bar',
+//          'baz' => 'dib',
+//      ],
+// ];
+
+// get the values from the segment
+echo $segment->foo; // 'bar'
+
+// because the segment is a reference to $_SESSION, you can modify
+// the superglobal directly and the segment values will also change.
+$_SESSION['Vendor\Package\ClassName']['zim'] = 'gir'
+echo $segment->zim; // 'gir'
+```
     
 The benefit of a session segment is that we can deconflict the keys in the
 `$_SESSION` superglobal by using class names (or some other unique name) for
@@ -162,9 +166,10 @@ sessions.
 When you are done with a session and want its data to be available later, call
 the `commit()` method:
 
-    
-    <?php
-    $session->commit();
+```php
+<?php
+$session->commit();
+```
 
 The aura framework already have a `commit()` method at the end of the 
 `post_exec` signal.
@@ -176,30 +181,29 @@ The aura framework already have a `commit()` method at the end of the
 Any time a user has a change in privilege (that is, gaining or losing access
 rights within a system) be sure to regenerate the session ID:
 
-    
-    <?php
-    $session->regenerateId();
-
+```php
+<?php
+$session->regenerateId();
+```
     
 > N.b.: The `regenerateId()` method also regenerates the CSRF token value.
 
 To clear the in-memory session data, but leave the session active, use the
 `clear()` method:
 
-    
-    <?php
-    $session->clear();
-
+```php
+<?php
+$session->clear();
+```
 
 To end a session and remove its data (both committed and in-memory), generally
 after a user signs out or when authentication timeouts occur, call the
 `destroy()` method:
 
-    
-    <?php
-    $session->destroy();
-
-
+```php
+<?php
+$session->destroy();
+```
 
 ## Read-Once ("Flash") Values ##
 
@@ -210,57 +214,57 @@ is used, and then automatically clears itself. These are called "flash" or
 
 To set a read-once value on a segment, use the `setFlash()` method.
 
-    
-    <?php
-    // get a segment
-    $segment = $session->newSegment('Vendor\Package\ClassName');
-    
-    // set a read-once value on the segment
-    $segment->setFlash('message', 'Hello world!');
+```php
+<?php
+// get a segment
+$segment = $session->newSegment('Vendor\Package\ClassName');
 
+// set a read-once value on the segment
+$segment->setFlash('message', 'Hello world!');
+```
 
 Then, in subsequent sessions, we can read the flash value using `getFlash()`:
 
-    
-    <?php
-    // get a segment
-    $segment = $session->newSegment('Vendor\Package\ClassName');
-    
-    // get the read-once value
-    $message = $segment->getFlash('message'); // 'Hello world!'
-    
-    // if we try to read it again, it won't be there
-    $not_there = $segment->getFlash('message'); // null
+```php    
+<?php
+// get a segment
+$segment = $session->newSegment('Vendor\Package\ClassName');
 
+// get the read-once value
+$message = $segment->getFlash('message'); // 'Hello world!'
+
+// if we try to read it again, it won't be there
+$not_there = $segment->getFlash('message'); // null
+```
 
 Sometimes we need to know if a flash value exists, but don't want to read it
 yet (thereby removing it from the session). In these cases, we can use the
 `hasFlash()` method:
 
-    
-    <?php
-    // get a segment
-    $segment = $session->newSegment('Vendor\Package\ClassName');
-    
-    // is there a read-once 'message' available?
-    // this will *not* cause a read-once removal.
-    if ($segment->hasFlash('message')) {
-        echo "Yes, there is a message available.";
-    } else {
-        echo "No message available.";
-    }
+```php
+<?php
+// get a segment
+$segment = $session->newSegment('Vendor\Package\ClassName');
 
+// is there a read-once 'message' available?
+// this will *not* cause a read-once removal.
+if ($segment->hasFlash('message')) {
+    echo "Yes, there is a message available.";
+} else {
+    echo "No message available.";
+}
+```
     
 To clear all flash values on a segment, use the `clearFlash()` method:
 
-    
-    <?php
-    // get a segment
-    $segment = $session->newSegment('Vendor\Package\ClassName');
-    
-    // clear all flash values, but leave all other segment values in place
-    $segment->clearFlash();
+```php
+<?php
+// get a segment
+$segment = $session->newSegment('Vendor\Package\ClassName');
 
+// clear all flash values, but leave all other segment values in place
+$segment->clearFlash();
+```
 
 
 ## Cross-Site Request Forgery ##
@@ -291,53 +295,53 @@ For this example, the form field name will be `'__csrf_value''`. In each form
 we want to protect against CSRF, we use the session CSRF token value for that
 field:
 
-    
-    <?php
-    /**  
-     * @var Vendor\Package\User $user A user-authentication object.
-     * @var Aura\Session\Manager $session A session management object.
-     */
-    ?>
-    <form method="post">
-    
-        <?php if ($user->isAuthenticated()) {
-            $csrf_value = $session->getCsrfToken()->getValue();
-            echo '<input type="hidden" name="__csrf_value" value="'
-               . $csrf_value
-               . '"></input>';
-        } ?>
-        
-        <!-- other form fields -->
-        
-    </form>
+```php
+<?php
+/**  
+ * @var Vendor\Package\User $user A user-authentication object.
+ * @var Aura\Session\Manager $session A session management object.
+ */
+?>
+<form method="post">
 
+    <?php if ($user->isAuthenticated()) {
+        $csrf_value = $session->getCsrfToken()->getValue();
+        echo '<input type="hidden" name="__csrf_value" value="'
+           . $csrf_value
+           . '"></input>';
+    } ?>
+    
+    <!-- other form fields -->
+    
+</form>
+```
 
 When processing the request, check to see if the incoming CSRF token is valid
 for the authenticated user:
 
-    
-    <?php
-    /**  
-     * @var Vendor\Package\User $user A user-authentication object.
-     * @var Aura\Session\Manager $session A session management object.
-     */
-    
-    $unsafe = $_SERVER['REQUEST_METHOD'] == 'POST'
-           || $_SERVER['REQUEST_METHOD'] == 'PUT'
-           || $_SERVER['REQUEST_METHOD'] == 'DELETE';
-    
-    if ($unsafe && $user->isAuthenticated()) {
-        $csrf_value = $_POST['__csrf_value'];
-        $csrf_token = $session->getCsrfToken();
-        if (! $csrf_token->isValid($csrf_value)) {
-            echo "This looks like a cross-site request forgery.";
-        } else {
-            echo "This looks like a valid request.";
-        }
-    } else {
-        echo "CSRF attacks only affect unsafe requests by authenticated users.";
-    }
+```php
+<?php
+/**  
+ * @var Vendor\Package\User $user A user-authentication object.
+ * @var Aura\Session\Manager $session A session management object.
+ */
 
+$unsafe = $_SERVER['REQUEST_METHOD'] == 'POST'
+       || $_SERVER['REQUEST_METHOD'] == 'PUT'
+       || $_SERVER['REQUEST_METHOD'] == 'DELETE';
+
+if ($unsafe && $user->isAuthenticated()) {
+    $csrf_value = $_POST['__csrf_value'];
+    $csrf_token = $session->getCsrfToken();
+    if (! $csrf_token->isValid($csrf_value)) {
+        echo "This looks like a cross-site request forgery.";
+    } else {
+        echo "This looks like a valid request.";
+    }
+} else {
+    echo "CSRF attacks only affect unsafe requests by authenticated users.";
+}
+```
 
 ## CSRF Value Generation ##
 

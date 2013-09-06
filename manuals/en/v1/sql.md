@@ -1,7 +1,6 @@
 ---
 layout: site
 title: Aura SQL
-permalink: /sql/
 ---
 
 #Aura SQL#
@@ -22,35 +21,35 @@ next topic connecting.
 The easiest way to get started is to use the `scripts/instance.php` script to
 get a `ConnectionFactory` and create your connection through it:
 
+```php
+<?php
+$connection_factory = include '/path/to/Aura.Sql/scripts/instance.php';
+$connection = $connection_factory->newInstance(
     
-    <?php
-    $connection_factory = include '/path/to/Aura.Sql/scripts/instance.php';
-    $connection = $connection_factory->newInstance(
-        
-        // adapter name
-        'mysql',
-        
-        // DSN elements for PDO; this can also be
-        // an array of key-value pairs
-        'host=localhost;dbname=database_name',
-        
-        // username for the connection
-        'username',
-        
-        // password for the connection
-        'password'
-    );
-
+    // adapter name
+    'mysql',
+    
+    // DSN elements for PDO; this can also be
+    // an array of key-value pairs
+    'host=localhost;dbname=database_name',
+    
+    // username for the connection
+    'username',
+    
+    // password for the connection
+    'password'
+);
+```
 
 Alternatively, you can add `'/path/to/Aura.Sql/src'` to your autoloader and
 build an connection factory manually:
     
-    
-    <?php
-    use Aura\Sql\ConnectionFactory;
-    $connection_factory = new ConnectionFactory;
-    $connection = $connection_factory->newInstance(...);
-
+```php    
+<?php
+use Aura\Sql\ConnectionFactory;
+$connection_factory = new ConnectionFactory;
+$connection = $connection_factory->newInstance(...);
+```
     
 Aura SQL comes with four connection adapters: `'mysql'` for MySQL, `'pgsql'`
 for PostgreSQL, `'sqlite'` for SQLite3, and `'sqlsrv'` for Microsoft SQL
@@ -64,20 +63,21 @@ never issue a query, it will never connect to the database.
 
 You can connect manually by issuing `connect()`:
 
-    
-    <?php
-    $connection->connect();
-
+```php
+<?php
+$connection->connect();
+```
 
 ## Fetching Results ##
 
 Once you have a connection, you can begin to fetch results from the database.
 
 
-    
-    <?php
-    // returns all rows
-    $result = $connection->fetchAll('SELECT * FROM foo');
+```php
+<?php
+// returns all rows
+$result = $connection->fetchAll('SELECT * FROM foo');
+```
 
 You can fetch results using these methods:
 
@@ -108,37 +108,38 @@ Although Aura SQL provides quoting methods, you should instead use value
 binding into prepared statements. To do so, put named placeholders in the
 query text, then pass an array of values to bind to the placeholders:
 
-    
-    <?php
-    // the text of the query
-    $text = 'SELECT * FROM foo WHERE id = :id';
-    
-    // values to bind to query placeholders
-    $bind = [
-        'id' => 1,
-    ];
-    
-    // returns one row; the data has been parameterized
-    // into a prepared statement for you
-    $result = $connection->fetchOne($text, $bind);
+```php
+<?php
+// the text of the query
+$text = 'SELECT * FROM foo WHERE id = :id';
 
+// values to bind to query placeholders
+$bind = [
+    'id' => 1,
+];
+
+// returns one row; the data has been parameterized
+// into a prepared statement for you
+$result = $connection->fetchOne($text, $bind);
+```
 
 Aura SQL recognizes array values and quotes them as comma-separated lists:
 
+```php
+<?php
+// the text of the query
+$text = 'SELECT * FROM foo WHERE id = :id AND bar IN(:bar_list)';
     
-    <?php
-    // the text of the query
-    $text = 'SELECT * FROM foo WHERE id = :id AND bar IN(:bar_list)';
-    
-    // values to bind to query placeholders
-    $bind = [
-        'id' => 1,
-        'bar_list' => ['a', 'b', 'c'],
-    ];
-    
-    // returns all rows; the query ends up being
-    // "SELECT * FROM foo WHERE id = 1 AND bar IN('a', 'b', 'c')"
-    $result = $connection->fetchOne($text, $bind);
+// values to bind to query placeholders
+$bind = [
+    'id' => 1,
+    'bar_list' => ['a', 'b', 'c'],
+];
+
+// returns all rows; the query ends up being
+// "SELECT * FROM foo WHERE id = 1 AND bar IN('a', 'b', 'c')"
+$result = $connection->fetchOne($text, $bind);
+```
 
 ## Query Objects ##
 
@@ -151,21 +152,21 @@ To get a new `Select` object, invoke the `newSelect()` method on an connection.
 You can then modify the `Select` object and pass it to the `query()` or
 `fetch*()` method.
 
-    
-    <?php
-    // create a new Select object
-    $select = $connection->newSelect();
-    
-    // SELECT * FROM foo WHERE bar > :bar ORDER BY baz
-    $select->cols(['*'])
-           ->from('foo')
-           ->where('bar > :bar')
-           ->orderBy('baz');
-    
-    $bind = ['bar' => '88'];
-    
-    $list = $connection->fetchAll($select, $bind);
+```php
+<?php
+// create a new Select object
+$select = $connection->newSelect();
 
+// SELECT * FROM foo WHERE bar > :bar ORDER BY baz
+$select->cols(['*'])
+       ->from('foo')
+       ->where('bar > :bar')
+       ->orderBy('baz');
+
+$bind = ['bar' => '88'];
+
+$list = $connection->fetchAll($select, $bind);
+```
 
 The `Select` object has these methods and more; please read the source code
 for more information.
@@ -203,108 +204,108 @@ for more information.
 To get a new `Insert` object, invoke the `newInsert()` method on an connection.
 You can then modify the `Insert` object and pass it to the `query()` method.
 
-    
-    <?php
-    // create a new Insert object
-    $insert = $connection->newInsert();
-    
-    // INSERT INTO foo (bar, baz, date) VALUES (:bar, :baz, NOW());
-    $insert->into('foo')
-           ->cols(['bar', 'baz'])
-           ->set('date', 'NOW()');
-    
-    $bind = [
-        'bar' => null,
-        'baz' => 'zim',
-    ];
-    
-    $stmt = $connection->query($insert, $bind);
+```php
+<?php
+// create a new Insert object
+$insert = $connection->newInsert();
 
+// INSERT INTO foo (bar, baz, date) VALUES (:bar, :baz, NOW());
+$insert->into('foo')
+       ->cols(['bar', 'baz'])
+       ->set('date', 'NOW()');
+
+$bind = [
+    'bar' => null,
+    'baz' => 'zim',
+];
+
+$stmt = $connection->query($insert, $bind);
+```
 
 ## Update ##
 
 To get a new `Update` object, invoke the `newUpdate()` method on an connection.
 You can then modify the `Update` object and pass it to the `query()` method.
 
-    
-    <?php
-    // create a new Update object
-    $update = $connection->newUpdate();
-    
-    // UPDATE foo SET bar = :bar, baz = :baz, date = NOW() WHERE zim = :zim OR gir = :gir
-    $update->table('foo')
-           ->cols(['bar', 'baz'])
-           ->set('date', 'NOW()')
-           ->where('zim = :zim')
-           ->orWhere('gir = :gir');
-    
-    $bind = [
-        'bar' => 'barbar',
-        'baz' => 99,
-        'zim' => 'dib',
-        'gir' => 'doom',
-    ];
-    
-    $stmt = $connection->query($update, $bind);
+```php
+<?php
+// create a new Update object
+$update = $connection->newUpdate();
 
+// UPDATE foo SET bar = :bar, baz = :baz, date = NOW() WHERE zim = :zim OR gir = :gir
+$update->table('foo')
+       ->cols(['bar', 'baz'])
+       ->set('date', 'NOW()')
+       ->where('zim = :zim')
+       ->orWhere('gir = :gir');
+
+$bind = [
+    'bar' => 'barbar',
+    'baz' => 99,
+    'zim' => 'dib',
+    'gir' => 'doom',
+];
+
+$stmt = $connection->query($update, $bind);
+```
 
 ## Delete ##
 
 To get a new `Delete` object, invoke the `newDelete()` method on an connection.
 You can then modify the `Delete` object and pass it to the `query()` method.
 
-    
-    <?php
-    // create a new Delete object
-    $delete = $connection->newDelete();
-    
-    // DELETE FROM WHERE zim = :zim OR gir = :gir
-    $delete->from('foo')
-           ->where('zim = :zim')
-           ->orWhere('gir = :gir');
-    
-    $bind = [
-        'zim' => 'dib',
-        'gir' => 'doom',
-    ];
-    
-    $stmt = $connection->query($delete, $bind);
+```php
+<?php
+// create a new Delete object
+$delete = $connection->newDelete();
 
+// DELETE FROM WHERE zim = :zim OR gir = :gir
+$delete->from('foo')
+       ->where('zim = :zim')
+       ->orWhere('gir = :gir');
+
+$bind = [
+    'zim' => 'dib',
+    'gir' => 'doom',
+];
+
+$stmt = $connection->query($delete, $bind);
+```
 
 ## Retrieving Table Information ##
 
 To get a list of tables in the database, issue `fetchTableList()`:
 
-    
-    <?php
-    // get the list of tables
-    $list = $connection->fetchTableList();
-    
-    // show them
-    foreach ($list as $table) {
-        echo $table . PHP_EOL;
-    }
+```php
+<?php
+// get the list of tables
+$list = $connection->fetchTableList();
 
+// show them
+foreach ($list as $table) {
+    echo $table . PHP_EOL;
+}
+```
 
 To get information about the columns in a table, issue `fetchTableCols()`:
 
-    
-    <?php
-    // the table to get cols for
-    $table = 'foo';
-    
-    // get the cols
-    $cols = $connection->fetchTableCols($table);
-    
-    // show them
-    foreach ($cols as $name => $col) {
-        echo "Column $name is of type "
-           . $col->type
-           . " with a size of "
-           . $col->size
-           . PHP_EOL;
-    }
+```php
+<?php
+// the table to get cols for
+$table = 'foo';
 
+// get the cols
+$cols = $connection->fetchTableCols($table);
+
+// show them
+foreach ($cols as $name => $col) {
+    echo "Column $name is of type "
+       . $col->type
+       . " with a size of "
+       . $col->size
+       . PHP_EOL;
+}
+```
 
 Each column description is a `Column` object with the following properties:
 
@@ -331,35 +332,34 @@ you can turn off autocommit mode and start a transaction with
 `beginTransaction()`, then either `commit()` or `rollBack()` the transaction.
 Commits and rollbacks cause the connection to go back into autocommit mode.
 
-    
-    <?php
-    // turn off autocommit and start a transaction
-    $connection->beginTransaction();
-    
-    try {
-        // ... perform some queries ...
-        // now commit to the database:
-        $connection->commit();
-    } catch (Exception $e) {
-        // there was an error, roll back the queries
-        $connection->rollBack();
-    }
-    
-    // at this point we are back in autocommit mode
+```php
+<?php
+// turn off autocommit and start a transaction
+$connection->beginTransaction();
 
+try {
+    // ... perform some queries ...
+    // now commit to the database:
+    $connection->commit();
+} catch (Exception $e) {
+    // there was an error, roll back the queries
+    $connection->rollBack();
+}
 
+// at this point we are back in autocommit mode
+```
     
 ## Manual Queries ##
 
 You can, of course, build and issue your own queries by hand. Use the
 `query()` method to do so:
 
-    
-    <?php
-    $text = "SELECT * FROM foo WHERE id = :id";
-    $bind = ['id' => 1];
-    $stmt = $connection->query($text, $bind)
-
+```php
+<?php
+$text = "SELECT * FROM foo WHERE id = :id";
+$bind = ['id' => 1];
+$stmt = $connection->query($text, $bind);
+```
 
 The returned `$stmt` is a [PDOStatement](http://php.net/PDOStatement) that you
 may manipulate as you wish.
@@ -368,21 +368,21 @@ may manipulate as you wish.
 
 You can use profiling to see how well your queries are performing.
 
-    
-    <?php
-    // turn on the profiler
-    $connection->getProfiler()->setActive(true);
-    
-    // issue a query
-    $result = $connection->fetchAll('SELECT * FROM foo');
-    
-    // now get the profiler information
-    foreach ($connection->getProfiler()->getProfiles() as $i => $profile) {
-        echo 'Query #' . ($i + 1)
-           . ' took ' . $profile->time . ' seconds.'
-           . PHP_EOL;
-    }
+```php
+<?php
+// turn on the profiler
+$connection->getProfiler()->setActive(true);
 
+// issue a query
+$result = $connection->fetchAll('SELECT * FROM foo');
+
+// now get the profiler information
+foreach ($connection->getProfiler()->getProfiles() as $i => $profile) {
+    echo 'Query #' . ($i + 1)
+       . ' took ' . $profile->time . ' seconds.'
+       . PHP_EOL;
+}
+```
     
 Each profile object has these properties:
 
@@ -394,5 +394,3 @@ Each profile object has these properties:
 
 - `trace`: (array) A [debug_backtrace](http://php.net/debug_backtrace) so
   you can tell where the query came from.
-
-

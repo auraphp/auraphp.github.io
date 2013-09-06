@@ -28,21 +28,22 @@ desirable, is beyond the scope of this document. For more information about
 The Aura DI package comes with a instance script that returns a new DI
 instance:
 
-    
-    <?php
-    $di = require '/path/to/Aura.Di/scripts/instance.php';
+```php
+<?php
+$di = require '/path/to/Aura.Di/scripts/instance.php';
+```
 
 Alternatively, you can add the Aura DI `'src/'` directory to your autoloader,
 and then instantiate it yourself:
 
-    
-    <?php
-    use Aura\Di\Container;
-    use Aura\Di\Forge;
-    use Aura\Di\Config;
-    
-    $di = new Container(new Forge(new Config));
+```php
+<?php
+use Aura\Di\Container;
+use Aura\Di\Forge;
+use Aura\Di\Config;
 
+$di = new Container(new Forge(new Config));
+```
 
 The `Container` is the DI container proper.  The support objects are:
 
@@ -60,18 +61,18 @@ For the following examples, we will set a service that should return a
 database connection. The hypothetical database connection class is defined as
 follows:
 
-    
-    <?php
-    namespace Example\Package;
-    
-    class Database
-    {
-        public function __construct($hostname, $username, $password)
-        {
-            // ... make the database connection
-        }
-    }
+```php
+<?php
+namespace Example\Package;
 
+class Database
+{
+    public function __construct($hostname, $username, $password)
+    {
+        // ... make the database connection
+    }
+}
+```
 
 We will proceed from naive service creation to a more sophisticated idiom in
 four steps. Each of the variations is a valid use of the DI container with its
@@ -82,12 +83,12 @@ own strengths and weaknesses.
 In this variation, we create a service by instantiating an object with the
 `new` operator.
 
-    
-    <?php
-    $di->set('database', new \Example\Package\Database(
-        'localhost', 'user', 'passwd'
-    ));
-
+```php
+<?php
+$di->set('database', new \Example\Package\Database(
+    'localhost', 'user', 'passwd'
+));
+```
 
 This causes the database object to be created at the time we *set* the service
 into the container. That means it is always created, even if we never retrieve
@@ -98,12 +99,12 @@ it from the container.
 In this variation, we create a service by wrapping it in a closure, still
 using the `new` operator.
 
-    
-    <?php
-    $di->set('database', function () {
-        return new \Example\Package\Database('localhost', 'user', 'passwd');
-    });
-
+```php
+<?php
+$di->set('database', function () {
+    return new \Example\Package\Database('localhost', 'user', 'passwd');
+});
+```
 
 This causes the database object to be created at the time we *get* the service
 from the container, using `$di->get('database')`. Wrapping the object
@@ -117,16 +118,16 @@ In this variation, we will move away from using the `new` operator, and use
 the `$di->newInstance()` method instead. We still wrap the instantiation in a
 closure for lazy-loading.
 
-    
-    <?php
-    $di->set('database', function () use ($di) {
-        return $di->newInstance('Example\Package\Database', [
-            'hostname' => 'localhost',
-            'username' => 'user',
-            'password' => 'passwd',
-        ]);
-    });
-
+```php
+<?php
+$di->set('database', function () use ($di) {
+    return $di->newInstance('Example\Package\Database', [
+        'hostname' => 'localhost',
+        'username' => 'user',
+        'password' => 'passwd',
+    ]);
+});
+```
 
 The `newInstance()` method uses the `Forge` object to reflect on the
 constructor method of the class to be instantiated. We can then pass
@@ -139,18 +140,18 @@ defaults as defined by the class constructor.
 In this variation, we define a configuration for the `Database` class
 separately from the lazy-load instantiation of the `Database` object.
 
-    
-    <?php
-    $di->params['Example\Package\Database'] = [
-        'hostname' => 'localhost',
-        'username' => 'user',
-        'password' => 'passwd',
-    ];
-    
-    $di->set('database', function () use ($di) {
-        return $di->newInstance('Example\Package\Database');
-    });
+```php
+<?php
+$di->params['Example\Package\Database'] = [
+    'hostname' => 'localhost',
+    'username' => 'user',
+    'password' => 'passwd',
+];
 
+$di->set('database', function () use ($di) {
+    return $di->newInstance('Example\Package\Database');
+});
+```
 
 As part of the object-creation process, the `Forge` examines the `$di->params`
 values for the class being instantiated. Those values are merged with the
@@ -167,16 +168,16 @@ container.
 In this variation, we call the `lazyNew()` method, which encapsulates the
 "use a closure to return a new instance" idiom.
 
-    
-    <?php
-    $di->params['Example\Package\Database'] = [
-        'hostname' => 'localhost',
-        'username' => 'user',
-        'password' => 'passwd',
-    ];
-    
-    $di->set('database', $di->lazyNew('Example\Package\Database'));
+```php
+<?php
+$di->params['Example\Package\Database'] = [
+    'hostname' => 'localhost',
+    'username' => 'user',
+    'password' => 'passwd',
+];
 
+$di->set('database', $di->lazyNew('Example\Package\Database'));
+```
 
 
 ## Variation 5a: Override Class Constructor Params ##
@@ -184,18 +185,18 @@ In this variation, we call the `lazyNew()` method, which encapsulates the
 In this variation, we override the `$di->params` values that will be used at
 instantiation time.
 
-    
-    <?php
-    $di->params['Example\Package\Database'] = [
-        'hostname' => 'localhost',
-        'username' => 'user',
-        'password' => 'passwd',
-    ];
-    
-    $di->set('database', $di->lazyNew('Example\Package\Database', [
-        'hostname' => 'example.com',
-    ]);
+```php
+<?php
+$di->params['Example\Package\Database'] = [
+    'hostname' => 'localhost',
+    'username' => 'user',
+    'password' => 'passwd',
+];
 
+$di->set('database', $di->lazyNew('Example\Package\Database', [
+    'hostname' => 'example.com',
+]);
+```
 
 The instantiation-time values take precedence over the configuration values,
 which themselves take precedence over the constructor defaults.
@@ -205,10 +206,10 @@ which themselves take precedence over the constructor defaults.
 
 To get a service object from the container, call `$di->get()`.
 
-    
-    <?php
-    $db = $di->get('database');
-
+```php
+<?php
+$db = $di->get('database');
+```
 
 This will retrieve the service object from the container; if it was set using
 a closure, the closure will be invoked to create the object at that time. Once
@@ -223,59 +224,59 @@ concrete classes called `BlogModel` and `WikiModel`. The idea is that all
 `AbstractModel` classes need a `Database` connection to interact with one or
 more tables in the database.
 
-    
-    <?php
-    namespace Example\Package;
-    
-    abstract class AbstractModel
-    {
-        protected $db;
-        
-        public function __construct(Database $db)
-        {
-            $this->db = $db;
-        }
-    }
-    
-    class BlogModel extends AbstractModel
-    {
-        // ...
-    }
-    
-    class WikiModel extends AbstractModel
-    {
-        // ...
-    }
+```php
+<?php
+namespace Example\Package;
 
+abstract class AbstractModel
+{
+    protected $db;
+    
+    public function __construct(Database $db)
+    {
+        $this->db = $db;
+    }
+}
+
+class BlogModel extends AbstractModel
+{
+    // ...
+}
+
+class WikiModel extends AbstractModel
+{
+    // ...
+}
+```
 
 We will create services for the `BlogModel` and `WikiModel`, and inject the
 database service into them as part of the service definition. Using config
 inheritance provided by the DI container, we can define the database service
 injection through class configuration.
 
-    
-    <?php
-    // default params for the Database class
-    $di->params['Example\Package\Database'] = [
-        'hostname' => 'localhost',
-        'username' => 'user',
-        'password' => 'passwd',
-    ];
-    
-    // default params for the AbstractModel class
-    $di->params['Example\Package\AbstractModel'] = [
-        'db' => $di->lazyGet('database'),
-    ];
-    
-    // define the database service
-    $di->set('database', $di->lazyNew('Example\Package\Database'));
-    
-    // define the blog_model service
-    $di->set('blog_model', $di->lazyNew('Example\Package\BlogModel'));
-    
-    // define the wiki_model service
-    $di->set('wiki_model', $di->lazyNew('Example\Package\WikiModel'));
+```php
+<?php
+// default params for the Database class
+$di->params['Example\Package\Database'] = [
+    'hostname' => 'localhost',
+    'username' => 'user',
+    'password' => 'passwd',
+];
 
+// default params for the AbstractModel class
+$di->params['Example\Package\AbstractModel'] = [
+    'db' => $di->lazyGet('database'),
+];
+
+// define the database service
+$di->set('database', $di->lazyNew('Example\Package\Database'));
+
+// define the blog_model service
+$di->set('blog_model', $di->lazyNew('Example\Package\BlogModel'));
+
+// define the wiki_model service
+$di->set('wiki_model', $di->lazyNew('Example\Package\WikiModel'));
+```
 
 We do not need to set the value of the `'db'` param for the `BlogModel` and
 `WikiModel` directly. Instead, the params for the `AbstractModel` class are
@@ -311,93 +312,93 @@ us, an abstract `PageController` class that uses the model factory, and a
 populate the `ModelFactory` with a map of model names to factory objects that
 will create the mapped objects.
 
-    
-    <?php
-    namespace Example\Package;
-    
-    class ModelFactory
-    {
-        // a map of model names to factory closures
-        protected $map = [];
-        
-        public function __construct($map = [])
-        {
-            $this->map = $map;
-        }
-        
-        public function newInstance($model_name)
-        {
-            $factory = $this->map[$model_name];
-            $model = $factory();
-            return $model;
-        }
-    }
-    
-    abstract class PageController
-    {
-        protected $model_factory;
-        
-        public function __construct(ModelFactory $model_factory)
-        {
-            $this->model_factory = $model_factory;
-        }
-    }
-    
-    class BlogController extends PageController
-    {
-        public function exec()
-        {
-            $blog_model = $this->model_factory('blog');
-            // ... get data from the blog model and return it ...
-        }
-    }
+```php
+<?php
+namespace Example\Package;
 
+class ModelFactory
+{
+    // a map of model names to factory closures
+    protected $map = [];
+    
+    public function __construct($map = [])
+    {
+        $this->map = $map;
+    }
+    
+    public function newInstance($model_name)
+    {
+        $factory = $this->map[$model_name];
+        $model = $factory();
+        return $model;
+    }
+}
+
+abstract class PageController
+{
+    protected $model_factory;
+    
+    public function __construct(ModelFactory $model_factory)
+    {
+        $this->model_factory = $model_factory;
+    }
+}
+
+class BlogController extends PageController
+{
+    public function exec()
+    {
+        $blog_model = $this->model_factory('blog');
+        // ... get data from the blog model and return it ...
+    }
+}
+```
 
 Now we can set up the DI container as follows:
 
-    
-    <?php
-    // default params for database connections
-    $di->params['Example\Package\Database'] = [
-        'hostname' => 'localhost',
-        'username' => 'user',
-        'password' => 'passwd',
-    ];
-    
-    // default params for the AbstractModel class
-    $di->params['Example\Package\AbstractModel'] = [
-        'db' => $di->lazyGet('database'),
-    ];
-    
-    // default params for the model factory
-    $di->params['Example\Package\ModelFactory'] = [
-        // a map of model names to model factories
-        'map' => [
-            'blog' => $di->newFactory('Example\Package\BlogModel'),
-            'wiki' => $di->newFactory('Example\Package\WikiModel'),
-        ],
-    ];
-    
-    // default params for page controllers
-    $di->params['Example\Package\PageController'] = [
-        'model_factory' => $di->lazyGet('model_factory'),
-    ];
-    
-    // the database service; note that we can use lazyNew() and the
-    // forge will do all the setup for us
-    $di->set('database', $di->lazyNew('Example\Package\Database'));
-    
-    // the model factory service
-    $di->set('model_factory', $di->lazyNew('Example\Package\ModelFactory'));
+```php
+<?php
+// default params for database connections
+$di->params['Example\Package\Database'] = [
+    'hostname' => 'localhost',
+    'username' => 'user',
+    'password' => 'passwd',
+];
 
+// default params for the AbstractModel class
+$di->params['Example\Package\AbstractModel'] = [
+    'db' => $di->lazyGet('database'),
+];
+
+// default params for the model factory
+$di->params['Example\Package\ModelFactory'] = [
+    // a map of model names to model factories
+    'map' => [
+        'blog' => $di->newFactory('Example\Package\BlogModel'),
+        'wiki' => $di->newFactory('Example\Package\WikiModel'),
+    ],
+];
+
+// default params for page controllers
+$di->params['Example\Package\PageController'] = [
+    'model_factory' => $di->lazyGet('model_factory'),
+];
+
+// the database service; note that we can use lazyNew() and the
+// forge will do all the setup for us
+$di->set('database', $di->lazyNew('Example\Package\Database'));
+
+// the model factory service
+$di->set('model_factory', $di->lazyNew('Example\Package\ModelFactory'));
+```
 
 When we create an instance of the `BlogController` and run it ...
 
-    
-    <?php
-    $blog_controller = $di->newInstance('Aura\Example\BlogController');
-    echo $blog_controller->exec();
-
+```php
+<?php
+$blog_controller = $di->newInstance('Aura\Example\BlogController');
+echo $blog_controller->exec();
+```
 
 ... a series of events occurs to fulfill all the dependencies in two steps.
 The first step is the instantiation of the `BlogController`:
@@ -429,63 +430,63 @@ can work via setter injection as well.
 
 Given the following example class ...
 
-    
-    <?php
-    namespace Example\Package;
-    
-    class Foo {
-    
-        protected $db;
-    
-        public function setDb(Database $db)
-        {
-            $this->db = $db;
-        }
-    }
+```php
+<?php
+namespace Example\Package;
 
+class Foo {
+
+    protected $db;
+
+    public function setDb(Database $db)
+    {
+        $this->db = $db;
+    }
+}
+```
 
 ... we can define values that should be injected via setter methods:
 
 
-    
-    <?php
-    // after construction, the Forge will call Foo::setDb()
-    // and inject the 'database' service object
-    $di->setter['Example\Package\Foo']['setDb'] = $di->lazyGet('database');
-    
-    // create a foo_service; on get('foo_service'), the Forge will create the
-    // Foo object, then call setDb() on it per the setter specification above.
-    $di->set('foo_service', $di->lazyNew('Example\Package\Foo'));
-    
+```php
+<?php
+// after construction, the Forge will call Foo::setDb()
+// and inject the 'database' service object
+$di->setter['Example\Package\Foo']['setDb'] = $di->lazyGet('database');
+
+// create a foo_service; on get('foo_service'), the Forge will create the
+// Foo object, then call setDb() on it per the setter specification above.
+$di->set('foo_service', $di->lazyNew('Example\Package\Foo'));
+```    
 
 Note that we use `lazyGet()` for the injection. As with constructor params, we
 could tell the class to use a new `Database` object instead of the shared one
 in the `Container`:
 
-    
-    <?php
-    // after construction, call Foo::setDb() and inject a service object.
-    // we override the default 'hostname' param for the instantiation.
-    $di->setter['Example\Package\Foo']['setDb'] = $di->lazyNew('Example\Package\Database', [
-        'hostname' => 'example.com',
-    ]);
-    
-    // create a foo_service; on get('foo_service'), the Forge will create the
-    // Foo object, then call setDb() on it per the setter specification above.
-    $di->set('foo_service', $di->lazyNew('Example\Package\Foo'));
-    
+```php
+<?php
+// after construction, call Foo::setDb() and inject a service object.
+// we override the default 'hostname' param for the instantiation.
+$di->setter['Example\Package\Foo']['setDb'] = $di->lazyNew('Example\Package\Database', [
+    'hostname' => 'example.com',
+]);
+
+// create a foo_service; on get('foo_service'), the Forge will create the
+// Foo object, then call setDb() on it per the setter specification above.
+$di->set('foo_service', $di->lazyNew('Example\Package\Foo'));
+```    
 
 Setter configurations are inherited. If you have a class that extends
 `Example\Package\Foo` like so ...
 
-    
-    <?php
-    namespace Example\Package;
-    class Bar extends Foo
-    {
-    // ...
-    }
-
+```php
+<?php
+namespace Example\Package;
+class Bar extends Foo
+{
+// ...
+}
+```
 
 ... you do not need to add a new setter value for it; the `Forge` reads all
 parent setters and applies them. (If you do add a setter value for that class,
