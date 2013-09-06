@@ -77,32 +77,36 @@ First, create the package structure (just the parts we need):
 Let us create our controller. Open your favourite editor and save the code
 below
 
-    
-    <?php
-    namespace Example\Package\Web\Quick;
-    use Aura\Framework\Web\Controller\AbstractPage;
-    class Page extends AbstractPage
+
+{% highlight php %}
+<?php
+namespace Example\Package\Web\Quick;
+use Aura\Framework\Web\Controller\AbstractPage;
+class Page extends AbstractPage
+{
+    public function actionIndex()
     {
-        public function actionIndex()
-        {
-            $this->data->message = $this->context->getQuery('name', 'guys!');
-            $this->view = 'index';
-        }
+        $this->data->message = $this->context->getQuery('name', 'guys!');
+        $this->view = 'index';
     }
+}
+{% endhighlight %}
 
 as `Page.php` in the folder `package/Example.Package/src/Example/Package/Web/Greet/`
 
 Next, we need to create a view for the action. Paste the below code 
 
-    
-    <?php
-    $this->title()->set('Welcome to the world of Aura Framework!');
-    ?>
-    <h1>Hey good day <?= $this->message; ?></h1>
-    <form method="get" action="<?php echo $this->route('example_package_greet'); ?>" class="form-search">
-        <input type="text" name="name" id="name" class="input-medium search-query" placeholder="Name" />
-        <input type="submit" name="greet" id="greet" value="Greet" class="btn" />
-    </form>
+
+{% highlight php %}
+<?php
+$this->title()->set('Welcome to the world of Aura Framework!');
+?>
+<h1>Hey good day <?= $this->message; ?></h1>
+<form method="get" action="<?php echo $this->route('example_package_greet'); ?>" class="form-search">
+    <input type="text" name="name" id="name" class="input-medium search-query" placeholder="Name" />
+    <input type="submit" name="greet" id="greet" value="Greet" class="btn" />
+</form>
+{% endhighlight %}
     
 and save it as `index.php` in `package/Example.Package/src/Example/Package/Web/Greet/views`
 folder.
@@ -127,7 +131,7 @@ the routes. Its time to add it in the configuration.
 
 Open the editor and paste the below contents 
 
-```php
+{% highlight php %}
 <?php
 /** Example Package configs */
 
@@ -144,7 +148,7 @@ $di->get('router_map')->add('example_package_greet', '/greet', [
 
 // map the 'greet' controller value to a page controller class
 $di->params['Aura\Framework\Web\Controller\Factory']['map']['greet'] = 'Example\Package\Web\Greet\Page';
-```
+{% endhighlight %}
 
 Save the files as `default.php` in `Example.Package/config` folder.
 

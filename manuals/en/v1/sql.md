@@ -21,7 +21,7 @@ next topic connecting.
 The easiest way to get started is to use the `scripts/instance.php` script to
 get a `ConnectionFactory` and create your connection through it:
 
-```php
+{% highlight php %}
 <?php
 $connection_factory = include '/path/to/Aura.Sql/scripts/instance.php';
 $connection = $connection_factory->newInstance(
@@ -39,17 +39,17 @@ $connection = $connection_factory->newInstance(
     // password for the connection
     'password'
 );
-```
+{% endhighlight %}
 
 Alternatively, you can add `'/path/to/Aura.Sql/src'` to your autoloader and
 build an connection factory manually:
     
-```php    
+{% highlight php %}    
 <?php
 use Aura\Sql\ConnectionFactory;
 $connection_factory = new ConnectionFactory;
 $connection = $connection_factory->newInstance(...);
-```
+{% endhighlight %}
     
 Aura SQL comes with four connection adapters: `'mysql'` for MySQL, `'pgsql'`
 for PostgreSQL, `'sqlite'` for SQLite3, and `'sqlsrv'` for Microsoft SQL
@@ -63,21 +63,21 @@ never issue a query, it will never connect to the database.
 
 You can connect manually by issuing `connect()`:
 
-```php
+{% highlight php %}
 <?php
 $connection->connect();
-```
+{% endhighlight %}
 
 ## Fetching Results ##
 
 Once you have a connection, you can begin to fetch results from the database.
 
 
-```php
+{% highlight php %}
 <?php
 // returns all rows
 $result = $connection->fetchAll('SELECT * FROM foo');
-```
+{% endhighlight %}
 
 You can fetch results using these methods:
 
@@ -108,7 +108,7 @@ Although Aura SQL provides quoting methods, you should instead use value
 binding into prepared statements. To do so, put named placeholders in the
 query text, then pass an array of values to bind to the placeholders:
 
-```php
+{% highlight php %}
 <?php
 // the text of the query
 $text = 'SELECT * FROM foo WHERE id = :id';
@@ -121,11 +121,11 @@ $bind = [
 // returns one row; the data has been parameterized
 // into a prepared statement for you
 $result = $connection->fetchOne($text, $bind);
-```
+{% endhighlight %}
 
 Aura SQL recognizes array values and quotes them as comma-separated lists:
 
-```php
+{% highlight php %}
 <?php
 // the text of the query
 $text = 'SELECT * FROM foo WHERE id = :id AND bar IN(:bar_list)';
@@ -139,7 +139,7 @@ $bind = [
 // returns all rows; the query ends up being
 // "SELECT * FROM foo WHERE id = 1 AND bar IN('a', 'b', 'c')"
 $result = $connection->fetchOne($text, $bind);
-```
+{% endhighlight %}
 
 ## Query Objects ##
 
@@ -152,7 +152,7 @@ To get a new `Select` object, invoke the `newSelect()` method on an connection.
 You can then modify the `Select` object and pass it to the `query()` or
 `fetch*()` method.
 
-```php
+{% highlight php %}
 <?php
 // create a new Select object
 $select = $connection->newSelect();
@@ -166,7 +166,7 @@ $select->cols(['*'])
 $bind = ['bar' => '88'];
 
 $list = $connection->fetchAll($select, $bind);
-```
+{% endhighlight %}
 
 The `Select` object has these methods and more; please read the source code
 for more information.
@@ -204,7 +204,7 @@ for more information.
 To get a new `Insert` object, invoke the `newInsert()` method on an connection.
 You can then modify the `Insert` object and pass it to the `query()` method.
 
-```php
+{% highlight php %}
 <?php
 // create a new Insert object
 $insert = $connection->newInsert();
@@ -220,14 +220,14 @@ $bind = [
 ];
 
 $stmt = $connection->query($insert, $bind);
-```
+{% endhighlight %}
 
 ## Update ##
 
 To get a new `Update` object, invoke the `newUpdate()` method on an connection.
 You can then modify the `Update` object and pass it to the `query()` method.
 
-```php
+{% highlight php %}
 <?php
 // create a new Update object
 $update = $connection->newUpdate();
@@ -247,14 +247,14 @@ $bind = [
 ];
 
 $stmt = $connection->query($update, $bind);
-```
+{% endhighlight %}
 
 ## Delete ##
 
 To get a new `Delete` object, invoke the `newDelete()` method on an connection.
 You can then modify the `Delete` object and pass it to the `query()` method.
 
-```php
+{% highlight php %}
 <?php
 // create a new Delete object
 $delete = $connection->newDelete();
@@ -270,13 +270,13 @@ $bind = [
 ];
 
 $stmt = $connection->query($delete, $bind);
-```
+{% endhighlight %}
 
 ## Retrieving Table Information ##
 
 To get a list of tables in the database, issue `fetchTableList()`:
 
-```php
+{% highlight php %}
 <?php
 // get the list of tables
 $list = $connection->fetchTableList();
@@ -285,11 +285,11 @@ $list = $connection->fetchTableList();
 foreach ($list as $table) {
     echo $table . PHP_EOL;
 }
-```
+{% endhighlight %}
 
 To get information about the columns in a table, issue `fetchTableCols()`:
 
-```php
+{% highlight php %}
 <?php
 // the table to get cols for
 $table = 'foo';
@@ -305,7 +305,7 @@ foreach ($cols as $name => $col) {
        . $col->size
        . PHP_EOL;
 }
-```
+{% endhighlight %}
 
 Each column description is a `Column` object with the following properties:
 
@@ -332,7 +332,7 @@ you can turn off autocommit mode and start a transaction with
 `beginTransaction()`, then either `commit()` or `rollBack()` the transaction.
 Commits and rollbacks cause the connection to go back into autocommit mode.
 
-```php
+{% highlight php %}
 <?php
 // turn off autocommit and start a transaction
 $connection->beginTransaction();
@@ -347,19 +347,19 @@ try {
 }
 
 // at this point we are back in autocommit mode
-```
+{% endhighlight %}
     
 ## Manual Queries ##
 
 You can, of course, build and issue your own queries by hand. Use the
 `query()` method to do so:
 
-```php
+{% highlight php %}
 <?php
 $text = "SELECT * FROM foo WHERE id = :id";
 $bind = ['id' => 1];
 $stmt = $connection->query($text, $bind);
-```
+{% endhighlight %}
 
 The returned `$stmt` is a [PDOStatement](http://php.net/PDOStatement) that you
 may manipulate as you wish.
@@ -368,7 +368,7 @@ may manipulate as you wish.
 
 You can use profiling to see how well your queries are performing.
 
-```php
+{% highlight php %}
 <?php
 // turn on the profiler
 $connection->getProfiler()->setActive(true);
@@ -382,7 +382,7 @@ foreach ($connection->getProfiler()->getProfiles() as $i => $profile) {
        . ' took ' . $profile->time . ' seconds.'
        . PHP_EOL;
 }
-```
+{% endhighlight %}
     
 Each profile object has these properties:
 

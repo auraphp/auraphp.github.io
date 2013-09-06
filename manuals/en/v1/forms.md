@@ -17,7 +17,7 @@ We use `setField` method to add an input type.
 
 Let us create an example form
 
-```php
+{% highlight php %}
 <?php
 namespace Example\Package\Input;
 
@@ -66,7 +66,7 @@ class ContactForm extends Form
         $filter->addSoftRule('message', $filter::IS, 'strlenMin', 6);
     }
 }
-```
+{% endhighlight %}
 
 > Read passing options into forms, to see how the states can also be provided.
 
@@ -85,19 +85,19 @@ the different types of Rules, how you can create your own rules.
 In-order to make use of the dependency injection, we need to map the 
 form names to `Example\Package\GenericFactory`.
     
-```php
+{% highlight php %}
 $di->params['Example\Package\GenericFactory']['map']['form.contact'] = 
     $di->newFactory('Example\Package\Input\ContactForm');
-```
+{% endhighlight %}
 
 ## Form object ##
 
 We can create form objects from controller via the `Example\Package\GenericFactory`
 object we injected to the controller as in chapter-6.
 
-```php
+{% highlight php %}
 $form = $this->factory->newInstance('form.contact');
-```
+{% endhighlight %}
 
 ## Populating and Validating User Input ##
 
@@ -107,7 +107,7 @@ We then call the `filter()` method to see if the user input is valid;
 if not, we show the messages for the inputs
 that did not pass their filter rules.
 
-```php
+{% highlight php %}
 <?php
 // fill the form with $_POST array elements
 // that match the form input names.
@@ -129,7 +129,7 @@ if ($pass) {
         }
     }
 }
-```
+{% endhighlight %}
 
 ## Applying CSRF Protections ##
 
@@ -141,7 +141,7 @@ cannot provide: an object that tells us if the user is authenticated or not,
 and an object to generate and retain a crytpographically secure random value
 for the CSRF token value.  A psuedo-implementation follows.
 
-```php
+{% highlight php %}
 <?php
 namespace Example\Package\Input;
 
@@ -191,18 +191,18 @@ class AntiCsrf implements AntiCsrfInterface
             && $data['__csrf_token'] == $this->csrf->getValue();
     }
 }
-```
+{% endhighlight %}
 
 We can then pass an instance of the implementation into our form using the
 `setAntiCsrf()` method.
 
 
-```php
+{% highlight php %}
 <?php
 $form = $this->getFactory()->newInstance('form.contact');
 $anti_csrf = new AntiCsrf(new UserObject, new CsrfObject);
 $form->setAntiCsrf($anti_csrf);
-```
+{% endhighlight %}
 
 Calling `setAntiCsrf()` adds a CSRF field to the form.
 
@@ -223,7 +223,7 @@ custom name that the view layer recognizes, or anything else; recall that
 these are only hints for the view, and are not strict. In addition, we can use
 fluent methods to set attributes and options on the field.
 
-```php    
+{% highlight php %}    
 // hint the view layer to treat the state field as a select, with a 
 // particular set of options (the keys are the option values, and the values
 // are the displayed text)
@@ -235,12 +235,12 @@ $this->setField('state', 'select')
         'AR' => 'Arkansas',
         // ...
      ));
-```
+{% endhighlight %}
 
 In our view layer, we can extract the hints for a field using the `get()`
 method.
 
-```php
+{% highlight php %}
 <?php
 // get the hints for the state field
 $hints = $form->get('state');
@@ -259,7 +259,7 @@ $hints = $form->get('state');
 //     ),
 //     'value' => '',           # the current value of the input
 // );
-```
+{% endhighlight %}
 
 The [Aura.View](http://github.com/auraphp/Aura.View) package comes with a
 series of helpers that can translate the hints array to HTML.
@@ -267,15 +267,15 @@ series of helpers that can translate the hints array to HTML.
 Assuming you have assigned the form object to the view from controller 
 action as
    
-```php
+{% highlight php %}
 $this->data->form = $form;
-```
+{% endhighlight %}
 
 then from view, you can display the form as
 
-```php
+{% highlight php %}
 echo $this->field($this->form->get('state'));
-```
+{% endhighlight %}
 
 ## Passing Options Into Forms ##
 
@@ -288,7 +288,7 @@ options.  We can then use those options for building the inputs.
 For example, we would construct our `ContactForm` with an arbitrary options
 object ...
 
-```php
+{% highlight php %}
 <?php
 namespace Example\Package;
 
@@ -307,12 +307,12 @@ class Options
         return $this->states;
     }
 }
-```
+{% endhighlight %}
 
 ... and then use it in the `init()` method of form remove the `$states` 
 array with `$options->getStates()`.
 
-```php
+{% highlight php %}
 <?php
 namespace Example\Package;
 
@@ -332,14 +332,14 @@ class ContactForm extends Form
              ->setOptions($states);
     }
 }
-```
+{% endhighlight %}
 
 ## Configuration for Options ##
 
-```php
+{% highlight php %}
 $di->set('contact_options', function () use ($di) {
     return $di->newInstance('Example\Package\Options');
 });
 
 $di->params['Example\Package\ContactForm']['options'] = $di->lazyGet('contact_options');
-```
+{% endhighlight %}

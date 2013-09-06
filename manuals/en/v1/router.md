@@ -23,7 +23,7 @@ rules](http://solarphp.com/manual/dispatch-cycle.rewrite-rules) and
 
 To create a route, call the `add()` method.
 
-```php
+{% highlight php %}
 <?php
 // add a simple named route without params
 $di->get('router_map')->add('home', '/');
@@ -43,7 +43,7 @@ $di->get('router_map')->add('read', '/blog/read/{:id}{:format}', [
         'format'     => 'html',
     ],
 ]);
-```
+{% endhighlight %}
 
 ## Generating A Route Path ##
 
@@ -52,14 +52,14 @@ $di->get('router_map')->add('read', '/blog/read/{:id}{:format}', [
 To generate a URI path from a route so that you can create links, call
 `generate()` on the router object and provide the route name.
 
-```php
+{% highlight php %}
 <?php
 // $path => "/blog/read/42.atom"
 $path = $this->router->generate('read', [
     'id' => 42,
     'format' => '.atom',
 ]);
-```
+{% endhighlight %}
 
 Aura Router does not do dynamic matching of routes; a route must have a name
 to be able to generate a path from it.
@@ -81,11 +81,11 @@ keys:
 - `params` -- The regular expression subpatterns for path params; inline 
 params will override these settings. For example:
         
-```php
+{% highlight php %}
 'params' => [
     'id' => '(\d+)',
 ]
-```
+{% endhighlight %}
         
   Note that the path itself is allowed to contain param tokens with inline 
   regular expressions; e.g., `/read/{:id:(\d+)}`.  This may be easier to read in some cases.
@@ -93,13 +93,13 @@ params will override these settings. For example:
 - `values` -- The default values for the route. These will be overwritten 
 by matching params from the path.
 
-```php
+{% highlight php %}
 'values' => [
     'controller' => 'blog',
     'action' => 'read',
     'id' => 1,
 ]
-```
+{% endhighlight %}
         
 - `method` -- The `$server['REQUEST_METHOD']` must match one of these values.
 
@@ -120,7 +120,7 @@ logic for the route, and to change the `$matches` for param values from the path
 
 Here is a full route specification named `read` with all keys in place:
 
-```php
+{% highlight php %}
 <?php
 $di->get('router_map')->add('read', '/blog/read/{:id}{:format}', [
     'params' => [
@@ -153,7 +153,7 @@ $di->get('router_map')->add('read', '/blog/read/{:id}{:format}', [
         return $data;
     }
 ]);
-```
+{% endhighlight %}
 
 
 Note that using closures, instead of callbacks, means you will not be able to
@@ -166,17 +166,17 @@ You don't need to specify a complex route specification. If you pass a string
 for the route instead of an array ...
 
    
-```php
+{% highlight php %}
 <?php
 $di->get('router_map')->add('archive', '/archive/{:year}/{:month}/{:day}');
-```
+{% endhighlight %}
 
 ... then Aura Router will use a default subpattern that matches everything
 except slashes for the path params, and use the route name as the default
 value for `'action'`. Thus, the above short-form route is equivalent to the
 following long-form route:
 
-```php
+{% highlight php %}
 <?php
 $di->get('router_map')->add('archive', '/archive/{:year}/{:month}/{:day}', [
     'params' => [
@@ -188,7 +188,7 @@ $di->get('router_map')->add('archive', '/archive/{:year}/{:month}/{:day}', [
         'action' => 'archive',
     ],
 ]);
-```
+{% endhighlight %}
 
 ## Wildcard Routes ##
 
@@ -203,7 +203,7 @@ collect the remaining slash-separated values into a sequential array named
 `'foo'`. Notably, the matched path with no wildcard values may have a slash at
 the end or not.
 
-```php
+{% highlight php %}
 <?php
 $di->get('router_map')->add('wild_post', '/post/{:id}/{:other*}');
 
@@ -221,7 +221,7 @@ $route = $di->get('router_map')->match('/post/88/', $_SERVER);
 $route = $di->get('router_map')->match('/post/88', $_SERVER);
 // $route->values['id'] = 88;
 // $route->values['other'] = [];
-```
+{% endhighlight %}
 
 The second is a "values required" wildcard, represented by adding `/{:foo+}`
 to the end of the path. This will allow the route to match anything at all
@@ -229,7 +229,7 @@ after that point, but there must be at least one slash and an additional
 value. On a match, it will collect the remaining slash-separated values into a
 sequential array named `'foo'`.
 
-```php
+{% highlight php %}
 <?php
 $di->get('router_map')->add('wild_post', '/post/{:id}/{:other+}');
 
@@ -241,7 +241,7 @@ $route = $di->get('router_map')->match('/post/88/foo/bar/baz', $_SERVER);
 // these do not match
 $route = $di->get('router_map')->match('/post/88/', $_SERVER);
 $route = $di->get('router_map')->match('/post/88', $_SERVER);
-```
+{% endhighlight %}
 
 
 > N.b.: In previous releases of the router, `'/*'` was the wildcard
@@ -255,7 +255,7 @@ You can add a series of routes all at once under a single "mount point" in
 your application. For example, if you want all your blog-related routes to be
 mounted at `'/blog'` in your application, you can do this:
 
-```php
+{% highlight php %}
 <?php
 $di->get('router_map')->attach('/blog', [
     
@@ -281,7 +281,7 @@ $di->get('router_map')->attach('/blog', [
         'edit' => '/{:id:(\d+)}/edit',
     ],
 ]);
-```
+{% endhighlight %}
 
     
 Each of the route paths will be prefixed with `/blog`, so the effective paths
@@ -295,7 +295,7 @@ You can set other route specification keys as part of the attachment
 specification; these will be used as the defaults for each attached route, so
 you don't need to repeat common information:
 
-```php
+{% highlight php %}
 <?php
 $di->get('router_map')->attach('/blog', [
     
@@ -318,26 +318,26 @@ $di->get('router_map')->attach('/blog', [
         'edit'   => '/{:id}/edit',
     ],
 ));
-```
+{% endhighlight %}
 
 ## Inside controller ##
 
 RouterMap objects are availble inside controller as `$this->router`
 
-```php
+{% highlight php %}
 $this->router->generategenerate('read', [
     'id' => 42,
     'format' => '.atom',
 ]);
-```
+{% endhighlight %}
 
 ## Inside view ##
 
 You can generate routes as  
 
-```php
+{% highlight php %}
 $this->route('read', [
     'id' => 42,
     'format' => '.atom',
 ]);
-```
+{% endhighlight %}

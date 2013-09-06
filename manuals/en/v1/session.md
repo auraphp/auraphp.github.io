@@ -15,7 +15,7 @@ The controller doesn't have `Aura\Session\Manager` object. So let us add a
 method `setSessionManager` in the controller to make use of setter 
 injection. 
 
-```php
+{% highlight php %}
 <?php
 namespace Example\Package\Web;
 
@@ -38,21 +38,21 @@ abstract class PageController extends AbstractPage
     
     // .. rest of your methods 
 }
-```
+{% endhighlight %}
     
 ### Configuration ###
 
-```php
+{% highlight php %}
 // Session Manager
 $di->setter['Example\Package\Web\PageController']['setSessionManager'] = $di->lazyGet('session_manager');
-```
+{% endhighlight %}
 
 And now we can get the object of `Aura\Session\Manager` inside controller 
 as 
     
-```php
+{% highlight php %}
 $session = $this->getSessionManager();
-```
+{% endhighlight %}
     
 and make use of it.
 
@@ -61,7 +61,7 @@ and make use of it.
 In-order to get session manager we need to create a view helper and 
 inject the `Aura\Session\Manager` object.
 
-```php
+{% highlight php %}
 <?php
 namespace Example\Package\View\Helper;
 
@@ -82,24 +82,24 @@ class SessionManager extends AbstractHelper
         return $this->session_manager;
     }
 }
-```
+{% endhighlight %}
 
 ### Configuration ###
 
-```php
+{% highlight php %}
 $di->params['Example\Package\View\Helper\SessionManager']['session_manager'] = $di->lazyGet('session_manager');
 
 $di->params['Aura\View\HelperLocator']['registry']['sessionManager'] = function () use ($di) {
     return $di->newInstance('Example\Package\View\Helper\SessionManager');
 };
-```
+{% endhighlight %}
     
 And once you are done with the configuration, you can get the 
 `Aura\Session\Manger` object within the view like 
 
-```php
+{% highlight php %}
     $this->sessionManger();
-```
+{% endhighlight %}
 
 ## Segments ##
 
@@ -108,7 +108,7 @@ superglobal. For example, if you ask for a segment named `ClassName`, the
 segment will be a reference to `$_SESSION['ClassName']`. All values in the
 `ClassName` segment will be stored in an array under that key.
 
-```php
+{% highlight php %}
 <?php
 // get a session segment; starts the session if it is not already,
 // and creates the $_SESSION key if it does not exist.
@@ -133,7 +133,7 @@ echo $segment->foo; // 'bar'
 // the superglobal directly and the segment values will also change.
 $_SESSION['Vendor\Package\ClassName']['zim'] = 'gir'
 echo $segment->zim; // 'gir'
-```
+{% endhighlight %}
     
 The benefit of a session segment is that we can deconflict the keys in the
 `$_SESSION` superglobal by using class names (or some other unique name) for
@@ -166,10 +166,10 @@ sessions.
 When you are done with a session and want its data to be available later, call
 the `commit()` method:
 
-```php
+{% highlight php %}
 <?php
 $session->commit();
-```
+{% endhighlight %}
 
 The aura framework already have a `commit()` method at the end of the 
 `post_exec` signal.
@@ -181,29 +181,29 @@ The aura framework already have a `commit()` method at the end of the
 Any time a user has a change in privilege (that is, gaining or losing access
 rights within a system) be sure to regenerate the session ID:
 
-```php
+{% highlight php %}
 <?php
 $session->regenerateId();
-```
+{% endhighlight %}
     
 > N.b.: The `regenerateId()` method also regenerates the CSRF token value.
 
 To clear the in-memory session data, but leave the session active, use the
 `clear()` method:
 
-```php
+{% highlight php %}
 <?php
 $session->clear();
-```
+{% endhighlight %}
 
 To end a session and remove its data (both committed and in-memory), generally
 after a user signs out or when authentication timeouts occur, call the
 `destroy()` method:
 
-```php
+{% highlight php %}
 <?php
 $session->destroy();
-```
+{% endhighlight %}
 
 ## Read-Once ("Flash") Values ##
 
@@ -214,18 +214,18 @@ is used, and then automatically clears itself. These are called "flash" or
 
 To set a read-once value on a segment, use the `setFlash()` method.
 
-```php
+{% highlight php %}
 <?php
 // get a segment
 $segment = $session->newSegment('Vendor\Package\ClassName');
 
 // set a read-once value on the segment
 $segment->setFlash('message', 'Hello world!');
-```
+{% endhighlight %}
 
 Then, in subsequent sessions, we can read the flash value using `getFlash()`:
 
-```php    
+{% highlight php %}    
 <?php
 // get a segment
 $segment = $session->newSegment('Vendor\Package\ClassName');
@@ -235,13 +235,13 @@ $message = $segment->getFlash('message'); // 'Hello world!'
 
 // if we try to read it again, it won't be there
 $not_there = $segment->getFlash('message'); // null
-```
+{% endhighlight %}
 
 Sometimes we need to know if a flash value exists, but don't want to read it
 yet (thereby removing it from the session). In these cases, we can use the
 `hasFlash()` method:
 
-```php
+{% highlight php %}
 <?php
 // get a segment
 $segment = $session->newSegment('Vendor\Package\ClassName');
@@ -253,18 +253,18 @@ if ($segment->hasFlash('message')) {
 } else {
     echo "No message available.";
 }
-```
+{% endhighlight %}
     
 To clear all flash values on a segment, use the `clearFlash()` method:
 
-```php
+{% highlight php %}
 <?php
 // get a segment
 $segment = $session->newSegment('Vendor\Package\ClassName');
 
 // clear all flash values, but leave all other segment values in place
 $segment->clearFlash();
-```
+{% endhighlight %}
 
 
 ## Cross-Site Request Forgery ##
@@ -295,7 +295,7 @@ For this example, the form field name will be `'__csrf_value''`. In each form
 we want to protect against CSRF, we use the session CSRF token value for that
 field:
 
-```php
+{% highlight php %}
 <?php
 /**  
  * @var Vendor\Package\User $user A user-authentication object.
@@ -314,12 +314,12 @@ field:
     <!-- other form fields -->
     
 </form>
-```
+{% endhighlight %}
 
 When processing the request, check to see if the incoming CSRF token is valid
 for the authenticated user:
 
-```php
+{% highlight php %}
 <?php
 /**  
  * @var Vendor\Package\User $user A user-authentication object.
@@ -341,7 +341,7 @@ if ($unsafe && $user->isAuthenticated()) {
 } else {
     echo "CSRF attacks only affect unsafe requests by authenticated users.";
 }
-```
+{% endhighlight %}
 
 ## CSRF Value Generation ##
 
