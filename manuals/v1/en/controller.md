@@ -1,6 +1,7 @@
 ---
-layout: site
+layout: docs
 title: The web Controller
+permalink: /manuals/v1/en/controller/
 ---
 
 # Controller #
