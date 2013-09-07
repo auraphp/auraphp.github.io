@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Validation and Sanitization
-permalink: /manuals/en/v1/filter/
+permalink: /manuals/v1/en/filter/
 ---
 
 # Validation and Sanitization #

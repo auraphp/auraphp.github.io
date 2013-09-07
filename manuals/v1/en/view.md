@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: The View
-permalink: /manuals/en/v1/view/
+permalink: /manuals/v1/en/view/
 ---
 
 # The View #

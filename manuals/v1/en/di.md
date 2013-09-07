@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Dependency Injection
-permalink: /manuals/en/v1/di/
+permalink: /manuals/v1/en/di/
 ---
 
 # Dependency Injection #

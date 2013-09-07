@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Routing
-permalink: /manuals/en/v1/routing/
+permalink: /manuals/v1/en/routing/
 ---
 
 # Routing #

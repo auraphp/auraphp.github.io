@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Thanks
-permalink: /manuals/en/v1/credits/
+permalink: /manuals/v1/en/credits/
 ---
 
 # Thanks #

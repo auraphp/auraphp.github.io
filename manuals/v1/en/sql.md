@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Aura SQL
-permalink: /manuals/en/v1/sql/
+permalink: /manuals/v1/en/sql/
 ---
 
 #Aura SQL#

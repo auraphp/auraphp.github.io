@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Session
-permalink: /manuals/en/v1/session/
+permalink: /manuals/v1/en/session/
 ---
 
 #Session#

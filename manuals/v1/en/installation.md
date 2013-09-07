@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Installation
-permalink: /manuals/en/v1/installation/
+permalink: /manuals/v1/en/installation/
 ---
 
 # Installation #

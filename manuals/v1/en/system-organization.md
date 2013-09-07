@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: System Organization
-permalink: /manuals/en/v1/system-organization/
+permalink: /manuals/v1/en/system-organization/
 ---
 
 # System Organization #

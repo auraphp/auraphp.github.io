@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Introduction to Aura
-permalink: /manuals/en/v1/introduction/
+permalink: /manuals/v1/en/introduction/
 ---
 
 # Introduction to Aura

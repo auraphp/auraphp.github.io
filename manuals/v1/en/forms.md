@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Creating Forms
-permalink: /manuals/en/v1/forms/
+permalink: /manuals/v1/en/forms/
 ---
 
 # Creating Forms #

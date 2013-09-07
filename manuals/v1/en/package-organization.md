@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Package Organization
-permalink: /manuals/en/v1/package-organization/
+permalink: /manuals/v1/en/package-organization/
 ---
 
 # Package Organization #
