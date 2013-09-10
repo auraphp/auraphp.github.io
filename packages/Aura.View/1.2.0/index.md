@@ -791,10 +791,11 @@ $contents = $twostep->render();
 
 echo $contents;
 {% endhighlight %}
+
 Now when you execute the above code, you will see the two step view 
 rendered.
 
-{% endhighlight %}html
+{% highlight php %}
 <html>
 <head>
 <title>Hello my awesome title</title>
