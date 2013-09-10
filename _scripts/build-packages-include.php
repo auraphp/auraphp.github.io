@@ -11,9 +11,9 @@ $packages = [
     'Aura.Router'   => '1.1.1',
     'Aura.Session'  => '1.0.1',
     'Aura.Signal'   => '1.0.2',
-    'Aura.Sql'      => '1.1.0', // needs greater attention
+    'Aura.Sql'      => '1.2.0',
     'Aura.Uri'      => '1.1.1',
-    'Aura.View'     => '1.1.2', // needs greater attention
+    'Aura.View'     => '1.2.0',
     'Aura.Web'      => '1.0.2',
 ];
 
