@@ -1,0 +1,2660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                    <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/Aura.html">\Aura</a></li>
+                                                    </ul>
+                    </li>
+                    <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                    <i class="icon-list-alt"></i>&#160;Errors
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                    <i class="icon-list-alt"></i>&#160;Markers
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1213979673"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-1213979673" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1542912760"></a>
+                                <a href="../namespaces/Aura.html" style="margin-left: 30px; padding-left: 0">Aura</a>
+            </div>
+            <div id="namespace-1542912760" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-184090585"></a>
+                                <a href="../namespaces/Aura.Sql.html" style="margin-left: 30px; padding-left: 0">Sql</a>
+            </div>
+            <div id="namespace-184090585" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1979458409"></a>
+                                <a href="../namespaces/Aura.Sql.Connection.html" style="margin-left: 30px; padding-left: 0">Connection</a>
+            </div>
+            <div id="namespace-1979458409" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Aura.Sql.Connection.AbstractConnection.html">AbstractConnection</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Sql.Connection.Mysql.html">Mysql</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Sql.Connection.Pgsql.html">Pgsql</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Sql.Connection.Sqlite.html">Sqlite</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Sql.Connection.Sqlsrv.html">Sqlsrv</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1373288121"></a>
+                                <a href="../namespaces/Aura.Sql.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-1373288121" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Aura.Sql.Exception.NoSuchGateway.html">NoSuchGateway</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Sql.Exception.NoSuchMaster.html">NoSuchMaster</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Sql.Exception.NoSuchSlave.html">NoSuchSlave</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1445486809"></a>
+                                <a href="../namespaces/Aura.Sql.Query.html" style="margin-left: 30px; padding-left: 0">Query</a>
+            </div>
+            <div id="namespace-1445486809" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1375807625"></a>
+                                <a href="../namespaces/Aura.Sql.Query.Mysql.html" style="margin-left: 30px; padding-left: 0">Mysql</a>
+            </div>
+            <div id="namespace-1375807625" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Aura.Sql.Query.Mysql.Delete.html">Delete</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Sql.Query.Mysql.Insert.html">Insert</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Sql.Query.Mysql.Select.html">Select</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Sql.Query.Mysql.Update.html">Update</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                            <li class="trait"><a href="../classes/Aura.Sql.Query.FlagsTrait.html">FlagsTrait</a></li>
+                                                    <li class="trait"><a href="../classes/Aura.Sql.Query.ValuesTrait.html">ValuesTrait</a></li>
+                                                    <li class="trait"><a href="../classes/Aura.Sql.Query.WhereTrait.html">WhereTrait</a></li>
+                                                                            <li class="class"><a href="../classes/Aura.Sql.Query.AbstractQuery.html">AbstractQuery</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Sql.Query.Delete.html">Delete</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Sql.Query.Factory.html">Factory</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Sql.Query.Insert.html">Insert</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Sql.Query.Select.html">Select</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Sql.Query.Update.html">Update</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Aura.Sql.ProfilerInterface.html">ProfilerInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Aura.Sql.AbstractMapper.html">AbstractMapper</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Sql.Column.html">Column</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Sql.ColumnFactory.html">ColumnFactory</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Sql.ConnectionFactory.html">ConnectionFactory</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Sql.ConnectionLocator.html">ConnectionLocator</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Sql.Exception.html">Exception</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Sql.Gateway.html">Gateway</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Sql.GatewayIterator.html">GatewayIterator</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Sql.GatewayLocator.html">GatewayLocator</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Sql.Profiler.html">Profiler</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Sql.UnitOfWork.html">UnitOfWork</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/Aura.Sql.Connection.html">\Aura\Sql\Connection</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\Aura\Sql\Connection</small>Pgsql</h1>
+                    <p><em>PostgreSQL connection adapter.</em></p>
+                    
+
+
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/Aura.Sql.Connection.AbstractConnection.html#method_fetchTableList" class="">fetchTableList()</a><br />
+                                                                    <a href="../classes/Aura.Sql.Connection.AbstractConnection.html#method_fetchTableCols" class="">fetchTableCols()</a><br />
+                                                                    <a href="../classes/Aura.Sql.Connection.Pgsql.html#method_lastInsertId" class="">lastInsertId()</a><br />
+                                                                    <a href="../classes/Aura.Sql.Connection.AbstractConnection.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/Aura.Sql.Connection.AbstractConnection.html#method_getProfiler" class="">getProfiler()</a><br />
+                                                                    <a href="../classes/Aura.Sql.Connection.AbstractConnection.html#method_getColumnFactory" class="">getColumnFactory()</a><br />
+                                                                    <a href="../classes/Aura.Sql.Connection.AbstractConnection.html#method_getQueryFactory" class="">getQueryFactory()</a><br />
+                                                                    <a href="../classes/Aura.Sql.Connection.AbstractConnection.html#method_getDsnString" class="">getDsnString()</a><br />
+                                                                    <a href="../classes/Aura.Sql.Connection.AbstractConnection.html#method_setPdo" class="">setPdo()</a><br />
+                                                                    <a href="../classes/Aura.Sql.Connection.AbstractConnection.html#method_getPdo" class="">getPdo()</a><br />
+                                                                    <a href="../classes/Aura.Sql.Connection.AbstractConnection.html#method_connect" class="">connect()</a><br />
+                                                                    <a href="../classes/Aura.Sql.Connection.AbstractConnection.html#method_disconnect" class="">disconnect()</a><br />
+                                                                    <a href="../classes/Aura.Sql.Connection.AbstractConnection.html#method_preConnect" class="">preConnect()</a><br />
+                                                                    <a href="../classes/Aura.Sql.Connection.AbstractConnection.html#method_postConnect" class="">postConnect()</a><br />
+                                                                    <a href="../classes/Aura.Sql.Connection.AbstractConnection.html#method_query" class="">query()</a><br />
+                                                                    <a href="../classes/Aura.Sql.Connection.AbstractConnection.html#method_beginTransaction" class="">beginTransaction()</a><br />
+                                                                    <a href="../classes/Aura.Sql.Connection.AbstractConnection.html#method_commit" class="">commit()</a><br />
+                                                                    <a href="../classes/Aura.Sql.Connection.AbstractConnection.html#method_rollback" class="">rollback()</a><br />
+                                                                    <a href="../classes/Aura.Sql.Connection.AbstractConnection.html#method_prepare" class="">prepare()</a><br />
+                                                                    <a href="../classes/Aura.Sql.Connection.AbstractConnection.html#method_fetchAll" class="">fetchAll()</a><br />
+                                                                    <a href="../classes/Aura.Sql.Connection.AbstractConnection.html#method_fetchAssoc" class="">fetchAssoc()</a><br />
+                                                                    <a href="../classes/Aura.Sql.Connection.AbstractConnection.html#method_fetchCol" class="">fetchCol()</a><br />
+                                                                    <a href="../classes/Aura.Sql.Connection.AbstractConnection.html#method_fetchValue" class="">fetchValue()</a><br />
+                                                                    <a href="../classes/Aura.Sql.Connection.AbstractConnection.html#method_fetchPairs" class="">fetchPairs()</a><br />
+                                                                    <a href="../classes/Aura.Sql.Connection.AbstractConnection.html#method_fetchOne" class="">fetchOne()</a><br />
+                                                                    <a href="../classes/Aura.Sql.Connection.AbstractConnection.html#method_quote" class="">quote()</a><br />
+                                                                    <a href="../classes/Aura.Sql.Connection.AbstractConnection.html#method_quoteInto" class="">quoteInto()</a><br />
+                                                                    <a href="../classes/Aura.Sql.Connection.AbstractConnection.html#method_quoteMulti" class="">quoteMulti()</a><br />
+                                                                    <a href="../classes/Aura.Sql.Connection.AbstractConnection.html#method_quoteName" class="">quoteName()</a><br />
+                                                                    <a href="../classes/Aura.Sql.Connection.AbstractConnection.html#method_quoteNamesIn" class="">quoteNamesIn()</a><br />
+                                                                    <a href="../classes/Aura.Sql.Connection.AbstractConnection.html#method_insert" class="">insert()</a><br />
+                                                                    <a href="../classes/Aura.Sql.Connection.AbstractConnection.html#method_update" class="">update()</a><br />
+                                                                    <a href="../classes/Aura.Sql.Connection.AbstractConnection.html#method_delete" class="">delete()</a><br />
+                                                                    <a href="../classes/Aura.Sql.Connection.AbstractConnection.html#method_newSelect" class="">newSelect()</a><br />
+                                                                    <a href="../classes/Aura.Sql.Connection.AbstractConnection.html#method_newInsert" class="">newInsert()</a><br />
+                                                                    <a href="../classes/Aura.Sql.Connection.AbstractConnection.html#method_newUpdate" class="">newUpdate()</a><br />
+                                                                    <a href="../classes/Aura.Sql.Connection.AbstractConnection.html#method_newDelete" class="">newDelete()</a><br />
+                                                                    <a href="../classes/Aura.Sql.Connection.AbstractConnection.html#method_limit" class="">limit()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No constants found</em>
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <a href="../classes/Aura.Sql.Connection.Pgsql.html#method_getDefault" class="">getDefault()</a><br />
+                                                                    <a href="../classes/Aura.Sql.Connection.AbstractConnection.html#method_newPdo" class="">newPdo()</a><br />
+                                                                    <a href="../classes/Aura.Sql.Connection.AbstractConnection.html#method_replaceName" class="">replaceName()</a><br />
+                                                                    <a href="../classes/Aura.Sql.Connection.AbstractConnection.html#method_replaceNamesIn" class="">replaceNamesIn()</a><br />
+                                                                    <a href="../classes/Aura.Sql.Connection.AbstractConnection.html#method_getTypeSizeScope" class="">getTypeSizeScope()</a><br />
+                                                                    <a href="../classes/Aura.Sql.Connection.AbstractConnection.html#method_splitName" class="">splitName()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Aura.Sql.Connection.AbstractConnection.html#property_dsn" class="">$dsn</a><br />
+                                                                    <a href="../classes/Aura.Sql.Connection.AbstractConnection.html#property_dsn_prefix" class="">$dsn_prefix</a><br />
+                                                                    <a href="../classes/Aura.Sql.Connection.AbstractConnection.html#property_quote_name_prefix" class="">$quote_name_prefix</a><br />
+                                                                    <a href="../classes/Aura.Sql.Connection.AbstractConnection.html#property_quote_name_suffix" class="">$quote_name_suffix</a><br />
+                                                                    <a href="../classes/Aura.Sql.Connection.AbstractConnection.html#property_column_factory" class="">$column_factory</a><br />
+                                                                    <a href="../classes/Aura.Sql.Connection.AbstractConnection.html#property_options" class="">$options</a><br />
+                                                                    <a href="../classes/Aura.Sql.Connection.AbstractConnection.html#property_password" class="">$password</a><br />
+                                                                    <a href="../classes/Aura.Sql.Connection.AbstractConnection.html#property_profiler" class="">$profiler</a><br />
+                                                                    <a href="../classes/Aura.Sql.Connection.AbstractConnection.html#property_pdo" class="">$pdo</a><br />
+                                                                    <a href="../classes/Aura.Sql.Connection.AbstractConnection.html#property_query_factory" class="">$query_factory</a><br />
+                                                                    <a href="../classes/Aura.Sql.Connection.AbstractConnection.html#property_username" class="">$username</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No private properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/Connection.Pgsql.php.html"><div class="path-wrapper">Connection/Pgsql.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">\Aura.Sql</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                                                                                                                                                
+                                        <div class="namespace-wrapper"><a href="../classes/Aura.Sql.Connection.AbstractConnection.html">\Aura\Sql\Connection\AbstractConnection</a></div>
+                                                                                                    <div class="namespace-wrapper">\Aura\Sql\Connection\Pgsql</div>
+                            </dd>
+
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr><td colspan="2"><em>None found</em></td></tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_dsn" name="property_dsn" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$dsn</h3>
+                <pre class="signature">$dsn : string|array</pre>
+                <p><em>The PDO DSN for the connection. This can be an array of key-value pairs
+or a string (minus the PDO type prefix).</em></p>
+                
+
+
+                                <h4>Type</h4>
+                string|array
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Aura.Sql.Connection.AbstractConnection.html"><div class="path-wrapper">\Aura\Sql\Connection\AbstractConnection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_dsn_prefix" name="property_dsn_prefix" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$dsn_prefix</h3>
+                <pre class="signature">$dsn_prefix : string</pre>
+                <p><em>The PDO type prefix.</em></p>
+                
+
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Aura.Sql.Connection.AbstractConnection.html"><div class="path-wrapper">\Aura\Sql\Connection\AbstractConnection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_quote_name_prefix" name="property_quote_name_prefix" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$quote_name_prefix</h3>
+                <pre class="signature">$quote_name_prefix : string</pre>
+                <p><em>The prefix to use when quoting identifier names.</em></p>
+                
+
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Aura.Sql.Connection.AbstractConnection.html"><div class="path-wrapper">\Aura\Sql\Connection\AbstractConnection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_quote_name_suffix" name="property_quote_name_suffix" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$quote_name_suffix</h3>
+                <pre class="signature">$quote_name_suffix : string</pre>
+                <p><em>The suffix to use when quoting identifier names.</em></p>
+                
+
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Aura.Sql.Connection.AbstractConnection.html"><div class="path-wrapper">\Aura\Sql\Connection\AbstractConnection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_column_factory" name="property_column_factory" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$column_factory</h3>
+                <pre class="signature">$column_factory : \Aura\Sql\ColumnFactory</pre>
+                <p><em>A ColumnFactory for returning column information.</em></p>
+                
+
+
+                                <h4>Type</h4>
+                <a href="../classes/Aura.Sql.ColumnFactory.html">\Aura\Sql\ColumnFactory</a>
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Aura.Sql.Connection.AbstractConnection.html"><div class="path-wrapper">\Aura\Sql\Connection\AbstractConnection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_options" name="property_options" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$options</h3>
+                <pre class="signature">$options : array</pre>
+                <p><em>PDO options for the connection.</em></p>
+                
+
+
+                                <h4>Type</h4>
+                array
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Aura.Sql.Connection.AbstractConnection.html"><div class="path-wrapper">\Aura\Sql\Connection\AbstractConnection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_password" name="property_password" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$password</h3>
+                <pre class="signature">$password : string</pre>
+                <p><em>The password for the connection.</em></p>
+                
+
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Aura.Sql.Connection.AbstractConnection.html"><div class="path-wrapper">\Aura\Sql\Connection\AbstractConnection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_profiler" name="property_profiler" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$profiler</h3>
+                <pre class="signature">$profiler : \Aura\Sql\ProfilerInterface</pre>
+                <p><em>A query profiler.</em></p>
+                
+
+
+                                <h4>Type</h4>
+                <a href="../classes/Aura.Sql.ProfilerInterface.html">\Aura\Sql\ProfilerInterface</a>
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Aura.Sql.Connection.AbstractConnection.html"><div class="path-wrapper">\Aura\Sql\Connection\AbstractConnection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_pdo" name="property_pdo" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$pdo</h3>
+                <pre class="signature">$pdo : \PDO</pre>
+                <p><em>The PDO connection object.</em></p>
+                
+
+
+                                <h4>Type</h4>
+                \PDO
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Aura.Sql.Connection.AbstractConnection.html"><div class="path-wrapper">\Aura\Sql\Connection\AbstractConnection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_query_factory" name="property_query_factory" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$query_factory</h3>
+                <pre class="signature">$query_factory : \Aura\Sql\Query\Factory</pre>
+                <p><em>A query factory</em></p>
+                
+
+
+                                <h4>Type</h4>
+                <a href="../classes/Aura.Sql.Query.Factory.html">\Aura\Sql\Query\Factory</a>
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Aura.Sql.Connection.AbstractConnection.html"><div class="path-wrapper">\Aura\Sql\Connection\AbstractConnection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_username" name="property_username" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$username</h3>
+                <pre class="signature">$username : string</pre>
+                <p><em>The username for the connection.</em></p>
+                
+
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Aura.Sql.Connection.AbstractConnection.html"><div class="path-wrapper">\Aura\Sql\Connection\AbstractConnection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_fetchTableList" name="method_fetchTableList" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">fetchTableList()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">fetchTableList(string <span class="argument">$schema</span>) : array</pre>
+                <p><em>Returns an list of tables in the database.</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$schema</td>
+                                <td><p>Optionally, pass a schema name to get the list
+of tables in this schema.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                            &mdash; <p>The list of tables in the database.</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                        <span class="label label-info">abstract</span>
+                                                <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Aura.Sql.Connection.AbstractConnection.html"><div class="path-wrapper">\Aura\Sql\Connection\AbstractConnection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_fetchTableCols" name="method_fetchTableCols" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">fetchTableCols()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">fetchTableCols(string <span class="argument">$spec</span>) : array</pre>
+                <p><em>Returns an array of columns in a table.</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$spec</td>
+                                <td><p>Return the columns in this table. This may be just
+a <code>table</code> name, or a <code>schema.table</code> name.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                            &mdash; <p>An associative array where the key is the column name
+and the value is a Column object.</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                        <span class="label label-info">abstract</span>
+                                                <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Aura.Sql.Connection.AbstractConnection.html"><div class="path-wrapper">\Aura\Sql\Connection\AbstractConnection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_lastInsertId" name="method_lastInsertId" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">lastInsertId()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">lastInsertId(string <span class="argument">$table</span>, string <span class="argument">$col</span>) : mixed</pre>
+                <p><em>Returns the last ID inserted on the connection for a given table
+and column sequence.</em></p>
+                <p>PostgreSQL uses a sequence named for the table and column to track
+auto-incremented IDs; you need to pass the table and column name to
+tell PostgreSQL which sequence to check.</p>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$table</td>
+                                <td><p>The table to check the last inserted ID on.</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$col</td>
+                                <td><p>The column to check the last inserted ID on.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__construct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__construct(\Aura\Sql\ProfilerInterface <span class="argument">$profiler</span>, \Aura\Sql\ColumnFactory <span class="argument">$column_factory</span>, \Aura\Sql\Query\Factory <span class="argument">$query_factory</span>, mixed <span class="argument">$dsn</span>, string <span class="argument">$username</span>, string <span class="argument">$password</span>, array <span class="argument">$options</span>)</pre>
+                <p><em>Constructor.</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Aura.Sql.ProfilerInterface.html">\Aura\Sql\ProfilerInterface</a></td>
+                                <td>$profiler</td>
+                                <td><p>A query profiler.</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td><a href="../classes/Aura.Sql.ColumnFactory.html">\Aura\Sql\ColumnFactory</a></td>
+                                <td>$column_factory</td>
+                                <td><p>A column object factory.</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td><a href="../classes/Aura.Sql.Query.Factory.html">\Aura\Sql\Query\Factory</a></td>
+                                <td>$query_factory</td>
+                                <td><p>A query object factory.</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$dsn</td>
+                                <td><p>DSN parameters for the PDO connection.</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$username</td>
+                                <td><p>The username for the PDO connection.</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$password</td>
+                                <td><p>The password for the PDO connection.</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$options</td>
+                                <td><p>Options for PDO connection.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Aura.Sql.Connection.AbstractConnection.html"><div class="path-wrapper">\Aura\Sql\Connection\AbstractConnection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getProfiler" name="method_getProfiler" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getProfiler()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getProfiler() : \Aura\Sql\ProfilerInterface</pre>
+                <p><em>Returns the profiler object.</em></p>
+                
+
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Aura.Sql.ProfilerInterface.html">\Aura\Sql\ProfilerInterface</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Aura.Sql.Connection.AbstractConnection.html"><div class="path-wrapper">\Aura\Sql\Connection\AbstractConnection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getColumnFactory" name="method_getColumnFactory" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getColumnFactory()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getColumnFactory() : \Aura\Sql\ColumnFactory</pre>
+                <p><em>Returns the column factory object.</em></p>
+                
+
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Aura.Sql.ColumnFactory.html">\Aura\Sql\ColumnFactory</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Aura.Sql.Connection.AbstractConnection.html"><div class="path-wrapper">\Aura\Sql\Connection\AbstractConnection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getQueryFactory" name="method_getQueryFactory" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getQueryFactory()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getQueryFactory() : \Aura\Sql\Query\Factory</pre>
+                <p><em>Returns the query factory object.</em></p>
+                
+
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Aura.Sql.Query.Factory.html">\Aura\Sql\Query\Factory</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Aura.Sql.Connection.AbstractConnection.html"><div class="path-wrapper">\Aura\Sql\Connection\AbstractConnection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getDsnString" name="method_getDsnString" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getDsnString()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getDsnString() : string</pre>
+                <p><em>Returns the DSN string used by the PDO connection.</em></p>
+                
+
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Aura.Sql.Connection.AbstractConnection.html"><div class="path-wrapper">\Aura\Sql\Connection\AbstractConnection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setPdo" name="method_setPdo" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setPdo()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setPdo(\PDO <span class="argument">$pdo</span>) : void</pre>
+                <p><em>Sets the PDO connection object; typically used when a shared PDO object
+already exists in a legacy context.</em></p>
+                <p>Note that if you use setPdo(), the pre- and post-connect method hooks
+will not be called.</p>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\PDO</td>
+                                <td>$pdo</td>
+                                <td><p>The PDO object.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Aura.Sql.Connection.AbstractConnection.html"><div class="path-wrapper">\Aura\Sql\Connection\AbstractConnection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getPdo" name="method_getPdo" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getPdo()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getPdo() : \PDO</pre>
+                <p><em>Returns the PDO connection object; if it does not exist, creates it to
+connect to the database.</em></p>
+                
+
+
+                
+                
+                                    <h4>Returns</h4>
+                    \PDO
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Aura.Sql.Connection.AbstractConnection.html"><div class="path-wrapper">\Aura\Sql\Connection\AbstractConnection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_connect" name="method_connect" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">connect()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">connect() : void</pre>
+                <p><em>Connects to the database by creating the PDO object.</em></p>
+                
+
+
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Aura.Sql.Connection.AbstractConnection.html"><div class="path-wrapper">\Aura\Sql\Connection\AbstractConnection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_disconnect" name="method_disconnect" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">disconnect()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">disconnect() : void</pre>
+                <p><em>Disconnects from the database by unsetting the PDO object; if
+a custom PDO object was passed in via setPDO(), the same object will
+need to be passed in again to reconnect.</em></p>
+                
+
+
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Aura.Sql.Connection.AbstractConnection.html"><div class="path-wrapper">\Aura\Sql\Connection\AbstractConnection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_preConnect" name="method_preConnect" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">preConnect()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">preConnect() : void</pre>
+                <p><em>A hook that executes before the database connection is created.</em></p>
+                
+
+
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Aura.Sql.Connection.AbstractConnection.html"><div class="path-wrapper">\Aura\Sql\Connection\AbstractConnection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_postConnect" name="method_postConnect" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">postConnect()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">postConnect() : void</pre>
+                <p><em>A hook that executes after the database connection is created.</em></p>
+                
+
+
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Aura.Sql.Connection.AbstractConnection.html"><div class="path-wrapper">\Aura\Sql\Connection\AbstractConnection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_query" name="method_query" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">query()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">query(string|\Aura\Sql\Query\AbstractQuery <span class="argument">$query</span>, array <span class="argument">$bind</span>) : \PDOStatement</pre>
+                <p><em>Prepares and executes an SQL query, optionally binding values
+to named placeholders in the query text.</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string|<a href="../classes/Aura.Sql.Query.AbstractQuery.html">\Aura\Sql\Query\AbstractQuery</a></td>
+                                <td>$query</td>
+                                <td><p>The text of the SQL query; or, a
+query object.</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$bind</td>
+                                <td><p>An associative array of data to bind to named
+placeholders in the query.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    \PDOStatement
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Aura.Sql.Connection.AbstractConnection.html"><div class="path-wrapper">\Aura\Sql\Connection\AbstractConnection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_beginTransaction" name="method_beginTransaction" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">beginTransaction()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">beginTransaction() : mixed</pre>
+                <p><em>Begins a database transaction and turns off autocommit.</em></p>
+                
+
+
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Aura.Sql.Connection.AbstractConnection.html"><div class="path-wrapper">\Aura\Sql\Connection\AbstractConnection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_commit" name="method_commit" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">commit()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">commit() : mixed</pre>
+                <p><em>Commits the current database transaction and turns autocommit back on.</em></p>
+                
+
+
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Aura.Sql.Connection.AbstractConnection.html"><div class="path-wrapper">\Aura\Sql\Connection\AbstractConnection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_rollback" name="method_rollback" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">rollback()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">rollback() : mixed</pre>
+                <p><em>Rolls back the current database transaction and turns autocommit back
+on.</em></p>
+                
+
+
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Aura.Sql.Connection.AbstractConnection.html"><div class="path-wrapper">\Aura\Sql\Connection\AbstractConnection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_prepare" name="method_prepare" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">prepare()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">prepare(string <span class="argument">$text</span>, array <span class="argument">$bind</span>) : \PDOStatement</pre>
+                <p><em>Creates a prepared PDOStatement and binds data values to placeholders.</em></p>
+                <p>PDO itself is touchy about binding values.  If you attempt to bind a
+value that does not have a corresponding placeholder, PDO will error.
+This method checks the query text to find placeholders and binds only
+data values that have placeholders in the text.</p>
+
+<p>Similarly, PDO won't bind an array value. This method checks to see if
+the data to be bound is an array; if it is, the array is quoted and
+replaced into the text directly instead of binding it.</p>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$text</td>
+                                <td><p>The text of the SQL query.</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$bind</td>
+                                <td><p>The values to bind (or quote) into the PDOStatement.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    \PDOStatement
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Aura.Sql.Connection.AbstractConnection.html"><div class="path-wrapper">\Aura\Sql\Connection\AbstractConnection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_fetchAll" name="method_fetchAll" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">fetchAll()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">fetchAll(string|\Aura\Sql\Query\AbstractQuery <span class="argument">$query</span>, array <span class="argument">$bind</span>, callable <span class="argument">$callable</span>) : array</pre>
+                <p><em>Fetches a sequential array of all rows from the database; the rows
+are represented as associative arrays.</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string|<a href="../classes/Aura.Sql.Query.AbstractQuery.html">\Aura\Sql\Query\AbstractQuery</a></td>
+                                <td>$query</td>
+                                <td><p>The text of the SQL query; or, a
+query object.</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$bind</td>
+                                <td><p>An associative array of data to bind to the named
+placeholders.</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>callable</td>
+                                <td>$callable</td>
+                                <td><p>A callable to be applied to each of the rows
+to be returned.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Aura.Sql.Connection.AbstractConnection.html"><div class="path-wrapper">\Aura\Sql\Connection\AbstractConnection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_fetchAssoc" name="method_fetchAssoc" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">fetchAssoc()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">fetchAssoc(string <span class="argument">$query</span>, array <span class="argument">$bind</span>, callable <span class="argument">$callable</span>) : array</pre>
+                <p><em>Fetches an associative array of all rows from the database; the rows
+are represented as associative arrays. The array of all rows is keyed
+on the first column of each row.</em></p>
+                <p>N.b.: if multiple rows have the same first column value, the last
+row with that value will override earlier rows.</p>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$query</td>
+                                <td><p>The text of the SQL statement, optionally with
+named placeholders.</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$bind</td>
+                                <td><p>An associative array of data to bind to the named
+placeholders.</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>callable</td>
+                                <td>$callable</td>
+                                <td><p>A callable to be applied to each of the rows
+to be returned.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Aura.Sql.Connection.AbstractConnection.html"><div class="path-wrapper">\Aura\Sql\Connection\AbstractConnection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_fetchCol" name="method_fetchCol" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">fetchCol()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">fetchCol(string|\Aura\Sql\Query\AbstractQuery <span class="argument">$query</span>, array <span class="argument">$bind</span>, callable <span class="argument">$callable</span>) : array</pre>
+                <p><em>Fetches the first column of all rows as a sequential array.</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string|<a href="../classes/Aura.Sql.Query.AbstractQuery.html">\Aura\Sql\Query\AbstractQuery</a></td>
+                                <td>$query</td>
+                                <td><p>The text of the SQL query; or, a
+query object.</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$bind</td>
+                                <td><p>An associative array of data to bind to the named
+placeholders.</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>callable</td>
+                                <td>$callable</td>
+                                <td><p>A callable to be applied to each of the rows
+to be returned.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Aura.Sql.Connection.AbstractConnection.html"><div class="path-wrapper">\Aura\Sql\Connection\AbstractConnection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_fetchValue" name="method_fetchValue" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">fetchValue()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">fetchValue(string|\Aura\Sql\Query\AbstractQuery <span class="argument">$query</span>, array <span class="argument">$bind</span>) : mixed</pre>
+                <p><em>Fetches the very first value (i.e., first column of the first row).</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string|<a href="../classes/Aura.Sql.Query.AbstractQuery.html">\Aura\Sql\Query\AbstractQuery</a></td>
+                                <td>$query</td>
+                                <td><p>The text of the SQL query; or, a
+query object.</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$bind</td>
+                                <td><p>An associative array of data to bind to the named
+placeholders.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Aura.Sql.Connection.AbstractConnection.html"><div class="path-wrapper">\Aura\Sql\Connection\AbstractConnection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_fetchPairs" name="method_fetchPairs" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">fetchPairs()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">fetchPairs(string|\Aura\Sql\Query\AbstractQuery <span class="argument">$query</span>, array <span class="argument">$bind</span>, callable <span class="argument">$callable</span>) : array</pre>
+                <p><em>Fetches an associative array of all rows as key-value pairs (first
+column is the key, second column is the value).</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string|<a href="../classes/Aura.Sql.Query.AbstractQuery.html">\Aura\Sql\Query\AbstractQuery</a></td>
+                                <td>$query</td>
+                                <td><p>The text of the SQL query; or, a
+query object.</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$bind</td>
+                                <td><p>An associative array of data to bind to the named
+placeholders.</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>callable</td>
+                                <td>$callable</td>
+                                <td><p>A callable to be applied to each of the rows
+to be returned.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Aura.Sql.Connection.AbstractConnection.html"><div class="path-wrapper">\Aura\Sql\Connection\AbstractConnection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_fetchOne" name="method_fetchOne" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">fetchOne()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">fetchOne(string|\Aura\Sql\Query\AbstractQuery <span class="argument">$query</span>, array <span class="argument">$bind</span>) : array</pre>
+                <p><em>Fetches one row from the database as an associative array.</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string|<a href="../classes/Aura.Sql.Query.AbstractQuery.html">\Aura\Sql\Query\AbstractQuery</a></td>
+                                <td>$query</td>
+                                <td><p>The text of the SQL query; or, a
+query object.</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$bind</td>
+                                <td><p>An associative array of data to bind to the named
+placeholders.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Aura.Sql.Connection.AbstractConnection.html"><div class="path-wrapper">\Aura\Sql\Connection\AbstractConnection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_quote" name="method_quote" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">quote()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">quote(mixed <span class="argument">$val</span>) : string</pre>
+                <p><em>Safely quotes a value for an SQL statement.</em></p>
+                <p>If an array is passed as the value, the array values are quoted
+and then returned as a comma-separated string; this is useful
+for generating <code>IN()</code> lists.</p>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$val</td>
+                                <td><p>The value to quote.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>An SQL-safe quoted value (or a string of
+separated-and-quoted values).</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Aura.Sql.Connection.AbstractConnection.html"><div class="path-wrapper">\Aura\Sql\Connection\AbstractConnection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_quoteInto" name="method_quoteInto" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">quoteInto()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">quoteInto(string <span class="argument">$text</span>, mixed <span class="argument">$bind</span>) : mixed</pre>
+                <p><em>Quotes a value and places into a piece of text at a placeholder; the
+placeholder is a question-mark.</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$text</td>
+                                <td><p>The text with placeholder(s).</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$bind</td>
+                                <td><p>The data value(s) to quote.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                            &mdash; <p>An SQL-safe quoted value (or string of separated values)
+placed into the original text.</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Aura.Sql.Connection.AbstractConnection.html"><div class="path-wrapper">\Aura\Sql\Connection\AbstractConnection</div></a></dd>
+                                                                            <dt>See also</dt>
+                                                                <dd><a href=""><span class="namespace-wrapper"></span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_quoteMulti" name="method_quoteMulti" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">quoteMulti()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">quoteMulti(array <span class="argument">$list</span>, string <span class="argument">$sep</span>) : string</pre>
+                <p><em>Quote multiple text-and-value pieces.</em></p>
+                <p>The placeholder is a question-mark; all placeholders will be replaced
+with the quoted value.   For example ...</p>
+
+<pre><code>$list = [
+     "WHERE date &gt; ?"   =&gt; '2005-01-01',
+     "  AND date &lt; ?"   =&gt; '2005-02-01',
+     "  AND type IN(?)" =&gt; ['a', 'b', 'c'],
+];
+
+$safe = $sql-&gt;quoteMulti($list);
+
+// $safe = "WHERE date &gt; '2005-01-02'
+//          AND date &lt; 2005-02-01
+//          AND type IN('a','b','c')"
+</code></pre>
+
+<p>}}</p>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$list</td>
+                                <td><p>A series of key-value pairs where the key is
+the placeholder text and the value is the value to be quoted into
+it.  If the key is an integer, it is assumed that the value is
+piece of literal text to be used and not quoted.</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$sep</td>
+                                <td><p>Return the list pieces separated with this string
+(for example ' AND ').</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>An SQL-safe string composed of the list keys and
+quoted values.</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Aura.Sql.Connection.AbstractConnection.html"><div class="path-wrapper">\Aura\Sql\Connection\AbstractConnection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_quoteName" name="method_quoteName" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">quoteName()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">quoteName(string <span class="argument">$spec</span>) : string|array</pre>
+                <p><em>Quotes a single identifier name (table, table alias, table column,
+index, sequence).</em></p>
+                <p>If the name contains <code>' AS '</code>, this method will separately quote the
+parts before and after the <code>' AS '</code>.</p>
+
+<p>If the name contains a space, this method will separately quote the
+parts before and after the space.</p>
+
+<p>If the name contains a dot, this method will separately quote the
+parts before and after the dot.</p>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$spec</td>
+                                <td><p>The identifier name to quote.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string|array
+                                            &mdash; <p>The quoted identifier name.</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Aura.Sql.Connection.AbstractConnection.html"><div class="path-wrapper">\Aura\Sql\Connection\AbstractConnection</div></a></dd>
+                                                                            <dt>See also</dt>
+                                                                <dd><a href=""><span class="namespace-wrapper"></span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_quoteNamesIn" name="method_quoteNamesIn" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">quoteNamesIn()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">quoteNamesIn(string <span class="argument">$text</span>) : string|array</pre>
+                <p><em>Quotes all fully-qualified identifier names (&quot;table.col&quot;) in a string,
+typically an SQL snippet for a SELECT clause.</em></p>
+                <p>Does not quote identifier names that are string literals (i.e., inside
+single or double quotes).</p>
+
+<p>Looks for a trailing ' AS alias' and quotes the alias as well.</p>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$text</td>
+                                <td><p>The string in which to quote fully-qualified
+identifier names to quote.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string|array
+                                            &mdash; <p>The string with names quoted in it.</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Aura.Sql.Connection.AbstractConnection.html"><div class="path-wrapper">\Aura\Sql\Connection\AbstractConnection</div></a></dd>
+                                                                            <dt>See also</dt>
+                                                                <dd><a href=""><span class="namespace-wrapper"></span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_insert" name="method_insert" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">insert()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">insert(string <span class="argument">$table</span>, array <span class="argument">$cols</span>) : int</pre>
+                <p><em>Inserts a row of data into a table.</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$table</td>
+                                <td><p>The table to insert into.</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$cols</td>
+                                <td><p>An associative array where the key is the column
+name and the value is the value to insert for that column.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    int
+                                            &mdash; <p>The number of rows affected, typically 1.</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Aura.Sql.Connection.AbstractConnection.html"><div class="path-wrapper">\Aura\Sql\Connection\AbstractConnection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_update" name="method_update" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">update()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">update(string <span class="argument">$table</span>, array <span class="argument">$cols</span>, string <span class="argument">$cond</span>, array <span class="argument">$bind</span>) : int</pre>
+                <p><em>Updates a table with specified data based on WHERE conditions.</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$table</td>
+                                <td><p>The table to update.</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$cols</td>
+                                <td><p>An associative array where the key is the column
+name and the value is the value to use for that column.</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$cond</td>
+                                <td><p>Conditions for a WHERE clause.</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$bind</td>
+                                <td><p>Additional data to bind to the query; these are not
+part of the update, and note that the $cols values will take precedence
+over these additional values.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    int
+                                            &mdash; <p>The number of rows affected.</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Aura.Sql.Connection.AbstractConnection.html"><div class="path-wrapper">\Aura\Sql\Connection\AbstractConnection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_delete" name="method_delete" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">delete()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">delete(string <span class="argument">$table</span>, string <span class="argument">$cond</span>, array <span class="argument">$bind</span>) : int</pre>
+                <p><em>Deletes rows from the table based on WHERE conditions.</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$table</td>
+                                <td><p>The table to delete from.</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$cond</td>
+                                <td><p>Conditions for a WHERE clause.</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$bind</td>
+                                <td><p>Additional data to bind to the query.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    int
+                                            &mdash; <p>The number of rows affected.</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Aura.Sql.Connection.AbstractConnection.html"><div class="path-wrapper">\Aura\Sql\Connection\AbstractConnection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_newSelect" name="method_newSelect" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">newSelect()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">newSelect() : \Aura\Sql\Connection\Select</pre>
+                <p><em>Returns a new Select object.</em></p>
+                
+
+
+                
+                
+                                    <h4>Returns</h4>
+                    \Aura\Sql\Connection\Select
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Aura.Sql.Connection.AbstractConnection.html"><div class="path-wrapper">\Aura\Sql\Connection\AbstractConnection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_newInsert" name="method_newInsert" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">newInsert()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">newInsert() : \Aura\Sql\Connection\Insert</pre>
+                <p><em>Returns a new Insert object.</em></p>
+                
+
+
+                
+                
+                                    <h4>Returns</h4>
+                    \Aura\Sql\Connection\Insert
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Aura.Sql.Connection.AbstractConnection.html"><div class="path-wrapper">\Aura\Sql\Connection\AbstractConnection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_newUpdate" name="method_newUpdate" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">newUpdate()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">newUpdate() : \Aura\Sql\Connection\Update</pre>
+                <p><em>Returns a new Update object.</em></p>
+                
+
+
+                
+                
+                                    <h4>Returns</h4>
+                    \Aura\Sql\Connection\Update
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Aura.Sql.Connection.AbstractConnection.html"><div class="path-wrapper">\Aura\Sql\Connection\AbstractConnection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_newDelete" name="method_newDelete" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">newDelete()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">newDelete() : \Aura\Sql\Connection\Update</pre>
+                <p><em>Returns a new Delete object.</em></p>
+                
+
+
+                
+                
+                                    <h4>Returns</h4>
+                    \Aura\Sql\Connection\Update
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Aura.Sql.Connection.AbstractConnection.html"><div class="path-wrapper">\Aura\Sql\Connection\AbstractConnection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_limit" name="method_limit" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">limit()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">limit(string <span class="argument">$text</span>, int <span class="argument">$count</span>, int <span class="argument">$offset</span>) : void</pre>
+                <p><em>Modifies an SQL string **in place** to add a `LIMIT .</em></p>
+                <p>.. OFFSET` clause.</p>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$text</td>
+                                <td><p>The SQL string.</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>int</td>
+                                <td>$count</td>
+                                <td><p>The number of rows to return.</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>int</td>
+                                <td>$offset</td>
+                                <td><p>Skip this many rows first.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Aura.Sql.Connection.AbstractConnection.html"><div class="path-wrapper">\Aura\Sql\Connection\AbstractConnection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getDefault" name="method_getDefault" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">getDefault()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getDefault(string <span class="argument">$default</span>) : scalar</pre>
+                <p><em>Given a native column SQL default value, finds a PHP literal value.</em></p>
+                <p>SQL NULLs are converted to PHP nulls.  Non-literal values (such as
+keywords and functions) are also returned as null.</p>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$default</td>
+                                <td><p>The column default SQL value.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    scalar
+                                            &mdash; <p>A literal PHP value.</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_newPdo" name="method_newPdo" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">newPdo()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">newPdo() : \PDO</pre>
+                <p><em>Creates a new PDO object.</em></p>
+                
+
+
+                
+                
+                                    <h4>Returns</h4>
+                    \PDO
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Aura.Sql.Connection.AbstractConnection.html"><div class="path-wrapper">\Aura\Sql\Connection\AbstractConnection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_replaceName" name="method_replaceName" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">replaceName()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">replaceName(string <span class="argument">$name</span>) : string</pre>
+                <p><em>Quotes an identifier name (table, index, etc); ignores empty values and
+values of &#039;*&#039;.</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$name</td>
+                                <td><p>The identifier name to quote.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>The quoted identifier name.</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Aura.Sql.Connection.AbstractConnection.html"><div class="path-wrapper">\Aura\Sql\Connection\AbstractConnection</div></a></dd>
+                                                                            <dt>See also</dt>
+                                                                <dd><a href=""><span class="namespace-wrapper"></span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_replaceNamesIn" name="method_replaceNamesIn" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">replaceNamesIn()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">replaceNamesIn(string <span class="argument">$text</span>) : string|array</pre>
+                <p><em>Quotes all fully-qualified identifier names (&quot;table.col&quot;) in a string.</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$text</td>
+                                <td><p>The string in which to quote fully-qualified
+identifier names to quote.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string|array
+                                            &mdash; <p>The string with names quoted in it.</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Aura.Sql.Connection.AbstractConnection.html"><div class="path-wrapper">\Aura\Sql\Connection\AbstractConnection</div></a></dd>
+                                                                            <dt>See also</dt>
+                                                                <dd><a href=""><span class="namespace-wrapper"></span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getTypeSizeScope" name="method_getTypeSizeScope" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">getTypeSizeScope()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getTypeSizeScope(string <span class="argument">$spec</span>) : array</pre>
+                <p><em>Given a column specification, parse into datatype, size, and
+decimal scale.</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$spec</td>
+                                <td><p>The column specification; for example,
+"VARCHAR(255)" or "NUMERIC(10,2)".</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                            &mdash; <p>A sequential array of the column type, size, and scale.</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Aura.Sql.Connection.AbstractConnection.html"><div class="path-wrapper">\Aura\Sql\Connection\AbstractConnection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_splitName" name="method_splitName" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">splitName()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">splitName(string <span class="argument">$name</span>) : array</pre>
+                <p><em>Splits an identifier name into two parts, based on the location of the
+first dot.</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$name</td>
+                                <td><p>The identifier name to be split.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                            &mdash; <p>An array of two elements; element 0 is the parts before
+the dot, and element 1 is the part after the dot. If there was no dot,
+element 0 will be null and element 1 will be the name as given.</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Aura.Sql.Connection.AbstractConnection.html"><div class="path-wrapper">\Aura\Sql\Connection\AbstractConnection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">Pgsql.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/Connection/Pgsql.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/Aura.html">\Aura</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="">Errors</a></li>
+                                    <li><a href="">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on September 10th, 2013 at 10:04.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>
