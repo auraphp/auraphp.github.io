@@ -1,20 +1,20 @@
 <?php
 $packages = [
-    'Aura.Autoload' => '1.0.1',
-    'Aura.Cli'      => '1.1.0',
-    'Aura.Di'       => '1.1.0',
+    'Aura.Autoload' => '1.0.2',
+    'Aura.Cli'      => '1.1.1',
+    'Aura.Di'       => '1.1.1',
     'Aura.Filter'   => '1.0.0',
-    'Aura.Http'     => '1.0.1',
+    'Aura.Http'     => '1.0.2',
     'Aura.Input'    => '1.0.0',
     'Aura.Intl'     => '1.0.0',
-    'Aura.Marshal'  => '1.1.0',
-    'Aura.Router'   => '1.1.0',
-    'Aura.Session'  => '1.0.0',
-    'Aura.Signal'   => '1.0.1',
-    'Aura.Sql'      => '1.1.0',
-    'Aura.Uri'      => '1.1.0',
-    'Aura.View'     => '1.1.2',
-    'Aura.Web'      => '1.0.1',
+    'Aura.Marshal'  => '1.1.1',
+    'Aura.Router'   => '1.1.1',
+    'Aura.Session'  => '1.0.1',
+    'Aura.Signal'   => '1.0.2',
+    'Aura.Sql'      => '1.1.0', // needs greater attention
+    'Aura.Uri'      => '1.1.1',
+    'Aura.View'     => '1.1.2', // needs greater attention
+    'Aura.Web'      => '1.0.2',
 ];
 
 $html = [];
