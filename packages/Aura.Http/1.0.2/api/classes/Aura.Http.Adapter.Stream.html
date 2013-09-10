@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                    <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/Aura.html">\Aura</a></li>
+                                                    </ul>
+                    </li>
+                    <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                    <i class="icon-list-alt"></i>&#160;Errors
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                    <i class="icon-list-alt"></i>&#160;Markers
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1160815337"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-1160815337" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-880088411"></a>
+                                <a href="../namespaces/Aura.html" style="margin-left: 30px; padding-left: 0">Aura</a>
+            </div>
+            <div id="namespace-880088411" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1300934573"></a>
+                                <a href="../namespaces/Aura.Http.html" style="margin-left: 30px; padding-left: 0">Http</a>
+            </div>
+            <div id="namespace-1300934573" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1510537914"></a>
+                                <a href="../namespaces/Aura.Http.Adapter.html" style="margin-left: 30px; padding-left: 0">Adapter</a>
+            </div>
+            <div id="namespace-1510537914" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Aura.Http.Adapter.AdapterInterface.html">AdapterInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Aura.Http.Adapter.Curl.html">Curl</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Http.Adapter.Stream.html">Stream</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1825163881"></a>
+                                <a href="../namespaces/Aura.Http.Cookie.html" style="margin-left: 30px; padding-left: 0">Cookie</a>
+            </div>
+            <div id="namespace-1825163881" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Aura.Http.Cookie.Collection.html">Collection</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Http.Cookie.Factory.html">Factory</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Http.Cookie.Jar.html">Jar</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Http.Cookie.JarFactory.html">JarFactory</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1564405779"></a>
+                                <a href="../namespaces/Aura.Http.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-1564405779" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Aura.Http.Exception.ConnectionFailed.html">ConnectionFailed</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Http.Exception.ConnectionTimeout.html">ConnectionTimeout</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Http.Exception.EmptyResponse.html">EmptyResponse</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Http.Exception.FileDoesNotExist.html">FileDoesNotExist</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Http.Exception.HeadersSent.html">HeadersSent</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Http.Exception.InvalidUsername.html">InvalidUsername</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Http.Exception.MalformedCookie.html">MalformedCookie</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Http.Exception.NotWriteable.html">NotWriteable</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Http.Exception.UnknownAdapterType.html">UnknownAdapterType</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Http.Exception.UnknownAuthType.html">UnknownAuthType</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Http.Exception.UnknownMessageType.html">UnknownMessageType</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Http.Exception.UnknownMethod.html">UnknownMethod</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Http.Exception.UnknownStatus.html">UnknownStatus</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Http.Exception.UnknownVersion.html">UnknownVersion</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1940117125"></a>
+                                <a href="../namespaces/Aura.Http.Header.html" style="margin-left: 30px; padding-left: 0">Header</a>
+            </div>
+            <div id="namespace-1940117125" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Aura.Http.Header.Collection.html">Collection</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Http.Header.Factory.html">Factory</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-225203845"></a>
+                                <a href="../namespaces/Aura.Http.Manager.html" style="margin-left: 30px; padding-left: 0">Manager</a>
+            </div>
+            <div id="namespace-225203845" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Aura.Http.Manager.Factory.html">Factory</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1111653991"></a>
+                                <a href="../namespaces/Aura.Http.Message.html" style="margin-left: 30px; padding-left: 0">Message</a>
+            </div>
+            <div id="namespace-1111653991" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1840981442"></a>
+                                <a href="../namespaces/Aura.Http.Message.Response.html" style="margin-left: 30px; padding-left: 0">Response</a>
+            </div>
+            <div id="namespace-1840981442" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Aura.Http.Message.Response.Stack.html">Stack</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Http.Message.Response.StackBuilder.html">StackBuilder</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Aura.Http.Message.Factory.html">Factory</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Http.Message.Request.html">Request</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Http.Message.Response.html">Response</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-766705246"></a>
+                                <a href="../namespaces/Aura.Http.Multipart.html" style="margin-left: 30px; padding-left: 0">Multipart</a>
+            </div>
+            <div id="namespace-766705246" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Aura.Http.Multipart.FormData.html">FormData</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Http.Multipart.Part.html">Part</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Http.Multipart.PartFactory.html">PartFactory</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1972743413"></a>
+                                <a href="../namespaces/Aura.Http.Transport.html" style="margin-left: 30px; padding-left: 0">Transport</a>
+            </div>
+            <div id="namespace-1972743413" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Aura.Http.Transport.TransportInterface.html">TransportInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Aura.Http.Transport.Options.html">Options</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Aura.Http.Cookie.html">Cookie</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Http.Exception.html">Exception</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Http.Header.html">Header</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Http.Manager.html">Manager</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Http.Message.html">Message</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Http.PhpFunc.html">PhpFunc</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Http.Transport.html">Transport</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/Aura.Http.Adapter.html">\Aura\Http\Adapter</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\Aura\Http\Adapter</small>Stream</h1>
+                    <p><em>Stream adapter.</em></p>
+                    
+
+
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/Aura.Http.Adapter.Stream.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/Aura.Http.Adapter.Stream.html#method_exec" class="">exec()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No constants found</em>
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <a href="../classes/Aura.Http.Adapter.Stream.html#method_openStream" class="">openStream()</a><br />
+                                                                    <a href="../classes/Aura.Http.Adapter.Stream.html#method_readStream" class="">readStream()</a><br />
+                                                                    <a href="../classes/Aura.Http.Adapter.Stream.html#method_setContext" class="">setContext()</a><br />
+                                                                    <a href="../classes/Aura.Http.Adapter.Stream.html#method_setContextContent" class="">setContextContent()</a><br />
+                                                                    <a href="../classes/Aura.Http.Adapter.Stream.html#method_setContextHeaders" class="">setContextHeaders()</a><br />
+                                                                    <a href="../classes/Aura.Http.Adapter.Stream.html#method_setContextOptions" class="">setContextOptions()</a><br />
+                                                                    <a href="../classes/Aura.Http.Adapter.Stream.html#method_setContextOptionsSecure" class="">setContextOptionsSecure()</a><br />
+                                                                    <a href="../classes/Aura.Http.Adapter.Stream.html#method_setOptions" class="">setOptions()</a><br />
+                                                                    <a href="../classes/Aura.Http.Adapter.Stream.html#method_mustAuthenticate" class="">mustAuthenticate()</a><br />
+                                                                    <a href="../classes/Aura.Http.Adapter.Stream.html#method_setChallenge" class="">setChallenge()</a><br />
+                                                                    <a href="../classes/Aura.Http.Adapter.Stream.html#method_getDigestCredentials" class="">getDigestCredentials()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Aura.Http.Adapter.Stream.html#property_stack_builder" class="">$stack_builder</a><br />
+                                                                    <a href="../classes/Aura.Http.Adapter.Stream.html#property_cookie_jar_factory" class="">$cookie_jar_factory</a><br />
+                                                                    <a href="../classes/Aura.Http.Adapter.Stream.html#property_cookie_jar" class="">$cookie_jar</a><br />
+                                                                    <a href="../classes/Aura.Http.Adapter.Stream.html#property_request" class="">$request</a><br />
+                                                                    <a href="../classes/Aura.Http.Adapter.Stream.html#property_options" class="">$options</a><br />
+                                                                    <a href="../classes/Aura.Http.Adapter.Stream.html#property_context" class="">$context</a><br />
+                                                                    <a href="../classes/Aura.Http.Adapter.Stream.html#property_context_content" class="">$context_content</a><br />
+                                                                    <a href="../classes/Aura.Http.Adapter.Stream.html#property_context_headers" class="">$context_headers</a><br />
+                                                                    <a href="../classes/Aura.Http.Adapter.Stream.html#property_context_options" class="">$context_options</a><br />
+                                                                    <a href="../classes/Aura.Http.Adapter.Stream.html#property_challenge" class="">$challenge</a><br />
+                                                                    <a href="../classes/Aura.Http.Adapter.Stream.html#property_headers" class="">$headers</a><br />
+                                                                    <a href="../classes/Aura.Http.Adapter.Stream.html#property_content" class="">$content</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No private properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/Adapter.Stream.php.html"><div class="path-wrapper">Adapter/Stream.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">\Aura.Http</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                    <div class="namespace-wrapper">\Aura\Http\Adapter\Stream</div>
+                            </dd>
+
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr><td colspan="2"><em>None found</em></td></tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_stack_builder" name="property_stack_builder" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$stack_builder</h3>
+                <pre class="signature">$stack_builder : \Aura\Http\Message\Response\StackBuilder</pre>
+                <p><em>Builds a stack of response messages.</em></p>
+                
+
+
+                                <h4>Type</h4>
+                <a href="../classes/Aura.Http.Message.Response.StackBuilder.html">\Aura\Http\Message\Response\StackBuilder</a>
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_cookie_jar_factory" name="property_cookie_jar_factory" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$cookie_jar_factory</h3>
+                <pre class="signature">$cookie_jar_factory : \Aura\Http\Cookie\JarFactory</pre>
+                <p><em>Creates a cookie jar.</em></p>
+                
+
+
+                                <h4>Type</h4>
+                <a href="../classes/Aura.Http.Cookie.JarFactory.html">\Aura\Http\Cookie\JarFactory</a>
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_cookie_jar" name="property_cookie_jar" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$cookie_jar</h3>
+                <pre class="signature">$cookie_jar : \Aura\Http\Adapter\Jar</pre>
+                <p><em>A cookie jar.</em></p>
+                
+
+
+                                <h4>Type</h4>
+                \Aura\Http\Adapter\Jar
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_request" name="property_request" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$request</h3>
+                <pre class="signature">$request : \Aura\Http\Message\Request</pre>
+                <p><em>The HTTP request to be sent.</em></p>
+                
+
+
+                                <h4>Type</h4>
+                <a href="../classes/Aura.Http.Message.Request.html">\Aura\Http\Message\Request</a>
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_options" name="property_options" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$options</h3>
+                <pre class="signature">$options : \Aura\Http\Transport\Options</pre>
+                <p><em>The transport options.</em></p>
+                
+
+
+                                <h4>Type</h4>
+                <a href="../classes/Aura.Http.Transport.Options.html">\Aura\Http\Transport\Options</a>
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_context" name="property_context" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$context</h3>
+                <pre class="signature">$context : resource</pre>
+                <p><em>The context used for the stream.</em></p>
+                
+
+
+                                <h4>Type</h4>
+                resource
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_context_content" name="property_context_content" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$context_content</h3>
+                <pre class="signature">$context_content : string</pre>
+                <p><em>The content used for the context.</em></p>
+                
+
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_context_headers" name="property_context_headers" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$context_headers</h3>
+                <pre class="signature">$context_headers : array</pre>
+                <p><em>Headers to be set into the stream context.</em></p>
+                
+
+
+                                <h4>Type</h4>
+                array
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_context_options" name="property_context_options" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$context_options</h3>
+                <pre class="signature">$context_options</pre>
+                <p><em>Options to be set into the stream context.</em></p>
+                
+
+
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_challenge" name="property_challenge" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$challenge</h3>
+                <pre class="signature">$challenge : array</pre>
+                <p><em>A digest challenge sent by the remote host.</em></p>
+                
+
+
+                                <h4>Type</h4>
+                array
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_headers" name="property_headers" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$headers</h3>
+                <pre class="signature">$headers : array</pre>
+                <p><em>Headers returned by the remote host.</em></p>
+                
+
+
+                                <h4>Type</h4>
+                array
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_content" name="property_content" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$content</h3>
+                <pre class="signature">$content : string</pre>
+                <p><em>Content returned by the remote host.</em></p>
+                
+
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__construct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__construct(\Aura\Http\Message\Response\StackBuilder <span class="argument">$stack_builder</span>, \Aura\Http\Multipart\FormData <span class="argument">$form_data</span>, \Aura\Http\Cookie\JarFactory <span class="argument">$cookie_jar_factory</span>)</pre>
+                <p><em>Constructor.</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Aura.Http.Message.Response.StackBuilder.html">\Aura\Http\Message\Response\StackBuilder</a></td>
+                                <td>$stack_builder</td>
+                                <td><p>Builds a stack of response messages.</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td><a href="../classes/Aura.Http.Multipart.FormData.html">\Aura\Http\Multipart\FormData</a></td>
+                                <td>$form_data</td>
+                                <td><p>Used for building multipart/form-data.</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td><a href="../classes/Aura.Http.Cookie.JarFactory.html">\Aura\Http\Cookie\JarFactory</a></td>
+                                <td>$cookie_jar_factory</td>
+                                <td><p>For creating a cookie jar.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_exec" name="method_exec" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">exec()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">exec(\Aura\Http\Message\Request <span class="argument">$request</span>, \Aura\Http\Transport\Options <span class="argument">$options</span>) : \Aura\Http\Adapter\Stack</pre>
+                <p><em>Make the request, then return an array of headers and content.</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Aura.Http.Message.Request.html">\Aura\Http\Message\Request</a></td>
+                                <td>$request</td>
+                                <td><p>The request to send.</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td><a href="../classes/Aura.Http.Transport.Options.html">\Aura\Http\Transport\Options</a></td>
+                                <td>$options</td>
+                                <td><p>The transport options.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    \Aura\Http\Adapter\Stack
+                                            &mdash; <p>A stack of response messages.</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                            <p>Implement an exception for timeouts.</p>
+
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_openStream" name="method_openStream" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">openStream()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">openStream() : void</pre>
+                <p><em>Opens the stream connection to the remote host.</em></p>
+                
+
+
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_readStream" name="method_readStream" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">readStream()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">readStream() : void</pre>
+                <p><em>Reads from the stream connection to the remote host.</em></p>
+                
+
+
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setContext" name="method_setContext" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">setContext()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setContext() : void</pre>
+                <p><em>Sets the stream context.</em></p>
+                
+
+
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setContextContent" name="method_setContextContent" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">setContextContent()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setContextContent() : void</pre>
+                <p><em>Sets the content on the stream context.</em></p>
+                
+
+
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setContextHeaders" name="method_setContextHeaders" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">setContextHeaders()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setContextHeaders() : void</pre>
+                <p><em>Sets the headers on the stream context</em></p>
+                
+
+
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setContextOptions" name="method_setContextOptions" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">setContextOptions()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setContextOptions() : void</pre>
+                <p><em>Sets the basic options into the stream context.</em></p>
+                
+
+
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setContextOptionsSecure" name="method_setContextOptionsSecure" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">setContextOptionsSecure()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setContextOptionsSecure() : void</pre>
+                <p><em>Sets the secure options into the stream context.</em></p>
+                
+
+
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setOptions" name="method_setOptions" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">setOptions()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setOptions(array <span class="argument">$var_key</span>) : void</pre>
+                <p><em>A helper for setting stream options.</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$var_key</td>
+                                <td><p>An array of key-value pairs where the key is
+a request variable, and the value is a stream option name.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_mustAuthenticate" name="method_mustAuthenticate" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">mustAuthenticate()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">mustAuthenticate() : bool</pre>
+                <p><em>A helper to determine if the remote response indicates authentication
+is required.</em></p>
+                
+
+
+                
+                
+                                    <h4>Returns</h4>
+                    bool
+                                            &mdash; <p>True if we must authenticate, false if not.</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setChallenge" name="method_setChallenge" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">setChallenge()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setChallenge() : void</pre>
+                <p><em>Checks the response for a HTTP digest challenge, and sets the
+`$challenge` property if so.</em></p>
+                <p>The response must contain the HTTP status code <code>401</code> and the
+<code>WWW-Authenticate header</code> to set <code>$challenge</code>.</p>
+
+
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getDigestCredentials" name="method_getDigestCredentials" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">getDigestCredentials()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getDigestCredentials() : string</pre>
+                <p><em>Gets the digest credentials to send in an authentication header.</em></p>
+                
+
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">Stream.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/Adapter/Stream.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/Aura.html">\Aura</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="">Errors</a></li>
+                                    <li><a href="">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on September 9th, 2013 at 20:12.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>
