@@ -7,7 +7,6 @@ active: packages
 Aura Filter
 ===========
 
-[![Build Status](https://travis-ci.org/auraphp/Aura.Filter.png)](https://travis-ci.org/auraphp/Aura.Filter)
 
 The Aura Filter package provides validation and sanitizing for data objects
 and arrays.

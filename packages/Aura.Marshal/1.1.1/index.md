@@ -7,7 +7,6 @@ active: packages
 Aura Marshal
 ============
 
-[![Build Status](https://travis-ci.org/auraphp/Aura.Marshal.png)](https://travis-ci.org/auraphp/Aura.Marshal)
 
 > marshal (verb): to arrange in proper order; set out in an orderly manner;
 > arrange clearly: to marshal facts; to marshal one's arguments. --

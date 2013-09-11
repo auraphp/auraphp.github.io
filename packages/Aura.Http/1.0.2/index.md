@@ -7,7 +7,6 @@ active: packages
 Aura HTTP
 =========
 
-[![Build Status](https://travis-ci.org/auraphp/Aura.Http.png)](https://travis-ci.org/auraphp/Aura.Http)
 
 The Aura HTTP package provides objects to build and send HTTP requests and
 responses, including `multipart/form-data` requests, with streaming of file

@@ -7,7 +7,6 @@ active: packages
 Aura Web
 ========
 
-[![Build Status](https://travis-ci.org/auraphp/Aura.Web.png)](https://travis-ci.org/auraphp/Aura.Web)
 
 The Aura Web package provides tools to build web page controllers, including
 an `AbstractPage` for action methods, a `Context` class for discovering the
