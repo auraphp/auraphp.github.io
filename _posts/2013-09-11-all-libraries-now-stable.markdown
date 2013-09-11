@@ -5,9 +5,6 @@ tags : [release]
 author : Paul M. Jones
 ---
 
-All Aura Libraries Now Stable
-=============================
-
 As of yesterday, the three remaining "Google Beta" libraries were marked as
 stable and released:
 
