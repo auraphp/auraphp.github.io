@@ -72,3 +72,51 @@ Driving Principles
 - Effective and reasonable usage of closures/anonymous functions,
   primarily for object creation within the dependency injector service
   definitions
+
+
+Package Stucture
+----------------
+
+The package directory structure looks like this:
+
+    Aura.Package_Name/
+        cli/                        # command-line script invokers
+        composer.json               # composer/packagist file
+        config/                     # package-level configs
+            default.php             # default configs
+            test.php                # configs for "test" mode
+        meta/                       # metadata for packaging scripts
+        LICENSE                     # license file
+        README.md                   # readme file
+        src/                        # the actual source code organized for PSR-0
+            Aura/
+                Package_Name/
+                    Foo.php
+        tests/                      # test files for phpunit
+            Aura/
+                Package_Name/
+                    FooTest.php
+            bootstrap.php
+            phpunit.xml
+        web/                        # public web assets
+            styles/                 # css files
+            images/                 # image files
+            scripts/                # javascript (or other script) files
+
+In general, the `src/` files are organized like so:
+
+    Aura/
+        Package_Name/
+            Cli/                    # all CLI commands
+                CommandName/        # a particular CLI command and its support files
+                    Command.php     # the actual command logic
+                    data/           # other data for the command
+            Web/                    # all web pages
+                PageName/           # a particular web page and its support files
+                    Page.php        # the actual page action logic
+                    views/          # views for the page
+                    layouts/        # layouts for the page
+                    data/           # other data for the page
+            View/
+                Helper/
+                    HelperName.php  # a view helper
