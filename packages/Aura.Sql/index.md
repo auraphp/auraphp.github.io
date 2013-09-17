@@ -19,6 +19,8 @@ Branches
 Releases
 --------
 
+- `1.3.0` : [.zip](https://github.com/auraphp/Aura.Sql/zipball/1.3.0), [.tar.gz](https://github.com/auraphp/Aura.Sql/tarball/1.3.0), [readme](1.3.0/), [api](1.3.0/api/)
+
 - `1.2.0` : [.zip](https://github.com/auraphp/Aura.Sql/zipball/1.2.0), [.tar.gz](https://github.com/auraphp/Aura.Sql/tarball/1.2.0), [readme](1.2.0/), [api](1.2.0/api/)
 
 - `1.1.0` : [.zip](https://github.com/auraphp/Aura.Sql/zipball/1.1.0), [.tar.gz](https://github.com/auraphp/Aura.Sql/tarball/1.1.0), [readme](1.1.0/), [api](1.1.0/api/)
