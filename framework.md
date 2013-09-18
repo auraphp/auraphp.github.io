@@ -118,7 +118,7 @@ package and a space for our first web page ...
 ... then create a file called `HomePage.php`. Add this code for a bare-bones
 index action:
 
-{% higlight php %}
+{% highlight php %}
 <?php
 namespace Example\Package\Web\Home;
 
@@ -188,6 +188,7 @@ $di->params['Aura\Router\Map']['attach'][''] = [
 // map the 'home' controller value to the controller class
 $di->params['Aura\Framework\Web\Controller\Factory']['map']['home'] = 'Example\Package\Web\Home\HomePage';
 ?>
+{% endhighlight %}
 
 ### Try It Out
 

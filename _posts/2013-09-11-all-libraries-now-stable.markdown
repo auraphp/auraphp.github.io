@@ -30,44 +30,44 @@ Maintenance and Feature Releases
 In addition, we have issued releases of all the other Aura libraries. The
 substantial changes were to these packages:
 
-- Aura.Http: [CHG] Transport now adds a 'Close' header when sending a request.
+- Aura.Http: (CHG) Transport now adds a 'Close' header when sending a request.
 
-- Aura.Router: [CHG] Route::attach() now works with an empty path.
+- Aura.Router: (CHG) Route::attach() now works with an empty path.
 
-- Aura.Session: [CHG] Manager::destroy() now checks whether the session is
+- Aura.Session: (CHG) Manager::destroy() now checks whether the session is
   started; if not, starts it, and then destroys. (This is because sessions are
   lazy-loading in Aura.)
 
 - Aura.Sql:
 
-    - [ADD] Profiler::getLastQuery() to get the last profiled query.
+    - (ADD) Profiler::getLastQuery() to get the last profiled query.
 
-    - [CHG] AbstractConnection::fetchAll(), fetchAssoc(), fetchCol(), and
+    - (CHG) AbstractConnection::fetchAll(), fetchAssoc(), fetchCol(), and
       fetchPairs() all now take a third param: a callable to apply to each row
       in the results.
 
-    - [NEW] Query\Mysql classes to support MySQL-specific functionality:
+    - (NEW) Query\Mysql classes to support MySQL-specific functionality:
 
-        - [NEW] Query\Mysql\Select with `SQL_CALC_FOUND_ROWS` and other
+        - (NEW) Query\Mysql\Select with `SQL_CALC_FOUND_ROWS` and other
           mysql-specific flags.
 
-        - [NEW] Query\Mysql\Insert with `IGNORE` and other mysql-specific
+        - (NEW) Query\Mysql\Insert with `IGNORE` and other mysql-specific
           flags.
 
-        - [NEW] Query\Mysql\Update with `IGNORE` and other mysql-specific
+        - (NEW) Query\Mysql\Update with `IGNORE` and other mysql-specific
           flags, as well as LIMIT functionality.
 
-        - [NEW] Query\Mysql\Delete with LOW_PRIORITY and other mysql-specific
+        - (NEW) Query\Mysql\Delete with LOW_PRIORITY and other mysql-specific
           flags, as well as LIMIT functionality.
 
 - Aura.View:
 
-    - [CHG] Escaper\Object now recursively escapes arrays instead of
+    - (CHG) Escaper\Object now recursively escapes arrays instead of
       converting to ArrayObject and wrapping in an escaper
 
-    - [ADD] TwoStepView::getTemplate() to get the template out of the view
+    - (ADD) TwoStepView::getTemplate() to get the template out of the view
 
-    - [NEW] Helper\Form\Checkboxes
+    - (NEW) Helper\Form\Checkboxes
 
 
 Package Documentation and New Manual
