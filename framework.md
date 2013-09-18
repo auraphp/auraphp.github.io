@@ -103,7 +103,7 @@ We will do so in a project-specific way, leaving out the complexities of
 creating an independent package for distribution.
 
 > Warning: If you have not removed the `Framework_Demo` package yet, please
-> [do so](#remove-the-demo-package) before continuing.  Otherwise,
+> [do so](#remove_the_demo_package) before continuing.  Otherwise,
 > your routes will not work correctly.
 
 ### Create The Controller
