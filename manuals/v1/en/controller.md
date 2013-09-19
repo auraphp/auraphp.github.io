@@ -17,7 +17,7 @@ different rendering strategies.
 
 ## Creating your controller ##
 
-We create a page controller class of our own, extending the 
+Let us create a page controller class of our own, extending the 
 `Aura\Framework\Web\Controller\AbstractPage`
 
 
@@ -68,7 +68,7 @@ parameters it needs:
    
 {% highlight php %}
 <?php
-namespace Example\Package\Web\;
+namespace Example\Package\Web;
 
 use Aura\Web\Controller\AbstractPage;
 
@@ -110,11 +110,11 @@ For more information, please review the
 You can discover the web request environment using the `$this->context`
 object. Some of the important methods are:
 
-- `getQuery()`: gets a $_GET value
+- `getQuery()`: gets a `$_GET` value
 
-- `getPost()`: gets a $_POST value
+- `getPost()`: gets a `$_POST` value
 
-- `getFiles()`: gets a $_FILES value
+- `getFiles()`: gets a `$_FILES` value
 
 - `getInput()`: gets the raw `php://input` value
 
@@ -193,6 +193,17 @@ layout need to be rendered.
 You can assign which view it needs to render as `$this->view = 'viewname'`
 and which layout need to be assigned via `$this->layout = 'layout-name'`.
 
+If we have multiple views for a single action, ie `json`, `xml`, `html`
+we can pass like 
+
+{% highlight php %}
+$this->view = [
+    '.html' => 'greet.html.php',
+    '.json' => 'greet.json.php',
+    '.xml' => 'greet.xml.php'
+];
+{% endhighlight %}
+
 
 {% highlight php %}
 <?php
@@ -226,7 +237,6 @@ class Page extends AbstractPage
     }
 }
 {% endhighlight %}
-
 
 ## Configuration ##
 
