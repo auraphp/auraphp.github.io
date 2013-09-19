@@ -1,3 +1,9 @@
+---
+layout: docs-ja
+title: The aura framework Controller
+permalink: /manuals/v1/ja/controller/
+---
+
 # Controller #
  Aura Framework controller はアクションメソッドドのための`AbstractPage`やリクエストを扱う`Context`、HTTPレスポンスを転送する`Response`転送オブジェクトを含んだwebページコントローラーを作成するために必要なAura Web の拡張版です。（`Response`転送オブジェクトはHTTPレスポンスそのものでは無い事に注意してください)
 これにはコントローラにフック処理をするための`Signal`インターフェイスや複数のレンダリング方法を提供する`Renderer`インタフェースも含まれます。
@@ -5,16 +11,17 @@
 ## Creating your controller ##
  `Aura\Framework\Web\Controller\AbstractPage` を拡張して独自のコントローラーを作成します。
 
-    [php]
-    <?php
-    namespace Vendor\Package\Web;
+{% highlight php %}
+<?php
+namespace Vendor\Package\Web;
+
+use Aura\Web\Controller\AbstractPage;
+
+class Page extends AbstractPage
+{
     
-    use Aura\Web\Controller\AbstractPage;
-    
-    class Page extends AbstractPage
-    {
-        
-    }
+}
+{% endhighlight %}
     
 ## The Execution Cycle ##
 
@@ -43,21 +50,22 @@
 この時点で `exec()`が呼ばれても何も起こりません。一致するアクションメソッドが無いからです。
 ページコントローラーにアクションメソッドを追加するには必要な引数を追加した`action*()`メソッドを作成します。
 
-    [php]
-    <?php
-    namespace Example\Package\Web\;
-    
-    use Aura\Web\Controller\AbstractPage;
-    
-    class Page extends AbstractPage
+{% highlight php %}
+<?php
+namespace Example\Package\Web\;
+
+use Aura\Web\Controller\AbstractPage;
+
+class Page extends AbstractPage
+{
+    public function actionHello($noun = null)
     {
-        public function actionHello($noun = null)
-        {
-            $noun = htmlspecialchars($noun, ENT_QUOTES, 'UTF-8');
-            $content = "Hello, {$noun}!";
-            $this->data->content = $content;
-        }
-    } 
+        $noun = htmlspecialchars($noun, ENT_QUOTES, 'UTF-8');
+        $content = "Hello, {$noun}!";
+        $this->data->content = $content;
+    }
+} 
+{% endhighlight %}
 
 ## The Response Transfer Object ##
 
@@ -73,7 +81,7 @@
 
 - `setStatusCode()` と `setStatusText()`　はHTTPのステータスコードとメッセージをセットします
 
- 詳細については、[Response][]クラスを確認してください。
+ 詳細については、 [Response](https://github.com/auraphp/Aura.Web/blob/master/src/Aura/Web/Response.php) クラスを確認してください。
 
 ## The Context Object ##
  webのリクエスト状況は `$this->context`オブジェクトで知る事ができます。重要なメソッドのいくつかは以下のとおりです。
@@ -90,17 +98,19 @@
 
 - `isGet()`, `isPut()`, `isXhr()`, 等: メソッドが `GET`, `PUT`, あるいは `Xml-HTTP-Request`等かを返します
 
- 詳細については、 [Context][]クラスご確認ください。 "terms" クエリー文字列をつかった"search" アクションのコード例は以下の様になるでしょう。
+ 詳細については、 [Context](https://github.com/auraphp/Aura.Web/blob/master/src/Aura/Web/Context.php) 
+ クラスご確認ください。 "terms" クエリー文字列をつかった"search" アクションのコード例は以下の様になるでしょう。
 
-    [php]
-    <?php
-    public function actionSearch()
-    {
-        $terms = $this->context->getQuery('terms');
-        if ($terms) {
-            // ... now search a database ...
-        }
+{% highlight php %}
+<?php
+public function actionSearch()
+{
+    $terms = $this->context->getQuery('terms');
+    if ($terms) {
+        // ... now search a database ...
     }
+}
+{% endhighlight %}
 
 `'?terms=foo+bar+baz'`というクエリーのついたURIが与えられると `$terms`変数は `'foo bar baz'`になります。もしクエリーに `'terms'`がないと`$terms`はnullになります。
 
@@ -119,19 +129,20 @@
 
 通常は`Response`の内容をアクションメソッドで直接操作したいとは思わないでしょう。ほとんどの場合は、アクションメソッドの内部でデータを集めて、表示のためにレンダリングシステムにデータを渡します。`AbstractPage`は`$data`プロパティと`Renderer` を提供します。 `$data`プロパティを単純に使用する例は、次のとおりです。
 
-    [php]
-    <?php
-    namespace Vendor\Package\Web\Greet;
-    
-    use Aura\Web\Controller\AbstractPage;
-    
-    class Page extends AbstractPage
+{% highlight php %}
+<?php
+namespace Vendor\Package\Web\Greet;
+
+use Aura\Web\Controller\AbstractPage;
+
+class Page extends AbstractPage
+{
+    public function actionHello($noun = null)
     {
-        public function actionHello($noun = null)
-        {
-            $this->data->noun = $noun;
-        }
+        $this->data->noun = $noun;
     }
+}
+{% endhighlight %}
 
 ## View template and layout ##
 
@@ -139,54 +150,57 @@
  レンダーに必要な値はこのようにアサインします。 `$this->view = 'viewname'`
 レイアウトに必要なアサインはこのようにします。`$this->layout = 'layout-name'`.
 
-   [php]
-    <?php
-    namespace Vendor\Package\Web\Greet;
-    
-    use Aura\Web\Controller\AbstractPage;
-    
-    class Page extends AbstractPage
-    {
-        public function actionHello($noun = null)
-        {
-            $this->data->noun = $noun;
-            // only one view
-            // $this->view = 'greet';
-            
-            $this->view = [
-                '.html' => 'greet.html.php',
-                '.json' => 'greet.json.php',
-                '.xml' => 'greet.xml.php'
-            ];
-            
-            // only one layout
-            // $this->layout = 'layout-name';
+{% highlight php %}
+<?php
+namespace Vendor\Package\Web\Greet;
 
-            // if you have multiple alyouts for different formats
-            $this->layout = [
-                '.html' => 'default.php',
-                '.json' => '',
-                '.xml' => ''
-            ];
-        }
+use Aura\Web\Controller\AbstractPage;
+
+class Page extends AbstractPage
+{
+    public function actionHello($noun = null)
+    {
+        $this->data->noun = $noun;
+        // only one view
+        // $this->view = 'greet';
+        
+        $this->view = [
+            '.html' => 'greet.html.php',
+            '.json' => 'greet.json.php',
+            '.xml' => 'greet.xml.php'
+        ];
+        
+        // only one layout
+        // $this->layout = 'layout-name';
+
+        // if you have multiple alyouts for different formats
+        $this->layout = [
+            '.html' => 'default.php',
+            '.json' => '',
+            '.xml' => ''
+        ];
     }
+}
+{% endhighlight %}
 
 ## Configuration ##
  ここでは、二つのことを追加する必要があります。 Add your controller to the map in the `config/default.php` ファイルでコントローラーをマップして加える事です。
 .
 
-    [php]
-    $di->params['Aura\Framework\Web\Controller\Factory']['map']['<name>'] = 
-        'Vendor\Package\Web\Greet\Page';
-        
- 上記コントローラで指定した同じ名前でルートを追加します。
+{% highlight php %}
+$di->params['Aura\Framework\Web\Controller\Factory']['map']['<name>'] = 
+    'Vendor\Package\Web\Greet\Page';
+{% endhighlight %}
+    
+上記コントローラで指定した同じ名前でルートを追加します。
 
-    [php]
-    $di->get('router_map')->add('<unique-route-name>', '/registered', [
-        'values' => [
-            'controller' => '<name>',
-            'action' => 'hello',
-        ],
-    ]);
+{% highlight php %}
+$di->get('router_map')->add('<unique-route-name>', '/registered', [
+    'values' => [
+        'controller' => '<name>',
+        'action' => 'hello',
+    ],
+]);
+{% endhighlight %}
 
 ルートの詳細については、ルーティングの章を読んでみてください。

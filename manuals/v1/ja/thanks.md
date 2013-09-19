@@ -1,3 +1,9 @@
+---
+layout: docs-ja
+title: Thanks
+permalink: /manuals/v1/ja/credits/
+---
+
 # Thanks #
 
 We would like to thank the people who constantly motivate us 

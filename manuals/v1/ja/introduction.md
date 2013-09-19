@@ -1,3 +1,9 @@
+---
+layout: docs-ja
+title: Introduction to Aura
+permalink: /manuals/v1/ja/introduction/
+---
+
 # Introduction to Aura #
 
 Auraの第一の目標は十分にテストされ、標準に準拠し、どのコードベースでも使用することができる高品質で粗結合なライブラリを提供する事です。必要に応じた分だけプロジェクトに使用することができます。

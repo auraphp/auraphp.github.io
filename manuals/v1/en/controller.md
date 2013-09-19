@@ -1,6 +1,6 @@
 ---
 layout: docs
-title: The web Controller
+title: The aura framework Controller
 permalink: /manuals/v1/en/controller/
 ---
 

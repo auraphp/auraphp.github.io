@@ -1,3 +1,9 @@
+---
+layout: docs-ja
+title: System Organization
+permalink: /manuals/v1/ja/system-organization/
+---
+
 # System Organization #
 
 システムのディレクトリは理解の容易な単純な構造です：

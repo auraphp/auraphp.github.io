@@ -1,10 +1,16 @@
+---
+layout: docs-ja
+title: Installation
+permalink: /manuals/v1/ja/installation/
+---
+
 # Installation #
 
 システム全体のtarballをダウンロードしてAuraフレームワークを使用することができます。またはsystemをcloneして手動でパッケージをインストールする事もできるし、composerを使ってインストールすることもできます。
 
 ## Tarball ##
 
--  [download](http://auraphp.com/system/downloads)から最新のtarballをダウンロード
+-  [download](http://auraphp.com/system/downloads) から最新のtarballをダウンロード
 
 - tarballをドキュメントルートへ解凍します。
 
@@ -20,20 +26,21 @@
 
         $ git clone https://github.com/auraphp/system.git
 
--    `php update.php&#39;を実行してシステムの他のライブラリをインストールするには以下の様にします。
+-    `php update.php` を実行してシステムの他のライブラリをインストールするには以下の様にします。
 
         $ cd system
         $ php update.php
         
-`php update.php`コマンドはシステムを最新の状態に保ちます。（新しく利用可能になったパッケージのインストールも含みます）
+`php update.php` コマンドはシステムを最新の状態に保ちます。（新しく利用可能になったパッケージのインストールも含みます）
 
 
- -    `/path/to/system/web/index.php` をブラウズすると &quot;Hello World!&quot;.が表示されます。
+ -    `/path/to/system/web/index.php`  をブラウズすると &quot;Hello World!&quot;.が表示されます。
 
     
 ## Composer ##
 
-[composer]（http://getcomposer.org）を使うとAuraフレームワークベースのプロジェクトを最も簡単に作成する事ができます。そのためには[install composer](http://getcomposer.org/doc/00-intro.md#installation-nix)が必要です。
+[composer](http://getcomposer.org) を使うとAuraフレームワークベースのプロジェクトを最も簡単に作成する事ができます。そのためには 
+[install composer](http://getcomposer.org/doc/00-intro.md#installation-nix) が必要です。
 
  -    Auraフレームワークの新しいベースプロジェクトを作成しましょう。ターミナルを開いて実行します。
 
@@ -50,4 +57,4 @@
     composer install
 
 
-> composerがグローバルにインストールされていると仮定しています。
+> composer がグローバルにインストールされていると仮定しています。

@@ -1,3 +1,9 @@
+---
+layout: docs-ja
+title: The View
+permalink: /manuals/v1/ja/view/
+---
+
 # The View #
 
 AuraフレームワークはAura.Viewをデフォルトのテンプレートとして使用します。
@@ -10,18 +16,20 @@ Aura Viewパッケージは[`TemplateView`](http://martinfowler.com/eaaCatalog/t
 
 ## Assigning Data from controller ##
 
-    [php]
-    $this->data = [
-        'foo' => 'value of foo',
-        'bar' => 'value of bar',
-    ];
+{% highlight php %}
+$this->data = [
+    'foo' => 'value of foo',
+    'bar' => 'value of bar',
+];
+{% endhighlight %}
 
-`$this`を使ってテンプレートスクリプトからプロパティを利用するこができます。：
+`$this` を使ってテンプレートスクリプトからプロパティを利用するこができます。：
 
-    [php]
-    // template script
-    <?= $this->foo; ?>
-    <?= $this->bar; ?>
+{% highlight php %}
+// template script
+<?= $this->foo; ?>
+<?= $this->bar; ?>
+{% endhighlight %}
 
 ## Writing Template Scripts ##
 
@@ -29,15 +37,16 @@ Aura Viewテンプレートスクリプトは素のPHPで書かれ新しいマ�
 テンプレートスクリプトは`Template`オブジェクトスコープ内部で実行されます。 
 そのとき`$this`は`Template` オブジェクトを指しています。以下にスクリプト例を示します。
 
-    [php]
-    <html>
-    <head>
-        <title><?= $this->title; ?></title>
-    </head>
-    <body>
-        <p><?= "Hello " . $this->var . '!'; ?></p>
-    </body>
-    </html>
+{% highlight php %}
+<html>
+<head>
+    <title><?= $this->title; ?></title>
+</head>
+<body>
+    <p><?= "Hello " . $this->var . '!'; ?></p>
+</body>
+</html>
+{% endhighlight %}
 
 We can use any PHP code we would normally use. (This will require discipline
 on the part of the template script author to restrict himself to
@@ -46,16 +55,17 @@ presentation-related logic only.)
 PHPコードを通常通りに使用します（ここにはプレゼンテーションのためのロジックしか記述しません）
 条件分岐やループのための表記はこのようになります。
 
-    [php]
-    <?php if ($this->model->hasMessage()): ?>
-        <p>The message is <?= $this->model->getMessage(); ?></p>
-    <?php endif; ?>
+{% highlight php %}
+<?php if ($this->model->hasMessage()): ?>
+    <p>The message is <?= $this->model->getMessage(); ?></p>
+<?php endif; ?>
 
-    <ul>
-    <?php foreach ($this->list as $item): ?>
-        <li><?= $item; ?></li>
-    <?php endforeach; ?>
-    </ul>
+<ul>
+<?php foreach ($this->list as $item): ?>
+    <li><?= $item; ?></li>
+<?php endforeach; ?>
+</ul>
+{% endhighlight %}
 
 ## Escaping Output ##
 
@@ -71,55 +81,59 @@ PHPコードを通常通りに使用します（ここにはプレゼンテー�
 
 ビジネスロジックのデータがテンプレートにアサインされた例です ...
 
-    [php]
-    <?php
-    /**
-     * @var object $obj An object with properties and methods.
-     * @var array $arr An associative array.
-     * @var string $str A string.
-     * @var int|float $num An actual number (not a string representation).
-     * @var bool $bool A boolean.
-     * @var null $null A null value.
-     */
-    $this->data = [
-        'obj'  => $obj,
-        'arr'  => $arr,
-        'str'  => $str,
-        'num'  => $num,
-        'bool' => $bool,
-        'null' => null,
-    ];
+
+{% highlight php %}
+<?php
+/**
+ * @var object $obj An object with properties and methods.
+ * @var array $arr An associative array.
+ * @var string $str A string.
+ * @var int|float $num An actual number (not a string representation).
+ * @var bool $bool A boolean.
+ * @var null $null A null value.
+ */
+
+$this->data = [
+    'obj'  => $obj,
+    'arr'  => $arr,
+    'str'  => $str,
+    'num'  => $num,
+    'bool' => $bool,
+    'null' => null,
+];
+{% endhighlight %}
 
 
 ... そしてこれはテンプレートでの自動エスケープの例です。
 
-    [php]
-    <?php
-    // strings are auto-escaped whenever you access them
-    echo $this->str;
+{% highlight php %}
+<?php
+// strings are auto-escaped whenever you access them
+echo $this->str;
 
-    // integers, floats, booleans, nulls, and resources are not escaped
-    if ($this->null === null || $this->bool === false) {
-        echo $this->num;
-    }
+// integers, floats, booleans, nulls, and resources are not escaped
+if ($this->null === null || $this->bool === false) {
+    echo $this->num;
+}
 
-    // array keys and values are auto-escaped per the string/number/etc
-    // rules listed above
-    foreach ($this->arr as $key => $val) {
-        // the key and value are already escaped for us
-        echo $key . ': ' . $val;
-    }
+// array keys and values are auto-escaped per the string/number/etc
+// rules listed above
+foreach ($this->arr as $key => $val) {
+    // the key and value are already escaped for us
+    echo $key . ': ' . $val;
+}
 
-    // object properties and method returns are auto-escaped per the 
-    // string/number/etc rules listed above
-    echo $this->obj->property;
-    echo $this->obj->method();
+// object properties and method returns are auto-escaped per the 
+// string/number/etc rules listed above
+echo $this->obj->property;
+echo $this->obj->method();
 
-    // if the object implements Iterator or IteratorAggregate,
-    // the iterator keys and values are auto-escaped as well
-    foreach ($this->obj as $key => $val) {
-        echo $key . ': ' . $val;
-    }
+// if the object implements Iterator or IteratorAggregate,
+// the iterator keys and values are auto-escaped as well
+foreach ($this->obj as $key => $val) {
+    echo $key . ': ' . $val;
+}
+{% endhighlight %}
 
 エスケープは*アクセス*時に行われ、*アサイン*の時では無いのに注意してください。
 *テンプレートにアサインされた値*にアクセスした時のみに行われます。
@@ -128,43 +142,44 @@ PHPコードを通常通りに使用します（ここにはプレゼンテー�
 
 もしテンプレート内で作成した値があれば、`escape()` ヘルパーを使って自身でエスケープする必要があります。
 
-    [php]
-    <?php
-    $var = "this & that";
-    echo $this->escape($var);
-
+{% highlight php %}
+<?php
+$var = "this & that";
+echo $this->escape($var);
+{% endhighlight %}
 
 ## Raw Data ##
 
 もしエスケープしない値をアクセスしたときには`__raw()`メソッドを使います。
 
-    [php]
-    <?php
-    // get the raw assigned string
-    echo $this->__raw()->str;
+{% highlight php %}
+<?php
+// get the raw assigned string
+echo $this->__raw()->str;
 
-    // get the count of an assigned array or object
-    echo count($this->__raw()->arr);
+// get the count of an assigned array or object
+echo count($this->__raw()->arr);
 
-    // see if the assigned array is empty
-    if (! $this->__raw()->arr) {
-        echo "Array is empty.";
-    }
+// see if the assigned array is empty
+if (! $this->__raw()->arr) {
+    echo "Array is empty.";
+}
 
-    // get a raw property from an assigned object;
-    // either of the following will work:
-    echo $this->__raw()->obj->property;
-    echo $this->obj->__raw()->property;
+// get a raw property from an assigned object;
+// either of the following will work:
+echo $this->__raw()->obj->property;
+echo $this->obj->__raw()->property;
 
-    // get a raw method result from an assigned object;
-    // either of the following will work:
-    echo $this->__raw()->obj->method();
-    echo $this->obj->__raw()->method();
+// get a raw method result from an assigned object;
+// either of the following will work:
+echo $this->__raw()->obj->method();
+echo $this->obj->__raw()->method();
 
-    // check if an object is an instanceof SomeClass
-    if ($this->__raw()->obj instanceof SomeClass) {
-        // ...
-    }
+// check if an object is an instanceof SomeClass
+if ($this->__raw()->obj instanceof SomeClass) {
+    // ...
+}
+{% endhighlight %}
 
 
 配列や`Countable`オブジェクトから`count()`を求めるには生の値が必要です。
@@ -183,19 +198,21 @@ it to the template, the new value will be double-escaped when you access it.
 
 例えばこのようなビジネスロジックが与えられたとします ...
 
-    [php]
-    <?php
-    // business logic
-    $this->data->foo = "this & that";
+{% highlight php %}
+<?php
+// business logic
+$this->data->foo = "this & that";
+{% endhighlight %}
 
     
 .. テンプレートスクリプトはこれです ...
 
-    [php]
-    <?php
-    // template script
-    $this->bar = $this->foo . " & the other";
-    echo $this->bar;
+{% highlight php %}
+<?php
+// template script
+$this->bar = $this->foo . " & the other";
+echo $this->bar;
+{% endhighlight %}
 
 ... この時、アウトプットは二重エスケープされた`"this &amp;amp; that &amp; the other"`になってしまいます。
 これは`$this->foo` をアクセスしたときにエスケープされた後、出力のときに`$this->bar`がアクセスされたときに
@@ -204,11 +221,12 @@ it to the template, the new value will be double-escaped when you access it.
 `__raw()`このような操作を行うときには`__raw()`の値を使います：
 
 
-    [php]
-    <?php
-    // template script
-    $this->bar = $this->__raw()->foo . " & the other";
-    echo $this->bar;
+{% highlight php %}
+<?php
+// template script
+$this->bar = $this->__raw()->foo . " & the other";
+echo $this->bar;
+{% endhighlight %}
 
 
 これで出力は`"this &amp; that &amp; the other"`と正しく一度だけ行われる様になりました。
@@ -269,48 +287,43 @@ part of Aura View include:
     
     このような例になります
     
-    - `$this->input(['type' => 'text', ... ], 'field value')`
-    
-    - `$this->input(['type' => 'checkbox', 'value' => 'yes'], 'yes')`
+- `$this->input(['type' => 'text', ... ], 'field value')`
 
+- `$this->input(['type' => 'checkbox', 'value' => 'yes'], 'yes')`
 
-- `$this->metas()` は`<meta ... />` タグを取得したり追加できるオブジェクトを用意します。
+- `$this->metas()`  は  `<meta ... />`   タグを取得したり追加できるオブジェクトを用意します。 
 
-    - `$this->metas()->addHttp($http_equiv, $content)`  HTTP-equivalent メタタグをヘルパーに追加します。
+- `$this->metas()->addHttp($http_equiv, $content)`  HTTP-equivalent メタタグをヘルパーに追加します。
 
-    - `$this->metas()->addName($name, $content)` メタ名のタグをヘルパーに追加します
-    
-    - `$this-metas()->get()` 追加された全てのタグを取得します。
+- `$this->metas()->addName($name, $content)` メタ名のタグをヘルパーに追加します
 
+- `$this->metas()->get()` 追加された全てのタグを取得します。
 
-    - `$this->scripts()` は`<meta ... />` タグを取得したり追加できるオブジェクトを用意します。` タグを取得したり追加できるオブジェクトを用意します。
+- `$this->scripts()`  は  `<meta ... />`  タグを取得したり追加できるオブジェクトを用意します。タグを取得したり追加できるオブジェクトを用意します。
 
-    - `$this->scripts()->add($src)` はヘルパーにスクリプトタグを追加します。
-    
-    - `$this->scripts()->addCond($exp, $src)` 条件式のスクリプトタグを追加します。
-    
-    - `$this->scripts()->get()` ヘルパーに追加された全てのタグを返します。
-    
+- `$this->scripts()->add($src)`  はヘルパーにスクリプトタグを追加します。
 
+- `$this->scripts()->addCond($exp, $src)` 条件式のスクリプトタグを追加します。
 
-    - `$this->styles()` `<link rel="stylesheet" ... />`タグを追加したり取得できるオブジェクトを用意します。
+- `$this->scripts()->get()`  ヘルパーに追加された全てのタグを返します。
 
-    - `$this->styles()->add($href)` ヘルパーにスタイルタグを追加します。
-    
-    - `$this->styles()->get()` ヘルパーに追加された全てのタグを返します。
-    
+- `$this->styles()`  は `<link rel="stylesheet" ... />` タグを追加したり取得できるオブジェクトを用意します。
 
-    - `$this->textarea($attribs, $html)` `<textarea>`を返します。`$html`はオプションです。
+- `$this->styles()->add($href)`  ヘルパーにスタイルタグを追加します。
 
-    - `$this->title()`  `<title>...</title>`タグを操作するオブジェクトを用意します。
+- `$this->styles()->get()`  ヘルパーに追加された全てのタグを返します。    
 
-    - `$this->title()->set($title)` タイトルの値をセットします。
-    
-    - `$this->title()->append($suffix)` タイトルの値に追加します。
-    
-    - `$this->title()->prepend($prefix)`  タイトルの値の前に追加します。
-    
-    - `$this->title()->get()` タイトルタグと値を返します。
+- `$this->textarea($attribs, $html)` `<textarea>` を返します。`$html`はオプションです。
+
+- `$this->title()`  `<title>...</title>` タグを操作するオブジェクトを用意します。
+
+- `$this->title()->set($title)` タイトルの値をセットします。
+
+- `$this->title()->append($suffix)` タイトルの値に追加します。
+
+- `$this->title()->prepend($prefix)`  タイトルの値の前に追加します。
+
+- `$this->title()->get()` タイトルタグと値を返します。
 
 ## Template Composition ##
 
@@ -321,19 +334,19 @@ might have a header section, a navigation section, a sidebar, and so on.
 We can use the `$this->find()` method in a template script to find a template,
 and then `include` it wherever we like. For example:
 
-    [php]
-    <html>
-    <head>
-        <?php include $this->find('head'); ?>
-    </head>
-    <body>
-        <?php include $this->find('branding'); ?>
-        <?php include $this->find('navigation'); ?>
-        <p>Hello, <?= $this->var; ?>!</p>
-        <?php include $this->find('foot'); ?>
-    </body>
-    </html>
-
+{% highlight php %}
+<html>
+<head>
+    <?php include $this->find('head'); ?>
+</head>
+<body>
+    <?php include $this->find('branding'); ?>
+    <?php include $this->find('navigation'); ?>
+    <p>Hello, <?= $this->var; ?>!</p>
+    <?php include $this->find('foot'); ?>
+</body>
+</html>
+{% endhighlight %}
 
 Templates that we `include` in this way will share the scope of the template
 they are included from.
@@ -352,24 +365,25 @@ template variables.例えばこれらのパーシャル（部分的な）テン�
 
 
 
-    [php]
-    <?php
-    // partial template named '_item.php'.
-    echo "    <li>{$this->item}</li>" . PHP_EOL;
+{% highlight php %}
+<?php
+// partial template named '_item.php'.
+echo "    <li>{$this->item}</li>" . PHP_EOL;
+{% endhighlight %}
 
 
 ... 他のテンプレートからこのテンプレートを部分的に使う事ができます。
 
 
-    [php]
-    <?php
-    // main template. assume $this->list is an array of items.
-    foreach ($this->list as $item) {
-        $template_name = '_item';
-        $template_vars = ['item' => $item];
-        echo $this->partial($template_name, $template_vars);
-    }
-
+{% highlight php %}
+<?php
+// main template. assume $this->list is an array of items.
+foreach ($this->list as $item) {
+    $template_name = '_item';
+    $template_vars = ['item' => $item];
+    echo $this->partial($template_name, $template_vars);
+}
+{% endhighlight %}
 
 That will run the `$template_name` template script in a separate scope, and
 the `$template_vars` array will be available as `$this` properties within that
@@ -397,38 +411,41 @@ separate scope.
 この例のヘルパーはROT-13を文字列にするものです。
 
 
-    [php]
-    <?php
-    namespace Vendor\Package\View\Helper;
-    
-    use Aura\View\Helper\AbstractHelper;
-    
-    class Obfuscate extends AbstractHelper
+{% highlight php %}
+<?php
+namespace Vendor\Package\View\Helper;
+
+use Aura\View\Helper\AbstractHelper;
+
+class Obfuscate extends AbstractHelper
+{
+    public function __invoke($string)
     {
-        public function __invoke($string)
-        {
-            return str_rot13($input);
-        }
+        return str_rot13($input);
     }
+}
+{% endhighlight %}
 
 
 これでヘルパークラスを持つ事ができました。サービスとして`HelperLocator` に追加します：
 
-    [php]
-    <?php
-    // business logic
-    $di->params['Aura\View\HelperLocator']['registry']['obfuscate'] = function () use ($di) {
-        return $di->newInstance('Vendor\Package\View\Helper\Obfuscate');
-    };
+{% highlight php %}
+<?php
+// business logic
+$di->params['Aura\View\HelperLocator']['registry']['obfuscate'] = function () use ($di) {
+    return $di->newInstance('Vendor\Package\View\Helper\Obfuscate');
+};
+{% endhighlight %}
     
 
 `HelperLocator`のサービスの名前はメソッド名と`Template`オブジェクトに使われます。
 これは `$this->obfuscate()`メソッド経由でヘルパーが呼ばれるという事です。
 
-    [php]
-    <?php
-    // template script
-    echo $this->obfuscate('plain text');
+{% highlight php %}
+<?php
+// template script
+echo $this->obfuscate('plain text');
+{% endhighlight %}
 
 
 注）ヘルパーにはどんな名前でもつけることができます。ただし、ヘルパークラスにとって充分な名前である必要があるでしょう
