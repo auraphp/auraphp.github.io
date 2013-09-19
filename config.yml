@@ -1,0 +1,83 @@
+book:
+    title:            "The book on Aura"
+    author:           "Hari KT, Paul M Jones"
+    edition:          "First edition"
+    language:         en
+    publication_date: ~
+
+    generator: { name: easybook, version: 5.0-DEV }
+
+    contents:
+        # available content types: acknowledgement, afterword, appendix, author,
+        # chapter, conclusion, cover, dedication, edition, epilogue, foreword,
+        # glossary, introduction, license, lof (list of figures), lot (list of
+        # tables), part, preface, prologue, title, toc (table of contents)        
+        - { element: acknowledgement, content: thanks.md }
+        - { element: author, content: about-me.md }
+        - { element: cover }
+        - { element: title }
+        - { element: license, content: cc-by.md }
+        - { element: toc }
+        - { element: lof }
+        - { element: chapter, number: 1, content: chapter1.md }
+        - { element: chapter, number: 2, content: chapter2.md }
+        - { element: chapter, number: 3, content: chapter3.md }
+        - { element: chapter, number: 4, content: chapter4.md }
+        - { element: chapter, number: 5, content: chapter5.md }
+        - { element: chapter, number: 6, content: chapter6.md }
+        - { element: chapter, number: 7, content: chapter7.md }
+        - { element: chapter, number: 8, content: chapter8.md }
+        - { element: chapter, number: 9, content: chapter9.md }
+        - { element: chapter, number: 10, content: chapter10.md }
+        - { element: chapter, number: 11, content: chapter11.md }
+        - { element: chapter, number: 12, content: chapter12.md }
+        - { element: chapter, number: 13, content: chapter13.md }
+        - { element: chapter, number: 14, content: chapter14.md }
+
+    editions:
+        ebook:
+            format:         epub
+            highlight_code: false
+            include_styles: true
+            labels:         ['appendix', 'chapter']  # labels also available for: "figure", "table"
+            theme:          clean
+            toc:
+                deep:       1
+                elements:   ["appendix", "chapter", "part"]
+
+        kindle:
+            extends:        ebook
+            format:         mobi
+
+        print:
+            format:         pdf
+            highlight_code: true
+            include_styles: true
+            isbn:           ~
+            labels:         ["appendix", "chapter"]  # labels also available for: "figure", "table"
+            margin:
+                top:        25mm
+                bottom:     25mm
+                inner:      30mm
+                outter:     20mm
+            page_size:      A4
+            theme:          clean
+            toc:
+                deep:       2
+                elements:   ["appendix", "chapter", "part"]
+            two_sided:      true
+
+        web:
+            format:         html
+            highlight_code: true
+            include_styles: true
+            labels:         ["appendix", "chapter"]  # labels also available for: "figure", "table"
+            theme:          clean
+            toc:
+                deep:       2
+                elements:   ["appendix", "chapter"]
+
+        website:
+            extends:        web
+            format:         html_chunked
+                            
