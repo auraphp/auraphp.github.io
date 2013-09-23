@@ -30,4 +30,4 @@ Sounds like there's some use of [Aura.Web][] in there too.
 
 [Aura.Di]: https://github.com/auraphp/Aura.Di
 [myth]: http://www.brandonsavage.net/the-myth-of-the-untestable-controller
-[Aura.Di]: https://github.com/auraphp/Aura.Web
+[Aura.Web]: https://github.com/auraphp/Aura.Web
