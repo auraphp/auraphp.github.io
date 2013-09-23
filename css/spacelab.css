@@ -651,7 +651,7 @@ a:focus {
 }
 
 p {
-  margin: 0 0 10.5px;
+  margin: 10.5px;
 }
 
 .lead {
@@ -920,7 +920,6 @@ blockquote {
 }
 
 blockquote p {
-  margin-bottom: 0;
   font-weight: 300;
   line-height: 1.25;
 }
