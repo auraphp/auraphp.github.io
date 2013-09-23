@@ -1,5 +1,5 @@
 ---
-title: Aura.Di Mention
+title: Aura.Di And Testable Controllers
 layout: post
 tags : [di, controller, testing]
 author : Paul M. Jones
