@@ -1,50 +1,52 @@
-# The complete reference for Aura #
+Welcome to Aura
+===============
 
-The book complete reference in Aura, is a WIP to help people learn 
-aura framework, apart from using its components individually.
+Aura framework is built on the top of [aura libraries](http://auraphp.com/packages/). 
+If you are looking for documentation on individual libraries, 
+check out the [packages documentation](http://auraphp.com/packages/).
 
-Most of the contents are same as that of the individual packages, with
-some changes to combine all the packages.
+The Aura Framework manual is still a work in progress (WIP).
+If you are interested in contributing to the manual please fork 
+[https://github.com/auraphp/auraphp.github.com](https://github.com/auraphp/auraphp.github.com)
+and contribute.
 
-The book is made possible with [easybook](https://packagist.org/packages/easybook/easybook)
+Structure of Manual
+-------------------
 
-## Contributing ##
+The framework manual is under 
+[manuals folder](https://github.com/auraphp/auraphp.github.com/tree/master/manuals)
 
-All contributions from non-project developers must go through a pull 
-request and approved by a project developer before being merged. This 
-is to ensure proper review of all proposed changes.
+The folder structure inside the manuals is
 
-Fork the project, make your changes, and send us a pull request.
+{% highlight bash %}
+manuals
+    └── v1
+        ├── en
+        │   └── markdown-files
+        └── ja
+{% endhighlight %}
 
-## Licence ##
+If you are interested to contribute on a different language, 
+first [look into the issues](https://github.com/auraphp/auraphp.github.com/issues?labels=manuals&page=1&state=open). 
 
+So if someone is already working on it, we can collaborate and 
+not duplicate the work already done.
 
-You are free:
+If you didnot find the language, create an issue so others know you 
+have started the work on that particular language.
 
- - **to Share** — to copy, distribute and transmit the work
- - **to Remix** — to adapt the work
- 
-to make commercial use of the work
+Fork and add the 
+[2 letter language code](http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)
+and the translated contents.
 
-**Under the following conditions:**
+If you have any questions feel free to ask at 
+[auraphp groups](http://groups.google.com/group/auraphp).
 
- - **Attribution** — You must attribute the work in the manner specified by the author or licensor (but not in any way that suggests that they endorse you or your use of the work).
+Hosting and Rendering
+---------------------
 
- - **Share Alike** — If you alter, transform, or build upon this work, you may distribute the resulting work only under the same or similar license to this one.
+The manuals are rendered with the help of [Jekyll](http://jekyllrb.com)
+and hosted in [github](https://github.com).
 
-**With the understanding that:**
-
-**Waiver** — Any of the above conditions can be waived if you get permission from the copyright holder.
-
-**Public Domain** — Where the work or any of its elements is in the public domain under applicable law, that status is in no way affected by the license.
-
-**Other Rights** — In no way are any of the following rights affected by the license:
-
- - Your fair dealing or fair use rights, or other applicable copyright exceptions and limitations;
-
- - The author's moral rights;
-
- - Rights other persons may have either in the work itself or in how the work is used, such as publicity or privacy rights.
-
-**Notice** — For any reuse or distribution, you must make clear to others the license terms of this work. The best way to do this is with a link to this web page.
-
+You can install [Jekyll](http://jekyllrb.com) in your local system and 
+see how it renders.
