@@ -18,13 +18,13 @@ The framework manual is under
 
 The folder structure inside the manuals is
 
-{% highlight bash %}
-manuals
-    └── v1
-        ├── en
-        │   └── markdown-files
-        └── ja
-{% endhighlight %}
+
+    manuals
+        └── v1
+            ├── en
+            │   └── markdown-files
+            └── ja
+
 
 If you are interested to contribute on a different language, 
 first [look into the issues](https://github.com/auraphp/auraphp.github.com/issues?labels=manuals&page=1&state=open). 
