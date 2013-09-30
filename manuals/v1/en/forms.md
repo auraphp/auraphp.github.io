@@ -78,26 +78,61 @@ sanitization. The `Aura\Input\Form` object has `getFilter()` method
 which is an object of `Aura\Framework\Input\Filter` an extended class of 
 `Aura\Filter\RuleCollection`.
 
-Look into chapter-8 (Validation and Sanitization) for 
+Look into Validation and Sanitization for 
 the different types of Rules, how you can create your own rules.
+
+## Extended Controller for form creation ##
+
+The aura framework has a very basic controller. You need to extend 
+the controller according to your needs.
+
+{% highlight php %}
+<?php
+namespace Example\Package\Web;
+
+use Aura\Framework\Web\Controller\AbstractPage;
+use Aura\Input\FormFactory;
+
+abstract class PageController extends AbstractPage
+{        
+    protected $form_factory;
+
+    public function setFormFactory(FormFactory $form_factory)
+    {
+        $this->form_factory = $form_factory;
+    }
+
+    public function getFormFactory()
+    {
+        return $this->form_factory;
+    }
+}
+{% endhighlight %}
 
 ## Configuration ##
 
 In-order to make use of the dependency injection, we need to map the 
-form names to `Example\Package\GenericFactory`.
+form names to `Aura\Input\FormFactory`.
     
 {% highlight php %}
-$di->params['Example\Package\GenericFactory']['map']['form.contact'] = 
+$di->setter['Example\Package\Web\PageController']['setFactory'] = 
+    $di->lazyGet('input_form_factory');
+{% endhighlight %}
+
+You can map as many forms into the `FormFactory` as 
+
+{% highlight php %}
+$di->params['Aura\Input\FormFactory']['map']['form.contact'] = 
     $di->newFactory('Example\Package\Input\ContactForm');
 {% endhighlight %}
 
 ## Form object ##
 
-We can create form objects from controller via the `Example\Package\GenericFactory`
-object we injected to the controller as in chapter-6.
+Form objects can then be created in the extend class 
+`Example\Package\Web\PageController` of controller as 
 
 {% highlight php %}
-$form = $this->factory->newInstance('form.contact');
+$form = $this->getFormFactory()->newInstance('form.contact');
 {% endhighlight %}
 
 ## Populating and Validating User Input ##
@@ -112,7 +147,7 @@ that did not pass their filter rules.
 <?php
 // fill the form with $_POST array elements
 // that match the form input names.
-$form->fill($_POST);
+$form->fill($this->context->getPost());
 
 // apply the filters
 $pass = $form->filter();
