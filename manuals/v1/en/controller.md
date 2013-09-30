@@ -228,7 +228,7 @@ class Page extends AbstractPage
         // only one layout
         // $this->layout = 'layout-name';
 
-        // if you have multiple alyouts for different formats
+        // if you have multiple layouts for different formats
         $this->layout = [
             '.html' => 'default.php',
             '.json' => '',
