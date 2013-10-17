@@ -6,36 +6,29 @@ permalink: /manuals/v1/ja/di/
 
 # Dependency Injection #
 
-The Aura DI package provides a dependency injection container system with the
-following features:
+Aura DIパッケージが提供するDIコンテナシステムはこのようなの特徴があります。
 
-- native support for constructor- and setter-based injection
+- コンストラクタの他にもとセッターインジェクションもサポートします。
 
-- lazy-loading of services
+- サービスはレイジーローディングされます。
 
-- inheritable configuration of setters and constructor params
+- 継承可能なコンストラクタとセッターのパラメーター
 
-When combined with factory classes, you can completely separate object
-configuration, object construction, and object usage, allowing for great
-flexibility and increased testability.
+ファクトリークラスが合成される時にオブジェクトの構成、オブジェクトの生成、オブジェクトの利用は完全に分離されます。
+高い柔軟性とテスト可能性を可能にします。
 
-Fully describing the nature and benefits of dependency injection, while
-desirable, is beyond the scope of this document. For more information about
-"inversion of control" and "dependency injection" please consult
-<http://martinfowler.com/articles/injection.html> by Martin Fowler.
+DIの性質と利点を最大限理解するために、"inversion of control" や "dependency injection"を<http://martinfowler.com/articles/injection.html> by Martin Fowlerで調べて下さい。
 
-## Instantiating the Container ##
+## コンテナの生成 ##
 
-The Aura DI package comes with a instance script that returns a new DI
-instance:
+Aura DIパッケージは新規のDIインスタンスを返すスクリプトが含まれています：
 
 {% highlight php %}
 <?php
 $di = require '/path/to/Aura.Di/scripts/instance.php';
 {% endhighlight %}
 
-Alternatively, you can add the Aura DI `'src/'` directory to your autoloader,
-and then instantiate it yourself:
+あるいはAura DIの`'src/'`ディレクトリをあなたのオートローダーに追加して、自身でインスタンス生成します：
 
 {% highlight php %}
 <?php
@@ -46,22 +39,17 @@ use Aura\Di\Config;
 $di = new Container(new Forge(new Config));
 {% endhighlight %}
 
+`Container`はDIコンテナです。サポートするオブジェクトは：
 
-The `Container` is the DI container proper.  The support objects are:
+- `Config`オブジェクト。セッターやコンストラクタの引き数のコレクションや取得、マージします。
 
-- a `Config` object for collection, retrieval, and merging of setters and constructor params
+- `Forge` は `Config`の値を使いオブジェクトを生成します。
 
-- a `Forge` for object creation using the unified `Config` values
+これらのサポートオブジェクトを直接利用することはありません。 `Container` のメソッドがそれらのオブジェクトをアクセスします。
 
-We will not need to use the support objects directly; we will get access to
-their behaviors through `Container` methods.
+## サービスの設定 ##
 
-
-## Setting Services ##
-
-For the following examples, we will set a service that should return a
-database connection. The hypothetical database connection class is defined as
-follows:
+以下の例のではデータベース接続を返すサービスをセットする必要があります。例えばデータベースの接続クラスは以下のようになります：
 
 {% highlight php %}
 <?php
@@ -76,15 +64,12 @@ class Database
 }
 {% endhighlight %}
 
+ごく単純なやり方から洗練された方法に移行するために４つのステップを踏みます。
+どのDIコンテナの利用でも利点と弱点があります。
 
-We will proceed from naive service creation to a more sophisticated idiom in
-four steps. Each of the variations is a valid use of the DI container with its
-own strengths and weaknesses.
+## 方法 1: 早期読み込み (eager loading) ##
 
-## Variation 1: Eager Loading ##
-
-In this variation, we create a service by instantiating an object with the
-`new` operator.
+この方法では `new` 演算子でインスタンスをつくりサービスを生成します。
 
 {% highlight php %}
 <?php
@@ -93,15 +78,13 @@ $di->set('database', new \Example\Package\Database(
 ));
 {% endhighlight %}
 
-
-This causes the database object to be created at the time we *set* the service
-into the container. That means it is always created, even if we never retrieve
-it from the container.
+この方法ではサービスを *セットするタイミングで* データベースオブジェクトが作られます。
+つまりコンテナから取り出される事がなくても生成されるということです。
 
 ## Variation 2: Lazy Loading ##
+## 方法 2: 遅延読み込み (lazy loading) ##
 
-In this variation, we create a service by wrapping it in a closure, still
-using the `new` operator.
+この方法では `new` で生成するサービスをクロージャでラップして生成します。
 
 {% highlight php %}
 <?php
@@ -110,18 +93,16 @@ $di->set('database', function () {
 });
 {% endhighlight %}
 
+この方法ではデータベースオブジェクトはコンテナから`$di->get('database')`で *取得* する時に生成されます。
+オブジェクト生成をクロージャをラッピングすることでデータベースオブジェクトの読み込みを遅延読み込みする事ができます。
 
-This causes the database object to be created at the time we *get* the service
-from the container, using `$di->get('database')`. Wrapping the object
-instantiation inside a closure allows for lazy-loading of the database object;
-if we never make a call to `$di->get('database')`, the object will never be
-created.
+もし`$di->get('database')`を行う事がなければオブジェクトが生成される事はありません。
 
 ## Variation 3: Constructor Params ##
+## 方法 3:　コンストラクタ引数 ##
 
-In this variation, we will move away from using the `new` operator, and use
-the `$di->newInstance()` method instead. We still wrap the instantiation in a
-closure for lazy-loading.
+この方法では`new` 演算子を取り除きます。その代わりに`$di->newInstance()`メソッドを使用します。
+遅延読み込みと同じように生成をクロージャでラップします。
 
 {% highlight php %}
 <?php
@@ -134,17 +115,16 @@ $di->set('database', function () use ($di) {
 });
 {% endhighlight %}
 
+`newInstance()`メソッドは`Forge`オブジェクトを使ってコンストラクタメソッドを反映させオブジェクトを生成するために使われます。
 
-The `newInstance()` method uses the `Forge` object to reflect on the
-constructor method of the class to be instantiated. We can then pass
-constructor parameters based on their names as an array of key-value pairs.
-The order of the pairs does not matter; missing parameters will use the
-defaults as defined by the class constructor.
+コンストラクタには 名前-値 とペアになった連想配列を渡します。順序は関係ありません。
+存在しないパラメータはクラスコンストラクタで定義されているデフォルトが使われます。
+
 
 ## Variation 4: Class Constructor Params ##
+## 方法４: クラスコンストラクタ引数 ##
 
-In this variation, we define a configuration for the `Database` class
-separately from the lazy-load instantiation of the `Database` object.
+この方法では`Database` クラスの設定を`Database`オブジェクトの遅延生成から分離して定義します。
 
 {% highlight php %}
 <?php
@@ -160,20 +140,15 @@ $di->set('database', function () use ($di) {
 {% endhighlight %}
 
 
-As part of the object-creation process, the `Forge` examines the `$di->params`
-values for the class being instantiated. Those values are merged with the
-class constructor defaults at instantiation time, and passed to the
-constructor (again, the order does not matter, only that the param key names
-match the constructor param names).
+オブジェクトの生成プロセスの中で `Forge`クラスは`$di->params`の値をクラスを生成するために調べます。
+その値はクラスコンストラクタのデフォルト引数の値とマージされ、コンストラクタに渡します。
+（順序は関係ありません。引数の名前が一致するかを調べます）
 
-At this point, we have successfully separated object configuration from object
-instantiation, and allow for lazy-loading of service objects from the
-container.
+オブジェクトの設定と生成をうまく分け、またコンテナからサービスオブジェクトが遅延読み込みできています。
 
-## Variation 5: Call The lazyNew() Method ##
+## 方法 5: lazyNew() メソッドのコール ##
 
-In this variation, we call the `lazyNew()` method, which encapsulates the
-"use a closure to return a new instance" idiom.
+この方法では`lazyNew()`メソッドをコールして「クロージャを使って新しいインスタンスを返す」と同様の事を行っています。
 
 {% highlight php %}
 <?php
@@ -186,12 +161,9 @@ $di->params['Example\Package\Database'] = [
 $di->set('database', $di->lazyNew('Example\Package\Database'));
 {% endhighlight %}
 
+## 方法 5a: コンストラクタ引数のオーバーライド##
 
-
-## Variation 5a: Override Class Constructor Params ##
-
-In this variation, we override the `$di->params` values that will be used at
-instantiation time.
+この方法では インスタンス化する時に使う`$di->params` をオーバーライドします。
 
 {% highlight php %}
 <?php
@@ -207,32 +179,24 @@ $di->set('database', $di->lazyNew('Example\Package\Database', [
 {% endhighlight %}
 
 
-The instantiation-time values take precedence over the configuration values,
-which themselves take precedence over the constructor defaults.
+インスタンス時に指定する値はコンフィギュレーションでの値（コンストラクタのデフォルトより優先される）より優先されます。
 
+## サービス取得 ##
 
-## Getting Services ##
-
-To get a service object from the container, call `$di->get()`.
-
+コンテナからサービスを取得するために `$di->get()`と呼びます。
 {% highlight php %}
 <?php
 $db = $di->get('database');
 {% endhighlight %}
 
+これでコンテナからサービスオブジェクトを取り出す事ができます。
+もしそれがクロージャなら実行されオブジェクトが生成wqれます。
+一旦オブジェクトが生成されるとその後何回取り出そうとしても同じインスタンスが返ります。
 
-This will retrieve the service object from the container; if it was set using
-a closure, the closure will be invoked to create the object at that time. Once
-the object is created, it is retained in the container for future use; getting
-the same service multiple times will return the exact same object instance.
+## コンストラクタ引数の継承 ##
 
-
-## Constructor Params Inheritance ##
-
-For the following examples, we will add an `AbstractModel` class and two
-concrete classes called `BlogModel` and `WikiModel`. The idea is that all
-`AbstractModel` classes need a `Database` connection to interact with one or
-more tables in the database.
+この例にサンプルに従い`AbstractModel`を追加して、二つのコンクリートクラス`BlogModel`と`WikiModel`を追加します。
+全ての`AbstractModel`クラスは 1つまたはそれ以上のテーブルのが必要な`Database`接続を必要としています。
 
 {% highlight php %}
 <?php
@@ -259,11 +223,9 @@ class WikiModel extends AbstractModel
 }
 {% endhighlight %}
 
+`BlogModel` と `WikiModel`を作成します。そしてサービス定義に定義されてるようにそれらにデータベースサービスをインジェクトします。
+DIコンテナによいって継承されたコンフィグを使って、クラスコンフィグにあるデータベースサービスを定義します。
 
-We will create services for the `BlogModel` and `WikiModel`, and inject the
-database service into them as part of the service definition. Using config
-inheritance provided by the DI container, we can define the database service
-injection through class configuration.
 
 {% highlight php %}
 <?php
@@ -289,40 +251,35 @@ $di->set('blog_model', $di->lazyNew('Example\Package\BlogModel'));
 $di->set('wiki_model', $di->lazyNew('Example\Package\WikiModel'));
 {% endhighlight %}
 
-
-We do not need to set the value of the `'db'` param for the `BlogModel` and
-`WikiModel` directly. Instead, the params for the `AbstractModel` class are
-automatically inherited by the child `BlogModel` and `WikiModel` classes, so
-the `'db'` constructor param for all `Model` classes automatically gets the
-`'database'` service. (We can override that at instantiation time if we like.)
-
-Note the use of the `lazyGet()` method. This is a special method intended for
-use with params and setters. If we used `$di->get()`, the container would
-instantiate the service at that time. However, using `$di->lazyGet()` allows
-the service to be instantiated only when the object being configured is
-instantiated. Think of it as a lazy-loading wrapper around the service (which
-itself may be lazy-loaded).
-
-We do not need to write our classes in any special way to get the benefit of
-this configuration system. Any class with constructor params will be
-recognized by the configuration system, so long as we instantiate it via
-`$di->newInstance()`or `$di->lazyNew()`.
+`BlogModel`モデルや`WikiModel`のために直接`'db'`のパラメーターの値をセットしたりすることはありません。
+その代わりに`BlogModel` と `WikiModel`クラスは`AbstractModel`クラスを継承するので、`'db'`をコンストラクタ引き数に持つ
+全ての`Model`クラスは自動で`'database'` サービスを受け取る事ができます（インスタンス時に行う事もできます）
 
 
-## Factories and Dependency Fulfillment ##
+`lazyGet()`メソッドの利用に注意してください。この特別なメソッドはパラメーターとセッターのために使われます。
+もし`$di->get()`を行うとコンテナはその時にサービスをインスタンス化します。
+しかしながら`$di->lazyGet()`の利用ではオブジェクトが設定されている場合にのみサービスがインスタンス化されます。
+（レイジーロードされる）サービスのレイジーローディングラッパーとして考えてみて下さい。
 
-Creating a service for each of the model objects in our application can become
-tiresome. We may need to create other models, and we don't want to have to
-create a separate service for each one. In addition, we may need to create
-model objects from within another object. Finally, we don't want to create
-model objects until we actually need them. This is where we can make use of
-factories.
+これらのコンフィギュレーションのため、特別な方法で私たちのクラスを記述する必要はありません。
+どのクラスでもコンストラクタのパラメターはコンフィギュレーションによって取り扱われます。
+だから`$di->newInstance()`や `$di->lazyNew()`でインスタンス化する事ができるのです。
 
-Below, we will define three new classes: a factory to create model objects for
-us, an abstract `PageController` class that uses the model factory, and a
-`BlogController` class that needs an instance of a blog model. We will
-populate the `ModelFactory` with a map of model names to factory objects that
-will create the mapped objects.
+## ファクトリーと依存解決 ##
+
+我々のアプリケーションのそれぞれのモデルオブジェクトのサービスをつくるのはなかなか大変な事です。
+モデルを作る必要はあるかもしれませんが、それぞれが必要とするサービスは別々につくりたくないものです。
+
+加えて説明すると他のオブジェクトからモデルのオブジェクトをつくる必要はあります。
+モデルのオブジェクトは本当に必要となるまでつくりたくありません。このためにファクトリーを使う事ができます。
+
+下記のように３つの新しいクラスを定義します：
+モデルオブジェクトをつくるファクトリークラス。
+モデルファクトリーを使うアブストラクトの`PageController`クラス。
+それにブログモデルのインスタンスを必要とする`BlogController`クラス。
+
+モデル名にオブジェクトをつくるファクトリーをマップした`ModelFactory`が、マップされたオブジェクトを生成します。
+
 
 {% highlight php %}
 <?php
@@ -366,8 +323,7 @@ class BlogController extends PageController
 }
 {% endhighlight %}
 
-
-Now we can set up the DI container as follows:
+これでDIコンテナが以下のようにセットアップされています。
 
 {% highlight php %}
 <?php
@@ -405,8 +361,8 @@ $di->set('database', $di->lazyNew('Example\Package\Database'));
 $di->set('model_factory', $di->lazyNew('Example\Package\ModelFactory'));
 {% endhighlight %}
 
+`BlogController`のインスタンスを作成して、実行します...
 
-When we create an instance of the `BlogController` and run it ...
 
 {% highlight php %}
 <?php
@@ -414,36 +370,34 @@ $blog_controller = $di->newInstance('Aura\Example\BlogController');
 echo $blog_controller->exec();
 {% endhighlight %}
 
+依存を満たす為に２つのステップでイベントが起こります。
+最初のステップは`BlogController`のインスタンス化です。
 
-... a series of events occurs to fulfill all the dependencies in two steps.
-The first step is the instantiation of the `BlogController`:
+- `BlogController`インスタンスは`PageController`からパラメーターを継承しています。
 
-- The `BlogController` instance inherits its params from `PageController`
+- `PageController` のパラメーターは`'model_factory'`サービスを取得します。
 
-- The `PageController` params get the `'model_factory'` service
-
-- The `ModelFactory` params get the `Database` object, creating the
-  database connection at that time
+- `ModelFactory` パラメーターは`Database` オブジェクトを取得します。この時データベース接続が作られます。
 
 The second step is the invocation of `ModelFactory::newInstance()` within
 `BlogController::exec()`:
 
-- `BlogController::exec()` invokes `ModelFactory::newInstance()`
+次のステップでは `ModelFactory::newInstance()`が`BlogController::exec()`の中で実行されます。
 
-- `ModelFactory::newInstance()` creates a new class and passes in the
-  `Database` object
+- `BlogController::exec()`は `ModelFactory::newInstance()`を実行
 
-At the end of all this, the `BlogController::exec()` method has been able to
-retrieve a fully-configured `BlogModel` object without having to specify any
-configuration locally.
+- `ModelFactory::newInstance()`は新しいクラスをつくって`Database` オブジェクトを渡します。
+
+
+これら全てが終わると `BlogController::exec()`メソッドは全てが設定された`BlogModel`オブジェクトをローカルでは何の設定をすることなしに取得することができました。
 
 
 ## Setter Injection ##
 
-Until this point, we have been working via constructor injection. However, we
-can work via setter injection as well.
+これまで、コンストラクタインジェクションの動作を見て来ました。セッターインジェクションも同様に機能します。
 
-Given the following example class ...
+以下のサンプルクラスが与えられます...
+
 
 {% highlight php %}
 <?php
@@ -460,9 +414,7 @@ class Foo {
 }
 {% endhighlight %}
 
-
-... we can define values that should be injected via setter methods:
-
+... これでセッターメソッド経由でのインジェクションのための値を設定することができます。
 
 {% highlight php %}
 <?php
@@ -475,10 +427,8 @@ $di->setter['Example\Package\Foo']['setDb'] = $di->lazyGet('database');
 $di->set('foo_service', $di->lazyNew('Example\Package\Foo'));
 {% endhighlight %}
     
-
-Note that we use `lazyGet()` for the injection. As with constructor params, we
-could tell the class to use a new `Database` object instead of the shared one
-in the `Container`:
+`lazyGet()`をインジェクションのために使ってる事に注意してください。
+これはコンストラクタのパラメーターに`Container`で共有しているオブジェクトの代わりに、新しい`Database`オブジェクトを使うように支持しています。
 
 {% highlight php %}
 <?php
@@ -493,9 +443,7 @@ $di->setter['Example\Package\Foo']['setDb'] = $di->lazyNew('Example\Package\Data
 $di->set('foo_service', $di->lazyNew('Example\Package\Foo'));
 {% endhighlight %}
     
-
-Setter configurations are inherited. If you have a class that extends
-`Example\Package\Foo` like so ...
+セッターの設定は継承されます。もし`Example\Package\Foo` クラスのように継承したクラスなら...
 
 {% highlight php %}
 <?php
@@ -506,15 +454,11 @@ class Bar extends Foo
 }
 {% endhighlight %}
 
-
-... you do not need to add a new setter value for it; the `Forge` reads all
-parent setters and applies them. (If you do add a setter value for that class,
-it will override the parent setter.)
+新しいセッターのための値を加える必要はありません。 `Forge` は全ての親クラスのセッターを読み込みそれらに適用します。
+（もしセッターの値を追加したなら、親クラスのセッターもオーバーライドされます）
 
 ## Conclusion ##
 
-If we construct our dependencies properly with params, setters, services, and
-factories, we will only need to get one object directly from DI container. All
-object creation will then happen through the DI container via factory objects
-and/or the `Forge` object. We will never need to use the DI container itself
-in any of the created objects.
+パラメーター、セッター、サービス、ファクトリーで適切に依存を作成することができれば、DIコンテナからは直接オブジェクトを取得するのは１つのオブジェクトだけです。
+
+全てのオブジェクトはファクトリーオブジェクトや`Forge`オブジェクトを通じてDIコンテナから生成されます。オブジェクト作成のためにDIコンテナが必要となることは決してありません。
