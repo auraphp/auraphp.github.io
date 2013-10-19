@@ -4,7 +4,7 @@ title: Installation
 permalink: /manuals/v1/ja/installation/
 ---
 
-# Installation #
+# インストール #
 
 システム全体のtarballをダウンロードしてAuraフレームワークを使用することができます。またはsystemをcloneして手動でパッケージをインストールする事もできるし、composerを使ってインストールすることもできます。
 
@@ -17,7 +17,7 @@ permalink: /manuals/v1/ja/installation/
 -  `/path/to/system/web/index.php`をブラウズすると &quot;Hello World！&quot;が表示されます。
 
 
-## Cloning via Git ##
+## Gitでクローン ##
 
 これが機能するためには `git`コマンドが `$PATH`に存在する必要があります。
 

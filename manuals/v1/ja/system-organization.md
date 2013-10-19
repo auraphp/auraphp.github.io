@@ -4,7 +4,7 @@ title: System Organization
 permalink: /manuals/v1/ja/system-organization/
 ---
 
-# System Organization #
+# システム構成 #
 
 システムのディレクトリは理解の容易な単純な構造です：
 
