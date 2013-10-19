@@ -4,11 +4,11 @@ title: The aura framework Controller
 permalink: /manuals/v1/ja/controller/
 ---
 
-# Controller #
+# コントローラー #
  Aura Framework controller はアクションメソッドドのための`AbstractPage`やリクエストを扱う`Context`、HTTPレスポンスを転送する`Response`転送オブジェクトを含んだwebページコントローラーを作成するために必要なAura Web の拡張版です。（`Response`転送オブジェクトはHTTPレスポンスそのものでは無い事に注意してください)
 これにはコントローラにフック処理をするための`Signal`インターフェイスや複数のレンダリング方法を提供する`Renderer`インタフェースも含まれます。
 
-## Creating your controller ##
+## コントローラーの作成 ##
  `Aura\Framework\Web\Controller\AbstractPage` を拡張して独自のコントローラーを作成します。
 
 {% highlight php %}
@@ -23,7 +23,7 @@ class Page extends AbstractPage
 }
 {% endhighlight %}
     
-## The Execution Cycle ##
+## 実行サイクル ##
 
 ページコントローラーには実行サイクルがあります。
 
@@ -45,7 +45,7 @@ class Page extends AbstractPage
 
 - `postExec()` は全体の実行の終わりにフックされます。
 
-## Action Methods ##
+## アクションメソッド ##
 
 この時点で `exec()`が呼ばれても何も起こりません。一致するアクションメソッドが無いからです。
 ページコントローラーにアクションメソッドを追加するには必要な引数を追加した`action*()`メソッドを作成します。
@@ -67,7 +67,7 @@ class Page extends AbstractPage
 } 
 {% endhighlight %}
 
-## The Response Transfer Object ##
+## レスポンストランスファーオブジェクト ##
 
   レスポンスを操作するためには`$this->response` 転送オブジェクトを使います。重要なメソッドはのいくつかは以下のとおりです。
 
@@ -83,7 +83,7 @@ class Page extends AbstractPage
 
  詳細については、 [Response](https://github.com/auraphp/Aura.Web/blob/master/src/Aura/Web/Response.php) クラスを確認してください。
 
-## The Context Object ##
+## コンテキストオブジェクト ##
  webのリクエスト状況は `$this->context`オブジェクトで知る事ができます。重要なメソッドのいくつかは以下のとおりです。
 
 - `getQuery()`: $_GET の値を取得します
@@ -114,7 +114,7 @@ public function actionSearch()
 
 `'?terms=foo+bar+baz'`というクエリーのついたURIが与えられると `$terms`変数は `'foo bar baz'`になります。もしクエリーに `'terms'`がないと`$terms`はnullになります。
 
-## The Accept Object ##
+## アクセプトオブジェクト ##
  `$this->accept`オブジェクトをつかってクライアントが何をアクセプトしているかを知る事ができます。
  
 - `getContentType()`: 利用可能なメディアタイプを返します
@@ -125,7 +125,7 @@ public function actionSearch()
 
 - `getLanguage()`: 利用可能な言語を返します
 
-## Data and Rendering ##
+## データとレンダリング ##
 
 通常は`Response`の内容をアクションメソッドで直接操作したいとは思わないでしょう。ほとんどの場合は、アクションメソッドの内部でデータを集めて、表示のためにレンダリングシステムにデータを渡します。`AbstractPage`は`$data`プロパティと`Renderer` を提供します。 `$data`プロパティを単純に使用する例は、次のとおりです。
 
@@ -144,7 +144,7 @@ class Page extends AbstractPage
 }
 {% endhighlight %}
 
-## View template and layout ##
+## ビューテンプレートとレイアウト ##
 
 適切なテンプレートでレンダリングするためには、レンダリングに必要なビューとレイアウトのアサインが必要です。
  レンダーに必要な値はこのようにアサインします。 `$this->view = 'viewname'`
@@ -183,7 +183,7 @@ class Page extends AbstractPage
 }
 {% endhighlight %}
 
-## Configuration ##
+## 設定 ##
  ここでは、二つのことを追加する必要があります。 Add your controller to the map in the `config/default.php` ファイルでコントローラーをマップして加える事です。
 .
 
