@@ -1,20 +1,19 @@
 ---
 layout: docs-ja
-title: Session
+title: セッション
 permalink: /manuals/v1/ja/session/
 ---
 
-#Session#
+# セッション #
 
-The aura framework make use of Aura.Session package, 
-which provides session management functionality, including session
-segments, read-once ("flash") values, CSRF tools, and lazy session starting.
+Aura フレームワークでは、Aura.Session を使うことができます。
+セッションセグメント、1回限りの（フラッシュ）値読み込み、CSRFツール、遅延セッションスタートを含む
+セッション管理機能が用意されています。
 
-## Inside controller ##
+## コントローラ内 ##
 
-The controller doesn't have `Aura\Session\Manager` object. So let us add a
-method `setSessionManager` in the controller to make use of setter 
-injection. 
+コントローラは、`Aura\Session\Manager`オブジェクトを持ちません。
+`setSessionManager`メソッドをコントローラに追加して、セッターインジェクションを使います。
 
 {% highlight php %}
 <?php
@@ -37,30 +36,28 @@ abstract class PageController extends AbstractPage
         return $this->session_manager;
     }
     
-    // .. rest of your methods 
+    // .. 他のメソッド
 }
 {% endhighlight %}
     
-### Configuration ###
+### 設定 ###
 
 {% highlight php %}
-// Session Manager
+// セッションマネージャ
 $di->setter['Example\Package\Web\PageController']['setSessionManager'] = $di->lazyGet('session_manager');
 {% endhighlight %}
 
-And now we can get the object of `Aura\Session\Manager` inside controller 
-as 
+上記で、`Aura\Session\Manager`のオブジェクトをコントローラ内で取得できます。
     
 {% highlight php %}
 $session = $this->getSessionManager();
 {% endhighlight %}
     
-and make use of it.
+このようにして使います。
 
-## Inside view ##
+## ビュー内 ##
 
-In-order to get session manager we need to create a view helper and 
-inject the `Aura\Session\Manager` object.
+セッションマネージャを取得するには、ビューヘルパーを追加して、`Aura\Session\Manager` オブジェクトを注入します。
 
 {% highlight php %}
 <?php
@@ -85,7 +82,7 @@ class SessionManager extends AbstractHelper
 }
 {% endhighlight %}
 
-### Configuration ###
+### 設定 ###
 
 {% highlight php %}
 $di->params['Example\Package\View\Helper\SessionManager']['session_manager'] = $di->lazyGet('session_manager');
@@ -95,31 +92,29 @@ $di->params['Aura\View\HelperLocator']['registry']['sessionManager'] = function 
 };
 {% endhighlight %}
     
-And once you are done with the configuration, you can get the 
-`Aura\Session\Manger` object within the view like 
+このように一度設定すると、`Aura\Session\Manger` オブジェクトをビュー内で次のように取得できます。
 
 {% highlight php %}
     $this->sessionManger();
 {% endhighlight %}
 
-## Segments ##
+## セグメント ##
 
-A session segment is a reference to an array key in the `$_SESSION`
-superglobal. For example, if you ask for a segment named `ClassName`, the
-segment will be a reference to `$_SESSION['ClassName']`. All values in the
-`ClassName` segment will be stored in an array under that key.
+セッションセグメントとは、スーパーグローバル変数 `$_SESSION` における配列キーに対する参照です。
+例えば、`ClassName` と命名したセグメントを使う場合、`$_SESSION['ClassName']` への参照になります。
+`ClassName` セグメントでは、キーの配下にすべての値が配列で格納されます。
 
 {% highlight php %}
 <?php
-// get a session segment; starts the session if it is not already,
-// and creates the $_SESSION key if it does not exist.
+// セッションセグメントを取得。まだ無い場合はセッションが開始される。
+// $_SESSION のキーがまだ無い場合は作成される。
 $segment = $session->newSegment('Vendor\Package\ClassName');
 
-// set some values on the segment
+// セグメントに値を設定
 $segment->foo = 'bar';
 $segment->baz = 'dib';
 
-// the $_SESSION superglobal is now:
+// 今、スーパーグローバル $_SESSION は次のようになっている：
 // $_SESSION = [
 //      'Vendor\Package\ClassName' => [
 //          'foo' => 'bar',
@@ -127,128 +122,115 @@ $segment->baz = 'dib';
 //      ],
 // ];
 
-// get the values from the segment
+// セグメントから値を取得
 echo $segment->foo; // 'bar'
 
-// because the segment is a reference to $_SESSION, you can modify
-// the superglobal directly and the segment values will also change.
+// セグメントは $_SESSION の参照なので、
+// スーパーグローバルを直接変更できるし、セグメント値も変更される
 $_SESSION['Vendor\Package\ClassName']['zim'] = 'gir'
 echo $segment->zim; // 'gir'
 {% endhighlight %}
     
-The benefit of a session segment is that we can deconflict the keys in the
-`$_SESSION` superglobal by using class names (or some other unique name) for
-the segment names. With segments, different packages can use the `$_SESSION`
-superglobal without stepping on each other's toes.
+セッションセグメントの利点は、クラス名（または何らかのユニークな名前）をセグメント名として使うことにより、
+スーパーグローバル `$_SESSION` でキーを衝突させないことができることです。
+別のパッケージとも、お互いに干渉することなくスーパーグローバル `$_SESSION` を使うことができます。
 
+## レイジーセッションスタート ##
 
-## Lazy Session Starting ##
+単に `Manager` をインスタン化してセッションセグメントを取得するだけの場合、
+セッションが自動的に開始されるわけではありません。
+セッションセグメントに対して読み込み、書き込みをしたときに、はじめてセッションが開始されます。
+セグメントを随時追加しても、読み込みまたは書き込みをするまでの間はセッションは開始されないということです。
 
-Merely instantiating the `Manager` and getting a session segment does *not*
-start a session automatically. Instead, the session is started only when you
-read or write to a session segment.  This means we can create segments at
-will, and no session will start until we read from or write to one them.
+セッションセグメントから読み込みすると、すでに利用可能なセッションが存在しているかチェックされて、
+すでにあれば再利用されます。読み込みで新たなセッションが開始されることはありません。
 
-If we *read* from a session segment, it will check to see if a previously
-available session exists, and reactivate it if it does. Reading from a segment
-will not start a new session.
+セグメントに書き込みすると、前のセッションがあるかチェックされて、あれば再利用されます。
+セッションがまだ存在しない場合は、新たなセッションが開始されて、書き込みが実行されます。
 
-If we *write* to a session segment, it will check to see if a previously
-available session exists, and reactivate it if it does. If there is no
-previously available session, it will start a new session, and write to it.
+もちろん、セッションの開始、または再開を `Manager`の `start()` メソッド呼び出しで
+強制させることもできるのですが、それだとレイジーロードのセッションをすることはできません。
 
-Of course, we can force a session start or reactivation by calling the
-`Manager`'s `start()` method, but that defeats the purpose of lazy-loaded
-sessions.
+## セッションのセキュリティ ##
 
-
-## Session Security ##
-
-When you are done with a session and want its data to be available later, call
-the `commit()` method:
+セッションでデータを後から利用できるようにするには、`commit()` メソッドの呼び出しをして下さい。
 
 {% highlight php %}
 <?php
 $session->commit();
 {% endhighlight %}
 
-The aura framework already have a `commit()` method at the end of the 
-`post_exec` signal.
+Auraフレームワークはもともと `post_exec` シグナルの最後に `commit()` メソッドを持っています。
 
-> N.b.: The `commit()` method is the equivalent of `session_write_close()`. 
-> If you do not commit the session, its values will not be available when we 
-> continue the session later.
+> 注: `commit()` メソッドは `session_write_close()` と等価です。 
+> セッションをコミットしないと、後からセッションを続けるときに値を利用することはできません。
 
-Any time a user has a change in privilege (that is, gaining or losing access
-rights within a system) be sure to regenerate the session ID:
+ユーザの（システム内で付与されたり剥奪されたりする）権限を変更したら、必ずセッションIDを再生成します。
 
 {% highlight php %}
 <?php
 $session->regenerateId();
 {% endhighlight %}
     
-> N.b.: The `regenerateId()` method also regenerates the CSRF token value.
+> 注: `regenerateId()` メソッドはCSRFトークンの値も再生成します。
 
-To clear the in-memory session data, but leave the session active, use the
-`clear()` method:
+セッションを継続したままでメモリのセッションデータをクリアするには、`clear()` メソッドを使います。
 
 {% highlight php %}
 <?php
 $session->clear();
 {% endhighlight %}
 
-To end a session and remove its data (both committed and in-memory), generally
-after a user signs out or when authentication timeouts occur, call the
-`destroy()` method:
+セッションを終了して、コミットされた、もしくはメモリ上にあるデータを削除する場合は（よくあるのは、
+ユーザがサインアウトした後や、認証のタイムアウトが発生したケースです）、`destroy()` メソッドを呼び出してください。
 
 {% highlight php %}
 <?php
 $session->destroy();
 {% endhighlight %}
 
-## Read-Once ("Flash") Values ##
+## 1回限りの(フラッシュ)値読み込み ##
 
-Session segment values persist until a session is cleared or destroyed.
-However, sometimes it is useful to set a value that propagates only until it
-is used, and then automatically clears itself. These are called "flash" or
-"read-once" values.
+セッションセグメント値は、セッションがクリアまたは破壊されるまではずっと維持されます。
+しかし、値が、使いたい時だけあって、自動的に自身をクリアしてくれる方が便利です。
+フラッシュ（1回限りの）値です。
 
-To set a read-once value on a segment, use the `setFlash()` method.
+セグメントで1回限りの値を設定するには、`setFlash()` メソッドを使います。
 
 {% highlight php %}
 <?php
-// get a segment
+// セグメントを取得
 $segment = $session->newSegment('Vendor\Package\ClassName');
 
-// set a read-once value on the segment
+// 1回限りの値をセグメントに設定
 $segment->setFlash('message', 'Hello world!');
 {% endhighlight %}
 
-Then, in subsequent sessions, we can read the flash value using `getFlash()`:
+これで、セッションの後で `getFlash()` を使うことでフラッシュ値を読み込むことができます。
 
 {% highlight php %}    
 <?php
-// get a segment
+// セグメントを取得
 $segment = $session->newSegment('Vendor\Package\ClassName');
 
-// get the read-once value
+// 1回限りの値を取得
 $message = $segment->getFlash('message'); // 'Hello world!'
 
-// if we try to read it again, it won't be there
+// 再度読み込もうとすると、なくなっている
 $not_there = $segment->getFlash('message'); // null
 {% endhighlight %}
 
-Sometimes we need to know if a flash value exists, but don't want to read it
-yet (thereby removing it from the session). In these cases, we can use the
-`hasFlash()` method:
+フラッシュ値が存在するかどうかを知りたい時もあります。まだ読み込みをしたいわけではありません
+（読み込むと、セッションから値が削除されてしまいます）。
+このようなケースでは、`hasFlash()` メソッドを使います。
 
 {% highlight php %}
 <?php
-// get a segment
+// セグメントを取得
 $segment = $session->newSegment('Vendor\Package\ClassName');
 
-// is there a read-once 'message' available?
-// this will *not* cause a read-once removal.
+// 1回限りの 'message' は利用可能か?
+// このとき、読み込みによる削除は起こらない。
 if ($segment->hasFlash('message')) {
     echo "Yes, there is a message available.";
 } else {
@@ -256,51 +238,45 @@ if ($segment->hasFlash('message')) {
 }
 {% endhighlight %}
     
-To clear all flash values on a segment, use the `clearFlash()` method:
+すべてのフラッシュ値をクリアするためには、`clearFlash()` メソッドを使います。
 
 {% highlight php %}
 <?php
-// get a segment
+// セグメント取得
 $segment = $session->newSegment('Vendor\Package\ClassName');
 
-// clear all flash values, but leave all other segment values in place
+// すべてのフラッシュ値をクリアする。しかし、この場にある他のセグメント値はすべて維持される。
 $segment->clearFlash();
 {% endhighlight %}
 
+## クロスサイトリクエストフォージェリ ##
 
-## Cross-Site Request Forgery ##
+「クロスサイトリクエストフォージェリ」は、攻撃者がJavaScriptやその他の手法で悪用するセキュリティ上の問題です。
+クライアントブラウザでユーザがログインしているサーバに対して、気づかれないようにリクエストを発行します。
+リクエストは見かけ上サーバには妥当であるように見えるのですが、実は偽物です。
+ユーザは実際にはリクエストをしていません（罠のJavaScriptがしています）。
 
-A "cross-site request forgery" is a security issue where the attacker, via
-malicious JavaScript or other means, issues a request in-the-blind from a
-client browser to a server where the user has already authenticated. The
-request *looks* valid to the server, but in fact is a forgery, since the user
-did not actually make the request (the malicious JavaScript did).
+<http://ja.wikipedia.org/wiki/%E3%82%AF%E3%83%AD%E3%82%B9%E3%82%B5%E3%82%A4%E3%83%88%E3%83%AA%E3%82%AF%E3%82%A8%E3%82%B9%E3%83%88%E3%83%95%E3%82%A9%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%AA>
 
-<http://en.wikipedia.org/wiki/Cross-site_request_forgery>
+## CSRF対策 ##
 
-## Defending Against CSRF ##
+CSRF攻撃に対策するには、サーバサイドで次のような処理をするべきです。
 
-To defend against CSRF attacks, server-side logic should:
+1. 各フォームにおいて、ユーザセッションで認証をする毎に、トークン値を埋め込みます。
 
-1. Place a token value unique to each authenticated user session in each form;
-   and
+2. すべての入力POST/PUT/DELETE（安全ではない）リクエストがトークン値を持つことをチェックします
 
-2. Check that all incoming POST/PUT/DELETE (i.e., "unsafe") requests contain
-   that value.
+> 注: アプリケーションがリソースの変更でGETリクエストを使う場合（これはGETの不適切な使い方なのですけれど）、
+>ログインユーザからのGETリクエストにもCSRFチェックをすべきです。
 
-> N.b.: If our application uses GET requests to modify resources (which
-> incidentally is an improper use of GET), we should also check for CSRF on
-> GET requests from authenticated users.
-
-For this example, the form field name will be `'__csrf_value''`. In each form
-we want to protect against CSRF, we use the session CSRF token value for that
-field:
+次の例では、フォームのフィールド名が `'__csrf_value''` となります。
+CSRFから保護したいフォーム毎に、このフィールドでセッションCSRFトークン値を使います。
 
 {% highlight php %}
 <?php
 /**  
- * @var Vendor\Package\User $user A user-authentication object.
- * @var Aura\Session\Manager $session A session management object.
+ * @var Vendor\Package\User $user ログインユーザオブジェクト
+ * @var Aura\Session\Manager $session セッション管理オブジェクト
  */
 ?>
 <form method="post">
@@ -317,14 +293,13 @@ field:
 </form>
 {% endhighlight %}
 
-When processing the request, check to see if the incoming CSRF token is valid
-for the authenticated user:
+リクエストを処理するとき、送られてきたCSRFトークンがログインユーザのものと一致しているか確認します。
 
 {% highlight php %}
 <?php
 /**  
- * @var Vendor\Package\User $user A user-authentication object.
- * @var Aura\Session\Manager $session A session management object.
+ * @var Vendor\Package\User $user ログインユーザオブジェクト
+ * @var Aura\Session\Manager $session セッション管理オブジェクト
  */
 
 $unsafe = $_SERVER['REQUEST_METHOD'] == 'POST'
@@ -335,21 +310,19 @@ if ($unsafe && $user->isAuthenticated()) {
     $csrf_value = $_POST['__csrf_value'];
     $csrf_token = $session->getCsrfToken();
     if (! $csrf_token->isValid($csrf_value)) {
-        echo "This looks like a cross-site request forgery.";
+        echo "クロスサイトリクエストフォージェリでしょう。";
     } else {
-        echo "This looks like a valid request.";
+        echo "正当なリクエストでしょう。";
     }
 } else {
-    echo "CSRF attacks only affect unsafe requests by authenticated users.";
+    echo "CSRF攻撃は、ログインユーザからの安全ではないリクエストの場合のみ発生します。";
 }
 {% endhighlight %}
 
-## CSRF Value Generation ##
+## CSRF値生成 ##
 
-For a CSRF token to be useful, its random value must be cryptographically
-secure. Using things like `mt_rand()` is insufficient. Aura.Session comes with
-a `Randval` class that implements a `RandvalInterface`, and uses either the
-`openssl` or the `mcrypt` extension to generate a random value. If you do not
-have one of these extensions installed, you will need your own random-value
-implementation of the `RandvalInterface`. We suggest a wrapper around
-[RandomLib](https://github.com/ircmaxell/RandomLib).
+CSRFトークンを利用する際は、暗号的にセキュアでランダムな値でなければなりません。`mt_rand()` を使うようなやり方では不十分です。
+Auraセッションには `RandvalInterface` を実装した `Randval` クラスがあります。
+ランタム値の生成には、`openssl` か `mcrypt` 拡張を使うことができます。
+これらの拡張がインストールされていない場合は、`RandvalInterface` を実装して自作でランダム値を得る必要があります。
+[RandomLib](https://github.com/ircmaxell/RandomLib) のラッパを作るのが良いように思います。
