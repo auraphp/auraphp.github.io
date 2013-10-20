@@ -303,7 +303,7 @@ $di->get('router_map')->attach('/blog', [
 コントローラー内では `$this->router` により RouterMap オブジェクトを利用できます。
 
 {% highlight php %}
-$this->router->generategenerate('read', [
+$this->router->generate('read', [
     'id' => 42,
     'format' => '.atom',
 ]);
