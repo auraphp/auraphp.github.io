@@ -326,7 +326,7 @@ $di->get('router_map')->attach('/blog', [
 RouterMap objects are availble inside controller as `$this->router`
 
 {% highlight php %}
-$this->router->generategenerate('read', [
+$this->router->generate('read', [
     'id' => 42,
     'format' => '.atom',
 ]);
