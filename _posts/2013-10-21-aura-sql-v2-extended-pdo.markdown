@@ -31,8 +31,8 @@ packages.  We have managed to make these packages independent from each other:
 
 - [Aura.Sql-v2][] is composed primarily of an extended PDO implementation,
   along with a connection manager and a bare-bones profiler. Its only
-  dependency is the native [PDO[]; there are no userland dependencies. As an
-  added bonus, we have take pains to make it PHP 5.3 compatible.
+  dependency is the native [PDO][]; there are no userland dependencies. As an
+  added bonus, we have taken pains to make it PHP 5.3 compatible.
 
 - [Aura.Sql_Query][] is a package of SELECT, INSERT, UPDATE, and DELETE query
   objects for MySQL, PostgreSQL, SQLite, and Microsoft SQL Server. It has no
@@ -88,7 +88,7 @@ functionality in [Aura.Sql-v2][] piece by piece.
   execute, and then fetch from the prepared statement. All of the `fetch*()`
   methods take an array of values to bind to to the query statement.
 
-- **[Exceptions by default.][]** _ExtendedPdo_ starts in the
+- **Exceptions by default.** _ExtendedPdo_ starts in the
   `ERRMODE_EXCEPTION` mode for error reporting instead of the `ERRMODE_SILENT`
   mode.
 
@@ -114,6 +114,7 @@ package and start using it in your project today, with no added dependencies.
 [Aura]: http://auraphp.com
 [Solar]: http://solarphp.com
 [Solar_Sql]: http://solarphp.com/apidoc/package.Solar_Sql
+[PDO]: http://php.net/pdo
 [Aura.Sql]: http://github.com/auraphp/Aura.Sql
 [Aura.Sql-v2]: https://github.com/auraphp/Aura.Sql/tree/develop-2
 [Aura.Sql_Query]: https://github.com/auraphp/Aura.Sql_Query/tree/develop-2
