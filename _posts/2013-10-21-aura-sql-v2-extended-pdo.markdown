@@ -7,7 +7,7 @@ author : Paul M. Jones
 
 In the [lessons learned][] post, I talked about how [Aura][] was born of the
 idea that we could extract independent decoupled packages from [Solar][], and
-how in doing so, we discovered that some of those extracted packages themsleves
+how in doing so, we discovered that some of those extracted packages themselves
 could be further split into independent pieces.
 
 For example, take [Aura.Sql][]. From [Solar_Sql][], we pulled out the database
@@ -45,14 +45,14 @@ packages.  We have managed to make these packages independent from each other:
   only dependency is the native [PDO][] (note, **not** the Aura.Sql-v2
   _ExtendedPdo_). Also as with [Aura.Sql-v2][], it is PHP 5.3 compatible.
 
-With this dedicated effort at decoupling and true indpedendence, you can now
+With this dedicated effort at decoupling and true independence, you can now
 use *just* the extended PDO connection object, *or* the query objects, *or*
 the schema discovery tools, without having to download the others. Of course,
 you can use them all in concert if you like.
 
 Let's talk a little more about just the new [Aura.Sql-v2][] package.
 
-### Aura.Sql-v2: The ExtndedPdo Class
+### Aura.Sql-v2: The ExtendedPdo Class
 
 Instead of wrapping PDO, the _ExtendedPdo_ class extends PDO directly. Among
 other things, this means you can drop it into any code already using PDO,
@@ -70,7 +70,7 @@ functionality in [Aura.Sql-v2][] piece by piece.
   instance and not incur the cost of a connection if you never make a query.
 
 - **[Bind values.][]** You may provide values for binding to the next query
-  using `bindValues()`. Mulitple calls to `bindValues()` will merge, not
+  using `bindValues()`. Multiple calls to `bindValues()` will merge, not
   reset, the values. The values will be reset after calling `query()`,
   `exec()`, `prepare()`, or any of the `fetch*()` methods. In addition,
   binding values that do not have any corresponding placeholders will not
