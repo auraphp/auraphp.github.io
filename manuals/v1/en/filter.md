@@ -229,7 +229,7 @@ not found returns false. The value cannot be sanitized. Usage:
 
         $filter->addSoftRule('field', $filter::IS, 'strlenMin', $min);
         
-- `trim`: Validate the value is `trim()`med. Sanitize the value to `trim()` it.
+- `trim`: Validate the value is `trim()` method. Sanitize the value to `trim()` it.
   Optionally specify characters to trim. Usage:
 
         $filter->addSoftRule('field', $filter::IS, 'trim', $chars);
@@ -264,7 +264,7 @@ are the ones added in rule locator.
         );
         
 - `all`: Validate the value against a set of rules. These rules
-are should be added in rule locator. You will not get seprate error 
+are should be added in rule locator. You will not get separate error
 messages for which all rules it failed.
         
         $filter->addSoftRule('field', $filter::IS, 'all', [

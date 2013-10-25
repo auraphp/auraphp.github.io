@@ -323,7 +323,7 @@ $di->get('router_map')->attach('/blog', [
 
 ## Inside controller ##
 
-RouterMap objects are availble inside controller as `$this->router`
+RouterMap objects are available inside controller as `$this->router`
 
 {% highlight php %}
 $this->router->generate('read', [
