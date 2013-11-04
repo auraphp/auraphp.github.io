@@ -6,21 +6,18 @@ permalink: /manuals/v1/ja/sql/
 
 #Aura SQL#
 
-The Aura SQL package provides connections to connect to and query against SQL
-data sources such as MySQL, PostgreSQL, and Sqlite. The connections are mostly
-wrappers around [PDO](http://php.net/PDO) connections.
+Aura SQLパッケージはMySQL、PostgreSQL、それにSqliteなどのデータベースのクエリーとその接続を提供します。
+接続のほとんどは[PDO](http://php.net/PDO)接続でラップされたものです。
 
-Aura SQL comes with four connection adapters: `'mysql'` for MySQL, `'pgsql'`
-for PostgreSQL, `'sqlite'` for SQLite3, and `'sqlsrv'` for Microsoft SQL
-Server.
+Aura SQL は４つの接続アダプターをサポートします。`'mysql'`はMySQL、 `'pgsql'`はPostgreSQL、
+ `'sqlite'`はSQLite3それに`'sqlsrv'` は Microsoft SQL Serverに使われます。
 
-## Instantiation ##
 
-> If you are using Aura.Sql with dependency injection, you can skip to 
-next topic connecting.
+## インストール ##
 
-The easiest way to get started is to use the `scripts/instance.php` script to
-get a `ConnectionFactory` and create your connection through it:
+もしAura.SqlをDIで使うならこの章はスキップできます。
+
+`scripts/instance.php`スクリプトを使い`ConnectionFactory` を取得して接続するのが始めるのに簡単な方法です。
 
 {% highlight php %}
 <?php
@@ -42,37 +39,29 @@ $connection = $connection_factory->newInstance(
 );
 {% endhighlight %}
 
-Alternatively, you can add `'/path/to/Aura.Sql/src'` to your autoloader and
-build an connection factory manually:
-    
+代わりに、別のautoloaderに`'/path/to/Aura.Sql/src'`を加えて手動で接続を取得する事もできます。
+
 {% highlight php %}    
 <?php
 use Aura\Sql\ConnectionFactory;
 $connection_factory = new ConnectionFactory;
 $connection = $connection_factory->newInstance(...);
 {% endhighlight %}
-    
-Aura SQL comes with four connection adapters: `'mysql'` for MySQL, `'pgsql'`
-for PostgreSQL, `'sqlite'` for SQLite3, and `'sqlsrv'` for Microsoft SQL
-Server.
 
-## Connecting ##
+## 接続 ##
 
-The connection will lazy-connect to the database the first time you issue a
-query of any sort. This means you can create the connection object, and if you
-never issue a query, it will never connect to the database.
+接続はクエリーを発行したときに遅延接続されます。つまり接続オブジェクトを作成しても、もしクエリーを発行しなければデータベースに接続される事はありません。
 
-You can connect manually by issuing `connect()`:
+手動で`connect()`を使って接続する事もできます。
 
 {% highlight php %}
 <?php
 $connection->connect();
 {% endhighlight %}
 
-## Fetching Results ##
+## 結果の取得 ##
 
-Once you have a connection, you can begin to fetch results from the database.
-
+一度接続すれば、データベースから結果を取得することもできます。
 
 {% highlight php %}
 <?php
@@ -80,34 +69,30 @@ Once you have a connection, you can begin to fetch results from the database.
 $result = $connection->fetchAll('SELECT * FROM foo');
 {% endhighlight %}
 
-You can fetch results using these methods:
+これらのメソッドを使って結果を取得することができます。
 
-- `fetchAll()` returns a sequential array of all rows. The rows themselves are
+- `fetchAll()`は全ての行の連続した配列を返します。行は列の名前をキーとした連想配列が返ります。
+
+ returns a sequential array of all rows. The rows themselves are
   associative arrays where the keys are the column names.
 
-- `fetchAssoc()` returns an associative array of all rows where the key is the
-  first column.
+- `fetchAssoc()` は最初の列がキーとなった全ての行の連想配列が返ります。
 
-- `fetchCol()` returns a sequential array of all values in the first column.
+- `fetchCol()` は最初の列の全ての値を連続した配列として返します。
 
-- `fetchOne()` returns the first row as an associative array where the keys
-  are the column names.
+- `fetchOne()`は最初の行を列名をキーとした連想配列で返します。
 
-- `fetchPairs()` returns an associative array where each key is the first
-  column and each value is the second column.
+- `fetchPairs()`は最初の列をキーとして次の列を値とした連想配列を返します。
 
-- `fetchValue()` returns the value of the first row in the first column.
+- `fetchValue()` 最初の列の最初の行の値を返します。
 
+## SQLインジェクションの防御 ##
 
-## Preventing SQL Injection ##
+通常、ユーザーが提供するデータをクエリーに組み入れる必要があります。
+つまり、全ての値をクオートしてクエリー文字列に差し込む[SQL injectionの防止](http://bobby-tables.com/)をしなければなりません。
 
-Usually you will need to incorporate user-provided data into the query. This
-means you should quote all values interpolated into the query text as a
-security measure to [prevent SQL injection](http://bobby-tables.com/).
-
-Although Aura SQL provides quoting methods, you should instead use value
-binding into prepared statements. To do so, put named placeholders in the
-query text, then pass an array of values to bind to the placeholders:
+Aura SQLはクオートするメソッドを提供していますが、それよりプリペアードステートを使って値をバインドする方が良いでしょう。
+その為にクエリーの文字列中に名前を使ったプレースフォルダーを置いて、そのプレースフォルダに配列の値をバインドします。
 
 {% highlight php %}
 <?php
@@ -124,7 +109,7 @@ $bind = [
 $result = $connection->fetchOne($text, $bind);
 {% endhighlight %}
 
-Aura SQL recognizes array values and quotes them as comma-separated lists:
+Aura SQL は配列とクオートする値をカンマ区切りのリストとして、認識します。
 
 {% highlight php %}
 <?php
@@ -142,16 +127,15 @@ $bind = [
 $result = $connection->fetchOne($text, $bind);
 {% endhighlight %}
 
-## Query Objects ##
+## クエリーオブジェクト ##
 
-Aura SQL provides four types of query objects so you can write your SQL
-queries in an object-oriented way.
+Aura SQLは４つのタイプのクエリーオブジェクトを用意します。
+それによってオブジェクト指向スタイルで記述することができます。
 
 ## Select ##
 
-To get a new `Select` object, invoke the `newSelect()` method on an connection.
-You can then modify the `Select` object and pass it to the `query()` or
-`fetch*()` method.
+新しい`Select`オブジェクトを取得するのには`newSelect()`メソッドを接続の時に実行します。
+それから`Select` オブジェクトを変更して、`query()`や`fetch*()`メソッドに渡します。
 
 {% highlight php %}
 <?php
@@ -169,41 +153,41 @@ $bind = ['bar' => '88'];
 $list = $connection->fetchAll($select, $bind);
 {% endhighlight %}
 
-The `Select` object has these methods and more; please read the source code
-for more information.
+`Select`オブジェクトはこれらのメソッド以上のものを提供します。
+更なる情報はソースコードをご覧になってください。
 
-- `distinct()`: Set to `true` for a `SELECT DISTINCT`.
+- `distinct()`: `SELECT DISTINCT`に`true`をセットします。
 
-- `cols()`: Select these columns.
+- `cols()`: コラム（列）をセレクトします。
 
-- `from()`: Select from these tables.
+- `from()`: テーブルをセレクトします。
 
-- `join()`: Join these tables on specified conditions.
+- `join()`: 特定条件のテーブルをジョインします。
 
-- `where()`: `WHERE` these conditions are met (using `AND`).
+- `where()`: 条件に`WHERE`を使います。（`AND`を使用します）
 
-- `orWhere()`: `WHERE` these conditions are met (using `OR`).
+- `orWhere()`: 条件に`WHERE`を使います。（`OR`を使用します）
 
-- `groupBy()`: `GROUP BY` these columns.
+- `groupBy()`: コラム（列）を`GROUP BY`します。
 
-- `having()`: `HAVING` these conditions met (using `AND`).
+- `having()`: 条件に`HAVING`を使います。 （`AND`を使用します）
 
-- `orHaving()`: `HAVING` these conditions met (using `OR`).
+- `orHaving()`: 条件に`HAVING`を使います。 （`OR`を使用します）
 
-- `orderBy()`: `ORDER BY` these columns.
+- `orderBy()`: コラム（列）を`ORDER BY`します。
 
-- `limit()`: `LIMIT` to this many rows.
+- `limit()`: ロー（行）に対して`LIMIT`します。
 
-- `offset()`: `OFFSET` by this many rows.
+- `offset()`: ロー（行）に対して`OFFSET`します。
 
-- `union()`: `UNION` with a followup `SELECT`.
+- `union()`: `SELECT`に`UNION`を続けます。
 
-- `unionAll()`: `UNION ALL` with a followup `SELECT`.
+- `unionAll()`: `SELECT`に`UNION ALL`を続けます。
 
 ## Insert ##
 
-To get a new `Insert` object, invoke the `newInsert()` method on an connection.
-You can then modify the `Insert` object and pass it to the `query()` method.
+新しい`Insert`オブジェクトを取得するのには`newInsert()`メソッドを接続の時に実行します。
+それから`Insert` オブジェクトを変更して、`query()`メソッドに渡します。
 
 {% highlight php %}
 <?php
@@ -225,8 +209,9 @@ $stmt = $connection->query($insert, $bind);
 
 ## Update ##
 
-To get a new `Update` object, invoke the `newUpdate()` method on an connection.
-You can then modify the `Update` object and pass it to the `query()` method.
+新しい`Update`オブジェクトを取得するのには`newUpdate()`メソッドを接続の時に実行します。
+それから`Update` オブジェクトを変更して、`query()`メソッドに渡します。
+
 
 {% highlight php %}
 <?php
@@ -252,8 +237,8 @@ $stmt = $connection->query($update, $bind);
 
 ## Delete ##
 
-To get a new `Delete` object, invoke the `newDelete()` method on an connection.
-You can then modify the `Delete` object and pass it to the `query()` method.
+新しい`Delete`オブジェクトを取得するのには`newDelete()`メソッドを接続の時に実行します。
+それから`Delete` オブジェクトを変更して、`query()`メソッドに渡します。
 
 {% highlight php %}
 <?php
@@ -273,9 +258,9 @@ $bind = [
 $stmt = $connection->query($delete, $bind);
 {% endhighlight %}
 
-## Retrieving Table Information ##
+## テーブル情報の取得 ##
 
-To get a list of tables in the database, issue `fetchTableList()`:
+データベースのテーブル情報を取得するには`fetchTableList()`を発行します：
 
 {% highlight php %}
 <?php
@@ -288,7 +273,7 @@ foreach ($list as $table) {
 }
 {% endhighlight %}
 
-To get information about the columns in a table, issue `fetchTableCols()`:
+テーブルのカラムについての情報を取得するには`fetchTableCols()`を発行します；
 
 {% highlight php %}
 <?php
@@ -308,30 +293,29 @@ foreach ($cols as $name => $col) {
 }
 {% endhighlight %}
 
-Each column description is a `Column` object with the following properties:
+それぞれのコラムは以下のプロパティを持つ`Column`オブジェクトとして表されます。
 
-- `name`: (string) The column name
+- `name`: (string) コラム名
 
-- `type`: (string) The column data type.  Data types are as reported by the database.
+- `type`: (string) データベースにより伝えられるコラムのデータの型。
 
-- `size`: (int) The column size.
+- `size`: (int) コラムサイズ
 
-- `scale`: (int) The number of decimal places for the column, if any.
+- `scale`: (int) （もしあれば）コラムの数
 
-- `notnull`: (bool) Is the column marked as `NOT NULL`?
+- `notnull`: (bool) `NOT NULL`とマークされてるコラムの数
 
-- `default`: (mixed) The default value for the column. Note that sometimes this will be `null` if the underlying database is going to set a timestamp automatically.
+- `default`: (mixed) コラムのデフォルト値。`timestamp`が自動でセットされる場合は`null`の時があることに注意。
 
-- `autoinc`: (bool) Is the column auto-incremented?
+- `autoinc`: (bool) `auto-incremented`のコラムかどうか
 
-- `primary`: (bool) Is the column part of the primary key?
+- `primary`: (bool) プライマリーキーかどうか
 
-## Transactions ##
+## トランザクション ##
 
-Aura SQL connections always start in autocommit mode (the same as PDO). However,
-you can turn off autocommit mode and start a transaction with
-`beginTransaction()`, then either `commit()` or `rollBack()` the transaction.
-Commits and rollbacks cause the connection to go back into autocommit mode.
+Aura SQL接続はいつもautocommitモードで始まります（PDOと同じです）
+これをオフにしてトランザクションは`beginTransaction()`で開始して`commit()`または `rollBack()` することができます。
+コミットとロールバックは接続をautocommitモードに戻します。
 
 {% highlight php %}
 <?php
@@ -350,10 +334,9 @@ try {
 // at this point we are back in autocommit mode
 {% endhighlight %}
     
-## Manual Queries ##
+## マニュアルクエリー ##
 
-You can, of course, build and issue your own queries by hand. Use the
-`query()` method to do so:
+手動でのクエリーも可能です。`query()`メソッドでこのようにします；
 
 {% highlight php %}
 <?php
@@ -362,12 +345,11 @@ $bind = ['id' => 1];
 $stmt = $connection->query($text, $bind);
 {% endhighlight %}
 
-The returned `$stmt` is a [PDOStatement](http://php.net/PDOStatement) that you
-may manipulate as you wish.
+返される`$stmt`は[PDOStatement](http://php.net/PDOStatement)で自由に操作できます。
 
-## Profiling ##
+## プロファイリング ##
 
-You can use profiling to see how well your queries are performing.
+クエリーがどのように実行されているかプロファイルする事もできます。
 
 {% highlight php %}
 <?php
@@ -384,14 +366,13 @@ foreach ($connection->getProfiler()->getProfiles() as $i => $profile) {
        . PHP_EOL;
 }
 {% endhighlight %}
-    
-Each profile object has these properties:
 
-- `text`: (string) The text of the query.
+プロファイルオブジェクトはそれぞれ以下のプロパティを持ちます。 operties:
 
-- `time`: (float) The time, in seconds, for the query to finish.
+- `text`: (string) クエリー文字列
 
-- `data`: (array) Any data bound to the query.
+- `time`: (float) クエリーが完了するまでの時間。単位は秒。
 
-- `trace`: (array) A [debug_backtrace](http://php.net/debug_backtrace) so
-  you can tell where the query came from.
+- `data`: (array) クエリーにバインドされたデータ。
+
+- `trace`: (array) クエリーがどうやって呼ばれたかを知る事のできる[debug_backtrace](http://php.net/debug_backtrace)
