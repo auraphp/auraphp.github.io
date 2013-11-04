@@ -10,8 +10,8 @@ idea that we could extract independent decoupled packages from [Solar][], and
 how in doing so, we discovered that some of those extracted packages themsleves
 could be further split into independent pieces.
 
-Previously, I used [Aura.Sql-v2][], [Aura.Sql_Query][], and [Aura.Sql_Schema][]
-as extractions from a single Aura.Sql package.
+[Previously][], I wrote about [Aura.Sql-v2][], [Aura.Sql_Query][], and
+[Aura.Sql_Schema][] as extractions from a single Aura.Sql package.
 
 Today, I'm going to talk about [Aura.Dispatcher][] as a combined extraction
 from three separate packages.
@@ -111,3 +111,4 @@ reduced in size and more focused. More on the [Aura.Web v2][] package next time!
 [lessons learned]: http://auraphp.com/blog/2013/09/30/lessons-learned/
 [router]: http://github.com/auraphp/Aura.Router
 [trait]: https://github.com/auraphp/Aura.Dispatcher#intercessory-dispatch-methods
+[Previously]: http://auraphp.com/blog/2013/10/21/aura-sql-v2-extended-pdo/
