@@ -9,8 +9,11 @@ Lately, we've been going over the migration of v2 packages from v1. Today,
 I'll talk about the updated [Aura.Router v2][] package. While not an example
 of extracting a new package from an existing one, it has a couple of features
 that other routers don't currently have, in addition to being truly
-independent and completely decoupled from any other package. (Incidentally,
-[Aura.Router v2][] is also PHP 5.3 compatible!)
+independent and completely decoupled from any other package.
+
+(This post describes only some of the features of the router; please visit
+the [Aura.Router v2][] package page for full information. Also, unlike v1,
+the v2 package is PHP 5.3 compatible!)
 
 
 ### Only Routing, No Dispatching
@@ -208,9 +211,9 @@ That example will cause four CRUD routes to be added when you call
 
 ### Conclusion
 
-The [Aura.Router v2] library retains the strengths of the v1 offering while
-adding convenience and power, all in a completely decoupled package with 
-no other dependencies.  It keeps a separation between routing and dispatching,
+The [Aura.Router v2][] library retains the strengths of the v1 offering while
+adding convenience and power, all in a completely decoupled package with no
+other dependencies. It keeps a separation between routing and dispatching,
 allowing you to drop it into any system you like and use any dispatching
 mechanism of your own choice.
 
