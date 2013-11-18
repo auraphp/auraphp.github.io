@@ -81,12 +81,13 @@ $params = $route->params;
 
 // what class and method should we dispatch to?
 $class = "App\Controllers\{$params['controller']}Controller";
-$method = $params['action'] . 'Action'; // readAction
+$method = $params['action'] . 'Action';
 
 // with the above 'blog.read' route, this will execute
-// App\Controllers\BlogController::readAction()
+// \App\Controllers\BlogController::readAction()
+// and get back the result
 $controller = new $class;
-$controller->$method($params);
+$result = $controller->$method($params);
 ?>
 {% endhighlight %}
 
@@ -104,7 +105,7 @@ to match routes based on the `HTTP_ACCEPT` value ...
 $router->addRoute('json_only', '/accept/json/{id}')
     ->addServer(array(
         // must be of quality *, 1.0, or 0.1-0.9
-        'HTTP_ACCEPT' => 'application/json(;q=(*|1.0|[0.[1-9]]))?'
+        'HTTP_ACCEPT' => 'application/json(;q=(\*|1\.0|[0\.[1-9]]))?'
     ));
 ?>
 {% endhighlight %}
@@ -119,6 +120,7 @@ Sometimes we need a params in the route path to be *sequentially* optional.
 The classic example is a blog archive organized by year, month, and day.
 We don't want to have to write three routes, one for `/{year}`, `/{year}/{month}`,
 and `/{year}/{month}/{day}`, each with repeated information about the route.
+
 In [Aura.Router v2][], there is a special notation similar to [URI Template][]s
 that indicates sequentially optional params:
 
@@ -147,6 +149,26 @@ set the appropriate values:
     /blog/archive/1979
     /blog/archive/1979/11
     /blog/archive/1979/11/07
+
+Incidentally, this means that the commonly used controller/action/id catchall
+route is easy to implement with defaults in place:
+
+{% highlight php %}
+<?php
+$router->add('catchall', '{/controller,action,id}')
+    ->addValues(array(
+        'controller' => 'default',
+        'action' => 'index',
+        'id' => null,
+    ));
+?>
+{% endhighlight %}
+
+That means `/` will have params indicating the `default` controller `index`
+action, `/foo` will indicate the `foo` controller `index` action, `/foo/bar`
+will indicate the `foo` controller `bar` action, and `/foo/bar/42` will
+indicate the `foo` controller `bar` action with `id` of 42.
+
 
 ### Attaching Route Groups
 
