@@ -1,7 +1,7 @@
 ---
 title: A Peek At Aura v2 -- Aura.Router
 layout: post
-tags : [v2, web]
+tags : [v2, router]
 author : Paul M. Jones
 ---
 
