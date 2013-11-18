@@ -70,7 +70,7 @@ $route = $router->match($path, $_SERVER);
 {% endhighlight %}
 
 If there is a match, the `$route` variable will be a _Route_ object (otherwise
-false).  You can then dispatch to the controller and object of your choice
+false).  You can then dispatch to the controller and action of your choice
 by getting the `$route->params`; the following is naive but works just fine
 when autoloading is set up:
 
