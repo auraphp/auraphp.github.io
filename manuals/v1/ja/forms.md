@@ -4,20 +4,18 @@ title: Creating Forms
 permalink: /manuals/v1/ja/forms/
 ---
 
-# Creating Forms #
+# フォーム作成 #
 
-Every webpage needs some sort of forms. Please do read chapter on 
-Dependency Injection and Generic Factory.
+webページにはフォームが必要です。ディペンデンシーインジェクションのチャプターをお読みください。
 
-## Form class ##
+## フォームクラス ##
 
-In-order to create forms, we need to extend `Aura\Input\Form` class 
-and override the `init()` method.
+フォームを作る為に`Aura\Input\Form`クラスを拡張して`init()`メソッドをオーバーライドする必要があります。
 
-We use `setField` method to add an input type. 
+`setField`を使ってinput typeを加えます。
 
-Let us create an example form
-
+サンプルのフォームを作ってみましょう
+FormFactory
 {% highlight php %}
 <?php
 namespace Example\Package\Input;
@@ -69,22 +67,18 @@ class ContactForm extends Form
 }
 {% endhighlight %}
 
-> Read passing options into forms, to see how the states can also be provided.
+> ステータスがどのように準備されるかをみて フォームに渡されたオプションを読みます
 
-## Setting Filters On The Form ##
+## フォームのフィルターのセット ##
 
-The aura framework uses Aura.Filter package for form validation and 
-sanitization. The `Aura\Input\Form` object has `getFilter()` method 
-which is an object of `Aura\Framework\Input\Filter` an extended class of 
-`Aura\Filter\RuleCollection`.
+auraフレームワークはAura.Filterパッケージを使ってバリデーションにとサニタイズを行います。
+`Aura\Input\Form`オブジェクトは`Aura\Filter\RuleCollection`クラスを拡張した`Aura\Framework\Input\Filter`オブジェクトの`getFilter()`メソッドを持っています。
 
-Look into Validation and Sanitization for 
-the different types of Rules, how you can create your own rules.
+違ったタイプのルールのサニタイズやバリデーションを参考にして、独自のルールを作成することができます。
 
-## Extended Controller for form creation ##
+## フォーム作成のためのコントローラー拡張 ##
 
-The aura framework has a very basic controller. You need to extend 
-the controller according to your needs.
+Auraフレームワークはとても基本的なコントローラーを持っています。必要に応じてコントローラーを拡張することができます。
 
 {% highlight php %}
 <?php
@@ -109,39 +103,35 @@ abstract class PageController extends AbstractPage
 }
 {% endhighlight %}
 
-## Configuration ##
+## コンフィギュレーション ##
 
-In-order to make use of the dependency injection, we need to map the 
-form names to `Aura\Input\FormFactory`.
-    
+DIのためにフォームの名前を`Aura\Input\FormFactory`をマップする必要があります。
+
 {% highlight php %}
 $di->setter['Example\Package\Web\PageController']['setFactory'] = 
     $di->lazyGet('input_form_factory');
 {% endhighlight %}
 
-You can map as many forms into the `FormFactory` as 
+`FormFactory`に複数のフォームをマップすることができます。
 
 {% highlight php %}
 $di->params['Aura\Input\FormFactory']['map']['form.contact'] = 
     $di->newFactory('Example\Package\Input\ContactForm');
 {% endhighlight %}
 
-## Form object ##
+## フォームオブジェクト ##
 
-Form objects can then be created in the extend class 
-`Example\Package\Web\PageController` of controller as 
+フォームオブジェクトは`Example\Package\Web\PageController`を拡張して作ります。
 
 {% highlight php %}
 $form = $this->getFormFactory()->newInstance('form.contact');
 {% endhighlight %}
 
-## Populating and Validating User Input ##
+## ユーザー入力のバリデーションとセット ##
 
-We can fill the form with user input and see if the user input is valid. 
-First, we use the `fill()` method to set the input values. 
-We then call the `filter()` method to see if the user input is valid; 
-if not, we show the messages for the inputs
-that did not pass their filter rules.
+ユーザー入力が有効ならフォームに格納することができます。
+最初に`fill()` メソッドを使って入力した値をセットします。それから`filter()`メソッドを使って入力が有効かを見ます。
+もし有効でないならメッセージを表示し、フィルタールールに渡さないようにします。
 
 {% highlight php %}
 <?php
@@ -167,15 +157,11 @@ if ($pass) {
 }
 {% endhighlight %}
 
-## Applying CSRF Protections ##
+## CSRFプロテクションの適用 ##
 
-Aura.Input comes with an interface for implementations that prevent
-[cross-site request forgery](https://www.owasp.org/index.php/Cross-Site_Request_Forgery)
-attacks.  To make use of this interface, we will need to provide our own
-CSRF implementation; this is because it depends on two things that Aura.Input
-cannot provide: an object that tells us if the user is authenticated or not,
-and an object to generate and retain a crytpographically secure random value
-for the CSRF token value.  A psuedo-implementation follows.
+Aura.Inputは[クロスサイトリクエストフォージェリ(cross-site request forgery)](https://www.owasp.org/index.php/Cross-Site_Request_Forgery)攻撃を防御するインターフェイスが用意されています。
+このインターフェイスを使用するために独自のCSRF実装を用意する必要があります。Aura.Inputは「ユーザーが認証されたどうかを伝えるオブジェクト」または「暗号化されたセキュアなランダム値をもつCSRFトークンの値を生成・保持するオブジェクト」を提供できないからです。
+
 
 {% highlight php %}
 <?php
@@ -229,8 +215,7 @@ class AntiCsrf implements AntiCsrfInterface
 }
 {% endhighlight %}
 
-We can then pass an instance of the implementation into our form using the
-`setAntiCsrf()` method.
+`setAntiCsrf()`メソッドを使ってフォームにインスタンスを渡します。
 
 
 {% highlight php %}
@@ -240,24 +225,21 @@ $anti_csrf = new AntiCsrf(new UserObject, new CsrfObject);
 $form->setAntiCsrf($anti_csrf);
 {% endhighlight %}
 
-Calling `setAntiCsrf()` adds a CSRF field to the form.
+`setAntiCsrf()`をコールするとフォームにCSRFフィールドが追加されます。
 
-When we call `fill()` on the form, it will check the CSRF value in the data
-to make sure it is correct.  If not, the form will not fill in the data, and
-throw an exception and will not fill in the data.
+フォームの`fill()`をコールするとデータのCSRF値をチェックして正しいかを確認します。
+正しくないときは例外が投げられデータは入力されません。
 
+## ビューレイヤー ##
 
-## In The View Layer ##
+Aura.Inputパッケージはユーザー入力とその値を取り扱います。フィールドのレンダリングは行いません。
+それはビューレイヤーのタスクです。しかしながらAura.Inputはレンダリングを行うビューレイヤーのために"ヒント"を提供します。
 
-The Aura.Input package only describes the user inputs and their values. It
-does not render forms or fields; that task is for the view layer. However,
-Aura.Input does allow for "hints" that the view layer can use for rendering.
+フィールドを定義するときに、二番目のパラメーターとして型を`setField()` メソッドで指定することができます。
+これはHTMLのインプットタイプでHTMLのタグ名、ビューレイヤーが認識するカスタム名、あるいはその他のものです。
+ビューのためのヒントに過ぎない点に注意してください。厳密なものではありません。
+属性とオプションをフィールドに加えるためにフルーエントメソッドを使う事もできます。
 
-When defining a field, we can set the type as the second parameter to the
-`setField()` method. This can be an HTML input type, an HTML tag name, a
-custom name that the view layer recognizes, or anything else; recall that
-these are only hints for the view, and are not strict. In addition, we can use
-fluent methods to set attributes and options on the field.
 
 {% highlight php %}    
 // hint the view layer to treat the state field as a select, with a 
@@ -273,8 +255,8 @@ $this->setField('state', 'select')
      ));
 {% endhighlight %}
 
-In our view layer, we can extract the hints for a field using the `get()`
-method.
+ビューレイヤーでは`get()`メソッドを使ってフィールドからヒントを引き出します。
+
 
 {% highlight php %}
 <?php
@@ -297,32 +279,26 @@ $hints = $form->get('state');
 // );
 {% endhighlight %}
 
-The [Aura.View](http://github.com/auraphp/Aura.View) package comes with a
-series of helpers that can translate the hints array to HTML.
+[Aura.View](http://github.com/auraphp/Aura.View)パッケージはこれらのヒントからHTMLに変換するヘルパーが付属します。
 
-Assuming you have assigned the form object to the view from controller 
-action as
-   
+フォームオブジェクトはコントローラーからビューにこのようにアサインされます。
+
 {% highlight php %}
 $this->data->form = $form;
 {% endhighlight %}
 
-then from view, you can display the form as
+そしてビューからはこのようにしてフォームを表示します。
 
 {% highlight php %}
 echo $this->field($this->form->get('state'));
 {% endhighlight %}
 
-## Passing Options Into Forms ##
+## フォームオプションの通知 ##
 
-Frequently, the application using the inputs will have a standard set of
-options used across all forms and filters. It would be inconvenient to have
-to duplicate those standard options for each different form, so Aura.Input
-allows us to pass in any object at all as a container for application-wide
-options.  We can then use those options for building the inputs.
+アプリケーションが使うインプットは全てのフォームとフィルターに使う標準的なオプションのセットを使用するのはよくある事ですが、これらをフォーム毎に複製するのは不便です。
+Aura.Inputはアプリケーション共通のコンテナを使ってこれらのオブジェクトを渡す事ができます。これらのオプションを使ってインプットを組み立てます。
 
-For example, we would construct our `ContactForm` with an arbitrary options
-object ...
+例として`ContactForm`任意のオプションをで作成してみましょう。
 
 {% highlight php %}
 <?php
@@ -345,8 +321,8 @@ class Options
 }
 {% endhighlight %}
 
-... and then use it in the `init()` method of form remove the `$states` 
-array with `$options->getStates()`.
+
+そして`init()`メソッドで`$states` 配列の代わりに`$options->getStates()`で得られた値に変更します。
 
 {% highlight php %}
 <?php
@@ -370,7 +346,7 @@ class ContactForm extends Form
 }
 {% endhighlight %}
 
-## Configuration for Options ##
+## オプションの設定 ##
 
 {% highlight php %}
 $di->set('contact_options', function () use ($di) {
