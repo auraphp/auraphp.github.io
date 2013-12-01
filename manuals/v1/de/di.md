@@ -53,19 +53,19 @@ Der `Container` ist der "Haupt-Behälter".  Unterstützende Objekte sind:
 
 - ein `Forge` zur Objekt-Erstellung unter Berücksichtung der `Config` Werte.
 
-We will not need to use the support objects directly; we will get access to
-their behaviors through `Container` methods.
+Wir werden diese Objekte garnicht gebrauchen, da der `Container` dies für
+uns übernimmt.
 
 
 ## Setting Services ##
 
-For the following examples, we will set a service that should return a
-database connection. The hypothetical database connection class is defined as
-follows:
+Für das folgende Beispiel erstellen wir ein Service der eine Datenbank
+Verbindung zurückgibt. Diese hypotetische Verbindungs-Klasse ist folgendermaßen
+definiert:
 
 {% highlight php %}
 <?php
-namespace Example\Package;
+namespace Beispiel\Package;
 
 class Database
 {
@@ -76,54 +76,51 @@ class Database
 }
 {% endhighlight %}
 
-We will proceed from naive service creation to a more sophisticated idiom in
-four steps. Each of the variations is a valid use of the DI container with its
-own strengths and weaknesses.
+Von diesem einfachen Service kommen wir direkt zu einem sehr komplexen
+in vier Schritten. Jede dieser Variationen ist eine korrekte Nutzung
+des DI Containers; jedes mit seinen eigenen Stärken und Schwächen.
 
 ## Variation 1: Eager Loading ##
 
-In this variation, we create a service by instantiating an object with the
-`new` operator.
+In dieser Variation erstellen wir ein neues Objekt mittels des
+`new` Operators.
 
 {% highlight php %}
 <?php
-$di->set('database', new \Example\Package\Database(
+$di->set('database', new \Beispiel\Package\Database(
     'localhost', 'user', 'passwd'
 ));
 {% endhighlight %}
 
-This causes the database object to be created at the time we *set* the service
-into the container. That means it is always created, even if we never retrieve
-it from the container.
+Jetzt wird das Datenbank Objekt erstellt, sobald wir es in den Container *packen*.
+Das bedeuted aber auch, dass es immer erstellt wird, auch wenn wir es nie nutzen.
 
 ## Variation 2: Lazy Loading ##
 
-In this variation, we create a service by wrapping it in a closure, still
-using the `new` operator.
+Diesmal sieht es sehr ähnlich aus, aber wir umschließen unser Statement mit einer
+anonymen Funktion.
 
 {% highlight php %}
 <?php
 $di->set('database', function () {
-    return new \Example\Package\Database('localhost', 'user', 'passwd');
+    return new \Beispiel\Package\Database('localhost', 'user', 'passwd');
 });
 {% endhighlight %}
 
-This causes the database object to be created at the time we *get* the service
-from the container, using `$di->get('database')`. Wrapping the object
-instantiation inside a closure allows for lazy-loading of the database object;
-if we never make a call to `$di->get('database')`, the object will never be
-created.
+Jetzt wird das Objekt erstellt, wenn wir es aus dem Container *bekommen*,
+indem wir `$di->get('database')` ausführen. Dieses Prinzip nennt man
+lazy-loading, da das Objekt erst dann erstellt wird, wenn wir es brauchen.
 
-## Variation 3: Constructor Params ##
+## Variation 3: Konstrukto Parameter ##
 
-In this variation, we will move away from using the `new` operator, and use
-the `$di->newInstance()` method instead. We still wrap the instantiation in a
-closure for lazy-loading.
+Nun brauchen wir den `new` Operator garnicht, sondern nutzen die
+`$di->newInstance()` Methode. Wir nutzen trotzdem noch die anonyme Funktion,
+um vom lazy-loading gebrauch zu machen.
 
 {% highlight php %}
 <?php
 $di->set('database', function () use ($di) {
-    return $di->newInstance('Example\Package\Database', [
+    return $di->newInstance('Beispiel\Package\Database', [
         'hostname' => 'localhost',
         'username' => 'user',
         'password' => 'passwd',
@@ -131,13 +128,12 @@ $di->set('database', function () use ($di) {
 });
 {% endhighlight %}
 
-The `newInstance()` method uses the `Forge` object to reflect on the
-constructor method of the class to be instantiated. We can then pass
-constructor parameters based on their names as an array of key-value pairs.
-The order of the pairs does not matter; missing parameters will use the
-defaults as defined by the class constructor.
+Die `newInstance()` Methode nutzt das `Forge` Objekt um den Konstruktor zu reflektieren
+(PHP Reflections). Wir können also Argumente als assoziativen Array angeben.
+Die Reihenfolge im Array ist hierbei egal. Leere Parameter werden mit den
+Standart Werten (falls definiert) ausgefüllt.
 
-## Variation 4: Class Constructor Params ##
+## Variation 4: Klassen Konstrukto Parameter ##
 
 In this variation, we define a configuration for the `Database` class
 separately from the lazy-load instantiation of the `Database` object.
