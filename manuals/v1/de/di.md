@@ -135,19 +135,19 @@ Standart Werten (falls definiert) ausgefüllt.
 
 ## Variation 4: Klassen Konstrukto Parameter ##
 
-In this variation, we define a configuration for the `Database` class
-separately from the lazy-load instantiation of the `Database` object.
+Hier definieren wir eine Konfiguration für die `Database` Klasse
+seperat von der lazy-loaded Objekt-Erstellung.
 
 {% highlight php %}
 <?php
-$di->params['Example\Package\Database'] = [
+$di->params['Beispiel\Package\Database'] = [
     'hostname' => 'localhost',
     'username' => 'user',
     'password' => 'passwd',
 ];
 
 $di->set('database', function () use ($di) {
-    return $di->newInstance('Example\Package\Database');
+    return $di->newInstance('Beispiel\Package\Database');
 });
 {% endhighlight %}
 
@@ -168,13 +168,13 @@ In this variation, we call the `lazyNew()` method, which encapsulates the
 
 {% highlight php %}
 <?php
-$di->params['Example\Package\Database'] = [
+$di->params['Beispiel\Package\Database'] = [
     'hostname' => 'localhost',
     'username' => 'user',
     'password' => 'passwd',
 ];
 
-$di->set('database', $di->lazyNew('Example\Package\Database'));
+$di->set('database', $di->lazyNew('Beispiel\Package\Database'));
 {% endhighlight %}
 
 
@@ -185,13 +185,13 @@ instantiation time.
 
 {% highlight php %}
 <?php
-$di->params['Example\Package\Database'] = [
+$di->params['Beispiel\Package\Database'] = [
     'hostname' => 'localhost',
     'username' => 'user',
     'password' => 'passwd',
 ];
 
-$di->set('database', $di->lazyNew('Example\Package\Database', [
+$di->set('database', $di->lazyNew('Beispiel\Package\Database', [
     'hostname' => 'example.com',
 ]);
 {% endhighlight %}
@@ -224,7 +224,7 @@ more tables in the database.
 
 {% highlight php %}
 <?php
-namespace Example\Package;
+namespace Beispiel\Package;
 
 abstract class AbstractModel
 {
@@ -255,25 +255,25 @@ injection through class configuration.
 {% highlight php %}
 <?php
 // default params for the Database class
-$di->params['Example\Package\Database'] = [
+$di->params['Beispiel\Package\Database'] = [
     'hostname' => 'localhost',
     'username' => 'user',
     'password' => 'passwd',
 ];
 
 // default params for the AbstractModel class
-$di->params['Example\Package\AbstractModel'] = [
+$di->params['Beispiel\Package\AbstractModel'] = [
     'db' => $di->lazyGet('database'),
 ];
 
 // define the database service
-$di->set('database', $di->lazyNew('Example\Package\Database'));
+$di->set('database', $di->lazyNew('Beispiel\Package\Database'));
 
 // define the blog_model service
-$di->set('blog_model', $di->lazyNew('Example\Package\BlogModel'));
+$di->set('blog_model', $di->lazyNew('Beispiel\Package\BlogModel'));
 
 // define the wiki_model service
-$di->set('wiki_model', $di->lazyNew('Example\Package\WikiModel'));
+$di->set('wiki_model', $di->lazyNew('Beispiel\Package\WikiModel'));
 {% endhighlight %}
 
 We do not need to set the value of the `'db'` param for the `BlogModel` and
@@ -312,7 +312,7 @@ will create the mapped objects.
 
 {% highlight php %}
 <?php
-namespace Example\Package;
+namespace Beispiel\Package;
 
 class ModelFactory
 {
@@ -357,37 +357,37 @@ Now we can set up the DI container as follows:
 {% highlight php %}
 <?php
 // default params for database connections
-$di->params['Example\Package\Database'] = [
+$di->params['Beispiel\Package\Database'] = [
     'hostname' => 'localhost',
     'username' => 'user',
     'password' => 'passwd',
 ];
 
 // default params for the AbstractModel class
-$di->params['Example\Package\AbstractModel'] = [
+$di->params['Beispiel\Package\AbstractModel'] = [
     'db' => $di->lazyGet('database'),
 ];
 
 // default params for the model factory
-$di->params['Example\Package\ModelFactory'] = [
+$di->params['Beispiel\Package\ModelFactory'] = [
     // a map of model names to model factories
     'map' => [
-        'blog' => $di->newFactory('Example\Package\BlogModel'),
-        'wiki' => $di->newFactory('Example\Package\WikiModel'),
+        'blog' => $di->newFactory('Beispiel\Package\BlogModel'),
+        'wiki' => $di->newFactory('Beispiel\Package\WikiModel'),
     ],
 ];
 
 // default params for page controllers
-$di->params['Example\Package\PageController'] = [
+$di->params['Beispiel\Package\PageController'] = [
     'model_factory' => $di->lazyGet('model_factory'),
 ];
 
 // the database service; note that we can use lazyNew() and the
 // forge will do all the setup for us
-$di->set('database', $di->lazyNew('Example\Package\Database'));
+$di->set('database', $di->lazyNew('Beispiel\Package\Database'));
 
 // the model factory service
-$di->set('model_factory', $di->lazyNew('Example\Package\ModelFactory'));
+$di->set('model_factory', $di->lazyNew('Beispiel\Package\ModelFactory'));
 {% endhighlight %}
 
 When we create an instance of the `BlogController` and run it ...
