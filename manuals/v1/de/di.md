@@ -151,20 +151,21 @@ $di->set('database', function () use ($di) {
 });
 {% endhighlight %}
 
-As part of the object-creation process, the `Forge` examines the `$di->params`
-values for the class being instantiated. Those values are merged with the
-class constructor defaults at instantiation time, and passed to the
-constructor (again, the order does not matter, only that the param key names
-match the constructor param names).
+Bei der Objekt-Erstellung überprüft das `Forge` Objekt die `$di->params`
+Werte für die Klasse die gerade initiziert wird. Diese Werte werden kombiniert
+mit den Standart-Werten des Konstruktors bei der Erstellung und werden diesem
+mit eingeführt. (erneut, die Reihenfolge spielt dabei keine Rolle, die Schlüssel des Arrays
+müssen mit den Parameter-Namen übereinstimmen).
 
-At this point, we have successfully separated object configuration from object
-instantiation, and allow for lazy-loading of service objects from the
-container.
+Nun haben wir erfolgreich die Konfiguration und Erstellung des Objektes
+seperiert und lazy-loading von Objekten ermöglicht.
 
-## Variation 5: Call The lazyNew() Method ##
+## Variation 5: Die lazyNew() Methode ##
 
-In this variation, we call the `lazyNew()` method, which encapsulates the
-"use a closure to return a new instance" idiom.
+Diesmal rufen wir die `lazyNew()` Methode auf, welche das
+"use a closure to return a new instance" (auf Deutsch:
+"Nutze eine anonyme Funktion zum Erstellen einer neuen Instanz")
+Idiom  folgt.
 
 {% highlight php %}
 <?php
@@ -178,10 +179,9 @@ $di->set('database', $di->lazyNew('Beispiel\Package\Database'));
 {% endhighlight %}
 
 
-## Variation 5a: Override Class Constructor Params ##
+## Variation 5a: Überschreibe Klassen Konstruktor Parameter ##
 
-In this variation, we override the `$di->params` values that will be used at
-instantiation time.
+`$di->params` Werte werden diesmal überschrieben.
 
 {% highlight php %}
 <?php
@@ -196,24 +196,23 @@ $di->set('database', $di->lazyNew('Beispiel\Package\Database', [
 ]);
 {% endhighlight %}
 
-The instantiation-time values take precedence over the configuration values,
-which themselves take precedence over the constructor defaults.
+Werte, die bei der Erstellung übergeben werden, werden bevorzugt genutzt
+gegenüber der Konfiguration und jene gegenüber Standart-Werten.
 
 
-## Getting Services ##
+## Services Nutzen ##
 
-To get a service object from the container, call `$di->get()`.
+Um einen Service aus dem Container zu bekommen, rufen wir `$di->get()` auf.
 
 {% highlight php %}
 <?php
 $db = $di->get('database');
 {% endhighlight %}
 
-This will retrieve the service object from the container; if it was set using
-a closure, the closure will be invoked to create the object at that time. Once
-the object is created, it is retained in the container for future use; getting
-the same service multiple times will return the exact same object instance.
-
+Dies wird den Datenbank Service aus dem Container holen; sollte jener
+mittels Closure definiert sein, so wird diese ausgeführt und das Objekt
+im Container gespeichert.
+Von nun an wird immer das gleiche Objekt zurückgegeben.
 
 ## Constructor Params Inheritance ##
 
