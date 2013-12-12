@@ -240,6 +240,7 @@ packages, then [the Aura project][Aura] is for you. Download a single package
 and start using it in your project today, with no added dependencies.
 
 
+[Aura.Di v2]: https://github.com/auraphp/Aura.Di/tree/develop-2
 [Aura.Dispatcher]: https://github.com/auraphp/Aura.Dispatcher
 [Aura.Project_Kernel]: https://github.com/auraphp/Aura.Project_Kernel
 [Aura.Router v2]: https://github.com/auraphp/Aura.Router/tree/develop-2
