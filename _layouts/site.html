@@ -7,10 +7,10 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <meta name="description" content="">
+        {% if page.description %}<meta name="description" content="{{ page.description }}">{% endif %}
         <meta name="viewport" content="width=device-width">
 
-        <title>Aura for PHP</title>
+        <title>{% if page.title %}{{ page.title }}{% else %}Aura for PHP{% endif %}</title>
         
         <link rel="stylesheet" href="/css/spacelab.css">
         <style>
