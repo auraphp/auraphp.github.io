@@ -139,7 +139,7 @@ class BlogController
 {% endhighlight %}
 
 (Note that you don't need to extend a base controller here. The
-[Aura.Web_Project][] package does not force any specifici controller
+[Aura.Web_Project][] package does not force any specific controller
 methodology on you. Of course, if you want to, you can create your own base
 controllers and extend them.)
 
@@ -192,7 +192,7 @@ $router->add('blog.read', '/blog/read/{id}')
 
 As with the Aura v1, configuration files are located in
 `{$PROJECT_PATH}/config` directory. Previously, they were single files,
-labaled for the config mode. In Aura v2, config files are organized into
+labeled for the config mode. In Aura v2, config files are organized into
 subdirectories by config mode. (The config mode is still stored in the `_mode`
 file in the config directory.)
 
