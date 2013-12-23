@@ -30,4 +30,4 @@ When you are using Aura.Router as a micro-framework, the dispatcher will look so
     unset($params["controller"]);
     echo $controller($params);
 
-Via [phpmaster | Web Routing in PHP with Aura.Router](http://phpmaster.com/web-routing-in-php-with-aura-router/). The Aura project for PHP 5.4 codebase is [https://github.com/auraphp](https://github.com/auraphp).
+Via [Web Routing in PHP with Aura.Router](http://phpmaster.com/web-routing-in-php-with-aura-router/). The Aura project for PHP 5.4 codebase is [https://github.com/auraphp](https://github.com/auraphp).
