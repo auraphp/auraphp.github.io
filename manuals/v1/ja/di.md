@@ -6,9 +6,9 @@ permalink: /manuals/v1/ja/di/
 
 # ディペンデンシーインジェクション #
 
-Aura DIパッケージが提供するDIコンテナシステムはこのようなの特徴があります。
+Aura DIパッケージが提供するDIコンテナシステムには下記の特徴があります。
 
-- コンストラクタの他にもとセッターインジェクションもサポートします。
+- コンストラクタの他にセッターインジェクションもサポートします。
 
 - サービスはレイジーローディングされます。
 
@@ -17,7 +17,7 @@ Aura DIパッケージが提供するDIコンテナシステムはこのよう�
 ファクトリークラスが合成される時にオブジェクトの構成、オブジェクトの生成、オブジェクトの利用は完全に分離されます。
 高い柔軟性とテスト可能性を可能にします。
 
-DIの性質と利点を最大限理解するために、"inversion of control" や "dependency injection"を<http://martinfowler.com/articles/injection.html> by Martin Fowlerで調べて下さい。
+DIの性質と利点を最大限理解するために、"inversion of control" や "dependency injection"を<http://martinfowler.com/articles/injection.html> by Martin Fowler で調べて下さい。
 
 ## コンテナの生成 ##
 
@@ -45,7 +45,7 @@ $di = new Container(new Forge(new Config));
 
 - `Forge` は `Config`の値を使いオブジェクトを生成します。
 
-これらのサポートオブジェクトを直接利用することはありません。 `Container` のメソッドがそれらのオブジェクトをアクセスします。
+これらのサポートオブジェクトを直接利用することはありません。 `Container` のメソッドがそれらのオブジェクトにアクセスします。
 
 ## サービスの設定 ##
 
@@ -219,8 +219,8 @@ class WikiModel extends AbstractModel
 }
 {% endhighlight %}
 
-`BlogModel` と `WikiModel`を作成します。そしてサービス定義に定義されてるようにそれらにデータベースサービスをインジェクトします。
-DIコンテナによいって継承されたコンフィグを使って、クラスコンフィグにあるデータベースサービスを定義します。
+`BlogModel` と `WikiModel`を作成します。そしてサービス定義のとおりにそれらにデータベースサービスをインジェクトします。
+DIコンテナによって継承された設定を使って、クラスコンフィギュレーションによるデータベースサービスの定義ができます。
 
 
 {% highlight php %}
@@ -266,7 +266,7 @@ $di->set('wiki_model', $di->lazyNew('Example\Package\WikiModel'));
 我々のアプリケーションのそれぞれのモデルオブジェクトのサービスをつくるのはなかなか大変な事です。
 モデルを作る必要はあるかもしれませんが、それぞれが必要とするサービスは別々につくりたくないものです。
 
-加えて説明すると他のオブジェクトからモデルのオブジェクトをつくる必要はあります。
+加えて説明すると、他のオブジェクトからモデルのオブジェクトをつくる必要はあります。
 モデルのオブジェクトは本当に必要となるまでつくりたくありません。このためにファクトリーを使う事ができます。
 
 下記のように３つの新しいクラスを定義します：
@@ -313,7 +313,7 @@ class BlogController extends PageController
 {
     public function exec()
     {
-        $blog_model = $this->model_factory('blog');
+        $blog_model = $this->model_factory->newInstance('blog');
         // ... get data from the blog model and return it ...
     }
 }
@@ -424,7 +424,7 @@ $di->set('foo_service', $di->lazyNew('Example\Package\Foo'));
 {% endhighlight %}
     
 `lazyGet()`をインジェクションのために使ってる事に注意してください。
-これはコンストラクタのパラメーターに`Container`で共有しているオブジェクトの代わりに、新しい`Database`オブジェクトを使うように支持しています。
+これはコンストラクタのパラメーターに`Container`で共有しているオブジェクトの代わりに、新しい`Database`オブジェクトを使うように指示しています。
 
 {% highlight php %}
 <?php
