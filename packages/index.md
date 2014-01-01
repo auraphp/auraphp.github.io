@@ -14,6 +14,9 @@ the packages on its own.
 
 {% include packages.md %}
 
+We are also beginning to make "Google Beta" [version 2 releases](/packages/v2)
+of selected packages.
+
 High-Quality, Well-Tested, Standards-Compliant
 ----------------------------------------------
 
