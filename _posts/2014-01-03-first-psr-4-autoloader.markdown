@@ -1,7 +1,7 @@
 ---
 title: First PSR-4 Autoloader Released | Aura.Autoload 2.0.0-beta1
 layout: post
-tags : [v2, web, project]
+tags : [v2, autoload]
 author : Paul M. Jones
 ---
 
