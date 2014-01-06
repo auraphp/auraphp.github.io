@@ -1,5 +1,5 @@
 ---
-title: Version 2 Beta Releases: Includer, Autoload, Sql, Dispatcher
+title: Version 2 Beta Releases | Includer, Autoload, Sql, Dispatcher
 layout: post
 tags : [v2, beta, release]
 author : Paul M. Jones
