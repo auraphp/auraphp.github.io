@@ -7,7 +7,7 @@ author : Paul M. Jones
 
 Continuing our string of library package releases, today we have the 2.0.0-beta1 release of [Aura.Router](https://github.com/auraphp/Aura.Router/tree/develop-2). Given a URL path and a copy of `$_SERVER`, it will extract path-info and `$_SERVER` values for a specific route. You can [download it](https://github.com/auraphp/Aura.Router/releases) directly or install via [Composer and Packagist](https://packagist.org/packages/aura/router).
 
-The Aura.Router package does not provide a dispatching mechanism. Your application is expected to take the information provided by the matching route and dispatch to a controller on its own. You might do this with [Aura.Dispatcher][] or with [some other system of your own devising](https://github.com/auraphp/Aura.Router/tree/develop-2#dispatching-a-route).
+The Aura.Router package does not provide a dispatching mechanism. Your application is expected to take the information provided by the matching route and dispatch to a controller on its own. You might do this with [Aura.Dispatcher](https://github.com/auraphp/Aura.Dispatcher/tree/develop-2) or with [some other system of your own devising](https://github.com/auraphp/Aura.Router/tree/develop-2#dispatching-a-route).
 
 In addition to all the standard stuff like adding routes and generating links, Aura.Router has some added conveniences:
 
