@@ -1,7 +1,7 @@
 ---
 title: Aura.Router 2.0.0-beta1 Released
 layout: post
-tags : [v2, aura, beta, release]
+tags : [v2, aura, router, beta, release]
 author : Paul M. Jones
 ---
 
