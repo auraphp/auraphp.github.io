@@ -1,5 +1,5 @@
 ---
-layout: docs
+layout: docs-de
 title: Dependency Injection
 permalink: /manuals/v1/de/di/
 ---

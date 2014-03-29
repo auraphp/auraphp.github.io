@@ -1,5 +1,5 @@
 ---
-layout: docs
+layout: docs-de
 title: Introduction to Aura
 permalink: /manuals/v1/de/introduction/
 ---

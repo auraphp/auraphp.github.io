@@ -1,5 +1,5 @@
 ---
-layout: docs
+layout: docs-de
 title: Installation
 permalink: /manuals/v1/de/installation/
 ---
