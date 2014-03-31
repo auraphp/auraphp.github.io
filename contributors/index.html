@@ -1,0 +1,34 @@
+---
+layout: blog
+title: Aura contributors
+---
+<h2>Meet the Aura Contributors</h2>
+<ul id="contributors-list">
+    <li>
+        <div></div>
+    </li>
+</ul>
+contributors.json
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript">
+    $(function() {
+        alert("called");
+        $.ajax({
+            url: "http://auraphp.com/contributors/contributors.json",
+            type: "GET"
+        })
+        .success(function (data) {
+            console.log(data);
+            alert("Success");
+        })
+        .fail(function (data) {
+            console.log(data);
+            alert("failure");
+        })
+        .done(function(data) {
+            alert("done");
+            // $('#contributors-list')
+            console.log(data);            
+        });
+    });
+</script>
