@@ -6,3 +6,21 @@ td, th {
     vertical-align: top;
     padding: 10px;
 }
+
+.contributors-list {
+    list-style-type: none !important;
+}
+
+.contributor_thumbnail {
+    float: left;
+    margin-left: -60px;
+}
+
+.contributor:nth-child(2n+1) {
+    background: none repeat scroll 0 0 #EEEEEE;
+}
+.contributor {
+    line-height: 25px;
+    overflow: hidden;
+    padding: 10px 10px 10px 70px;
+}

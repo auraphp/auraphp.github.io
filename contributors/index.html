@@ -1,14 +1,10 @@
 ---
-layout: blog
+layout: site
 title: Aura contributors
 ---
 <h2>Meet the Aura Contributors</h2>
-<ul id="contributors-list">
-    <li>
-        <div></div>
-    </li>
+<ul class="contributors-list">    
 </ul>
-contributors.json
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript">
     $(function() {
@@ -16,19 +12,24 @@ contributors.json
         $.ajax({
             url: "http://auraphp.com/contributors/contributors.json",
             type: "GET"
-        })
-        .success(function (data) {
-            console.log(data);
-            alert("Success");
-        })
-        .fail(function (data) {
-            console.log(data);
-            alert("failure");
-        })
+        })        
         .done(function(data) {
-            alert("done");
-            // $('#contributors-list')
-            console.log(data);            
+            contributors = '';
+            $.each(data, function( index, value ) {
+                contributors += '<li class="contributor">';
+                contributors += '<div class="contributor_thumbnail">';
+                contributors += '<a href="';
+                contributors += value.html_url + '" >';
+                contributors += '<img height="50" width="50" alt="';
+                contributors += index + '" src="';
+                contributors += value.avatar_url + '">';                
+                contributors += '</a></div>';
+                contributors += '<a lang="en" rel="contact colleague" href="';
+                contributors += value.html_url;
+                contributors += '">' + index + '</a>';
+                contributors += '</li>';
+            });
+            $('.contributors-list').html(contributors);
         });
     });
 </script>
