@@ -3,12 +3,12 @@ layout: site
 title: Aura contributors
 ---
 <h2>Meet the Aura Contributors</h2>
-<ul class="contributors-list">    
-</ul>
+<div class="contributors-list">
+</div>
+<div class="clearfix"></div>
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript">
-    $(function() {
-        alert("called");
+    $(function() {        
         $.ajax({
             url: "http://auraphp.com/contributors/contributors.json",
             type: "GET"
@@ -16,7 +16,7 @@ title: Aura contributors
         .done(function(data) {
             contributors = '';
             $.each(data, function( index, value ) {
-                contributors += '<li class="contributor">';
+                contributors += '<div class="span3 contributor">';
                 contributors += '<div class="contributor_thumbnail">';
                 contributors += '<a href="';
                 contributors += value.html_url + '" >';
@@ -27,7 +27,7 @@ title: Aura contributors
                 contributors += '<a lang="en" rel="contact colleague" href="';
                 contributors += value.html_url;
                 contributors += '">' + index + '</a>';
-                contributors += '</li>';
+                contributors += '</div>';
             });
             $('.contributors-list').html(contributors);
         });
