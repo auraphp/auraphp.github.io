@@ -193,7 +193,7 @@ There is an escaping "gotcha" to look out for when manipulating values after
 they are assigned to a template. If you use an assigned value and re-assign
 it to the template, the new value will be double-escaped when you access it.
 
-テンプレートにアサインされた後の値を操作したときに、エスケープが面倒な事にならないように注意する必要がありあmす。
+テンプレートにアサインされた後の値を操作したときに、エスケープが面倒な事にならないように注意する必要があります。
 もしアサインされた値を再びアサインすると新しい値はアクセスしたときに二重エスケープされてしまうでしょう。
 
 例えばこのようなビジネスロジックが与えられたとします ...
