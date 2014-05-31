@@ -19,6 +19,8 @@ Branches
 Releases
 --------
 
+- `1.2.0` : [.zip](https://github.com/auraphp/Aura.Router/zipball/1.2.0), [.tar.gz](https://github.com/auraphp/Aura.Router/tarball/1.2.0), [readme](1.2.0/), [api](1.2.0/api/)
+
 - `1.1.1` : [.zip](https://github.com/auraphp/Aura.Router/zipball/1.1.1), [.tar.gz](https://github.com/auraphp/Aura.Router/tarball/1.1.1), [readme](1.1.1/), [api](1.1.1/api/)
 
 - `1.1.0` : [.zip](https://github.com/auraphp/Aura.Router/zipball/1.1.0), [.tar.gz](https://github.com/auraphp/Aura.Router/tarball/1.1.0), [readme](1.1.0/), [api](1.1.0/api/)
