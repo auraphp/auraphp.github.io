@@ -1,6 +1,6 @@
 <?php
 $packages = [
-    'Aura.Autoload' => '1.0.2',
+    'Aura.Autoload' => '1.0.3',
     'Aura.Cli'      => '1.1.2',
     'Aura.Di'       => '1.1.2',
     'Aura.Filter'   => '1.0.1',
