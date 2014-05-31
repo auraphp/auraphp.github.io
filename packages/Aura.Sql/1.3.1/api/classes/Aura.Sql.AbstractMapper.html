@@ -1,0 +1,1482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="https://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                    <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/Aura.html">\Aura</a></li>
+                                                    </ul>
+                    </li>
+                    <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">3</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1692630663"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-1692630663" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1129205689"></a>
+                                <a href="../namespaces/Aura.html" style="margin-left: 30px; padding-left: 0">Aura</a>
+            </div>
+            <div id="namespace-1129205689" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-453420688"></a>
+                                <a href="../namespaces/Aura.Sql.html" style="margin-left: 30px; padding-left: 0">Sql</a>
+            </div>
+            <div id="namespace-453420688" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1696779580"></a>
+                                <a href="../namespaces/Aura.Sql.Connection.html" style="margin-left: 30px; padding-left: 0">Connection</a>
+            </div>
+            <div id="namespace-1696779580" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Aura.Sql.Connection.AbstractConnection.html">AbstractConnection</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Sql.Connection.Mysql.html">Mysql</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Sql.Connection.Pgsql.html">Pgsql</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Sql.Connection.Sqlite.html">Sqlite</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Sql.Connection.Sqlsrv.html">Sqlsrv</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-47755721"></a>
+                                <a href="../namespaces/Aura.Sql.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-47755721" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Aura.Sql.Exception.NoSuchGateway.html">NoSuchGateway</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Sql.Exception.NoSuchMaster.html">NoSuchMaster</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Sql.Exception.NoSuchSlave.html">NoSuchSlave</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1118831295"></a>
+                                <a href="../namespaces/Aura.Sql.Query.html" style="margin-left: 30px; padding-left: 0">Query</a>
+            </div>
+            <div id="namespace-1118831295" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1988691107"></a>
+                                <a href="../namespaces/Aura.Sql.Query.Mysql.html" style="margin-left: 30px; padding-left: 0">Mysql</a>
+            </div>
+            <div id="namespace-1988691107" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Aura.Sql.Query.Mysql.Delete.html">Delete</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Sql.Query.Mysql.Insert.html">Insert</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Sql.Query.Mysql.Select.html">Select</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Sql.Query.Mysql.Update.html">Update</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1214275741"></a>
+                                <a href="../namespaces/Aura.Sql.Query.Pgsql.html" style="margin-left: 30px; padding-left: 0">Pgsql</a>
+            </div>
+            <div id="namespace-1214275741" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Aura.Sql.Query.Pgsql.Delete.html">Delete</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Sql.Query.Pgsql.Insert.html">Insert</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Sql.Query.Pgsql.Select.html">Select</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Sql.Query.Pgsql.Update.html">Update</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1826175686"></a>
+                                <a href="../namespaces/Aura.Sql.Query.Sqlite.html" style="margin-left: 30px; padding-left: 0">Sqlite</a>
+            </div>
+            <div id="namespace-1826175686" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Aura.Sql.Query.Sqlite.Delete.html">Delete</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Sql.Query.Sqlite.Insert.html">Insert</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Sql.Query.Sqlite.Select.html">Select</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Sql.Query.Sqlite.Update.html">Update</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                            <li class="trait"><a href="../classes/Aura.Sql.Query.FlagsTrait.html">FlagsTrait</a></li>
+                                                    <li class="trait"><a href="../classes/Aura.Sql.Query.LimitTrait.html">LimitTrait</a></li>
+                                                    <li class="trait"><a href="../classes/Aura.Sql.Query.OffsetTrait.html">OffsetTrait</a></li>
+                                                    <li class="trait"><a href="../classes/Aura.Sql.Query.OrderByTrait.html">OrderByTrait</a></li>
+                                                    <li class="trait"><a href="../classes/Aura.Sql.Query.ReturningTrait.html">ReturningTrait</a></li>
+                                                    <li class="trait"><a href="../classes/Aura.Sql.Query.ValuesTrait.html">ValuesTrait</a></li>
+                                                    <li class="trait"><a href="../classes/Aura.Sql.Query.WhereTrait.html">WhereTrait</a></li>
+                                                                            <li class="class"><a href="../classes/Aura.Sql.Query.AbstractQuery.html">AbstractQuery</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Sql.Query.Delete.html">Delete</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Sql.Query.Factory.html">Factory</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Sql.Query.Insert.html">Insert</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Sql.Query.Select.html">Select</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Sql.Query.Update.html">Update</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Aura.Sql.ProfilerInterface.html">ProfilerInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Aura.Sql.AbstractMapper.html">AbstractMapper</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Sql.Column.html">Column</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Sql.ColumnFactory.html">ColumnFactory</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Sql.ConnectionFactory.html">ConnectionFactory</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Sql.ConnectionLocator.html">ConnectionLocator</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Sql.Exception.html">Exception</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Sql.Gateway.html">Gateway</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Sql.GatewayIterator.html">GatewayIterator</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Sql.GatewayLocator.html">GatewayLocator</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Sql.Profiler.html">Profiler</a></li>
+                                                    <li class="class"><a href="../classes/Aura.Sql.UnitOfWork.html">UnitOfWork</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/Aura.Sql.html">\Aura\Sql</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\Aura\Sql</small>AbstractMapper</h1>
+                    <p><em>An abstract class to map entity fields to table columns.</em></p>
+                    
+
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/Aura.Sql.AbstractMapper.html#method_getCols" class="">getCols()</a><br />
+                                                                    <a href="../classes/Aura.Sql.AbstractMapper.html#method_getColForField" class="">getColForField()</a><br />
+                                                                    <a href="../classes/Aura.Sql.AbstractMapper.html#method_getFields" class="">getFields()</a><br />
+                                                                    <a href="../classes/Aura.Sql.AbstractMapper.html#method_getFieldForCol" class="">getFieldForCol()</a><br />
+                                                                    <a href="../classes/Aura.Sql.AbstractMapper.html#method_getIdentityField" class="">getIdentityField()</a><br />
+                                                                    <a href="../classes/Aura.Sql.AbstractMapper.html#method_getIdentityValue" class="">getIdentityValue()</a><br />
+                                                                    <a href="../classes/Aura.Sql.AbstractMapper.html#method_getPrimaryCol" class="">getPrimaryCol()</a><br />
+                                                                    <a href="../classes/Aura.Sql.AbstractMapper.html#method_getTable" class="">getTable()</a><br />
+                                                                    <a href="../classes/Aura.Sql.AbstractMapper.html#method_getTableCol" class="">getTableCol()</a><br />
+                                                                    <a href="../classes/Aura.Sql.AbstractMapper.html#method_getTableColAsField" class="">getTableColAsField()</a><br />
+                                                                    <a href="../classes/Aura.Sql.AbstractMapper.html#method_getTablePrimaryCol" class="">getTablePrimaryCol()</a><br />
+                                                                    <a href="../classes/Aura.Sql.AbstractMapper.html#method_getTableColsAsFields" class="">getTableColsAsFields()</a><br />
+                                                                    <a href="../classes/Aura.Sql.AbstractMapper.html#method_modifySelect" class="">modifySelect()</a><br />
+                                                                    <a href="../classes/Aura.Sql.AbstractMapper.html#method_modifyInsert" class="">modifyInsert()</a><br />
+                                                                    <a href="../classes/Aura.Sql.AbstractMapper.html#method_modifyUpdate" class="">modifyUpdate()</a><br />
+                                                                    <a href="../classes/Aura.Sql.AbstractMapper.html#method_modifyDelete" class="">modifyDelete()</a><br />
+                                                                    <a href="../classes/Aura.Sql.AbstractMapper.html#method_getInsertData" class="">getInsertData()</a><br />
+                                                                    <a href="../classes/Aura.Sql.AbstractMapper.html#method_getUpdateData" class="">getUpdateData()</a><br />
+                                                                    <a href="../classes/Aura.Sql.AbstractMapper.html#method_getUpdateDataChanges" class="">getUpdateDataChanges()</a><br />
+                                                                    <a href="../classes/Aura.Sql.AbstractMapper.html#method_compare" class="">compare()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No constants found</em>
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <em>No protected methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Aura.Sql.AbstractMapper.html#property_table" class="">$table</a><br />
+                                                                    <a href="../classes/Aura.Sql.AbstractMapper.html#property_cols_fields" class="">$cols_fields</a><br />
+                                                                    <a href="../classes/Aura.Sql.AbstractMapper.html#property_primary_col" class="">$primary_col</a><br />
+                                                                    <a href="../classes/Aura.Sql.AbstractMapper.html#property_identity_field" class="">$identity_field</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No private properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                            <span class="label label-info">abstract</span>
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/AbstractMapper.php.html"><div class="path-wrapper">AbstractMapper.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">\Aura.Sql</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                    <div class="namespace-wrapper">\Aura\Sql\AbstractMapper</div>
+                            </dd>
+
+                        
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr>
+                            <th>
+                                todo
+                            </th>
+                            <td>
+                                                            </td>
+                        </tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_table" name="property_table" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$table</h3>
+                <pre class="signature">$table : string</pre>
+                <p><em>The SQL table this mapper works with.</em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_cols_fields" name="property_cols_fields" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$cols_fields</h3>
+                <pre class="signature">$cols_fields : array</pre>
+                <p><em>A map of table columns to entity fields.</em></p>
+                
+
+                                <h4>Type</h4>
+                array
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_primary_col" name="property_primary_col" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$primary_col</h3>
+                <pre class="signature">$primary_col : string</pre>
+                <p><em>The primary column in the table (maps to the identity field.)</em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_identity_field" name="property_identity_field" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$identity_field</h3>
+                <pre class="signature">$identity_field : string</pre>
+                <p><em>The identity field in the entity (maps to the primary column).</em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getCols" name="method_getCols" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getCols()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getCols() : array</pre>
+                <p><em>Returns the list of table columns.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getColForField" name="method_getColForField" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getColForField()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getColForField(string <span class="argument">$field</span>) : string</pre>
+                <p><em>Returns the table column name for a given entity field name.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$field</td>
+                                <td><p>The entity field name.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>The mapped table column name.</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getFields" name="method_getFields" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getFields()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getFields() : array</pre>
+                <p><em>Returns the list of entity fields.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getFieldForCol" name="method_getFieldForCol" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getFieldForCol()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getFieldForCol(string <span class="argument">$col</span>) : string</pre>
+                <p><em>Returns the entity field name for a given table column name.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$col</td>
+                                <td><p>The table column name.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>The mapped entity field name.</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getIdentityField" name="method_getIdentityField" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getIdentityField()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getIdentityField() : string</pre>
+                <p><em>Returns the identity field name for mapped entities.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>The identity field name.</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getIdentityValue" name="method_getIdentityValue" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getIdentityValue()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getIdentityValue(object <span class="argument">$entity</span>) : mixed</pre>
+                <p><em>Given an entity object, returns the identity field value.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>object</td>
+                                <td>$entity</td>
+                                <td><p>The entity object.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                            &mdash; <p>The value of the identity field on the object.</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getPrimaryCol" name="method_getPrimaryCol" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getPrimaryCol()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getPrimaryCol() : string</pre>
+                <p><em>Returns the primary column name on the table.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>The primary column name.</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getTable" name="method_getTable" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getTable()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getTable() : string</pre>
+                <p><em>Returns the mapped SQL table name.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>The mapped SQL table name.</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getTableCol" name="method_getTableCol" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getTableCol()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getTableCol(string <span class="argument">$col</span>) : string</pre>
+                <p><em>Returns a column name, dot-prefixed with the table name.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$col</td>
+                                <td><p>The column name.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>The fully-qualified table-and-column name.</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getTableColAsField" name="method_getTableColAsField" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getTableColAsField()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getTableColAsField(string <span class="argument">$col</span>) : string</pre>
+                <p><em>Returns a column name, dot-prefixed with the table name, &quot;AS&quot; its
+mapped entity name.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$col</td>
+                                <td><p>The column name.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>The fully-qualified table-and-column name "AS" the
+mapped entity name.</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getTablePrimaryCol" name="method_getTablePrimaryCol" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getTablePrimaryCol()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getTablePrimaryCol() : string</pre>
+                <p><em>Returns the primary column name, dot-prefixed with the table name.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>The fully-qualified table-and-primary name.</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getTableColsAsFields" name="method_getTableColsAsFields" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getTableColsAsFields()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getTableColsAsFields(array <span class="argument">$cols</span>) : array</pre>
+                <p><em>Returns an array of fully-qualified table columns names &quot;AS&quot; their
+mapped entity field names.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$cols</td>
+                                <td><p>The column names.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_modifySelect" name="method_modifySelect" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">modifySelect()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">modifySelect(\Aura\Sql\Query\Select <span class="argument">$select</span>, array <span class="argument">$cols</span>) : void</pre>
+                <p><em>Given a Select object and an array of column names, modifies the Select
+SELECT those columns AS their mapped entity field names FROM the mapped
+table.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Aura.Sql.Query.Select.html">\Aura\Sql\Query\Select</a></td>
+                                <td>$select</td>
+                                <td><p>The Select object to modify.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$cols</td>
+                                <td><p>The columns to select; if empty, selects all mapped
+columns.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_modifyInsert" name="method_modifyInsert" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">modifyInsert()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">modifyInsert(\Aura\Sql\Query\Insert <span class="argument">$insert</span>, object <span class="argument">$entity</span>) : void</pre>
+                <p><em>Given an Insert query object and an entity object, modifies the Insert
+to use the mapped table, with the column names mapped from the entity
+field names, and binds the entity field values to the query.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Aura.Sql.Query.Insert.html">\Aura\Sql\Query\Insert</a></td>
+                                <td>$insert</td>
+                                <td><p>The Insert query object.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>object</td>
+                                <td>$entity</td>
+                                <td><p>The entity object.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_modifyUpdate" name="method_modifyUpdate" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">modifyUpdate()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">modifyUpdate(\Aura\Sql\Query\Update <span class="argument">$update</span>, object <span class="argument">$entity</span>, array <span class="argument">$initial_data</span>) : void</pre>
+                <p><em>Given an Update query object and an entity object, modifies the Update
+to use the mapped table, with the column names mapped from the entity
+field names, binding the entity field values to the query, and setting
+a where condition to match the primary column to the identity value.</em></p>
+                <p>When an array of initial data is present, the update will use only
+changed values (instead of sending all the entity values).</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Aura.Sql.Query.Update.html">\Aura\Sql\Query\Update</a></td>
+                                <td>$update</td>
+                                <td><p>The Update query object.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>object</td>
+                                <td>$entity</td>
+                                <td><p>The entity object.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$initial_data</td>
+                                <td><p>The initial data for the entity object; used
+to determine what values have changed on the entity.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_modifyDelete" name="method_modifyDelete" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">modifyDelete()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">modifyDelete(\Aura\Sql\Query\Delete <span class="argument">$delete</span>, object <span class="argument">$entity</span>) : void</pre>
+                <p><em>Given a Delete query object and an entity object, modify the Delete
+to use the mapped table, and to set a where condition to match the
+primary column to the identity value.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Aura.Sql.Query.Delete.html">\Aura\Sql\Query\Delete</a></td>
+                                <td>$delete</td>
+                                <td><p>The Delete query object.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>object</td>
+                                <td>$entity</td>
+                                <td><p>The entity object.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getInsertData" name="method_getInsertData" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getInsertData()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getInsertData(object <span class="argument">$entity</span>) : array</pre>
+                <p><em>Given an entity object, creates an array of mapped table column names
+to entity field values for inserts.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>object</td>
+                                <td>$entity</td>
+                                <td><p>The entity object.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getUpdateData" name="method_getUpdateData" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getUpdateData()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getUpdateData(object <span class="argument">$entity</span>, array <span class="argument">$initial_data</span>) : array</pre>
+                <p><em>Given an entity object, creates an array of mapped table column names
+to entity field values for updates; when an array of initial data is
+present, the returned array will have only changed values.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>object</td>
+                                <td>$entity</td>
+                                <td><p>The entity object.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$initial_data</td>
+                                <td><p>The initial data for the entity.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getUpdateDataChanges" name="method_getUpdateDataChanges" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getUpdateDataChanges()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getUpdateDataChanges(object <span class="argument">$entity</span>, array <span class="argument">$initial_data</span>) : array</pre>
+                <p><em>Given an entity object and an array of initial data, returns an array
+mapped table columns and changed values.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>object</td>
+                                <td>$entity</td>
+                                <td><p>The entity object.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$initial_data</td>
+                                <td><p>The array of initial data.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_compare" name="method_compare" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">compare()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">compare(mixed <span class="argument">$new</span>, mixed <span class="argument">$old</span>) : bool</pre>
+                <p><em>Compares a new value and an old value to see if they are the same.</em></p>
+                <p>If they are both numeric, use loose (==) equality; otherwise, use
+strict (===) equality.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$new</td>
+                                <td><p>The new value.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$old</td>
+                                <td><p>The old value.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    bool
+                                            &mdash; <p>True if they are equal, false if not.</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">AbstractMapper.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/AbstractMapper.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/Aura.html">\Aura</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on May 31st, 2014 at 13:05.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

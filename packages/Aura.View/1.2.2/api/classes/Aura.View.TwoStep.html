@@ -1,0 +1,1870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="https://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                    <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/Aura.html">\Aura</a></li>
+                                                    </ul>
+                    </li>
+                    <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">3</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1067488414"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-1067488414" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1815053372"></a>
+                                <a href="../namespaces/Aura.html" style="margin-left: 30px; padding-left: 0">Aura</a>
+            </div>
+            <div id="namespace-1815053372" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-551179927"></a>
+                                <a href="../namespaces/Aura.View.html" style="margin-left: 30px; padding-left: 0">View</a>
+            </div>
+            <div id="namespace-551179927" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-184290001"></a>
+                                <a href="../namespaces/Aura.View.Escaper.html" style="margin-left: 30px; padding-left: 0">Escaper</a>
+            </div>
+            <div id="namespace-184290001" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Aura.View.Escaper.Iterator.html">Iterator</a></li>
+                                                    <li class="class"><a href="../classes/Aura.View.Escaper.IteratorAggregate.html">IteratorAggregate</a></li>
+                                                    <li class="class"><a href="../classes/Aura.View.Escaper.Object.html">Object</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-75488032"></a>
+                                <a href="../namespaces/Aura.View.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-75488032" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Aura.View.Exception.HelperNotMapped.html">HelperNotMapped</a></li>
+                                                    <li class="class"><a href="../classes/Aura.View.Exception.TemplateNotFound.html">TemplateNotFound</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1706059393"></a>
+                                <a href="../namespaces/Aura.View.Helper.html" style="margin-left: 30px; padding-left: 0">Helper</a>
+            </div>
+            <div id="namespace-1706059393" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1299911936"></a>
+                                <a href="../namespaces/Aura.View.Helper.Form.html" style="margin-left: 30px; padding-left: 0">Form</a>
+            </div>
+            <div id="namespace-1299911936" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-272397973"></a>
+                                <a href="../namespaces/Aura.View.Helper.Form.Input.html" style="margin-left: 30px; padding-left: 0">Input</a>
+            </div>
+            <div id="namespace-272397973" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Aura.View.Helper.Form.Input.Checked.html">Checked</a></li>
+                                                    <li class="class"><a href="../classes/Aura.View.Helper.Form.Input.Generic.html">Generic</a></li>
+                                                    <li class="class"><a href="../classes/Aura.View.Helper.Form.Input.Value.html">Value</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Aura.View.Helper.Form.Checkboxes.html">Checkboxes</a></li>
+                                                    <li class="class"><a href="../classes/Aura.View.Helper.Form.Field.html">Field</a></li>
+                                                    <li class="class"><a href="../classes/Aura.View.Helper.Form.Input.html">Input</a></li>
+                                                    <li class="class"><a href="../classes/Aura.View.Helper.Form.Radios.html">Radios</a></li>
+                                                    <li class="class"><a href="../classes/Aura.View.Helper.Form.Repeat.html">Repeat</a></li>
+                                                    <li class="class"><a href="../classes/Aura.View.Helper.Form.Select.html">Select</a></li>
+                                                    <li class="class"><a href="../classes/Aura.View.Helper.Form.Textarea.html">Textarea</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Aura.View.Helper.AbstractHelper.html">AbstractHelper</a></li>
+                                                    <li class="class"><a href="../classes/Aura.View.Helper.Anchor.html">Anchor</a></li>
+                                                    <li class="class"><a href="../classes/Aura.View.Helper.Attribs.html">Attribs</a></li>
+                                                    <li class="class"><a href="../classes/Aura.View.Helper.Base.html">Base</a></li>
+                                                    <li class="class"><a href="../classes/Aura.View.Helper.Datetime.html">Datetime</a></li>
+                                                    <li class="class"><a href="../classes/Aura.View.Helper.Escape.html">Escape</a></li>
+                                                    <li class="class"><a href="../classes/Aura.View.Helper.Image.html">Image</a></li>
+                                                    <li class="class"><a href="../classes/Aura.View.Helper.Links.html">Links</a></li>
+                                                    <li class="class"><a href="../classes/Aura.View.Helper.Metas.html">Metas</a></li>
+                                                    <li class="class"><a href="../classes/Aura.View.Helper.Ol.html">Ol</a></li>
+                                                    <li class="class"><a href="../classes/Aura.View.Helper.Scripts.html">Scripts</a></li>
+                                                    <li class="class"><a href="../classes/Aura.View.Helper.Styles.html">Styles</a></li>
+                                                    <li class="class"><a href="../classes/Aura.View.Helper.Tag.html">Tag</a></li>
+                                                    <li class="class"><a href="../classes/Aura.View.Helper.Title.html">Title</a></li>
+                                                    <li class="class"><a href="../classes/Aura.View.Helper.Ul.html">Ul</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Aura.View.AbstractTemplate.html">AbstractTemplate</a></li>
+                                                    <li class="class"><a href="../classes/Aura.View.EscaperFactory.html">EscaperFactory</a></li>
+                                                    <li class="class"><a href="../classes/Aura.View.Exception.html">Exception</a></li>
+                                                    <li class="class"><a href="../classes/Aura.View.FormatTypes.html">FormatTypes</a></li>
+                                                    <li class="class"><a href="../classes/Aura.View.HelperLocator.html">HelperLocator</a></li>
+                                                    <li class="class"><a href="../classes/Aura.View.Template.html">Template</a></li>
+                                                    <li class="class"><a href="../classes/Aura.View.TemplateFinder.html">TemplateFinder</a></li>
+                                                    <li class="class"><a href="../classes/Aura.View.TwoStep.html">TwoStep</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/Aura.View.html">\Aura\View</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\Aura\View</small>TwoStep</h1>
+                    <p><em>Provides a TwoStepView pattern implementation; this allows for an inner
+(&quot;core&quot;) view and and outer (&quot;layout&quot;) view as commonly used by web apps.</em></p>
+                    
+
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/Aura.View.TwoStep.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/Aura.View.TwoStep.html#method_setAccept" class="">setAccept()</a><br />
+                                                                    <a href="../classes/Aura.View.TwoStep.html#method_getAccept" class="">getAccept()</a><br />
+                                                                    <a href="../classes/Aura.View.TwoStep.html#method_setFormat" class="">setFormat()</a><br />
+                                                                    <a href="../classes/Aura.View.TwoStep.html#method_getFormat" class="">getFormat()</a><br />
+                                                                    <a href="../classes/Aura.View.TwoStep.html#method_getContentType" class="">getContentType()</a><br />
+                                                                    <a href="../classes/Aura.View.TwoStep.html#method_addData" class="">addData()</a><br />
+                                                                    <a href="../classes/Aura.View.TwoStep.html#method_setData" class="">setData()</a><br />
+                                                                    <a href="../classes/Aura.View.TwoStep.html#method_getData" class="">getData()</a><br />
+                                                                    <a href="../classes/Aura.View.TwoStep.html#method_setInnerView" class="">setInnerView()</a><br />
+                                                                    <a href="../classes/Aura.View.TwoStep.html#method_getInnerView" class="">getInnerView()</a><br />
+                                                                    <a href="../classes/Aura.View.TwoStep.html#method_setInnerPaths" class="">setInnerPaths()</a><br />
+                                                                    <a href="../classes/Aura.View.TwoStep.html#method_addInnerPath" class="">addInnerPath()</a><br />
+                                                                    <a href="../classes/Aura.View.TwoStep.html#method_getInnerPaths" class="">getInnerPaths()</a><br />
+                                                                    <a href="../classes/Aura.View.TwoStep.html#method_setOuterView" class="">setOuterView()</a><br />
+                                                                    <a href="../classes/Aura.View.TwoStep.html#method_getOuterView" class="">getOuterView()</a><br />
+                                                                    <a href="../classes/Aura.View.TwoStep.html#method_setOuterPaths" class="">setOuterPaths()</a><br />
+                                                                    <a href="../classes/Aura.View.TwoStep.html#method_addOuterPath" class="">addOuterPath()</a><br />
+                                                                    <a href="../classes/Aura.View.TwoStep.html#method_getOuterPaths" class="">getOuterPaths()</a><br />
+                                                                    <a href="../classes/Aura.View.TwoStep.html#method_setInnerViewVar" class="">setInnerViewVar()</a><br />
+                                                                    <a href="../classes/Aura.View.TwoStep.html#method_getInnerViewVar" class="">getInnerViewVar()</a><br />
+                                                                    <a href="../classes/Aura.View.TwoStep.html#method_render" class="">render()</a><br />
+                                                                    <a href="../classes/Aura.View.TwoStep.html#method_getTemplate" class="">getTemplate()</a><br />
+                                                                    <a href="../classes/Aura.View.TwoStep.html#method_getFormatTypes" class="">getFormatTypes()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No constants found</em>
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <a href="../classes/Aura.View.TwoStep.html#method_renderView" class="">renderView()</a><br />
+                                                                    <a href="../classes/Aura.View.TwoStep.html#method_getView" class="">getView()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Aura.View.TwoStep.html#property_accept" class="">$accept</a><br />
+                                                                    <a href="../classes/Aura.View.TwoStep.html#property_data" class="">$data</a><br />
+                                                                    <a href="../classes/Aura.View.TwoStep.html#property_format" class="">$format</a><br />
+                                                                    <a href="../classes/Aura.View.TwoStep.html#property_format_types" class="">$format_types</a><br />
+                                                                    <a href="../classes/Aura.View.TwoStep.html#property_inner_paths" class="">$inner_paths</a><br />
+                                                                    <a href="../classes/Aura.View.TwoStep.html#property_inner_view" class="">$inner_view</a><br />
+                                                                    <a href="../classes/Aura.View.TwoStep.html#property_inner_view_var" class="">$inner_view_var</a><br />
+                                                                    <a href="../classes/Aura.View.TwoStep.html#property_template" class="">$template</a><br />
+                                                                    <a href="../classes/Aura.View.TwoStep.html#property_outer_paths" class="">$outer_paths</a><br />
+                                                                    <a href="../classes/Aura.View.TwoStep.html#property_outer_view" class="">$outer_view</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No private properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/TwoStep.php.html"><div class="path-wrapper">TwoStep.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">\Aura.View</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                    <div class="namespace-wrapper">\Aura\View\TwoStep</div>
+                            </dd>
+
+                        
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr>
+                            <th>
+                                todo
+                            </th>
+                            <td>
+                                                            </td>
+                        </tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_accept" name="property_accept" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$accept</h3>
+                <pre class="signature">$accept : array</pre>
+                <p><em>An array of Accept headers, in the format [&#039;type&#039; =&gt; weight].</em></p>
+                
+
+                                <h4>Type</h4>
+                array
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_data" name="property_data" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$data</h3>
+                <pre class="signature">$data : array</pre>
+                <p><em>The shared data for inner and outer views.</em></p>
+                
+
+                                <h4>Type</h4>
+                array
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_format" name="property_format" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$format</h3>
+                <pre class="signature">$format : string</pre>
+                <p><em>The .format to render.</em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_format_types" name="property_format_types" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$format_types</h3>
+                <pre class="signature">$format_types : \Aura\View\FormatTypes</pre>
+                <p><em>A FormatTypes object to map .format values to Content-Type values.</em></p>
+                
+
+                                <h4>Type</h4>
+                <a href="../classes/Aura.View.FormatTypes.html">\Aura\View\FormatTypes</a>
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_inner_paths" name="property_inner_paths" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$inner_paths</h3>
+                <pre class="signature">$inner_paths : array</pre>
+                <p><em>The paths to search when finding an inner view template.</em></p>
+                
+
+                                <h4>Type</h4>
+                array
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_inner_view" name="property_inner_view" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$inner_view</h3>
+                <pre class="signature">$inner_view : mixed</pre>
+                <p><em>The inner view to use. This may be one of three types:</em></p>
+                <ul>
+<li>
+<p>(string) A template file name.</p>
+</li>
+<li>
+<p>(callable) A callable to execute. It should take no parameters.</p>
+</li>
+<li>
+<p>(array) An array where each element key is a .format name, and the</p>
+<p>corresponding element value is a string or a callable. This type is
+most useful when allowing for multiple views using the same data.</p>
+</li>
+</ul>
+
+                                <h4>Type</h4>
+                mixed
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_inner_view_var" name="property_inner_view_var" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$inner_view_var</h3>
+                <pre class="signature">$inner_view_var : string</pre>
+                <p><em>The name of the variable in the outer view template that should be
+replaced with the output of the inner view template.</em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_template" name="property_template" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$template</h3>
+                <pre class="signature">$template : \Aura\View\Template</pre>
+                <p><em>The Template object to be used when rendering the inner view and outer
+view.</em></p>
+                
+
+                                <h4>Type</h4>
+                <a href="../classes/Aura.View.Template.html">\Aura\View\Template</a>
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_outer_paths" name="property_outer_paths" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$outer_paths</h3>
+                <pre class="signature">$outer_paths : array</pre>
+                <p><em>The paths to search when finding the outer view template.</em></p>
+                
+
+                                <h4>Type</h4>
+                array
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_outer_view" name="property_outer_view" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$outer_view</h3>
+                <pre class="signature">$outer_view : mixed</pre>
+                <p><em>The inner view to use. This may be one of three types:</em></p>
+                <ul>
+<li>
+<p>(string) A template file name.</p>
+</li>
+<li>
+<p>(callable) A callable to execute; it should be a single parameter,</p>
+<p><code>$inner</code>, which is the content of the inner view.</p>
+</li>
+<li>
+<p>(array) An array where each element key is a .format name, and the</p>
+<p>corresponding element value is a string or a callable. This type is
+most useful when allowing for multiple views using the same data.</p>
+</li>
+</ul>
+
+                                <h4>Type</h4>
+                mixed
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__construct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__construct(\Aura\View\Template <span class="argument">$template</span>, \Aura\View\FormatTypes <span class="argument">$format_types</span>)</pre>
+                <p><em>Constructor.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Aura.View.Template.html">\Aura\View\Template</a></td>
+                                <td>$template</td>
+                                <td><p>The Template object to be used when rendering
+the inner view and outer view.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><a href="../classes/Aura.View.FormatTypes.html">\Aura\View\FormatTypes</a></td>
+                                <td>$format_types</td>
+                                <td><p>An object that maps formats to types.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setAccept" name="method_setAccept" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setAccept()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setAccept(array <span class="argument">$accept</span>) : void</pre>
+                <p><em>Set the Accept values for negotiating formats.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$accept</td>
+                                <td><p>An array where each key is a content-type and each
+value is a corresponding weight.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getAccept" name="method_getAccept" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getAccept()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getAccept() : array</pre>
+                <p><em>Returns the Accept values for negotiating formats.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setFormat" name="method_setFormat" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setFormat()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setFormat(string <span class="argument">$format</span>) : void</pre>
+                <p><em>Sets the .format to pick when the inner/outer views provide multiple
+formats.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$format</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getFormat" name="method_getFormat" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getFormat()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getFormat() : string</pre>
+                <p><em>Returns the .format to pick when the inner/outer views provide multiple
+formats.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getContentType" name="method_getContentType" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getContentType()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getContentType() : string</pre>
+                <p><em>Returns the Content-Type for the current .format, if any.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_addData" name="method_addData" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">addData()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">addData(array <span class="argument">$data</span>) : void</pre>
+                <p><em>Merges new data with existing data for inner and outer views.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$data</td>
+                                <td><p>The data for the inner and outer views.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setData" name="method_setData" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setData()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setData(array <span class="argument">$data</span>) : void</pre>
+                <p><em>Sets the shared data for inner and outer views.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$data</td>
+                                <td><p>The data for the inner and outer views.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getData" name="method_getData" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getData()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getData() : array</pre>
+                <p><em>Returns the shared data for inner and outer views.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setInnerView" name="method_setInnerView" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setInnerView()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setInnerView(mixed <span class="argument">$inner_view</span>) : void</pre>
+                <p><em>Sets inner view specification. The specification may be:</em></p>
+                <ul>
+<li>
+<p>(string) A template file name.</p>
+</li>
+<li>
+<p>(callable) A closure to execute; it should take no parameters.</p>
+</li>
+<li>
+<p>(array) An array where each element key is a .format name, and the</p>
+<p>corresponding element value is a string or a callable. This type is
+most useful when allowing for multiple views using the same data.</p>
+</li>
+</ul>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$inner_view</td>
+                                <td><p>The inner view specification.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getInnerView" name="method_getInnerView" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getInnerView()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getInnerView(string <span class="argument">$format</span>) : mixed</pre>
+                <p><em>Returns the inner view specification.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$format</td>
+                                <td><p>Only return the specification for this .format;
+if null, return all formats.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setInnerPaths" name="method_setInnerPaths" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setInnerPaths()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setInnerPaths(array <span class="argument">$inner_paths</span>) : void</pre>
+                <p><em>Sets the paths to search when finding the inner view template.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$inner_paths</td>
+                                <td><p>The paths to search when finding the inner
+view template.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_addInnerPath" name="method_addInnerPath" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">addInnerPath()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">addInnerPath(string <span class="argument">$path</span>) : void</pre>
+                <p><em>Appends a path to search when finding the inner view template.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$path</td>
+                                <td><p>The path to append.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getInnerPaths" name="method_getInnerPaths" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getInnerPaths()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getInnerPaths() : array</pre>
+                <p><em>Returns the paths to search when finding the inner view template.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setOuterView" name="method_setOuterView" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setOuterView()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setOuterView(mixed <span class="argument">$outer_view</span>) : void</pre>
+                <p><em>Sets the outer view specification. The specification may be:</em></p>
+                <ul>
+<li>
+<p>(string) A template file name.</p>
+</li>
+<li>
+<p>(callable) A callable to execute; it should take one parameter,</p>
+<p><code>$inner</code>, which is the content of the inner view.</p>
+</li>
+<li>
+<p>(array) An array where each element key is a .format name, and the</p>
+<p>corresponding element value is a string or a callable. This type is
+most useful when allowing for multiple views using the same data.</p>
+</li>
+</ul>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$outer_view</td>
+                                <td><p>The outer view specification.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getOuterView" name="method_getOuterView" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getOuterView()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getOuterView(string <span class="argument">$format</span>) : mixed</pre>
+                <p><em>Returns the outer view specification.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$format</td>
+                                <td><p>Only return the specification for this .format;
+if null, return all formats.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setOuterPaths" name="method_setOuterPaths" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setOuterPaths()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setOuterPaths(array <span class="argument">$outer_paths</span>) : void</pre>
+                <p><em>Sets the paths to search when finding the outer view template.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$outer_paths</td>
+                                <td><p>The paths to search when finding the outer
+view template.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_addOuterPath" name="method_addOuterPath" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">addOuterPath()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">addOuterPath(string <span class="argument">$path</span>) : void</pre>
+                <p><em>Appends a path to search when finding the outer view template.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$path</td>
+                                <td><p>The path to append.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getOuterPaths" name="method_getOuterPaths" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getOuterPaths()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getOuterPaths() : array</pre>
+                <p><em>Returns the paths to search when finding the outer view template.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setInnerViewVar" name="method_setInnerViewVar" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setInnerViewVar()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setInnerViewVar(string <span class="argument">$inner_view_var</span>) : void</pre>
+                <p><em>Sets the name of the variable in the outer view template that should
+be replaced with the output of the inner view template.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$inner_view_var</td>
+                                <td><p>The variable name in the outer view
+template.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getInnerViewVar" name="method_getInnerViewVar" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getInnerViewVar()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getInnerViewVar() : string</pre>
+                <p><em>Returns the name of the variable in the outer view template that should
+be replaced with the output of the inner view template.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_render" name="method_render" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">render()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">render() : string</pre>
+                <p><em>Renders the inner view and outer view and returns the resulting output,
+negotiating a format from the accept header values.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>The rendered two-step view results.</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getTemplate" name="method_getTemplate" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getTemplate()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getTemplate() : \Aura\View\Template</pre>
+                <p><em>The Template object to be used when rendering</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Aura.View.Template.html">\Aura\View\Template</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getFormatTypes" name="method_getFormatTypes" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getFormatTypes()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getFormatTypes() : \Aura\View\Aura\View\FormatTypes</pre>
+                <p><em>A FormatTypes object to map .format values to Content-Type values.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    \Aura\View\Aura\View\FormatTypes
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_renderView" name="method_renderView" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">renderView()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">renderView(mixed <span class="argument">$view</span>, array <span class="argument">$paths</span>, string <span class="argument">$default</span>) : string</pre>
+                <p><em>Renders a view (inner or outer).</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$view</td>
+                                <td><p>The view to render.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$paths</td>
+                                <td><p>Look through these paths for view templates.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$default</td>
+                                <td><p>If $view is null, use this as the default
+rendering result.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getView" name="method_getView" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">getView()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getView(mixed <span class="argument">$view</span>, string <span class="argument">$format</span>, bool <span class="argument">$first_if_empty</span>) : mixed</pre>
+                <p><em>Gets the view for a particular format.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$view</td>
+                                <td><p>The inner or outer view specification.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$format</td>
+                                <td><p>The format to use.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>bool</td>
+                                <td>$first_if_empty</td>
+                                <td><p>If the format is empty, use the first
+available view; otherwise return all available views.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                            &mdash; <p>The matching view for the format.</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">TwoStep.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/TwoStep.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/Aura.html">\Aura</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on May 31st, 2014 at 13:05.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>
