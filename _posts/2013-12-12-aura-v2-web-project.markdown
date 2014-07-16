@@ -85,19 +85,25 @@ the router system ...
 {% highlight php %}
 <?php
 /**
- * {$PROJECT_PATH}/config/default/modify/router.php
+ * {$PROJECT_PATH}/config/Common.php
  */
-$request  = $di->get('web_request');
-$response = $di->get('web_response');
-$router->add('blog.read', '/blog/read/{id}')
-    ->addValues(array(
-        'controller' => function ($id) use ($request, $response) {
-            $content = "Reading blog post $id";
-            $response->content->set(htmlspecialchars(
-                $content, ENT_QUOTES|ENT_SUBSTITUTE, 'UTF-8'
-            ));
-        }
-    ));
+public function modifyWebRouter(Container $di)
+{
+
+    $router = $di->get('web_router');
+    $request  = $di->get('web_request');
+    $response = $di->get('web_response');
+
+    $router->add('blog.read', '/blog/read/{id}')
+        ->addValues(array(
+            'controller' => function ($id) use ($request, $response) {
+                $content = "Reading blog post $id";
+                $response->content->set(htmlspecialchars(
+                    $content, ENT_QUOTES|ENT_SUBSTITUTE, 'UTF-8'
+                ));
+            }
+        ));
+}
 ?>
 {% endhighlight %}
 
