@@ -5,7 +5,7 @@ tags : [v2, web, project]
 author : Paul M. Jones
 ---
 
-*Updated July 16, 2014 to reflect version 2.2 changes in the examples.*
+*Updated July 16, 2014 to reflect version 2.x changes in the examples.*
 
 (In this series, we have been discussing the improvements over Aura v1 that
 are being incorporated into v2.)
