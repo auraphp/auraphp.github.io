@@ -156,12 +156,15 @@ DI system to pass _Request_ and _Response_ objects to the constructor.
 {% highlight php %}
 <?php
 /**
- * {$PROJECT_PATH}/config/default/define.php
+ * {$PROJECT_PATH}/config/Common.php
  */
-$di->params['App\Controllers\BlogController'] = array(
-    'request' => $di->lazyGet('web_request'),
-    'response' => $di->lazyGet('web_response'),
-);
+public function define(Container $di)
+{
+    $di->params['App\Controllers\BlogController'] = array(
+        'request' => $di->lazyGet('web_request'),
+        'response' => $di->lazyGet('web_response'),
+    );
+}
 ?>
 {% endhighlight %}
 
@@ -171,9 +174,14 @@ under the name `blog` as a lazy-loaded instantiation ...
 {% highlight php %}
 <?php
 /**
- * {$PROJECT_PATH}/config/default/modify/dispatcher.php
+ * {$PROJECT_PATH}/config/Common.php
  */
-$dispatcher->setObject('blog', $di->lazyNew('App\Controllers\BlogController'));
+public function modifyWebDispatcher($di)
+{
+    $dispatcher = $di->get('web_dispatcher');
+
+    $dispatcher->setObject('blog', $di->lazyNew('App\Controllers\BlogController'));
+}
 ?>
 {% endhighlight %}
 
@@ -183,13 +191,18 @@ its `read` action:
 {% highlight php %}
 <?php
 /**
- * {$PROJECT_PATH}/config/default/modify/dispatcher.php
+ * {$PROJECT_PATH}/config/Common.php
  */
-$router->add('blog.read', '/blog/read/{id}')
-    ->addValues(array(
-        'controller' => 'blog',
-        'action' => 'read',
-    ));
+public function modifyWebRouter(Container $di)
+{
+    $router = $di->get('web_router');
+
+    $router->add('blog.read', '/blog/read/{id}')
+        ->addValues(array(
+            'controller' => 'blog',
+            'action' => 'read',
+        ));
+}
 ?>
 {% endhighlight %}
 
