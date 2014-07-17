@@ -16,6 +16,9 @@ title: Aura contributors
         })        
         .done(function(data) {
             contributors = '';
+            window.datum = data;
+            data = suffleObjects(data);
+            console.log(data);
             $.each(data, function( index, value ) {
                 contributors += '<div class="span3 contributor">';
                 contributors += '<div class="contributor_thumbnail">';
@@ -33,4 +36,30 @@ title: Aura contributors
             $('.contributors-list').html(contributors);
         });
     });
+    
+    function suffleObjects(objectList) {
+        var keys = getKeys(objectList);
+        var result = {};
+        keys = shuffle(keys);
+        for(var i=0; i < keys.length; i++) {
+            result[keys[i]] = objectList[keys[i]];
+        }
+        return result;
+    }
+    
+    function shuffle(o){
+        for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+        return o;
+    };
+
+    function getKeys(object) {
+        if(Object.keys) {
+            return Object.keys(object);
+        }
+        var keys = [];
+        for(key in object) {
+            keys.push(key);
+        }
+        return keys;
+    }
 </script>
