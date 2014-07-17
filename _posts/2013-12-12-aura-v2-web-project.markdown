@@ -5,8 +5,6 @@ tags : [v2, web, project]
 author : Paul M. Jones
 ---
 
-*Updated July 16, 2014 to reflect version 2.x changes in the examples.*
-
 (In this series, we have been discussing the improvements over Aura v1 that
 are being incorporated into v2.)
 
@@ -59,7 +57,7 @@ You can start a new [Aura.Web_Project][] via [Composer][] in a
 `{$PROJECT_PATH}` of your choosing:
 
     composer create-project --stability=dev aura/web-project {$PROJECT_PATH}
-    
+
 This will create the project skeleton and install all of the necessary
 library packages.
 
@@ -87,25 +85,19 @@ the router system ...
 {% highlight php %}
 <?php
 /**
- * {$PROJECT_PATH}/config/Common.php
+ * {$PROJECT_PATH}/config/default/modify/router.php
  */
-public function modifyWebRouter(Container $di)
-{
-
-    $router = $di->get('web_router');
-    $request  = $di->get('web_request');
-    $response = $di->get('web_response');
-
-    $router->add('blog.read', '/blog/read/{id}')
-        ->addValues(array(
-            'controller' => function ($id) use ($request, $response) {
-                $content = "Reading blog post $id";
-                $response->content->set(htmlspecialchars(
-                    $content, ENT_QUOTES|ENT_SUBSTITUTE, 'UTF-8'
-                ));
-            }
-        ));
-}
+$request  = $di->get('web_request');
+$response = $di->get('web_response');
+$router->add('blog.read', '/blog/read/{id}')
+    ->addValues(array(
+        'controller' => function ($id) use ($request, $response) {
+            $content = "Reading blog post $id";
+            $response->content->set(htmlspecialchars(
+                $content, ENT_QUOTES|ENT_SUBSTITUTE, 'UTF-8'
+            ));
+        }
+    ));
 ?>
 {% endhighlight %}
 
@@ -134,7 +126,7 @@ class BlogController
         $this->request = $request;
         $this->response = $response;
     }
-    
+
     public function read($id)
     {
         $content = "Reading blog post $id";
@@ -158,15 +150,12 @@ DI system to pass _Request_ and _Response_ objects to the constructor.
 {% highlight php %}
 <?php
 /**
- * {$PROJECT_PATH}/config/Common.php
+ * {$PROJECT_PATH}/config/default/define.php
  */
-public function define(Container $di)
-{
-    $di->params['App\Controllers\BlogController'] = array(
-        'request' => $di->lazyGet('web_request'),
-        'response' => $di->lazyGet('web_response'),
-    );
-}
+$di->params['App\Controllers\BlogController'] = array(
+    'request' => $di->lazyGet('web_request'),
+    'response' => $di->lazyGet('web_response'),
+);
 ?>
 {% endhighlight %}
 
@@ -176,14 +165,9 @@ under the name `blog` as a lazy-loaded instantiation ...
 {% highlight php %}
 <?php
 /**
- * {$PROJECT_PATH}/config/Common.php
+ * {$PROJECT_PATH}/config/default/modify/dispatcher.php
  */
-public function modifyWebDispatcher($di)
-{
-    $dispatcher = $di->get('web_dispatcher');
-
-    $dispatcher->setObject('blog', $di->lazyNew('App\Controllers\BlogController'));
-}
+$dispatcher->setObject('blog', $di->lazyNew('App\Controllers\BlogController'));
 ?>
 {% endhighlight %}
 
@@ -193,18 +177,13 @@ its `read` action:
 {% highlight php %}
 <?php
 /**
- * {$PROJECT_PATH}/config/Common.php
+ * {$PROJECT_PATH}/config/default/modify/dispatcher.php
  */
-public function modifyWebRouter(Container $di)
-{
-    $router = $di->get('web_router');
-
-    $router->add('blog.read', '/blog/read/{id}')
-        ->addValues(array(
-            'controller' => 'blog',
-            'action' => 'read',
-        ));
-}
+$router->add('blog.read', '/blog/read/{id}')
+    ->addValues(array(
+        'controller' => 'blog',
+        'action' => 'read',
+    ));
 ?>
 {% endhighlight %}
 
