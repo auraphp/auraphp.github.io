@@ -5,7 +5,7 @@ tags : [v2, web, project]
 author : Paul M. Jones
 ---
 
-> **UPDATE (2014-07-14):** The configuration mechanism described in this post has been superseded by later development; see [Composer-Assisted Two-Stage Configuration](http://auraphp.com/blog/2014/04/07/two-stage-config/) for more.
+> **UPDATE (2014-07-17):** The configuration mechanism described in this post has been superseded by later development; see [Composer-Assisted Two-Stage Configuration](http://auraphp.com/blog/2014/04/07/two-stage-config/) for more.
 
 (In this series, we have been discussing the improvements over Aura v1 that
 are being incorporated into v2.)
