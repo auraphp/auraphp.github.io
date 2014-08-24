@@ -19,6 +19,8 @@ Branches
 Releases
 --------
 
+- `1.0.4` : [.zip](https://github.com/auraphp/Aura.Signal/zipball/1.0.4), [.tar.gz](https://github.com/auraphp/Aura.Signal/tarball/1.0.4), [readme](1.0.4/), [api](1.0.4/api/)
+
 - `1.0.3` : [.zip](https://github.com/auraphp/Aura.Signal/zipball/1.0.3), [.tar.gz](https://github.com/auraphp/Aura.Signal/tarball/1.0.3), [readme](1.0.3/), [api](1.0.3/api/)
 
 - `1.0.2` : [.zip](https://github.com/auraphp/Aura.Signal/zipball/1.0.2), [.tar.gz](https://github.com/auraphp/Aura.Signal/tarball/1.0.2), [readme](1.0.2/), [api](1.0.2/api/)

@@ -19,6 +19,8 @@ Branches
 Releases
 --------
 
+- `1.2.2` : [.zip](https://github.com/auraphp/Aura.Marshal/zipball/1.2.2), [.tar.gz](https://github.com/auraphp/Aura.Marshal/tarball/1.2.2), [readme](1.2.2/), [api](1.2.2/api/)
+
 - `1.2.1` : [.zip](https://github.com/auraphp/Aura.Marshal/zipball/1.2.1), [.tar.gz](https://github.com/auraphp/Aura.Marshal/tarball/1.2.1), [readme](1.2.1/), [api](1.2.1/api/)
 
 - `1.2.0` : [.zip](https://github.com/auraphp/Aura.Marshal/zipball/1.2.0), [.tar.gz](https://github.com/auraphp/Aura.Marshal/tarball/1.2.0), [readme](1.2.0/), [api](1.2.0/api/)

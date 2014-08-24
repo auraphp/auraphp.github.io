@@ -19,6 +19,8 @@ Branches
 Releases
 --------
 
+- `1.1.2` : [.zip](https://github.com/auraphp/Aura.Input/zipball/1.1.2), [.tar.gz](https://github.com/auraphp/Aura.Input/tarball/1.1.2), [readme](1.1.2/), [api](1.1.2/api/)
+
 - `1.1.1` : [.zip](https://github.com/auraphp/Aura.Input/zipball/1.1.1), [.tar.gz](https://github.com/auraphp/Aura.Input/tarball/1.1.1), [readme](1.1.1/), [api](1.1.1/api/)
 
 - `1.1.0` : [.zip](https://github.com/auraphp/Aura.Input/zipball/1.1.0), [.tar.gz](https://github.com/auraphp/Aura.Input/tarball/1.1.0), [readme](1.1.0/), [api](1.1.0/api/)
