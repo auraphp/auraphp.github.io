@@ -1,0 +1,146 @@
+---
+layout: site
+active: contributing
+title: Aura for PHP | Contributing
+---
+
+<h1>Contributing</h1>
+
+<p>As an open-source project, Aura depends on your skills and talent to help make it better for everyone. Do you want to contribute some code or documentation to Aura? Here's how!</p>
+
+<h2>Prerequisites</h2>
+
+<ol>
+    <li>
+        <p>Install Git and have a Github account. If you are new to Git and Github, <a href="https://help.github.com/articles/set-up-git">this setup guide</a> will help you.</p>
+    </li>
+    <li>
+        <p>Install <a href="http://www.phpunit.de/manual/current/en/installation.html">PHPUnit</a> for unit tests.</p>
+    </li>
+</ol>
+
+<h2>Library Packages</h2>
+
+<ol>
+    <li>
+        <p>Create a <a href="https://help.github.com/articles/fork-a-repo">fork of the repository</a> to which you want to contribute.</p>
+    </li>
+    <li>
+        <p>Clone that fork to your development workstation.</p>
+
+<pre><code>git clone git@github.com:{$YOUR_USER_NAME}/{$AURA_REPO}.git
+cd {$REPO}
+</code></pre>
+
+    </li>
+
+    <li>
+        <p>From the <code>develop-2</code> branch, create and check out a branch for your new work, then push it to Github:</p>
+
+<pre><code>git checkout develop-2
+git branch {$WORKING_BRANCH}
+git checkout {$WORKING_BRANCH}
+git push --set-upstream origin/{$WORKING_BRANCH}
+</code></pre>
+
+    </li>
+    <li>
+        <p>Add the original Aura repository as a remote.</p>
+
+<pre><code>git remote add upstream https://github.com/auraphp/{$AURA_REPO}.git
+</code></pre>
+
+    </li>
+
+    <li>
+        <p>Do your work, fixing bugs or adding features.</p>
+
+        <ul>
+            <li>
+                <p>Honor the Aura <a href="#standards">standards</a> for code</p>
+            </li>
+            <li>
+                <p>Maintain 100% test coverage, adding new tests as needed. (Be wary of making changes to existing tests.)</p>
+            </li>
+            <li>
+                <p>Push your changes early and often.</p>
+            </li>
+            <li>
+                <p>To fetch upstream changes from the original Aura repository and merge them into your working branch:</p>
+
+<pre><code>git fetch upstream
+git merge upstream/develop-2
+</code></pre>
+
+            </li>
+        </ul>
+
+        <p>You may need to resolve conflicts in your working branch after merging.</p>
+    </li>
+
+    <li>
+        <p>When all the tests pass and your final push is ready for review, make a pull request from your working branch to the original Aura repository. Be prepared for extensive discussion and revision, and a waiting period before your pull request is merged.</p>
+    </li>
+
+    </ol>
+
+<h2>Bundle Packages</h2>
+
+<p>TBD</p>
+
+<h2>Kernel Packages</h2>
+
+<p>TBD</p>
+
+<h2>Project Packages</h2>
+
+<p>TBD</p>
+
+<h2></a>Standards</h2>
+
+<p>These are the major standards for code contributions.</p>
+
+<ol>
+    <li>
+        <p>Conform to <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md">PSR-1</a> for basic coding standards.</p>
+    </li>
+    <li>
+        <p>Conform to <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md">PSR-2</a> for coding style, with the following additions that are unspecified by PSR-2:</p>
+        <ol>
+            <li><p>Variables, properties, array keys, and the like should be in <code>$snake_case</code> and not <code>$camelCase</code>.</p></li>
+            <li><p>Default to the use of the <a href="http://solarphp.com/manual/appendix-standards.naming.methods">Solar vocabulary for method names</a>.</p></li>
+            <li><p>Do not use public properties on user-defined classes. (Magic <code>__get()</code>, <code>__set()</code>, and so on are allowed to present the appearance of public properties.)</p></li>
+            <li><p>Do not use globals or superglobals (e.g., $_SERVER). Inject them as needed via constructor or method parameters.</p></li>
+        </ol>
+    </li>
+    <li>
+        <p>Adhere to PSR-4 for autoloading.</p>
+    </li>
+    <li>
+        <p>Do not introduce dependencies on any other package.</p>
+    </li>
+    <li>
+        <p>Maintain 100% test coverage.</p>
+    </li>
+    <li>
+        <p>A class should <em>either</em> create objects <em>or</em> operate on those objects, never both. This means the <code>new</code> keyword should be used only in Factories and Builders. (The built-in PHP classes are exempt from this rule.)</p>
+    </li>
+    <li>
+        <p>Default to explicit configuration rather than implicit convention.</p>
+    </li>
+    <li>
+        <p>Default to Dependency Injection instead of Service Locator. If a Service Locator is actually needed, it should locate only one type of object.</p>
+    </li>
+    <li>
+        <p>Default to composing functionality through dependency injection, rather than through inheritance and base classes.</p>
+    </li>
+    <li>
+        <p>Keep the README updated with any new or changed features.</p>
+    </li>
+</ol>
+
+<p>Some of those rules may sound crazy to you; to other developers, they might sound like good sense. So if you have questions ...</p>
+
+<h2>Questions?</h2>
+
+<p>Please feel free to <a href="/community">contact the Aura community of developers</a> about the contribution guidelines, or anything else Aura-related. And thanks!</p>
