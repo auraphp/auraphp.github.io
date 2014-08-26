@@ -15,21 +15,19 @@ title: Aura for PHP | Community
 
 <h2 name="contributors">Meet The Contributors</h2>
 
-<div class="contributors-list">
-</div>
+<div class="contributors-list"></div>
 <div class="clearfix"></div>
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript">
     $(function() {
         $.ajax({
-            url: "http://auraphp.com/contributors.json",
+            url: "http://auraphp.com/contributors/contributors.json",
             type: "GET"
         })
         .done(function(data) {
             contributors = '';
             window.datum = data;
             data = suffleObjects(data);
-            console.log(data);
             $.each(data, function( index, value ) {
                 contributors += '<div class="span3 contributor">';
                 contributors += '<div class="contributor_thumbnail">';
