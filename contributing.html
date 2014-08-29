@@ -107,12 +107,29 @@ git merge upstream/develop-2
     <li>
         <p>Conform to <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md">PSR-2</a> for coding style, with the following additions that are unspecified by PSR-2:</p>
         <ol>
-            <li><p>Variables, properties, array keys, and the like should be in <code>$snake_case</code> and not <code>$camelCase</code>.</p></li>
-            <li><p>Default to the use of the <a href="http://solarphp.com/manual/appendix-standards.naming.methods">Solar vocabulary for method names</a>.</p></li>
-            <li><p>Do not use public properties on user-defined classes. (Magic <code>__get()</code>, <code>__set()</code>, and so on are allowed to present the appearance of public properties.)</p></li>
-            <li><p>Do not use globals or superglobals (e.g., $_SERVER). Inject them as needed via constructor or method parameters.</p></li>
+            <li>
+                <p>Variables, properties, array keys, and the like should be in <code>$snake_case</code> and not <code>$camelCase</code>.</p>
+            </li>
+
+            <li>
+                <p>Default to the use of the <a href="http://solarphp.com/manual/appendix-standards.naming.methods">Solar vocabulary for method names</a>.</p>
+            </li>
+
+            <li>
+                <p>Do not use public properties on user-defined classes. (Magic <code>__get()</code>, <code>__set()</code>, and so on are allowed to present the appearance of public properties.)</p>
+            </li>
+
+            <li>
+                <p>Do not use globals or superglobals (e.g., $_SERVER). Inject them as needed via constructor or method parameters.</p>
+            </li>
+
+            <li>
+                <p>The `!` operator must be followed by space; for example, `! isset()` instead of `!isset()`.</p>
+            </li>
         </ol>
     </li>
+
+
     <li>
         <p>Adhere to PSR-4 for autoloading.</p>
     </li>
