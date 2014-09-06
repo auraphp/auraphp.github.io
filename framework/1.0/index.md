@@ -1,12 +1,12 @@
 ---
 layout: site
 active: framework
-title: Aura for PHP | Framework
+title: Aura for PHP | Framework version 1.0
 ---
 
-# Aura Framework
+# Aura Framework version 1
 
-The Aura "system" package provides a full-stack Aura framework built around
+The Aura "system" (version 1) package provides a full-stack Aura framework built around
 Aura library packages.
 
 ## Getting Started
