@@ -37,7 +37,7 @@ The [Aura.Accept](https://github.com/auraphp/Aura.Accept) package saw its first 
 
 The [Aura.Auth](https://github.com/auraphp/Aura.Auth) package also got its first beta release. There's still some work to be done here, notably regarding a "remember me" feature, and perhaps some additional LDAP behaviors.
 
-Finally, we updated [Aura.Html]() to 2.1.0 to reflect a change in the service names it presents through an Aura project DI container. If you're using Aura.Html independent of an Aura.Di container builder, these changes should not affect you at all.
+Finally, we updated [Aura.Html](https://github.com/auraphp/Aura.Html) to 2.1.0 to reflect a change in the service names it presents through an Aura project DI container. If you're using Aura.Html independent of an Aura.Di container builder, these changes should not affect you at all.
 
 ### Conclusion
 
