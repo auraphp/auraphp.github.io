@@ -1,6 +1,7 @@
 ---
 layout: docs2-en
 title: Configuration
+permalink: /manuals/2.0/en/configuration/
 previous_page: Introduction
 previous_page_url: /manuals/2.0/en/
 next_page: Routing

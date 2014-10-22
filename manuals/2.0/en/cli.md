@@ -1,6 +1,7 @@
 ---
 layout: docs2-en
 title: Command line / cli / console
+permalink: /manuals/2.0/en/cli/
 previous_page: Session
 previous_page_url: /manuals/2.0/en/session/
 next_page: Signals/Events

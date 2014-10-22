@@ -1,6 +1,7 @@
 ---
 layout: docs2-en
 title: Internationalization
+permalink: /manuals/2.0/en/intl/
 previous_page: Validation
 previous_page_url: /manuals/2.0/en/validation/
 next_page: Session

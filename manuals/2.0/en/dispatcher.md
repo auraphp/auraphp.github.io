@@ -1,6 +1,7 @@
 ---
 layout: docs2-en
 title: Dispatching
+permalink: /manuals/2.0/en/dispatcher/
 previous_page: Routing
 previous_page_url: /manuals/2.0/en/router/
 next_page: Request

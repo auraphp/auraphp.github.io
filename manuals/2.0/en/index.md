@@ -4,7 +4,7 @@ title: Introduction
 previous_page:
 previous_page_url:
 next_page: Configuration
-next_page_url: /manuals/2.0/en/configuration/
+next_page_url: /manuals/2.0/en/configuration
 ---
 
 # Getting Started

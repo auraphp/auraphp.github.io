@@ -1,6 +1,7 @@
 ---
 layout: docs2-en
 title: Validation
+permalink: /manuals/2.0/en/validation/
 previous_page: Forms
 previous_page_url: /manuals/2.0/en/forms/
 next_page: Internationalization

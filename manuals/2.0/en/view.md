@@ -1,6 +1,7 @@
 ---
 layout: docs2-en
 title: View
+permalink: /manuals/2.0/en/view/
 previous_page: Dependency Injection
 previous_page_url: /manuals/2.0/en/di/
 next_page: Forms

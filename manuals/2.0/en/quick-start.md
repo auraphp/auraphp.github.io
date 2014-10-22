@@ -1,6 +1,7 @@
 ---
 layout: docs2-en
 title: Quick Start
+permalink: /manuals/2.0/en/quick-start/
 ---
 
 ## Creating your project

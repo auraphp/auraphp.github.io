@@ -1,6 +1,7 @@
 ---
 layout: docs2-en
 title: Session
+permalink: /manuals/2.0/en/session/
 previous_page: Internationalization
 previous_page_url: /manuals/2.0/en/intl/
 next_page: Command line / console

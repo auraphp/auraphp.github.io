@@ -1,6 +1,7 @@
 ---
 layout: docs2-en
 title: Response
+permalink: /manuals/2.0/en/response/
 previous_page: Request
 previous_page_url: /manuals/2.0/en/request/
 next_page: Dependency Injection
