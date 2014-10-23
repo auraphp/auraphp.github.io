@@ -11,8 +11,8 @@ Installation is done via [composer](http://getcomposer.org).
 
 {% highlight bash %}
 composer create-project aura/web-project quick-start
-composer require "foa/html-view-bundle:2.*"
 cd quick-start
+composer require "foa/html-view-bundle:2.*"
 {% endhighlight %}
 
 All views and layouts are kept in `templates/views` and `templates/layouts` folder.
