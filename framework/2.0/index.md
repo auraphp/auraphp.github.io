@@ -15,8 +15,7 @@ There are 3 types of project for version 2.
 Whether you started with cli and at some point of time you want to
 make it as web or vice versa, you can move to Web and Cli easily.
 
-The [documentation](http://ghdocs.herokuapp.com/harikt/aurav2book/master/manuscript/introduction.md) is
-rendered via [ghdocs](https://github.com/harikt/ghdocs) which is built with aura.
+You can find version 2 [quickstart](/manuals/2.0/en/quick-start/) and [documentation](/manuals/2.0/en/).
 
 ### Aura.Web_Project
 
