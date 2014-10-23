@@ -88,7 +88,7 @@ $output = $view->__invoke(); // or just $view()
 
 The `$output` in this case will be something like this:
 
-{% endhighlight %}
+{% highlight php %}
 Item #1 is 'Foo'.
 Item #2 is 'Bar'.
 Item #3 is 'Baz'.
@@ -203,7 +203,7 @@ $layout_registry->set('default', '/path/to/layouts/default.php');
 
 The `default.php` layout template might look like this:
 
-{% endhighlight %}html+php
+{% highlight php %}
 <html>
 <head>
     <title>My Site</title>

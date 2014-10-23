@@ -318,7 +318,7 @@ $stdio->outln($help->getHelp('my-command'));
 
 The output will look something like this:
 
-{% endhighlight %}
+{% highlight bash %}
 SUMMARY
     my-command -- A single-line summary.
 
