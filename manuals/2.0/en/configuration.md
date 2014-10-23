@@ -30,7 +30,7 @@ The two-stage configuration system loads all the configuration classes in order 
 
 The config modes are mapped to their related config class files via the project-level `composer.json` file in the `extra:aura:config` block. The entry key is the config mode, and the entry value is the class to use for that mode.
 
-```json
+{% highlight json %}
 {
     "autoload": {
         "psr-0": {
@@ -52,7 +52,7 @@ The config modes are mapped to their related config class files via the project-
         }
     }
 }
-```
+{% endhighlight %}
 
 Config classes are autoloaded via a PSR-4 entry for that project namespace.
 
@@ -74,7 +74,7 @@ If you want to add a new configuration mode, say `qa`, you need to do three thin
 
 First, create a config class for it in `config/`:
 
-```php
+{% highlight php %}
 <?php
 namespace Aura\Web_Project\_Config;
 
@@ -94,12 +94,12 @@ class Qa extends Config
     }
 }
 ?>
-```
+{% endhighlight %}
 
 Next, edit the project-level `composer.json` file to add the new config
 mode with its related class:
 
-```json
+{% highlight json %}
 {
     "extra": {
         "aura": {
@@ -114,7 +114,7 @@ mode with its related class:
         }
     }
 }
-```
+{% endhighlight %}
 
 Finally, run `composer update` so that Composer makes the necessary changes
 to the autoloader system.

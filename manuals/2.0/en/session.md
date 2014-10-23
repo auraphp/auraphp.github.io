@@ -19,20 +19,20 @@ We are going to install `aura/session` version `2.0.*@beta` .
 
 Add to your `composer.json`.
 
-```json
+{% highlight json %}
 {
     "require": {
         //
         "aura/session": "2.0.*@beta"
     }
 }
-```
+{% endhighlight %}
 
 and run
 
-```bash
+{% highlight bash %}
 composer update
-```
+{% endhighlight %}
 
 ## Service
 
@@ -44,7 +44,7 @@ In normal PHP, we keep session values in the `$_SESSION` array. However, when di
 
 For example, if we get a _Segment_  for `Vendor\Package\ClassName`, that _Segment_ will contain a reference to `$_SESSION['Vendor\Package\ClassName']`. We can then `set()` and `get()` values on the _Segment_, and the values will reside in an array under that reference.
 
-```php
+{% highlight php %}
 <?php
 // get a _Segment_ object
 $segment = $session->getSegment('Vendor\Package\ClassName');
@@ -74,7 +74,7 @@ echo $segment->get('foo'); // 'bar'
 $_SESSION['Vendor\Package\ClassName']['zim'] = 'gir'
 echo $segment->get('zim'); // 'gir'
 ?>
-```
+{% endhighlight %}
 
 The benefit of a session segment is that we can deconflict the keys in the `$_SESSION` superglobal by using class names (or some other unique name) for the segment names. With segments, different packages can use the `$_SESSION` superglobal without stepping on each other's toes.
 
@@ -100,11 +100,11 @@ Of course, we can force a session start or reactivation by calling the _Session_
 
 To save the session data and end its use during the current request, call the `commit()` method on the _Session_ manager:
 
-```php
+{% highlight php %}
 <?php
 $session->commit(); // equivalent of session_write_close()
 ?>
-```
+{% endhighlight %}
 
 > The `commit()` method is the equivalent of `session_write_close()`.
 > If you do not commit the session, its values will not be available when we
@@ -112,25 +112,25 @@ $session->commit(); // equivalent of session_write_close()
 
 To clear all session data, but leave the session active during the current request, use the `clear()` method on the _Session_ manager.
 
-```php
+{% highlight php %}
 <?php
 $session->clear();
 ?>
-```
+{% endhighlight %}
 
 To clear all flash values on a segment, use the `clearFlash()` method:
 
 To clear the data *and* terminate the session for this and future requests, thereby destroying it completely, call the `destroy()` method:
 
-```php
+{% highlight php %}
 <?php
 $session->destroy(); // equivalent of session_destroy()
 ?>
-```
+{% endhighlight %}
 
 Calling `destroy()` will also delete the session cookie via `setcookie()`. If we have an alternative means by which we delete cookies, we should pass a callable as the second argument to the _SessionFactory_ method `newInstance()`. The callable should take three parameters: the cookie name, path, and domain.
 
-```php
+{% highlight php %}
 <?php
 // assume $response is a framework response object.
 // this will be used to delete the session cookie.
@@ -140,7 +140,7 @@ $delete_cookie = function ($name, $path, $domain) use ($response) {
 
 $session = $session_factory->newInstance($_COOKIE, $delete_cookie);
 ?>
-```
+{% endhighlight %}
 
 ## Session Security
 
@@ -149,11 +149,11 @@ $session = $session_factory->newInstance($_COOKIE, $delete_cookie);
 Any time a user has a change in privilege (that is, gaining or losing access
 rights within a system) be sure to regenerate the session ID:
 
-```php
+{% highlight php %}
 <?php
 $session->regenerateId();
 ?>
-```
+{% endhighlight %}
 
 > The `regenerateId()` method also regenerates the CSRF token value.
 
@@ -185,7 +185,7 @@ For this example, the form field name will be `__csrf_value`. In each form
 we want to protect against CSRF, we use the session CSRF token value for that
 field:
 
-```php
+{% highlight php %}
 <?php
 /**
  * @var Vendor\Package\User $user A user-authentication object.
@@ -204,12 +204,12 @@ field:
     <!-- other form fields -->
 
 </form>
-```
+{% endhighlight %}
 
 When processing the request, check to see if the incoming CSRF token is valid
 for the authenticated user:
 
-```php
+{% highlight php %}
 <?php
 /**
  * @var Vendor\Package\User $user A user-authentication object.
@@ -232,7 +232,7 @@ if ($unsafe && $user->auth->isValid()) {
     echo "CSRF attacks only affect unsafe requests by authenticated users.";
 }
 ?>
-```
+{% endhighlight %}
 
 #### CSRF Value Generation
 
@@ -253,21 +253,21 @@ _Segment_ values persist until the session is cleared or destroyed. However, som
 
 To set a flash value on a _Segment_, use the `setFlash()` method.
 
-```php
+{% highlight php %}
 <?php
 $segment = $session->getSegment('Vendor\Package\ClassName');
 $segment->setFlash('message', 'Hello world!');
 ?>
-```
+{% endhighlight %}
 
 Then, in subsequent requests, we can read the flash value using `getFlash()`:
 
-```php
+{% highlight php %}
 <?php
 $segment = $session->getSegment('Vendor\Package\ClassName');
 $message = $segment->getFlash('message'); // 'Hello world!'
 ?>
-```
+{% endhighlight %}
 
 > As with `get()`, we can provide an alternative value if the flash key
 > does not exist. For example, `getFlash('foo', 'not set')` will

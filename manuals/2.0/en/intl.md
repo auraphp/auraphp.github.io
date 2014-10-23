@@ -14,7 +14,7 @@ The Aura.Intl package provides internationalization (I18N) tools, specifically p
 
 > Assume you have installed `foa/filter-input-bundle` and `foa/filter-input-bundle`.
 
-```json
+{% highlight json %}
 {
     // more
     "require": {
@@ -23,15 +23,15 @@ The Aura.Intl package provides internationalization (I18N) tools, specifically p
         "foa/filter-intl-bundle": "~1.1"
     }
 }
-```
+{% endhighlight %}
 
 ## Service
 
 In your modify method you can get the service `intl_translator_locator` like
 
-```bash
+{% highlight bash %}
 $translators = $di->get('intl_translator_locator');
-```
+{% endhighlight %}
 
 ## Setting Localized Messages For A Package
 
@@ -40,7 +40,7 @@ from the translator locator. We create a new `Package` with messages and place
 it into the locator as a callable. The messages take the form of a message key and
 and message string.
 
-```php
+{% highlight php %}
 <?php
 use Aura\Intl\Package;
 
@@ -69,17 +69,17 @@ $packages->set('Vendor.Package', 'pt_BR', function() {
     return $package;
 });
 ?>
-```
+{% endhighlight %}
 
 ## Setting The Default Locale
 
 We can set the default locale for translations using the `setLocale()` method:
 
-```php
+{% highlight php %}
 <?php
 $translators->setLocale('pt_BR');
 ?>
-```
+{% endhighlight %}
 
 ## Getting A Localized Message
 
@@ -88,22 +88,22 @@ an individual package translator. The package translator is suitable for
 injection into another class, or for standalone use. You will neeed to
 create a tanslator helper which can return the service.
 
-```php
+{% highlight php %}
 <?php
 // recall that the default locale is pt_BR
 $translator = $translators->get('Vendor.Package');
 echo $translator->translate('FOO'); // 'O texto de "foo".'
 ?>
-```
+{% endhighlight %}
 
 You can get a translator for a non-default locale as well:
 
-```php
+{% highlight php %}
 <?php
 $translator = $translators->get('Vendor.Package', 'en_US');
 echo $translator->translate('FOO'); // 'The text for "foo."'
 ?>
-```
+{% endhighlight %}
 
 
 ## Replacing Message Tokens With Values
@@ -111,7 +111,7 @@ echo $translator->translate('FOO'); // 'The text for "foo."'
 We often need to use dynamic values in translated messages. First, the
 message string needs to have a token placeholder for the dynamic value:
 
-```php
+{% highlight php %}
 <?php
 // get the packages out of the translator locator
 $packages = $translators->getPackages();
@@ -135,12 +135,12 @@ $packages->set('Vendor.Dynamic', 'pt_BR', function() {
     return $package;
 });
 ?>
-```
+{% endhighlight %}
 
 Then, when we translate the message, we provide an array of tokens and
 replacement values.  These will be interpolated into the message string.
 
-```php
+{% highlight php %}
 <?php
 // recall that the default locale is pt_BR
 $translator = $translators->get('Vendor.Dynamic');
@@ -149,7 +149,7 @@ echo $translator->translate('PAGE', [
     'pages' => 1,
 ]); // 'Página 1 de 1 páginas.'
 ?>
-```
+{% endhighlight %}
 
 ## Pluralized Messages
 
@@ -162,7 +162,7 @@ it, and we must specify the `'intl'` formatter for the package in the catalog.
 When using the `IntlFormatter`, we can build our message strings to present
 singular or plural messages, as in the following example:
 
-```php
+{% highlight php %}
 <?php
 // get the packages out of the translator locator
 $packages = $translators->getCatalog();
@@ -204,7 +204,7 @@ echo $translator->translate('PAGE', [
     'pages' => 10,
 ]); // 'Page 3 of 10 pages.'
 ?>
-```
+{% endhighlight %}
 
 Note that you can use other tokens within a pluralized token string to build
 more complex messages. For more information, see the following:

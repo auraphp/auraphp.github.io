@@ -12,7 +12,7 @@ next_page_url: /manuals/2.0/en/validation/
 
 Forms are an integral part of web application. Add `foa/filter-input-bundle` and `foa/filter-input-bundle` to your `composer.json` and install the dependencies.
 
-```json
+{% highlight json %}
 {
     // more
     "require": {
@@ -21,7 +21,7 @@ Forms are an integral part of web application. Add `foa/filter-input-bundle` and
         "foa/filter-intl-bundle": "~1.1"
     }
 }
-```
+{% endhighlight %}
 
 ## Usage
 
@@ -29,7 +29,7 @@ Inorder to create a form, we need to extend the `Aura\Input\Form` class and over
 
 An example is shown below.
 
-```php
+{% highlight php %}
 <?php
 /**
  * {$PROJECT_PATH}/src/App/Input/ContactForm.php
@@ -90,7 +90,7 @@ class ContactForm extends Form
         $filter->addSoftRule('message', $filter::IS, 'strlenMin', 6);
     }
 }
-```
+{% endhighlight %}
 
 > Note : We are using v1 components of input, intl, filter.
 
@@ -100,17 +100,17 @@ If you have type hinted in the constructor where you need `App\Input\ContactForm
 
 You can also do as below
 
-```php
+{% highlight php %}
 $di->params['Vendor\Package\SomeDomain']['contact_form'] = $di->lazyNew('App\Input\ContactForm');
-```
+{% endhighlight %}
 
 ## Populating
 
 Form can be populated using `fill()` method.
 
-```php
+{% highlight php %}
 $this->contact_form->fill($_POST);
-```
+{% endhighlight %}
 
 > In aura/cocoframework term it will be [$this->request->post->get()](/manuals/2.0/en/request/)
 
@@ -118,7 +118,7 @@ $this->contact_form->fill($_POST);
 
 You can validate the form via the `filter()` method.
 
-```php
+{% highlight php %}
 // apply the filters
 $pass = $this->contact_form->filter();
 
@@ -128,7 +128,7 @@ if ($pass) {
 } else {
     // no; user input is not valid.
 }
-```
+{% endhighlight %}
 
 ## Rendering
 
@@ -136,6 +136,6 @@ Assuming you have passed the `ContactForm` object, and the variable assigned is 
 
 An example is given below :
 
-```php
+{% highlight php %}
 echo $this->input($this->contact_form->get('first_name'));
-```
+{% endhighlight %}

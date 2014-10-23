@@ -14,7 +14,7 @@ Configuration of routing and dispatching is done via the project-level config/ c
 
 The `modify()` method is where we get the router service `$di->get('aura/web-kernel:router')` and add routes to the application.
 
-```php
+{% highlight php %}
 <?php
 namespace Aura\Framework_Project\_Config;
 
@@ -35,7 +35,7 @@ class Common extends Config
         // ... your application routes go below
     }
 }
-```
+{% endhighlight %}
 
 The `aura/web-kernel:router` is an object of type _Aura\\Router\\Router_ . So if you are familiar with  [Aura.Router](https://github.com/auraphp/Aura.Router) then you are done with this chapter, else read on.
 
@@ -45,7 +45,7 @@ Aura framework can act both as a micro framework or full stack framework. If you
 
 To create a route, call the `add()` method on the _Router_. Named path-info params are placed inside braces in the path.
 
-```php
+{% highlight php %}
 // add a simple named route without params
 $router->add('home', '/');
 
@@ -62,7 +62,7 @@ $router->add('blog.read', '/blog/read/{id}{format}')
         'action'     => 'BlogReadAction',
         'format'     => '.html',
     ));
-```
+{% endhighlight %}
 
 You can create a route that matches only against a particular HTTP method as well. The following _Router_ methods are identical to `add()` but require the related HTTP method:
 
@@ -136,7 +136,7 @@ You can extend a route specification with the following methods:
 
 Here is a full extended route specification named `read`:
 
-```php
+{% highlight php %}
 $router->add('blog.read', '/blog/read/{id}{format}')
     ->addTokens(array(
         'id' => '\d+',
@@ -164,14 +164,14 @@ $router->add('blog.read', '/blog/read/{id}{format}')
     ->setGenerateCallable(function (\ArrayObject $data) {
         $data['foo'] = 'bar';
     });
-```
+{% endhighlight %}
 
 ## Default Route Specifications
 
 You can set the default route specifications with the following _Router_
 methods; the values will apply to all routes added thereafter.
 
-```php
+{% highlight php %}
 // add to the default 'tokens' expressions; setTokens() is also available
 $router->addTokens(array(
     'id' => '\d+',
@@ -201,32 +201,32 @@ $router->setIsMatchCallable(function (...) { ... });
 
 // set the default 'generate()' callable
 $router->setGenerateCallable(function (...) { ... });
-```
+{% endhighlight %}
 
 ## Simple Routes
 
 You don't need to specify an extended route specification. With the following simple route ...
 
-```php
+{% highlight php %}
 $router->add('archive', '/archive/{year}/{month}/{day}');
-```
+{% endhighlight %}
 
 ... the _Router_ will use a default subpattern that matches everything except slashes for the path params. Thus, the above simple route is equivalent to the following extended route:
 
-```php
+{% highlight php %}
 $router->add('archive', '/archive/{year}/{month}/{day}')
     ->addTokens(array(
         'year'  => '[^/]+',
         'month' => '[^/]+',
         'day'   => '[^/]+',
     ));
-```
+{% endhighlight %}
 
 ## Automatic Params
 
 The _Router_ will automatically populate values for the `action` route param if one is not set manually.
 
-```php
+{% highlight php %}
 // ['action' => 'foo.bar'] because it has not been set otherwise
 $router->add('foo.bar', '/path/to/bar');
 
@@ -236,7 +236,7 @@ $router->add('foo.dib', '/path/to/dib')
 
 // the 'action' param here will be whatever the path value for {action} is
 $router->add('/path/to/{action}');
-```
+{% endhighlight %}
 
 ## Optional Params
 
@@ -244,14 +244,14 @@ Sometimes it is useful to have a route with optional named params. None, some, o
 
 To specify optional params, use the notation `{/param1,param2,param3}` in the path. For example:
 
-```php
+{% highlight php %}
 $router->add('archive', '/archive{/year,month,day}')
     ->addTokens(array(
         'year'  => '\d{4}',
         'month' => '\d{2}',
         'day'   => '\d{2}'
     ));
-```
+{% endhighlight %}
 
 > The leading slash separator is inside the params token, not outside.
 
@@ -279,10 +279,10 @@ all. To allow arbitrary trailing params on a route, extend the route
 definition with `setWildcard()` to specify param name under which the
 arbitrary trailing param values will be stored.
 
-```php
+{% highlight php %}
 $router->add('wild_post', '/post/{id}')
     ->setWildcard('other');
-```
+{% endhighlight %}
 
 ## Attaching Route Groups
 
@@ -290,7 +290,7 @@ You can add a series of routes all at once under a single "mount point" in
 your application. For example, if you want all your blog-related routes to be
 mounted at `/blog` in your application, you can do this:
 
-```php
+{% highlight php %}
 $name_prefix = 'blog';
 $path_prefix = '/blog';
 
@@ -322,7 +322,7 @@ $router->attach($name_prefix, $path_prefix, function ($router) {
             'format' => '.html',
         ));
 });
-```
+{% endhighlight %}
 
 Each of the route names will be prefixed with 'blog.', and each of the route paths will be prefixed with `/blog`, so the effective route names and paths become:
 
@@ -332,7 +332,7 @@ Each of the route names will be prefixed with 'blog.', and each of the route pat
 
 You can set other route specification values as part of the attachment specification; these will be used as the defaults for each attached route, so you don't need to repeat common information. (Setting these values will not affect routes outside the attached group.)
 
-```php
+{% highlight php %}
 $name_prefix = 'blog';
 $path_prefix = '/blog';
 
@@ -351,15 +351,15 @@ $router->attach($name_prefix, $path_prefix, function ($router) {
     $router->add('read', '/{id}{format}');
     $router->add('edit', '/{id}/edit');
 });
-```
+{% endhighlight %}
 
 ## Attaching REST Resource Routes
 
 The router can attach a series of REST resource routes for you with the `attachResource()` method:
 
-```php
+{% highlight php %}
 $router->attachResource('blog', '/blog');
-```
+{% endhighlight %}
 
 That method call will result in the following routes being added:
 
@@ -436,7 +436,7 @@ The `action` value is the same as the route name.
 
 If you want calls to `attachResource()` to create a different series of REST routes, use the `setResourceCallable()` method to set your own callable to create them.
 
-```php
+{% highlight php %}
 $router->setResourceCallable(function ($router) {
     $router->setTokens(array(
         'id' => '([a-f0-9]+)'
@@ -446,6 +446,6 @@ $router->setResourceCallable(function ($router) {
     $router->addPatch('update', '/{id}');
     $router->addDelete('delete', '/{id}');
 });
-```
+{% endhighlight %}
 
 The example will cause only four CRUD routes, using hexadecimal resource IDs, to be added for the resource when you call `attachResource()`.

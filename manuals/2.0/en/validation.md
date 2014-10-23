@@ -14,7 +14,7 @@ next_page_url: /manuals/2.0/en/intl/
 
 > Assume you have installed `foa/filter-input-bundle` and `foa/filter-input-bundle`.
 
-```json
+{% highlight json %}
 {
     // more
     "require": {
@@ -23,7 +23,7 @@ next_page_url: /manuals/2.0/en/intl/
         "foa/filter-intl-bundle": "~1.1"
     }
 }
-```
+{% endhighlight %}
 
 
 > We are using version 1 of Aura.Filter.
@@ -77,18 +77,18 @@ Each field is sanitized in place; i.e., the data object property will be modifie
 Aura Filter incorporates the concept of "blank" values, as distinct from `isset()` and `empty()`. A value is blank if it is `null`, an empty string, or
 a string composed of only whitespace characters. Thus, the following are blank:
 
-```php
+{% highlight php %}
 <?php
 $blank = [
     null,           // a null value
     '',             // an empty string
     " \r \n \t ",   // a whitespace-only string
 ];
-```
+{% endhighlight %}
 
 Integers, floats, booleans, and other non-strings are never counted as blank, even if they evaluate to zero:
 
-```php
+{% highlight php %}
 <?php
 $not_blank = [
     0,              // integer
@@ -97,7 +97,7 @@ $not_blank = [
     [],             // empty array
     (object) [],    // an object
 ];
-```
+{% endhighlight %}
 
 ## Available Rules
 
@@ -292,13 +292,13 @@ messages for which all rules it failed.
 By default when a rule fails, the messages you will be getting are from the `intl/en_US.php`. But you can also provide a single custom message for
 all the failures.
 
-```php
+{% highlight php %}
 $filter->useFieldMessage('field', 'Custom Message');
-```
+{% endhighlight %}
 
 Example:
 
-```php
+{% highlight php %}
 $filter->addSoftRule('username', $filter::IS, 'alnum');
 $filter->addSoftRule('username', $filter::IS, 'strlenBetween', 6, 12);
 $data = (object) [
@@ -312,22 +312,22 @@ if (! $success) {
     $messages = $filter->getMessages();
     var_export($messages);
 }
-```
+{% endhighlight %}
 
 As you have used `useFieldMessage` you will see
 
-```php
+{% highlight php %}
 array (
   'username' =>
   array (
     0 => 'User name already exists',
   ),
 )
-```
+{% endhighlight %}
 
 instead of
 
-```php
+{% highlight php %}
 array (
   'username' =>
   array (
@@ -335,7 +335,7 @@ array (
     1 => 'Please use between 6 and 12 characters.',
   ),
 )
-```
+{% endhighlight %}
 
 ## Creating and Using Custom Rules
 
@@ -366,7 +366,7 @@ Writing a rule class is straightforward:
 
 Here is an example of a hexadecimal rule:
 
-```php
+{% highlight php %}
 <?php
 namespace Vendor\Package\Filter\Rule;
 
@@ -425,28 +425,28 @@ class Hex extends AbstractRule
         return true;
     }
 }
-```
+{% endhighlight %}
 
 ## Set The Class As A Service
 
 Now we set the rule class into the `RuleLocator`.
 
-```php
+{% highlight php %}
 <?php
 $locator = $filter->getRuleLocator();
 $locator->set('hex', function () {
     return new Vendor\Package\Filter\Rule\Hex;
 });
-```
+{% endhighlight %}
 
 ## Apply The New Rule
 
 Finally, we can use the rule in our filter:
 
-```php
+{% highlight php %}
 <?php
 // the 'color' field must be a hex value of no more than 6 digits
 $filter->addHardRule('color', $filter::IS, 'hex', 6);
-```
+{% endhighlight %}
 
 That is all!

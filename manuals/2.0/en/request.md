@@ -16,14 +16,14 @@ like `$_ENV` and various non-HTTP `$_SERVER` keys.
 
 You can get the _Request_ object from the DI,
 
-```php
+{% highlight php %}
 <?php
 $request = $di->get('aura/web-kernel:request');
 
 // or can inject to another class as
 
 $di->lazyGet('aura/web-kernel:request');
-```
+{% endhighlight %}
 
 The _Request_ object contains several property objects. Some represent a copy
 of the PHP superglobals ...
@@ -54,7 +54,7 @@ Each of the superglobal representation objects has a single method, `get()`,
 that returns the value of a key in the superglobal, or an alternative value
 if the key is not present.  The values here are read-only.
 
-```php
+{% highlight php %}
 <?php
 // returns the value of $_POST['field_name'], or 'not set' if 'field_name' is
 // not present in $_POST
@@ -66,7 +66,7 @@ $all_server_values = $request->server->get();
 // the $_FILES array has been rearranged to look like $_POST
 $file = $request->files->get('file_field', array());
 ?>
-```
+{% endhighlight %}
 
 ## Client
 
@@ -110,12 +110,12 @@ The `$request->headers` object has a single method, `get()`, that returns the
 value of a particular header, or an alternative value if the key is not
 present. The values here are read-only.
 
-```php
+{% highlight php %}
 <?php
 // returns the value of 'X-Header' if present, or 'not set' if not
 $header_value = $request->headers->get('X-Header', 'not set');
 ?>
-```
+{% endhighlight %}
 
 ## Method
 
@@ -130,37 +130,37 @@ The `$request->method` object has these methods:
 - `isPut()`: Did the request use a PUT method?
 - `isPost()`: Did the request use a POST method?
 
-```php
+{% highlight php %}
 <?php
 if ($request->method->isPost()) {
     // perform POST actions
 }
 ?>
-```
+{% endhighlight %}
 
 You can also call `is*()` on the _Method_ object; the part after `is` is
 treated as custom HTTP method name, and checks if the request was made using
 that HTTP method.
 
-```php
+{% highlight php %}
 <?php
 if ($request->method->isCustom()) {
     // perform CUSTOM actions
 }
 ?>
-```
+{% endhighlight %}
 
 Sometimes forms use a special field to indicate a custom HTTP method on a
 POST. By default, the _Method_ object honors the `_method` form field.
 
-```php
+{% highlight php %}
 <?php
 // a POST with the field '_method' will use the _method value instead of POST
 $_SERVER['REQUEST_METHOD'] = 'POST';
 $_POST['_method'] = 'PUT';
 echo $request->method->get(); // PUT
 ?>
-```
+{% endhighlight %}
 
 ## Params
 
@@ -178,7 +178,7 @@ The `$request->params` object has two methods:
 
 For example:
 
-```php
+{% highlight php %}
 <?php
 // parameter values discovered by a routing mechanism
 $values = array(
@@ -196,7 +196,7 @@ $id = $request->params->get('id', false);
 // get all the params as an array
 $all_params = $request->params->get();
 ?>
-```
+{% endhighlight %}
 
 ## Url
 
@@ -208,7 +208,7 @@ The `$request->url` object has two methods:
 - `isSecure()` indicates if the request is secure, whether via SSL, TLS, or
   forwarded from a secure protocol
 
-```php
+{% highlight php %}
 <?php
 // get the full URL string
 $string = $request->url->get();
@@ -224,4 +224,4 @@ $path     = $request->url->get(PHP_URL_PATH);
 $query    = $request->url->get(PHP_URL_QUERY);
 $fragment = $request->url->get(PHP_URL_FRAGMENT);
 ?>
-```
+{% endhighlight %}

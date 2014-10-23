@@ -33,7 +33,7 @@ Basically
 
 Save at `{$PROJECT_PATH}/src/App/Responder/BlogRead.php`
 
-```php
+{% highlight php %}
 <?php
 /**
  * {$PROJECT_PATH}/src/App/Responders/BlogRead.php
@@ -112,13 +112,13 @@ class BlogRead
         }
     }
 }
-```
+{% endhighlight %}
 
 Now modify the actions class `{$PROJECT_PATH}/src/App/Actions/BlogRead.php` to inject the `BlogRead` responder. You also need to inject a _Domain_ service which can fetch the details of the id. We are skipping the service and assume you have some way to get the data.
 
 Remove the _View_ and _Response_ objects from the action class because the responder is responsible for rendering the view and set the response. Now your modified action class will look like
 
-```php
+{% highlight php %}
 <?php
 /**
  * {$PROJECT_PATH}/src/App/Actions/BlogRead.php
@@ -154,19 +154,19 @@ class BlogRead
         return $this->responder;
     }
 }
-```
+{% endhighlight %}
 
 Modify our Closure as a view file and save in `{$PROJECT_PATH}/src/App/Responders/views/read.php`.
 
-```php
+{% highlight php %}
 <?php echo "Reading blog post {$this->blog->id}!"; ?>
-```
+{% endhighlight %}
 
 Time to edit your configuration file `{$PROJECT_PATH}/config/Common.php` .
 
 Modify the class params for `App\Actions\BlogRead` to reflect the changes made to the constructor.
 
-```php
+{% highlight php %}
 $di->params['App\Actions\BlogRead'] = array(
     'request' => $di->lazyGet('aura/web-kernel:request'),
     'responder' => $di->lazyNew('App\Responders\BlogRead'),
@@ -176,7 +176,7 @@ $di->params['App\Responders\BlogRead'] = array(
     'response' => $di->lazyGet('aura/web-kernel:response'),
     'view' => $di->lazyNew('Aura\View\View'),
 );
-```
+{% endhighlight %}
 
 Now time to browse the `http://localhost:8000/blog/read/1` .
 
@@ -195,7 +195,7 @@ We have intentionally left not to make _AbstractResponder_ . We feel most of the
 to the concept of ADR. So let us make the necessary changes like removing some of the methods to make an _AbstractResponder_
 which can be extended by the _BlogRead_ responder.
 
-```php
+{% highlight php %}
 <?php
 /**
  * {$PROJECT_PATH}/src/App/Responders/AbstractResponder.php
@@ -264,11 +264,11 @@ abstract class AbstractResponder
         }
     }
 }
-```
+{% endhighlight %}
 
 Edit your file `{$PROJECT_PATH}/src/App/Responders/BlogRead.php` keeping only an `init()` method and `__invoke()` method. The `init()` helps us to set the views and the path which need to be renderd by the responder.
 
-```php
+{% highlight php %}
 <?php
 /**
  * {$PROJECT_PATH}/src/App/Responders/BlogRead.php
@@ -296,27 +296,27 @@ class BlogRead extends AbstractResponder
         }
     }
 }
-```
+{% endhighlight %}
 
 We also need to make some changes to the `{$PROJECT_PATH}/config/Common.php` file to make use of the inheritance for the DI container rather than we always set the _View_ and _Response_ object.
 
 We are modifying
 
-```php
+{% highlight php %}
 $di->params['App\Responders\BlogRead'] = array(
     'response' => $di->lazyGet('aura/web-kernel:response'),
     'view' => $di->lazyNew('Aura\View\View'),
 );
-```
+{% endhighlight %}
 
 to
 
-```php
+{% highlight php %}
 $di->params['App\Responders\AbstractResponder'] = array(
     'response' => $di->lazyGet('aura/web-kernel:response'),
     'view' => $di->lazyNew('Aura\View\View'),
 );
-```
+{% endhighlight %}
 
 Basically only the `params['App\Responders\BlogRead']` is changed to `params['App\Responders\AbstractResponder']`
 

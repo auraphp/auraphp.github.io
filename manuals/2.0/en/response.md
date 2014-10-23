@@ -21,14 +21,14 @@ correct values have been set without generating output.
 
 You can get the _Response_ object from the DI,
 
-```php
+{% highlight php %}
 <?php
 $di->get('aura/web-kernel:response');
 
 // or can inject to another class as
 
 $di->lazyGet('aura/web-kernel:response');
-```
+{% endhighlight %}
 
 The _Response_ object is composed of several property objects representing
 different parts of the response:
@@ -52,7 +52,7 @@ different parts of the response:
 
 Use the `$response->status` object as follows:
 
-```php
+{% highlight php %}
 <?php
 // set the status code, phrase, and version at once
 $response->status->set('404', 'Not Found', '1.1');
@@ -70,7 +70,7 @@ $code    = $response->status->getCode();
 $phrase  = $response->status->getPhrase();
 $version = $response->status->getVersion();
 ?>
-```
+{% endhighlight %}
 
 ## Headers
 
@@ -80,7 +80,7 @@ The `$response->headers` object has these methods:
 
 - `get()` to get a single header, or to get all headers
 
-```php
+{% highlight php %}
 <?php
 // X-Header-Value: foo
 $response->headers->set('X-Header-Value', 'foo');
@@ -91,7 +91,7 @@ $value = $response->headers->get('X-Header-Value');
 // get all headers
 $all_headers = $response->headers->get();
 ?>
-```
+{% endhighlight %}
 
 Setting a header value to null, false, or an empty string will remove that
 header; setting it to zero will *not* remove it.
@@ -118,7 +118,7 @@ The `$response->cookies` object has these methods:
 
 - `get()` returns a cookie by name, or all the cookies at once.
 
-```php
+{% highlight php %}
 <?php
 // set a default expire time to 10 minutes from now on a domain and path
 $response->cookies->setDomain('example.com');
@@ -135,11 +135,11 @@ $foo_cookie = $response->cookies->get('foo');
 // get all the cookie descriptor arrays from the response, keyed by name
 $cookies = $response->cookies->get();
 ?>
-```
+{% endhighlight %}
 
 The cookie descriptor array looks like this:
 
-```php
+{% highlight php %}
 <?php
 $cookies['foo'] = array(
     'value' => 'bar',
@@ -150,7 +150,7 @@ $cookies['foo'] = array(
     'httponly' => true,
 );
 ?>
-```
+{% endhighlight %}
 
 
 ## Content
@@ -176,7 +176,7 @@ response content and content headers:
 
 - `setEncoding()` sets the `Content-Encoding` header
 
-```php
+{% highlight php %}
 <?php
 // set the response content, type, and charset
 $response->content->set(array('foo' => 'bar', 'baz' => 'dib'));
@@ -191,7 +191,7 @@ switch ($response->content->getType()) {
     // ...
 }
 ?>
-```
+{% endhighlight %}
 
 
 ## Cache

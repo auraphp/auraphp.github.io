@@ -20,23 +20,23 @@ When you generate output via templates, you **must** escape it appropriately for
 
 Assuming you have a _Aura\View\View_ object, we need to add named templates to its view template registry. These are typically PHP file paths, but templates can also be closures.  For example:
 
-```php
+{% highlight php %}
 <?php
 $view_registry = $view->getViewRegistry();
 $view_registry->set('browse', '/path/to/views/browse.php');
 ?>
-```
+{% endhighlight %}
 
 The `browse.php` file may look something like this:
 
-```php
+{% highlight php %}
 <?php
 foreach ($this->items as $item) {
     $id = htmlspecialchars($item['id'], ENT_QUOTES, 'UTF-8');
     $name = htmlspecialchars($item['name'], ENT_QUOTES, 'UTF-8')
     echo "Item ID #{$id} is '{$name}'." . PHP_EOL;
 ?>
-```
+{% endhighlight %}
 
 Note that we use `echo`, and not `return`, in templates.
 
@@ -49,7 +49,7 @@ Note that we use `echo`, and not `return`, in templates.
 We will almost always want to use dynamic data in our templates. To assign a data collection to the _View_, use the `setData()` method and either an array or an object. We can then use data elements as if they are properties on the
 _View_ object.
 
-```php
+{% highlight php %}
 <?php
 $view->setData(array(
     'items' => array(
@@ -68,7 +68,7 @@ $view->setData(array(
     )
 ));
 ?>
-```
+{% endhighlight %}
 
 > Recall that `$this` in the template logic refers to the _View_ object,
 > so that data assigned to the _View_ can be accessed as properties on `$this`.
@@ -79,20 +79,20 @@ The `setData()` method will overwrite all existing data in the _View_ object. Th
 
 Now that we have registered a template and assigned some data to the _View_, we tell the _View_ which template to use, and then invoke the _View_:
 
-```php
+{% highlight php %}
 <?php
 $view->setView('browse');
 $output = $view->__invoke(); // or just $view()
 ?>
-```
+{% endhighlight %}
 
 The `$output` in this case will be something like this:
 
-```
+{% endhighlight %}
 Item #1 is 'Foo'.
 Item #2 is 'Bar'.
 Item #3 is 'Baz'.
-```
+{% endhighlight %}
 
 ## Using Sub-Templates (aka "Partials")
 
@@ -105,7 +105,7 @@ Second, we can pass an array of variables to be extracted into the local scope o
 
 For example, let's split up our `browse.php` template file so that it uses a sub-template for displaying items.
 
-```php
+{% highlight php %}
 <?php
 // add templates to the view registry
 $view_registry = $view->getViewRegistry();
@@ -116,28 +116,28 @@ $view_registry->set('browse', '/path/to/views/browse.php');
 // the "sub" template
 $view_registry->set('_item', '/path/to/views/_item.php');
 ?>
-```
+{% endhighlight %}
 
 We extract the item-display code from `browse.php` into `_item.php`:
 
-```php
+{% highlight php %}
 <?php
 $id = htmlspecialchars($item['id'], ENT_QUOTES, 'UTF-8');
 $name = htmlspecialchars($item['name'], ENT_QUOTES, 'UTF-8')
 echo "Item ID #{$id} is '{$name}'." . PHP_EOL;
 ?>
-```
+{% endhighlight %}
 
 Then we modify `browse.php` to use the sub-template:
 
-```php
+{% highlight php %}
 <?php
 foreach ($this->items as $item) {
     echo $this->render('_item', array(
         'item' => $item,
     ));
 ?>
-```
+{% endhighlight %}
 
 The output will be the same as earlier when we invoke the view.
 
@@ -151,7 +151,7 @@ Sections are similar to sub-templates (aka "partials") except that they are capt
 
 For example, we can capture output in the view template to a named section ...
 
-```php
+{% highlight php %}
 <?php
 // begin buffering output for a named section
 $this->beginSection('local-nav');
@@ -163,11 +163,11 @@ echo "</div>";
 // end buffering and capture the output
 $this->endSection();
 ?>
-```
+{% endhighlight %}
 
 ... and then use that output in a layout template:
 
-```php
+{% highlight php %}
 <?php
 if ($this->hasSection('local-nav')) {
     echo $this->getSection('local-nav');
@@ -175,15 +175,15 @@ if ($this->hasSection('local-nav')) {
     echo "<div>No local navigation.</div>";
 }
 ?>
-```
+{% endhighlight %}
 
 In addition, the `setSection()` method can be used to set the section body directly, instead of capturing it:
 
-```php
+{% highlight php %}
 <?php
 $this->setSection('local-nav', $this->render('_local-nav.php'));
 ?>
-```
+{% endhighlight %}
 
 ## Rendering a Two-Step View
 
@@ -194,16 +194,16 @@ executed.)
 
 Let's say we have already set the `browse` template above into our view registry. We then set a layout template called `default` into the layout registry:
 
-```php
+{% highlight php %}
 <?php
 $layout_registry = $view->getLayoutRegistry();
 $layout_registry->set('default', '/path/to/layouts/default.php');
 ?>
-```
+{% endhighlight %}
 
 The `default.php` layout template might look like this:
 
-```html+php
+{% endhighlight %}html+php
 <html>
 <head>
     <title>My Site</title>
@@ -212,17 +212,17 @@ The `default.php` layout template might look like this:
 <?= $this->getContent(); ?>
 </body>
 </html>
-```
+{% endhighlight %}
 
 We can then set the view and layout templates on the _View_ object and then invoke it:
 
-```php
+{% highlight php %}
 <?php
 $view->setView('browse');
 $view->setLayout('default');
 $output = $view->__invoke(); // or just $view()
 ?>
-```
+{% endhighlight %}
 
 The output from the inner view template is automatically retained and becomes available via the `getContent()` method on the _View_ object. The layout template then calls `getContent()` to place the inner view results in the outer layout template.
 
@@ -241,7 +241,7 @@ The view template and the layout template both execute inside the same _View_ ob
 
 The view and layout registries accept closures as templates. For example, these are closure-based equivlents of the `browse.php` and `_item.php` template files above:
 
-```php
+{% highlight php %}
 <?php
 $view_registry->set('browse', function () {
     foreach ($this->items as $item) {
@@ -258,7 +258,7 @@ $view_registry->set('_item', function (array $vars) {
     echo "Item ID #{$id} is '{$name}'." . PHP_EOL;
 );
 ?>
-```
+{% endhighlight %}
 
 When registering a closure-based template, continue to use `echo` instead of `return` when generating output. The closure is rebound to the _View_ object, so `$this` in the closure will refer to the _View_ just as it does in a file-based template.
 
@@ -295,7 +295,7 @@ There is also a series of [helpers for forms](#form-helpers).
 
 Helper for `<a>` tags.
 
-```php
+{% highlight php %}
 <?php
 echo $this->a(
     'http://auraphp.com',       // (string) href
@@ -304,26 +304,26 @@ echo $this->a(
 );
 ?>
 <a href="http://auraphp.com" id="aura-link">Aura Project</a>
-```
+{% endhighlight %}
 
 ### base
 
 Helper for `<base>` tags.
 
-```php
+{% highlight php %}
 <?php
 echo $this->base(
     '/base' // (string) href
 );
 ?>
 <base href="/base" />
-```
+{% endhighlight %}
 
 ### img
 
 Helper for `<img>` tags.
 
-```php
+{% highlight php %}
 <?php
 echo $this->img(
     '/images/hello.jpg',            // (string) image href src
@@ -332,13 +332,13 @@ echo $this->img(
 <!-- if alt is not specified, uses the basename of the image href -->
 <img src="/images/hello.jpg" alt="hello" id="image-id">
 
-```
+{% endhighlight %}
 
 ### label
 
 Helper for `<label>` tags.
 
-```php
+{% highlight php %}
 <?php
 echo $this->label(
     'Label For Field',          // (string) label text
@@ -365,13 +365,13 @@ echo $this->label(' (Foo)')
             )));
 ?>
 <label><input type="text" name="foo" value="" /> (Foo)</label>
-```
+{% endhighlight %}
 
 ### links
 
 Helper for a set of generic `<link>` tags. Build a set of links with `add()` then output them all at once.
 
-```php
+{% highlight php %}
 <?php
 // build the array of links with add()
 $this->links()->add(array(
@@ -404,13 +404,13 @@ echo $this->links()
 ?>
 <link rel="prev" href="/path/to/prev" />
 <link ref="next" href="/path/to/next" />
-```
+{% endhighlight %}
 
 ### metas
 
 Helper for a set of `<meta>` tags. Build a set of metas with `add*()` then output them all at once.
 
-```php
+{% highlight php %}
 <?php
 // add an http-equivalent meta
 $this->metas()->addHttp(
@@ -444,13 +444,13 @@ echo $this->metas()
 ?>
 <meta http-equiv="Location" content="/redirect/to/here">
 <meta name="foo" content="bar">
-```
+{% endhighlight %}
 
 ### ol
 
 Helper for `<ol>` tags with `<li>` items.  Build the set of items (both raw and escaped) then output them all at once.
 
-```php
+{% highlight php %}
 <?php
 // start the list of items
 $this->ol(array(                  // (array) optional attributes
@@ -494,13 +494,13 @@ echo $this->ol();
     <li><a href="/next">First</a></li>
     <li><a href="/last">First</a></li>
 </ol>
-```
+{% endhighlight %}
 
 ### scripts
 
 Helper for a set of `<script>` tags. Build a set of script links, then output them all at once.
 
-```php
+{% highlight php %}
 <?php
 // add a single script
 $this->scripts()->add('/js/middle.js');
@@ -526,7 +526,7 @@ $this->scripts->addCond(
 <script src="/js/first.js" type="text/javascript"></script>
 <script src="/js/middle.js" type="text/javascript"></script>
 <script src="/js/last.js" type="text/javascript"></script>
-```
+{% endhighlight %}
 
 The `scriptsFoot()` helper works the same way, but is intended for placing a separate set of scripts at the end of the HTML body.
 
@@ -534,7 +534,7 @@ The `scriptsFoot()` helper works the same way, but is intended for placing a sep
 
 Helper for `<ul>` tags with `<li>` items.  Build the set of items (both raw and escaped) then output them all at once.
 
-```php
+{% highlight php %}
 <?php
 // start the list of items
 $this->ul(array(                  // (array) optional attributes
@@ -578,13 +578,13 @@ echo $this->ul();
     <li><a href="/next">Next</a></li>
     <li><a href="/last">Last</a></li>
 </ul>
-```
+{% endhighlight %}
 
 ### styles
 
 Helper for a set of `<link>` tags for stylesheets. Build a set of style links, then output them all at once. As with the `script` helper, you can optionally set the priority order for each stylesheet.
 
-```php
+{% highlight php %}
 <?php
 // add a stylesheet link
 $this->styles()->add(
@@ -618,13 +618,13 @@ echo $this->styles();
 <link rel="stylesheet" href="/css/middle.css" type="text/css" media="print" />
 <link rel="stylesheet" href="/css/last.css" type="text/css" media="screen" />
 ?>
-```
+{% endhighlight %}
 
 ### tag
 
 A generic tag helper.
 
-```php
+{% highlight php %}
 <?php
 echo $this->tag(
     'div',                  // (string) the tag name
@@ -633,13 +633,13 @@ echo $this->tag(
 echo $this->tag('/div');
 ?>
 <div id="foo"></div>
-```
+{% endhighlight %}
 
 ### title
 
 Helper for the `<title>` tag.
 
-```php
+{% highlight php %}
 <?php
 // escaped variations (can be intermixed with raw variations)
 
@@ -675,7 +675,7 @@ $this->title()->prepend('Pre2 > ');
 echo $this->title();
 ?>
 <title>Pre2 > Pre1 > This & That > Suf1 > Suf2</title>
-```
+{% endhighlight %}
 
 ## Form Helpers
 
@@ -683,7 +683,7 @@ echo $this->title();
 
 Open and close a form element like so:
 
-```php
+{% highlight php %}
 <?php
 echo $this->form(array(
     'id' => 'my-form',
@@ -694,13 +694,13 @@ echo $this->form(array(
 echo $this->tag('/form');
 ?>
 <form id="my-form" method="put" action="/hello-action" enctype="multipart/form-data"></form>
-```
+{% endhighlight %}
 
 ## HTML 5 Input Elements
 
 All of the HTML 5 input helpers use the same method signature: a single descriptor array that formats the input element.
 
-```php
+{% highlight php %}
 <?php
 echo $this->input(array(
     'type'    => $type,     // (string) the element type
@@ -710,7 +710,7 @@ echo $this->input(array(
     'options' => array(),   // (array) options for select and radios
 ));
 ?>
-```
+{% endhighlight %}
 
 The array is used so that other libraries can generate form element descriptions without needing to depend on Aura.Html for a particular object.
 
@@ -744,7 +744,7 @@ The available input element `type` values are:
 
 ### button
 
-```php
+{% highlight php %}
 <?php
 echo $this->input(array(
     'type'    => 'button',
@@ -754,13 +754,13 @@ echo $this->input(array(
 ));
 ?>
 <input type="button" name="foo" value="bar" />
-```
+{% endhighlight %}
 
 ### checkbox
 
 The `checkbox` type honors the `value_unchecked` pseudo-attribute as a way to specify a `hidden` element for the (you guessed it) unchecked value. It also honors the pseudo-element `label` to place a label after the checkbox.
 
-```php
+{% highlight php %}
 <?php
 echo $this->input(array(
     'type'    => 'checkbox',
@@ -775,11 +775,11 @@ echo $this->input(array(
 ?>
 <input type="hidden" name="foo" value="n" />
 <label><input type="checkbox" name="foo" value="y" checked /> Check me</label>
-```
+{% endhighlight %}
 
 ### color
 
-```php
+{% highlight php %}
 <?php
 echo $this->input(array(
     'type'    => 'color',
@@ -789,11 +789,11 @@ echo $this->input(array(
 ));
 ?>
 <input type="color" name="foo" value="bar" />
-```
+{% endhighlight %}
 
 ### date
 
-```php
+{% highlight php %}
 <?php
 echo $this->input(array(
     'type'    => 'date',
@@ -803,11 +803,11 @@ echo $this->input(array(
 ));
 ?>
 <input type="date" name="foo" value="bar" />
-```
+{% endhighlight %}
 
 ### datetime
 
-```php
+{% highlight php %}
 <?php
 echo $this->input(array(
     'type'    => 'datetime',
@@ -817,11 +817,11 @@ echo $this->input(array(
 ));
 ?>
 <input type="datetime" name="foo" value="bar" />
-```
+{% endhighlight %}
 
 ### datetime-local
 
-```php
+{% highlight php %}
 <?php
 echo $this->input(array(
     'type'    => 'datetime-local',
@@ -831,11 +831,11 @@ echo $this->input(array(
 ));
 ?>
 <input type="datetime-local" name="foo" value="bar" />
-```
+{% endhighlight %}
 
 ### email
 
-```php
+{% highlight php %}
 <?php
 echo $this->input(array(
     'type'    => 'email',
@@ -845,11 +845,11 @@ echo $this->input(array(
 ));
 ?>
 <input type="email" name="foo" value="bar" />
-```
+{% endhighlight %}
 
 ### file
 
-```php
+{% highlight php %}
 <?php
 echo $this->input(array(
     'type'    => 'file',
@@ -859,11 +859,11 @@ echo $this->input(array(
 ));
 ?>
 <input type="file" name="foo" value="bar" />
-```
+{% endhighlight %}
 
 ### hidden
 
-```php
+{% highlight php %}
 <?php
 echo $this->input(array(
     'type'    => 'hidden',
@@ -873,11 +873,11 @@ echo $this->input(array(
 ));
 ?>
 <input type="hidden" name="foo" value="bar" />
-```
+{% endhighlight %}
 
 ### image
 
-```php
+{% highlight php %}
 <?php
 echo $this->input(array(
     'type'    => 'image',
@@ -887,11 +887,11 @@ echo $this->input(array(
 ));
 ?>
 <input type="image" name="foo" value="bar" />
-```
+{% endhighlight %}
 
 ### month
 
-```php
+{% highlight php %}
 <?php
 echo $this->input(array(
     'type'    => 'month',
@@ -901,11 +901,11 @@ echo $this->input(array(
 ));
 ?>
 <input type="month" name="foo" value="bar" />
-```
+{% endhighlight %}
 
 ### number
 
-```php
+{% highlight php %}
 <?php
 echo $this->input(array(
     'type'    => 'number',
@@ -915,11 +915,11 @@ echo $this->input(array(
 ));
 ?>
 <input type="number" name="foo" value="bar" />
-```
+{% endhighlight %}
 
 ### password
 
-```php
+{% highlight php %}
 <?php
 echo $this->input(array(
     'type'    => 'password',
@@ -929,13 +929,13 @@ echo $this->input(array(
 ));
 ?>
 <input type="password" name="foo" value="bar" />
-```
+{% endhighlight %}
 
 ### radio
 
 This element type allows you to generate a single radio input, or multiple radio inputs if you pass an `options` element.
 
-```php
+{% highlight php %}
 <?php
 echo $this->input(array(
     'type'    => 'radio',
@@ -952,11 +952,11 @@ echo $this->input(array(
 <label><input type="radio" name="foo" value="bar" checked /> baz</label>
 <label><input type="radio" name="foo" value="dib" /> zim</label>
 <label><input type="radio" name="foo" value="gir" /> irk</label>
-```
+{% endhighlight %}
 
 ### range
 
-```php
+{% highlight php %}
 <?php
 echo $this->input(array(
     'type'    => 'range',
@@ -966,11 +966,11 @@ echo $this->input(array(
 ));
 ?>
 <input type="range" name="foo" value="bar" />
-```
+{% endhighlight %}
 
 ### reset
 
-```php
+{% highlight php %}
 <?php
 echo $this->input(array(
     'type'    => 'reset',
@@ -980,11 +980,11 @@ echo $this->input(array(
 ));
 ?>
 <input type="reset" name="foo" value="bar" />
-```
+{% endhighlight %}
 
 ### search
 
-```php
+{% highlight php %}
 <?php
 echo $this->input(array(
     'type'    => 'search',
@@ -994,13 +994,13 @@ echo $this->input(array(
 ));
 ?>
 <input type="search" name="foo" value="bar" />
-```
+{% endhighlight %}
 
 ### select
 
 Helper for a `<select>` tag with `<option>` tags. The pseudo-attribute `placeholder` is honored as a placeholder label when no option is selected. Using the attribute `'multiple' => true` will set up a multiple select, and automatically add `[]` to the name if it is not already there.
 
-```php
+{% highlight php %}
 <?php
 echo $this->input(array(
     'type'    => 'select',
@@ -1064,11 +1064,11 @@ echo $select;
     <option value="bar" selected>Bar Label</option>
     <option value="zim">Zim Label</option>
 </select>
-```
+{% endhighlight %}
 
 The helper also supports option groups. If an `options` array value is itself an array, the key for that element will be used as an `<optgroup>` label and the array of values will be options under that group.
 
-```php
+{% highlight php %}
 <?php
 echo $this->input(array(
     'type'    => 'select',
@@ -1147,11 +1147,11 @@ echo $select;
         <option value="zim">Zim Label</option>
     </optgroup>
 </select>
-```
+{% endhighlight %}
 
 ### submit
 
-```php
+{% highlight php %}
 <?php
 echo $this->input(array(
     'type'    => 'submit',
@@ -1161,11 +1161,11 @@ echo $this->input(array(
 ));
 ?>
 <input type="submit" name="foo" value="bar" />
-```
+{% endhighlight %}
 
 ### tel
 
-```php
+{% highlight php %}
 <?php
 echo $this->irnput(array(
     'type'    => 'tel',
@@ -1175,11 +1175,11 @@ echo $this->irnput(array(
 ));
 ?>
 <input type="tel" name="foo" value="bar" />
-```
+{% endhighlight %}
 
 ### text
 
-```php
+{% highlight php %}
 <?php
 echo $this->input(array(
     'type'    => 'text',
@@ -1189,11 +1189,11 @@ echo $this->input(array(
 ));
 ?>
 <input type="text" name="foo" value="bar" />
-```
+{% endhighlight %}
 
 ### textarea
 
-```php
+{% highlight php %}
 <?php
 echo $this->input(array(
     'type'    => 'textarea',
@@ -1203,11 +1203,11 @@ echo $this->input(array(
 ));
 ?>
 <textarea name="foo">bar</textarea>
-```
+{% endhighlight %}
 
 ### time
 
-```php
+{% highlight php %}
 <?php
 echo $this->input(array(
     'type'    => 'time',
@@ -1217,11 +1217,11 @@ echo $this->input(array(
 ));
 ?>
 <input type="time" name="foo" value="bar" />
-```
+{% endhighlight %}
 
 ### url
 
-```php
+{% highlight php %}
 <?php
 echo $this->input(array(
     'type'    => 'url',
@@ -1231,11 +1231,11 @@ echo $this->input(array(
 ));
 ?>
 <input type="url" name="foo" value="bar" />
-```
+{% endhighlight %}
 
 ### week
 
-```php
+{% highlight php %}
 <?php
 echo $this->input(array(
     'type'    => 'week',
@@ -1245,7 +1245,7 @@ echo $this->input(array(
 ));
 ?>
 <input type="week" name="foo" value="bar" />
-```
+{% endhighlight %}
 
 ## Custom Helpers
 
@@ -1261,7 +1261,7 @@ escaping, etc., but it's not required.
 
 We are going to create a router helper which can return the router object, and from which we can generate routes from the already defined routes.
 
-```php
+{% highlight php %}
 <?php
 <?php
 // {$PROJECT_PATH}/src/App/Html/Helper/Router.php
@@ -1284,7 +1284,7 @@ class Router
         return $this->router;
     }
 }
-```
+{% endhighlight %}
 
 Now that we have a helper class, we set a factory for it into the
 _HelperLocator_ under a service name.
@@ -1292,7 +1292,7 @@ Therein, we create **and return** the helper class.
 
 Edit `{$PROJECT_PATH}/config/Common.php`
 
-```php
+{% highlight php %}
 <?php
 namespace Aura\Web_Project\_Config;
 
@@ -1309,13 +1309,13 @@ class Common extends Config
     }
     // ...
 }
-```
+{% endhighlight %}
 
 The service name in the _HelperLocator_ doubles as a method name.
 This means we can call the helper via `$this->router()`:
 
-```php
+{% highlight php %}
 <?php echo $this->router()->generate('blog.read', array('id', 2)); ?>
-```
+{% endhighlight %}
 
 Note that we can use any service name for the helper, although it is generally useful to name the service for the helper class, and for a word that can be called as a method.

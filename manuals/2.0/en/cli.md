@@ -20,7 +20,7 @@ The _Context_ object provides information about the command line environment, in
 
 You can access the `$_ENV`, `$_SERVER`, and `$argv` values with the `$env`, `$server`, and `$argv` property objects, respectively. (Note that these properties are copies of those superglobals as they were at the time of _Context_ instantiation.) You can pass an alternative default value if the related key is missing.
 
-```php
+{% highlight php %}
 <?php
 // get copies of superglobals
 $env    = $context->env->get();
@@ -35,7 +35,7 @@ $value = $context->env->get('key');
 // $value = isset($_ENV['key']) ? $_ENV['key'] : 'other_value';
 $value = $context->env->get('key', 'other_value');
 ?>
-```
+{% endhighlight %}
 
 ### Getopt Support
 
@@ -47,7 +47,7 @@ To retrieve options and arguments parsed from the command-line `$argv` values, u
 
 To tell `getopt()` how to recognize command line options, pass an array of option definitions. The definitions array format is similar to, but not exactly the same as, the one used by the [getopt()](http://php.net/getopt) function in PHP. Instead of defining short flags in a string and long options in a separate array, they are both defined as elements in a single array. Adding a `*` after the option name indicates it can be passed multiple times; its values will be stored in an array.
 
-```php
+{% highlight php %}
 <?php
 $options = array(
     'a',        // short flag -a, parameter is not allowed
@@ -61,7 +61,7 @@ $options = array(
 
 $getopt = $context->getopt($options);
 ?>
-```
+{% endhighlight %}
 
 > When we say "required" here, it means "the option, when present,
 > must have a parameter."  It does *not* mean "the option must be present."
@@ -72,7 +72,7 @@ Use the `get()` method on the returned _GetoptValues_ object to retrieve the
 option values. You can provide an alternative default value for when the
 option is missing.
 
-```php
+{% highlight php %}
 <?php
 $a   = $getopt->get('-a', false); // true if -a was passed, false if not
 $b   = $getopt->get('-b');
@@ -82,12 +82,12 @@ $bar = $getopt->get('--bar');
 $baz = $getopt->get('--baz', 'default value');
 $g   = $getopt->get('-g', []);
 ?>
-```
+{% endhighlight %}
 
 If you want alias one option name to another, comma-separate the two names.
 The values will be stored under both names;
 
-```php
+{% highlight php %}
 <?php
 // alias -f to --foo
 $options = array(
@@ -99,12 +99,12 @@ $getopt = $context->getopt($options);
 $foo = $getopt->get('--foo'); // both -f and --foo have the same values
 $f   = $getopt->get('-f'); // both -f and --foo have the same values
 ?>
-```
+{% endhighlight %}
 
 If you want to allow an option to be passed multiple times, add a '*' to the end
 of the option name.
 
-```php
+{% highlight php %}
 <?php
 $options = array(
     'f*',
@@ -118,7 +118,7 @@ $getopt = $context->getopt($options);
 $foo = $getopt->get('--foo'); // ['foo', 'bar', 'baz']
 $f   = $getopt->get('-f'); // [true, true, true]
 ?>
-```
+{% endhighlight %}
 
 If the user passes options that do not conform to the definitions, the
 _GetoptValues_ object retains various errors related to the parsing
@@ -127,7 +127,7 @@ review the errors.  (The errors are actually `Aura\Cli\Exception` objects,
 but they don't get thrown as they occur; this is so that you can deal with or
 ignore the different kinds of errors as you like.)
 
-```php
+{% highlight php %}
 <?php
 $getopt = $context->getopt($options);
 if ($getopt->hasErrors()) {
@@ -138,14 +138,14 @@ if ($getopt->hasErrors()) {
     }
 };
 ?>
-```
+{% endhighlight %}
 
 #### Positional Arguments
 
 To get the positional arguments passed to the command line, use the `get()`
 method and the argument position number:
 
-```php
+{% highlight php %}
 <?php
 $getopt = $context->getopt();
 
@@ -158,11 +158,11 @@ $val2 = $getopt->get(2); // arg2
 $val3 = $getopt->get(3); // arg3
 $val4 = $getopt->get(4); // arg4
 ?>
-```
+{% endhighlight %}
 
 Defined options will be removed from the arguments automatically.
 
-```php
+{% highlight php %}
 <?php
 $options = array(
     'a',
@@ -179,7 +179,7 @@ $arg2 = $getopt->get(2); // arg2
 $foo  = $getopt->get('--foo'); // bar
 $a    = $getopt->get('-a'); // 1
 ?>
-```
+{% endhighlight %}
 
 > If a short flag has an optional parameter, the argument immediately
 > after it will be treated as the option value, not as an argument.
@@ -203,7 +203,7 @@ The _Stdio_ object methods are ...
 
 You can use special formatting markup in the output and error strings to set text color, text weight, background color, and other display characteristics. See the [formatter cheat sheet](#formatter-cheat-sheet) below.
 
-```php
+{% highlight php %}
 <?php
 // print to stdout
 $stdio->outln('This is normal text.');
@@ -212,7 +212,7 @@ $stdio->outln('This is normal text.');
 $stdio->errln('<<red>>This is an error in red.');
 $stdio->errln('Output will stay red until a formatting change.<<reset>>');
 ?>
-```
+{% endhighlight %}
 
 ### Exit Codes
 
@@ -230,7 +230,7 @@ following is a standalone command script, but similar logic can be used in a
 class.  Save it in a file named `hello` and invoke it with
 `php hello [-v,--verbose] [name]`.
 
-```php
+{% highlight php %}
 <?php
 use Aura\Cli\CliFactory;
 use Aura\Cli\Status;
@@ -266,7 +266,7 @@ if ($getopt->get('--verbose')) {
 // done!
 exit(Status::SUCCESS);
 ?>
-```
+{% endhighlight %}
 
 ### Writing Command Help
 
@@ -274,7 +274,7 @@ Sometimes it will be useful to provide help output for your commands. With Aura.
 
 For example, extend the _Help_ object and override the `init()` method.
 
-```php
+{% highlight php %}
 <?php
 use Aura\Cli\Help;
 
@@ -292,11 +292,11 @@ class MyCommandHelp extends Help
     }
 }
 ?>
-```
+{% endhighlight %}
 
 Then instantiate the new class and pass its `getHelp()` output through _Stdio_:
 
-```php
+{% highlight php %}
 <?php
 use Aura\Cli\CliFactory;
 use Aura\Cli\Context\OptionFactory;
@@ -307,7 +307,7 @@ $stdio = $cli_factory->newStdio();
 $help = new MyCommandHelp(new OptionFactory);
 $stdio->outln($help->getHelp('my-command'));
 ?>
-```
+{% endhighlight %}
 
 
 > - We keep the command name itself outside of the help class, because the command name may be mapped differently in different projects.
@@ -318,7 +318,7 @@ $stdio->outln($help->getHelp('my-command'));
 
 The output will look something like this:
 
-```
+{% endhighlight %}
 SUMMARY
     my-command -- A single-line summary.
 
@@ -335,7 +335,7 @@ OPTIONS
 
     --bar[=<value>]
         The --bar option description.
-```
+{% endhighlight %}
 
 ### Formatter Cheat Sheet
 
@@ -407,7 +407,7 @@ Here are two different styles of command definition.
 
 The following is an example of a command where the logic is embedded in the dispatcher, using the `aura/cli-kernel:context` and `aura/cli-kernel:stdio` services along with standard exit codes. (The dispatcher object name doubles as the command name.)
 
-```php
+{% highlight php %}
 <?php
 namespace Aura\Famework_Project\_Config;
 
@@ -437,7 +437,7 @@ class Common extends Config
         );
     }
 ?>
-```
+{% endhighlight %}
 
 You can now run the command to see its output.
 
@@ -453,7 +453,7 @@ with full-stack style in the first place).
 
 First, define a command class and place it in the project `src/` directory.
 
-```php
+{% highlight php %}
 <?php
 /**
  * {$PROJECT_PATH}/src/App/Command/FooCommand.php
@@ -484,14 +484,14 @@ class FooCommand
     }
 }
 ?>
-```
+{% endhighlight %}
 
 Next, tell the project how to build the _FooCommand_ through the DI
 _Container_. Edit the project `config/Common.php` file to configure the
 _Container_ to pass the `aura/cli-kernel:context` and `aura/cli-kernel:stdio` service objects to
 the _FooCommand_ constructor. Then put the _App\Command\FooCommand_ object in the dispatcher under the name `foo` as a lazy-loaded instantiation.
 
-```php
+{% highlight php %}
 <?php
 namespace Aura\Famework_Project\_Config;
 
@@ -522,7 +522,7 @@ class Common extends Config
         );
     }
 ?>
-```
+{% endhighlight %}
 
 You can now run the command to see its output.
 

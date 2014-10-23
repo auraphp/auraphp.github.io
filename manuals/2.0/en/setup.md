@@ -16,7 +16,7 @@ Create a file `/etc/apache2/sites-available/aura.localhost` with the below conte
 
 > Depending upon your apache configuration you may need to add `.conf`
 
-```bash
+{% highlight bash %}
 <VirtualHost *:80>
     ServerName aura.localhost
     ServerAlias www.aura.localhost
@@ -26,7 +26,7 @@ Create a file `/etc/apache2/sites-available/aura.localhost` with the below conte
         AllowOverride All
     </directory>
 </VirtualHost>
-```
+{% endhighlight %}
 
 `path/to/project` is where you installed the `aura/web-project`.
 
@@ -34,27 +34,27 @@ Create a file `/etc/apache2/sites-available/aura.localhost` with the below conte
 
 Enable the site using
 
-```bash
+{% highlight bash %}
 a2ensite aura.localhost
-```
+{% endhighlight %}
 
 and reload the apache
 
-```bash
+{% highlight bash %}
 service apache2 reload
-```
+{% endhighlight %}
 
 Before we go and check in browser add one more line in the `/etc/hosts`
 
-```bash
+{% highlight bash %}
 127.0.0.1   aura.localhost www.aura.localhost
-```
+{% endhighlight %}
 
 ## Nginx
 
 In ubuntu 12.04 the configuration file is under `/etc/nginx/sites-available`
 
-```bash
+{% highlight bash %}
 server {
     listen   80;
     root /path/to/aura-project/web;
@@ -74,6 +74,6 @@ server {
         include fastcgi_params;
     }
 }
-```
+{% endhighlight %}
 
 Check `http://aura.localhost` in your favourite browser.

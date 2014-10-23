@@ -32,7 +32,7 @@ It is recommend you should read [Aura.Di documentation](https://github.com/aurap
 A "service" is an object stored in the _Container_ under a unique name.
 Any time you `get()` the named service, you always get back the same object instance.
 
-```php
+{% highlight php %}
 <?php
 // define the Example class
 class Example
@@ -50,18 +50,18 @@ $service2 = $di->get('service_name');
 // the two service objects are the same
 var_dump($service1 === $service2); // true
 ?>
-```
+{% endhighlight %}
 
 That usage is great if we want to create the _Example_ instance at the same time we set the service. However, we generally want to create the service instance at the moment we *get* it, not at the moment we *set* it.
 
 The technique of delaying instantiation until `get()` time is called "lazy loading." To lazy-load an instance, use the `lazyNew()` method on the _Container_ and give it the class name to be created:
 
-```php
+{% highlight php %}
 <?php
 // set the service as a lazy-loaded new instance
 $di->set('service_name', $di->lazyNew('Example'));
 ?>
-```
+{% endhighlight %}
 
 Now the service is created only when we we `get()` it, and not before.
 This lets us set as many services as we want, but only incur the overhead of creating the instances we actually use.
@@ -77,7 +77,7 @@ We can define default values for constructor parameters using the `$di->params` 
 
 Let's look at a class that takes some constructor parameters:
 
-```php
+{% highlight php %}
 <?php
 class ExampleWithParams
 {
@@ -90,7 +90,7 @@ class ExampleWithParams
     }
 }
 ?>
-```
+{% endhighlight %}
 
 If we were to try to set a service using `$di->lazyNew('ExampleWithParams')`,
 the instantiation would fail. The `$foo` param is required, and the _Container_
@@ -99,12 +99,12 @@ does not know what to use for that value.
 To remedy this, we tell the _Container_ what values to use for
 each _ExampleWithParams_ constructor parameter by name using the `$di->params` array:
 
-```php
+{% highlight php %}
 <?php
 $di->params['ExampleWithParams']['foo'] = 'foo_value';
 $di->params['ExampleWithParams']['bar'] = 'bar_value';
 ?>
-```
+{% endhighlight %}
 
 Now when a service is defined with `$di->lazyNew('ExampleWithParams')`,
 the instantiation will work correctly. Each time we create an
@@ -117,7 +117,7 @@ If we want to override the default `$di->params` values for a specific
 new instance, we can pass a `$params` array as the second argument to
 `lazyNew()` to merge with the default values. For example:
 
-```php
+{% highlight php %}
 <?php
 $di->set('service_name', $di->lazyNew(
     'ExampleWithParams',
@@ -126,7 +126,7 @@ $di->set('service_name', $di->lazyNew(
     )
 ));
 ?>
-```
+{% endhighlight %}
 
 This will leave the `$foo` parameter default in place, and override
 the `$bar` parameter value, for just that instance of the _ExampleWithParams_.
@@ -136,7 +136,7 @@ the `$bar` parameter value, for just that instance of the _ExampleWithParams_.
 Sometimes a class will need another service as one of its parameters.
 By way of example, the following class needs a database connection:
 
-```php
+{% highlight php %}
 <?php
 class ExampleNeedsService
 {
@@ -147,16 +147,16 @@ class ExampleNeedsService
     }
 }
 ?>
-```
+{% endhighlight %}
 
 To inject a shared service as a parameter value, use `$di->lazyGet()`
 so that the service object is not created until the _ExampleNeedsService_ object is created:
 
-```php
+{% highlight php %}
 <?php
 $di->params['ExampleNeedsService']['db'] = $di->lazyGet('db_service');
 ?>
-```
+{% endhighlight %}
 
 This keeps the service from being created until the very moment it is needed. If we never instantiate anything that needs the service, the service itself will never be instantiated.
 
@@ -168,7 +168,7 @@ This package supports setter injection in addition to constructor injection. (Th
 
 After the _Container_ constructs a new instance of an object, we can specify that certain methods should be called with certain values immediately after instantiation by using the `$di->setter` array.  Say we have class like the following:
 
-```php
+{% highlight php %}
 <?php
 class ExampleWithSetter
 {
@@ -180,15 +180,15 @@ class ExampleWithSetter
     }
 }
 ?>
-```
+{% endhighlight %}
 
 We can specify that, by default, the `setFoo()` method should be called with a specific value after construction like so:
 
-```php
+{% highlight php %}
 <?php
 $di->setter['ExampleWithSetter']['setFoo'] = 'foo_value';
 ?>
-```
+{% endhighlight %}
 
 The value can be any valid value: a literal, a call to `lazyNew()` or `lazyGet()`, and so on.
 
@@ -205,7 +205,7 @@ As with constructor injection, we can note instance-specific setter
 values to use in place of the defaults. We do so via the third
 argument to `$di->lazyNew()`. For example:
 
-```php
+{% highlight php %}
 <?php
 $di->set('service_name', $di->lazyNew(
     'ExampleWithSetters',
@@ -215,4 +215,4 @@ $di->set('service_name', $di->lazyNew(
     )
 ));
 ?>
-```
+{% endhighlight %}

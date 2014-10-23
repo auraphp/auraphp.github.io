@@ -9,29 +9,29 @@ permalink: /manuals/2.0/en/quick-start/
 Installation is done via [composer](http://getcomposer.org).
 
 
-```bash
+{% highlight bash %}
 composer create-project aura/web-project quick-start
 composer require "foa/html-view-bundle:2.*"
 cd quick-start
-```
+{% endhighlight %}
 
 All views and layouts are kept in `templates/views` and `templates/layouts` folder.
 
-```bash
+{% highlight bash %}
 mkdir -p templates/{views,layouts}
-```
+{% endhighlight %}
 
 Create your basic template `templates/views/hello.php`
 
-```php
+{% highlight php %}
 <?php // templates/views/hello.php ?>
 <?php $this->title()->set("Hello from aura"); ?>
 <p>Hello <?= $this->name; ?></p>
-```
+{% endhighlight %}
 
 and a very basic layout
 
-```php
+{% highlight php %}
 <?php // templates/layouts/default.php ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
@@ -42,20 +42,20 @@ and a very basic layout
     <?php echo $this->getContent(); ?>
   </body>
 </html>
-```
+{% endhighlight %}
 
 Edit `config/Common.php` and define service for `view`.
 
-```php
+{% highlight php %}
 public function define(Container $di)
 {
     $di->set('view', $di->lazyNew('Aura\View\View'));
 }
-```
+{% endhighlight %}
 
 Edit `modifyDispatcher` method to
 
-```php
+{% highlight php %}
 public function modifyWebDispatcher($di)
 {
     $view = $di->get('view');
@@ -77,10 +77,10 @@ public function modifyWebDispatcher($di)
         $response->content->set($view->__invoke());
     });
 }
-```
+{% endhighlight %}
 
 Let us fire the php server
 
-```bash
+{% highlight bash %}
 php -S localhost:8000 web/index.php
-```
+{% endhighlight %}

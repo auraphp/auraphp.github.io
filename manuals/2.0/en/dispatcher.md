@@ -24,7 +24,7 @@ So if your application starts small and grows, it is easy to modify the applicat
 
 The following is an example of a micro-framework style route, where the action logic is embedded in the route params. In the `modify()` config method, we retrieve the shared `aura/web-kernel:request` and `aura/web-kernel:response` services, along with the `aura/web-kernel:router` service. We then add a route names `blog.read` and embed the action code as a closure.
 
-```php
+{% highlight php %}
 <?php
 namespace Aura\Web_Project\_Config;
 
@@ -55,7 +55,7 @@ class Common extends Config
 
     // ...
 }
-```
+{% endhighlight %}
 
 ## Modified Micro-Framework Style
 
@@ -63,7 +63,7 @@ We can modify the above example to put the action logic in the dispatcher instea
 
 Extract the action closure to the dispatcher under the name `blog.read`. Then, in the route, use a `action` value that matches the name in the dispatcher.
 
-```php
+{% highlight php %}
 <?php
 namespace Aura\Web_Project\_Config;
 
@@ -100,7 +100,7 @@ class Common extends Config
 
     // ...
 }
-```
+{% endhighlight %}
 
 ## Full-Stack Style
 
@@ -108,7 +108,7 @@ You can migrate from a micro-framework style to a full-stack style (or start wit
 
 First, define a action class and place it in the project `src/` directory.
 
-```php
+{% highlight php %}
 <?php
 /**
  * {$PROJECT_PATH}/src/App/Actions/BlogRead.php
@@ -134,11 +134,11 @@ class BlogRead
         ));
     }
 }
-```
+{% endhighlight %}
 
 Next, tell the project how to build the _BlogRead_ through the DI _Container_. Edit the project `config/Common.php` file to configure the _Container_ to pass the `aura/web-kernel:request` and `aura/web-kernel:response` service objects to the _BlogRead_ constructor.
 
-```php
+{% highlight php %}
 <?php
 namespace Aura\Web_Project\_Config;
 
@@ -159,11 +159,11 @@ class Common extends Config
 
     // ...
 }
-```
+{% endhighlight %}
 
 After that, put the _`App\Actions\BlogRead`_ object in the dispatcher under the name `blog.read` as a lazy-loaded instantiation ...
 
-```php
+{% highlight php %}
 <?php
 namespace Aura\Web_Project\_Config;
 
@@ -186,11 +186,11 @@ class Common extends Config
 
     // ...
 }
-```
+{% endhighlight %}
 
 ... and finally, point the router to the `blog.read` action object:
 
-```php
+{% highlight php %}
 <?php
 namespace Aura\Web_Project\_Config;
 
@@ -214,4 +214,4 @@ class Common extends Config
 
     // ...
 }
-```
+{% endhighlight %}
