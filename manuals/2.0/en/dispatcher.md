@@ -12,9 +12,9 @@ next_page_url: /manuals/2.0/en/request/
 
 Aura projects can handle different variations of dispatching with the help of [Aura.Dispatcher](https://github.com/auraphp/Aura.Dispatcher).
 
-* [Microframework](#micro-framework)
-* [Modified Micro-Framework Style](#modified-micro-framework)
-* [Full-Stack Style](#full-stack)
+* [Microframework](#microframework)
+* [Modified Micro-Framework Style](#modified-micro-framework-style)
+* [Full-Stack Style](#full-stack-style)
 
 So if your application starts small and grows, it is easy to modify the application routes acting as a micro framework to a full-stack style.
 
