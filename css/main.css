@@ -33,5 +33,5 @@ td, th {
 #top-link-block.affix {
     position: fixed; /* keeps it on the bottom once in view */
     bottom: 18px;
-    left: 10px;
+    right: 10px;
 }
