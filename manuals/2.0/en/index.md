@@ -49,13 +49,13 @@ The directory structure looks something similar to this. The list is not complet
 │   │   ├── cli-kernel
 │   │   ├── di
 │   │   ├── dispatcher
-│   │   ├── installer-default
 │   │   ├── project-kernel
 │   │   ├── router
-│   │   ├── signal
 │   │   ├── web
 │   │   └── web-kernel
 │   ├── autoload.php
+│   ├── monolog
+│   │   └── monolog
 │   └── psr
 │       └── log
 └── web
