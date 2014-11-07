@@ -11,8 +11,7 @@ Currently we have two versions.
 
 Version 1 quickstart can be find [here](/framework/1.0/).
 
-Version 2 have 3 types of projects as below. Read the documentation via
-[http://ghdocs.herokuapp.com/harikt/aurav2book/master/manuscript/introduction.md](http://ghdocs.herokuapp.com/harikt/aurav2book/master/manuscript/introduction.md)
+You can find version 2 [quickstart](/manuals/2.0/en/quick-start/) and [documentation](/manuals/2.0/en/).
 
 ### Aura.Web_Project
 

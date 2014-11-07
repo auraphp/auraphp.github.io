@@ -24,6 +24,8 @@
         <link rel="stylesheet" href="/css/pygments.css" >
 
         <script src="/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+        <script>window.jQuery || document.write('<script src="/js/vendor/jquery-1.9.1.js"><\/script>')</script>
     </head>
 
     <body>
@@ -76,7 +78,7 @@
                                     <li><a href="/framework/2.0">Version 2</a></li>
                                 </ul>
                             </li>
-                            <li {% if page.active == 'manuals'      %}class="active"{% endif %}><a href="/manuals">Manuals (v1)</a></li>
+                            <li {% if page.active == 'manuals'      %}class="active"{% endif %}><a href="/manuals">Manuals (v1 & v2)</a></li>
                             <li {% if page.active == 'packages-v2'  %}class="active"{% endif %}><a href="/packages/v2">Packages (v2)</a></li>
                             <li {% if page.active == 'blog'         %}class="active"{% endif %}><a href="/blog">Blog</a></li>
                             <li {% if page.active == 'community'    %}class="active"{% endif %}><a href="/community">Community</a></li>
@@ -86,7 +88,6 @@
                 </div>
             </div>
         </div>
-
         <div class="container">
             {{ content }}
             <hr>
@@ -111,9 +112,13 @@
                 <!-- End of StatCounter Code for Default Guide -->
             </footer>
         </div> <!-- /container -->
-
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-        <script>window.jQuery || document.write('<script src="/js/vendor/jquery-1.9.1.js"><\/script>')</script>
+        <div class="pull-right">
+          <span id="top-link-block" class="hidden">
+            <a href="#top" class="well well-sm" onclick="$('html,body').animate({scrollTop:0},'slow');return false;">
+                <i class="glyphicon glyphicon-chevron-up"></i> Back to Top
+            </a>
+          </span>
+        </div>
         <script src="/js/vendor/bootstrap.min.js"></script>
         <script src="/js/plugins.js"></script>
         <script src="/js/main.js"></script>
@@ -122,6 +127,15 @@
             (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
             g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
             s.parentNode.insertBefore(g,s)}(document,'script'));
+
+            // Only enable if the document has a long scroll bar
+            // Note the window height + offset
+            if ( ($(window).height() + 100) < $(document).height() ) {
+                $('#top-link-block').removeClass('hidden').affix({
+                    // how far to scroll down before link "slides" into view
+                    offset: {top:100}
+                });
+            }
         </script>
     </body>
 </html>
