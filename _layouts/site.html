@@ -70,6 +70,7 @@
                                     <li><a href="/packages/Aura.Web">Web</a></li>
                                 </ul>
                             </li>
+                            <li {% if page.active == 'packages-v2'  %}class="active"{% endif %}><a href="/packages/v2">Packages (v2)</a></li>
                             <li class="{% if page.active == 'framework'  %}active {% endif %}dropdown">
                                 <a href="/framework" class="dropdown-toggle" data-toggle="dropdown">Framework<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
@@ -79,7 +80,6 @@
                                 </ul>
                             </li>
                             <li {% if page.active == 'manuals'      %}class="active"{% endif %}><a href="/manuals">Manuals (v1 & v2)</a></li>
-                            <li {% if page.active == 'packages-v2'  %}class="active"{% endif %}><a href="/packages/v2">Packages (v2)</a></li>
                             <li {% if page.active == 'blog'         %}class="active"{% endif %}><a href="/blog">Blog</a></li>
                             <li {% if page.active == 'community'    %}class="active"{% endif %}><a href="/community">Community</a></li>
                             <li {% if page.active == 'contributing' %}class="active"{% endif %}><a href="/contributing">Contributing</a></li>
