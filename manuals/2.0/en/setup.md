@@ -52,6 +52,8 @@ Before we go and check in browser add one more line in the `/etc/hosts`
 
 ## Nginx
 
+The following configuration assumes that you're using PHP as [FPM SAPI](http://php.net/install.fpm).
+
 The configuration file is under `/etc/nginx/sites-available`
 
 {% highlight bash %}
@@ -106,3 +108,8 @@ fastcgi_param  REDIRECT_STATUS    200;
 {% endhighlight %}
 
 Check `http://aura.localhost` in your favourite browser.
+
+When using configuration above you should set `cgi.fix_pathinfo=0` in `php.ini` in order to avoid numerous unnecessary system `stat()` calls.
+
+Also note that if you plan running an HTTPS server, you have to add `fastcgi_param HTTPS on;` for its host.
+
