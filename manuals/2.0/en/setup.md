@@ -52,7 +52,7 @@ Before we go and check in browser add one more line in the `/etc/hosts`
 
 ## Nginx
 
-In ubuntu 12.04 the configuration file is under `/etc/nginx/sites-available`
+The configuration file is under `/etc/nginx/sites-available`
 
 {% highlight bash %}
 server {
@@ -68,12 +68,13 @@ server {
     error_page 404 /404.html;
 
     location ~ \.php$ {
+        include fastcgi.conf;
         fastcgi_pass unix:/var/run/php5-fpm.sock;
-        fastcgi_split_path_info ^(.+\.php)(/.+)$;
-        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-        include fastcgi_params;
+        try_files $uri =404;
     }
 }
 {% endhighlight %}
+
+> Please consider sending a pull request to improve the docs.
 
 Check `http://aura.localhost` in your favourite browser.
