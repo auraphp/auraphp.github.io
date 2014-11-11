@@ -5,7 +5,7 @@ tags : [release]
 author : Hari KT
 ---
 
-This release is to remind about the [phpworld](http://world.phparch.com/) conference happening at Washington DC. If you are there [Paul M Jones](http://paul-m-jones.com), the creator and lead on Aura, is giving talks on [It Was Like That When I Got Here: Steps Toward Modernizing a Legacy Codebase](http://mlaphp.com/) and [Action-Domain-Responder: A Web-Specific Refinement of MVC](github.com/pmjones/adr). Check out the [schedule](http://world.phparch.com/speakers/#49998).
+This release is to remind about the [phpworld](http://world.phparch.com/) conference happening at Washington DC. If you are there [Paul M Jones](http://paul-m-jones.com), the creator and lead on Aura, is giving talks on [It Was Like That When I Got Here: Steps Toward Modernizing a Legacy Codebase](http://mlaphp.com/) and [Action-Domain-Responder: A Web-Specific Refinement of MVC](https://pmjones.github.io/adr). Check out the [schedule](http://world.phparch.com/speakers/#49998).
 
 ## Releases
 
