@@ -5,13 +5,15 @@ tags : [release]
 author : Hari KT
 ---
 
-This release is to remind about the [phpworld](http://world.phparch.com/) conference happening at Washington DC. If you are there [Paul M Jones](http://paul-m-jones.com) the creator and lead on aura project is giving talks on [It Was Like That When I Got Here: Steps Toward Modernizing a Legacy Codebase](http://mlaphp.com/) and [Action-Domain-Responder: A Web-Specific Refinement of MVC](github.com/pmjones/adr) checkout the [schedule](http://world.phparch.com/speakers/#49998).
+This release is to remind about the [phpworld](http://world.phparch.com/) conference happening at Washington DC. If you are there [Paul M Jones](http://paul-m-jones.com), the creator and lead on Aura, is giving talks on [It Was Like That When I Got Here: Steps Toward Modernizing a Legacy Codebase](http://mlaphp.com/) and [Action-Domain-Responder: A Web-Specific Refinement of MVC](github.com/pmjones/adr). Check out the [schedule](http://world.phparch.com/speakers/#49998).
 
-## Release
+## Releases
 
-Many of the aura libraries got quick releases. It was busy days that we couldn't blog each one seprately. So here is a quick update on what is happening.
+Many of the Aura libraries got quick releases. It was busy days that we couldn't blog each one seprately. So here is a quick update on what is happening.
 
-[Aura.Accept](https://github.com/auraphp/Aura.Accept/releases/tag/2.0.0) extracted from [Aura.Web](https://github.com/auraphp/Aura.Accept) got stable release.
+### Aura.Accept
+
+[Aura.Accept](https://github.com/auraphp/Aura.Accept/releases/tag/2.0.0) as extracted from [Aura.Web](https://github.com/auraphp/Aura.Accept) got stable release.
 
 An example how you could make use of content-negotiation is shown below.
 
@@ -42,17 +44,21 @@ echo $media->getValue(); // text/csv
 
 Consider looking into the docs [for more information](https://github.com/auraphp/Aura.Accept/blob/2.0.0/README.md#instantiation)
 
+### Aura.Di
+
 [Aura.Di](https://github.com/auraphp/Aura.Di/releases/tag/2.1.0) released 2.1.0 which incorporates functionality to optionally disable auto-resolution. By default it remains enabled, but this default may change in a future version. This is regarding the [issue 68](https://github.com/auraphp/Aura.Di/issues/68)
 
-Add Container::setAutoResolve(), Factory::setAutoResolve(), etc. to allow disabling of auto-resolution
+- Add Container::setAutoResolve(), Factory::setAutoResolve(), etc. to allow disabling of auto-resolution
 
-When auto-resolution is disabled, Factory::newInstance() now throws Exception\MissingParam when a constructor param has not been defined
+- When auto-resolution is disabled, Factory::newInstance() now throws Exception\MissingParam when a constructor param has not been defined
 
-ContainerBuilder::newInstance() now takes a third param to enable/disable auto-resolution
+- ContainerBuilder::newInstance() now takes a third param to enable/disable auto-resolution
 
-AbstractContainerTest now allows you to enable/disable auto-resolve for the tests via a new getAutoResolve() method
+- AbstractContainerTest now allows you to enable/disable auto-resolve for the tests via a new getAutoResolve() method
 
 Consider looking into the docs [for more information](https://github.com/auraphp/Aura.Di/blob/2.1.0/README.md#a-note-about-auto-resolution)
+
+### Aura.Auth
 
 [Aura.Auth](https://github.com/auraphp/Aura.Auth/releases/tag/2.0.0-beta2) released beta-2.
 
@@ -68,15 +74,19 @@ $from = 'accounts';
 $pdo_adapter = $auth_factory->newPdoAdapter($pdo, $hash, $cols, $from);
 {% endhighlight %}
 
-How to make use of (OAuth Adapters)[https://github.com/auraphp/Aura.Auth/tree/2.0.0-beta2#oauth-adapters] is documented. Thanks to [Frost](https://github.com/mfrost503)
+How to make use of [OAuth Adapters](https://github.com/auraphp/Aura.Auth/tree/2.0.0-beta2#oauth-adapters) is documented. Thanks to [Frost](https://github.com/mfrost503)
 
 Before it is too late please give your feedback on [remember me functionality](https://github.com/auraphp/Aura.Auth/issues/4).
 
-[Aura.Router](https://github.com/auraphp/Aura.Router/releases) getting more awesome
+### Aura.Router
 
-2.1.0 : Added Router::generateRaw() to generate routes with raw data.
-2.1.1 : Fixed allow simplest possible match of a single Accept header type without a Q value.
-[2.2.0](https://github.com/auraphp/Aura.Router/releases/tag/2.2.0) : Allow easier specification of $values['action'] directly from RouteCollection::add*() by passing a third param as the action value.
+[Aura.Router](https://github.com/auraphp/Aura.Router/releases) getting more awesome!
+
+- 2.1.0 : Added Router::generateRaw() to generate routes with raw data.
+
+- 2.1.1 : Fixed allow simplest possible match of a single Accept header type without a Q value.
+
+- [2.2.0](https://github.com/auraphp/Aura.Router/releases/tag/2.2.0) : Allow easier specification of $values['action'] directly from RouteCollection::add*() by passing a third param as the action value.
 
 {% highlight php %}
 <?php
@@ -89,9 +99,21 @@ $router->add(
     });
 {% endhighlight %}
 
+### Aura.Project_Kernel
+
 [Aura.Project_Kernel](https://github.com/auraphp/Aura.Project_Kernel/releases/tag/2.1.0) now have `Factory::newKernel()` and `Factory::newContainer()` have an added param, `$auto_resolve`, to allow you enable/disable auto-resolution in the container.
 
-Other libraries that got doc update, turn off auto-resolution in tests and other minor issues fixed are [Aura.Cli_Kernel](https://github.com/auraphp/Aura.Cli_Kernel/releases/tag/2.0.1) , [Aura.Web_Kernel](https://github.com/auraphp/Aura.Web_Kernel/releases/tag/2.0.1), [Aura.Cli](https://github.com/auraphp/Aura.Cli/releases/tag/2.0.1), [Aura.Html](https://github.com/auraphp/Aura.Html/releases/tag/2.1.1), [Aura.Session](https://github.com/auraphp/Aura.Session/releases/tag/2.0.0-beta2), [Aura.View](https://github.com/auraphp/Aura.View/releases/tag/2.0.1), [Aura.Web](https://github.com/auraphp/Aura.Web/releases/tag/2.0.1).
+### Other Releases
+
+Other libraries that got doc update, turn off auto-resolution in tests and other minor issues fixed are:
+
+- [Aura.Cli_Kernel](https://github.com/auraphp/Aura.Cli_Kernel/releases/tag/2.0.1)
+- [Aura.Web_Kernel](https://github.com/auraphp/Aura.Web_Kernel/releases/tag/2.0.1)
+- [Aura.Cli](https://github.com/auraphp/Aura.Cli/releases/tag/2.0.1)
+- [Aura.Html](https://github.com/auraphp/Aura.Html/releases/tag/2.1.1)
+- [Aura.Session](https://github.com/auraphp/Aura.Session/releases/tag/2.0.0-beta2)
+- [Aura.View](https://github.com/auraphp/Aura.View/releases/tag/2.0.1)
+- [Aura.Web](https://github.com/auraphp/Aura.Web/releases/tag/2.0.1).
 
 ## Framework documentation
 
@@ -100,7 +122,7 @@ Added [Quick start tutorial](http://auraphp.com/manuals/2.0/en/quick-start/) wit
 
 ## Other tutorials
 
-Some were confused on the usage of Aura.View  and Aura.Html so we have  [https://github.com/harikt/AuraViewExample](https://github.com/harikt/AuraViewExample)
+Some were confused on the usage of Aura.View and Aura.Html so we have  [https://github.com/harikt/AuraViewExample](https://github.com/harikt/AuraViewExample)
 
 How to make use of Aura.Router and Aura.Dispatcher [https://github.com/harikt/router-dispatcher](https://github.com/harikt/router-dispatcher)
 
