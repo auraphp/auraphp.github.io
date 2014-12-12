@@ -65,9 +65,9 @@ public function modifyWebDispatcher($di)
     $dispatcher->setObject('hello', function () use ($view, $response, $request) {
 
         // set where the view and layout resides
-        $view_registry = $view->getRegistry();
+        $view_registry = $view->getViewRegistry();
         $view_registry->set('hello', dirname(__DIR__) . '/templates/views/hello.php');
-        $layout_registry = $view->getRegistry();
+        $layout_registry = $view->getLayoutRegistry();
         $layout_registry->set('default', dirname(__DIR__) . '/templates/layouts/default.php');
 
         $name = $request->query->get('name', 'Aura');
