@@ -49,13 +49,13 @@ class ContactForm extends Form
             'AR' => 'Arkansas',
             // ...
         );
-
+        // this will make sure all field names are setup as an array so you can get all fields through $_POST['contact']
+        $this->setName('contact');
         // set input fields
         // hint the view layer to treat the first_name field as a text input,
         // with size and maxlength attributes
         $this->setField('first_name', 'text')
              ->setAttribs(array(
-                 'name' => "contact[first_name]",
                  'id' => 'first_name',
                 'size' => 20,
                 'maxlength' => 20,
@@ -66,14 +66,12 @@ class ContactForm extends Form
         // and the values are the displayed text)
         $this->setField('state', 'select')
              ->setAttribs(array(
-                 'name' => "contact[state]",
                  'id' => 'state',
              ))
              ->setOptions($states);
 
         $this->setField('message', 'textarea')
             ->setAttribs([
-                'name' => "contact[message]",
                 'id' => 'message',
                 'cols' => 40,
                 'rows' => 5,
