@@ -32,8 +32,8 @@ The `browse.php` file may look something like this:
 {% highlight php %}
 <?php
 foreach ($this->items as $item) {
-    $id = htmlspecialchars($item['id'], ENT_QUOTES, 'UTF-8');
-    $name = htmlspecialchars($item['name'], ENT_QUOTES, 'UTF-8')
+    $id = $this->escape()->html($item['id']);
+    $name = $this->escape()->html($item['name']);
     echo "Item ID #{$id} is '{$name}'." . PHP_EOL;
 ?>
 {% endhighlight %}
@@ -122,8 +122,8 @@ We extract the item-display code from `browse.php` into `_item.php`:
 
 {% highlight php %}
 <?php
-$id = htmlspecialchars($item['id'], ENT_QUOTES, 'UTF-8');
-$name = htmlspecialchars($item['name'], ENT_QUOTES, 'UTF-8')
+$id = $this->escape()->html($item['id']);
+$name = $this->escape()->html($item['name']);
 echo "Item ID #{$id} is '{$name}'." . PHP_EOL;
 ?>
 {% endhighlight %}
@@ -253,8 +253,8 @@ $view_registry->set('browse', function () {
 
 $view_registry->set('_item', function (array $vars) {
     extract($vars, EXTR_SKIP);
-    $id = htmlspecialchars($item['id'], ENT_QUOTES, 'UTF-8');
-    $name = htmlspecialchars($item['name'], ENT_QUOTES, 'UTF-8')
+    $id = $this->escape()->html($item['id']);
+    $name = $this->escape()->html($item['name']);
     echo "Item ID #{$id} is '{$name}'." . PHP_EOL;
 );
 ?>
@@ -271,6 +271,136 @@ A bit of extra effort is required with closure-based sub-templates (aka "partial
 Aside from that, closure-based templates work exactly like file-based templates.
 
 ## Built in Helpers via Aura.Html
+
+## Escaper
+
+Escaping output is **absolutely necessary** from a security perspective. This package comes with an `escape()` helper that has four escaping methods:
+
+- `$this->escape()->html('foo')` to escape HTML values
+- `$this->escape()->attr('foo')` to escape unquoted HTML attributes
+- `$this->escape()->css('foo')` to escape CSS values
+- `$this->escape()->js('foo')` to escape JavaScript values
+
+Here is a contrived example of the various `escape()` helper methods:
+
+```html+php
+<head>
+
+    <style>
+        body: {
+            color: <?= $this->escape()->css($theme->color) ?>;
+            font-size: <?= $this->escape()->css($theme->font_size) ?>;
+        }
+    </style>
+
+    <script language="javascript">
+        var foo = "<?= $this->escape()->js($js->foo); ?>";
+    </script>
+
+</head>
+
+<body>
+
+    <h1><?= $this->escape()->html($blog->title) ?></h1>
+
+    <p class="byline">
+        by <?= $this->escape()->html($blog->author) ?>
+        on <?= $this->escape()->html($blog->date) ?>
+    </p>
+
+    <div id="<?php $this->escape()->attr($blog->div_id) ?>">
+        <?= $blog->raw_html ?>
+    </div>
+
+</body>
+```
+
+Unfortunately, escaper functionality is verbose, and can make the template code look cluttered.  There are two ways to mitigate this.
+
+The first is to assign the `escape()` helper to a variable, and then invoke it as a callable. Here is a contrived example of the various escaping methods as callables:
+
+
+```html+php
+<?php
+// assign the escaper helper properties to callable variables
+$h = $this->escape()->html;
+$a = $this->escape()->attr;
+$c = $this->escape()->css;
+$j = $this->escape()->js;
+?>
+
+<head>
+
+    <style>
+        body: {
+            color: <?= $c($theme->color) ?>;
+            font-size: <?= $c($theme->font_size) ?>;
+        }
+    </style>
+
+    <script language="javascript">
+        var foo = "<?= $j($js->foo); ?>";
+    </script>
+
+</head>
+
+<body>
+
+    <h1><?= $h($blog->title) ?></h1>
+
+    <p class="byline">
+        by <?= $h($blog->author) ?>
+        on <?= $h($blog->date) ?>
+    </p>
+
+    <div id="<?php $a($blog->div_id) ?>">
+        <?= $blog->raw_html ?>
+    </div>
+
+</body>
+```
+
+Alternatively, the _Escaper_ class used by the `escape()` helper comes with four static methods to reduce verbosity and clutter:  `h()`, `a()`, `c()`, `j()`, and. These escape values for HTML content values, unquoted HTML attribute values, CSS values, and JavaScript values, respectively.
+
+> N.b.: In Aura, we generally avoid static methods. However, we feel the tradeoff of less-cluttered templates can be worth using static methods in this one case.
+
+To call the static _Escaper_ methods in a PHP-based template, `use` the _Escaper_ as a short alias name, then call the static methods on the alias.  (If you did not instantiate a _HelperLocatorFactory_, you will need to prepare the static escaper methods by calling `Escaper::setStatic(new Escaper)`.)
+
+Here is a contrived example of the various static methods:
+
+```html+php
+<?php use Aura\Html\Escaper as e; ?>
+
+<head>
+
+    <style>
+        body: {
+            color: <?= e::c($theme->color) ?>;
+            font-size: <?= e::c($theme->font_size) ?>;
+        }
+    </style>
+
+    <script language="javascript">
+        var foo = "<?= e::j($js->foo); ?>";
+    </script>
+
+</head>
+
+<body>
+
+    <h1><?= e::h($blog->title) ?></h1>
+
+    <p class="byline">
+        by <?= e::h($blog->author) ?>
+        on <?= e::h($blog->date) ?>
+    </p>
+
+    <div id="<?php e::a($blog->div_id) ?>">
+        <?= $blog->raw_html ?>
+    </div>
+
+</body>
+```
 
 ## Tag Helpers
 
