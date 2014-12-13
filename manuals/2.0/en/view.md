@@ -283,7 +283,7 @@ Escaping output is **absolutely necessary** from a security perspective. This pa
 
 Here is a contrived example of the various `escape()` helper methods:
 
-```html+php
+{% highlight php %}
 <head>
 
     <style>
@@ -313,14 +313,14 @@ Here is a contrived example of the various `escape()` helper methods:
     </div>
 
 </body>
-```
+{% endhighlight %}
 
 Unfortunately, escaper functionality is verbose, and can make the template code look cluttered.  There are two ways to mitigate this.
 
 The first is to assign the `escape()` helper to a variable, and then invoke it as a callable. Here is a contrived example of the various escaping methods as callables:
 
 
-```html+php
+{% highlight php %}
 <?php
 // assign the escaper helper properties to callable variables
 $h = $this->escape()->html;
@@ -358,7 +358,7 @@ $j = $this->escape()->js;
     </div>
 
 </body>
-```
+{% endhighlight %}
 
 Alternatively, the _Escaper_ class used by the `escape()` helper comes with four static methods to reduce verbosity and clutter:  `h()`, `a()`, `c()`, `j()`, and. These escape values for HTML content values, unquoted HTML attribute values, CSS values, and JavaScript values, respectively.
 
@@ -368,7 +368,7 @@ To call the static _Escaper_ methods in a PHP-based template, `use` the _Escaper
 
 Here is a contrived example of the various static methods:
 
-```html+php
+{% highlight php %}
 <?php use Aura\Html\Escaper as e; ?>
 
 <head>
@@ -400,7 +400,7 @@ Here is a contrived example of the various static methods:
     </div>
 
 </body>
-```
+{% endhighlight %}
 
 ## Tag Helpers
 
