@@ -1,28 +1,28 @@
 ---
-layout: docs2-en
+layout: docs2-ja
 title: Dispatching
-permalink: /manuals/2.0/en/dispatcher/
+permalink: /manuals/2.0/ja/dispatcher/
 previous_page: Routing
-previous_page_url: /manuals/2.0/en/router/
+previous_page_url: /manuals/2.0/ja/router/
 next_page: Request
-next_page_url: /manuals/2.0/en/request/
+next_page_url: /manuals/2.0/ja/request/
 ---
 
 # Dispatching
 
-Aura projects can handle different variations of dispatching with the help of [Aura.Dispatcher](https://github.com/auraphp/Aura.Dispatcher).
+Auraプロジェクトは[Aura.Dispatcher](https://github.com/auraphp/Aura.Dispatcher)の助けを借りて様々なバリエーションのプロジェクトを取り扱うことができます。
 
 * [Microframework](#microframework)
 * [Modified Micro-Framework Style](#modified-micro-framework-style)
 * [Full-Stack Style](#full-stack-style)
 
-So if your application starts small and grows, it is easy to modify the application routes acting as a micro framework to a full-stack style.
+従って、あなたのアプリケーションがまだ小さく、成長している場合でもアプリケーションをマイクロフレームワークからフルスタックスタイルへと変化させてゆくことは簡単です。
 
 > You can skip to your favourite usage.
 
 ## Microframework
 
-The following is an example of a micro-framework style route, where the action logic is embedded in the route params. In the `modify()` config method, we retrieve the shared `aura/web-kernel:request` and `aura/web-kernel:response` services, along with the `aura/web-kernel:router` service. We then add a route names `blog.read` and embed the action code as a closure.
+以下に続くのはマイクロフレームワークスタイルのルーターで、アクションロジックはルーターのパラメータに埋め込まれています。`modify()`メソッドのなかで`aura/web-kernel:response`によってシェアされた`aura/web-kernel:request`と`aura/web-kernel:response`サービスを取得します。次に、`blog.read`という名前をルートに追加しアクションのコードをクロージャとして埋め込みます。
 
 {% highlight php %}
 <?php
@@ -59,9 +59,9 @@ class Common extends Config
 
 ## Modified Micro-Framework Style
 
-We can modify the above example to put the action logic in the dispatcher instead of the route itself.
+上の例をルーター自身を使う代わりにアクションロジックをディスパッチャーの中におくように修正できます。
 
-Extract the action closure to the dispatcher under the name `blog.read`. Then, in the route, use a `action` value that matches the name in the dispatcher.
+`blog.name`という名前でディスパッチャにアクションクロージャを設定します。そしてルーターの内部ではディスパッチャーとのマッチングの為に`action`の値に設定します。
 
 {% highlight php %}
 <?php
@@ -104,9 +104,9 @@ class Common extends Config
 
 ## Full-Stack Style
 
-You can migrate from a micro-framework style to a full-stack style (or start with full-stack style in the first place).
+マイクロフレームワークスタイルからフルスタックスタイルへと移行することも可能です。(または最初からフルスタックスタイルで開始することも可能です。)
 
-First, define a action class and place it in the project `src/` directory.
+まず、アクションクラスと`src/`ディレクトリ配下の場所を定義してください。
 
 {% highlight php %}
 <?php
@@ -136,7 +136,7 @@ class BlogRead
 }
 {% endhighlight %}
 
-Next, tell the project how to build the _BlogRead_ through the DI _Container_. Edit the project `config/Common.php` file to configure the _Container_ to pass the `aura/web-kernel:request` and `aura/web-kernel:response` service objects to the _BlogRead_ constructor.
+次に、DI _Container_ を通してプロジェクトにどうやって _BlogRead_ を構築するか通知します。_BlogRead_コンストラクタに`aura/web-kernel:request`と`aura/web-kernel:response`サービスオブジェクトを渡すように_Container_を設定するには、プロジェクトの`config/Common`ファイルを編集します。
 
 {% highlight php %}
 <?php
@@ -161,7 +161,7 @@ class Common extends Config
 }
 {% endhighlight %}
 
-After that, put the _`App\Actions\BlogRead`_ object in the dispatcher under the name `blog.read` as a lazy-loaded instantiation ...
+その後、 _`App\Actions\BlogRead`_ オブジェクトを`blog.read`という名前でディスパッチャーにレジーロードで登録します。
 
 {% highlight php %}
 <?php
@@ -188,7 +188,7 @@ class Common extends Config
 }
 {% endhighlight %}
 
-... and finally, point the router to the `blog.read` action object:
+... そして最後に、ルーターに`blog.read`アクションオブジェクトにを指定します。
 
 {% highlight php %}
 <?php
