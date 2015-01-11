@@ -5,6 +5,8 @@ title: Manual Versions
 
 [Read current version 2.0 in English](/manuals/2.0/en)
 
+[Read current version 2.0 in Japanese](/manuals/2.0/ja)
+
 [Read the version 1.0 in English](/manuals/v1/en)
 
 [Read the version 1.0 in Japanese](/manuals/v1/ja)
