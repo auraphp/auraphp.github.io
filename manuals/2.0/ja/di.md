@@ -1,81 +1,83 @@
 ---
 layout: docs2-en
 title: Dependency Injection
-permalink: /manuals/2.0/en/di/
+permalink: /manuals/2.0/ja/di/
 previous_page: Response
-previous_page_url: /manuals/2.0/en/response/
+previous_page_url: /manuals/2.0/ja/response/
 next_page: View
-next_page_url: /manuals/2.0/en/view/
+next_page_url: /manuals/2.0/ja/view/
 ---
 
-# Dependency Injection
+# ディペンデンシー・インジェクション
 
-Aura.Di is a dependency injection container system with the following features:
+Aura.Diは以下の機能があるデペンデンシーテンテナシステムです。
 
-* constructor and setter injection
+* コンストラクター＆セッターインジェクション
 
-* explicit and implicit auto-resolution of typehinted constructor parameter values
+*タイプヒントされたコンストラクタ引数の明示的、非明示的な自動解決
 
-* configuration of setters across interfaces and traits
+* インターフェイスとトレイトによるコンフィギュレーション
 
-* inheritance of constructor parameter and setter method values
+* コンストラクタ引数とセッターメソッドの値の継承
 
-* lazy-loaded services, values, and instances
+* サービス、値、インスタンスの遅延評価
 
-* instance factories
+* インスタンスファクトリー
 
-We will concentrate on constructor and setter injection in this chapter for easiness.
-It is recommend you should read [Aura.Di documentation](https://github.com/auraphp/Aura.Di/blob/develop-2/README.md)
+この章では簡単にするためにコンストラクターとセッタージェクションを取り上げます。
+[Aura.Di documentation](https://github.com/auraphp/Aura.Di/blob/develop-2/README.md)を読むことをお勧めします。
 
-## Setting And Getting Services
+## サービスのセットと取得
 
-A "service" is an object stored in the _Container_ under a unique name.
-Any time you `get()` the named service, you always get back the same object instance.
+"サービス"は_コンテナ_にユニークな名前をつけて格納されるオブジェクトです。
+名付けられたサービスはいつでも `get()` することができ、いつでも同じオブジェクトのインスタンスが取得できます。
 
 {% highlight php %}
 <?php
-// define the Example class
+// Exampleクラスを定義
 class Example
 {
     // ...
 }
 
-// set the service
+// サービスをセットする
 $di->set('service_name', new Example);
 
-// get the service
+//　サービスを取得する
 $service1 = $di->get('service_name');
 $service2 = $di->get('service_name');
 
-// the two service objects are the same
+// ２つのサービスは同一
 var_dump($service1 === $service2); // true
 ?>
 {% endhighlight %}
 
-That usage is great if we want to create the _Example_ instance at the same time we set the service. However, we generally want to create the service instance at the moment we *get* it, not at the moment we *set* it.
+この使い方はサービスをセットしたときと同じ_Example_インスタンスをつくるのには素晴らしい、しかし*セット*した時でなく、*取得*する時のインスタンスが欲しい場合もあります。
 
 The technique of delaying instantiation until `get()` time is called "lazy loading." To lazy-load an instance, use the `lazyNew()` method on the _Container_ and give it the class name to be created:
+このテクニックは
 
 {% highlight php %}
 <?php
-// set the service as a lazy-loaded new instance
+// 遅延評価されるインスタンスとしてサービスをセットする
 $di->set('service_name', $di->lazyNew('Example'));
 ?>
 {% endhighlight %}
 
 Now the service is created only when we we `get()` it, and not before.
 This lets us set as many services as we want, but only incur the overhead of creating the instances we actually use.
+サービスはあらかじめつくられるものではなく、`get()`の時に作られるようになりました。
+実際に使うときだけオーバーヘッドがかかります。
 
-## Constructor Injection
+## コンストラクターインジェクション
 
-When we use the _Container_ to instantiate a new object, we often need
-to inject (i.e., set) constructor parameter values in various ways.
+_コンテナ_から新しいオブジェクトを生成するときに、様々な方法でコンストラクタ引数にインジェクト（セット）する必要があります。
 
-## Default Parameter Values
+## 引数のデフォルト値
 
-We can define default values for constructor parameters using the `$di->params` array on the _Container_.
+`$di->params`配列を使って_Container_にデフォルト値を定義することができます。
 
-Let's look at a class that takes some constructor parameters:
+コンストラクタ引数を必要とするクラスをみてみましょう。
 
 {% highlight php %}
 <?php
@@ -92,12 +94,12 @@ class ExampleWithParams
 ?>
 {% endhighlight %}
 
-If we were to try to set a service using `$di->lazyNew('ExampleWithParams')`,
-the instantiation would fail. The `$foo` param is required, and the _Container_
-does not know what to use for that value.
+この場合、`$di->lazyNew('ExampleWithParams')`を使ってサービスをセットするとインスタンス生成は失敗します。`$foo`引数が必要で_Container_はどうやって値を用意するのか分かりません。
 
 To remedy this, we tell the _Container_ what values to use for
 each _ExampleWithParams_ constructor parameter by name using the `$di->params` array:
+
+これに対処するためには、 _ExampleWithParams_クラスのコンストラクタ引数に`$di->params`配列を使って_Container_クラスに伝えます。
 
 {% highlight php %}
 <?php
@@ -111,11 +113,15 @@ the instantiation will work correctly. Each time we create an
 _ExampleWithParams_ instance through the _Container_, it will apply
 the `$di->params['ExampleWithParams']` values.
 
-## Instance-Specific Parameter Values
+サービスが`$di->lazyNew('ExampleWithParams')`で定義されると、正しくインスタンス生成されます。
+_Container_を通じて_ExampleWithParams_インスタンスを作るたびに`$di->params['ExampleWithParams']`の値が適用されます。
 
-If we want to override the default `$di->params` values for a specific
-new instance, we can pass a `$params` array as the second argument to
-`lazyNew()` to merge with the default values. For example:
+## 特定インスタンスの引数値
+
+特定の新しいインスタンスのために`$di->params`のデファルトの値を上書きしたいときには、
+`$params`配列の２番目の引数で`lazyNew()`をデフォルトの値にマージします。
+
+例）
 
 {% highlight php %}
 <?php
@@ -128,13 +134,13 @@ $di->set('service_name', $di->lazyNew(
 ?>
 {% endhighlight %}
 
-This will leave the `$foo` parameter default in place, and override
-the `$bar` parameter value, for just that instance of the _ExampleWithParams_.
+`$foo`引数をデフォルトのままにしますが、_ExampleWithParams_がインスタンス化されるときに`$bar`引数の値が上書きされます。
 
-## Lazy-Loaded Services As Parameter Values
+## 引数の値として遅延評価されるサービス
 
-Sometimes a class will need another service as one of its parameters.
-By way of example, the following class needs a database connection:
+クラスは他のサービスを引数として必要とすることがあります。
+例えば、以下のクラスはデータベース接続が必要です。
+
 
 {% highlight php %}
 <?php
@@ -149,8 +155,9 @@ class ExampleNeedsService
 ?>
 {% endhighlight %}
 
-To inject a shared service as a parameter value, use `$di->lazyGet()`
-so that the service object is not created until the _ExampleNeedsService_ object is created:
+共有されるサービスとして引数にインジェクトするためには`$di->lazyGet()`を使います。
+その場合_ExampleNeedsService_オブジェクトがつくられるまでサービスオブジェクトはつくられません。
+
 
 {% highlight php %}
 <?php
@@ -158,15 +165,17 @@ $di->params['ExampleNeedsService']['db'] = $di->lazyGet('db_service');
 ?>
 {% endhighlight %}
 
-This keeps the service from being created until the very moment it is needed. If we never instantiate anything that needs the service, the service itself will never be instantiated.
+これはサービスが必要とされる時まで作成されません。（もしサービスが必要でなければ生成されません）
 
-## Setter Injection
+## セッターインジェクション
 
-This package supports setter injection in addition to constructor injection. (These can be combined as needed.)
+コンストラクターインジェクションに加えてセッターインジェクションもサポートします。
 
-## Setter Method Values
+## セッターメソッドの値
 
-After the _Container_ constructs a new instance of an object, we can specify that certain methods should be called with certain values immediately after instantiation by using the `$di->setter` array.  Say we have class like the following:
+
+_Container_が新しいオブジェクトのインスタンスを作成したあとに、特定のメソッドに特定の値を`$di->setter`配列に渡して呼ぶことができます。
+例えば以下のようなクラスを考えてみます。
 
 {% highlight php %}
 <?php
@@ -182,7 +191,11 @@ class ExampleWithSetter
 ?>
 {% endhighlight %}
 
-We can specify that, by default, the `setFoo()` method should be called with a specific value after construction like so:
+We can specify that, by default,
+the `setFoo()` method should be called with a specific value after construction like so:
+
+`setFoo()`メソッドはコンストラクタの後に特定の値で呼ばれれます。
+
 
 {% highlight php %}
 <?php
@@ -190,20 +203,19 @@ $di->setter['ExampleWithSetter']['setFoo'] = 'foo_value';
 ?>
 {% endhighlight %}
 
-The value can be any valid value: a literal, a call to `lazyNew()` or `lazyGet()`, and so on.
+値は何でも有効です。リテラルや`lazyNew()`、 `lazyGet()`を呼ぶことなどです。
 
-Note, however, that auto-resolution *does not apply* to setter methods.
-This is because the _Container_ does not know which methods are setters
-and which are "normal use" methods.
+しかしながらauto-resolutioんはセッターメソッドには*適用できません*
+なぜなら、これは_Container_がどのメソッドがセッターメソッドで、どれが”普通の"メソッドか分からないためです。
 
-Note also that this works only with explicitly-defined setter methods.
-Setter methods that exist only via magic `__call()` will not be honored.
+明示的に定義されたセッターメソッドに限って利用できます。
 
-## Instance-Specific Setter Values
+## インスタンスに特定されたセッター値
 
-As with constructor injection, we can note instance-specific setter
-values to use in place of the defaults. We do so via the third
-argument to `$di->lazyNew()`. For example:
+コンストラクターインジェクションで行ったように、特定のデフォルトの値をセッターインジェクションでも指定することができます。
+三番の引数に`$di->lazyNew()`で指定します。
+
+例）
 
 {% highlight php %}
 <?php
