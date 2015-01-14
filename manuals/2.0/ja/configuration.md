@@ -1,34 +1,38 @@
 ---
-layout: docs2-en
+layout: docs2-ja
 title: Configuration
-permalink: /manuals/2.0/en/configuration/
+permalink: /manuals/2.0/ja/configuration/
 previous_page: Introduction
-previous_page_url: /manuals/2.0/en/
+previous_page_url: /manuals/2.0/ja/
 next_page: Routing
-next_page_url: /manuals/2.0/en/router/
+next_page_url: /manuals/2.0/ja/router/
 ---
 
-# Configuration
+# コンフィギュレーション
 
-Although configuration is a project-level concern, each aura web and cli kernel and project handles it in the same way.
+コンフィギュレーションはプロジェクト全体の関心事ですが、各auraのweb、 cli カーネル、そしてプロジェクトは同じ方法で扱います。
 
-## Setting The Config Mode
+## コンフィグモードの設定
 
-Set the configuration mode using `$_ENV['AURA_CONFIG_MODE']`, either via a server variable or the project-level `config/_env.php` file. Each Aura project comes with `dev` (local development), `test` (shared testing/staging), and `prod` (production) modes pre-defined.
+サーバーの環境変数、またはプロジェクト全体の環境 `config/_env.php` ファイルで 
+`$_ENV['AURA_CONFIG_MODE']` を使ってコンフィグのモードを設定しましょう。
+それぞれのAuraプロジェクトには、あらかじめ`dev` (ローカルデベロップメント), `test` (テスト/ステージング), そして `prod` (プロダクション) が定義されています。
 
-## Config File Location
+## 設定ファイルの場所
 
-Project-level configuration files are located in the project-level `config/` directory. Each configuration file is a class that extends _Aura\\Di\\Config_, and represents a configuration mode. Each configuration class has two methods:
+プロジェクト全体のコンフィグファイルは、`config/` ディレクトリにあります。各コンフィグファイルは _Aura\\Di\\Config_ を継承するクラスであり、それぞれコンフィグのモードを表します。コンフィグクラスは2つのメソッドを持っています。
 
-- `define()`, which allows you to define params, setters, and services in the project _Container_; and
+- `define()`, プロジェクトの _Container_ へパラメーター、セッター、サービスを定義します。
 
-- `modify()`, which allows you to pull objects out of the _Container_ for programmatic modification. (This happens after the _Container_ is locked, so you cannot add new services or change params and setters here.)
+- `modify()`, プログラムによる変更のため、 _Container_ からオブジェクトを呼び出します。 (これは _Container_ がロックされてから行われます。よってここで新しいサービスやパラメータ、セッターの変更は出来ません。)
 
-The two-stage configuration system loads all the configuration classes in order by library, kernel, and project, then runs all the `define()` methods, locks the container, and finally runs all the `modify()` methods.
+この2段階構成ではライブラリー、カーネルそしてプロジェクトの順番にコンフィグクラスをロードし、それから全ての `define()` メソッドを実行します。
+コンテナーをロックし、最後に `modify()` メソッドを実行します。
 
-## Mapping Config Modes To Classes
+## モードからクラスへのマッピング
 
-The config modes are mapped to their related config class files via the project-level `composer.json` file in the `extra:aura:config` block. The entry key is the config mode, and the entry value is the class to use for that mode.
+コンフィグのモードは、プロジェクトの `composer.json` ファイルの `extra:aura:config` ブロックでそれぞれ関連したコンフィグのクラスにマッピングされます。
+エントリーのキーがモードで、それに対応する値がそのモードで利用されるクラスになります。
 
 {% highlight json %}
 {
@@ -54,25 +58,25 @@ The config modes are mapped to their related config class files via the project-
 }
 {% endhighlight %}
 
-Config classes are autoloaded via a PSR-4 entry for that project namespace.
+プロジェクトネームスペース内のPSR-4 エントリーを通してコンフィグクラスがオートロードされます。
 
-The "common" config class is always loaded regardless of the actual
-config mode.  For example, if the config mode is `dev`, first the
-_Common_ class is loaded, and then the _Dev_ class.
+ "common" のコンフィグクラスはモードに関わらず常にロードされます。 
+例えばコンフィグのモードが `dev`の場合は、はじめに _Common_ クラスがロードされ、それから
+ _Dev_ クラスがロードされます。
 
 
-## Changing Config Settings
+## コンフィグ設定の変更
 
-First, open the config file for the related config mode. To change
-configuration params, setters, and services, edit the `define()` method.
-To programmatically change a service after all definitions are complete,
-edit the `modify()` method.
+まずはじめに、モードに応じたコンフィグファイルを開いてください。
+パラメーター、セッター、サービスを変更したい場合は `define()` メソッドを編集しましょう。
+全ての定義が読み込まれた後、プログラムで変更するような場合は `modify()` メソッドで行うようにしましょう。
 
-## Adding A Config Mode
+## コンフィグモードの追加
 
-If you want to add a new configuration mode, say `qa`, you need to do three things.
+コンフィギュレーションのモードを追加する場合、3つのステップが必要になります。
+ここでは `qa` モードで作成してみます。
 
-First, create a config class for it in `config/`:
+まず初めに、 `config/` ディレクトリにコンフィグクラスを作成してみましょう。
 
 {% highlight php %}
 <?php
@@ -85,19 +89,18 @@ class Qa extends Config
 {
     public function define(Container $di)
     {
-        // define params, setters, and services here
+        // パラメーター、セッター、サービスをここに定義します。
     }
 
     public function modify(Container $di)
     {
-        // modify existing services here
+        // 定義したサービスを変更する場合はここに定義します。
     }
 }
 ?>
 {% endhighlight %}
 
-Next, edit the project-level `composer.json` file to add the new config
-mode with its related class:
+次に、プロジェクトの `composer.json` ファイルを開き、新しいコンフィグのモードと対応するクラスを追加しましょう。
 
 {% highlight json %}
 {
@@ -116,5 +119,4 @@ mode with its related class:
 }
 {% endhighlight %}
 
-Finally, run `composer update` so that Composer makes the necessary changes
-to the autoloader system.
+最後に、`composer update` を実行するとComposerが必要な変更をオートローダーに適用します。
