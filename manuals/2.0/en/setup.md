@@ -2,7 +2,7 @@
 layout: docs2-en
 title: Setting up your virtual host
 permalink: /manuals/2.0/en/setup/
-previous_page: Models
+previous_page: Command line / console
 previous_page_url: /manuals/2.0/en/cli/
 ---
 
