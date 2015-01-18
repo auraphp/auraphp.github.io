@@ -1,32 +1,31 @@
 ---
-layout: docs2-en
+layout: docs2-ja
 title: Introduction
-permalink: /manuals/2.0/en/request/
+permalink: /manuals/2.0/ja/request/
 previous_page: Dispatching
-previous_page_url: /manuals/2.0/en/dispatcher/
+previous_page_url: /manuals/2.0/ja/dispatcher/
 next_page: Response
-next_page_url: /manuals/2.0/en/response/
+next_page_url: /manuals/2.0/ja/response/
 ---
 
-# Request
+# リクエスト
 
-The _Request_ object describes the current web execution context for PHP. Note
-that it is **not** an HTTP request object proper, since it includes things
-like `$_ENV` and various non-HTTP `$_SERVER` keys.
+_リクエスト_ オブジェクトは現在実行しているPHPのためのWebコンテキストを表現します。
+このオブジェクトはHTTPリクエストそのものを表しているのではないことに注意してください。
+というのも、`$_ENV` や HTTPとは関係ない`$_SERVER` の要素を含むからです。
 
-You can get the _Request_ object from the DI,
+_リクエスト_ オブジェクトはDIを利用して取得することができます。
 
 {% highlight php %}
 <?php
 $request = $di->get('aura/web-kernel:request');
 
-// or can inject to another class as
-
+// もしくは下記のように別のクラスにインジェクトすることもできます。
 $di->lazyGet('aura/web-kernel:request');
 {% endhighlight %}
 
-The _Request_ object contains several property objects. Some represent a copy
-of the PHP superglobals ...
+_リクエスト_ オブジェクトはいくつかのプロパティオブジェクトを持ちます。
+そのうちのいくつかは、PHPのスーパーグローバル変数をコピーしたものです ...
 
 - `$request->cookies` for `$_COOKIES`
 - `$request->env` for `$_ENV`
@@ -35,7 +34,7 @@ of the PHP superglobals ...
 - `$request->query` for `$_GET`
 - `$request->server` for `$_SERVER`
 
-... and others represent more specific kinds of information about the request:
+... その他のプロパティオブジェクトは、リクエストに特有の情報を表します。
 
 - `$request->client` for the client making the request
 - `$request->content` for the raw body of the request
@@ -45,90 +44,90 @@ of the PHP superglobals ...
 - `$request->params` for path-info parameters
 - `$request->url` for the request URL
 
-The _Request_ object has only one method, `isXhr()`, to indicate if the
-request is an _XmlHttpRequest_ or not.
+_リクエスト_ オブジェクトはただ一つ `isXhr()` メソッドを持ちます。
+これはリクエストが _XmlHttpRequest_ であるかどうかを知るために使用します。
 
-## Superglobals
+## スーパーグローバル変数
 
-Each of the superglobal representation objects has a single method, `get()`,
-that returns the value of a key in the superglobal, or an alternative value
-if the key is not present.  The values here are read-only.
+スーパーグローバル変数を表す各オブジェクトは単一のメソッド `get()` を持ち、
+スーパーグローバル変数のキーに該当する値を返します。もし該当するキーがなければ、
+代替の値を返します。これらの値はリードオンリーです。
 
 {% highlight php %}
 <?php
-// returns the value of $_POST['field_name'], or 'not set' if 'field_name' is
-// not present in $_POST
+
+// $_POST['field_name'] の値を返します。もし$_POSTに 'field_name' というキーがなければ
+// 'not set' を返します。
 $field_name = $request->post->get('field_name', 'not set');
 
-// if no key is given, returns an array of all values in the superglobal
+// 引数にキーが与えられなければスーパーグローバル変数内のすべての値の配列を返します。
 $all_server_values = $request->server->get();
 
-// the $_FILES array has been rearranged to look like $_POST
+// $_FILES配列は$_POSTと同じ構造に再構成されます。
 $file = $request->files->get('file_field', array());
 ?>
 {% endhighlight %}
 
 ## Client
 
-The `$request->client` object has these methods:
+`$request->client` オブジェクトは下記メソッドを持ちます:
 
-- `getForwardedFor()` returns the values of the `X-Forwarded-For` headers as
-  an array.
+- `getForwardedFor()` `X-Forwarded-For` ヘッダの値を配列で返します。
 
-- `getReferer()` returns the value of the `Referer` header.
+- `getReferer()` `Referer` ヘッダの値を配列で返します。
 
-- `getIp()` returns the value of `$_SEVER['REMOTE_ADDR']`, or the appropriate
-  value of `X-Forwarded-For`.
+- `getIp()` `$_SEVER['REMOTE_ADDR']` の値を返します。もしくは適切な `X-Forwarded-For` の値を返します。
 
-- `getUserAgent()` return the value of the `User-Agent` header.
+- `getUserAgent()` `User-Agent` ヘッダの値を返します。
 
-- `isCrawler()` returns true if the `User-Agent` header matches one of a list
-  of bot/crawler/robot user agents (otherwise false).
+- `isCrawler()` `User-Agent` ヘッダの値が bot/crawler/robot のユーザエージェントリストの
+  一つにマッチすればtrueを返します(マッチしなければfalse)。
 
-- `isMobile()` returns true if the `User-Agent` header matches one of a list
-  of mobile user agents (otherwise false).
+- `isMobile()` `User-Agent` ヘッダの値がモバイルのユーザエージェントリストの
+  一つにマッチすればtrueを返します(マッチしなければfalse)。
 
 ## Content
 
-The `$request->content` object has these methods:
+`$request->content` オブジェクトは下記メソッドを持ちます:
 
-- `getType()` returns the content-type of the request body
+- `getType()` リクエストボディのcontent-typeを返します。
 
-- `getRaw()` return the raw request body
+- `getRaw()` 生のリクエストボディを返します。
 
-- `get()` returns the request body after decoding it based on the content type
+- `get()` content-typeに基づいてデコードされた後のリクエストボディを返します。
 
-The _Content_ object has two decoders built in.
-If the request specified a content type of `application/json`,
-the `get()` method will automatically decode the body with `json_decode()`.
-Likewise, if the content type is `application/x-www-form-urlencoded`, the
-`get()` method will automatically decode the body with `parse_str()`.
+_Content_ オブジェクトは2つのビルトインのデコーダを持っています。
+もしリクエストのcontent-typeが `application/json` だった場合、
+`get()` メソッドは自動的にリクエストボディを `json_decode()` でデコードします。
+同じように、もしcontent-typeが `application/x-www-form-urlencoded` だった場合、
+`get()` メソッドは自動的にリクエストボディを `parse_str()` でデコードします。
 
 ## Headers
 
-The `$request->headers` object has a single method, `get()`, that returns the
-value of a particular header, or an alternative value if the key is not
-present. The values here are read-only.
+`$request->headers` オブジェクトは単一のメソッド `get()` を持ち、
+特定ヘッダの値を返します。もし該当するキーがなければ、代替の値を返します。
+これらの値はリードオンリーです。
 
 {% highlight php %}
 <?php
-// returns the value of 'X-Header' if present, or 'not set' if not
+
+// 'X-Header' が存在すればその値を、存在しなければ 'not set' を返します。
 $header_value = $request->headers->get('X-Header', 'not set');
 ?>
 {% endhighlight %}
 
 ## Method
 
-The `$request->method` object has these methods:
+`$request->method` オブジェクトは下記メソッドを持ちます:
 
-- `get()`: returns the request method value
-- `isDelete()`: Did the request use a DELETE method?
-- `isGet()`: Did the request use a GET method?
-- `isHead()`: Did the request use a HEAD method?
-- `isOptions()`: Did the request use an OPTIONS method?
-- `isPatch()`: Did the request use a PATCH method?
-- `isPut()`: Did the request use a PUT method?
-- `isPost()`: Did the request use a POST method?
+- `get()`: リクエストメソッドの値を返します。
+- `isDelete()`: リクエストはDELETEメソッドを使用したか?
+- `isGet()`: リクエストはGETメソッドを使用したか?
+- `isHead()`: リクエストはHEADメソッドを使用したか?
+- `isOptions()`: リクエストはOPTIONSメソッドを使用したか?
+- `isPatch()`: リクエストはPATCHメソッドを使用したか?
+- `isPut()`: リクエストはPUTメソッドを使用したか?
+- `isPost()`: リクエストはPOSTメソッドを使用したか?
 
 {% highlight php %}
 <?php
@@ -138,9 +137,9 @@ if ($request->method->isPost()) {
 ?>
 {% endhighlight %}
 
-You can also call `is*()` on the _Method_ object; the part after `is` is
-treated as custom HTTP method name, and checks if the request was made using
-that HTTP method.
+_Method_ オブジェクトで `is*()` メソッドをコールすることもできます。`is` の後の文字列は、
+カスタムのHTTPメソッド名として扱われ、リクエストがそのHTTPメソッドを利用して生成されたか
+どうかをチェックします。
 
 {% highlight php %}
 <?php
@@ -150,12 +149,13 @@ if ($request->method->isCustom()) {
 ?>
 {% endhighlight %}
 
-Sometimes forms use a special field to indicate a custom HTTP method on a
-POST. By default, the _Method_ object honors the `_method` form field.
+フォームにカスタムHTTPメソッドを示す特別なフィールドを用意して、POSTでリクエストを行う
+場合もあるでしょう。デフォルトでは _Method_ オブジェクトは `_method` フォームフィールド
+をその用途に使用できます。
 
 {% highlight php %}
 <?php
-// a POST with the field '_method' will use the _method value instead of POST
+// '_method' フィールドを使用したPOSTリクエストでは、POSTの代わりに_methodの値がメソッドとなります。
 $_SERVER['REQUEST_METHOD'] = 'POST';
 $_POST['_method'] = 'PUT';
 echo $request->method->get(); // PUT
@@ -164,56 +164,56 @@ echo $request->method->get(); // PUT
 
 ## Params
 
-Unlike most _Request_ property objects, the _Params_ object is read-write (not
-read-only). The _Params_ object allows you to set application-specific
-parameter values. These are typically discovered by parsing a URL path through
-a router of some sort (e.g. [Aura.Router][]).
+他のほとんどの _Request_ プロパティオブジェクトと異なり、_Params_ オブジェクトは読み書き可能です(リードオンリーではない)。
+_Params_ オブジェクトにはアプリケーションに特有のパラメータを設定することができます。これらのパラメータは典型的には
+何らかのルータ(例えば [Aura.Router][])がURLのパスをパーズすることで検出されます。
 
   [Aura.Router]: https://github.com/auraphp/Aura.Router
 
-The `$request->params` object has two methods:
+`$request->params` オブジェクトは2つのメソッドを持ちます:
 
-- `set()` to set the array of parameters
-- `get()` to get back a specific parameter, or the array of all parameters
+- `set()` パラメータの配列をセットします。
+- `get()` 特定のパラメータの値もしくはすべてのパラメータの配列を取得します。
 
-For example:
+例えば:
 
 {% highlight php %}
 <?php
-// parameter values discovered by a routing mechanism
+
+// ルーティングのメカニズムで検出されたパラメータの値。
 $values = array(
     'controller' => 'blog',
     'action' => 'read',
     'id' => '88',
 );
 
-// set the parameters on the request
+// リクエストにパラメータをセットします。
 $request->params->set($values);
 
-// get the 'id' param, or false if it is not present
+// 'id' パラメータの値を取得します。もし存在しなければfalseが返ります。
 $id = $request->params->get('id', false);
 
-// get all the params as an array
+// すべてのパラメータを配列で取得します。
 $all_params = $request->params->get();
 ?>
 {% endhighlight %}
 
 ## Url
 
-The `$request->url` object has two methods:
+`$request->url` オブジェクトは2つのメソッドを持ちます:
 
-- `get()` returns the full URL string; or, if a component constant is passed,
-  returns only that part of the URL
+- `get()` 完全なURL文字列を返します。もし引数にコンポーネント定数が渡された場合、
+  該当する部分のURL文字列のみを返します。
 
-- `isSecure()` indicates if the request is secure, whether via SSL, TLS, or
-  forwarded from a secure protocol
+- `isSecure()` SSL, TLS もしくはセキュアなプロトコルから転送されされたかどうかを判断し、リクエストが安全かどうかを返します。
 
 {% highlight php %}
 <?php
-// get the full URL string
+
+// 完全なURL文字列を取得します。
 $string = $request->url->get();
 
-// get a particular part of the URL; for the component constants, see
+// 特定部分のURLを取得します。コンポーネント定数については下記URLを確認してください。
 // http://php.net/parse-url
 $scheme   = $request->url->get(PHP_URL_SCHEME);
 $host     = $request->url->get(PHP_URL_HOST);
