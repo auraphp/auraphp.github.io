@@ -1,81 +1,59 @@
 ---
-layout: docs2-en
-title: Validation
-permalink: /manuals/2.0/en/validation/
-previous_page: Forms
-previous_page_url: /manuals/2.0/en/forms/
-next_page: Internationalization
-next_page_url: /manuals/2.0/en/intl/
+layout: docs-ja
+title: Validation and Sanitization
+permalink: /manuals/v1/ja/filter/
 ---
 
-# Validation
+# バリデーションとサニタイゼーション #
 
-[Aura.Filter](https://github.com/auraphp/Aura.Filter) is a tool to validate and sanitize data.
+Aura Filterパッケージはデータオブジェクトと配列のためのバリデーションとサニタイゼーションの機能を提供します。
 
-> Assume you have installed `foa/filter-input-bundle` and `foa/filter-input-bundle`.
+## データオブジェクトに対するルールの適用 ##
 
-{% highlight json %}
-{
-    // more
-    "require": {
-        // more
-        "foa/filter-input-bundle": "~1.1",
-        "foa/filter-intl-bundle": "~1.1"
-    }
-}
-{% endhighlight %}
+### ソフト、ハード、ストップルール ###
 
+三種類のルール処理を適用することができます。
 
-> We are using version 1 of Aura.Filter.
+- `addSoftRule()`メソッドはソフトなルールを追加します：もしこのルールが失敗しても
+そのフィールドに残っているフィルターと他の全てのフィールドに適用します。
 
-## Applying Rules to Data Objects
+- `addHardRule()`はハードなルールを加えます。もし失敗するとフィルターはそれ以上、
+他のルールはそのフィールドに適用しませんが他のフィールドには適用します。
 
-### Soft, Hard, and Stop Rules
-
-There are three types of rule processing we can apply:
-
-- The `addSoftRule()` method adds a soft rule: if the rule fails, the filter
-  will keep applying all remaining rules to that field and all other fields.
-
-- The `addHardRule()` method adds a hard rule: if the rule fails, the filter
-  will not apply any more rules to that field, but it will keep filtering
-  other fields.
-
-- The `addStopRule()` method adds a stopping rule: if the rule fails, the
-  filter will not apply any more filters to any more fields; this stops all
-  filtering on the data object.
+- `addStopRule()` メソッドは停止するルールを加えます。もしルールが失敗するとデータオブジェクトに対する
+全てのフィルターを停止します。
 
 
-## Validating and Sanitizing
+## バリデーションとサイニタイジング ##
 
-We validate data by applying a rule with one of the following requirements:
+これらの条件ののうち一つをルールに適用してデータをバリデーションします：
 
-- `RuleCollection::IS` means the field value must match the rule.
+- `RuleCollection::IS`はフィールドの値がルールにマッチしなければなりません。
 
-- `RuleCollection::IS_NOT` means the field value must *not* match the
-  rule.
+- `RuleCollection::IS_NOT`はフィールドの値がルールにマッチ*してはなりません*。
 
-- `RuleCollection::IS_BLANK_OR` means the field value must *either* be
-  blank, *or* match the rule. This is useful for optional field values that
-  may or may not be filled in.
+- `RuleCollection::IS_BLANK_OR`はフィールドの値がblank*または*ルールにマッチするか。
+これはフィールドの値がオプションの時に便利です。
 
-We sanitize data by applying a rule with one of the following transformations:
+以下の変換のうち一つをルールに適用してデータをサニタイズします。
+
+- `RuleCollection::FIX`はフィールドの値を強制的に適合し変換してしまいます。
+いくつかの変換は不可能で、その場合はフィールドはエラーメッセーになります。
 
 - `RuleCollection::FIX` to force the field value to comply with the
   rule; this may forcibly transform the value. Some transformations are not
   possible, so sanitizing the field may result in an error message.
 
-- `RuleCollection::FIX_BLANK_OR` will convert blank values to `null`;
-  non-blank fields will be forced to comply with the rule. This is useful for
-  sanitizing optional field values that may or may not match the rule.
+- `RuleCollection::FIX_BLANK_OR`はブランクの値を`null`に変えます；ブランクでないフィールドはルールが強制的に適用されます。
+これはルールに適用するかしないか定かでないオプションのフィールド値のサニタイズに便利です。
 
-Each field is sanitized in place; i.e., the data object property will be modified directly.
+それぞれのフィールドが適切にサニタイズされます; （つまりデータオブジェクトは適切に直接変更されます）
 
+## ブランクの値 ##
 
-## Blank Values
-
-Aura Filter incorporates the concept of "blank" values, as distinct from `isset()` and `empty()`. A value is blank if it is `null`, an empty string, or
-a string composed of only whitespace characters. Thus, the following are blank:
+Aura Filterには`isset()` や `empty()`ではない"blank"値のコンセプトがあります。
+もしそれが`null`であったり空文字列やホワイトスペースの文字列だけで構成されていたならそうです。
+以下もまたブランクです：
 
 {% highlight php %}
 <?php
@@ -86,7 +64,7 @@ $blank = [
 ];
 {% endhighlight %}
 
-Integers, floats, booleans, and other non-strings are never counted as blank, even if they evaluate to zero:
+Integers、floats、boolean、それに他の文字列でないものは決してブランクになることはありません。もしそれがゼロと評価されてもです：
 
 {% highlight php %}
 <?php
@@ -99,177 +77,170 @@ $not_blank = [
 ];
 {% endhighlight %}
 
-## Available Rules
+## 利用可能なルール ##
 
-- `alnum`: Validate the value as alphanumeric only. Sanitize to leave only
-  alphanumeric characters. Usage:
+- `alnum`: alphanumeric（文字列と数字）のみの値。alphanumeric文字だけを残します；
+仕様法：
 
         $filter->addSoftRule('field', $filter::IS, 'alnum');
 
-- `alpha`: Validate the value as alphabetic only. Sanitize to leave only
-  alphabetic characters. Usage:
+- `alpha`: アルファベットの値のみ。アルファベット文字列だけを残します。
+仕様法：
 
         $filter->addSoftRule('field', $filter::IS, 'alpha');
 
-- `between`: Validate the value as being within or equal to a minimum and
-  maximum value. Sanitize so that values lower than the range are forced up
-  to the minimum; values higher than the range are forced down to the maximum.
-  Usage:
+- `between`: 値を最少から最大の値の値にバリデートします。
+もしレンジ以下の値があれば強制的に最小値に、レンジ以上の値があれば最大値になります。
+仕様法：
 
-        $filter->addSoftRule('field', $filter::IS, 'between', $min, $max);
+        $filter->addSoftRule('field', $filter::IS, 'between', $max, $min);
 
 - `blank`: Validate the value as being blank. Sanitize to `null`. Usage:
-
+- `blank`: ブランクとしてバリデートし、`null`にサニタイズします。
+仕様法：
         $filter->addSoftRule('field', $filter::IS, 'blank');
 
-- `bool`: Validate the value as being a boolean, or a pseudo-boolean.
-  Pseudo-true values include the strings '1', 'y', 'yes', and 'true';
-  pseudo-false values include the strings '0', 'n', 'no', and 'false'.
-  Sanitize to a strict PHP boolean. Usage:
+- `bool`: booleanとしてバリデート、または'1','y','yes'それに'true'などをbooleanに見立ててバリデーとします;
+'0', 'n', 'no', それに 'false'はfalseになります。PHPのstrictなbooleanもサニタイズします。
+仕様法：
 
         $filter->addSoftRule('field', $filter::IS, 'bool');
 
-- `creditCard`: Validate the value as being a credit card number. The value
-  cannot be sanitized. Usage:
+- `creditCard`: クレジットカード番号としてバリデートします。値はサニタイズされません。
+仕様法：
 
         $filter->addSoftRule('field', $filter::IS, 'creditCard');
 
-- `dateTime`: Validate the value as representing a date and/or time. Sanitize
-  the value to a specified format, default `'Y-m-d H:i:s'`. Usage (note that
-  this is to sanitize, not validate):
+- `dateTime`: dateやtimeを表す値としてバリデートされます。特定のフォーマットとしてもサニタイズされます。
+デフォルトは`'Y-m-d H:i:s'`です。
+仕様法（これはバリデーションではなくサニタイズです）：
 
         $filter->addSoftRule('field', $filter::FIX, 'dateTime', $format);
 
-- `email`: Validate the value as being a properly-formed email address. The
-  value cannot be sanitized. Usage:
+- `email`: 値を適切な形のemailアドレスとしてバリデーションっします。サニタイズはしません.
+仕様法:
 
         $filter->addSoftRule('field', $filter::IS, 'email');
 
-- `equalToField`: Validate the value as loosely equal to the value of another
-  field in the data object. Sanitize to the value of that other field.
-  Usage:
+- `equalToField`: 値をデータオブジェクトの他の値と厳密でない方法で同値かバリデーションします。
+仕様法:
 
         $filter->addSoftRule('field', $filter::IS, 'equalToField', 'other_field_name');
 
-- `equalToValue`: Validate the value as loosely equal to a specified value.
-  Sanitize to the specified value. Usage:
+- `equalToValue`: 特定の値と厳密でない方法で同値かバリデーションします。特定の値にサニタイズされます。
+仕様法:
 
         $filter->addSoftRule('field', $filter::IS, 'equalToValue', $other_value);
 
-- `float`: Validate the value as representing a float. Sanitize the value to
-  transform it into a float; for weird strings, this may not be what you
-  expect. Usage:
+- `float`: floatかバリデーションします。値はfloatに変換されます。
+仕様法:
 
         $filter->addSoftRule('field', $filter::IS, 'float');
 
-- `inKeys`: Validate that the value is loosely equal to a key in a given
-  array. The value cannot be sanitized. Usage:
+- `inKeys`: 与えられた配列と厳密ではない方法で同値がバリデーションします。値はサニタイズされません。
+仕様法:
 
         $filter->addSoftRule('field', $filter::IS, 'inKeys', $array);
 
-- `inValues`: Validate that the value is strictly equal to at least one value
-  in a given array. The value cannot be sanitized. Usage:
+- `inValues`: 与えられた配列と厳密な方法で同値がバリデーションします。値はサニタイズされません。
+仕様法:
 
         $filter->addSoftRule('field', $filter::IS, 'inValues', $array);
-
-- `int`: Validate the value as representing an integer Sanitize the value to
-  transform it into an integer; for weird strings, this may not be what you
-  expect. Usage:
+        
+- `int`: 値は整数としてバリデーションされます。値は整数にサニタイズされます。
+仕様法:
 
         $filter->addSoftRule('field', $filter::IS, 'int');
 
-- `ipv4`: Validate the value as an IPv4 address. The value cannot be
-  sanitized. Usage:
+- `ipv4`: 値はIPv4アドレスとしてバリデーションされます。値はサニタイズされません。
+仕様法:
 
         $filter->addSoftRule('field', $filter::IS, 'ipv4');
-
-- `locale`: Validate the given value against a list of locale strings. If it's
-not found returns false. The value cannot be sanitized. Usage:
+        
+- `locale`: 値はlocale文字列のリストとしてバリデーションされます。もしfalseがかえされなければ値はサニタイズされません。
+仕様法:
 
         $filter->addSoftRule('field', $filter::IS, 'locale');
 
-- `max`: Validate the value as being less than or equal to a maximum. Sanitize
-  so that values higher than the maximum are forced down to the maximum.
-  Usage:
+- `locale`: 値は最大値以下としてバリデーションされます。値は最大値にサニタイズされます。
+仕様法:
 
         $filter->addSoftRule('field', $filter::IS, 'max', $max);
 
-- `min`: Validate the value as being greater than or equal to a minimum.
-  Sanitize so that values lower than the minimum are forced up to the
-  minimum. Usage:
+- `min`: 値は最大値以上としてバリデーションされます。値は最少値にサニタイズされます。
+仕様法:
 
         $filter->addSoftRule('field', $filter::IS, 'min', $min);
 
-- `regex`: Validate the value using `preg_match()`. Sanitize the value using
-  `preg_replace()`.
+- `regex`: `preg_match()`を使ってバリデーとされます. `preg_match()`を使った値にサニタイズされます。
+仕様法:
 
         $filter->addSoftRule('field', $filter::IS, 'regex', $expr);
-
-- `strictEqualToField`: Validate the value as strictly equal to the value of
-  another field in the data object. Sanitize to the value of that other field.
-  Usage:
+        
+- `strictEqualToField`: データオブジェクトの他の値と厳密に同値かバリデーションされます。値はその他のフィールドにサニタイズされます。
+仕様法:
 
         $filter->addSoftRule('field', $filter::IS, 'strictEqualToField', 'other_field_name');
 
-- `strictEqualToValue`: Validate the value as strictly equal to a specified
-  value. Sanitize to the specified value. Usage:
+- `equalToValue`: 特定の値と厳密な方法で同値かバリデーションします。特定の値にサニタイズされます。
+仕様法:
 
         $filter->addSoftRule('field', $filter::IS, 'strictEqualToValue', $other_value);
 
-- `string`: Validate the value can be represented by a string. Sanitize the
-  value by casting to a string and optionally using `str_replace().` Usage
-  (note that this is to sanitize, not validate):
+- `string`: 文字列としてバリデーションされます。値は文字列にキャストされオプションで`str_replace().`を使われます。
+仕様法:（これはサニタイズでバリデーションではありません）
 
         $filter->addSoftRule('field', $filter::FIX, 'string', $find, $replace);
-
-- `strlen`: Validate the value has a specified length. Sanitize the value
-  to cut off longer values at the right, and `str_pad()` shorter ones. Usage:
+    
+- `strlen`: 特定の長さをもつ値としてバリデーションされます。その長さにサニタイズされ短い場合には`str_pad()`が使われサニタイズされます。
+仕様法:
 
         $filter->addSoftRule('field', $filter::IS, 'strlen', $len);
 
-- `strlenBetween`: Validate the value length as being within or equal to a
-  minimum and maximum value. Sanitize the value to cut off values longer than
-  the maximum, longer values at the right, and `str_pad()` shorter ones.
-  Usage:
+- `strlenBetween`: 特定の長さの値にバリデーションされます。最大値より長い場合は値がカットされ、短い場合には`str_pad()`が使われサニタイズされます。
+仕様法:
 
         $filter->addSoftRule('field', $filter::IS, 'strlenBetween', $min, $max);
+        
+- `strlenMax`: 文字列の長さが最大値を超えないようにバリデーションされます。最大値より長い場合は値がカットされます。
+仕様法:
 
 - `strlenMax`: Validate the value length as being no longer than a maximum.
   Sanitize the value to cut off values longer than the maximum. Usage:
 
         $filter->addSoftRule('field', $filter::IS, 'strlenMax', $max);
-
-- `strlenMin`: Validate the value length as being no shorter than a minimum.
-  Sanitize the value to `str_pad()` values shorter than the minimum. Usage:
+        
+- `strlenMin`: 文字列の長さ最小値を下回らないようにバリデーションされます。最小値より短い場合には`str_pad()`が使われサニタイズされます。
+仕様法:
 
         $filter->addSoftRule('field', $filter::IS, 'strlenMin', $min);
-
-- `trim`: Validate the value is `trim()`med. Sanitize the value to `trim()` it.
-  Optionally specify characters to trim. Usage:
+        
+- `trim`: `trim()`メソッドを使ってバリデートされます。`trim()` によってサニタイズされます。オプションでtrimするキャラクターを指定する事が出来ます。
+仕様法:
 
         $filter->addSoftRule('field', $filter::IS, 'trim', $chars);
-
-- `upload`: Validate the value represents a PHP upload information array, and
-  that the file is an uploaded file. The value cannot be sanitized. Usage:
+        
+- `upload`: PHPのアップロード情報配列としてバリデーションされます。ファイルはアップロードされたファイルです。これはサニタイズされません。
+仕様法:
 
         $filter->addSoftRule('field', $filter::IS, 'upload');
 
-- `url`: Validate the value is a well-formed URL. The value cannot be
-  sanitized. Usage:
+- `url`: 値をWell-Formed（整形式）のURLとしてバリデーションします。これはサニタイズされません。
+仕様法:
 
         $filter->addSoftRule('field', $filter::IS, 'url');
 
-- `word`: Validate the value as being composed only of word characters.
- Sanitize the value to remove non-word characters. Usage:
+- `url`: 値を`word characters`で構成された値としてバリデーションします。これはサニタイズされません。
+仕様法:
 
         $filter->addSoftRule('field', $filter::IS, 'word');
 
-- `isbn`: Validate the value is a correct ISBN (International Standard Book Number). Usage:
+- `url`: 値を正しい`isbn` (International Standard Book Number)としてバリデーションします。
+仕様法:
 
         $filter->addSoftRule('field', $filter::IS, 'isbn');
 
-- `any`: Validate the value passes at-least one of the rules. These rules
-are the ones added in rule locator.
+- `any`: 値を指定のルールのいずれか一つ適用されるかバリデーションします。ルールは指定されたルールのいずれかです。
 
         $filter->addSoftRule('field', $filter::IS, 'any', [
                 ['alnum'],
@@ -278,25 +249,23 @@ are the ones added in rule locator.
             ]
         );
 
-- `all`: Validate the value against a set of rules. These rules
-are should be added in rule locator. You will not get seprate error
-messages for which all rules it failed.
+- `all`: 値を指定のルールセットでバリデーションします。エラーメッセージを個別にする事はできません。
 
         $filter->addSoftRule('field', $filter::IS, 'all', [
                 // rules
             ]
         );
+        
+## カスタムメッセージ ##
 
-## Custom Messages
+デフォルトではルールが失敗するとメッセージは`intl/en_US.php`から取得します。しかし全ての失敗に対して１つのカスタムメッセージを使う事もできます。
 
-By default when a rule fails, the messages you will be getting are from the `intl/en_US.php`. But you can also provide a single custom message for
-all the failures.
 
 {% highlight php %}
 $filter->useFieldMessage('field', 'Custom Message');
 {% endhighlight %}
 
-Example:
+例:
 
 {% highlight php %}
 $filter->addSoftRule('username', $filter::IS, 'alnum');
@@ -314,22 +283,22 @@ if (! $success) {
 }
 {% endhighlight %}
 
-As you have used `useFieldMessage` you will see
+As you have used `useFieldMessage` you will see 
 
 {% highlight php %}
 array (
-  'username' =>
+  'username' => 
   array (
     0 => 'User name already exists',
   ),
 )
 {% endhighlight %}
 
-instead of
+instead of 
 
 {% highlight php %}
 array (
-  'username' =>
+  'username' => 
   array (
     0 => 'Please use only alphanumeric characters.',
     1 => 'Please use between 6 and 12 characters.',
@@ -337,45 +306,42 @@ array (
 )
 {% endhighlight %}
 
-## Creating and Using Custom Rules
+## カスタムルールの作成と利用 ##
 
-There are three steps to creating and using new rules:
+新しいルールを使うために３つのステップがあります。
 
-1. Write a rule class
+1. ルールクラスの記述
 
-2. Set that class as a service in the `RuleLocator`
+2. `RuleLocator`のサービスとしてそのクラスをセットする
 
-3. Use the new rule in our filter chain
+3. フィルターチェーンで新しいルールを使う
 
-## Writing a Rule Class
+## ルールクラスの記述 ##
 
-Writing a rule class is straightforward:
+ルールクラスの記述は明快です。
 
-- Extend `Aura\Filter\AbstractRule` with two methods: `validate()` and
-  `sanitize()`.
+- `Aura\Filter\AbstractRule`をextendして`validate()` と `sanitize()`の２つのメソッドを追加します。
 
-- Add params as needed to each method.
+- それぞれのメソッドに必要なパラメーターを加えます。
 
-- Each method should return a boolean: true on success, or false on failure.
+- それぞれのメソッドはbooleanを返すようにします。trueが成功。falseは失敗です。
 
-- Use `getValue()` to get the value being validated, and `setValue()` to change
-  the value being sanitized.
+- バリデートするためには値を `getValue()`で取得します。サニタイズした値は`setValue()` でセットすることができます。
 
-- Add a property `$message` to indicate a string that should be translated
-  as a message when validation or sanitizing fails.
+- `$message`プロパティを加えてバリデーションやサニタイズが失敗したときのメッセージを用意することができます。翻訳にも使えます。
 
-Here is an example of a hexadecimal rule:
+hexadecimalのためのルールサンプルです。
 
-{% highlight php %}
+{% highlight php %}    
 <?php
-namespace Vendor\Package\Filter\Rule;
+namespace Example\Package\Filter\Rule;
 
 use Aura\Filter\AbstractRule;
 
 class Hex extends AbstractRule
 {
     protected $message = 'FILTER_HEX';
-
+    
     public function validate($max = null)
     {
         // must be scalar
@@ -383,18 +349,18 @@ class Hex extends AbstractRule
         if (! is_scalar($value)) {
             return false;
         }
-
+    
         // must be hex
         $hex = ctype_xdigit($value);
         if (! $hex) {
             return false;
         }
-
+    
         // must be no longer than $max chars
         if ($max && strlen($value) > $max) {
             return false;
         }
-
+    
         // done!
         return true;
     }
@@ -407,19 +373,19 @@ class Hex extends AbstractRule
             // sanitizing failed
             return false;
         }
-
+    
         // strip out non-hex characters
         $value = preg_replace('/[^0-9a-f]/i', '', $value);
         if ($value === '') {
             // failed to sanitize to a hex value
             return false;
         }
-
+    
         // now check length and chop if needed
         if ($max && strlen($value) > $max) {
             $value = substr($value, 0, $max);
         }
-
+    
         // retain the sanitized value, and done!
         $this->setValue($value);
         return true;
@@ -427,21 +393,21 @@ class Hex extends AbstractRule
 }
 {% endhighlight %}
 
-## Set The Class As A Service
+## サービスとしてクラスをセット ##
 
-Now we set the rule class into the `RuleLocator`.
+最初に`RuleLocator`にクラスをセットします。
 
 {% highlight php %}
 <?php
 $locator = $filter->getRuleLocator();
 $locator->set('hex', function () {
-    return new Vendor\Package\Filter\Rule\Hex;
+    return new Example\Package\Filter\Rule\Hex;
 });
 {% endhighlight %}
 
-## Apply The New Rule
+## 新しいルールの適用 ##
 
-Finally, we can use the rule in our filter:
+最後にフィルターでそのルールを使います。
 
 {% highlight php %}
 <?php
@@ -449,4 +415,4 @@ Finally, we can use the rule in our filter:
 $filter->addHardRule('color', $filter::IS, 'hex', 6);
 {% endhighlight %}
 
-That is all!
+以上です！！
