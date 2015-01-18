@@ -1,149 +1,139 @@
 ---
-layout: docs2-en
+layout: docs2-ja
 title: Response
-permalink: /manuals/2.0/en/response/
+permalink: /manuals/2.0/ja/response/
 previous_page: Request
-previous_page_url: /manuals/2.0/en/request/
+previous_page_url: /manuals/2.0/ja/request/
 next_page: Dependency Injection
-next_page_url: /manuals/2.0/en/di/
+next_page_url: /manuals/2.0/ja/di/
 ---
 
-# Response
+# レスポンス
 
-The _Response_ object describes the web response that should be sent to the
-client. It is **not** an HTTP response object proper. Instead, it is a series
-of hints to be used when building the HTTP response with the delivery
-mechanism of your choice.
+_Response_ オブジェクトはクライアントにどのようなwebレスポンスを送るのかを表します。
+HTTPレスポンスそのものでは**ありません**。
+その代わりHTTPレスポンスを組み立ててるため必要なヒントがセットになっています。
 
-Setting values on the _Response_ object **does not** cause values to be sent
-to the client. The _Response_ can be inspected during testing to see if the
-correct values have been set without generating output.
+_Response_オブジェクトに値をセットすればクライントに値が送られるわけでは**ありません**。
+_Response_は出力されることなしに正しい値がセットされてるかを検査することができます。
 
-You can get the _Response_ object from the DI,
+_Response_オエブジェクトはDIで取得できます。
 
 {% highlight php %}
 <?php
 $di->get('aura/web-kernel:response');
 
-// or can inject to another class as
-
+// あるいは他のクラスにインジェクトできるように
 $di->lazyGet('aura/web-kernel:response');
 {% endhighlight %}
 
-The _Response_ object is composed of several property objects representing
-different parts of the response:
+_Response_オブジェクトはレスポンスの要素をプロパティで表します。
 
-- `$response->status` for the status code, status phrase, and HTTP version
+- `$response->status` はステータスコード、ステタースフレーズ、それにHTTPバージョンを表します。
 
-- `$response->headers` for non-cookie headers
+- `$response->headers` クッキー以外のヘッダーです。
 
-- `$response->cookies` for cookie headers
+- `$response->cookies` クッキーのヘッダーです。
 
-- `$response->content` for describing the response content, and for
-  convenience methods related to content type, charset, disposition, and
-  filename
+- `$response->content` はレスポンスのコンテンツを表します。content typeや、charset、disposition、filenameなどに便利です。
 
-- `$response->cache` for convenience methods related to cache headers
+- `$response->cache`キャッシュヘッダーに便利なメソッドです。
 
-- `$response->redirect` for convenience methods related to Location and Status
+- `$response->redirect` LocationとStatusに使われます。
 
 
-## Status
+## ステータス
 
-Use the `$response->status` object as follows:
+`$response->status`オブジェクトは以下のように使われます。
 
 {% highlight php %}
 <?php
-// set the status code, phrase, and version at once
+// ステータスコードとメッセージ、それにバージョンを一度にセット
 $response->status->set('404', 'Not Found', '1.1');
 
-// set them individually
+// 個別にセット
 $response->status->setCode('404');
 $response->status->setPhrase('Not Found');
 $response->status->setVersion('1.1');
 
-// get the full status line
+// ステータスを（メッセージを含めて）取得
 $status = $response->status->get(); // "HTTP/1.1 404 Not Found"
 
-// get the status values individually
+// 値を個別に取得
 $code    = $response->status->getCode();
 $phrase  = $response->status->getPhrase();
 $version = $response->status->getVersion();
 ?>
 {% endhighlight %}
 
-## Headers
+## ヘッダー
 
-The `$response->headers` object has these methods:
+`$response->headers`オブジェクトは以下のメソッドがあります。
 
-- `set()` to set a single header, resetting previous values on that header
+- `set()`は以前にセットされていた１つの値をリセットし、ヘッダーをセットします。
 
-- `get()` to get a single header, or to get all headers
+- `get()` は１つのあるいは全てのヘッダーを取得します。
 
 {% highlight php %}
 <?php
 // X-Header-Value: foo
 $response->headers->set('X-Header-Value', 'foo');
 
-// get the X-Header-Value
+// X-Header-Valueを取得
 $value = $response->headers->get('X-Header-Value');
 
-// get all headers
+// 全てのヘッダーを取得
 $all_headers = $response->headers->get();
 ?>
 {% endhighlight %}
 
-Setting a header value to null, false, or an empty string will remove that
-header; setting it to zero will *not* remove it.
+ヘッダーの値をnull、falseあるいは空の文字列をセットするとヘッダーから取り除かれます。0にセットするのでは**除かれません**。
 
-## Cookies
+## クッキー
 
-The `$response->cookies` object has these methods:
+`$response->cookies`オブジェクトは以下のメソッドを持ちます。
 
-- `setExpire()` sets the default expiration for cookies
+- `setExpire()`はクッキーのデフォルトの有効期限をセットします。
 
-- `setPath()` sets the default path for cookies
+- `setPath()` はクッキーのデフォルトのパスをセットします。
 
-- `setDomain()` sets the default domain for cookies
+- `setDomain()` はクッキーのデフォルトのドメインをセットします。
 
-- `setSecure()` sets the default secure value for cookies
+- `setSecure()` はクッキーのデフォルトのセキュリティーをセットします。
 
-- `setHttpOnly()` sets the default for whether or not cookies will be sent by
-  HTTP only.
+- `setHttpOnly()`はクッキーがHTTPによってのみ送られるかのデフォルトをセットします。
 
-- `set()` sets a cookie name and value along with its meta-data. This method
-  mimics the [setcookie()](http://php.net/setcookie) PHP function. If meta-
-  data such as path, domain, secure, and httponly are missing, the defaults
-  will be filled in for you.
+- `set()` クッッキーの名前と値をメタデータと共にセットします。これはPHPの関数[setcookie()](http://php.net/setcookie)を真似たものです。
+もしメタデータの値で、path、domain、secure、それにhttponlyが指定されていないとデフォルトの値が使われます。
 
-- `get()` returns a cookie by name, or all the cookies at once.
+- `get()` 名前でクッキーを返すか、全てのクッキーを一度に返します。
 
 {% highlight php %}
 <?php
-// set a default expire time to 10 minutes from now on a domain and path
+// 特定のドメインとパスが１０分で切れるようにセット
 $response->cookies->setDomain('example.com');
 $response->cookies->setPath('/');
 $response->cookies->setExpire('+600');
 
-// set two cookie values
+// ２つのクッキーをセット
 $response->cookies->set('foo', 'bar');
 $response->cookies->set('baz', 'dib');
 
-// get a cookie descriptor array from the response
+// レスポンスからクッキー情報の配列を取得
 $foo_cookie = $response->cookies->get('foo');
 
-// get all the cookie descriptor arrays from the response, keyed by name
+// 名前をキーにしたクッキー情報配列を全て取得
 $cookies = $response->cookies->get();
 ?>
 {% endhighlight %}
 
-The cookie descriptor array looks like this:
+クッキー情報配列はこのようなものです。
 
 {% highlight php %}
 <?php
 $cookies['foo'] = array(
     'value' => 'bar',
-    'expire' => '+600', // will become a UNIX timestamp with strtotime()
+    'expire' => '+600', // UNIXタイムスタンプにstrtotime()を足した値です。
     'path' => '/',
     'domain' => 'example.com',
     'secure' => false,
@@ -153,28 +143,25 @@ $cookies['foo'] = array(
 {% endhighlight %}
 
 
-## Content
+## コンテンツ
 
-The `$response->content` object has these convenience methods related to the
-response content and content headers:
+`$response->content`オブジェクトはレスポンスコンテントとレスポンスヘッダーのための便利なメソッドを持っています。
 
-- `set()` sets the body content of the response (this can be anything at all,
-  including an array, a callable, an object, or a string -- it is up to the
-  sending mechanism to translate it properly)
+- `set()` レスポンスのコテント本体をセットします。（配列やcallable、オブジェクト、あるいは文字列なんでも構いません。適切に変換されます）
 
-- `get()` get the body content of the response which has been set via `set()`
+- `get()`は`set()`でセットされたレスポンスのコンテンツ本体を取得します。
 
-- `setType()` sets the `Content-Type` header
+- `setType()`は`Content-Type`ヘッダーをセットします。
 
-- `getType()` returns the `Content-Type` (not including the charset)
+- `getType()`が`Content-Type`を取得します。（charsetは含まれません）
 
-- `setCharset()` sets the character set for the `Content-Type`
+- `setCharset()`は`Content-Type`をのためのcharacter setをセットします。
 
-- `getCharset()` returns the `charset` portion of the `Content-Type` header
+- `getCharset()`は `Content-Type`ヘッダーの`charset`の部分を取得します。
 
-- `setDisposition()` sets the `Content-Disposition` type and filename
+- `setDisposition()`は`Content-Disposition`タイプとファイル名をセットします。
 
-- `setEncoding()` sets the `Content-Encoding` header
+- `setEncoding()`は`Content-Encoding`ヘッダーをセットします。
 
 {% highlight php %}
 <?php
@@ -194,77 +181,61 @@ switch ($response->content->getType()) {
 {% endhighlight %}
 
 
-## Cache
+## キャッシュ
 
-The `$response->cache` object has several convenience methods related to HTTP
-cache headers.
+`$response->cache`オブジェクトはHTTPキャッシュヘッダーのいくつかの便利なメソッドを持っています。
 
-- `reset()` removes all cache-related headers
+- `reset()` は全てのキャッシュ関連のヘッダーを取り除きます。
 
-- `disable()` turns off caching by removing all cache-related headers, then
-  sets the following:
+- `disable()` は全てのキャッシュ関連のヘッダーを取り除き、以下をセットします。
 
         Cache-Control: max-age=0, no-cache, no-store, must-revalidate, proxy-revalidate
         Expires: Mon, 01 Jan 0001 00:00:00 GMT
         Pragma: no-cache
 
-- `setAge()` sets the `Age` header value in seconds
+- `setAge()` は秒を単位とする`Age`ヘッダーをセットします。
 
-- `setControl()` sets an array of `Cache-Control` header directives all at
-  once; alternatively, use the individual directive methods:
+- `setControl()`は一度に`Cache-Control`ヘッダーの配列全てをセットするかわりに、個別の方法の設定をセットします。
 
-    - `setPublic()` and `setPrivate()` set the `public` and `private` cache
-      control directives (each turns off the other)
+    - `setPublic()`と`setPrivate()`は`public`と`private`のキャッシュコントロールをセットします。（片方の機能をオフにします）
 
-    - `setMaxAge()` and `setSharedMaxAge()` set the `max-age` and `s-maxage`
-      cache control directives (set to null or false to remove them)
+    - `setMaxAge()`と`setSharedMaxAge()`は`max-age`と`s-maxage`を指定します。（nullかfalseを取り除くためにセットします）
 
-    - `setNoCache()` and `setNoStore()` set the `no-cache` and `no-store`
-      cache control directives (set to null or false to remove them)
+    - `setNoCache()`と`setNoStore()`は`no-cache`と`no-store`キを指定します。（nullかfalseを取り除くためにセットします）
 
-    - `setMustRevalidate()` and `setProxyRevalidate()` to set the
-      `must-revalidate` and `proxy-revalidate` directives (set to null or
-      false to remove them)
+    - `setMustRevalidate()`と`setProxyRevalidate()`は`must-revalidate` と `proxy-revalidate`を指定します。 （nullかfalseを取り除くためにセットします）
 
-- `setEtag()` and `setWeakEtag()` set the `ETag` header value
+- `setEtag()`と`setWeakEtag()`は`ETag`ヘッダーの値をセットします。
 
-- `setExpires()` sets the `Expires` header value; will convert recognizable
-  date formats and `DateTime` objects to a correctly formatted HTTP date
+- `setExpires()``Expires`ヘッダーの値をセットします。日付や`DateTime`オブジェクトは適切にフォーマットされたHTTP日付に変換されます。
 
-- `setLastModified()` sets the `Last-Modified` header value; will convert
-  recognizable date formats and `DateTime` objects to a correctly formatted
-  HTTP date
+- `setLastModified()`は`Last-Modified`ヘッダーの値をセットします。日付や`DateTime`オブジェクトは適切にフォーマットされたHTTP日付に変換されます。
 
-- `setVary()` sets the `Vary` header; pass an array for comma-separated values
+- `setVary()`は`Vary`ヘッダーをセットします。コンマで分けられた配列を渡します。
 
-For more information about caching headers, please consult the
-[HTTP 1.1 headers spec][] along with these descriptions from [Palizine][].
+キャッシュヘッダーについてさらにお知りになりたいときは[Palizine]の[HTTP 1.1 headers spec][]の記述をご覧ください。
 
   [HTTP 1.1 headers spec]: http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html
   [Palizine]: http://palizine.plynt.com/issues/2008Jul/cache-control-attributes/
 
 
-## Redirect
+## リダイレクト
 
-The `$response->redirect` object has several convenience methods related to
-status and `Location` headers for redirection.
+`$response->redirect`オブジェクトはリダイレクトのためのLocationヘッダーのいくつかの便利なメソッドを持っています。
 
-- `to($location, $code = 302, phrase = null)` sets the status and headers
-  for redirection to an arbitrary location with an arbitrary status code and
-  phrase
+  - `to($location, $code = 302, phrase = null)`はリダイレクトのためのステータスと任意のヘッダー、メッセージをセットします。
 
-- `afterPost($location)` redirects to the `$location` with a `303 See
-  Other` status; this automatically disables HTTP caching
+- `afterPost($location)`は`$location`に`303 See
+Other`ステータスでリダイレクトします。これは自動的にHTTPキャッシュを無効にします。
 
-- `created($location)` redirects to `$location` with `201 Created`
+- `created($location)`は`201 Created`で`$location`にリダイレクトします。
 
-- `movedPermanently($location)` redirects to `$location` with `301 Moved Permanently`
+- `movedPermanently($location)`は`301 Moved Permanently`で`$location`にリダイレクトします。
 
-- `found($location)` redirects to `$location` with `302 Found`
+- `found($location)`は`302 Found`で`$location`にリダイレクトします。
 
-- `seeOther($location)` redirects to `$location` with `303 See Other`; this
-  automatically disables HTTP caching
+- `seeOther($location)`は`303 See Other`で`$location`にリダイレクトします。これは自動的にHTTPキャッシュを無効にします。
 
-- `temporaryRedirect($location)` redirects to `$location` with `307 Temporary Redirect`
+- `temporaryRedirect($location)`は`307 Temporary Redirect`で`$location`にリダイレクトします。
 
-- `permanentRedirect($location)` redirects to `$location` with `308 Permanent Redirect`
+- `permanentRedirect($location)`は`308 Permanent Redirect`で`$location`にリダイレクトします。
