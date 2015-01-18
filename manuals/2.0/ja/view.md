@@ -1,24 +1,24 @@
 ---
-layout: docs2-en
+layout: docs2-ja
 title: View
-permalink: /manuals/2.0/en/view/
+permalink: /manuals/2.0/ja/view/
 previous_page: Dependency Injection
-previous_page_url: /manuals/2.0/en/di/
+previous_page_url: /manuals/2.0/ja/di/
 next_page: Forms
-next_page_url: /manuals/2.0/en/forms/
+next_page_url: /manuals/2.0/ja/forms/
 ---
 
-# View
+# ビュー
 
-Add `"foa/html-view-bundle": "2.*"` to your `composer.json` and run `composer update` to install the dependencies.
+`"foa/html-view-bundle": "2.*"` を `composer.json` に追加し `composer update` を実行してインストールしましょう。
 
-## Escaping Output
+## 出力をエスケープする
 
-When you generate output via templates, you **must** escape it appropriately for security purposes. This means that HTML templates should use HTML escaping, CSS templates should use CSS escaping, XML templates should use XML escaping, PDF templates should use PDF escaping, RTF templates should use RTF escaping, and so on.
+テンプレートで値を出力する際は、セキュリティのため **常に** 適切なエスケープを行うようにしましょう。 HTMLテンプレートなら、HTMLエスケーピング、 CSSテンプレートならCSSエスケーピング、XMLテンプレートならXMLエスケーピング、 PDFテンプレートならPDFエスケーピング、 RTFテンプレートならRTFエスケーピング...という事です。
 
-## Registering View Templates
+## ビューテンプレートの登録
 
-Assuming you have a _Aura\View\View_ object, we need to add named templates to its view template registry. These are typically PHP file paths, but templates can also be closures.  For example:
+_Aura\View\View_ オブジェクトを持っていると仮定しましょう、ビューレジストリへテンプレートを登録してみます。 これは一般的にPHPファイルへのパスを設定しますが、クロージャを使う事も出来ます。 一般的な例を下記に示します。:
 
 {% highlight php %}
 <?php
@@ -27,7 +27,7 @@ $view_registry->set('browse', '/path/to/views/browse.php');
 ?>
 {% endhighlight %}
 
-The `browse.php` file may look something like this:
+`browse.php` は下記のようなファイルです。:
 
 {% highlight php %}
 <?php
@@ -38,16 +38,15 @@ foreach ($this->items as $item) {
 ?>
 {% endhighlight %}
 
-Note that we use `echo`, and not `return`, in templates.
+テンプレートで、`return` ではなく、`echo` を使用している事に注目してください。
 
-> The template logic will be executed inside the _View_ object scope,
-> which means that `$this` in the template code will refer to the _View_
-> object. The same is true for closure-based templates.
+> テンプレートのロジックは、 _View_ オブジェクトのスコープ内で実行されます,
+> これはテンプレート内の `$this` が _View_ オブジェクトを参照する事を意味します。
+> クロージャベースのテンプレートも同じです。
 
-## Setting Data
+## データのセット
 
-We will almost always want to use dynamic data in our templates. To assign a data collection to the _View_, use the `setData()` method and either an array or an object. We can then use data elements as if they are properties on the
-_View_ object.
+大抵の場合、テンプレートにはダイナミックなデータを使用したいと思うでしょう。データを _view_ へセットするには、`setdata()` メソッドを使用します。 配列でもオブジェクトでも大丈夫です。そしてこれらのデータは _view_ オブジェクトのプロパティとして利用できます。 
 
 {% highlight php %}
 <?php
@@ -70,23 +69,23 @@ $view->setData(array(
 ?>
 {% endhighlight %}
 
-> Recall that `$this` in the template logic refers to the _View_ object,
-> so that data assigned to the _View_ can be accessed as properties on `$this`.
+> テンプレートロジック内の `$this` は _View_ オブジェクトを参照する事を覚えていますか？
+> _View_ へ設定されたデータは `$this` のプロパティとしてアクセスできます。
 
-The `setData()` method will overwrite all existing data in the _View_ object. The `addData()` method, on the other hand, will merge with existing data in the _View_ object.
+`setData()` メソッドは_View_ オブジェクトの全てのデータを上書きします。一方で、`addData()` メソッドは _View_ オブジェクトへ設定されているデータとマージします。
 
-## Invoking A One-Step View
+## ビューの呼び出し
 
-Now that we have registered a template and assigned some data to the _View_, we tell the _View_ which template to use, and then invoke the _View_:
+さあ、テンプレートを登録していくつかデータを _View_ にセットしてきました、_View_ に描画するテンプレートを設定し、invoke(呼び出し)してみましょう！
 
 {% highlight php %}
 <?php
 $view->setView('browse');
-$output = $view->__invoke(); // or just $view()
+$output = $view->__invoke(); // あるいは単に $view() とする事も出来ます。
 ?>
 {% endhighlight %}
 
-The `$output` in this case will be something like this:
+`$output` は下記のような出力になります。
 
 {% highlight php %}
 Item #1 is 'Foo'.
@@ -94,31 +93,31 @@ Item #2 is 'Bar'.
 Item #3 is 'Baz'.
 {% endhighlight %}
 
-## Using Sub-Templates (aka "Partials")
+## サブテンプレートを使う ("パーシャル")
 
-Sometimes we will want to split a template up into multiple pieces. We can
-render these "partial" template pieces using the `render()` method in our main template code.
+テンプレートを部分的に分割したいというような時があります。こういった部分的な "パーシャル" テンプレートは、メインテンプレート内で `render()` メソッドを使用して描画を行います。
 
-First, we place the sub-template in the view registry (or in the layout registry if it for use in layouts). Then we `render()` it from inside the main template code. Sub-templates can use any naming scheme we like. Some systems use the convention of prefixing partial templates with an underscore, and the following example will use that convention.
+まずはじめに、ビューレジストリへサブテンプレートを登録します。（レイアウトのために使用する場合はレイアウトレジストリになります）
+それから、メインテンプレート内で `render()` を実行します。サブテンプレートには好きなネームスキームを使用できます。 いくつかのシステムでは、アンダースコアをプレフィックスに使用する習慣があります。下記の例もそのようにしてあります。
 
-Second, we can pass an array of variables to be extracted into the local scope of the partial template. (The `$this` variable will always be available regardless.)
+次に、パーシャルテンプレートで利用するために、変数群の配列を渡します。(`$this` 変数は常に利用できます)
 
-For example, let's split up our `browse.php` template file so that it uses a sub-template for displaying items.
+例として, `browse.php` テンプレートを分割してアイテムを表示する部分をサブテンプレートとして切り出してみましょう。 
 
 {% highlight php %}
 <?php
-// add templates to the view registry
+// ビューレジストリへテンプレートを登録します。
 $view_registry = $view->getViewRegistry();
 
-// the "main" template
+// メインテンプレート 
 $view_registry->set('browse', '/path/to/views/browse.php');
 
-// the "sub" template
+// サブテンプレート 
 $view_registry->set('_item', '/path/to/views/_item.php');
 ?>
 {% endhighlight %}
 
-We extract the item-display code from `browse.php` into `_item.php`:
+`browse.php` からアイテム表示を行うコードを `_item.php` へ移行します。:
 
 {% highlight php %}
 <?php
@@ -128,7 +127,7 @@ echo "Item ID #{$id} is '{$name}'." . PHP_EOL;
 ?>
 {% endhighlight %}
 
-Then we modify `browse.php` to use the sub-template:
+それから、 `browse.php` をサブテンプレートを使うように変更します。:
 
 {% highlight php %}
 <?php
@@ -139,33 +138,34 @@ foreach ($this->items as $item) {
 ?>
 {% endhighlight %}
 
-The output will be the same as earlier when we invoke the view.
+出力は前例でビューを呼び出した時の物と同じになります。
 
-> Alternatively, we can use `include` or `require` to execute a
-> PHP file directly in the current template scope.
+> または、 `include` あるいは `require` を使って
+> 現在のテンプレートスコープで直接PHPファイルを実行する事も出来ます。
 
 
-## Using Sections
+## セクションを使う 
 
-Sections are similar to sub-templates (aka "partials") except that they are captured inline for later use. In general, they are used by view templates to capture output for layout templates.
+セクションはサブテンプレートと似ていますが、セクションについては後々の描画のために出力のキャプチャーを行う点が異なります。 一般的に、ビューテンプレートに使用され、レイアウトテンプレートのために出力をキャプチャーします。
 
-For example, we can capture output in the view template to a named section ...
+例えば、ビューテンプレートの出力を指定のセクションにキャプチャーします ...
+
 
 {% highlight php %}
 <?php
-// begin buffering output for a named section
+// 指定されたセクションへの出力のバッファリングを行います。
 $this->beginSection('local-nav');
 
 echo "<div>";
-// ... echo the local navigation output ...
+// ... ナビゲーションを出力します ...
 echo "</div>";
 
-// end buffering and capture the output
+// バッファリングを終了して、出力をキャプチャーします。
 $this->endSection();
 ?>
 {% endhighlight %}
 
-... and then use that output in a layout template:
+... それからレイアウトテンプレートで出力します。
 
 {% highlight php %}
 <?php
@@ -177,7 +177,7 @@ if ($this->hasSection('local-nav')) {
 ?>
 {% endhighlight %}
 
-In addition, the `setSection()` method can be used to set the section body directly, instead of capturing it:
+加えて、`setSection()` メソッドはキャプチャーの代わりに、直接下記のように設定することも出来ます。
 
 {% highlight php %}
 <?php
@@ -185,14 +185,13 @@ $this->setSection('local-nav', $this->render('_local-nav.php'));
 ?>
 {% endhighlight %}
 
-## Rendering a Two-Step View
+## 2ステップビューの描画
 
-To wrap the main content in a layout as part of a two-step view, we register
-layout templates with the _View_ and then call `setLayout()` to pick one of
-them for the second step. (If no layout is set, the second step will not be
-executed.)
+レイアウトの中でメインコンテンツをラップするために、まずレイアウトテンプレートを
+_View_ に登録して、`setLayout()` メソッドを使いセットします。(もしレイアウトが設定されていなければ、実行されません。)
 
-Let's say we have already set the `browse` template above into our view registry. We then set a layout template called `default` into the layout registry:
+ビューレジストリへ `browse` テンプレートを登録していると仮定します。`default` レイアウトテンプレートをレイアウトレジストリへ登録してみましょう。:
+
 
 {% highlight php %}
 <?php
@@ -201,7 +200,7 @@ $layout_registry->set('default', '/path/to/layouts/default.php');
 ?>
 {% endhighlight %}
 
-The `default.php` layout template might look like this:
+`default.php` レイアウトテンプレートは下記のようなファイルです。:
 
 {% highlight php %}
 <html>
@@ -214,32 +213,33 @@ The `default.php` layout template might look like this:
 </html>
 {% endhighlight %}
 
-We can then set the view and layout templates on the _View_ object and then invoke it:
+それから _View_　オブジェクトに、ビューとレイアウトを設定して呼び出します。
 
 {% highlight php %}
 <?php
 $view->setView('browse');
 $view->setLayout('default');
-$output = $view->__invoke(); // or just $view()
+$output = $view->__invoke(); // あるいは単に $view() とする事も出来ます。
 ?>
 {% endhighlight %}
 
-The output from the inner view template is automatically retained and becomes available via the `getContent()` method on the _View_ object. The layout template then calls `getContent()` to place the inner view results in the outer layout template.
+内側のビューテンプレートからの出力は保持され _View_ オブジェクトの `getContent()` メソッドから利用できるようになります。レイアウトテンプレートはそれから `getContent()` を呼び出しレイアウトテンプレートに、ビューの結果を出力します。
 
-> We can also call `setLayout()` from inside the view template, allowing
-> us to pick a layout as part of the view logic.
+> ビューテンプレートから、`setLayout()` を呼ぶ事も出来ます。
+> ビューロジックの一部としてレイアウトを選択する事が可能です。
 
-The view template and the layout template both execute inside the same _View_ object. This means:
+ビューテンプレートとレイアウトテンプレートは同じ _View_ オブジェクトの中で実行されます。つまり：
 
-- All data values are shared between the view and the layout. Any data assigned to the view, or modified by the view, is used as-is by the layout.
+- 全てのデータは、ビューとレイアウト間で共有されます。ビューにセットされたデータや、ビューによって変更されたデータはレイアウトからもそのまま使えます。
 
-- All helpers are shared between the view and the layout. This sharing situation allows the view to modify data and helpers before the layout is executed.
+- 全てのヘルパーは、ビューとレイアウト間で共有されます。レイアウトが実行されるまえにビューからデータやヘルパーを変更できます。
 
-- All section bodies are shared between the view and the layout. A section that is captured from the view template can therefore be used by the layout template.
+- 全てのセクションボディは、ビューとレイアウト間で共有されます。よって、ビューテンプレートからキャプチャーされたセクションがレイアウトテンプレートからも利用できます。
 
-## Closures As Templates
+## テンプレートとしてのクロージャ
 
-The view and layout registries accept closures as templates. For example, these are closure-based equivlents of the `browse.php` and `_item.php` template files above:
+ビュー、及びレイアウトレジストリにはクロージャもテンプレートとして登録する事が出来ます。
+下記は、 `browse.php` と `_item.php` テンプレートでクロージャを利用した例です。
 
 {% highlight php %}
 <?php
@@ -260,28 +260,29 @@ $view_registry->set('_item', function (array $vars) {
 ?>
 {% endhighlight %}
 
-When registering a closure-based template, continue to use `echo` instead of `return` when generating output. The closure is rebound to the _View_ object, so `$this` in the closure will refer to the _View_ just as it does in a file-based template.
+クロージャベースのテンプレートを登録する時は、出力時に `return` ではなく `echo` を使うようにしましょう。 クロージャは _View_ オブジェクトに返るので、
+ファイルベースのテンプレートと同様にクロージャの `$this` も _View_ を参照するようになります。
 
-A bit of extra effort is required with closure-based sub-templates (aka "partials"). Whereas file-based templates automatically extract the passed array of variables into the local scope, a closure-based template must:
+クロージャベースでサブテンプレートを利用する場合は少し追加の作業が必要になります。ファイルベースのテンプレートでは、セットされたデータを含む配列を自動的にローカルスコープに展開してくれますが、クロージャベースのテンプレートでは以下の作業が必要になります:
 
-1. Define a function parameter to receive the injected variables (the `$vars` param in the `_item` template); and,
+1. 注入された変数を受け取るパラメーターを関数に定義しましょう。(`_item` テンプレート内の `$vars` パラメーターです)
 
-2. Extract the injected variables using `extract()`. Alternatively, the closure may use the injected variables parameter directly.
+2. `extract()`を使って注入された変数を展開します。または、注入された変数をそのまま直接使う事も出来ます。
 
-Aside from that, closure-based templates work exactly like file-based templates.
+上記を除き、クロージャベースのテンプレートはファイルベースのテンプレートと同様に機能します。
 
-## Built in Helpers via Aura.Html
+## Aura.Htmlでのビルトインヘルパー
 
-## Escaper
+## エスケーパー
 
-Escaping output is **absolutely necessary** from a security perspective. This package comes with an `escape()` helper that has four escaping methods:
+出力のエスケープは、セキュリティの観点から **絶対に必要不可欠** です。このパッケージの、`escape()` ヘルパーには4つのメソッドがあります:
 
-- `$this->escape()->html('foo')` to escape HTML values
-- `$this->escape()->attr('foo')` to escape unquoted HTML attributes
-- `$this->escape()->css('foo')` to escape CSS values
-- `$this->escape()->js('foo')` to escape JavaScript values
+- `$this->escape()->html('foo')` HTMLのエスケープに使用します。
+- `$this->escape()->attr('foo')` HTML属性のエスケープに使用します。
+- `$this->escape()->css('foo')` CSSのエスケープに使用します。
+- `$this->escape()->js('foo')` JavaScriptのエスケープに使用します。
 
-Here is a contrived example of the various `escape()` helper methods:
+下記にいくつか `escape()` ヘルパーの使用例を示します:
 
 {% highlight php %}
 <head>
@@ -315,14 +316,13 @@ Here is a contrived example of the various `escape()` helper methods:
 </body>
 {% endhighlight %}
 
-Unfortunately, escaper functionality is verbose, and can make the template code look cluttered.  There are two ways to mitigate this.
+不幸なことに、エスケープの処理はくどく、テンプレートのコードは酷く散らかったように見えます。これを和らげるために、2つの方法があります。
 
-The first is to assign the `escape()` helper to a variable, and then invoke it as a callable. Here is a contrived example of the various escaping methods as callables:
-
+１つ目の方法は、`escape()` ヘルパーを変数にセットして、呼び出すようにする事です。下記は例です。
 
 {% highlight php %}
 <?php
-// assign the escaper helper properties to callable variables
+// エスケープヘルパーを呼び出し可能な変数にセットします。
 $h = $this->escape()->html;
 $a = $this->escape()->attr;
 $c = $this->escape()->css;
@@ -360,13 +360,15 @@ $j = $this->escape()->js;
 </body>
 {% endhighlight %}
 
-Alternatively, the _Escaper_ class used by the `escape()` helper comes with four static methods to reduce verbosity and clutter:  `h()`, `a()`, `c()`, `j()`, and. These escape values for HTML content values, unquoted HTML attribute values, CSS values, and JavaScript values, respectively.
+２つ目の方法は、 `escape()` ヘルパーに使用される _Escaper_ クラスに実装されている4つのstaticメソッドを使う事です。:`h()`, `a()`, `c()`, `j()`
+順番に、HTMLのエスケープ、HTML属性のエスケープ、CSSのエスケープ、JavaScriptのエスケープを行います。
 
-> N.b.: In Aura, we generally avoid static methods. However, we feel the tradeoff of less-cluttered templates can be worth using static methods in this one case.
+> 注意 : Auraでは、基本的にstaticメソッドの利用を避けています。しかし、この場合ではテンプレートの可読性のためのトレードオフです。
 
-To call the static _Escaper_ methods in a PHP-based template, `use` the _Escaper_ as a short alias name, then call the static methods on the alias.  (If you did not instantiate a _HelperLocatorFactory_, you will need to prepare the static escaper methods by calling `Escaper::setStatic(new Escaper)`.)
+PHPベースのテンプレートで、static _Escaper_ メソッドを呼び出すためには、`use` を使って _Escaper_ のエイリアスを定義します。それから、エイリアスからstaticメソッドを呼び出します。 (もし、_HelperLocatorFactory_ のインスタンスを生成していない場合は、`Escaper::setStatic(new Escaper)` を呼び出す必要があります。)
 
-Here is a contrived example of the various static methods:
+
+下記は、staticメソッドを使用した例です:
 
 {% highlight php %}
 <?php use Aura\Html\Escaper as e; ?>
@@ -402,9 +404,10 @@ Here is a contrived example of the various static methods:
 </body>
 {% endhighlight %}
 
-## Tag Helpers
+## タグヘルパー 
 
-Use a helper by calling it as a method on the _HelperLocator_. The available helpers are:
+_HelperLocator_ のメソッドとしてヘルパーを使用できます。 利用できるヘルパーの一覧です:
+
 
 - [a/anchor](#a)
 - [base](#base)
@@ -419,11 +422,11 @@ Use a helper by calling it as a method on the _HelperLocator_. The available hel
 - [tag](#tag)
 - [title](#title)
 
-There is also a series of [helpers for forms](#form-helpers).
+[フォームのためのヘルパー](#form-helpers) もあります。
 
 ### a
 
-Helper for `<a>` tags.
+`<a>` タグヘルパー 
 
 {% highlight php %}
 <?php
@@ -438,7 +441,7 @@ echo $this->a(
 
 ### base
 
-Helper for `<base>` tags.
+`<base>` タグヘルパー
 
 {% highlight php %}
 <?php
@@ -451,7 +454,7 @@ echo $this->base(
 
 ### img
 
-Helper for `<img>` tags.
+`<img>` タグヘルパー
 
 {% highlight php %}
 <?php
@@ -459,14 +462,14 @@ echo $this->img(
     '/images/hello.jpg',            // (string) image href src
     array('id' => 'image-id');      // (array) optional attributes
 ?>
-<!-- if alt is not specified, uses the basename of the image href -->
+<!-- もし、alt属性が設定されていない場合は画像ファイル名を使用します。 -->
 <img src="/images/hello.jpg" alt="hello" id="image-id">
 
 {% endhighlight %}
 
 ### label
 
-Helper for `<label>` tags.
+`<label>` タグヘルパー
 
 {% highlight php %}
 <?php
@@ -477,7 +480,7 @@ echo $this->label(
 <label for="field">Label For Field</label>
 
 <?php
-// wrap html with the label before the html
+// ラベルタグで包括し、ラベルのテキストはinputタグの前に出力されます。
 echo $this->label('Foo: ')
             ->before($this->input(array(
                 'type' => 'text',
@@ -487,7 +490,7 @@ echo $this->label('Foo: ')
 <label>Foo: <input type="text" name="foo" value="" /></label>
 
 <?php
-// wrap html with the label after the html
+// ラベルタグで包括し、ラベルのテキストはinputタグの後に出力されます。
 echo $this->label(' (Foo)')
             ->after($this->input(array(
                 'type' => 'text',
@@ -499,11 +502,11 @@ echo $this->label(' (Foo)')
 
 ### links
 
-Helper for a set of generic `<link>` tags. Build a set of links with `add()` then output them all at once.
+`<link>` タグヘルパーです、 リンクを `add()` メソッドで追加し、それから出力します。
 
 {% highlight php %}
 <?php
-// build the array of links with add()
+// add() メソッドを使い、リンクを配列で追加します。
 $this->links()->add(array(
     'rel' => 'prev',                // (array) link attributes
     'href' => '/path/to/prev',
@@ -514,14 +517,14 @@ $this->links()->add(array(        // (array) link attributes
     'href' => '/path/to/next',
 ));
 
-// output the links
+// リンクの出力をします。
 echo $this->links();
 ?>
 <link rel="prev" href="/path/to/prev" />
 <link ref="next" href="/path/to/next" />
 
 <?php
-// alternatively, echo a chain of add() calls
+// また、add() コールをメソッドチェーンして出力する事も出来ます。
 echo $this->links()
     ->add(array(                    // (array) link attributes
         'rel' => 'prev',
@@ -538,30 +541,30 @@ echo $this->links()
 
 ### metas
 
-Helper for a set of `<meta>` tags. Build a set of metas with `add*()` then output them all at once.
+`<meta>` タグヘルパーです。  `add*()` メソッドで追加し、出力します。
 
 {% highlight php %}
 <?php
-// add an http-equivalent meta
+// http-equivalent metaの追加をします。
 $this->metas()->addHttp(
     'Location',         // (string) header label
     '/redirect/to/here' // (string) header value
 );
 
-// add a name meta
+// name metaの追加をします。
 $this->metas()->addName(
     'foo',              // the meta name
     'bar'               // the meta content
 );
 
-// output the metas
+// metasの出力をします。
 echo $this->meta();
 ?>
 <meta http-equiv="Location" content="/redirect/to/here">
 <meta name="foo" content="bar">
 
 <?php
-// alternatively, echo a chain of add calls
+// また、add() コールをメソッドチェーンして出力する事も出来ます。
 echo $this->metas()
     ->addHttp(
         'Location',         // (string) header label
@@ -578,41 +581,41 @@ echo $this->metas()
 
 ### ol
 
-Helper for `<ol>` tags with `<li>` items.  Build the set of items (both raw and escaped) then output them all at once.
+`<ol>` タグ 、及び `<li>` アイテムを出力するタグヘルパーです。タグを生成した後 (そのままの値かエスケープされた値) で出力を行います。
 
 {% highlight php %}
 <?php
-// start the list of items
+// リストを開始します。
 $this->ol(array(                  // (array) optional attributes
     'id' => 'test',
 ));
 
-// add a single item to be escaped
+// アイテムを追加します。（エスケープされます）
 $this->ol()->item(
     'foo',                          // (string) the item text
     array('id' => 'foo')            // (array) optional attributes
 );
 
-// add several items to be escaped
+// いくつかのアイテムをまとめて追加します。（エスケープされます）
 $this->ol()->items(array(         // (array) the items to add
     'bar',                          // the item text, no item attributes
     'baz' => array('id' => 'baz'),  // item text with item attributes
 ));
 
-// add a single raw item not to be escaped
+// アイテムを追加します。（エスケープされません）
 $this->ol()->rawItem(
     '<a href="/first">First</a>',   // (string) the raw item html
     array('id' => 'first')          // (array) optional attributes
 );
 
-// add several raw items not to be escaped
+// いくつかのアイテムをまとめて追加します。（エスケープされません）
 $this->ol()->rawItems(array(         // (array) the raw items to add
     '<a href="/prev">Prev</a>',     // the item text, no item attributes
     '<a href="/next">Next</a>',
     '<a href="/last">Last</a>' => array('id' => 'last') // text and attributes
 ));
 
-// output the list
+// リストを出力します。
 echo $this->ol();
 ?>
 <ol id="test">
@@ -628,23 +631,23 @@ echo $this->ol();
 
 ### scripts
 
-Helper for a set of `<script>` tags. Build a set of script links, then output them all at once.
+`<script>` タグヘルパーです。リンクをセットして出力します。
 
 {% highlight php %}
 <?php
-// add a single script
+// scriptを追加します。
 $this->scripts()->add('/js/middle.js');
 
-// add another script after that one
+// 続けてscriptを追加します。
 $this->add('/js/last.js');
 
-// add another at a specific priority order
+// 優先度を設定して追加します。
 echo $this->scripts(
     '/js/first.js',     // (string) the script src
     50                  // (int) optional priority order (default 100)
 );
 
-// add a conditional script
+// 条件に応じたscriptを追加します。
 $this->scripts->addCond(
     'ie6',              // (string) the condition
     '/js/ie6.js',       // (string) the script src
@@ -658,45 +661,46 @@ $this->scripts->addCond(
 <script src="/js/last.js" type="text/javascript"></script>
 {% endhighlight %}
 
-The `scriptsFoot()` helper works the same way, but is intended for placing a separate set of scripts at the end of the HTML body.
+`scriptsFoot()` ヘルパーも同じように機能します。ただし、このヘルパーはHTMLボディの最後に出力を行います。
 
 ### ul
 
-Helper for `<ul>` tags with `<li>` items.  Build the set of items (both raw and escaped) then output them all at once.
+`<ul>` タグ 、及び `<li>` アイテムを出力するタグヘルパーです。タグを生成した後 (そのままの値かエスケープされた値) で出力を行います。
+
 
 {% highlight php %}
 <?php
-// start the list of items
+// リストを開始します。
 $this->ul(array(                  // (array) optional attributes
     'id' => 'test',
 ));
 
-// add a single item to be escaped
+// アイテムを追加します。（エスケープされます）
 $this->ul()->item(
     'foo',                          // (string) the item text
     array('id' => 'foo')            // (array) optional attributes
 );
 
-// add several items to be escaped
+// いくつかのアイテムをまとめて追加します。（エスケープされます）
 $this->ul()->items(array(         // (array) the items to add
     'bar',                          // the item text, no item attributes
     'baz' => array('id' => 'baz'),  // item text with item attributes
 ));
 
-// add a single raw item not to be escaped
+// アイテムを追加します。（エスケープされません）
 $this->ul()->rawItem(
     '<a href="/first">First</a>',   // (string) the raw item html
     array('id' => 'first')          // (array) optional attributes
 );
 
-// add several raw items not to be escaped
+// いくつかのアイテムをまとめて追加します。（エスケープされません）
 $this->ul()->rawItems(array(      // (array) the raw items to add
     '<a href="/prev">Prev</a>',     // the item text, no item attributes
     '<a href="/next">Next</a>',
     '<a href="/last">Last</a>' => array('id' => 'last') // text and attributes
 ));
 
-// output the list
+// リストを出力します。
 echo $this->ul();
 ?>
 <ul id="test">
@@ -712,27 +716,27 @@ echo $this->ul();
 
 ### styles
 
-Helper for a set of `<link>` tags for stylesheets. Build a set of style links, then output them all at once. As with the `script` helper, you can optionally set the priority order for each stylesheet.
+`<link>` タグヘルパーです、リンクを生成した後、出力します。`script` ヘルパーと同じで、それぞれのスタイルシートに優先度を設定することも出来ます。
 
 {% highlight php %}
 <?php
-// add a stylesheet link
+// スタイルシートへのリンクを追加します。
 $this->styles()->add(
     '/css/middle.css',          // (string) the stylesheet href
     array('media' => 'print')   // (array) optional attributes
 );
 
-// add another one after that
+// 続けて追加します。
 $this->styles()->add('/css/last.css');
 
-// add one at a specific priority order
+// 設定した優先度で追加します。
 $this->styles()->add(
     '/css/first.css',           // (string) the stylesheet href
     null,                       // (array) optional attributes
     50                          // (int) optional priority order (default 100)
 );
 
-// add a conditional stylesheet
+// 条件に応じて追加します。
 $this->styles()->addCond(
     'ie6',                      // (string) the condition
     '/css/ie6.css',             // (string) the stylesheet href
@@ -740,7 +744,7 @@ $this->styles()->addCond(
     25                          // (int) optional priority order (default 100)
 );
 
-// output the stylesheet links
+// 出力します。
 echo $this->styles();
 ?>
 <!--[if ie6]><link rel="stylesheet" href="/css/ie6.css" type="text/css" media="print" /><![endif]-->
@@ -752,7 +756,7 @@ echo $this->styles();
 
 ### tag
 
-A generic tag helper.
+一般的なタグのヘルパーです。
 
 {% highlight php %}
 <?php
@@ -767,20 +771,20 @@ echo $this->tag('/div');
 
 ### title
 
-Helper for the `<title>` tag.
+`<title>` タグのためのヘルパー
 
 {% highlight php %}
 <?php
-// escaped variations (can be intermixed with raw variations)
+// エスケープされたバージョン (部分的にエスケープしないようにする事も可能です)
 
-// set the title
+// タイトルをセットします
 $this->title()->set('This & That');
 
-// append the title
+// appendはタイトルの後に追加します。
 $this->title()->append(' > Suf1');
 $this->title()->append(' > Suf2');
 
-// prepend the title
+// prependはタイトルの前に追加します。
 $this->title()->prepend('Pre1 > ');
 $this->title()->prepend('Pre2 > ');
 
@@ -789,16 +793,16 @@ echo $this->title();
 <title>Pre2 &gt; Pre1 &gt; This &amp; That &gt; Suf1 &gt; Suf2</title>
 
 <?php
-// raw variations (can be intermixed with escaped variations):
+// エスケープされないバージョン (部分的にエスケープする事も可能です):
 
-// set the title
+// タイトルをセットします
 $this->title()->set('This & That');
 
-// append the title
+// appendはタイトルの後に追加します。
 $this->title()->append(' > Suf1');
 $this->title()->append(' > Suf2');
 
-// prepend the title
+// prependはタイトルの前に追加します。
 $this->title()->prepend('Pre1 > ');
 $this->title()->prepend('Pre2 > ');
 
@@ -807,11 +811,11 @@ echo $this->title();
 <title>Pre2 > Pre1 > This & That > Suf1 > Suf2</title>
 {% endhighlight %}
 
-## Form Helpers
+## フォームヘルパー
 
-## The Form Element
+## フォームエレメント 
 
-Open and close a form element like so:
+formタグは下記のように利用します:
 
 {% highlight php %}
 <?php
@@ -826,9 +830,9 @@ echo $this->tag('/form');
 <form id="my-form" method="put" action="/hello-action" enctype="multipart/form-data"></form>
 {% endhighlight %}
 
-## HTML 5 Input Elements
+## HTML 5 Input エレメント
 
-All of the HTML 5 input helpers use the same method signature: a single descriptor array that formats the input element.
+全てのHTML 5 input ヘルパーは同じ用法で利用します。input エレメントのフォーマットに配列を使用します。
 
 {% highlight php %}
 <?php
@@ -842,9 +846,9 @@ echo $this->input(array(
 ?>
 {% endhighlight %}
 
-The array is used so that other libraries can generate form element descriptions without needing to depend on Aura.Html for a particular object.
+配列を用いる事で特殊な用途においても、Aura.Html に依存する事なく他ライブラリがフォームのエレメントを生成する事が出来ます。
 
-The available input element `type` values are:
+`type` の値で有効なinputのエレメント一覧:
 
 - [button](#button)
 - [checkbox](#checkbox)
@@ -888,7 +892,8 @@ echo $this->input(array(
 
 ### checkbox
 
-The `checkbox` type honors the `value_unchecked` pseudo-attribute as a way to specify a `hidden` element for the (you guessed it) unchecked value. It also honors the pseudo-element `label` to place a label after the checkbox.
+`checkbox` タイプは擬似属性の `value_unchecked` 使って (もうお分りかもしれませんが)  `hidden` エレメントの未チェックの値を設定するために使用します。
+また `label` 擬似属性は、チェックボックスの後に置かれるラベルテキストを設定することが出来ます。
 
 {% highlight php %}
 <?php
@@ -1063,7 +1068,7 @@ echo $this->input(array(
 
 ### radio
 
-This element type allows you to generate a single radio input, or multiple radio inputs if you pass an `options` element.
+このタイプは1つのラジオ、あるいは `options` を設定する事で複数のラジオを生成する事ができます。
 
 {% highlight php %}
 <?php
@@ -1128,7 +1133,8 @@ echo $this->input(array(
 
 ### select
 
-Helper for a `<select>` tag with `<option>` tags. The pseudo-attribute `placeholder` is honored as a placeholder label when no option is selected. Using the attribute `'multiple' => true` will set up a multiple select, and automatically add `[]` to the name if it is not already there.
+`<select>` タグ、及び `<option>` タグのヘルパーです。 擬似属性の `placeholder` は未選択時のプレイスホルダーとして扱われます。 `'multiple' => true` を
+を設定すると複数選択可能になります。そしてもし設定されていなければ、自動的にname属性に `[]` を追加します。 
 
 {% highlight php %}
 <?php
@@ -1156,35 +1162,35 @@ echo $this->input(array(
 </select>
 
 <?php
-// programatically build option-by-option
+// selectタグを作成します。
 $select = $this->input(array(
     'type'    => 'select',
     'name'    => 'foo',
 ));
 
-// set the currently selected value(s)
+// 現在選択されている値を設定できます。
 $select->selected('bar');   // (string|array) the currently selected value(s)
 
-// set attributes for the select tag
+// selectタグへ属性を設定します。
 $select->attribs(array(
     'placeholder' => 'Please pick one',
 ));
 
-// add a single option
+// optionを追加します。
 $select->option(
     'baz',                  // (string) the option value
     'Baz Label',            // (string) the option label
     array()                 // (array) optional attributes for the option tag
 );
 
-// add several options
+// 複数のoptionを追加します。
 $select->options(array(
     'dib' => 'Dib Label',
     'bar' => 'Bar Label',
     'zim' => 'Zim Label',
 ));
 
-// output the select
+// selectタグを出力します。
 echo $select;
 ?>
 <select name="foo">
@@ -1196,7 +1202,7 @@ echo $select;
 </select>
 {% endhighlight %}
 
-The helper also supports option groups. If an `options` array value is itself an array, the key for that element will be used as an `<optgroup>` label and the array of values will be options under that group.
+このヘルパーはoptionのグループ化にも対応しています。もし、`options` の値が配列の場合は配列のキーが `<optgroup>` のラベルに使用されます。 
 
 {% highlight php %}
 <?php
@@ -1229,42 +1235,42 @@ echo $this->input(array(
 </select>
 
 <?php
-// or do so programmatically
+// 別の例を示します。
 $select = $this->input(array(
     'type'    => 'select',
     'name'    => 'foo',
 ));
 
-// set the currently selected value(s)
+// 現在選択されている値を設定できます。
 $select->selected('bar');   // (string|array) the currently selected value(s)
 
-// start an option group
+// optionのグループを作成します。
 $select->optgroup('Group A');
 
-// add several options
+// 複数のoptionを追加します。
 $select->options(array(
     'baz' => 'Baz Label',
     'dib' => 'Dib Label',
 ));
 
-// start another option group (sub-groups are not allowed by HTML spec)
+// 別のoptionのグループを作成します。 (サブグループはHTMLの規格上出来ません)
 $select->optgroup('Group B');
 
-// add a single option
+// optionを追加します。
 $select->option(
     'bar',                  // (string) the option value
     'Bar Label',            // (string) the option label
     array()                 // (array) optional attributes for the option tag
 );
 
-// add a single option
+// optionを追加します。
 $select->option(
     'zim',                  // (string) the option value
     'Zim Label',            // (string) the option label
     array()                 // (array) optional attributes for the option tag
 );
 
-// output the select
+// selectタグを出力します。
 echo $select;
 ?>
 <select name="foo">
@@ -1377,19 +1383,21 @@ echo $this->input(array(
 <input type="week" name="foo" value="bar" />
 {% endhighlight %}
 
-## Custom Helpers
+## カスタムヘルパー
 
-There are two steps to adding your own custom helpers:
+カスタムヘルパーは下記の2ステップで追加できます。
 
-1. Write a helper class.
+1. ヘルパークラスを作成します。
 
-2. Set a factory for that class into the _HelperLocator_ under a service name.
+2. _HelperLocator_ へクラスのファクトリーをセットします。
 
-A helper class needs only to implement the `__invoke()` method.
-We suggest extending from _Aura\Html\AbstractHelper_ to get access to indenting,
-escaping, etc., but it's not required.
 
-We are going to create a router helper which can return the router object, and from which we can generate routes from the already defined routes.
+ヘルパークラスに必要な事は、`__invoke()` メソッドを実装するだけです。
+インデンティング、エスケーピングを利用したい場合は、 _Aura\Html\AbstractHelper_ を継承する事を推奨しますが、
+必須ではありません。
+
+ここでは、定義済みのルーターから、新しいルーターを作成するためにルーターオブジェクトを返すヘルパーを作成してみます。
+
 
 {% highlight php %}
 <?php
@@ -1416,11 +1424,10 @@ class Router
 }
 {% endhighlight %}
 
-Now that we have a helper class, we set a factory for it into the
-_HelperLocator_ under a service name.
-Therein, we create **and return** the helper class.
+ヘルパークラスを作成したので、今度は _HelperLocator_ にファクトリーをセットしてみます。
+作成したヘルパークラスを**返す**ように設定します。
 
-Edit `{$PROJECT_PATH}/config/Common.php`
+`{$PROJECT_PATH}/config/Common.php` を編集します。
 
 {% highlight php %}
 <?php
@@ -1441,11 +1448,11 @@ class Common extends Config
 }
 {% endhighlight %}
 
-The service name in the _HelperLocator_ doubles as a method name.
-This means we can call the helper via `$this->router()`:
+_HelperLocator_ のサービス名は、メソッド名も兼ねます。
+これはヘルパーを `$this->router()` で呼び出せるという事です:
 
 {% highlight php %}
 <?php echo $this->router()->generate('blog.read', array('id', 2)); ?>
 {% endhighlight %}
 
-Note that we can use any service name for the helper, although it is generally useful to name the service for the helper class, and for a word that can be called as a method.
+ヘルペーのサービス名は自由につける事が出来ます。ヘルパークラスにサービス名をつけられるだけでなく、同じ名前でメソッドとしてコールできるのです。
