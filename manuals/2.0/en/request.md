@@ -1,6 +1,6 @@
 ---
 layout: docs2-en
-title: Introduction
+title: Request
 permalink: /manuals/2.0/en/request/
 previous_page: Dispatching
 previous_page_url: /manuals/2.0/en/dispatcher/
