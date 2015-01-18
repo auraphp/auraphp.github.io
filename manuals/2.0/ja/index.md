@@ -1,29 +1,30 @@
 ---
 layout: docs2-ja
-title: Introduction
+title: イントロダクション
+permalink: /manuals/2.0/ja/
 previous_page:
 previous_page_url:
 next_page: Configuration
 next_page_url: /manuals/2.0/ja/configuration
 ---
 
-# Getting Started
+# はじめに
 
-[Composer](http://getcomposer.org) has become the de facto standard for installing libraries in the php world. Aura framework does the same.
+[Composer](http://getcomposer.org) は PHP の世界において、パッケージ管理ツールのデファクトスタンダードとなっています。Aura フレームワークにおいても同じです。
 
-## Installation
+## インストール
 
 {% highlight php %}
 composer create-project --stability=dev aura/framework-project {$PROJECT_PATH}
 {% endhighlight %}
 
-> Replace {$PROJECT_PATH} with real path
+> {$PROJECT_PATH} を実際のパスに置き換えてください
 
-It will create the `{$PROJECT_PATH}` directory and install the dependencies in vendor folder.
+このコマンドは `{$PROJECT_PATH}` というディレクトリを作成し、 vendor フォルダに依存関係をインストールします。
 
-### Structure
+### 構造
 
-The directory structure looks something similar to this. The list is not complete for we have removed some of the files and directories.
+ディレクトリ構造は以下のようなものになります。このリストはいくつかのファイルやディレクトリを削除しているため、完全なものではありません。
 
 {% highlight bash %}
 ├── CHANGES.md
@@ -62,23 +63,22 @@ The directory structure looks something similar to this. The list is not complet
     └── index.php
 {% endhighlight %}
 
-The `web/index.php` is where you need to point your virtual host. Check out [setting up your virtual host](/manuals/2.0/en/setup/) for more information.
+バーチャルホストを設定して `web/index.php` へアクセスできるようにする必要があります。詳細については使用しているバーチャルホストの設定を確認してください。
 
-For the current time, let us make use of the built-in PHP server.
+ここでは、組み込みのPHPサーバーを利用してみます。
 
 
 {% highlight bash %}
 php -S localhost:8000 -t web/
 {% endhighlight %}
 
-If you point your web browser to `http://localhost:8000` you can see the message `Hello World!`.
+Web ブラウザで `http://localhost:8000` を開くと、 `Hello World!` のメッセージを見ることができます。
 
-Great! Everything is working fine.
+すばらしい！問題なく動作していますね。
 
-## Exploring the Hello World!
+## Hello World! を探る
 
-Open the file `config/Common.php`. Look into the `modifyWebRouter()` and
-`modifyWebDispatcher()` methods.
+`config/Common.php` を開いてください。`modifyWebRouter()` と `modifyWebDispatcher()` のメソッドを見てみます。
 
 {% highlight php %}
 public function modifyWebRouter(Container $di)
@@ -89,9 +89,9 @@ public function modifyWebRouter(Container $di)
 }
 {% endhighlight %}
 
-The `modifyWebRouter()` gets the shared router service and adds a route named `hello` which points to `/` . So any request to `http://localhost:8000` is satisfied by route named `hello`.
+`modifyWebRouter()` ではルータサービスを取得して、 `/` を `hello` というルート名で追加しています。これにより `http://localhost:8000` へのすべてのリクエストは `hello` というルート名で処理されます。
 
-Now we have the route, the router don't know what to do when a request come. The dispatcher is what helps to dispatch things.
+リクエストが来たときにどんな処理が行われるのか、ルータは知りません。ディスパッチャがディスパッチ処理を手伝います。
 
 {% highlight php %}
 public function modifyWebDispatcher($di)
@@ -105,8 +105,8 @@ public function modifyWebDispatcher($di)
 }
 {% endhighlight %}
 
-We get the shared dispatcher service, set the same name as in the controller of route in `setObject`, and use a Closure or Callable.
+ディスパッチャサービスを取得し、`setObject` にコントローラのルートと同じ名前をセットして、クロージャまたはコールバックで処理を記述します。
 
-In this example we are using a Closure, which get the di container and use it as a service, get the shared web response and set the content.
+この例ではクロージャを使用しています。use で受け取った DI コンテナを利用して Web レスポンスオブジェクトを取得し、レスポンスの内容をセットしています。
 
-Don't worry too much about dependency injection and dependency injection container. We will be talking more details in the coming chapter.
+Dependency Injection （依存性の注入）と DI コンテナについてはあまり気にしないでください。これからの章で詳細を説明します。
