@@ -1,23 +1,22 @@
 ---
-layout: docs2-en
-title: Session
-permalink: /manuals/2.0/en/session/
+layout: docs2-ja
+title: セッション
+permalink: /manuals/2.0/ja/session/
 previous_page: Internationalization
-previous_page_url: /manuals/2.0/en/intl/
+previous_page_url: /manuals/2.0/ja/intl/
 next_page: Command line / console
-next_page_url: /manuals/2.0/en/cli/
+next_page_url: /manuals/2.0/ja/cli/
 ---
 
-# Session
+# セッション
 
-Provides session management functionality, including lazy session starting,
-session segments, next-request-only ("flash") values, and CSRF tools.
+セッション管理のための機能セットを提供します。具体的には、レイジーセッションスタート、セッションセグメント、次のリクエストまでしか有効ではない「フラッシュ」値、およびCSRF対策のツールです。
 
-## Installation
+## インストール
 
-We are going to install `aura/session` version `2.0.*@beta` .
+`aura/session` バージョン `2.0.*@beta` をインストールします。
 
-Add to your `composer.json`.
+`composer.json` に下記を追加します。
 
 {% highlight json %}
 {
@@ -28,37 +27,42 @@ Add to your `composer.json`.
 }
 {% endhighlight %}
 
-and run
+インストールを実行します。
 
 {% highlight bash %}
 composer update
 {% endhighlight %}
 
-## Service
+## サービス
 
-Aura.Session already have `aura/session:session` service which is an object of _Aura\\Session\\Session_ . You can get inject the service to responder or view helper and make use of the _Aura\\Session\\Session_ object.
+Aura.Session には、_Aura\\Session\\Session_ のオブジェクトである `aura/session:session` サービスが最初から用意されています。
+このサービスをレスポンダーやビューヘルパーに注入することで、_Aura\\Session\\Session_ オブジェクトを使うことができます。
 
-## Segments
+## セグメント
 
-In normal PHP, we keep session values in the `$_SESSION` array. However, when different libraries and projects try to modify the same keys, the resulting conflicts can result in unexpected behavior. To resolve this, we use _Segment_ objects. Each _Segment_ addresses a named key within the `$_SESSION` array for deconfliction purposes.
+PHP標準の機能で、セッションの値は `$_SESSION` 配列によって維持されます。
+しかし、さまざまなライブラリやプロジェクトが同じキー群に対して書き換えを行おうとした場合に、衝突が発生し、予期しない振る舞いを引き起こすことになってしまうでしょう。
+この問題を解決するために、 _Segment_ （セグメント）オブジェクトを使います。
+各 _Segment_ は、名前を付けたキーを使って `$_SESSION` 配列内部にアクセスします。これにより衝突が回避されます。
+たとえば、`Vendor\Package\ClassName` で _Segment_ を使うのであれば、 `$_SESSION['Vendor\Package\ClassName']` への参照が使われることになります。
+_Segment_ で `set()` したり `get()` したりすると、この参照への操作によってセッション配列の値が維持されます。
 
-For example, if we get a _Segment_  for `Vendor\Package\ClassName`, that _Segment_ will contain a reference to `$_SESSION['Vendor\Package\ClassName']`. We can then `set()` and `get()` values on the _Segment_, and the values will reside in an array under that reference.
 
 {% highlight php %}
 <?php
-// get a _Segment_ object
+// Segment オブジェクトを取得
 $segment = $session->getSegment('Vendor\Package\ClassName');
 
-// try to get a value from the segment;
-// if it does not exist, return an alternative value
+// セグメントから値を取得する
+// （存在しない場合は、代わりの値を取得することもできる）
 echo $segment->get('foo'); // null
 echo $segment->get('baz', 'not set'); // 'not set'
 
-// set some values on the segment
+// セグメントに値を設定する
 $segment->set('foo', 'bar');
 $segment->set('baz', 'dib');
 
-// the $_SESSION array is now:
+// $_SESSION 配列は今こうなっている
 // $_SESSION = array(
 //      'Vendor\Package\ClassName' => array(
 //          'foo' => 'bar',
@@ -66,51 +70,55 @@ $segment->set('baz', 'dib');
 //      ),
 // );
 
-// try again to get a value from the segment
+// セグメントから値を再度取得する
 echo $segment->get('foo'); // 'bar'
 
-// because the segment is a reference to $_SESSION, we can modify
-// the superglobal directly and the segment values will also change
+// セグメントは $_SESSION の参照なので、
+// スーパーグローバル変数で直接変更すると、セグメントの値にも同じ変更が行われている
 $_SESSION['Vendor\Package\ClassName']['zim'] = 'gir'
 echo $segment->get('zim'); // 'gir'
 ?>
 {% endhighlight %}
 
-The benefit of a session segment is that we can deconflict the keys in the `$_SESSION` superglobal by using class names (or some other unique name) for the segment names. With segments, different packages can use the `$_SESSION` superglobal without stepping on each other's toes.
+セッションセグメントの利点は、スーパーグローバル変数 `$_SESSION` でキー名の衝突が避けられることです。キーにはクラス名（もしくは何らかのユニークな名前）をセグメント名として使います。
+セグメントを使えば、さまざまなパッケージがスーパーグローバル変数 `$_SESSION` を扱っていても、お互いが干渉し合ってしまうようなことはありません。
 
-To clear all the values on a _Segment_, use the `clear()` method.
+_Segment_ の値をすべて削除するには、`clear()` メソッドを使います。
 
+## レイジーセッションスタート
 
-## Lazy Session Starting
+`session_start()` をまだ *呼び出さずに*、単に _Session_ マネージャのインスタンス作成や、 _Segment_ の取得だけを行うことができます。
+`session_start()` は、下記のような特定の状況下においてだけ実行されるのです。
 
-Merely instantiating the _Session_ manager and getting a _Segment_ from it does *not* call `session_start()`. Instead, `session_start()` occurs only in certain circumstances:
+- _Segment_ の読み込み時（例：`get()`）、 _Session_ はセッションCookieがすでに設定されているかどうかを判定します。設定済みであった場合は、`session_start()` を前回開始したセッションを再開することで呼び出します。
+セッションCookieがまだ設定されていない場合は、`$_SESSION` 変数の値がまだ無いということなので、 `session_start()` の呼び出しを行いません。
 
-- If we *read* from a _Segment_ (e.g. with `get()`) the _Session_ looks to see if a session cookie has already been set. If so, it will call `session_start()` to resume the previously-started session. If not, it knows there are no previously existing `$_SESSION` values, so it will not call `session_start()`.
+- _Segment_ の書き込み時（例：`set()`）、_Session_ は必ず `session_start()` を呼び出します。
+前回セッションが存在している場合には再開し、存在していなかった場合には新しいセッションを開始します。
 
-- If we *write* to a _Segment_ (e.g. with `set()`) the _Session_ will always call `session_start()`. This will resume a previous session if it exists, or start a new one if it does not.
+つまり、各 _Segment_ を任意のタイミングで作成して良いというわけです。
+_Segment_ で決まった手順で実際にやり取りが発生するまでの間は、`session_start()` が呼ばれることはないのです。セッション開始に関わるリソースを効率良く使っていると言えます。
 
-This means we can create each _Segment_ at will, and `session_start()` will not be invoked until we actually interact with a _Segment_ in a particular way. This helps to conserve the resources involved in starting a session.
+もちろん、セッションの開始を強制的に行うこともできますし、_Session_ `start()` メソッドを呼ぶことでセッションを再開させることもできます。
+しかし、そのやり方だと、セッションレイジーロード方式のもともとの目的を達成することはできません。
 
-Of course, we can force a session start or reactivation by calling the _Session_ `start()` method, but that defeats the purpose of lazy-loaded sessions.
+## セッションの保存、クリア、破棄
 
+> 以下のメソッドは、セグメントを使った全てのセッションデータ、およびフラッシュに対して使います
 
-## Saving, Clearing, and Destroying Sessions
-
-> These methods apply to all session data and flashes across all segments.
-
-To save the session data and end its use during the current request, call the `commit()` method on the _Session_ manager:
+セッションデータを保存して、以降は現在のリクエストで使わないようにするには、_Session_ マネージャで `commit()` メソッドを呼び出します。
 
 {% highlight php %}
 <?php
-$session->commit(); // equivalent of session_write_close()
+$session->commit(); // session_write_close() にあたる
 ?>
 {% endhighlight %}
 
-> The `commit()` method is the equivalent of `session_write_close()`.
-> If you do not commit the session, its values will not be available when we
-> continue the session later.
+> `commit()` メソッドは `session_write_close()` に相当します。
+> セッションのコミットをしないと、後からセッションを続ける際にセッションの値が利用できません。
 
-To clear all session data, but leave the session active during the current request, use the `clear()` method on the _Session_ manager.
+
+現在のリクエストでセッションを張ったまま、全セッションデータをクリアするには、_Session_ マネージャで `clear()` メソッドを使います。
 
 {% highlight php %}
 <?php
@@ -118,22 +126,24 @@ $session->clear();
 ?>
 {% endhighlight %}
 
-To clear all flash values on a segment, use the `clearFlash()` method:
+すべてのフラッシュ値をクリアするには、`clearFlash()` メソッドを使います。
 
-To clear the data *and* terminate the session for this and future requests, thereby destroying it completely, call the `destroy()` method:
+データをクリアして、かつ以降のリクエストでセッションを終了させるには、つまり、完全に破棄するには、 `destroy()` メソッドを呼び出します。
 
 {% highlight php %}
 <?php
-$session->destroy(); // equivalent of session_destroy()
+$session->destroy(); // session_destroy() に当たる
 ?>
 {% endhighlight %}
 
-Calling `destroy()` will also delete the session cookie via `setcookie()`. If we have an alternative means by which we delete cookies, we should pass a callable as the second argument to the _SessionFactory_ method `newInstance()`. The callable should take three parameters: the cookie name, path, and domain.
+`destroy()` を呼ぶと、`setcookie()` を通じてセッションCookieも併せて削除されます。
+Cookie 削除をほかのやり方で行うには、_SessionFactory_ のメソッド `newInstance()` の第2引数に callable を渡します。
+callable は３つのパラメータを取ります。Cookieの名前、パスと、ドメインです。
 
 {% highlight php %}
 <?php
-// assume $response is a framework response object.
-// this will be used to delete the session cookie.
+// $response はフレームワークのレスポンスオブジェクト。
+// セッションCookieの削除で使う。
 $delete_cookie = function ($name, $path, $domain) use ($response) {
     $response->cookies->delete($name, $path, $domain);
 }
@@ -142,12 +152,11 @@ $session = $session_factory->newInstance($_COOKIE, $delete_cookie);
 ?>
 {% endhighlight %}
 
-## Session Security
+## セッションのセキュリティ
 
-### Session ID Regeneration
+### セッションIDの再生成
 
-Any time a user has a change in privilege (that is, gaining or losing access
-rights within a system) be sure to regenerate the session ID:
+ユーザの権限を変更した時、たとえば、システムへのアクセス権限を付与したり剥奪したりした場合には、必ずセッションIDを再生成しなければなりません。
 
 {% highlight php %}
 <?php
@@ -155,41 +164,36 @@ $session->regenerateId();
 ?>
 {% endhighlight %}
 
-> The `regenerateId()` method also regenerates the CSRF token value.
+> `regenerateId()` メソッドは、CSRF トークン値の再生成も兼ねます。
 
-### Cross-Site Request Forgery
+### クロスサイトリクエストフォージェリ（CSRF）
 
-A "cross-site request forgery" is a security issue where the attacker, via
-malicious JavaScript or other means, issues a request in-the-blind from a
-client browser to a server where the user has already authenticated. The
-request *looks* valid to the server, but in fact is a forgery, since the user
-did not actually make the request (the malicious JavaScript did).
+「クロスサイトリクエストフォージェリ」は、悪意あるJavaScript等を使ったセキュリティ上の攻撃手法です。
+認証済みとなっているユーザのサーバ宛てに、クライアントブラウザが裏でリクエストを送信させられます。
+リクエストは妥当であるかのよう *見える* ものの、そうではなくて、強要されたものです。
+ユーザは実際にはリクエストを行っておらず、悪意あるJavaScriptが行っているのです。
 
-<http://en.wikipedia.org/wiki/Cross-site_request_forgery>
+<http://ja.wikipedia.org/wiki/%E3%82%AF%E3%83%AD%E3%82%B9%E3%82%B5%E3%82%A4%E3%83%88%E3%83%AA%E3%82%AF%E3%82%A8%E3%82%B9%E3%83%88%E3%83%95%E3%82%A9%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%AA>
 
-#### Defending Against CSRF
+#### CSRF対策
 
-To defend against CSRF attacks, server-side logic should:
+CSRF攻撃を防ぐには、サーバサイドのロジックを下記のようにする必要があります。
 
-1. Place a token value unique to each authenticated user session in each form;
-   and
+1. ユニークなトークン値を認証済みユーザのセッションに対して発行し、フォームに埋め込む。
 
-2. Check that all incoming POST/PUT/DELETE (i.e., "unsafe") requests contain
-   that value.
+2. すべてのPOST/PUT/DELETE（すなわち、危険な）リクエストについて、トークン値が含まれていることを確認する。
 
-> If our application uses GET requests to modify resources (which
-> incidentally is an improper use of GET), we should also check for CSRF on
-> GET requests from authenticated users.
+> アプリケーションが GET リクエストをリソースの変更に使う場合は（そもそも不適切なGETの使い方ではありますが）、
+> 認証済みユーザによる GET リクエストについてもCSRFの検証をするべきです。
 
-For this example, the form field name will be `__csrf_value`. In each form
-we want to protect against CSRF, we use the session CSRF token value for that
-field:
+下記の例では、フォームフィールド名が `__csrf_value` となります。
+CSRF攻撃から防御したいすべてのフォームにおいて、セッションのCSRFトークン値をフォームのフィールドに埋め込みます。
 
 {% highlight php %}
 <?php
 /**
- * @var Vendor\Package\User $user A user-authentication object.
- * @var Aura\Session\Session $session A session management object.
+ * @var Vendor\Package\User $user ユーザ認証オブジェクト
+ * @var Aura\Session\Session $session セッション管理オブジェクト
  */
 ?>
 <form method="post">
@@ -201,19 +205,18 @@ field:
            . '"></input>';
     } ?>
 
-    <!-- other form fields -->
+    <!-- その他のフォームフィールド -->
 
 </form>
 {% endhighlight %}
 
-When processing the request, check to see if the incoming CSRF token is valid
-for the authenticated user:
+リクエストを処理する時に、入力されてきたCSRFトークンが妥当であるかどうかを認証済みユーザについて検証します。
 
 {% highlight php %}
 <?php
 /**
- * @var Vendor\Package\User $user A user-authentication object.
- * @var Aura\Session\Session $session A session management object.
+ * @var Vendor\Package\User $user ユーザ認証オブジェクト
+ * @var Aura\Session\Session $session セッション管理オブジェクト
  */
 
 $unsafe = $_SERVER['REQUEST_METHOD'] == 'POST'
@@ -224,34 +227,35 @@ if ($unsafe && $user->auth->isValid()) {
     $csrf_value = $_POST['__csrf_value'];
     $csrf_token = $session->getCsrfToken();
     if (! $csrf_token->isValid($csrf_value)) {
-        echo "This looks like a cross-site request forgery.";
+        echo "このリクエストはクロスサイトリクエストフォージェリのようです。";
     } else {
-        echo "This looks like a valid request.";
+        echo "正当なリクエストのようです。";
     }
 } else {
-    echo "CSRF attacks only affect unsafe requests by authenticated users.";
+    echo "CSRF攻撃は認証済みユーザによる危険なリクエストに対してのみ行われます。";
 }
 ?>
 {% endhighlight %}
 
-#### CSRF Value Generation
+#### CSRF 値の生成
 
-For a CSRF token to be useful, its random value must be cryptographically
-secure. Using things like `mt_rand()` is insufficient. Aura.Session comes with
-a `Randval` class that implements a `RandvalInterface`, and uses either the
-`openssl` or the `mcrypt` extension to generate a random value. If you do not
-have one of these extensions installed, you will need your own random-value
-implementation of the `RandvalInterface`. We suggest a wrapper around
-[RandomLib](https://github.com/ircmaxell/RandomLib).
+CSRFトークンを利用するには、ランダムで暗号学的にセキュアな値を得る必要があります。
+`mt_rand()` のような仕組みを使うのでは不適切です。
+Aura.Session には、 `RandvalInterface` の実装である `Randval` クラスが付属していて、
+`openssl` か `mcrypt` 拡張のどちらかをランダム値の生成に使います。
+もしこれらの拡張をインストールしていないのであれば、`RandvalInterface` を実装して自前でランダム値を組む必要があるでしょう。
+私たちは[RandomLib](https://github.com/ircmaxell/RandomLib)のラッパを作ることを推奨します。
+
+## フラッシュ値
+
+_Segment_ 値はセッションがクリアまたは破棄されるまでの間は保存されています。
+しかし、値の設定が次回リクエストまでの間だけ伝わって、それ以降は破棄される方が都合が良いケースもあります。
+これは「フラッシュ」値と呼ばれます。
 
 
-## Flash Values
+### フラッシュ値の設定と取得
 
-_Segment_ values persist until the session is cleared or destroyed. However, sometimes it is useful to set a value that propagates only through the next request, and is then discarded. These are called "flash" values.
-
-### Setting And Getting Flash Values
-
-To set a flash value on a _Segment_, use the `setFlash()` method.
+_Segment_ にフラッシュ値を設定するには、 `setFlash()` メソッドを使います。
 
 {% highlight php %}
 <?php
@@ -260,25 +264,32 @@ $segment->setFlash('message', 'Hello world!');
 ?>
 {% endhighlight %}
 
-Then, in subsequent requests, we can read the flash value using `getFlash()`:
+そして、次のリクエストでは、 `getFlash()` を使ってフラッシュ値を読み込みます。
 
 {% highlight php %}
 <?php
 $segment = $session->getSegment('Vendor\Package\ClassName');
 $message = $segment->getFlash('message'); // 'Hello world!'
-?>
+?>√
 {% endhighlight %}
 
-> As with `get()`, we can provide an alternative value if the flash key
-> does not exist. For example, `getFlash('foo', 'not set')` will
-> return 'not set' if there is no 'foo' key available.
+> `get()` では、フラッシュキーが存在しなかった場合、代わりの値を取得することができます。
+> たとえば、 `getFlash('foo', 'not set')` は、もし 'foo' キーが利用可能でなければ
+> 'not set' を返します。
 
-Using `setFlash()` makes the flash value available only in the *next* request, not the current one. To make the flash value available immediately as well as in the next request, use `setFlashNow($key, $val)`.
+`setFlash()` を使うと、現在のリクエストではなく *次の* リクエストでだけ、フラッシュ値が利用可能となります。
+次回リクエストだけでなく今すぐフラッシュ値を作成したいのであれば、 `setFlashNow($key, $val)` を使います。
 
-Using `getFlash()` returns only the values that are available now from having been set in the previous request. To read a value that will be available in the next request, use `getFlashNext($key, $alt)`.
+`getFlash()` を使うと、前回リクエストで設定された現在利用可能な値だけが返されます。
+値を次のリクエストで利用できるように読み込むには、 `getFlashNext($key, $alt)` を使います。
 
-### Keeping and Clearing Flash Values
 
-Sometimes we will want to keep the flash values in the current request for the next request.  We can do so on a per-segment basis by calling the _Segment_ `keepFlash()` method, or we can keep all flashes for all segments by calling the _Session_ `keepFlash()` method.
+### フラッシュ値の維持とクリア
 
-Similarly, we can clear flash values on a per-segment basis or a session-wide bases.  Use the `clearFlash()` method on the _Segment_ to clear flashes just for that segment, or the same method on the _Session_ to clear all flash values for all segments.
+フラッシュ値を現在のリクエストから次のリクエストへ維持させたいこともあるでしょう。
+セグメント単位で維持するには、 _Segment_ の `keepFlash()` メソッドを呼び出します。
+すべてのセグメントの全フラッシュ値を維持するには、 _Session_ の `keepFlash()` メソッドを呼び出します。
+
+
+同様に、フラッシュ値をセグメント単位、またはセッション全体でクリアすることができます。
+`clearFlash()` メソッドは、 _Segment_ ではセグメントに対してだけクリアを行い、同じメソッド名で _Session_ ではすべてのセグメントの全フラッシュ値をクリアします。
