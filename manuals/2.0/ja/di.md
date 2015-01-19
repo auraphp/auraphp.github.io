@@ -1,5 +1,5 @@
 ---
-layout: docs2-en
+layout: docs2-ja
 title: Dependency Injection
 permalink: /manuals/2.0/ja/di/
 previous_page: Response
