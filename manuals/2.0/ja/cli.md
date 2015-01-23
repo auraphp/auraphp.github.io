@@ -1,108 +1,103 @@
 ---
-layout: docs2-en
-title: Command line / cli / console
-permalink: /manuals/2.0/en/cli/
-previous_page: Session
-previous_page_url: /manuals/2.0/en/session/
-next_page: Setting up Virtual Host
-next_page_url: /manuals/2.0/en/setup/
+layout: docs2-ja
+title: コマンドライン / CLI / コンソール
+permalink: /manuals/2.0/ja/cli/
+previous_page: セッション
+previous_page_url: /manuals/2.0/ja/session/
+next_page: バーチャルホストの設定
+next_page_url: /manuals/2.0/ja/setup/
 ---
 
-# Command line / cli / console
+# コマンドライン / CLI / コンソール
 
-The `aura/framework-project` / `aura/cli-project` integrates  `aura/cli-kernel`.
+`aura/framework-project` / `aura/cli-project` は `aura/cli-kernel` に統合されました。
 
-## Features of Aura.Cli
+## Aura.Cliの機能
 
-### Context Discovery
+### Context
+_Context_ オブジェクトはCLI環境の情報、フラグやオプションなどあらゆるものを提供します。
+（これはコマンドライン環境において Web Request オブジェクトに相当するものです。）
 
-The _Context_ object provides information about the command line environment, including any option flags passed via the command line. (This is the command line equivalent of a web request object.)
-
-You can access the `$_ENV`, `$_SERVER`, and `$argv` values with the `$env`, `$server`, and `$argv` property objects, respectively. (Note that these properties are copies of those superglobals as they were at the time of _Context_ instantiation.) You can pass an alternative default value if the related key is missing.
+`$_ENV`や`$_SERVER`、`$argv`はそれぞれ、`$env`、`$server`、`$argv`としてアクセスすることができます。（Note: これらのプロパティは _Context_ がインストールされた時の状態のスーパーグローバル変数が格納されます。）また、これらの値が存在しない時に利用されるデフォルト値を渡すこともできます。
 
 {% highlight php %}
 <?php
-// get copies of superglobals
+// スーパーグローバル変数をコピー
 $env    = $context->env->get();
 $server = $context->server->get();
 $argv   = $context->argv->get();
 
-// equivalent to:
+// これは以下と同様です：
 // $value = isset($_ENV['key']) ? $_ENV['key'] : null;
 $value = $context->env->get('key');
 
-// equivalent to:
+// これは以下と同様です：
 // $value = isset($_ENV['key']) ? $_ENV['key'] : 'other_value';
 $value = $context->env->get('key', 'other_value');
 ?>
 {% endhighlight %}
 
-### Getopt Support
+### Getopt サポート
 
-The _Context_ object provides support for retrieving command-line options and params, along with positional arguments.
+_Context_ オブジェクトはコマンドラインのオプションやパラメータ、[positional arguments](#positional-arguments) の取得をサポートします。
 
-To retrieve options and arguments parsed from the command-line `$argv` values, use the `getopt()` method on the _Context_ object. This will return a _GetoptValues_ object for you to use as as you wish.
+オプションやコマンドラインからパースされた `$argv` 引数を取得するには、 _Context_ オブジェクトの `getopt()` メソッドを利用します。このメソッドは _GetoptValues_ オブジェクトを返却します。
 
-#### Defining Options and Params
-
-To tell `getopt()` how to recognize command line options, pass an array of option definitions. The definitions array format is similar to, but not exactly the same as, the one used by the [getopt()](http://php.net/getopt) function in PHP. Instead of defining short flags in a string and long options in a separate array, they are both defined as elements in a single array. Adding a `*` after the option name indicates it can be passed multiple times; its values will be stored in an array.
+#### オプションやパラメータの定義
+`getopt()` は渡された array of option definition によってコマンドラインオプションを認識しています。The definition array と似たフォーマットを持っていますが、正確には違います。こちらは[getopt()](http://php.net/getopt)によって利用されます。
+その代わりに、文字列のshort flagsと 配列に分割された long options 、それらは両方とも単一配列の要素として定義されます。
+`*`がオプション名のあとに示されると、それを何度も利用することできます。その値は配列として保存されます。
 
 {% highlight php %}
 <?php
 $options = array(
-    'a',        // short flag -a, parameter is not allowed
-    'b:',       // short flag -b, parameter is required
-    'c::',      // short flag -c, parameter is optional
-    'foo',      // long option --foo, parameter is not allowed
-    'bar:',     // long option --bar, parameter is required
-    'baz::',    // long option --baz, parameter is optional
-    'g*::',     // short flag -g, parameter is optional, multi-pass
+    'a',        // short flag -a です。パラメータの指定を許可しません。
+    'b:',       // short flag -b です。パラメータの指定は必須です。
+    'c::',      // short flag -c です。パラメータの指定は任意です。
+    'foo',      // long option --foo です。 パラメータの指定を許可しません。
+    'bar:',     // long option --bar です。 パラメータの指定は必須です。
+    'baz::',    // long option --baz パラメータの指定は任意です。
+    'g*::',     // short flag -g です。 パラメータの指定は任意で複数指定できます。
 );
 
 $getopt = $context->getopt($options);
 ?>
 {% endhighlight %}
 
-> When we say "required" here, it means "the option, when present,
-> must have a parameter."  It does *not* mean "the option must be present."
-> These are options, after all. If a particular value *must* be passed,
-> consider using [positional arguments](#positional-arguments) instead.
+> ここで "必須" と記載する場合、それは 「そのオプションが指定されたときパラメータを持っていなくてはいけない」ことを表します。「そのオプションを指定しないといけない」とは *違います*。
+> それらはあくまでオプションであるからです。もし特定の値を指定することを強制したい場合、[positional arguments](#positional-arguments) の利用を検討すべきです。
 
-Use the `get()` method on the returned _GetoptValues_ object to retrieve the
-option values. You can provide an alternative default value for when the
-option is missing.
+Option valuesから取得された _GetoptValues_ オブジェクトの `get()`メソッドを利用してみましょう。Optionが存在しない場合のデフォルト値も設定することができます。
 
 {% highlight php %}
 <?php
-$a   = $getopt->get('-a', false); // true if -a was passed, false if not
+$a   = $getopt->get('-a', false); // -a が指定されている場合は true, 指定されていなければfalseです。
 $b   = $getopt->get('-b');
 $c   = $getopt->get('-c', 'default value');
-$foo = $getopt->get('--foo', 0); // true if --foo was passed, false if not
+$foo = $getopt->get('--foo', 0); // --foo が指定されていれば true, 逆の場合 false です。
 $bar = $getopt->get('--bar');
 $baz = $getopt->get('--baz', 'default value');
 $g   = $getopt->get('-g', []);
 ?>
 {% endhighlight %}
 
-If you want alias one option name to another, comma-separate the two names.
-The values will be stored under both names;
+もしオプション名のエイリアスを設定したい場合、カンマ区切りで2つの名前を指定することができます。値はそれぞれの名前で保存されます。
 
 {% highlight php %}
 <?php
-// alias -f to --foo
+// -fは--fooのエイリアスです。
 $options = array(
-    'foo,f:',  // long option --foo or short flag -f, parameter required
+    'foo,f:',  // long option --foo か shot flag -f で指定可能、パラメータは必須です。
 );
 
 $getopt = $context->getopt($options);
 
-$foo = $getopt->get('--foo'); // both -f and --foo have the same values
-$f   = $getopt->get('-f'); // both -f and --foo have the same values
+$foo = $getopt->get('--foo'); // -f も --foo も同じ値です。
+$f   = $getopt->get('-f'); // -f も --foo も同じ値です。
 ?>
 {% endhighlight %}
 
-If you want to allow an option to be passed multiple times, add a '*' to the end
-of the option name.
+もし何度も同じオプションを指定することを許可したい場合、オプション名の最後に '*' を付与します。
 
 {% highlight php %}
 <?php
@@ -113,19 +108,14 @@ $options = array(
 
 $getopt = $context->getopt($options);
 
-// if the script was invoked with:
+// もし script が以下の指定とともに実行された場合 :
 // php script.php --foo=foo --foo=bar --foo=baz -f -f -f
 $foo = $getopt->get('--foo'); // ['foo', 'bar', 'baz']
 $f   = $getopt->get('-f'); // [true, true, true]
 ?>
 {% endhighlight %}
 
-If the user passes options that do not conform to the definitions, the
-_GetoptValues_ object retains various errors related to the parsing
-failures. In these cases, `hasErrors()` will return `true`, and you can then
-review the errors.  (The errors are actually `Aura\Cli\Exception` objects,
-but they don't get thrown as they occur; this is so that you can deal with or
-ignore the different kinds of errors as you like.)
+もしユーザが定義に従わないオプションを指定した場合、 _GetoptValues_ オブジェクトは解析されたエラーに関する様々なエラーを保持します。それらの場合、 `hasErrors()` は `true` を返却し、エラーを確認することができます。（そのエラーは実際には `AUra\Cli\Exception` オブジェクトですが、エラーが起こった時点では throw されません。これはエラーを無視するかどうかを自由に決定するためです。）
 
 {% highlight php %}
 <?php
@@ -133,23 +123,21 @@ $getopt = $context->getopt($options);
 if ($getopt->hasErrors()) {
     $errors = $getopt->getErrors();
     foreach ($errors as $error) {
-        // print error messages to stderr using a Stdio object
+        // Stdioオブジェクトを使った stderr エラーを発行します。
         $stdio->errln($error->getMessage());
     }
 };
 ?>
 {% endhighlight %}
 
-#### Positional Arguments
-
-To get the positional arguments passed to the command line, use the `get()`
-method and the argument position number:
+#### positional arguments
+コマンドラインに渡されたpositional argumentsを取得する場合、 `get` メソッドを利用すると特定の引数のpositionを取得することができます。
 
 {% highlight php %}
 <?php
 $getopt = $context->getopt();
 
-// if the script was invoked with:
+// このスクリプトが以下の指定とともに実行された場合:
 // php script.php arg1 arg2 arg3 arg4
 
 $val0 = $getopt->get(0); // script.php
@@ -160,7 +148,7 @@ $val4 = $getopt->get(4); // arg4
 ?>
 {% endhighlight %}
 
-Defined options will be removed from the arguments automatically.
+定義されたオプションは引数から自動で削除されます。
 
 {% highlight php %}
 <?php
@@ -171,7 +159,7 @@ $options = array(
 
 $getopt = $context->getopt($options);
 
-// if the script was invoked with:
+// このscriptが以下の指定とともに実行された場合:
 // php script.php arg1 --foo=bar -a arg2
 $arg0 = $getopt->get(0); // script.php
 $arg1 = $getopt->get(1); // arg1
@@ -181,53 +169,42 @@ $a    = $getopt->get('-a'); // 1
 ?>
 {% endhighlight %}
 
-> If a short flag has an optional parameter, the argument immediately
-> after it will be treated as the option value, not as an argument.
+> もし short flag がオプションパラメータを持っていた場合、その引数はオプション値として扱われます。引数としては扱われません。
 
+### 標準入力 / 出力ストリーム
+_Stdio_ オブジェクト は標準入出力ストリームとともに動作します。（これはコマンドライン環境における Web Response オブジェクトと同等のものです。）
 
-### Standard Input/Output Streams
+標準では `php://stdin`、`php://stdout`、そして `php://stderr` が利用されますが、 好きなストリームを `newStdio()` メソッドに渡すパラメータとして指定できます。
 
-The _Stdio_ object allows you to work with standard input/output streams. (This is the command line equivalent of a web response object.)
+_Stdio オブジェクトは以下のメソッドを持ちます。
 
-It defaults to using `php://stdin`, `php://stdout`, and `php://stderr`, but you can pass whatever stream names you like as parameters to the `newStdio()` method.
+- `getStdin()`, `getStdout()`, `getStderr()` はそれぞれの _Handle_ オブジェクトをを返却します。
+- `outln()`, `out()` は _stdout_ に line encoding あり、もしくはなしで出力します。
+- `errln()`, `err()` は _stdout_ に line encoding あり、もしくはなしで出力します。
+- `inln()`, `in()` は _stdin_ からユーザからの入力を読み取ります。`inln()` は `in()` では除去される行末文字も含めます。
 
-The _Stdio_ object methods are ...
-
-- `getStdin()`, `getStdout()`, and `getStderr()` to return the respective   _Handle_ objects;
-
-- `outln()` and `out()` to print to _stdout_, with or without a line ending;
-
-- `errln()` and `err()` to print to _stderr_, with or without a line ending;
-
-- `inln()` and `in()` to read from _stdin_ until the user hits enter; `inln()` leaves the trailing line ending in place, whereas `in()` strips it.
-
-You can use special formatting markup in the output and error strings to set text color, text weight, background color, and other display characteristics. See the [formatter cheat sheet](#formatter-cheat-sheet) below.
+出力やエラー文字に対して、テキストカラーやテキストサイズ、背景色などのフォーマットマークアップを設定できます。
+こちらも参照してください。 [formatter cheat sheet](#formatter-cheat-sheet) 
 
 {% highlight php %}
 <?php
-// print to stdout
-$stdio->outln('This is normal text.');
+// stdoutに出力します
+$stdio->outln('これはノーマルテキストです。');
 
-// print to stderr
-$stdio->errln('<<red>>This is an error in red.');
-$stdio->errln('Output will stay red until a formatting change.<<reset>>');
+// stderrに出力します
+$stdio->errln('<<red>>これは赤色のエラーです。');
+$stdio->errln('フォーマットが再度変更されるまで出力は赤色のままです。<<reset>>');
 ?>
 {% endhighlight %}
 
-### Exit Codes
+### 終了コード
+本ライブラリは終了ステータスコードを _Status_ クラスが定義しています。可能な限りそれを利用すべきです。
+例えば、コマンドが間違った引数の数や不適切なオプションフラグで利用された場合、　`Status::USAGE` とともに `exit()` を実行します。終了ステータスコードはこちらで確認できます。
+[sysexits.h](http://www.unix.com/man-page/freebsd/3/sysexits/)
 
-This library comes with a _Status_ class that defines constants for exit
-status codes. You should use these whenever possible.  For example, if a
-command is used with the wrong number of arguments or improper option flags,
-`exit()` with `Status::USAGE`.  The exit status codes are the same as those
-found in [sysexits.h](http://www.unix.com/man-page/freebsd/3/sysexits/).
-
-### Writing Commands
-
-The Aura.Cli library does not come with an abstract or base command class to
-extend from, but writing commands for yourself is straightforward. The
-following is a standalone command script, but similar logic can be used in a
-class.  Save it in a file named `hello` and invoke it with
+### コマンドの作成
+Aura.Cli は 抽象クラスやベースコマンドクラスを利用しませんが、その代わりに簡単にコマンドを実装できます。
+これはクラスを使ったロジックと似たスタンドアローンコマンドスクリプトです。`hello` とファイル名を付けて以下のように実行してみてください。
 `php hello [-v,--verbose] [name]`.
 
 {% highlight php %}
@@ -237,29 +214,29 @@ use Aura\Cli\Status;
 
 require '/path/to/Aura.Cli/autoload.php';
 
-// get the context and stdio objects
+// contextとstdioオブジェクトを取得
 $cli_factory = new CliFactory;
 $context = $cli_factory->newContext($GLOBALS);
 $stdio = $cli_factory->newStdio();
 
-// define options and named arguments through getopt
+// getoptでオプションと名前付き引数を定義
 $options = ['verbose,v'];
 $getopt = $context->getopt($options);
 
-// do we have a name to say hello to?
+// 誰にhelloと出力するか？
 $name = $getopt->get(0);
 if (! $name) {
-    // print an error
+    // エラー出力
     $stdio->errln("Please give a name to say hello to.");
     exit(Status::USAGE);
 }
 
 // say hello
 if ($getopt->get('--verbose')) {
-    // verbose output
+    // 詳細エラー
     $stdio->outln("Hello {$name}, it's nice to see you!");
 } else {
-    // plain output
+    // エラー
     $stdio->outln("Hello {$name}!");
 }
 
@@ -268,11 +245,11 @@ exit(Status::SUCCESS);
 ?>
 {% endhighlight %}
 
-### Writing Command Help
+### コマンドヘルプの作成
+コマンドに対して便利なヘルプを出力したい時があると思います。
+Aura.Cli では _Help_ オブジェクトが実装すべきコマンドとの分離を行います。継承して利用します。
 
-Sometimes it will be useful to provide help output for your commands. With Aura.Cli, the _Help_ object is separate from any command you may write. It may be manipulated externally or extended.
-
-For example, extend the _Help_ object and override the `init()` method.
+例えば _Help_ オブジェクトを継承し _init()_ メソッドをオーバーライドします。
 
 {% highlight php %}
 <?php
@@ -293,8 +270,7 @@ class MyCommandHelp extends Help
 }
 ?>
 {% endhighlight %}
-
-Then instantiate the new class and pass its `getHelp()` output through _Stdio_:
+このクラスをインスタンス化して `getHelp()` を実行すれば _Stdio_ を通して出力されます。
 
 {% highlight php %}
 <?php
@@ -309,14 +285,13 @@ $stdio->outln($help->getHelp('my-command'));
 ?>
 {% endhighlight %}
 
-
-> - We keep the command name itself outside of the help class, because the command name may be mapped differently in different projects.
+> - コマンド名をhelpクラスの外部で保持するのは、そのコマンド名が違うプロジェクトで異なったマッピングをされるかもしれないからです。
 >
-> - We pass a _GetoptParser_ to the _Help_ object so it can parse the option defintions.
+> - _Help_ オブジェクトに _GetoptParser_ が渡されるのはオプション定義をパースできるようにするためです。
 >
-> - We can get the option definitions out of the _Help_ object using `getOptions()`; this allows us to pass a _Help_ object into a hypothetical command object and reuse the definitions.
+> - _Help_ オブジェクトの外で　`getOptions()` を使ってオプション定義を取得できるのは、 仮コマンドオブジェクトに対して _Help_ オブジェクトを渡すことを許可していることに加え、定義を再利用するためです。
 
-The output will look something like this:
+出力はこのようになります。
 
 {% highlight bash %}
 SUMMARY
@@ -337,75 +312,64 @@ OPTIONS
         The --bar option description.
 {% endhighlight %}
 
-### Formatter Cheat Sheet
+### formatter cheat sheet
+POSIXターミナルでは `<<markup>>` 文字列が表示を変更します。Note: これらはHTMLをタグではありません。この文字列はターミナルコントロールコードに変換されますが、閉じられることはありません。好きなスペース区切りのマークアップコードをdouble angle-brackets(<< >>)で指定できます。
 
-On POSIX terminals, `<<markup>>` strings will change the display
-characteristics. Note that these are not HTML tags; they will be converted
-into terminal control codes, and do not get "closed". You can place as many
-space-separated markup codes between the double angle-brackets as you like.
+    reset       表示をデフォルトに戻す
 
-    reset       reset display to defaults
+    black       黒色文字
+    red         赤色文字
+    green       緑色文字
+    yellow      黄色文字
+    blue        青色文字
+    magenta     マゼンタ（紫）色文字
+    cyan        シアン（水）色文字
+    white       白色文字
 
-    black       black text
-    red         red text
-    green       green text
-    yellow      yellow text
-    blue        blue text
-    magenta     magenta (purple) text
-    cyan        cyan (light blue) text
-    white       white text
+    blackbg     黒色背景
+    redbg       赤色背景
+    greenbg     緑色背景
+    yellowbg    黄色背景
+    bluebg      青色背景
+    magentabg   マゼンタ（紫）背景
+    cyanbg      シアン（水）色背景
+    whitebg     白色背景
 
-    blackbg     black background
-    redbg       red background
-    greenbg     green background
-    yellowbg    yellow background
-    bluebg      blue background
-    magentabg   magenta (purple) background
-    cyanbg      cyan (light blue) background
-    whitebg     white background
+    bold        文字を太字
+    dim         文字をdim
+    ul          文字にアンダーライン
+    blink       文字を点滅
+    reverse     文字と背景を反転
 
-    bold        bold in the current text and background colors
-    dim         dim in the current text and background colors
-    ul          underline in the current text and background colors
-    blink       blinking in the current text and background colors
-    reverse     reverse the current text and background colors
+例えば出力やエラー文字列に、太字と白文字を赤の背景色にセットしたい場合、`<<bold white redbg>>` を指定します。
+標準に戻すには `<<reset>>` を指定します。
 
-For example, to set bold white text on a red background, add `<<bold white redbg>>`
-into your output or error string. Reset back to normal with `<<reset>>`.
+## サービス
+Aura.Cli_Kernel は次の _Container_ に格納されたサービスオブジェクトを定義します。
 
-## Services
+- `aura/cli-kernel:dispatcher`: _Aura\\Dispatcher\\Dispatcher_ インスタンス
+- `aura/cli-kernel:context`: _Aura\\Cli\\Context_ インスタンス
+- `aura/cli-kernel:stdio`: _Aura\\Cli\\Stdio_ インスタンス
+- `aura/cli-kernel:help_service`: _Aura\\Cli_Kernel\\HelpService_ インスタンス
+- `aura/project-kernel:logger`: `Monolog\\Logger` インスタンス
 
-Aura.Cli_Kernel defines the following service objects in the _Container_:
+## クイックスタート
+Dependency Injection _Container_ は aura framework projectの処理における絶対的な中心です。項目を進める前にこちらを参照してください。 [ディペンデンシーインジェクション](/manuals/2.0/ja/di/) 
 
-- `aura/cli-kernel:dispatcher`: an instance of _Aura\\Dispatcher\\Dispatcher_
-- `aura/cli-kernel:context`: an instance of _Aura\\Cli\\Context_
-- `aura/cli-kernel:stdio`: an instance of _Aura\\Cli\\Stdio_
-- `aura/cli-kernel:help_service`: an instance of _Aura\\Cli_Kernel\\HelpService_
-- `aura/project-kernel:logger`: an instance of `Monolog\\Logger`
+Aura.Cli の _Context_, _Stdio_, _Status_ オブジェクトを理解するには [Dispatching](/manuals/2.0/ja/dispatching/) も参照してください。
 
-## Quick Start
+## プロジェクトの設定
+全てのAuraプロジェクトは同じ設定方法を用います。[こちら](/manuals/2.0/ja/configuration/)も参照してください。
 
-The dependency injection _Container_ is absolutely central to the operation of an aura framework project. Please be familiar with [the DI docs](/manuals/2.0/en/di/) before continuing.
+## ロギング
+ログは自動で `{$PROJECT_PATH}/tmp/log/{$mode}.log` に出力されます。もしロギングの挙動を変更したい場合、関連する設定ファイル（例えば `config/Dev.php`）で `aura/project-kernel:logger` サービスを変更することで設定することが出来ます。
 
-You should also familiarize yourself with [Dispatching](/manuals/2.0/en/dispatching/), as well as the Aura.Cli _Context_, _Stdio_, and _Status_ objects.
+## コマンド
+コマンドはプロジェクトの `config/` により設定されます。もしコマンドが全ての設定モードで必要な場合、プロジェクトの `config/Common.php` クラスを変更してください。もしそれが特定のモードだけの場合、例えば `dev` モードの場合そのモードに対する設定ファイルを変更してください。
+こちらは2つの異なるスタイルでのコマンド定義です。
 
-## Project Configuration
-
-Every Aura project is configured the same way. Please see the [shared configuration docs](/manuals/2.0/en/configuration/) for more information.
-
-## Logging
-
-The project automatically logs to `{$PROJECT_PATH}/tmp/log/{$mode}.log`. If you want to change the logging behaviors for a particular config mode, edit the related config file (e.g., `config/Dev.php`) file to modify the `aura/project-kernel:logger` service.
-
-## Commands
-
-We configure commands via the project-level `config/` class files. If a command needs to be available in every config mode, edit the project-level `config/Common.php` class file. If it only needs to be available in a specific mode, e.g. `dev`, then edit the config file for that mode.
-
-Here are two different styles of command definition.
-
-## Micro-Framework Style
-
-The following is an example of a command where the logic is embedded in the dispatcher, using the `aura/cli-kernel:context` and `aura/cli-kernel:stdio` services along with standard exit codes. (The dispatcher object name doubles as the command name.)
+## マイクロフレームワークスタイル
+以下の例は `aura/cli-kernel:context` サービスと `aura/cli-kernel:stdio` サービスを使った、通常終了コードを出力するコマンドの例です。（このディスパッチャーにセットされる名前はコマンド名と対になっています。）
 
 {% highlight php %}
 <?php
@@ -439,19 +403,16 @@ class Common extends Config
 ?>
 {% endhighlight %}
 
-You can now run the command to see its output.
+このコマンドを実行すると以下の通り出力されます。
 
     cd {$PROJECT_PATH}
     php cli/console.php foo 88
 
-(If you do not pass an ID argument, you will see an error message.)
+（もしID引数を指定していない場合エラーメッセージが表示されるはずです。）
 
-## Full-Stack Style
-
-You can migrate from a micro-controller style to a full-stack style (or start
-with full-stack style in the first place).
-
-First, define a command class and place it in the project `src/` directory.
+## フルスタックスタイル
+マイクロフレームワークスタイルからフルスタックスタイルに変更する（もしくは最初からフルスタックで始める）ことも出来ます。
+まずはじめに、コマンドクラスの定義そしてプロジェクトの `src/` ディレクトリへの配置を行います。
 
 {% highlight php %}
 <?php
@@ -486,10 +447,7 @@ class FooCommand
 ?>
 {% endhighlight %}
 
-Next, tell the project how to build the _FooCommand_ through the DI
-_Container_. Edit the project `config/Common.php` file to configure the
-_Container_ to pass the `aura/cli-kernel:context` and `aura/cli-kernel:stdio` service objects to
-the _FooCommand_ constructor. Then put the _App\Command\FooCommand_ object in the dispatcher under the name `foo` as a lazy-loaded instantiation.
+次にDI _Container_ に _FooCommand_ のビルド方法を伝えます。 `config/Common.php` を編集し、 _Container_ に対して `aura/cli-kernel:context` サービスと `aura/cli-kernel:stdio` サービスを _FooCommand_ のコンストラクタに渡すように設定します。そして _App\Command\FooCommand_ オブジェクトを `foo` という名前のディスパッチャーに対して遅延インストールします。
 
 {% highlight php %}
 <?php
@@ -524,9 +482,9 @@ class Common extends Config
 ?>
 {% endhighlight %}
 
-You can now run the command to see its output.
+このコマンドを実行すると以下の通り出力されます。
 
     cd {$PROJECT_PATH}
-    php cli/console.php foo 88
+        php cli/console.php foo 88
 
-(If you do not pass an ID argument, you will see an error message.)
+（もしID引数を指定していない場合エラーメッセージが表示されるはずです。）
