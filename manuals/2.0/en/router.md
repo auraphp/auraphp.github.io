@@ -410,12 +410,6 @@ That method call will result in the following routes being added:
       <td>Create a new resource</td>
     </tr>
     <tr>
-      <td>blog.create</td>
-      <td>POST</td>
-      <td>/blog</td>
-      <td>Create a new resource</td>
-    </tr>
-    <tr>
       <td>blog.update</td>
       <td>PATCH</td>
       <td>/blog/{id}</td>
