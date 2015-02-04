@@ -1,5 +1,5 @@
 ---
-layout: docs-ja
+layout: docs2-ja
 title: Validation and Sanitization
 permalink: /manuals/2.0/ja/validation/
 ---
