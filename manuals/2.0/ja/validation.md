@@ -1,7 +1,7 @@
 ---
 layout: docs-ja
 title: Validation and Sanitization
-permalink: /manuals/v1/ja/filter/
+permalink: /manuals/2.0/ja/filter/
 ---
 
 # バリデーションとサニタイゼーション #
