@@ -1,18 +1,18 @@
 ---
-layout: docs2-en
+layout: docs2-ja
 title: Internationalization
-permalink: /manuals/2.0/en/intl/
+permalink: /manuals/2.0/ja/intl/
 previous_page: Validation
-previous_page_url: /manuals/2.0/en/validation/
+previous_page_url: /manuals/2.0/ja/validation/
 next_page: Session
-next_page_url: /manuals/2.0/en/session/
+next_page_url: /manuals/2.0/ja/session/
 ---
 
-# Internationalization
+# 国際化
 
-The Aura.Intl package provides internationalization (I18N) tools, specifically package-oriented per-locale message translation.
+Aura.Intl パッケージは国際化 (I18N) ツールを提供します。具体的には、ロケールごとにメッセージ翻訳を行うパッケージ指向のツールです。
 
-> Assume you have installed `foa/filter-input-bundle` and `foa/filter-input-bundle`.
+> `foa/filter-input-bundle` と `foa/filter-input-bundle` をインストールしたと仮定します。
 
 {% highlight json %}
 {
@@ -25,15 +25,16 @@ The Aura.Intl package provides internationalization (I18N) tools, specifically p
 }
 {% endhighlight %}
 
-## Service
+## サービス
 
-In your modify method you can get the service `intl_translator_locator` like
+次のように修正しているメソッド中で `intl_translator_locator` サービスを取得することができます。
+
 
 {% highlight bash %}
 $translators = $di->get('intl_translator_locator');
 {% endhighlight %}
 
-## Setting Localized Messages For A Package
+## パッケージにローカライズしたメッセージを設定
 
 We can set localized messages for a package through the `PackageLocator` object
 from the translator locator. We create a new `Package` with messages and place
@@ -44,7 +45,7 @@ and message string.
 <?php
 use Aura\Intl\Package;
 
-// get the package locator
+// package locatorを取得
 $packages = $translators->getPackages();
 
 // place into the locator for Vendor.Package
@@ -71,9 +72,9 @@ $packages->set('Vendor.Package', 'pt_BR', function() {
 ?>
 {% endhighlight %}
 
-## Setting The Default Locale
+## デフォルトロケールの設定
 
-We can set the default locale for translations using the `setLocale()` method:
+`setLocale()` メソッドを使うことで翻訳のデフォルトロケールを設定することできます:
 
 {% highlight php %}
 <?php
@@ -81,12 +82,12 @@ $translators->setLocale('pt_BR');
 ?>
 {% endhighlight %}
 
-## Getting A Localized Message
+## ローカライズされたメッセージを取得
 
-Now that the translator locator has messages and a default locale, we can get
-an individual package translator. The package translator is suitable for
-injection into another class, or for standalone use. You will neeed to
-create a tanslator helper which can return the service.
+トランスレーターロケーターはメッセージとデフォルトロケールを持っているので、
+単一のパッケージトランスレーターを取得することができます。パッケージトランス
+レーターは他のクラスに注入したり、スタンドアローンの利用に向いています。
+サービスを返すトランスレーターヘルパーを作成する必要があるかもしれません。
 
 {% highlight php %}
 <?php
@@ -106,10 +107,10 @@ echo $translator->translate('FOO'); // 'The text for "foo."'
 {% endhighlight %}
 
 
-## Replacing Message Tokens With Values
+## メッセージトーケンを値で置き換える
 
-We often need to use dynamic values in translated messages. First, the
-message string needs to have a token placeholder for the dynamic value:
+翻訳メッセージではよく動的な値を使う必要があります。はじめに、メッセージ文字列は
+動的な値に置き換えるためのトークンプレースホルダーを持つ必要があります。
 
 {% highlight php %}
 <?php
@@ -151,13 +152,13 @@ echo $translator->translate('PAGE', [
 ?>
 {% endhighlight %}
 
-## Pluralized Messages
+## 複数形のメッセージ
 
-Usually, we need to use different messages when a value is singular or plural.
-The `BasicFormatter` is not capable of presenting different messages based on
-different token values. The `IntlFormatter` *is* capable, but the PHP
-[`intl`](http://php.net/intl) extension must be loaded to take advantage of
-it, and we must specify the `'intl'` formatter for the package in the catalog.
+値が単数形や複数形の場合、普通は異なるメッセージを使う必要があります。
+`BasicFormatter` は異なるトークン値に基づいた異なるメッセージを表示することができません。
+`IntlFormatter`は表示することができますが、利用するためには PHP [`intl`](http://php.net/intl)
+エクステンションが読み込まれている必要があり、 カタログにパッケージ向けの `intl` formatter
+を記述する必要があります。
 
 When using the `IntlFormatter`, we can build our message strings to present
 singular or plural messages, as in the following example:
