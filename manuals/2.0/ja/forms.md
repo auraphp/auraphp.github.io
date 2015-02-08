@@ -8,7 +8,7 @@ next_page: Validation
 next_page_url: /manuals/2.0/ja/validation/
 ---
 
-# Forms
+# フォーム
 
 フォームはWebアプリケーションに欠かせない要素です。composer.json に`foa/filter-input-bundle` と `foa/filter-input-bundle` を追加してください。
 
@@ -23,7 +23,7 @@ next_page_url: /manuals/2.0/ja/validation/
 }
 {% endhighlight %}
 
-## Usage
+## 使い方
 
 フォームを作るためには`Aura\Input\Form`クラスを拡張し、initメソッドをオーバーライドします。
 
@@ -89,7 +89,7 @@ class ContactForm extends Form
 
 > Note : input, intl, filterはv1のコンポーネントを使用しています。
 
-## Configuration
+## 設定
 
 `App\Input\ContactForm`を使うクラスのコンストラクタでタイプヒントを指定している場合、依存を注入するために[di](/manuals/2.0/ja/di/)を使用するのはとても賢明なやり方です。
 
@@ -99,7 +99,7 @@ class ContactForm extends Form
 $di->params['Vendor\Package\SomeDomain']['contact_form'] = $di->lazyNew('App\Input\ContactForm');
 {% endhighlight %}
 
-## Populating
+## 値の設定
 
 `fill()`メソッドを使用してフォームの値を集めます。
 
@@ -109,7 +109,7 @@ $this->contact_form->fill($_POST['contact']);
 
 > このメソッドはAuraの文脈では[$this->request->post->get()](/manuals/2.0/ja/request/)に相当します。
 
-## Validating User Input
+## ユーザー入力のバリデーション
 
 `filter()`メソッドを使用してフォームのバリデーションを行えます。
 
@@ -125,7 +125,7 @@ if ($pass) {
 }
 {% endhighlight %}
 
-## Rendering
+## レンダリング
 
 `ContactForm`オブジェクトを渡したと仮定すると、ビューにアサインされる変数名は`contact_form`となります。フィールドの付属情報を取得するために、フォームオブジェクトの`get`メソッドが使用でき、取得した値をそのままinputヘルパーに渡すことができます。
 

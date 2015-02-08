@@ -8,7 +8,7 @@ next_page: Request
 next_page_url: /manuals/2.0/ja/request/
 ---
 
-# Dispatching
+# ディスパッチ
 
 Auraプロジェクトは[Aura.Dispatcher](https://github.com/auraphp/Aura.Dispatcher)の助けを借りて様々なバリエーションのプロジェクトを取り扱うことができます。
 
@@ -20,7 +20,7 @@ Auraプロジェクトは[Aura.Dispatcher](https://github.com/auraphp/Aura.Dispa
 
 > You can skip to your favourite usage.
 
-## Microframework
+## マイクロフレームワーク
 
 以下に続くのはマイクロフレームワークスタイルのルーターで、アクションロジックはルーターのパラメータに埋め込まれています。`modify()`メソッドのなかで`aura/web-kernel:response`によってシェアされた`aura/web-kernel:request`と`aura/web-kernel:response`サービスを取得します。次に、`blog.read`という名前をルートに追加しアクションのコードをクロージャとして埋め込みます。
 
@@ -57,7 +57,7 @@ class Common extends Config
 }
 {% endhighlight %}
 
-## Modified Micro-Framework Style
+## 修正マイクロフレームワークスタイル
 
 上の例をルーター自身を使う代わりにアクションロジックをディスパッチャーの中におくように修正できます。
 
@@ -102,7 +102,7 @@ class Common extends Config
 }
 {% endhighlight %}
 
-## Full-Stack Style
+## フルスタックスタイル
 
 マイクロフレームワークスタイルからフルスタックスタイルへと移行することも可能です。(または最初からフルスタックスタイルで開始することも可能です。)
 
