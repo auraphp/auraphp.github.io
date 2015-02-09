@@ -1,12 +1,12 @@
 ---
-layout: docs2-en
+layout: docs2-ja
 title: Quick Start
-permalink: /manuals/2.0/en/quick-start/
+permalink: /manuals/2.0/ja/quick-start/
 ---
 
-## Creating your project
+## プロジェクトの作成
 
-Installation is done via [composer](http://getcomposer.org).
+インストールは [composer](http://getcomposer.org) で行います。
 
 
 {% highlight bash %}
@@ -15,13 +15,13 @@ cd quick-start
 composer require "foa/html-view-bundle:2.*"
 {% endhighlight %}
 
-All views and layouts are kept in `templates/views` and `templates/layouts` folder.
+すべてのビューファイルとレイアウトファイルは、`templates/views` および `templates/layouts` フォルダ内に置きます。
 
 {% highlight bash %}
 mkdir -p templates/{views,layouts}
 {% endhighlight %}
 
-Create your basic template `templates/views/hello.php`
+基本的なテンプレートファイルを `templates/views/hello.php` に作成します。
 
 {% highlight php %}
 <?php // templates/views/hello.php ?>
@@ -29,7 +29,8 @@ Create your basic template `templates/views/hello.php`
 <p>Hello <?= $this->name; ?></p>
 {% endhighlight %}
 
-and a very basic layout
+
+そしてとても簡単なレイアウトを作成します。
 
 {% highlight php %}
 <?php // templates/layouts/default.php ?>
@@ -44,7 +45,7 @@ and a very basic layout
 </html>
 {% endhighlight %}
 
-Edit `config/Common.php` and define service for `view`.
+`config/Common.php` を編集し`view` のサービスを定義します。
 
 {% highlight php %}
 public function define(Container $di)
@@ -53,7 +54,7 @@ public function define(Container $di)
 }
 {% endhighlight %}
 
-Edit `modifyDispatcher` method to
+`modifyDispatcher` メソッドを下記のように編集します。
 
 {% highlight php %}
 public function modifyWebDispatcher($di)
@@ -64,7 +65,7 @@ public function modifyWebDispatcher($di)
     $request = $di->get('aura/web-kernel:request');
     $dispatcher->setObject('hello', function () use ($view, $response, $request) {
 
-        // set where the view and layout resides
+        // ビューファイルとレイアウトファイルのパスをセットします。
         $view_registry = $view->getViewRegistry();
         $view_registry->set('hello', dirname(__DIR__) . '/templates/views/hello.php');
         $layout_registry = $view->getLayoutRegistry();
@@ -79,7 +80,7 @@ public function modifyWebDispatcher($di)
 }
 {% endhighlight %}
 
-Let us fire the php server
+PHPサーバを起動してみましょう。
 
 {% highlight bash %}
 php -S localhost:8000 web/index.php

@@ -1,20 +1,20 @@
 ---
-layout: docs2-en
+layout: docs2-ja
 title: Setting up your virtual host
-permalink: /manuals/2.0/en/setup/
+permalink: /manuals/2.0/ja/setup/
 previous_page: Command line / console
-previous_page_url: /manuals/2.0/en/cli/
+previous_page_url: /manuals/2.0/ja/cli/
 ---
 
-# Setting up your virtual host
+# バーチャルホストの設定
 
 ## Apache
 
-We are going to point the virtual host to `aura.localhost`.
+バーチャルホストを `aura.localhost` に設定します。
 
-Create a file `/etc/apache2/sites-available/aura.localhost` with the below contents.
+以下を含む `/etc/apache2/sites-available/aura.localhost` ファイルを作成します。
 
-> Depending upon your apache configuration you may need to add `.conf`
+> Apache の設定によっては `.conf` が必要かも知れません
 
 {% highlight bash %}
 <VirtualHost *:80>
@@ -28,23 +28,23 @@ Create a file `/etc/apache2/sites-available/aura.localhost` with the below conte
 </VirtualHost>
 {% endhighlight %}
 
-`path/to/project` is where you installed the `aura/web-project`.
+`path/to/project` は `aura/web-project` をインストールした場所です。
 
-**NOTE:** Apache 2.4 users might have to add `Require all granted` below `AllowOverride all` in order to prevent a 401 response caused by [the changes in access control](https://httpd.apache.org/docs/2.4/upgrading.html#access).
+**NOTE:** Apache 2.4 のユーザは、[アクセス制御の変更](https://httpd.apache.org/docs/2.4/upgrading.html#access) による 401 レスポンスを避けるために、`AllowOverride all` の下に `Require all granted` を追加しなければいけないかも知れません。
 
-Enable the site using
+以下でサイトを有効にします
 
 {% highlight bash %}
 a2ensite aura.localhost
 {% endhighlight %}
 
-and reload the apache
+そして、Apache を再起動します
 
 {% highlight bash %}
 service apache2 reload
 {% endhighlight %}
 
-Before we go and check in browser add one more line in the `/etc/hosts`
+ブラウザでチェックする前に `/etc/hosts` に次の一行を追加します
 
 {% highlight bash %}
 127.0.0.1   aura.localhost www.aura.localhost
@@ -52,9 +52,9 @@ Before we go and check in browser add one more line in the `/etc/hosts`
 
 ## Nginx
 
-The following configuration assumes that you're using PHP as [FPM SAPI](http://php.net/install.fpm).
+以下の設定は PHP を [FPM SAPI](http://php.net/install.fpm) として使っていることを前提としています。
 
-The configuration file is under `/etc/nginx/sites-available`
+設定ファイルは `/etc/nginx/sites-available` 以下にあります。
 
 {% highlight bash %}
 server {
@@ -77,8 +77,8 @@ server {
 }
 {% endhighlight %}
 
-It could be that you are using old nginx version where `fastcgi.conf` isn't available at `/etc/nginx/`.
-In this case you need to create `/etc/nginx/fastcgi.conf` with the following content:
+もし `/etc/nginx/` の中に `fastcgi.conf` のない古いバージョンの Nginx を使っているなら、
+以下を含む `/etc/nginx/fastcgi.conf` を作成する必要があります。
 
 {% highlight bash %}
 fastcgi_param  SCRIPT_FILENAME    $document_root$fastcgi_script_name;
@@ -103,13 +103,12 @@ fastcgi_param  SERVER_ADDR        $server_addr;
 fastcgi_param  SERVER_PORT        $server_port;
 fastcgi_param  SERVER_NAME        $server_name;
 
-# PHP only, required if PHP was built with --enable-force-cgi-redirect
+# PHP が --enable-force-cgi-redirect でビルドされている場合のみ必要
 fastcgi_param  REDIRECT_STATUS    200;
 {% endhighlight %}
 
-Check `http://aura.localhost` in your favourite browser.
+お気に入りのブラウザで `http://aura.localhost` をチェックします。
 
-When using configuration above you should set `cgi.fix_pathinfo=0` in `php.ini` in order to avoid numerous unnecessary system `stat()` calls.
+上の設定を使う場合、不必要な非常に多くの `stat()` システムコールを避けるために、`php.ini` の中で `cgi.fix_pathinfo=0` を設定します。
 
-Also note that if you plan running an HTTPS server, you have to add `fastcgi_param HTTPS on;` for its host.
-
+また、HTTPS サーバを稼働する場合、そのホストに `fastcgi_param HTTPS on;` を追加する必要があることに注意してください。

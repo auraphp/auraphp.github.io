@@ -49,31 +49,29 @@ class ContactForm extends Form
             'AR' => 'Arkansas',
             // ...
         );
-
+        // this will make sure all field names are setup as an array so you can get all fields through $_POST['contact']
+        $this->setName('contact');
         // set input fields
         // hint the view layer to treat the first_name field as a text input,
         // with size and maxlength attributes
         $this->setField('first_name', 'text')
-             ->setAttribs(array(
-                 'name' => "contact[first_name]",
-                 'id' => 'first_name',
+            ->setAttribs(array(
+                'id' => 'first_name',
                 'size' => 20,
                 'maxlength' => 20,
-             ));
+            ));
 
         // hint the view layer to treat the state field as a select, with a
         // particular set of options (the keys are the option values,
         // and the values are the displayed text)
         $this->setField('state', 'select')
-             ->setAttribs(array(
-                 'name' => "contact[state]",
+            ->setAttribs(array(
                  'id' => 'state',
-             ))
-             ->setOptions($states);
+            ))
+            ->setOptions($states);
 
         $this->setField('message', 'textarea')
             ->setAttribs([
-                'name' => "contact[message]",
                 'id' => 'message',
                 'cols' => 40,
                 'rows' => 5,
@@ -109,10 +107,10 @@ $di->params['Vendor\Package\SomeDomain']['contact_form'] = $di->lazyNew('App\Inp
 Form can be populated using `fill()` method.
 
 {% highlight php %}
-$this->contact_form->fill($_POST);
+$this->contact_form->fill($_POST['contact']);
 {% endhighlight %}
 
-> In aura/cocoframework term it will be [$this->request->post->get()](/manuals/2.0/en/request/)
+> In aura term it will be [$this->request->post->get()](/manuals/2.0/en/request/)
 
 ## Validating User Input
 
