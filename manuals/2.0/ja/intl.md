@@ -1,10 +1,10 @@
 ---
 layout: docs2-ja
-title: Internationalization
+title: 国際化
 permalink: /manuals/2.0/ja/intl/
-previous_page: Validation
+previous_page: バリデーション
 previous_page_url: /manuals/2.0/ja/validation/
-next_page: Session
+next_page: セッション
 next_page_url: /manuals/2.0/ja/session/
 ---
 

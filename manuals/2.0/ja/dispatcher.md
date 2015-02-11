@@ -1,10 +1,10 @@
 ---
 layout: docs2-ja
-title: Dispatching
+title: ディスパッチ
 permalink: /manuals/2.0/ja/dispatcher/
-previous_page: Routing
+previous_page: ルーティング
 previous_page_url: /manuals/2.0/ja/router/
-next_page: Request
+next_page: リクエスト
 next_page_url: /manuals/2.0/ja/request/
 ---
 

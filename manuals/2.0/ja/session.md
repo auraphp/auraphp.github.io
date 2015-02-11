@@ -2,9 +2,9 @@
 layout: docs2-ja
 title: セッション
 permalink: /manuals/2.0/ja/session/
-previous_page: Internationalization
+previous_page: 国際化
 previous_page_url: /manuals/2.0/ja/intl/
-next_page: Command line / console
+next_page: コマンドライン / CLI / コンソール
 next_page_url: /manuals/2.0/ja/cli/
 ---
 

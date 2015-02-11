@@ -4,7 +4,7 @@ title: イントロダクション
 permalink: /manuals/2.0/ja/
 previous_page:
 previous_page_url:
-next_page: Configuration
+next_page: コンフィギュレーション
 next_page_url: /manuals/2.0/ja/configuration
 ---
 
