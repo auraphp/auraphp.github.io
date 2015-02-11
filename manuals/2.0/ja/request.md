@@ -1,10 +1,10 @@
 ---
 layout: docs2-ja
-title: Introduction
+title: リクエスト
 permalink: /manuals/2.0/ja/request/
-previous_page: Dispatching
+previous_page: ディスパッチ
 previous_page_url: /manuals/2.0/ja/dispatcher/
-next_page: Response
+next_page: レスポンス
 next_page_url: /manuals/2.0/ja/response/
 ---
 

@@ -1,10 +1,10 @@
 ---
 layout: docs2-ja
-title: Response
+title: レスポンス
 permalink: /manuals/2.0/ja/response/
-previous_page: Request
+previous_page: リクエスト
 previous_page_url: /manuals/2.0/ja/request/
-next_page: Dependency Injection
+next_page: ディペンデンシーインジェクション
 next_page_url: /manuals/2.0/ja/di/
 ---
 

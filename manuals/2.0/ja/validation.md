@@ -1,6 +1,6 @@
 ---
 layout: docs2-ja
-title: Validation and Sanitization
+title: バリデーションとサニタイゼーション
 permalink: /manuals/2.0/ja/validation/
 ---
 
