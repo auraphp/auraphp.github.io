@@ -1,10 +1,10 @@
 ---
 layout: docs2-ja
-title: Forms
+title: フォーム
 permalink: /manuals/2.0/ja/forms/
-previous_page: View
+previous_page: ビュー
 previous_page_url: /manuals/2.0/ja/view/
-next_page: Validation
+next_page: バリデーション
 next_page_url: /manuals/2.0/ja/validation/
 ---
 

@@ -1,6 +1,6 @@
 ---
 layout: docs2-ja
-title: Quick Start
+title: クイックスタート
 permalink: /manuals/2.0/ja/quick-start/
 ---
 

@@ -1,10 +1,10 @@
 ---
 layout: docs2-ja
-title: Internationalization
+title: 国際化
 permalink: /manuals/2.0/ja/intl/
-previous_page: Validation
+previous_page: バリデーション
 previous_page_url: /manuals/2.0/ja/validation/
-next_page: Session
+next_page: セッション
 next_page_url: /manuals/2.0/ja/session/
 ---
 
@@ -27,7 +27,7 @@ Aura.Intl パッケージは国際化 (I18N) ツールを提供します。具�
 
 ## サービス
 
-次のように修正しているメソッド中で `intl_translator_locator` サービスを取得することができます。
+次のようにメソッド中で `intl_translator_locator` サービスを取得することができます。
 
 
 {% highlight bash %}
@@ -36,10 +36,10 @@ $translators = $di->get('intl_translator_locator');
 
 ## パッケージにローカライズしたメッセージを設定
 
-We can set localized messages for a package through the `PackageLocator` object
-from the translator locator. We create a new `Package` with messages and place
-it into the locator as a callable. The messages take the form of a message key and
-and message string.
+translator locator から取得した `PackageLocator` オブジェクトを介して、ローカライズした
+メッセージをパッケージに設定することができます。メッセージをセットした `Package` を
+作成し、それをコールバックロケーターとして登録します。messagesは メッセージキーと
+メッセージ文字列 という形をとります。
 
 {% highlight php %}
 <?php
@@ -50,7 +50,7 @@ $packages = $translators->getPackages();
 
 // place into the locator for Vendor.Package
 $packages->set('Vendor.Package', 'en_US', function() {
-    // create a US English message set
+    // アメリカ英語のメッセージセットを作成
     $package = new Package;
     $package->setMessages([
         'FOO' => 'The text for "foo."';
@@ -61,7 +61,7 @@ $packages->set('Vendor.Package', 'en_US', function() {
 
 // place into the locator for a Vendor.Package
 $packages->set('Vendor.Package', 'pt_BR', function() {
-    // a Brazilian Portuguese message set
+    // ブラジルのポルトガル語のメッセージセット
     $package = new Package;
     $package->setMessages([
         'FOO' => 'O texto de "foo".';
@@ -86,18 +86,18 @@ $translators->setLocale('pt_BR');
 
 トランスレーターロケーターはメッセージとデフォルトロケールを持っているので、
 単一のパッケージトランスレーターを取得することができます。パッケージトランス
-レーターは他のクラスに注入したり、スタンドアローンの利用に向いています。
+レーターは他のクラスに注入したり、単体での利用に向いています。
 サービスを返すトランスレーターヘルパーを作成する必要があるかもしれません。
 
 {% highlight php %}
 <?php
-// recall that the default locale is pt_BR
+// デフォルトロケール pt_BR で呼び出す
 $translator = $translators->get('Vendor.Package');
 echo $translator->translate('FOO'); // 'O texto de "foo".'
 ?>
 {% endhighlight %}
 
-You can get a translator for a non-default locale as well:
+デフォルトロケール以外のtranslatorを取得することもできます:
 
 {% highlight php %}
 <?php
@@ -114,12 +114,12 @@ echo $translator->translate('FOO'); // 'The text for "foo."'
 
 {% highlight php %}
 <?php
-// get the packages out of the translator locator
+// translator locator からpackagesを取得
 $packages = $translators->getPackages();
 
 $packages->set('Vendor.Dynamic', 'en_US', function() {
 
-    // US English messages
+    // アメリカ英語のメッセージ
     $package = new Package;
     $package->setMessages([
         'PAGE' => 'Page {page} of {pages} pages.';
@@ -128,7 +128,7 @@ $packages->set('Vendor.Dynamic', 'en_US', function() {
 });
 
 $packages->set('Vendor.Dynamic', 'pt_BR', function() {
-    // Brazilian Portuguese messages
+    // ブラジルのポルトガル語メッセージ
     $package = new Package;
     $package->setMessages([
         'PAGE' => 'Página {page} de {pages} páginas.';
@@ -138,12 +138,12 @@ $packages->set('Vendor.Dynamic', 'pt_BR', function() {
 ?>
 {% endhighlight %}
 
-Then, when we translate the message, we provide an array of tokens and
-replacement values.  These will be interpolated into the message string.
+それから、メッセージの翻訳をするときには、トークンと置換する値の配列を渡します。
+そうすればメッセージ文字列に変換されます。
 
 {% highlight php %}
 <?php
-// recall that the default locale is pt_BR
+// デフォルトロケールは pt_BR であることを思い出そう
 $translator = $translators->get('Vendor.Dynamic');
 echo $translator->translate('PAGE', [
     'page' => 1,
@@ -154,24 +154,26 @@ echo $translator->translate('PAGE', [
 
 ## 複数形のメッセージ
 
-値が単数形や複数形の場合、普通は異なるメッセージを使う必要があります。
-`BasicFormatter` は異なるトークン値に基づいた異なるメッセージを表示することができません。
-`IntlFormatter`は表示することができますが、利用するためには PHP [`intl`](http://php.net/intl)
-エクステンションが読み込まれている必要があり、 カタログにパッケージ向けの `intl` formatter
-を記述する必要があります。
+値が単数形や複数形の場合、通常異なるメッセージを使う必要があります。
+`BasicFormatter` は異なるトークン値に応じて異なるメッセージを表示することができません。
+`IntlFormatter` *であれば* 表示することができますが、利用するためには PHP
+[`intl`](http://php.net/intl) エクステンションが読み込まれている必要があり、
+パッケージのカタログに `intl` formatter を記述する必要があります。
 
-When using the `IntlFormatter`, we can build our message strings to present
-singular or plural messages, as in the following example:
+次の例のように、`IntlFormatter` を使えば、単数または複数形のメッセージを表示するように
+メッセージ文字列を組み立てることができます。
 
 {% highlight php %}
 <?php
-// get the packages out of the translator locator
+// translator locatorからpackagesを取得
 $packages = $translators->getCatalog();
 
-// get the Vendor.Dynamic package en_US locale and set
-// US English messages with pluralization. note the use
 // of # instead of {pages} herein; using the placeholder
 // "inside itself" with the Intl formatter causes trouble.
+// en_US ロケールの Vendor.Dynamic パッケージを取得し、複数型の
+// メッセージを設定します。ここでは {pages} の代わりに # を使用
+// していることに注目してください。Intl formatter において、
+//  プレースホルダを "自身の内部で" 使うと問題を引き起こします。
 $package->setMessages([
     'PAGE' => '{pages,plural,'
             . '=0{No pages.}'
@@ -180,26 +182,26 @@ $package->setMessages([
             . '}'
 ]);
 
-// use the 'intl' formatter for this package and locale
+// このパッケージとロケールで 'intl' formatter を使用する
 $package->setFormatter('intl');
 
-// now that we have added the pluralizable messages,
-// get the US English translator for the package
+// 複数形のメッセージを追加したので
+// パッケージからアメリカ英語のtranslatorを取得する
 $translator = $translators->get('Vendor.Dynamic', 'en_US');
 
-// zero translation
+// 0の翻訳
 echo $translator->translate('PAGE', [
     'page' => 0,
     'pages' => 0,
 ]); // 'No pages.'
 
-// singular translation
+// 単数形の翻訳
 echo $translator->translate('PAGE', [
     'page' => 1,
     'pages' => 1,
 ]); // 'One page only.'
 
-// plural translation
+// 複数形の翻訳
 echo $translator->translate('PAGE', [
     'page' => 3,
     'pages' => 10,
@@ -207,7 +209,7 @@ echo $translator->translate('PAGE', [
 ?>
 {% endhighlight %}
 
-Note that you can use other tokens within a pluralized token string to build
-more complex messages. For more information, see the following:
+より複雑なメッセージを組み立てるために、複数形のトークン文字列中で他のトークンを
+使うこともできます。詳細については、以下を参照してください。:
 
 <http://icu-project.org/apiref/icu4j/com/ibm/icu/text/MessageFormat.html>

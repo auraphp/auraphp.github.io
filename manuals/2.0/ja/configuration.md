@@ -1,10 +1,10 @@
 ---
 layout: docs2-ja
-title: Configuration
+title: コンフィギュレーション
 permalink: /manuals/2.0/ja/configuration/
-previous_page: Introduction
+previous_page: イントロダクション
 previous_page_url: /manuals/2.0/ja/
-next_page: Routing
+next_page: ルーティング
 next_page_url: /manuals/2.0/ja/router/
 ---
 

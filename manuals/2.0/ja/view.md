@@ -1,10 +1,10 @@
 ---
 layout: docs2-ja
-title: View
+title: ビュー
 permalink: /manuals/2.0/ja/view/
-previous_page: Dependency Injection
+previous_page: ディペンデンシーインジェクション
 previous_page_url: /manuals/2.0/ja/di/
-next_page: Forms
+next_page: フォーム
 next_page_url: /manuals/2.0/ja/forms/
 ---
 
