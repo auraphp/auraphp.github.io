@@ -44,14 +44,20 @@ and a very basic layout
 </html>
 {% endhighlight %}
 
-Edit `config/Common.php` and define service for `view`.
+Edit `config/Common.php` and define service for `view` and the template paths in registry.
 
 {% highlight php %}
 public function define(Container $di)
 {
+    $di->params['Aura\View\TemplateRegistry']['paths'] = array(
+        dirname(__DIR__) . '/templates/views',
+        dirname(__DIR__) . '/templates/layouts',
+    );
     $di->set('view', $di->lazyNew('Aura\View\View'));
 }
 {% endhighlight %}
+
+> Setting paths in registry is available from 2.1+
 
 Edit `modifyDispatcher` method to
 
@@ -63,16 +69,12 @@ public function modifyWebDispatcher($di)
     $response = $di->get('aura/web-kernel:response');
     $request = $di->get('aura/web-kernel:request');
     $dispatcher->setObject('hello', function () use ($view, $response, $request) {
-
-        // set where the view and layout resides
-        $view_registry = $view->getViewRegistry();
-        $view_registry->set('hello', dirname(__DIR__) . '/templates/views/hello.php');
-        $layout_registry = $view->getLayoutRegistry();
-        $layout_registry->set('default', dirname(__DIR__) . '/templates/layouts/default.php');
-
         $name = $request->query->get('name', 'Aura');
+        // set the view to render
         $view->setView('hello');
+        // set the layout
         $view->setLayout('default');
+        // set the data for view
         $view->setData(array('name' => $name));
         $response->content->set($view->__invoke());
     });
@@ -84,3 +86,7 @@ Let us fire the php server
 {% highlight bash %}
 php -S localhost:8000 web/index.php
 {% endhighlight %}
+
+Now you can browse `http://localhost:8000` or pass a get value to name as `http://localhost:8000/?name=Hari`
+
+Enjoy using Aura!
