@@ -22,15 +22,17 @@ This will create the system skeleton and install all of the necessary
 packages.
 
 Once you have installed the Aura system, start the built-in PHP server with an
-`Aura.Framework` CLI command:
+Aura.Framework command:
 
     cd {$PROJECT_PATH}
     php package/Aura.Framework/cli/server
 
-You can then open a browser and go to <http://0.0.0.0:8000> to see the "Hello
-World!" demo output. Press `Ctrl-C` to stop the built-in PHP server.
+You can then open a browser and go to <http://0.0.0.0:8000> to see the
+"Hello World!" demo output.
 
-Additionally, you can run a command-line check:
+Press `Ctrl-C` to stop the built-in PHP server.
+
+Additionally, you can run a command-line test:
 
     cd {$PROJECT_PATH}
     php package/Aura.Framework_Demo/cli/hello
@@ -103,18 +105,18 @@ We will do so in a project-specific way, leaving out the complexities of
 creating an independent package for distribution.
 
 > Warning: If you have not removed the `Framework_Demo` package yet, please
-> [do so](#remove_the_demo_package) before continuing.  Otherwise,
+> [do so](#remove-the-demo-package) before continuing.  Otherwise,
 > your routes will not work correctly.
 
 ### Create The Controller
 
 Change to the `include/` directory and create a location for the example
 package and a space for our first web page ...
-    
+
     cd {$PROJECT_PATH}/include
     mkdir -p Example/Package/Web/Home
     cd Example/Package/Web/Home
-    
+
 ... then create a file called `HomePage.php`. Add this code for a bare-bones
 index action:
 
@@ -165,7 +167,7 @@ Now we need to wire up the page controller to the autoloader and the routing
 system. Change to the system config directory:
 
     $ cd {$PROJECT_PATH}/config
-    
+
 Edit the `default.php` file and add this code at the end of the file:
 
 {% highlight php %}
@@ -194,4 +196,3 @@ $di->params['Aura\Framework\Web\Controller\Factory']['map']['home'] = 'Example\P
 
 You should now be able to browse to the `/` URL to see "This is an example
 home page."
-
