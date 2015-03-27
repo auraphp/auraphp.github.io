@@ -1,0 +1,151 @@
+---
+title: Aura 3 Plans
+layout: post
+tags : [v3]
+author : Paul M. Jones
+---
+
+This is a really long post. Here's a tl;dr:
+
+- The Past
+
+    - Aura 1.x framework packages will see no new releases, and may be archived.
+
+    - Aura 1.x library packages are near the end of active development; to prevent orphaning and end-of-life, ownership and authority over them they may be transferred to interested parties.
+
+- The Present
+
+    - Aura 2.x packages that are currently stable will remain the center of development attention, with some modifications to Composer and PHPUnit support files, and with added testing on PHP 7.
+
+    - Aura 2.x packages that are not currently stable will not see stable 2.x releases; they will become 3.x candidate packages.
+
+- The Future
+
+    - Aura 3.x packages will target PHP 5.6, and additionally test on PHP 7.
+
+    - Aura 3.x library packages will be allowed to depend on interface packages, though not other implementation packages.
+
+    - Aura 3.x will not provide a framework under the Aura name, although the 2.x framework should be able to use 3.x components. Frameworks of Aura packages may be provided as separate projects.
+
+    - Aura 3.x and later packages will have independent major version release cycles.
+
+Read on for details!
+
+## The Past: Aura 1.x
+
+Aura 1.x is 4 years old at this point. Exploratory development began in late 2010, with the first commits under the Aura namespace in Jan 2011. The initial extraction of independent packages from [Solar](http://solarphp.com) was a great success.
+
+### Aura 1.x Framework
+
+The creation of a framework from those packages also worked well, for its time, but was imperfect. Among other things, Composer had not arrived on the scene when Aura 1.x started, so the 1.x framework only used Composer as an afterthought, and needed a special installer for the Aura 1.x library packages.
+
+I recently released verson 1.0.1 of the 1.x framework, to incorporate some outstanding fixes, which gave me an excuse to do a review of the system.  It is my assessment that the 1.x framework represents a necessary, but now obsolete, architectural step in Aura's evolution. As such, **the 1.x framework will not see new releases** after 1.0.1.
+
+New projects should use the 2.x systems: [Aura.Web_Project](https://github.com/auraphp/Aura.Web_Project), [Aura.Cli_Project](https://github.com/auraphp/Aura.Cli_Project), or [Aura.Framework_Project](https://github.com/auraphp/Aura.Framework_Project).
+
+I have not yet decided what to do with the 1.x framework Github repositories; these include the `Aura.Framework`, `Aura.Framework_Demo`, and `system` packages. I may go so far as to archive (zip/tgz) those repositories and provide them as downloads. That will retain their Git histories, leave them publicly available, and simultaneously obscure them from casual discovery.  (I am open to other suggestions here.)
+
+### Aura 1.x Libraries
+
+Active development on Aura 1.x library packages has dwindled as the 2.x packages have become stable.  Thus, new feature development on 1.x is no longer a priority for me personally, and I do not expect to give them significant attention in the future.
+
+I am aware that there are still users of 1.x packages that have not transitioned to 2.x. To keep those packages from being orphaned and effectively "end-of-lifed", I hereby invite anyone interested in maintaining them to contact me. The recipient will get full ownership and authority over the adopted package, with little to no further oversight from me.
+
+I am also aware that there are outstanding issues for Aura.Input and Aura.Marshal. I may be able to resolve some of them in the near future, and release new 1.x versions, but I make no promises there. However, unresolved issues will become the responsibility of the new owners, should anyone choose to receive them.
+
+Finally, an administrative note.  Aura 1.x libraries had a `develop` and `master` branch. The `master` branch always represented the latest 1.x release tag for that library. To reduce confusion and standardize naming across all packages and version, I would like to remove the `master` branch, and rename the `develop` branch to `develop-1`, on all Aura packages. I am not sure yet what effect that will have on Composer, so that decision will need a little experimentation first.
+
+## The Present: Aura 2.x
+
+Aura 2.x packages will continue to be the center of development attention. They will see some changes to their internal support file structures, but otherwise their guiding principles will remain the same.
+
+### Aura 2.x Testing Structure
+
+Currently, library packages have a `tests/unit/` directory and related PHPUnit files. Libraries that have a `config/Common.php` dependency injection config file *also* have a `tests/container/` directory and a second second set of PHPUnit files; these are to test the DI wiring. In the near future, this will change so that:
+
+1. PHPUnit files reside in the package root directory; and,
+
+2. The unit and container tests will be combined within the `tests/` diretory itself, not segregated into their own subdirectories.
+
+That will address an issue noted by @Beanow in <https://github.com/auraphp/Aura.Router/issues/66>.
+
+To support this, I need to modify the Composer files so that a new `"require-dev": {"aura/di" : "~2.0"}` element is present in those libraries that have `config/Common.php` DI config files. Additionally, they will need a new `"autoload-dev"` element pointing to the `tests/` directory.
+
+Those new additions, in turn, mean that for library packages with DI config files, you will need to have Composer installed to run the full test suite.  2-3 years ago that may have been too great an imposition, but I think Composer is so well-established now that it is not an unreasonable expectation.  The tradeoff is that the DI configuration tests will automatically run for you, and incidentally on Travis-CI.
+
+I expect to make similar changes in Bundle, Kernel, and Project packages, but since these already assume the presence of Composer, the difference will not be as dramatic.
+
+### Aura 2.x PHP Versions
+
+The 2.x packages will continue to target the earliest possible PHP version for their operation. In most cases this remains PHP 5.3, and in some cases is PHP 5.4.  We also test against all later versions of PHP, including 5.5 and 5.6, and against HHVM when we can.
+
+In addition to these, I will add PHP 7 to the testing mix on all 2.x packages. Early reports from Ian Littman indicate that all 2.x packages are already PHP 7 compatible, so this is a adoption of his work.
+
+### Aura 2.x Release Commitments
+
+2.x packages with existing stable releases will continue to be the center of development activity for the foreseeable future, including fixes and features.
+
+However, 2.x packages with only beta releases will not see stable releases as 2.x packages. Instead, they will get a new `develop-3` branch, and further development will continue on them as 3.x candidates.  Their existing `develop-2` branches will remain in place but deprecated. (This affects only [Aura.Auth](https://github.com/auraphp/Aura.Auth).)
+
+Further, packages with `develop-2` branches, but no releases, will also not see 2.x releases. They will likewise get `develop-3` branches, and have their `develop-2` branches deprecated. Development will continue on them as 3.x candidates. (This affects [Aura.Filter](https://github.com/auraphp/Aura.Filter), [Aura.Http](https://github.com/auraphp/Aura.Http), and [Aura.SqlMapper_Bundle](https://github.com/auraphp/Aura.SqlMapper_Bundle).)
+
+
+## The Future: Aura 3.x and Beyond
+
+At last, the part you're really interested in: future plans for Aura 3.x. This is where the next big set of changes will happen in Aura development.
+
+### Minimum PHP Version Bumped Up
+
+PHP 5.6 will be the minimum version requirement for Aura 3.x packages. The packages will also be required to run on PHP 7 and HHVM to future-proof them as much as possible. I got this idea from Matthew Weier O'Phinney in his [ZF3 presentation](https://www.youtube.com/watch?v=B7aSNUa1rJo) (or is it ZF 2.5? ;-).
+
+Thus, Aura 3.x will not use PHP 7 features. Consider this a lesson-learned from Aura 1.x about getting on the latest-release bandwagon when we made 5.4 the minimum version too early. PHP 7 adoption will happen in 4.x and later releases.
+
+The PHP 5.5 and 5.6 feature list, though, is not too shabby: `yield` generators, `finally`, `foreach ($items as list(...))`, `::class`, constant expressions, variadic `...$args` as function arguments, unpacking of `...$args` arrays as arguments to functions, `use function`, `use const`, phpdbg, and the `__debugInfo()` magic method.
+
+### Dependency Restrictions Very Slightly Relaxed
+
+In Aura 1.x, one design goal was complete independence and full decoupling of library packages, not only from a framework but also from each other. This meant that no library package had any dependencies at all. We continued that approach with library packages in Aura 2.x, while introducing Bundle, Kernel, and Project packages that did allow for dependencies.
+
+In Aura 3.x, we are going relax the library dependency restriction in exactly one aspect. Library packages in Aura 3.x will be allowed to depend on **interface packages only**. This decision is motivated almost exclusively by the new PSR-7 "HTTP Messages" recommendation. PSR-7 presents a significant change in the PHP ecosystem, and Aura needs to be in a position to typehint against it; we can't do that without a dependency on the PSR-7 interface.
+
+This decision is not without drawbacks. For example, any change in an interface package means a break for the package that depends on it. It also means the package that depends on an interface package can never have a stability greater than that interface package. However, with care and attention, I think this will be a positive change.
+
+### Provision Of Interface Packages
+
+With the allowance of interface package dependencies, Aura can then start splitting up its own offerings into interface and implementation packages. Not all packages will necessarily have an interface component, but where it makes sense, it can be now be afforded under the relaxed dependency restrictions.
+
+I first saw the idea of separate implementation and interface packages in the Laravel world, although the Aura variation will be on a package-by-package basis (as vs collecting all interfaces into a single package). The interface packages will be named with a `*_Interfaces` suffix, similar to the way 2.x Bundles are named `*_Bundle`.
+
+### Ecosystem Dependency on Composer
+
+In Aura 1.x and 2.x, each package provided some means of including the library source and test files independent of external autoloaders. Now that Composer is near ubiquitous, I think it's no longer necessary to provide independent autoloading. Thus, 3.x packages will have an ecosystem dependency on Composer for autoloading of source and test classes. (This is similar to their ecosystem dependency on PHPUnit for testing.)
+
+### Change License From BSD to MIT
+
+Aura 2.x and 1.x (and Solar before that) have used the various BSD licenses (New, 2-Clause, etc).  Whereas it seems that the MIT license has become far more popular in the PHP world, Aura 3.x will move to the MIT license as well, to maximize license compatibility and minimize license-mixing confusion.
+
+### No More Framework Under The Aura Name
+
+Aura 3.x will not provide a user-interface framework, whether for the web or for the command line, under the Aura name. I expect that 3.x packages will be able to work inside 2.x projects, provided that the PHP versions are recent enough.
+
+This was a hard decision for me. It is motivated by my impression that user-interface frameworks are becoming less important, mostly because they are becoming easier to implement with mix-and-match component packages. It takes very little to string together a DI container or Service Locator, a Router, a Dispatcher, and an HTTP sender these days. Indeed, with the advent of a single-action controllers (a la Action-Domain-Responder and microframeworks), UI-independent Domain frameworks, and middleware-style approaches, a "framework" does not seem to be that big a deal any more.
+
+While a user-interface framework is still *necessary*, it's not going to be a focus of Aura 3.x development per se. I fully expect to build web and command-line frameworks using Aura 3.x packages, just not under the Aura banner. It is additionally my hope that by not claiming an "official" Aura framework, others will feel more inclined to build their own frameworks using Aura packages, in their own way and concentrating on their own preferences.
+
+### Removal of Library Config Files
+
+As a result of not providing a framework with Aura 3.x, the `config/` files in library packages intended to ease DI configuration at the Aura framework level will disappear.  These were present only with libraries that had particularly involved object-creation steps.
+
+In Aura 3.x, complex object creation and configuration will be handled by Factories, Builders, or perhaps even library-specific Containers.  These objects will themselves be configurable, so that they can be manipulated by any DI container or Service Locator. (I expect that "provider" packages will spring up to ease integration into different framework ecosystems.)
+
+### Beyond 3.x; or, A Version Is Just A Number
+
+With Aura 1.x and 2.x, I tried to keep the packages all under the same major version number. The version number did additional duty by indicating an expected package structure. With Aura 3.x, we are going to try to adhere more closely to the spirit of [Semantic Versioning](http://semver.org), where a major version number indicates only a backward compatibility break, and nothing else.
+
+This means that there may be 4.x or 5.x releases in one package, while others stays at 3.x. The implication for PHP 7 adoption is that 4.x in one package may use PHP 7 features, while another package may not get them until 5.x.
+
+This continues the Aura history of decoupling as much as possible from other packages. With this approach, the packages will not even be coupled in their major release cycles.
+
+## Conclusion
+
+That is all for now. I am of course interested to hear comments, concerns, criticism, and feedback -- leave them below!
