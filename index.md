@@ -8,9 +8,9 @@ title: Aura for PHP
     <div class="hero-logo">
         <p><img
             src="img/aura-logo-black.png"
-            width="160"
-            height="160"
-        ></p>p>
+            width="240"
+            height="240"
+        ></p>
         <h3><script>
             var adjectives = [
                 "powerful",
@@ -23,7 +23,9 @@ title: Aura for PHP
                 "reliable",
                 "standalone",
                 "thoughtful",
-                "diligent"
+                "diligent",
+                "veteran",
+                "well-tested"
             ];
 
             var adjLower = adjectives[Math.floor(adjectives.length * Math.random())];
