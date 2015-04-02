@@ -16,6 +16,6 @@ Finally, Aura 2.x provides `*_Kernel` and `*_Project` packages. These compose th
 
 ## History
 
-Aura 1.x began as a rewrite of [Solar](http://solarphp.com), reimagined as a library collection with dependency injection instead of a framework with service location. (The name change from Solar to Aura was to reduce confusion with the Apache Solr project.) The libraries, once finished, were combined into the [1.x framework](/manuals/v1/en/).
+Aura 1.x began as a rewrite of [Solar](http://solarphp.com), reimagined as a library collection with dependency injection instead of a monolithic framework with service location. (The name change from Solar to Aura was to reduce confusion with the Apache Solr project.) The libraries, once finished, were combined into the [1.x framework](/manuals/v1/en/).
 
 Aura 2.x continued the decoupling of 1.x components into even more independent packages. It also split apart the framework into kernel and project packages, providing the basis for the [2.x framework](/manuals/2.x/en/).
