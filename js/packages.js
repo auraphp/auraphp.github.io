@@ -10,7 +10,7 @@ $.getJSON('/packages.json', function (packages) {
 
         var readmeLink =
             '<a href="'
-            + info.github + '/tree/' . info.version . '#readme">'
+            + info.github + '/tree/' + info.version + '#readme">'
             + name + '</a>';
 
         var releasesLink =
