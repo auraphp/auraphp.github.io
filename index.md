@@ -26,7 +26,23 @@ title: Aura for PHP
     </div>
 </div>
 
-{% include packages-v2.md %}
+<div class="row">
+    <div class="span6" id="packages"><script>
+        $.getJSON('packages.json', function (packages) {
+
+            var items = [];
+            $.each(packages, function (name, info) {
+                items.push( "<li>" + name + "</li>");
+            });
+
+            $("<ul />", {
+                html: items.join("")
+            }).appendTo("#packages");
+
+        });
+    </script></div>
+</div>
+
 
 <div class="row">
     <div class="span6">
