@@ -1,28 +1,24 @@
-$(function() {
-    $.ajax({
-        url: "/contributors.json",
-        type: "GET"
-    })
-    .done(function(data) {
-        contributors = '';
-        window.datum = data;
-        data = shuffleObjects(data);
-        $.each(data, function( index, value ) {
-            contributors += '<div class="span3 contributor">';
-            contributors += '<div class="contributor_thumbnail">';
-            contributors += '<a href="';
-            contributors += value.html_url + '" >';
-            contributors += '<img height="50" width="50" alt="';
-            contributors += index + '" src="';
-            contributors += value.avatar_url + '">';
-            contributors += '</a></div>';
-            contributors += '<a lang="en" rel="contact colleague" href="';
-            contributors += value.html_url;
-            contributors += '">' + value.name + '</a>';
-            contributors += '</div>';
-        });
-        $('#contributors').html(contributors);
+$.getJSON('/contributors.json', function (data) {
+    contributors = '<p>We currently have '
+        + data.length
+        + ' contributors to the project.</p>';
+
+    data = shuffleObjects(data);
+    $.each(data, function (index, value) {
+        contributors += '<div class="span3 contributor">';
+        contributors += '<div class="contributor_thumbnail">';
+        contributors += '<a href="';
+        contributors += value.html_url + '" >';
+        contributors += '<img height="50" width="50" alt="';
+        contributors += index + '" src="';
+        contributors += value.avatar_url + '">';
+        contributors += '</a></div>';
+        contributors += '<a lang="en" rel="contact colleague" href="';
+        contributors += value.html_url;
+        contributors += '">' + value.name + '</a>';
+        contributors += '</div>';
     });
+    $('#contributors').html(contributors);
 });
 
 function shuffleObjects(objectList) {
