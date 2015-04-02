@@ -1,10 +1,9 @@
 $.getJSON('/contributors.json', function (data) {
-    contributors = '<p>We currently have '
-        + data.length
-        + ' contributors to the project.</p>';
-
     data = shuffleObjects(data);
+    var contributors = '';
+    var count = 0;
     $.each(data, function (index, value) {
+        count ++;
         contributors += '<div class="span3 contributor">';
         contributors += '<div class="contributor_thumbnail">';
         contributors += '<a href="';
@@ -18,7 +17,12 @@ $.getJSON('/contributors.json', function (data) {
         contributors += '">' + value.name + '</a>';
         contributors += '</div>';
     });
-    $('#contributors').html(contributors);
+
+    var preamble = '<p>We currently have '
+        + count
+        + ' contributors to the project.</p>';
+
+    $('#contributors').html(preamble + contributors);
 });
 
 function shuffleObjects(objectList) {
