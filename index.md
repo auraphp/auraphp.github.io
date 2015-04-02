@@ -10,12 +10,9 @@ title: Aura for PHP
         <h3><script>
             var adjectives = [
                 "powerful",
-                "mature",
                 "independent",
                 "sharp",
                 "high-quality",
-                "practical",
-                "consistent",
                 "reliable",
                 "well-tested"
             ];
@@ -27,7 +24,7 @@ title: Aura for PHP
 </div>
 
 <div class="row">
-    <div class="span6">
+    <div class="span12">
         <table id="packages">
             <thead><tr>
                 <th>Package</th>
