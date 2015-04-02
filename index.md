@@ -27,20 +27,35 @@ title: Aura for PHP
 </div>
 
 <div class="row">
-    <div class="span6" id="packages"><script>
-        $.getJSON('packages.json', function (packages) {
-
-            var items = [];
-            $.each(packages, function (name, info) {
-                items.push( "<li>" + name + "</li>");
+    <div class="span6">
+        <table id="packages">
+            <thead><tr>
+                <th>Package</th>
+                <th>Composer</th>
+                <th>Description</th>
+            </tr></thead>
+        </table>
+        <script>
+            $.getJSON('packages.json', function (packages) {
+                var items = [];
+                $.each(packages, function (name, info) {
+                    var readmeLink = '<a href="' + info.github + '">' + name + '</a>';
+                    var releaseLink = '<a href="' + info.releases + '">' + info.version + '</a>';
+                    var packagistLink = '<a href="' + info.packagist + '">' + info.composer + '</a>';
+                    items.push(
+                        "<tr>"
+                        + "<td>" + readmeLink + " " + releaseLink + "</td>"
+                        + "<td>" + packagistLink + "</td>"
+                        + "<td>" + info.description + "</td>"
+                        + "</tr>"
+                    );
+                });
+                $("<tbody />", {
+                    html: items.join("")
+                }).appendTo("#packages");
             });
-
-            $("<ul />", {
-                html: items.join("")
-            }).appendTo("#packages");
-
-        });
-    </script></div>
+        </script>
+    </div>
 </div>
 
 
