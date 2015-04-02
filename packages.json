@@ -64,7 +64,7 @@
         "description": "Creates objects from a factory and invokes methods using named parameters; also provides a trait for invoking closures and object methods with named parameters."
     },
     "Aura.Filter": {
-        "version": null,
+        "version": "1.0.2",
         "github": "https://github.com/auraphp/Aura.Filter",
         "releases": "https://github.com/auraphp/Aura.Filter/releases",
         "composer": "aura/filter",
@@ -72,7 +72,7 @@
         "description": "Validate and sanitize objects and arrays."
     },
     "Aura.Framework": {
-        "version": null,
+        "version": "1.0.1",
         "github": "https://github.com/auraphp/Aura.Framework",
         "releases": "https://github.com/auraphp/Aura.Framework/releases",
         "composer": "aura/framework",
@@ -80,7 +80,7 @@
         "description": "The Aura Framework package, when combined with a system skeleton, provides a full-stack framework built from Aura component packages."
     },
     "Aura.Framework_Demo": {
-        "version": null,
+        "version": "1.0.1",
         "github": "https://github.com/auraphp/Aura.Framework_Demo",
         "releases": "https://github.com/auraphp/Aura.Framework_Demo/releases",
         "composer": "aura/framework-demo",
@@ -104,7 +104,7 @@
         "description": "Provides HTML escapers and helpers, including form input helpers."
     },
     "Aura.Http": {
-        "version": null,
+        "version": "1.0.3",
         "github": "https://github.com/auraphp/Aura.Http",
         "releases": "https://github.com/auraphp/Aura.Http/releases",
         "composer": "aura/http",
@@ -120,7 +120,7 @@
         "description": "Include multiple files from specified directories, in order, with variables extracted into a limited include scope."
     },
     "Aura.Input": {
-        "version": null,
+        "version": "1.1.2",
         "github": "https://github.com/auraphp/Aura.Input",
         "releases": "https://github.com/auraphp/Aura.Input/releases",
         "composer": "aura/input",
@@ -128,7 +128,7 @@
         "description": "This package contains tools to describe and filter user inputs from an HTML form, including sub-forms/sub-fieldsets, fieldset collections, an interface for injecting custom filter systems, and CSRF protection. Note that this package does not include output functionality, although the \"hints\" provided by the Form object can be used with any presentation system to generate an HTML form."
     },
     "Aura.Intl": {
-        "version": null,
+        "version": "1.1.1",
         "github": "https://github.com/auraphp/Aura.Intl",
         "releases": "https://github.com/auraphp/Aura.Intl/releases",
         "composer": "aura/intl",
@@ -136,7 +136,7 @@
         "description": "The Aura Intl package provides internationalization tools, specifically message translation."
     },
     "Aura.Marshal": {
-        "version": "1.2.0",
+        "version": "1.2.2",
         "github": "https://github.com/auraphp/Aura.Marshal",
         "releases": "https://github.com/auraphp/Aura.Marshal/releases",
         "composer": "aura/marshal",
@@ -168,7 +168,7 @@
         "description": "Provides session management functionality, including lazy session starting, session segments, next-request-only (\"flash\") values, and CSRF tools."
     },
     "Aura.Signal": {
-        "version": null,
+        "version": "1.0.4",
         "github": "https://github.com/auraphp/Aura.Signal",
         "releases": "https://github.com/auraphp/Aura.Signal/releases",
         "composer": "aura/signal",
@@ -208,7 +208,7 @@
         "description": "Provides facilities to read table names and table columns from a database using PDO."
     },
     "Aura.Uri": {
-        "version": null,
+        "version": "1.2.0",
         "github": "https://github.com/auraphp/Aura.Uri",
         "releases": "https://github.com/auraphp/Aura.Uri/releases",
         "composer": "aura/uri",
