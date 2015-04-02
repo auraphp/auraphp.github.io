@@ -48,29 +48,6 @@
                         <ul class="nav">
                             <li {% if page.active == 'home'         %}class="active"{% endif %}><a href="/">Home</a></li>
                             <li {% if page.active == 'about'        %}class="active"{% endif %}><a href="/about">About</a></li>
-                            <li class="{% if page.active == 'packages'  %}active {% endif %}dropdown">
-                                <a href="/packages" class="dropdown-toggle" data-toggle="dropdown">Packages (v1) <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="/packages">Package Overview</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="/packages/Aura.Autoload">Autoload</a></li>
-                                    <li><a href="/packages/Aura.Cli">Cli</a></li>
-                                    <li><a href="/packages/Aura.Di">Di</a></li>
-                                    <li><a href="/packages/Aura.Filter">Filter</a></li>
-                                    <li><a href="/packages/Aura.Http">Http</a></li>
-                                    <li><a href="/packages/Aura.Input">Input</a></li>
-                                    <li><a href="/packages/Aura.Intl">Intl</a></li>
-                                    <li><a href="/packages/Aura.Marshal">Marshal</a></li>
-                                    <li><a href="/packages/Aura.Router">Router</a></li>
-                                    <li><a href="/packages/Aura.Session">Session</a></li>
-                                    <li><a href="/packages/Aura.Signal">Signal</a></li>
-                                    <li><a href="/packages/Aura.Sql">Sql</a></li>
-                                    <li><a href="/packages/Aura.Uri">Uri</a></li>
-                                    <li><a href="/packages/Aura.View">View</a></li>
-                                    <li><a href="/packages/Aura.Web">Web</a></li>
-                                </ul>
-                            </li>
-                            <li {% if page.active == 'packages-v2'  %}class="active"{% endif %}><a href="/packages/v2">Packages (v2)</a></li>
                             <li class="{% if page.active == 'framework'  %}active {% endif %}dropdown">
                                 <a href="/framework" class="dropdown-toggle" data-toggle="dropdown">Framework<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
