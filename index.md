@@ -52,7 +52,6 @@ title: Aura for PHP
                     var row =
                         '<tr>'
                         + '<td>' + readmeLink + '&nbsp;' + releaseLink + '</td>'
-                        + '<td>' + packagistLink + '</td>'
                         + '<td>' + info.description + '</td>'
                         + '</tr>';
 
