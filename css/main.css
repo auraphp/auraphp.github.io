@@ -3,6 +3,10 @@
     text-align: center;
 }
 
+#packages .version {
+    color: gray;
+}
+
 td, th {
     vertical-align: top;
     padding: 10px;

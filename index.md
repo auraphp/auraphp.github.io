@@ -20,6 +20,7 @@ title: Aura for PHP
             var adjUpper = adjLower[0].toUpperCase() + adjLower.slice(1);
             document.write(adjUpper + ' tools for ' + adjLower + ' developers.');
         </script></h3>
+        <p><a class="btn btn-primary btn-large" href="/about">Learn more &raquo;</a></p>
     </div>
 </div>
 
@@ -37,7 +38,7 @@ title: Aura for PHP
                 var items = [];
                 $.each(packages, function (name, info) {
                     var readmeLink = '<a href="' + info.github + '">' + name + '</a>';
-                    var releaseLink = '<a href="' + info.releases + '">' + info.version + '</a>';
+                    var releaseLink = '<a class="version" href="' + info.releases + '">' + info.version + '</a>';
                     var packagistLink = '<a href="' + info.packagist + '">' + info.composer + '</a>';
                     items.push(
                         "<tr>"

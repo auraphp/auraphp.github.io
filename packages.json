@@ -1,5 +1,5 @@
 {
-    "Aura.Accept": {
+    "Accept": {
         "version": "2.2.2",
         "github": "https://github.com/auraphp/Aura.Accept",
         "releases": "https://github.com/auraphp/Aura.Accept/releases",
@@ -7,7 +7,7 @@
         "packagist": "https://packagist.org/packages/aura/accept",
         "description": "Provides content-negotiation tools using Accept* headers."
     },
-    "Aura.Auth": {
+    "Auth": {
         "version": "2.0.0-beta2",
         "github": "https://github.com/auraphp/Aura.Auth",
         "releases": "https://github.com/auraphp/Aura.Auth/releases",
@@ -15,7 +15,7 @@
         "packagist": "https://packagist.org/packages/aura/auth",
         "description": "Aura Auth provides a unified interface to authenticate a user with local or remote authentication systems."
     },
-    "Aura.Autoload": {
+    "Autoload": {
         "version": "2.0.3",
         "github": "https://github.com/auraphp/Aura.Autoload",
         "releases": "https://github.com/auraphp/Aura.Autoload/releases",
@@ -23,7 +23,7 @@
         "packagist": "https://packagist.org/packages/aura/autoload",
         "description": "Provides a PSR-4 compliant autoloader implementation."
     },
-    "Aura.Cli": {
+    "Cli": {
         "version": "2.1.1",
         "github": "https://github.com/auraphp/Aura.Cli",
         "releases": "https://github.com/auraphp/Aura.Cli/releases",
@@ -31,7 +31,7 @@
         "packagist": "https://packagist.org/packages/aura/cli",
         "description": "Provides the equivalent of request (Context) and response (Stdio) classes for a command line environment, including Getopt support."
     },
-    "Aura.Cli_Kernel": {
+    "Cli_Kernel": {
         "version": "2.0.3",
         "github": "https://github.com/auraphp/Aura.Cli_Kernel",
         "releases": "https://github.com/auraphp/Aura.Cli_Kernel/releases",
@@ -39,7 +39,7 @@
         "packagist": "https://packagist.org/packages/aura/cli-kernel",
         "description": "The kernel files for an Aura CLI project."
     },
-    "Aura.Cli_Project": {
+    "Cli_Project": {
         "version": "2.0.2",
         "github": "https://github.com/auraphp/Aura.Cli_Project",
         "releases": "https://github.com/auraphp/Aura.Cli_Project/releases",
@@ -47,7 +47,7 @@
         "packagist": "https://packagist.org/packages/aura/cli-project",
         "description": "A minimal command-line framework built from Aura v2 packages"
     },
-    "Aura.Di": {
+    "Di": {
         "version": "2.2.2",
         "github": "https://github.com/auraphp/Aura.Di",
         "releases": "https://github.com/auraphp/Aura.Di/releases",
@@ -55,7 +55,7 @@
         "packagist": "https://packagist.org/packages/aura/di",
         "description": "Provides a dependency injection container system with native support for constructor- and setter-based injection, lazy-loading of services, and inheritable configuration of setters and constructor params."
     },
-    "Aura.Dispatcher": {
+    "Dispatcher": {
         "version": "2.0.3",
         "github": "https://github.com/auraphp/Aura.Dispatcher",
         "releases": "https://github.com/auraphp/Aura.Dispatcher/releases",
@@ -63,7 +63,7 @@
         "packagist": "https://packagist.org/packages/aura/dispatcher",
         "description": "Creates objects from a factory and invokes methods using named parameters; also provides a trait for invoking closures and object methods with named parameters."
     },
-    "Aura.Filter": {
+    "Filter": {
         "version": "1.0.2",
         "github": "https://github.com/auraphp/Aura.Filter",
         "releases": "https://github.com/auraphp/Aura.Filter/releases",
@@ -71,7 +71,7 @@
         "packagist": "https://packagist.org/packages/aura/filter",
         "description": "Validate and sanitize objects and arrays."
     },
-    "Aura.Framework": {
+    "Framework": {
         "version": "1.0.1",
         "github": "https://github.com/auraphp/Aura.Framework",
         "releases": "https://github.com/auraphp/Aura.Framework/releases",
@@ -79,7 +79,7 @@
         "packagist": "https://packagist.org/packages/aura/framework",
         "description": "The Aura Framework package, when combined with a system skeleton, provides a full-stack framework built from Aura component packages."
     },
-    "Aura.Framework_Demo": {
+    "Framework_Demo": {
         "version": "1.0.1",
         "github": "https://github.com/auraphp/Aura.Framework_Demo",
         "releases": "https://github.com/auraphp/Aura.Framework_Demo/releases",
@@ -87,7 +87,7 @@
         "packagist": "https://packagist.org/packages/aura/framework-demo",
         "description": "The Aura Framework_Demo package provides sample 'Hello World' web and CLI demos for the Aura framework."
     },
-    "Aura.Framework_Project": {
+    "Framework_Project": {
         "version": "2.0.1",
         "github": "https://github.com/auraphp/Aura.Framework_Project",
         "releases": "https://github.com/auraphp/Aura.Framework_Project/releases",
@@ -95,7 +95,7 @@
         "packagist": "https://packagist.org/packages/aura/framework-project",
         "description": "A minimal web+cli framework built from Aura v2 packages"
     },
-    "Aura.Html": {
+    "Html": {
         "version": "2.4.1",
         "github": "https://github.com/auraphp/Aura.Html",
         "releases": "https://github.com/auraphp/Aura.Html/releases",
@@ -103,7 +103,7 @@
         "packagist": "https://packagist.org/packages/aura/html",
         "description": "Provides HTML escapers and helpers, including form input helpers."
     },
-    "Aura.Http": {
+    "Http": {
         "version": "1.0.3",
         "github": "https://github.com/auraphp/Aura.Http",
         "releases": "https://github.com/auraphp/Aura.Http/releases",
@@ -111,7 +111,7 @@
         "packagist": "https://packagist.org/packages/aura/http",
         "description": "The Aura HTTP package provides objects to build and send HTTP responses from the server to the client."
     },
-    "Aura.Includer": {
+    "Includer": {
         "version": "2.0.2",
         "github": "https://github.com/auraphp/Aura.Includer",
         "releases": "https://github.com/auraphp/Aura.Includer/releases",
@@ -119,7 +119,7 @@
         "packagist": "https://packagist.org/packages/aura/includer",
         "description": "Include multiple files from specified directories, in order, with variables extracted into a limited include scope."
     },
-    "Aura.Input": {
+    "Input": {
         "version": "1.1.2",
         "github": "https://github.com/auraphp/Aura.Input",
         "releases": "https://github.com/auraphp/Aura.Input/releases",
@@ -127,7 +127,7 @@
         "packagist": "https://packagist.org/packages/aura/input",
         "description": "This package contains tools to describe and filter user inputs from an HTML form, including sub-forms/sub-fieldsets, fieldset collections, an interface for injecting custom filter systems, and CSRF protection. Note that this package does not include output functionality, although the \"hints\" provided by the Form object can be used with any presentation system to generate an HTML form."
     },
-    "Aura.Intl": {
+    "Intl": {
         "version": "1.1.1",
         "github": "https://github.com/auraphp/Aura.Intl",
         "releases": "https://github.com/auraphp/Aura.Intl/releases",
@@ -135,7 +135,7 @@
         "packagist": "https://packagist.org/packages/aura/intl",
         "description": "The Aura Intl package provides internationalization tools, specifically message translation."
     },
-    "Aura.Marshal": {
+    "Marshal": {
         "version": "1.2.2",
         "github": "https://github.com/auraphp/Aura.Marshal",
         "releases": "https://github.com/auraphp/Aura.Marshal/releases",
@@ -143,7 +143,7 @@
         "packagist": "https://packagist.org/packages/aura/marshal",
         "description": "The Aura Marshal package is a data-object marshalling tool; it takes results from data sources and marshals those result sets into domain model objects of your own design, preserving data relationships along the way."
     },
-    "Aura.Project_Kernel": {
+    "Project_Kernel": {
         "version": "2.1.1",
         "github": "https://github.com/auraphp/Aura.Project_Kernel",
         "releases": "https://github.com/auraphp/Aura.Project_Kernel/releases",
@@ -151,7 +151,7 @@
         "packagist": "https://packagist.org/packages/aura/project-kernel",
         "description": "The shared kernel files for an Aura project."
     },
-    "Aura.Router": {
+    "Router": {
         "version": "2.2.2",
         "github": "https://github.com/auraphp/Aura.Router",
         "releases": "https://github.com/auraphp/Aura.Router/releases",
@@ -159,7 +159,7 @@
         "packagist": "https://packagist.org/packages/aura/router",
         "description": "A web router implementation; given a URI path and a copy of $_SERVER, it will extract path-info parameter values for a specific route."
     },
-    "Aura.Session": {
+    "Session": {
         "version": "2.0.1",
         "github": "https://github.com/auraphp/Aura.Session",
         "releases": "https://github.com/auraphp/Aura.Session/releases",
@@ -167,7 +167,7 @@
         "packagist": "https://packagist.org/packages/aura/session",
         "description": "Provides session management functionality, including lazy session starting, session segments, next-request-only (\"flash\") values, and CSRF tools."
     },
-    "Aura.Signal": {
+    "Signal": {
         "version": "1.0.4",
         "github": "https://github.com/auraphp/Aura.Signal",
         "releases": "https://github.com/auraphp/Aura.Signal/releases",
@@ -175,7 +175,7 @@
         "packagist": "https://packagist.org/packages/aura/signal",
         "description": "A SignalSlots/EventHandler implementation; with it, we can invoke handlers ('slots' or 'hooks') whenever an object sends a signal ('notification' or 'event') to the signal manager."
     },
-    "Aura.Sql": {
+    "Sql": {
         "version": "2.4.3",
         "github": "https://github.com/auraphp/Aura.Sql",
         "releases": "https://github.com/auraphp/Aura.Sql/releases",
@@ -183,7 +183,7 @@
         "packagist": "https://packagist.org/packages/aura/sql",
         "description": "A PDO extension that provides lazy connections, array quoting, identifier quoting, query profiling, value binding, and convenience methods for common fetch styles. Because it extends PDO, existing code that uses PDO can use this without any changes to the existing code."
     },
-    "Aura.SqlMapper_Bundle": {
+    "SqlMapper_Bundle": {
         "version": "0.0.1",
         "github": "https://github.com/auraphp/Aura.SqlMapper_Bundle",
         "releases": "https://github.com/auraphp/Aura.SqlMapper_Bundle/releases",
@@ -191,7 +191,7 @@
         "packagist": "https://packagist.org/packages/aura/sqlmapper-bundle",
         "description": "A SQL DataMapper implementation."
     },
-    "Aura.SqlQuery": {
+    "SqlQuery": {
         "version": "2.4.2",
         "github": "https://github.com/auraphp/Aura.SqlQuery",
         "releases": "https://github.com/auraphp/Aura.SqlQuery/releases",
@@ -199,7 +199,7 @@
         "packagist": "https://packagist.org/packages/aura/sqlquery",
         "description": "Object-oriented query builders for MySQL, Postgres, SQLite, and SQLServer; can be used with any database connection library."
     },
-    "Aura.SqlSchema": {
+    "SqlSchema": {
         "version": "2.0.1",
         "github": "https://github.com/auraphp/Aura.SqlSchema",
         "releases": "https://github.com/auraphp/Aura.SqlSchema/releases",
@@ -207,7 +207,7 @@
         "packagist": "https://packagist.org/packages/aura/sqlschema",
         "description": "Provides facilities to read table names and table columns from a database using PDO."
     },
-    "Aura.Uri": {
+    "Uri": {
         "version": "1.2.0",
         "github": "https://github.com/auraphp/Aura.Uri",
         "releases": "https://github.com/auraphp/Aura.Uri/releases",
@@ -215,7 +215,7 @@
         "packagist": "https://packagist.org/packages/aura/uri",
         "description": "The Aura Uri package provides objects to build and manipulate URL strings."
     },
-    "Aura.View": {
+    "View": {
         "version": "2.1.1",
         "github": "https://github.com/auraphp/Aura.View",
         "releases": "https://github.com/auraphp/Aura.View/releases",
@@ -223,7 +223,7 @@
         "packagist": "https://packagist.org/packages/aura/view",
         "description": "Provides an implementation of the TemplateView and TwoStepView patterns, with support for helpers and for closures as templates, using PHP itself as the templating language."
     },
-    "Aura.Web": {
+    "Web": {
         "version": "2.0.3",
         "github": "https://github.com/auraphp/Aura.Web",
         "releases": "https://github.com/auraphp/Aura.Web/releases",
@@ -231,7 +231,7 @@
         "packagist": "https://packagist.org/packages/aura/web",
         "description": "Provides web Request and Response objects for use by web controllers and actions. These are representations of the PHP web environment, not HTTP request and response objects proper."
     },
-    "Aura.Web_Kernel": {
+    "Web_Kernel": {
         "version": "2.1.2",
         "github": "https://github.com/auraphp/Aura.Web_Kernel",
         "releases": "https://github.com/auraphp/Aura.Web_Kernel/releases",
@@ -239,7 +239,7 @@
         "packagist": "https://packagist.org/packages/aura/web-kernel",
         "description": "The kernel files for an Aura web project."
     },
-    "Aura.Web_Project": {
+    "Web_Project": {
         "version": "2.0.2",
         "github": "https://github.com/auraphp/Aura.Web_Project",
         "releases": "https://github.com/auraphp/Aura.Web_Project/releases",
