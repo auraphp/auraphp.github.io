@@ -43,7 +43,7 @@ title: Aura for PHP
 
                     var readmeLink =
                         '<a href="'
-                        + info.github + '">'
+                        + info.github + '#readme">'
                         + name + '</a>';
 
                     var releaseLink =
