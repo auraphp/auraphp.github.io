@@ -5,15 +5,13 @@ title: Aura for PHP
 ---
 
 <div class="hero-unit">
-    <h1>The Aura Project for PHP</h1>
     <div class="hero-logo">
-        <img
-            style="float: left; padding-right: 12px;"
+        <p><img
             src="img/aura-logo-black.png"
             width="160"
             height="160"
-        >
-        <p><script>
+        ></p>p>
+        <h3><script>
             var adjectives = [
                 "powerful",
                 "mature",
@@ -30,9 +28,16 @@ title: Aura for PHP
 
             var adjLower = adjectives[Math.floor(adjectives.length * Math.random())];
             var adjUpper = adjLower[0].toUpperCase() + adjLower.slice(1);
-            document.write(adjUpper + ' tools for <br />' + adjLower + ' developers.');
-        </script></p>
-        <p><a class="btn btn-primary btn-large" href="/about">Learn more &raquo;</a></p>
+            document.write(adjUpper + ' tools for ' + adjLower + ' developers.');
+        </script></h3>
+    </div>
+</div>
+
+<div class="row">
+    <div class="span6">
+
+{% include packages-v2.md %}
+
     </div>
 </div>
 
