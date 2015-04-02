@@ -6,11 +6,7 @@ title: Aura for PHP
 
 <div class="hero-unit">
     <div class="hero-logo">
-        <p><img
-            src="img/aura-logo-black.png"
-            width="240"
-            height="240"
-        ></p>
+        <img src="img/aura-logo-black.png" width="240" height="240" />
         <h3><script>
             var adjectives = [
                 "powerful",
@@ -35,7 +31,7 @@ title: Aura for PHP
     </div>
 </div>
 
-{% include packages-front.md %}
+{% include packages-v2.md %}
 
 <div class="row">
     <div class="span6">
