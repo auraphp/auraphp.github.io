@@ -10,18 +10,18 @@ $.getJSON('/packages.json', function (packages) {
 
         var readmeLink =
             '<a href="'
-            + info.github + '#readme">'
+            + info.github + '/tree/' . info.version . '#readme">'
             + name + '</a>';
 
-        var releaseLink =
+        var releasesLink =
             '<a class="version" href="'
-            + info.releases + '">'
+            + info.github + '/releases">'
             + info.version.replace('-', '&#8209;')
             + '</a>';
 
         var row =
             '<tr>'
-            + '<td>' + readmeLink + '&nbsp;' + releaseLink + '</td>'
+            + '<td>' + readmeLink + '&nbsp;' + releasesLink + '</td>'
             + '<td>' + info.description + '</td>'
             + '</tr>';
 
