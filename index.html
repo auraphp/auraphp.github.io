@@ -13,14 +13,25 @@ title: Aura for PHP
             width="160"
             height="160"
         >
-        <p>
-            If you like <strong>clean</strong> code, <strong>fully
-            decoupled</strong> libraries, and truly
-            <strong>independent packages</strong>, then the Aura
-            project is for you. Download a single package and start
-            using it in your project today, with <strong>no added
-            dependencies</strong>.
-        </p>
+        <p><script>
+            var adjectives = [
+                "powerful",
+                "mature",
+                "independent",
+                "sharp",
+                "high-quality",
+                "practical",
+                "consistent",
+                "reliable",
+                "standalone",
+                "thoughtful",
+                "diligent"
+            ];
+
+            var adjLower = adjectives[Math.floor(adjectives.length * Math.random())];
+            var adjUpper = adjLower[0].toUpperCase() + adjLower.slice(1);
+            document.write(adjUpper + ' tools for <br />' + adjLower + ' developers.');
+        </script></p>
         <p><a class="btn btn-primary btn-large" href="/about">Learn more &raquo;</a></p>
     </div>
 </div>
