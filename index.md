@@ -29,7 +29,6 @@ title: Aura for PHP
         <table id="packages">
             <thead><tr>
                 <th>Package</th>
-                <th>Composer</th>
                 <th>Description</th>
             </tr></thead>
         </table>
@@ -48,12 +47,6 @@ title: Aura for PHP
                         '<a class="version" href="'
                         + info.releases + '">'
                         + info.version.replace('-', '&#8209;')
-                        + '</a>';
-
-                    var packagistLink =
-                        '<a href="'
-                        + info.packagist + '">'
-                        + info.composer.replace('-', '&#8209;')
                         + '</a>';
 
                     var row =
