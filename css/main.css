@@ -16,7 +16,7 @@
 }
 
 #packages tbody tr:hover {
-    background: #ddd;
+    background-color: #ddd;
 }
 
 td, th {
