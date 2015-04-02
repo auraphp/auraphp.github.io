@@ -15,7 +15,7 @@
     border-bottom: 1px solid silver;
 }
 
-#packages tbody tr :hover {
+#packages tbody tr:hover {
     background: #ddd;
 }
 
