@@ -35,22 +35,40 @@ title: Aura for PHP
         </table>
         <script>
             $.getJSON('packages.json', function (packages) {
-                var items = [];
+                var rows = [];
+
                 $.each(packages, function (name, info) {
-                    var readmeLink = '<a href="' + info.github + '">' + name + '</a>';
-                    var releaseLink = '<a class="version" href="' + info.releases + '">' + info.version + '</a>';
-                    var packagistLink = '<a href="' + info.packagist + '">' + info.composer + '</a>';
-                    items.push(
-                        "<tr>"
-                        + "<td>" + readmeLink + " " + releaseLink + "</td>"
-                        + "<td>" + packagistLink + "</td>"
-                        + "<td>" + info.description + "</td>"
-                        + "</tr>"
-                    );
+
+                    var readmeLink =
+                        '<a href="'
+                        + info.github + '">'
+                        + name + '</a>';
+
+                    var releaseLink =
+                        '<a class="version" href="'
+                        + info.releases + '">'
+                        + info.version.replace('-', '&#8209;')
+                        + '</a>';
+
+                    var packagistLink =
+                        '<a href="'
+                        + info.packagist + '">'
+                        + info.composer.replace('-', '&#8209;')
+                        + '</a>';
+
+                    var row =
+                        '<tr>'
+                        + '<td>' + readmeLink + " " + releaseLink + '</td>'
+                        + '<td>' + packagistLink + '</td>'
+                        + '<td>' + info.description + '</td>'
+                        + '</tr>';
+
+                    rows.push(row);
                 });
-                $("<tbody />", {
-                    html: items.join("")
-                }).appendTo("#packages");
+
+                $('<tbody />', {
+                    html: rows.join('')
+                }).appendTo('#packages');
             });
         </script>
     </div>
