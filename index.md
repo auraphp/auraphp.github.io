@@ -17,13 +17,8 @@ title: Aura for PHP
                 "practical",
                 "consistent",
                 "reliable",
-                "standalone",
-                "thoughtful",
-                "diligent",
-                "veteran",
                 "well-tested"
             ];
-
             var adjLower = adjectives[Math.floor(adjectives.length * Math.random())];
             var adjUpper = adjLower[0].toUpperCase() + adjLower.slice(1);
             document.write(adjUpper + ' tools for ' + adjLower + ' developers.');
