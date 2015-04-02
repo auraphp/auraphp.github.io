@@ -7,18 +7,8 @@ title: Aura for PHP
 <div class="hero-unit">
     <div class="hero-logo">
         <img src="img/aura-logo-black.png" width="240" height="240" />
-        <h3><script>
-            var adjectives = [
-                "powerful",
-                "independent",
-                "sharp",
-                "high-quality",
-                "reliable"
-            ];
-            var adjLower = adjectives[Math.floor(adjectives.length * Math.random())];
-            var adjUpper = adjLower[0].toUpperCase() + adjLower.slice(1);
-            document.write(adjUpper + ' tools for ' + adjLower + ' developers.');
-        </script></h3>
+        <h3 id="adjectives"></h3>
+        <script src="/js/adjectives.js" type="text/javascript"></script>
         <p><a class="btn btn-primary btn-large" href="/about">Learn more &raquo;</a></p>
     </div>
 </div>
@@ -31,41 +21,7 @@ title: Aura for PHP
                 <th>Description</th>
             </tr></thead>
         </table>
-        <script>
-            $.getJSON('packages.json', function (packages) {
-                var rows = [];
-
-                $.each(packages, function (name, info) {
-
-                    if (info.type != 'library' && info.type != 'bundle') {
-                        return;
-                    }
-
-                    var readmeLink =
-                        '<a href="'
-                        + info.github + '#readme">'
-                        + name + '</a>';
-
-                    var releaseLink =
-                        '<a class="version" href="'
-                        + info.releases + '">'
-                        + info.version.replace('-', '&#8209;')
-                        + '</a>';
-
-                    var row =
-                        '<tr>'
-                        + '<td>' + readmeLink + '&nbsp;' + releaseLink + '</td>'
-                        + '<td>' + info.description + '</td>'
-                        + '</tr>';
-
-                    rows.push(row);
-                });
-
-                $('<tbody />', {
-                    html: rows.join('')
-                }).appendTo('#packages');
-            });
-        </script>
+        <script src="/js/packages.js" type="text/javascript"></script>
     </div>
 </div>
 
