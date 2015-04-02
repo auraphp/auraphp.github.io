@@ -7,6 +7,14 @@
     color: gray;
 }
 
+#packages th {
+    text-align: left;
+}
+
+#packages tr {
+    border-bottom: 1px solid silver;
+}
+
 td, th {
     vertical-align: top;
     padding: 10px;
