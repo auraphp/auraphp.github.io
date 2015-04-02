@@ -13,8 +13,7 @@ title: Aura for PHP
                 "independent",
                 "sharp",
                 "high-quality",
-                "reliable",
-                "well-tested"
+                "reliable"
             ];
             var adjLower = adjectives[Math.floor(adjectives.length * Math.random())];
             var adjUpper = adjLower[0].toUpperCase() + adjLower.slice(1);
@@ -37,6 +36,10 @@ title: Aura for PHP
                 var rows = [];
 
                 $.each(packages, function (name, info) {
+
+                    if (info.type != 'library' && info.type != 'bundle') {
+                        return;
+                    }
 
                     var readmeLink =
                         '<a href="'
