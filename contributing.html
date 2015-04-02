@@ -84,19 +84,7 @@ git merge upstream/develop-2
 
     </ol>
 
-<h2>Bundle Packages</h2>
-
-<p>TBD</p>
-
-<h2>Kernel Packages</h2>
-
-<p>TBD</p>
-
-<h2>Project Packages</h2>
-
-<p>TBD</p>
-
-<h2></a>Standards</h2>
+<h2 id="standards">Standards</h2>
 
 <p>These are the major standards for code contributions.</p>
 
@@ -124,14 +112,12 @@ git merge upstream/develop-2
             </li>
 
             <li>
-                <p>The `!` operator must be followed by space; for example, `! isset()` instead of `!isset()`.</p>
+                <p>The <code>!</code> operator must be followed by a space; for example, <code>! isset()</code> instead of <code>!isset()</code>.</p>
             </li>
         </ol>
     </li>
-
-
     <li>
-        <p>Adhere to PSR-4 for autoloading.</p>
+        <p>Conform to PSR-4 for autoloading.</p>
     </li>
     <li>
         <p>Do not introduce dependencies on any other package.</p>
@@ -155,6 +141,16 @@ git merge upstream/develop-2
         <p>Keep the README updated with any new or changed features.</p>
     </li>
 </ol>
+
+Other notes:
+
+- Use explicit configuration rather than implicit convention
+
+- Compose functionality as much as possible through dependency injection, instead of through inheritance and base classes
+
+- Use factories as object creators in general, rather than as adapter creators in specific
+
+- Make effective and reasonable usage of closures/anonymous functions, primarily for object creation within the dependency injector service definitions
 
 <p>Some of those rules may sound crazy to you; to other developers, they might sound like good sense. So if you have questions ...</p>
 
