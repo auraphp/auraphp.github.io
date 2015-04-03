@@ -6267,7 +6267,7 @@ a.badge:focus {
   color: #eeeeee;
 }
 
-@media (max-width: 979px) {
+@media (max-width: 800px) {
   .navbar .nav-collapse .nav li > a:hover {
     color: #ffffff;
     text-shadow: none;
