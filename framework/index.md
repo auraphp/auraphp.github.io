@@ -12,13 +12,13 @@ While Aura is primarily centered around its library packages, we do provide fram
 
 ### 2.x
 
-You can read the 2.x framework manual in [English](/framework/2.0/en) or [Japanese](/framework/2.0/ja).
+You can read the 2.x framework manual in [English](/framework/2.x/en) or [Japanese](/framework/2.x/ja).
 
 ### 1.x
 
 We recommend using the 2.x framework; the 1.x manual is retained for archival purposes.
 
-You can read the 1.x framework manual in [English](/framework/v1/en) or [Japanese](/framework/v1/ja). (It has been partially translated to [German](/framework/v1/de) as well.)
+You can read the 1.x framework manual in [English](/framework/1.x/en) or [Japanese](/framework/1.x/ja). (It has been partially translated to [German](/framework/1.x/de) as well.)
 
 ## Contributing
 
