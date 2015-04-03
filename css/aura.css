@@ -59,3 +59,15 @@ td, th {
     bottom: 18px;
     right: 10px;
 }
+
+#posts-collate h2 {
+    margin-left: 1em;
+}
+
+#posts-collate h3 {
+    margin-left: 2em;
+}
+
+#posts-collate li {
+    margin-left: 3em;
+}
