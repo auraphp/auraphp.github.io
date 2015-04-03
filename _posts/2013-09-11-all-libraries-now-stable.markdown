@@ -80,7 +80,7 @@ maintenance in many ways, not least of which is keeping a consistent look and
 feel for the site.
 
 In addition, we have incorporated a new
-[manual](http://auraphp.com/manuals/v1/en/). Many thanks to Hari KT for
+[manual](http://auraphp.com/framework/v1/en/). Many thanks to Hari KT for
 putting that together.
 
 

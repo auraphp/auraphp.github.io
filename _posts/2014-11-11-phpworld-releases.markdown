@@ -117,7 +117,7 @@ Other libraries that got doc update, turn off auto-resolution in tests and other
 
 ## Framework documentation
 
-Added [Quick start tutorial](http://auraphp.com/manuals/2.0/en/quick-start/) without database connectivity for Version 2. The  [framework documentation](http://auraphp.com/manuals/2.0/en/) has been updated. If you find something missing open an issue or [send pull requests](https://github.com/auraphp/auraphp.github.com/tree/master/manuals/2.0/en)
+Added [Quick start tutorial](http://auraphp.com/framework/2.0/en/quick-start/) without database connectivity for Version 2. The  [framework documentation](http://auraphp.com/framework/2.0/en/) has been updated. If you find something missing open an issue or [send pull requests](https://github.com/auraphp/auraphp.github.com/tree/master/framework/2.0/en)
 
 
 ## Other tutorials
