@@ -37,6 +37,7 @@ td, th {
     float: left;
     margin-left: -60px;
 }
+
 .contributor {
     line-height: 25px;
     overflow: hidden;
@@ -52,6 +53,7 @@ td, th {
     bottom: -82px;
     left: 10px;
 }
+
 #top-link-block.affix {
     position: fixed; /* keeps it on the bottom once in view */
     bottom: 18px;
