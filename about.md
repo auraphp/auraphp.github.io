@@ -1,7 +1,7 @@
 ---
 layout: site
 active: about
-title: Aura for PHP | About
+title:  About
 ---
 
 # About Aura

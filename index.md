@@ -1,7 +1,6 @@
 ---
 layout: site
 active: home
-title: Aura for PHP
 ---
 
 <div class="hero-unit">
