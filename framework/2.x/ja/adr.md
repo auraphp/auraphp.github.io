@@ -1,5 +1,5 @@
 ---
-layout: docsv1.0
+layout: docs2-ja
 title: Action Domain Responder
 ---
 
