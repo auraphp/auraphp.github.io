@@ -1,10 +1,10 @@
 ---
 layout: site
 active: framework
-title: Framework Manuals
+title: Framework
 ---
 
-# Framework Manuals
+# Framework
 
 While Aura is primarily centered around its library packages, we do provide frameworks built from those libraries.
 
