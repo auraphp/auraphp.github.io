@@ -1,0 +1,219 @@
+{
+    "Accept": {
+        "type": "library",
+        "version": "2.2.2",
+        "github": "https://github.com/auraphp/Aura.Accept",
+        "composer": "aura/accept",
+        "description": "Provides content-negotiation tools using Accept* headers."
+    },
+    "Auth": {
+        "type": "library",
+        "version": "2.0.0-beta2",
+        "github": "https://github.com/auraphp/Aura.Auth",
+        "composer": "aura/auth",
+        "description": "Aura Auth provides a unified interface to authenticate a user with local or remote authentication systems."
+    },
+    "Autoload": {
+        "type": "library",
+        "version": "2.0.3",
+        "github": "https://github.com/auraphp/Aura.Autoload",
+        "composer": "aura/autoload",
+        "description": "Provides a PSR-4 compliant autoloader implementation."
+    },
+    "Cli": {
+        "type": "library",
+        "version": "2.1.1",
+        "github": "https://github.com/auraphp/Aura.Cli",
+        "composer": "aura/cli",
+        "description": "Provides the equivalent of request (Context) and response (Stdio) classes for a command line environment, including Getopt support."
+    },
+    "Cli_Kernel": {
+        "type": "kernel",
+        "version": "2.0.3",
+        "github": "https://github.com/auraphp/Aura.Cli_Kernel",
+        "composer": "aura/cli-kernel",
+        "description": "The kernel files for an Aura CLI project."
+    },
+    "Cli_Project": {
+        "type": "project",
+        "version": "2.0.2",
+        "github": "https://github.com/auraphp/Aura.Cli_Project",
+        "composer": "aura/cli-project",
+        "description": "A minimal command-line framework built from Aura v2 packages"
+    },
+    "Di": {
+        "type": "library",
+        "version": "2.2.2",
+        "github": "https://github.com/auraphp/Aura.Di",
+        "composer": "aura/di",
+        "description": "Provides a dependency injection container system with native support for constructor- and setter-based injection, lazy-loading of services, and inheritable configuration of setters and constructor params."
+    },
+    "Dispatcher": {
+        "type": "library",
+        "version": "2.0.3",
+        "github": "https://github.com/auraphp/Aura.Dispatcher",
+        "composer": "aura/dispatcher",
+        "description": "Creates objects from a factory and invokes methods using named parameters; also provides a trait for invoking closures and object methods with named parameters."
+    },
+    "Filter": {
+        "type": "library",
+        "version": "1.0.2",
+        "github": "https://github.com/auraphp/Aura.Filter",
+        "composer": "aura/filter",
+        "description": "Validate and sanitize objects and arrays."
+    },
+    "Framework": {
+        "type": "framework",
+        "version": "1.0.1",
+        "github": "https://github.com/auraphp/Aura.Framework",
+        "composer": "aura/framework",
+        "description": "The Aura Framework package, when combined with a system skeleton, provides a full-stack framework built from Aura component packages."
+    },
+    "Framework_Demo": {
+        "type": "framework",
+        "version": "1.0.1",
+        "github": "https://github.com/auraphp/Aura.Framework_Demo",
+        "composer": "aura/framework-demo",
+        "description": "The Aura Framework_Demo package provides sample 'Hello World' web and CLI demos for the Aura framework."
+    },
+    "Framework_Project": {
+        "type": "project",
+        "version": "2.0.1",
+        "github": "https://github.com/auraphp/Aura.Framework_Project",
+        "composer": "aura/framework-project",
+        "description": "A minimal web+cli framework built from Aura v2 packages"
+    },
+    "Html": {
+        "type": "library",
+        "version": "2.4.1",
+        "github": "https://github.com/auraphp/Aura.Html",
+        "composer": "aura/html",
+        "description": "Provides HTML escapers and helpers, including form input helpers."
+    },
+    "Http": {
+        "type": "library",
+        "version": "1.0.3",
+        "github": "https://github.com/auraphp/Aura.Http",
+        "composer": "aura/http",
+        "description": "The Aura HTTP package provides objects to build and send HTTP responses from the server to the client."
+    },
+    "Includer": {
+        "type": "library",
+        "version": "2.0.2",
+        "github": "https://github.com/auraphp/Aura.Includer",
+        "composer": "aura/includer",
+        "description": "Include multiple files from specified directories, in order, with variables extracted into a limited include scope."
+    },
+    "Input": {
+        "type": "library",
+        "version": "1.1.2",
+        "github": "https://github.com/auraphp/Aura.Input",
+        "composer": "aura/input",
+        "description": "This package contains tools to describe and filter user inputs from an HTML form, including sub-forms/sub-fieldsets, fieldset collections, an interface for injecting custom filter systems, and CSRF protection. Note that this package does not include output functionality, although the \"hints\" provided by the Form object can be used with any presentation system to generate an HTML form."
+    },
+    "Intl": {
+        "type": "library",
+        "version": "1.1.1",
+        "github": "https://github.com/auraphp/Aura.Intl",
+        "composer": "aura/intl",
+        "description": "The Aura Intl package provides internationalization tools, specifically message translation."
+    },
+    "Marshal": {
+        "type": "library",
+        "version": "1.2.2",
+        "github": "https://github.com/auraphp/Aura.Marshal",
+        "composer": "aura/marshal",
+        "description": "The Aura Marshal package is a data-object marshalling tool; it takes results from data sources and marshals those result sets into domain model objects of your own design, preserving data relationships along the way."
+    },
+    "Project_Kernel": {
+        "type": "kernel",
+        "version": "2.1.1",
+        "github": "https://github.com/auraphp/Aura.Project_Kernel",
+        "composer": "aura/project-kernel",
+        "description": "The shared kernel files for an Aura project."
+    },
+    "Router": {
+        "type": "library",
+        "version": "2.2.2",
+        "github": "https://github.com/auraphp/Aura.Router",
+        "composer": "aura/router",
+        "description": "A web router implementation; given a URI path and a copy of $_SERVER, it will extract path-info parameter values for a specific route."
+    },
+    "Session": {
+        "type": "library",
+        "version": "2.0.1",
+        "github": "https://github.com/auraphp/Aura.Session",
+        "composer": "aura/session",
+        "description": "Provides session management functionality, including lazy session starting, session segments, next-request-only (\"flash\") values, and CSRF tools."
+    },
+    "Signal": {
+        "type": "library",
+        "version": "1.0.4",
+        "github": "https://github.com/auraphp/Aura.Signal",
+        "composer": "aura/signal",
+        "description": "A SignalSlots/EventHandler implementation; with it, we can invoke handlers ('slots' or 'hooks') whenever an object sends a signal ('notification' or 'event') to the signal manager."
+    },
+    "Sql": {
+        "type": "library",
+        "version": "2.4.3",
+        "github": "https://github.com/auraphp/Aura.Sql",
+        "composer": "aura/sql",
+        "description": "A PDO extension that provides lazy connections, array quoting, identifier quoting, query profiling, value binding, and convenience methods for common fetch styles. Because it extends PDO, existing code that uses PDO can use this without any changes to the existing code."
+    },
+    "SqlMapper_Bundle": {
+        "type": "bundle",
+        "version": "0.0.1",
+        "github": "https://github.com/auraphp/Aura.SqlMapper_Bundle",
+        "composer": "aura/sqlmapper-bundle",
+        "description": "A SQL DataMapper implementation."
+    },
+    "SqlQuery": {
+        "type": "library",
+        "version": "2.4.2",
+        "github": "https://github.com/auraphp/Aura.SqlQuery",
+        "composer": "aura/sqlquery",
+        "description": "Object-oriented query builders for MySQL, Postgres, SQLite, and SQLServer; can be used with any database connection library."
+    },
+    "SqlSchema": {
+        "type": "library",
+        "version": "2.0.1",
+        "github": "https://github.com/auraphp/Aura.SqlSchema",
+        "composer": "aura/sqlschema",
+        "description": "Provides facilities to read table names and table columns from a database using PDO."
+    },
+    "Uri": {
+        "type": "library",
+        "version": "1.2.0",
+        "github": "https://github.com/auraphp/Aura.Uri",
+        "composer": "aura/uri",
+        "description": "The Aura Uri package provides objects to build and manipulate URL strings."
+    },
+    "View": {
+        "type": "library",
+        "version": "2.1.1",
+        "github": "https://github.com/auraphp/Aura.View",
+        "composer": "aura/view",
+        "description": "Provides an implementation of the TemplateView and TwoStepView patterns, with support for helpers and for closures as templates, using PHP itself as the templating language."
+    },
+    "Web": {
+        "type": "library",
+        "version": "2.0.3",
+        "github": "https://github.com/auraphp/Aura.Web",
+        "composer": "aura/web",
+        "description": "Provides web Request and Response objects for use by web controllers and actions. These are representations of the PHP web environment, not HTTP request and response objects proper."
+    },
+    "Web_Kernel": {
+        "type": "kernel",
+        "version": "2.1.2",
+        "github": "https://github.com/auraphp/Aura.Web_Kernel",
+        "composer": "aura/web-kernel",
+        "description": "The kernel files for an Aura web project."
+    },
+    "Web_Project": {
+        "type": "project",
+        "version": "2.0.2",
+        "github": "https://github.com/auraphp/Aura.Web_Project",
+        "composer": "aura/web-project",
+        "description": "A minimal web framework built from Aura v2 packages"
+    }
+}

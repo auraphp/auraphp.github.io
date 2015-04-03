@@ -1,5 +1,22 @@
 .hero-logo {
     padding-top: 10px;
+    text-align: center;
+}
+
+#packages .version {
+    color: gray;
+}
+
+#packages th {
+    text-align: left;
+}
+
+#packages tr {
+    border-bottom: 1px solid silver;
+}
+
+#packages tbody tr:hover {
+    background-color: #ddd;
 }
 
 td, th {

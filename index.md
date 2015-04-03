@@ -1,0 +1,26 @@
+---
+layout: site
+active: home
+title: Aura for PHP
+---
+
+<div class="hero-unit">
+    <div class="hero-logo">
+        <img src="img/aura-logo-black.png" width="240" height="240" />
+        <h3 id="adjectives"></h3>
+        <script src="/js/adjectives.js" type="text/javascript"></script>
+        <p><a class="btn btn-primary btn-large" href="/about">Learn more &raquo;</a></p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="span12">
+        <table id="packages">
+            <thead><tr>
+                <th>Package</th>
+                <th>Description</th>
+            </tr></thead>
+        </table>
+        <script src="/js/packages.js" type="text/javascript"></script>
+    </div>
+</div>
