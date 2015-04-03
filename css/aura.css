@@ -60,14 +60,10 @@ td, th {
     right: 10px;
 }
 
-#posts-collate h2 {
-    margin-left: 1em;
-}
-
 #posts-collate h3 {
     margin-left: 2em;
 }
 
-#posts-collate ul {
-    margin-left: 3em;
+#posts-collate li {
+    margin-left: 4em;
 }
