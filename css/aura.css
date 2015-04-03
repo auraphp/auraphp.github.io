@@ -24,7 +24,7 @@ body {
     background-color: #ddd;
 }
 
-td, th {
+#packages td, th {
     vertical-align: top;
     padding: 10px;
 }
