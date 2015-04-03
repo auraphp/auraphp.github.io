@@ -1,0 +1,69 @@
+body {
+    padding-top: 60px;
+    padding-bottom: 40px;
+}
+
+.hero-logo {
+    padding-top: 10px;
+    text-align: center;
+}
+
+#packages .version {
+    color: gray;
+}
+
+#packages th {
+    text-align: left;
+}
+
+#packages tr {
+    border-bottom: 1px solid silver;
+}
+
+#packages tbody tr:hover {
+    background-color: #ddd;
+}
+
+#packages td, th {
+    vertical-align: top;
+    padding: 10px;
+}
+
+.contributors-list {
+    list-style-type: none !important;
+}
+
+.contributor_thumbnail {
+    float: left;
+    margin-left: -60px;
+}
+
+.contributor {
+    line-height: 25px;
+    overflow: hidden;
+    padding: 10px 10px 10px 70px;
+    height: 50px;
+    background:#F8F8F8;
+    margin-bottom: 10px;
+    border-bottom: 1px dotted #C5C5C5;
+}
+
+#top-link-block.affix-top {
+    position: absolute; /* allows it to "slide" up into view */
+    bottom: -82px;
+    left: 10px;
+}
+
+#top-link-block.affix {
+    position: fixed; /* keeps it on the bottom once in view */
+    bottom: 18px;
+    right: 10px;
+}
+
+#posts-collate h3 {
+    margin-left: 12px;
+}
+
+#posts-collate li {
+    margin-left: 24px;
+}

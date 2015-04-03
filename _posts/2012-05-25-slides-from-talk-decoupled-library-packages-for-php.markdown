@@ -5,6 +5,7 @@ tags : [slides]
 author : Hari KT
 ---
 
-[Here](http://www.slideshare.net/pmjones88/decoupled-libraries-for-php-54-the-aura-project)
-are the slides from our PHP Tek 2012 talk. If you were there, please
-give us your feedback at <http://joind.in/talk/view/6495>.
+Below are the slides from the talk given by Paul M Jones at PHP Tek 12.
+If you were there, please give feedback on the talk: [http://joind.in/talk/view/6495](http://joind.in/talk/view/6495).
+
+<iframe src="http://www.slideshare.net/slideshow/embed_code/13065200" width="425" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" allowfullscreen></iframe>
