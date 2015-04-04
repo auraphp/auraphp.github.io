@@ -18,8 +18,8 @@ The new [Github releases API](http://developer.github.com/v3/repos/releases/) ha
 
 Happy belated New Year to all, and many thanks to the Aura contributors who have made these releases possible!
 
-[Aura.Autoload v2]: https://github.com/auraphp/Aura.Autoload/tree/develop-2
-[Aura.Includer v2]: https://github.com/auraphp/Aura.Includer/tree/develop-2
-[Aura.Dispatcher v2]: https://github.com/auraphp/Aura.Dispatcher/tree/develop-2
-[Aura.Sql v2]: https://github.com/auraphp/Aura.Sql/tree/develop-2
+[Aura.Autoload v2]: https://github.com/auraphp/Aura.Autoload/tree/2.x
+[Aura.Includer v2]: https://github.com/auraphp/Aura.Includer/tree/2.x
+[Aura.Dispatcher v2]: https://github.com/auraphp/Aura.Dispatcher/tree/2.x
+[Aura.Sql v2]: https://github.com/auraphp/Aura.Sql/tree/2.x
 [v2 packages page]: /packages/v2

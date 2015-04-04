@@ -5,7 +5,7 @@ tags : [v2, aura, web, beta, release]
 author : Paul M. Jones
 ---
 
-Our "one release a day" series continues with the 2.0.0-beta1 release of [Aura.Web](https://github.com/auraphp/Aura.Web/tree/develop-2). You can [download it](https://github.com/auraphp/Aura.Web/releases) directly or install via [Composer and Packagist](https://packagist.org/packages/aura/web).
+Our "one release a day" series continues with the 2.0.0-beta1 release of [Aura.Web](https://github.com/auraphp/Aura.Web/tree/2.x). You can [download it](https://github.com/auraphp/Aura.Web/releases) directly or install via [Composer and Packagist](https://packagist.org/packages/aura/web).
 
 Whereas the v1 package included controllers, renderers, and other
 functionality, the v2 package provides only _Request_ and

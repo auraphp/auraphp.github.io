@@ -25,7 +25,7 @@ Aura.Di is a dependency injection container system with the following features:
 * instance factories
 
 We will concentrate on constructor and setter injection in this chapter for easiness.
-It is recommend you should read [Aura.Di documentation](https://github.com/auraphp/Aura.Di/blob/develop-2/README.md)
+It is recommend you should read [Aura.Di documentation](https://github.com/auraphp/Aura.Di/blob/2.x/README.md)
 
 ## Setting And Getting Services
 

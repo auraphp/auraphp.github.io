@@ -35,9 +35,9 @@ cd {$REPO}
     </li>
 
     <li>
-        <p>From the <code>develop-2</code> branch, create and check out a branch for your new work, then push it to Github:</p>
+        <p>From the <code>2.x</code> branch, create and check out a branch for your new work, then push it to Github:</p>
 
-<pre><code>git checkout develop-2
+<pre><code>git checkout 2.x
 git branch {$WORKING_BRANCH}
 git checkout {$WORKING_BRANCH}
 git push --set-upstream origin {$WORKING_BRANCH}
@@ -69,7 +69,7 @@ git push --set-upstream origin {$WORKING_BRANCH}
                 <p>To fetch upstream changes from the original Aura repository and merge them into your working branch:</p>
 
 <pre><code>git fetch upstream
-git merge upstream/develop-2
+git merge upstream/2.x
 </code></pre>
 
             </li>

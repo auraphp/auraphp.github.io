@@ -242,11 +242,11 @@ packages, then [the Aura project][Aura] is for you. Download a single package
 and start using it in your project today, with no added dependencies.
 
 
-[Aura.Di v2]: https://github.com/auraphp/Aura.Di/tree/develop-2
+[Aura.Di v2]: https://github.com/auraphp/Aura.Di/tree/2.x
 [Aura.Dispatcher]: https://github.com/auraphp/Aura.Dispatcher
 [Aura.Project_Kernel]: https://github.com/auraphp/Aura.Project_Kernel
-[Aura.Router v2]: https://github.com/auraphp/Aura.Router/tree/develop-2
-[Aura.Web v2]: http://github.com/auraphp/Aura.Web/tree/develop-2
+[Aura.Router v2]: https://github.com/auraphp/Aura.Router/tree/2.x
+[Aura.Web v2]: http://github.com/auraphp/Aura.Web/tree/2.x
 [Aura.Web_Project]: https://github.com/auraphp/Aura.Web_Kernel
 [Aura]: http://auraphp.com
 [Silex]: http://silex.sensiolabs.org

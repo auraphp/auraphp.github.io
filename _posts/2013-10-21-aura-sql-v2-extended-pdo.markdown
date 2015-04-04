@@ -116,13 +116,13 @@ package and start using it in your project today, with no added dependencies.
 [Solar_Sql]: http://solarphp.com/apidoc/package.Solar_Sql
 [PDO]: http://php.net/pdo
 [Aura.Sql]: http://github.com/auraphp/Aura.Sql
-[Aura.Sql-v2]: https://github.com/auraphp/Aura.Sql/tree/develop-2
-[Aura.Sql_Query]: https://github.com/auraphp/Aura.Sql_Query/tree/develop-2
-[Aura.Sql_Schema]: https://github.com/auraphp/Aura.Sql_Schema/tree/develop-2
-[Lazy connection.]: https://github.com/auraphp/Aura.Sql/tree/develop-2#lazy-connection
-[Bind values.]: https://github.com/auraphp/Aura.Sql/tree/develop-2#bind-values
-[Array quoting.]: https://github.com/auraphp/Aura.Sql/tree/develop-2#array-quoting
-[Fetch methods.]: https://github.com/auraphp/Aura.Sql/tree/develop-2#fetch-methods
-[Profiler.]: https://github.com/auraphp/Aura.Sql/tree/develop-2#profiler
-[Connection locator.]: https://github.com/auraphp/Aura.Sql/tree/develop-2#connection-locator
+[Aura.Sql-v2]: https://github.com/auraphp/Aura.Sql/tree/2.x
+[Aura.Sql_Query]: https://github.com/auraphp/Aura.Sql_Query/tree/2.x
+[Aura.Sql_Schema]: https://github.com/auraphp/Aura.Sql_Schema/tree/2.x
+[Lazy connection.]: https://github.com/auraphp/Aura.Sql/tree/2.x#lazy-connection
+[Bind values.]: https://github.com/auraphp/Aura.Sql/tree/2.x#bind-values
+[Array quoting.]: https://github.com/auraphp/Aura.Sql/tree/2.x#array-quoting
+[Fetch methods.]: https://github.com/auraphp/Aura.Sql/tree/2.x#fetch-methods
+[Profiler.]: https://github.com/auraphp/Aura.Sql/tree/2.x#profiler
+[Connection locator.]: https://github.com/auraphp/Aura.Sql/tree/2.x#connection-locator
 
