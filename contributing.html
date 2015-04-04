@@ -126,31 +126,27 @@ git merge upstream/2.x
         <p>Maintain 100% test coverage.</p>
     </li>
     <li>
+        <p>Adhere to [semantic versioning](http://semver.org). Do not introduce backwards compatibility breaks.</p>
+    </li>
+    <li>
         <p>A class should <em>either</em> create objects <em>or</em> operate on those objects, never both. This means the <code>new</code> keyword should be used only in Factories and Builders. (The built-in PHP classes, as well as all exceptions, are exempt from this rule)</p>
     </li>
     <li>
-        <p>Default to explicit configuration rather than implicit convention.</p>
+        <p>Prefer explicit configuration over implicit convention.</p>
     </li>
     <li>
         <p>Default to Dependency Injection instead of Service Locator. If a Service Locator is actually needed, it should locate only one type of object.</p>
     </li>
     <li>
-        <p>Default to composing functionality through dependency injection, rather than through inheritance and base classes.</p>
+        <p>Compose functionality through dependency injection, rather than through inheritance and base classes.</p>
+    </li>
+    <li>
+        <p>Make effective and reasonable usage of closures and callable objects, especially for object creation factories.</p>
     </li>
     <li>
         <p>Keep the README updated with any new or changed features.</p>
     </li>
 </ol>
-
-Other notes:
-
-- Use explicit configuration rather than implicit convention
-
-- Compose functionality as much as possible through dependency injection, instead of through inheritance and base classes
-
-- Use factories as object creators in general, rather than as adapter creators in specific
-
-- Make effective and reasonable usage of closures/anonymous functions, primarily for object creation within the dependency injector service definitions
 
 <p>Some of those rules may sound crazy to you; to other developers, they might sound like good sense. So if you have questions ...</p>
 
