@@ -17,11 +17,11 @@ body {
 }
 
 #packages tr {
-    border-bottom: 1px solid silver;
+    border-bottom: 1px solid #ddd;
 }
 
 #packages tbody tr:hover {
-    background-color: #ddd;
+    background-color: #eee;
 }
 
 #packages td, th {
