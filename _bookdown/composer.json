@@ -1,0 +1,23 @@
+{
+    "name": "bookdown/project",
+    "type": "project",
+    "description": "A skeleton Bookdown project.",
+    "keywords": [
+        "docbook",
+        "markdown",
+        "manual",
+        "documentation",
+        "static site"
+    ],
+    "homepage": "https://github.com/bookdown/Bookdown.Project",
+    "license": "BSD-2-Clause",
+    "authors": [
+        {
+            "name": "Bookdown.Project Contributors",
+            "homepage": "https://github.com/bookdown/Bookdown.Project/contributors"
+        }
+    ],
+    "require": {
+        "bookdown/bookdown": "dev-master"
+    }
+}

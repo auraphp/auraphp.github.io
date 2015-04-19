@@ -1,0 +1,83 @@
+---
+layout: site
+active: home
+title: Generating Paths From Routes
+---
+
+
+<nav class="navheader">
+    <table>
+        <tr>
+            <th colspan="3" class="curr">1.4. Generating Paths From Routes</th>
+        </tr>
+        <tr>
+            <td class="prev"><a href="/packages/Aura.Router/attaching-route-groups.html">Attaching Route Groups</a></td>
+            <td class="parent">1. Aura.Router</th>
+            <td class="next"><a href="/packages/Aura.Router/advanced-topics.html">Advanced Topics</a></td>
+        </tr>
+    </table>
+</nav>
+<h1 id="1.4">1.4. Generating Paths From Routes</h1>
+<p>To generate a path from a route so that you can create links, first retrieve the <em>Generator</em> from the <em>RouterContainer</em>.</p>
+<pre><code class="language-php">&lt;?php
+$generator = $routerContainer-&gt;getGenerator();
+?&gt;
+</code></pre>
+<p>You can then call <code>Generagor::generate()</code> with the route name and optional attributes to use for named placeholder tokens.</p>
+<pre><code class="language-php">&lt;?php
+$path = $generator-&gt;generate('blog.read', ['id' =&gt; 42]);
+$href = htmlspecialchars($path, ENT_QUOTES, 'UTF-8');
+echo "&lt;a href=\"{$href}\"&gt;Blog link&lt;/a&gt;";
+?&gt;
+</code></pre>
+<p>The <code>generate()</code> method will URL-encode the placeholder token values automatically. Use the <code>generateRaw()</code> method to leave them un-encoded.</p>
+<p>If there are named placeholder tokens in path without corresponding attributes, those tokens will <em>not</em> be replaced, leaving the placeholder token in the path.</p>
+<p>If there are attributes without corresponding tokens, those attributes will not be added to the path.</p>
+<h2 id="1.4.1">1.4.1. Optional Attributes</h2>
+<p>If you <code>generate()</code> a path from a route with optional attributes, the attributes will be filled in if they are present in the data for the link. Remember, the optional attributes are <em>sequentially</em> optional, so the attributes will not be filled in after the first missing one:</p>
+<pre><code class="language-php">&lt;?php
+$map-&gt;route('archive', '/archive{/year,month,day}')
+    -&gt;tokens(array(
+        'year'  =&gt; '\d{4}',
+        'month' =&gt; '\d{2}',
+        'day'   =&gt; '\d{2}'
+    ));
+
+$link = $generator-&gt;generate('archive', array(
+    'year' =&gt; '1979',
+    'month' =&gt; '11',
+)); // "/archive/1979/11"
+?&gt;
+</code></pre>
+<h2 id="1.4.2">1.4.2. Wildcard Attributes</h2>
+<p>If you <code>generate()</code> a link with wildcard attributes, the wildcard key in the data
+will be used for the trailing arbitrary attribute values:</p>
+<pre><code class="language-php">&lt;?php
+$map-&gt;route('wild_post', '/post/{id}')
+    -&gt;wildcard('other');
+
+$link = $generator-&gt;generate('wild_post', array(
+    'id' =&gt; '88',
+    'other' =&gt; array(
+        'foo',
+        'bar',
+        'baz',
+    );
+)); // "/post/88/foo/bar/baz"
+?&gt;
+</code></pre>
+
+<nav class="navfooter">
+    <table>
+        <tr>
+            <td class="prev"><a href="/packages/Aura.Router/attaching-route-groups.html">Prev</a></td>
+            <td class="parent"><a href="/packages/Aura.Router/">Up</a></td>
+            <td class="next"><a href="/packages/Aura.Router/advanced-topics.html">Next</a></td>
+        </tr>
+        <tr>
+            <td class="prev">1.3. Attaching Route Groups</td>
+            <td class="parent">1. Aura.Router</td>
+            <td class="next">1.5. Advanced Topics</td>
+        </tr>
+    </table>
+</nav>

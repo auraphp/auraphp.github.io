@@ -1,0 +1,93 @@
+---
+layout: site
+active: home
+title: Advanced Topics
+---
+
+
+<nav class="navheader">
+    <table>
+        <tr>
+            <th colspan="3" class="curr">1.5. Advanced Topics</th>
+        </tr>
+        <tr>
+            <td class="prev"><a href="/packages/Aura.Router/generating-paths.html">Generating Paths From Routes</a></td>
+            <td class="parent">1. Aura.Router</th>
+            <td class="next"></td>
+        </tr>
+    </table>
+</nav>
+<h1 id="1.5">1.5. Advanced Topics</h1>
+<h2 id="1.5.1">1.5.1. Catchall Routes</h2>
+<p>You can use optional placeholder tokens to create a generic catchall route:</p>
+<pre><code class="language-php">&lt;?php
+$map-&gt;get('catchall', '{/controller,action,id}')
+    -&gt;defaults([
+        'controller' =&gt; 'index',
+        'action' =&gt; 'browse',
+        'id' =&gt; null,
+    ]);
+?&gt;
+</code></pre>
+<p>That will match these paths, with these attribute values:</p>
+<ul>
+<li>
+<code>/ : ['controller' =&gt; 'index', 'action' =&gt; 'browse', 'id' =&gt; null]</code>
+</li>
+<li>
+<code>/foo : ['controller' =&gt; 'foo', 'action' =&gt; 'browse', 'id' =&gt; null]</code>
+</li>
+<li>
+<code>/foo/bar : ['controller' =&gt; 'foo', 'action' =&gt; 'bar', 'id' =&gt; null]</code>
+</li>
+<li>
+<code>/foo/bar/42 : ['controller' =&gt; 'foo', 'action' =&gt; 'bar', 'id' =&gt; '42']</code>
+</li>
+</ul>
+<p>Because routes are matched in the order they are added, the catchall should be the last route in the <em>Map</em> so that more specific routes may match first.</p>
+<h2 id="1.5.2">1.5.2. Caching Routes</h2>
+<p>You may wish to cache the <em>Map</em> for production deployments so that you do not have to add the routes from scratch on each page load. The <code>Map::getRoutes()</code> and <code>Map::setRoutes()</code> methods may be used for that purpose.</p>
+<p>The following is a naive example for file-based caching and restoring of <em>Map</em> routes:</p>
+<pre><code class="language-php">&lt;?php
+// the cache file location
+$cache = '/path/to/routes.cache';
+
+// does the cache exist?
+if (file_exists($cache)) {
+
+    // restore from the cache
+    $routes = unserialize(file_get_contents($cache));
+    $map-&gt;setRoutes($routes);
+
+} else {
+
+    // map the routes ...
+    $map-&gt;get(...);
+    $map-&gt;post(...);
+
+    // ... then save them to the cache for the next page load
+    $routes = $map-&gt;getRoutes();
+    file_put_contents($cache, serialize($routes));
+}
+?&gt;
+</code></pre>
+<p>Note that if there are closures in the <em>Route</em> objects (e.g. in the handlers), you will not be able to cache the routes. This is because closures cannot be serialized by PHP. Consider using non-closure callables instead.</p>
+<h2 id="1.5.3">1.5.3. Extending the Map and Route Classes</h2>
+<p>TBD</p>
+<h2 id="1.5.4">1.5.4. Custom Matching Rules</h2>
+<p>TBD</p>
+
+<nav class="navfooter">
+    <table>
+        <tr>
+            <td class="prev"><a href="/packages/Aura.Router/generating-paths.html">Prev</a></td>
+            <td class="parent"><a href="/packages/Aura.Router/">Up</a></td>
+            <td class="next"></td>
+        </tr>
+        <tr>
+            <td class="prev">1.4. Generating Paths From Routes</td>
+            <td class="parent">1. Aura.Router</td>
+            <td class="next"></td>
+        </tr>
+    </table>
+</nav>
