@@ -3,6 +3,10 @@ body {
     padding-bottom: 40px;
 }
 
+h1 {
+    margin-bottom: 16px;
+}
+
 h2 {
     padding-top: 16px;
 }
