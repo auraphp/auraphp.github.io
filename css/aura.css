@@ -15,6 +15,11 @@ code {
     color: #369;
 }
 
+pre {
+    margin-left: 2em;
+    margin-right: 2em;
+}
+
 .hero-logo {
     padding-top: 10px;
     text-align: center;
