@@ -7,7 +7,11 @@ h2 {
     padding-top: 16px;
 }
 
-a, code {
+a {
+    color: #69c;
+}
+
+code {
     color: #369;
 }
 
