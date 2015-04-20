@@ -124,7 +124,7 @@ if (! $route) {
     $failedRoute = $map-&gt;getFailedRoute();
 
     // which matching rule failed?
-    switch ($failure-&gt;failedRule) {
+    switch ($failedRoute-&gt;failedRule) {
         case 'Aura\Router\Rule\Allows':
             // 405 METHOD NOT ALLOWED
             // Send the $failedRoute-&gt;allows as 'Allow:'

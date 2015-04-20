@@ -20,7 +20,7 @@ title: Defining Routes
 <h1 id="1.2">1.2. Defining Routes</h1>
 <p>Every time you add a route to the <em>Map</em>, you get back a <em>Route</em> object. The <em>Route</em> object is pretty powerful, and allows you to define a wide range of matching conditions. All of the <em>Route</em> methods are fluent, so you can chain them together.</p>
 <h2 id="1.2.1">1.2.1. Placeholder Tokens and Default Values</h2>
-<p>When you add a <code>{token}</code> placeholer in the path, it uses a default regular expression of <code>[^/]</code>. Essentially, this matches everything except a slash, which of course indicates the next path segment.</p>
+<p>When you add a <code>{token}</code> placeholer in the path, it uses a default regular expression of <code>([^/]+)</code>. Essentially, this matches everything except a slash, which of course indicates the next path segment.</p>
 <p>To define custom regular expressions for placeholder tokens, use the <code>tokens()</code> method.</p>
 <pre><code class="language-php">&lt;?php
 $map-&gt;get('blog.read', '/blog/{id}')

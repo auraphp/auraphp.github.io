@@ -25,14 +25,14 @@ $namePrefix = 'blog';
 $pathPrefix = '/blog';
 $map-&gt;attach($namePrefix, $pathPrefix, function ($map) {
 
-    $map-&gt;tokens(array(
+    $map-&gt;tokens([
         'id'     =&gt; '\d+',
         'format' =&gt; '(\.json|\.atom|\.html)?'
-    ));
+    ]);
 
-    $map-&gt;setDefaults(array(
+    $map-&gt;setDefaults([
         'format' =&gt; '.html',
-    ));
+    ]);
 
     $map-&gt;get('browse', '');
     $map-&gt;get('read', '/{id}{format}');
