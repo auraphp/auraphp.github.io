@@ -22,6 +22,7 @@ code {
 pre {
     margin-left: 2em;
     margin-right: 4em;
+    overflow: auto;
 }
 
 .hero-logo {
