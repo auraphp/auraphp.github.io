@@ -17,5 +17,5 @@ layout: site
 active: home
 title: <?= $this->page->getTitle() . PHP_EOL; ?>
 ---
-
+<script>hljs.initHighlightingOnLoad();</script>
 <?php echo $this->render("core"); ?>
