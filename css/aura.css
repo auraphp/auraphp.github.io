@@ -3,6 +3,10 @@ body {
     padding-bottom: 40px;
 }
 
+h2 {
+    padding-top: 16px;
+}
+
 code {
     color: #369;
 }
