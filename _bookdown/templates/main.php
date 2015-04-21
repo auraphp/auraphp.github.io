@@ -14,7 +14,7 @@ $templates->set("toc", "{$library}/toc.php");
 ?>
 ---
 layout: site
-active: home
+active: packages
 title: <?= $this->page->getTitle() . PHP_EOL; ?>
 ---
 <script>hljs.initHighlightingOnLoad();</script>
