@@ -72,11 +72,99 @@ if (file_exists($cache)) {
 ?&gt;
 </code></pre>
 <p>Note that if there are closures in the <em>Route</em> objects (e.g. in the handlers), you will not be able to cache the routes. This is because closures cannot be serialized by PHP. Consider using non-closure callables instead.</p>
-<h2 id="1.5.3">1.5.3. Extending the Map and Route Classes</h2>
-<p>TBD</p>
-<h2 id="1.5.4">1.5.4. Custom Matching Rules</h2>
-<p>TBD</p>
-<h2 id="1.5.5">1.5.5. Customizing The Container</h2>
+<h2 id="1.5.3">1.5.3. Custom Matching Rules</h2>
+<p>Writing a custom matching rule, say one that checks the authentication state, is a bit involved but not difficult.</p>
+<ol>
+<li>
+<p>Write a rule class that implements the RuleInterface.</p>
+</li>
+<li>
+<p>Get the RuleIterator from the RouterContainer and <code>append()</code> or <code>prepend()</code> your new Rule. (You can also wrap it in a callable to make it lazy-loaded, such as with Aura.Di Lazy instances.)</p>
+</li>
+<li>
+<p>Use the Matcher as normal.</p>
+</li>
+</ol>
+<p>Here is a naive rule that checks to see if the request has a particular header set; the rule passes if it is, and fails if it does not.  The header value is captured into the route attributes.</p>
+<pre><code class="language-php">&lt;?php
+use Aura\Router\Route;
+use Aura\Router\Rule\RuleInterface;
+use Psr\Http\Message\ServerRequestInterface;
+
+class ApiVersionRule implements RuleInterface
+{
+    public function __invoke(ServerRequestInterface $request, Route $route)
+    {
+        $versions = $request-&gt;getHeader('X-Api-Version');
+        if (count($versions) !== 1) {
+            return false;
+        }
+
+        $route-&gt;attributes(['apiVersion' =&gt; $versions[0]]);
+        return true;
+    }
+}
+?&gt;
+</code></pre>
+<p>You can then <code>prepend()</code> or <code>append()</code> the rule to the <em>RuleIterator</em> from the <em>RouterContainer</em>. (Prepended rules get run first, appended ones last.)</p>
+<pre><code class="language-php">&lt;?php
+$ruleIterator = $routerContainer-&gt;getRuleIterator();
+$ruleIterator-&gt;append(new ApiVersionRule());
+?&gt;
+</code></pre>
+<p>Then you can run the <em>Matcher</em> as normal, and your new rule will be honored.</p>
+<pre><code class="language-php">&lt;?php
+$matcher = $routerContainer-&gt;getMatcher();
+$route = $matcher-&gt;match($request);
+?&gt;
+</code></pre>
+<h2 id="1.5.4">1.5.4. Extending the Map Class</h2>
+<p>You might want to extend the <em>Map</em> class to provide convenience methods specific to your application. As with writing a custom matching rule, this is a bit involved but not difficult:</p>
+<ol>
+<li>
+<p>Write your <em>Map</em> extended class.</p>
+</li>
+<li>
+<p>Add your extended class factory to the <em>RouterContainer</em>.</p>
+</li>
+<li>
+<p>Use the <em>RouterContainer</em> as normal, and it will return your custom <em>Map</em> class.</p>
+</li>
+</ol>
+<p>For example, you may wish to have a <code>resource()</code> method that automatically attaches a series of routes all at once for a given route name and route path.  First, write your extension of the <em>Map</em> class:</p>
+<pre><code class="language-php">&lt;?php
+use Aura\Router\Map;
+
+class MyResourceMap extends Map
+{
+    public function resource($namePrefix, $pathPrefix)
+    {
+        return $this-&gt;attach($namePrefix, $pathPrefix, function ($map) {
+            $map-&gt;get('browse', '');
+            $map-&gt;get('read', '/{id}');
+            $map-&gt;patch('edit', '/{id}');
+            $map-&gt;post('add', '');
+            $map-&gt;delete('delete', '/{id}');
+        });
+    }
+}
+?&gt;
+</code></pre>
+<p>Then tell the <em>RouterContainer</em> how to create your extended class using a factory callable:</p>
+<pre><code class="language-php">&lt;?php
+use Aura\Router\Route;
+
+$routerContainer-&gt;setMapFactory(function () {
+    return new MyResourceMap(new Route());
+});
+?&gt;
+</code></pre>
+<p>Now you can get the <em>Map</em> from the <em>RouterContainer</em>, and it will be your custom extended class:</p>
+<pre><code class="language-php">&lt;?php
+$map = $routerContainer-&gt;getMap();
+echo get_class($map); // "ResourceMap"
+?&gt;
+</code></pre>
 
 <nav class="navfooter">
     <table>
