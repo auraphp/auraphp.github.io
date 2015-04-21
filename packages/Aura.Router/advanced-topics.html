@@ -165,6 +165,15 @@ $map = $routerContainer-&gt;getMap();
 echo get_class($map); // "ResourceMap"
 ?&gt;
 </code></pre>
+<h2 id="1.5.5">1.5.5. Logging</h2>
+<p>You may wish to log the <em>Matcher</em> activity using a PSR-3 compliant logger. You can tell the <em>RouterContainer</em> how to create a logger instance by passing a factory callable to <code>setLoggerFactory()</code>.</p>
+<pre><code class="language-php">&lt;?php
+$routerContainer-&gt;setLoggerFactory(function () {
+    return new Psr3Logger();
+});
+?&gt;
+</code></pre>
+<p>The <em>RouterContainer</em> will use that callable to create the logger and inject it into the <em>Matcher</em>. YOu can then review the debug-level logs for <em>Matcher</em> activity.</p>
 
 <nav class="navfooter">
     <table>
