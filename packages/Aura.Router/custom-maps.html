@@ -65,8 +65,9 @@ $map = $routerContainer-&gt;getMap();
 echo get_class($map); // "ResourceMap"
 ?&gt;
 </code></pre>
-<h2 id="1.5.2">1.5.2. Caching Routes</h2>
-<p>You may wish to cache your route map for production deployments so that you do not have to add the routes from scratch on each page load. You can call the <code>RouterContainer::setMapBuilder()</code> method and pass a builder callable to set up the <em>Map</em> before the container returns it. The builder callable should take a <em>Map</em> instance as its only argument.</p>
+<h2 id="1.5.2">1.5.2. Automated Route Caching and Building</h2>
+<p>You may wish to build your route map from some external source. Alternatively,you mighg want to cache your route map for production deployments so that you do not have to add the routes from scratch on each page load.</p>
+<p>To effect these or other automated map-building functionality, call the <code>RouterContainer::setMapBuilder()</code> method and pass a builder callable to set up the <em>Map</em> before the container returns it. The builder callable should take a <em>Map</em> instance as its only argument.</p>
 <p>The following is a naive example for file-based caching and restoring of <em>Map</em> routes. It uses the <code>Map::setRoutes()</code> and <code>Map::getRoutes()</code> methods to work with the array of mapped route objects.</p>
 <pre><code class="language-php">&lt;?php
 $routerContainer-&gt;setMapBuilder(function ($map) {
@@ -94,16 +95,10 @@ $routerContainer-&gt;setMapBuilder(function ($map) {
 });
 ?&gt;
 </code></pre>
-<p>Now when we call <code>$routerContainer-&gt;getMap()</code>, the container will automatically call the map-builder logic and apply it to the <code>$map</code> before returning it.</p>
-<p>Two notes:</p>
-<ol>
-<li>
-<p>If there are closures in the <em>Route</em> objects (e.g. in the handlers), you will not be able to serialize the routes for caching. This is because closures cannot be serialized by PHP. Consider using non-closure callables instead.</p>
-</li>
-<li>
-<p>The map-builder callable can be any callable: a closure, invokable object, etc.</p>
-</li>
-</ol>
+<blockquote>
+<p>N.b.: If there are closures in the <em>Route</em> objects (e.g. in the handlers), you will not be able to serialize the routes for caching. This is because closures cannot be serialized by PHP. Consider using non-closure callables instead.</p>
+</blockquote>
+<p>Now when you call <code>$routerContainer-&gt;getMap()</code>, the container will automatically call the map-builder logic and apply it to the <code>$map</code> before returning it.</p>
 
 <nav class="navfooter">
     <table>
