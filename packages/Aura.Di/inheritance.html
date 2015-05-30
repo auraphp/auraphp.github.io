@@ -1,0 +1,109 @@
+---
+layout: site
+active: packages
+title: Class, Interface, and Trait Inheritance
+---
+<script>hljs.initHighlightingOnLoad();</script>
+
+<nav class="navheader">
+    <table>
+        <tr>
+            <th colspan="3" class="curr">1.4. Class, Interface, and Trait Inheritance</th>
+        </tr>
+        <tr>
+            <td class="prev"><a href="/packages/Aura.Di/setter.html">Setter Injection</a></td>
+            <td class="parent">1. Aura.Di</th>
+            <td class="next"><a href="/packages/Aura.Di/services.html">Services</a></td>
+        </tr>
+    </table>
+</nav>
+<h1 id="1.4">1.4. Class, Interface, and Trait Inheritance</h1>
+<p>Whether by constructor parameters or setter methods, each class instantiated through the <em>Container</em> "inherits" the values of its parents by default. This means we can set a constructor parameter or setter method value on a parent class, and the child class will use it (that is, unless we set an overriding value on the child class).</p>
+<h2 id="1.4.1">1.4.1. Constructor Parameter Inheritance</h2>
+<p>Let's say we have this parent class and this child class:</p>
+<pre><code class="language-php">class ExampleParent
+{
+    protected $foo;
+    protected $bar;
+
+    public function __construct($foo)
+    {
+        $this-&gt;foo = $foo;
+    }
+
+    public function setBar($bar)
+    {
+        $this-&gt;bar = $bar;
+    }
+}
+
+class ExampleChild extends ExampleParent
+{
+    protected $baz;
+
+    public function setBaz($baz)
+    {
+        $this-&gt;baz = $baz;
+    }
+}
+</code></pre>
+<p>We can specify the default values for every class that extends <em>ExampleParent</em> through the <code>$di-&gt;params</code> and <code>$di-&gt;setter</code> values for the <em>ExampleParent</em>.</p>
+<pre><code class="language-php">$di-&gt;params['ExampleParent']['foo'] = 'parent_foo';
+$di-&gt;setter['ExampleParent']['setBar'] = 'parent_bar';
+</code></pre>
+<p>When we call <code>$di-&gt;newInstance('ExampleChild')</code>, the child class will have inherited the defaults from the parent.</p>
+<p>We can always override the inherited values by specifying them for the child class directly:</p>
+<pre><code class="language-php">$di-&gt;params['ExampleChild']['foo'] = 'child_foo';
+$di-&gt;setter['ExampleChild']['setBaz'] = 'child_baz';
+</code></pre>
+<p>Note that classes extended from the child class will then inherit those new values. In this way, constructor parameter and setter method values are propagated down the inheritance hierarchy.</p>
+<h3 id="1.4.1.1">1.4.1.1. Setter Method Inheritance</h3>
+<p>If a class uses a setter method, whether by extending a parent class, using a trait, or implementing an interface, we can specify the default value for that setter method in relation to the parent class, trait, or interface. That value will then be applied by default in every class that extends that parent class, uses that trait, or implements that interface.</p>
+<p>For example, let's say we have this trait, interface, and class:</p>
+<pre><code class="language-php">trait ExampleFooTrait
+{
+    public function setFoo($foo)
+    {
+        $this-&gt;foo = $foo;
+    }
+}
+
+interface ExampleBarInterface
+{
+    public function setBar($bar);
+}
+
+class ExampleWithTraitAndInterface implements ExampleBarInterface
+{
+    use ExampleFooTrait;
+
+    protected $foo;
+    protected $bar;
+
+    public function setBar($bar)
+    {
+        $this-&gt;bar = $bar;
+    }
+}
+</code></pre>
+<p>We then define the default setter method values on the trait and interface:</p>
+<pre><code class="language-php">$di-&gt;setter['ExampleFooTrait']['setFoo'] = 'foo_value';
+$di-&gt;setter['ExampleBarInterface']['setBar'] = 'bar_value';
+</code></pre>
+<p>When we call <code>$di-&gt;newInstance('ExampleWithTraitAndInterface')</code>, those setter methods will be called by the <em>Container</em> with those values.</p>
+<p>Note that if we have class-specific <code>$di-&gt;setter</code> values, those will take precedence over the trait and interface setter values.</p>
+
+<nav class="navfooter">
+    <table>
+        <tr>
+            <td class="prev"><a href="/packages/Aura.Di/setter.html">Prev</a></td>
+            <td class="parent"><a href="/packages/Aura.Di/">Up</a></td>
+            <td class="next"><a href="/packages/Aura.Di/services.html">Next</a></td>
+        </tr>
+        <tr>
+            <td class="prev">1.3. Setter Injection</td>
+            <td class="parent">1. Aura.Di</td>
+            <td class="next">1.5. Services</td>
+        </tr>
+    </table>
+</nav>
