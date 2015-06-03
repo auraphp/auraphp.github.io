@@ -1,6 +1,6 @@
 $.getJSON('/packages.json', function (data) {
 
-    $.each(data, function (branch, packages)) {
+    $.each(data, function (branch, packages) {
 
         var rows = [];
 
