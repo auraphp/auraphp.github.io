@@ -6,7 +6,12 @@ $.getJSON('/packages.json', function (data) {
 
         $.each(packages, function (name, info) {
 
-            if (info.type != 'library' && info.type != 'bundle') {
+            var skip =
+                info.type != 'library'
+                && info.type != 'bundle'
+                && info.type != 'interface';
+
+            if (skip) {
                 return;
             }
 
