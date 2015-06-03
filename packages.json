@@ -1,4 +1,183 @@
 {
+    "3.x": {
+        "Di": {
+            "type": "library",
+            "version": "3.0.0-alpha1",
+            "github": "https://github.com/auraphp/Aura.Di/tree/3.x",
+            "composer": "aura/di",
+            "description": "A serializable dependency injection container with constructor and setter injection, interface and trait awareness, configuration inheritance, and much more."
+        },
+        "Payload": {
+            "type": "library",
+            "version": "3.0.0-alpha1",
+            "github": "https://github.com/auraphp/Aura.Payload/tree/3.x",
+            "composer": "aura/payload",
+            "description": "A Domain Payload implementation."
+        },
+        "Payload_Interface": {
+            "type": "interface",
+            "version": "3.0.0-alpha1",
+            "github": "https://github.com/auraphp/Aura.Payload_Interface/tree/3.x",
+            "composer": "aura/payload-interface",
+            "description": "An interface package for Domain Payload implementations."
+        },
+        "Router": {
+            "type": "library",
+            "version": "3.0.0-alpha2",
+            "github": "https://github.com/auraphp/Aura.Router/tree/3.x",
+            "composer": "aura/router",
+            "description": "Powerful, flexible web routing for PSR-7 requests."
+        }
+    },
+    "2.x": {
+        "Accept": {
+            "type": "library",
+            "version": "2.2.2",
+            "github": "https://github.com/auraphp/Aura.Accept/tree/2.x",
+            "composer": "aura/accept",
+            "description": "Provides content-negotiation tools using Accept* headers."
+        },
+        "Auth": {
+            "type": "library",
+            "version": "2.0.0-beta2",
+            "github": "https://github.com/auraphp/Aura.Auth/tree/2.x",
+            "composer": "aura/auth",
+            "description": "Aura Auth provides a unified interface to authenticate a user with local or remote authentication systems."
+        },
+        "Autoload": {
+            "type": "library",
+            "version": "2.0.3",
+            "github": "https://github.com/auraphp/Aura.Autoload/tree/2.x",
+            "composer": "aura/autoload",
+            "description": "Provides a PSR-4 compliant autoloader implementation."
+        },
+        "Cli": {
+            "type": "library",
+            "version": "2.1.1",
+            "github": "https://github.com/auraphp/Aura.Cli/tree/2.x",
+            "composer": "aura/cli",
+            "description": "Provides the equivalent of request (Context) and response (Stdio) classes for a command line environment, including Getopt support."
+        },
+        "Cli_Kernel": {
+            "type": "kernel",
+            "version": "2.0.3",
+            "github": "https://github.com/auraphp/Aura.Cli_Kernel/tree/2.x",
+            "composer": "aura/cli-kernel",
+            "description": "The kernel files for an Aura CLI project."
+        },
+        "Cli_Project": {
+            "type": "project",
+            "version": "2.0.2",
+            "github": "https://github.com/auraphp/Aura.Cli_Project/tree/2.x",
+            "composer": "aura/cli-project",
+            "description": "A minimal command-line framework built from Aura v2 packages"
+        },
+        "Di": {
+            "type": "library",
+            "version": "2.2.3",
+            "github": "https://github.com/auraphp/Aura.Di/tree/2.x",
+            "composer": "aura/di",
+            "description": "Provides a dependency injection container system with native support for constructor- and setter-based injection, lazy-loading of services, and inheritable configuration of setters and constructor params."
+        },
+        "Dispatcher": {
+            "type": "library",
+            "version": "2.0.3",
+            "github": "https://github.com/auraphp/Aura.Dispatcher/tree/2.x",
+            "composer": "aura/dispatcher",
+            "description": "Creates objects from a factory and invokes methods using named parameters; also provides a trait for invoking closures and object methods with named parameters."
+        },
+        "Framework_Project": {
+            "type": "project",
+            "version": "2.0.1",
+            "github": "https://github.com/auraphp/Aura.Framework_Project/tree/2.x",
+            "composer": "aura/framework-project",
+            "description": "A minimal web+cli framework built from Aura v2 packages"
+        },
+        "Html": {
+            "type": "library",
+            "version": "2.4.1",
+            "github": "https://github.com/auraphp/Aura.Html/tree/2.x",
+            "composer": "aura/html",
+            "description": "Provides HTML escapers and helpers, including form input helpers."
+        },
+        "Includer": {
+            "type": "library",
+            "version": "2.0.2",
+            "github": "https://github.com/auraphp/Aura.Includer/tree/2.x",
+            "composer": "aura/includer",
+            "description": "Include multiple files from specified directories, in order, with variables extracted into a limited include scope."
+        },
+        "Project_Kernel": {
+            "type": "kernel",
+            "version": "2.1.1",
+            "github": "https://github.com/auraphp/Aura.Project_Kernel/tree/2.x",
+            "composer": "aura/project-kernel",
+            "description": "The shared kernel files for an Aura project."
+        },
+        "Router": {
+            "type": "library",
+            "version": "2.2.2",
+            "github": "https://github.com/auraphp/Aura.Router/tree/2.x",
+            "composer": "aura/router",
+            "description": "A web router implementation; given a URI path and a copy of $_SERVER, it will extract path-info parameter values for a specific route."
+        },
+        "Session": {
+            "type": "library",
+            "version": "2.0.1",
+            "github": "https://github.com/auraphp/Aura.Session/tree/2.x",
+            "composer": "aura/session",
+            "description": "Provides session management functionality, including lazy session starting, session segments, next-request-only (\"flash\") values, and CSRF tools."
+        },
+        "Sql": {
+            "type": "library",
+            "version": "2.4.3",
+            "github": "https://github.com/auraphp/Aura.Sql/tree/2.x",
+            "composer": "aura/sql",
+            "description": "A PDO extension that provides lazy connections, array quoting, identifier quoting, query profiling, value binding, and convenience methods for common fetch styles. Because it extends PDO, existing code that uses PDO can use this without any changes to the existing code."
+        },
+        "SqlQuery": {
+            "type": "library",
+            "version": "2.5.0",
+            "github": "https://github.com/auraphp/Aura.SqlQuery/tree/2.x",
+            "composer": "aura/sqlquery",
+            "description": "Object-oriented query builders for MySQL, Postgres, SQLite, and SQLServer; can be used with any database connection library."
+        },
+        "SqlSchema": {
+            "type": "library",
+            "version": "2.0.1",
+            "github": "https://github.com/auraphp/Aura.SqlSchema/tree/2.x",
+            "composer": "aura/sqlschema",
+            "description": "Provides facilities to read table names and table columns from a database using PDO."
+        },
+        "View": {
+            "type": "library",
+            "version": "2.1.1",
+            "github": "https://github.com/auraphp/Aura.View/tree/2.x",
+            "composer": "aura/view",
+            "description": "Provides an implementation of the TemplateView and TwoStepView patterns, with support for helpers and for closures as templates, using PHP itself as the templating language."
+        },
+        "Web": {
+            "type": "library",
+            "version": "2.0.3",
+            "github": "https://github.com/auraphp/Aura.Web/tree/2.x",
+            "composer": "aura/web",
+            "description": "Provides web Request and Response objects for use by web controllers and actions. These are representations of the PHP web environment, not HTTP request and response objects proper."
+        },
+        "Web_Kernel": {
+            "type": "kernel",
+            "version": "2.1.2",
+            "github": "https://github.com/auraphp/Aura.Web_Kernel/tree/2.x",
+            "composer": "aura/web-kernel",
+            "description": "The kernel files for an Aura web project."
+        },
+        "Web_Project": {
+            "type": "project",
+            "version": "2.0.2",
+            "github": "https://github.com/auraphp/Aura.Web_Project/tree/2.x",
+            "composer": "aura/web-project",
+            "description": "A minimal web framework built from Aura v2 packages"
+        }
+    },
     "1.x": {
         "Autoload": {
             "type": "library",
@@ -118,185 +297,6 @@
             "github": "https://github.com/auraphp/Aura.Web/tree/1.x",
             "composer": "aura/web",
             "description": "The Aura Web package provides tools to build web page controllers, including an AbstractPage for action methods, a Context class for disovering the request environment, and a Response transfer object that describes the eventual HTTP response."
-        }
-    },
-    "2.x": {
-        "Accept": {
-            "type": "library",
-            "version": "2.2.2",
-            "github": "https://github.com/auraphp/Aura.Accept/tree/2.x",
-            "composer": "aura/accept",
-            "description": "Provides content-negotiation tools using Accept* headers."
-        },
-        "Auth": {
-            "type": "library",
-            "version": "2.0.0-beta2",
-            "github": "https://github.com/auraphp/Aura.Auth/tree/2.x",
-            "composer": "aura/auth",
-            "description": "Aura Auth provides a unified interface to authenticate a user with local or remote authentication systems."
-        },
-        "Autoload": {
-            "type": "library",
-            "version": "2.0.3",
-            "github": "https://github.com/auraphp/Aura.Autoload/tree/2.x",
-            "composer": "aura/autoload",
-            "description": "Provides a PSR-4 compliant autoloader implementation."
-        },
-        "Cli": {
-            "type": "library",
-            "version": "2.1.1",
-            "github": "https://github.com/auraphp/Aura.Cli/tree/2.x",
-            "composer": "aura/cli",
-            "description": "Provides the equivalent of request (Context) and response (Stdio) classes for a command line environment, including Getopt support."
-        },
-        "Cli_Kernel": {
-            "type": "kernel",
-            "version": "2.0.3",
-            "github": "https://github.com/auraphp/Aura.Cli_Kernel/tree/2.x",
-            "composer": "aura/cli-kernel",
-            "description": "The kernel files for an Aura CLI project."
-        },
-        "Cli_Project": {
-            "type": "project",
-            "version": "2.0.2",
-            "github": "https://github.com/auraphp/Aura.Cli_Project/tree/2.x",
-            "composer": "aura/cli-project",
-            "description": "A minimal command-line framework built from Aura v2 packages"
-        },
-        "Di": {
-            "type": "library",
-            "version": "2.2.2",
-            "github": "https://github.com/auraphp/Aura.Di/tree/2.x",
-            "composer": "aura/di",
-            "description": "Provides a dependency injection container system with native support for constructor- and setter-based injection, lazy-loading of services, and inheritable configuration of setters and constructor params."
-        },
-        "Dispatcher": {
-            "type": "library",
-            "version": "2.0.3",
-            "github": "https://github.com/auraphp/Aura.Dispatcher/tree/2.x",
-            "composer": "aura/dispatcher",
-            "description": "Creates objects from a factory and invokes methods using named parameters; also provides a trait for invoking closures and object methods with named parameters."
-        },
-        "Framework_Project": {
-            "type": "project",
-            "version": "2.0.1",
-            "github": "https://github.com/auraphp/Aura.Framework_Project/tree/2.x",
-            "composer": "aura/framework-project",
-            "description": "A minimal web+cli framework built from Aura v2 packages"
-        },
-        "Html": {
-            "type": "library",
-            "version": "2.4.1",
-            "github": "https://github.com/auraphp/Aura.Html/tree/2.x",
-            "composer": "aura/html",
-            "description": "Provides HTML escapers and helpers, including form input helpers."
-        },
-        "Includer": {
-            "type": "library",
-            "version": "2.0.2",
-            "github": "https://github.com/auraphp/Aura.Includer/tree/2.x",
-            "composer": "aura/includer",
-            "description": "Include multiple files from specified directories, in order, with variables extracted into a limited include scope."
-        },
-        "Project_Kernel": {
-            "type": "kernel",
-            "version": "2.1.1",
-            "github": "https://github.com/auraphp/Aura.Project_Kernel/tree/2.x",
-            "composer": "aura/project-kernel",
-            "description": "The shared kernel files for an Aura project."
-        },
-        "Router": {
-            "type": "library",
-            "version": "2.2.2",
-            "github": "https://github.com/auraphp/Aura.Router/tree/2.x",
-            "composer": "aura/router",
-            "description": "A web router implementation; given a URI path and a copy of $_SERVER, it will extract path-info parameter values for a specific route."
-        },
-        "Session": {
-            "type": "library",
-            "version": "2.0.1",
-            "github": "https://github.com/auraphp/Aura.Session/tree/2.x",
-            "composer": "aura/session",
-            "description": "Provides session management functionality, including lazy session starting, session segments, next-request-only (\"flash\") values, and CSRF tools."
-        },
-        "Sql": {
-            "type": "library",
-            "version": "2.4.3",
-            "github": "https://github.com/auraphp/Aura.Sql/tree/2.x",
-            "composer": "aura/sql",
-            "description": "A PDO extension that provides lazy connections, array quoting, identifier quoting, query profiling, value binding, and convenience methods for common fetch styles. Because it extends PDO, existing code that uses PDO can use this without any changes to the existing code."
-        },
-        "SqlQuery": {
-            "type": "library",
-            "version": "2.4.2",
-            "github": "https://github.com/auraphp/Aura.SqlQuery/tree/2.x",
-            "composer": "aura/sqlquery",
-            "description": "Object-oriented query builders for MySQL, Postgres, SQLite, and SQLServer; can be used with any database connection library."
-        },
-        "SqlSchema": {
-            "type": "library",
-            "version": "2.0.1",
-            "github": "https://github.com/auraphp/Aura.SqlSchema/tree/2.x",
-            "composer": "aura/sqlschema",
-            "description": "Provides facilities to read table names and table columns from a database using PDO."
-        },
-        "View": {
-            "type": "library",
-            "version": "2.1.1",
-            "github": "https://github.com/auraphp/Aura.View/tree/2.x",
-            "composer": "aura/view",
-            "description": "Provides an implementation of the TemplateView and TwoStepView patterns, with support for helpers and for closures as templates, using PHP itself as the templating language."
-        },
-        "Web": {
-            "type": "library",
-            "version": "2.0.3",
-            "github": "https://github.com/auraphp/Aura.Web/tree/2.x",
-            "composer": "aura/web",
-            "description": "Provides web Request and Response objects for use by web controllers and actions. These are representations of the PHP web environment, not HTTP request and response objects proper."
-        },
-        "Web_Kernel": {
-            "type": "kernel",
-            "version": "2.1.2",
-            "github": "https://github.com/auraphp/Aura.Web_Kernel/tree/2.x",
-            "composer": "aura/web-kernel",
-            "description": "The kernel files for an Aura web project."
-        },
-        "Web_Project": {
-            "type": "project",
-            "version": "2.0.2",
-            "github": "https://github.com/auraphp/Aura.Web_Project/tree/2.x",
-            "composer": "aura/web-project",
-            "description": "A minimal web framework built from Aura v2 packages"
-        }
-    },
-    "3.x": {
-        "Di": {
-            "type": "library",
-            "version": "3.0.0-alpha1",
-            "github": "https://github.com/auraphp/Aura.Di/tree/3.x",
-            "composer": "aura/di",
-            "description": "A serializable dependency injection container with constructor and setter injection, interface and trait awareness, configuration inheritance, and much more."
-        },
-        "Payload": {
-            "type": "library",
-            "version": "3.0.0-alpha1",
-            "github": "https://github.com/auraphp/Aura.Payload/tree/3.x",
-            "composer": "aura/payload",
-            "description": "A Domain Payload implementation."
-        },
-        "Payload_Interface": {
-            "type": "interface",
-            "version": "3.0.0-alpha1",
-            "github": "https://github.com/auraphp/Aura.Payload_Interface/tree/3.x",
-            "composer": "aura/payload-interface",
-            "description": "An interface package for Domain Payload implementations."
-        },
-        "Router": {
-            "type": "library",
-            "version": "3.0.0-alpha2",
-            "github": "https://github.com/auraphp/Aura.Router/tree/3.x",
-            "composer": "aura/router",
-            "description": "Powerful, flexible web routing for PSR-7 requests."
         }
     }
 }
