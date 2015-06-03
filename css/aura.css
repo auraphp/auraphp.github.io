@@ -34,6 +34,16 @@ pre {
     color: gray;
 }
 
+#packages table {
+    margin-bottom: 24px;
+}
+
+#packages table caption {
+    font-size: 120%;
+    font-weight: bold;
+    color: black;
+}
+
 #packages th {
     text-align: left;
 }
