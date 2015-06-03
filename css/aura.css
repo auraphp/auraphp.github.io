@@ -3,6 +3,28 @@ body {
     padding-bottom: 40px;
 }
 
+h1 {
+    margin-bottom: 16px;
+}
+
+h2 {
+    padding-top: 16px;
+}
+
+a {
+    color: #09d;
+}
+
+code {
+    color: black;
+}
+
+pre {
+    margin-left: 2em;
+    margin-right: 4em;
+    overflow: auto;
+}
+
 .hero-logo {
     padding-top: 10px;
     text-align: center;
@@ -17,11 +39,11 @@ body {
 }
 
 #packages tr {
-    border-bottom: 1px solid silver;
+    border-bottom: 1px solid #ddd;
 }
 
 #packages tbody tr:hover {
-    background-color: #ddd;
+    background-color: #eee;
 }
 
 #packages td, th {
@@ -48,22 +70,89 @@ body {
     border-bottom: 1px dotted #C5C5C5;
 }
 
-#top-link-block.affix-top {
-    position: absolute; /* allows it to "slide" up into view */
-    bottom: -82px;
-    left: 10px;
-}
-
-#top-link-block.affix {
-    position: fixed; /* keeps it on the bottom once in view */
-    bottom: 18px;
-    right: 10px;
-}
-
 #posts-collate h3 {
     margin-left: 12px;
 }
 
 #posts-collate li {
     margin-left: 24px;
+}
+
+nav table tr {
+    border-top: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav table tr th {
+    border: none;
+    margin: 0;
+    padding: 6px 13px;
+}
+
+nav table tr td {
+    border: none;
+    margin: 0;
+    padding: 6px 13px;
+}
+
+nav table tr th :first-child, table tr td :first-child {
+    margin-top: 0;
+}
+
+nav table tr th :last-child, table tr td :last-child {
+    margin-bottom: 0;
+}
+
+nav table {
+    width: 100%;
+}
+
+nav.navheader table {
+    border-bottom: 1px solid #E1E1E1;
+}
+
+nav.navheader td.curr,
+nav.navheader th.curr {
+    text-align: center;
+}
+
+nav.navheader td.prev,
+nav.navheader th.prev {
+    width: 30%;
+    text-align: left;
+}
+
+nav.navheader td.parent,
+nav.navheader th.parent {
+    width: 40%;
+    text-align: center;
+}
+
+nav.navheader td.next,
+nav.navheader th.next {
+    text-align: right;
+    width: 30%;
+}
+
+nav.navfooter table {
+    border-top: 1px solid #E1E1E1;
+}
+
+nav.navfooter td.prev,
+nav.navfooter th.prev {
+    width: 30%;
+    text-align: left;
+}
+
+nav.navfooter td.parent,
+nav.navfooter th.parent {
+    width: 40%;
+    text-align: center;
+}
+
+nav.navfooter td.next,
+nav.navfooter th.next {
+    text-align: right;
+    width: 30%;
 }

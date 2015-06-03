@@ -30,13 +30,15 @@
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
         <link rel="manifest" href="/favicon/manifest.json">
 
-        <link rel="stylesheet" href="/css/aura.css">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/magula.min.css">
         <link rel="stylesheet" href="/css/spacelab.css">
+        <link rel="stylesheet" href="/css/aura.css">
         <link rel="stylesheet" href="/css/bootstrap-responsive.min.css">
 
         <script src="/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
         <script src="/js/vendor/jquery-1.9.1.min.js"></script>
         <script src="/js/vendor/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
         <script src="/js/plugins.js"></script>
 
     </head>
@@ -60,6 +62,7 @@
                     <div class="nav-collapse collapse">
                         <ul class="nav">
                             <li {% if page.active == 'about'        %}class="active"{% endif %}><a href="/about">About</a></li>
+                            <li {% if page.active == 'packages'     %}class="active"{% endif %}><a href="/packages">Packages</a></li>
                             <li {% if page.active == 'framework'    %}class="active"{% endif %}><a href="/framework">Framework</a></li>
                             <li {% if page.active == 'blog'         %}class="active"{% endif %}><a href="/blog">Blog</a></li>
                             <li {% if page.active == 'community'    %}class="active"{% endif %}><a href="/community">Community</a></li>
@@ -77,28 +80,25 @@
             <hr />
 
             <footer>
-                <p>&copy; 2011-2015, Aura for PHP <a
-                    title="site stats"
-                    href="//statcounter.com/free-web-stats/"
-                    target="_blank"
-                ><img
-                    class="statcounter"
-                    src="//c.statcounter.com/9117595/0/b58cd28d/0/"
-                    alt="site stats"
-                ></a></p>
+                <p>&copy; 2011-2015, Aura for PHP
+                    <script type="text/javascript">
+                        var sc_project=9117595;
+                        var sc_invisible=0;
+                        var sc_security="b58cd28d";
+                        var scJsHost = (("https:" == document.location.protocol) ? "https://secure." : "http://www.");
+                        document.write("<sc"+"ript type='text/javascript' src='" + scJsHost+ "statcounter.com/counter/counter.js'></"+"script>");
+                    </script>
+                    <noscript><div class="statcounter"><a
+                        title="site stats"
+                        href="http://statcounter.com/free-web-stats/"
+                        target="_blank"><img class="statcounter"
+                        src="http://c.statcounter.com/9117595/0/b58cd28d/0/"
+                        alt="site stats"
+                    ></a></div></noscript>
+                </p>
             </footer>
 
         </div>
-
-        <div class="pull-right">
-          <span id="top-link-block" class="hidden">
-            <a href="#top" class="well well-sm" onclick="$('html,body').animate({scrollTop:0},'slow');return false;">
-                <i class="glyphicon glyphicon-chevron-up"></i> Back to Top
-            </a>
-          </span>
-        </div>
-
-        <script src="/js/google.js" type="text/javascript"></script>
 
     </body>
 </html>

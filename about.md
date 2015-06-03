@@ -6,7 +6,7 @@ title:  About
 
 # About Aura
 
-The Aura project centers around a collection of high-quality, well-tested, [standards-compliant](/contributing#standards), independent library packages that can be used in any codebase.
+The Aura project centers around a collection of high-quality, well-tested, [semantically versioned](http://semver.org), [standards-compliant](/contributing#standards), independent library packages that can be used in any codebase.
 
 Each library is self-contained and has only the things it needs for its core purpose. None of the library packages depends on any other package. They are decoupled, not only from any particular framework, but also from each other.  This means developers can use as much or as little of the project as necessary.
 

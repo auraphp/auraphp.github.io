@@ -1,0 +1,86 @@
+---
+layout: site
+active: packages
+title: Container Builder and Config Classes
+---
+<script>hljs.initHighlightingOnLoad();</script>
+
+<nav class="navheader">
+    <table>
+        <tr>
+            <th colspan="3" class="curr">1.8. Container Builder and Config Classes</th>
+        </tr>
+        <tr>
+            <td class="prev"><a href="/packages/Aura.Di/factories.html">Instance Factories</a></td>
+            <td class="parent">1. Aura.Di</th>
+            <td class="next"><a href="/packages/Aura.Di/serializing.html">Serializing the Container</a></td>
+        </tr>
+    </table>
+</nav>
+<h1 id="1.8">1.8. Container Builder and Config Classes</h1>
+<p>The <em>ContainerBuilder</em> also builds fully-configured <em>Container</em> objects using <em>ContainerConfig</em> classes. It works using a <a href="http://auraphp.com/blog/2014/04/07/two-stage-config/">two-stage configuration system</a>.</p>
+<p>The two stages are "define" and "modify". In the "define" stage, the <em>ContainerConfig</em> object defines constructor parameter values, setter method values, services, and so on. The <em>ContainerBuilder</em> then locks the <em>Container</em> so that these definitions cannot be changed, and begins the "modify" stage. In the "modify" stage, we may <code>get()</code> services from the <em>Container</em> and modify them programmatically if needed.</p>
+<p>To build a fully-configured <em>Container</em> using the <em>ContainerBuilder</em>, we do something like the following:</p>
+<pre><code class="language-php">use Aura\Di\ContainerBuilder;
+
+$container_builder = new ContainerBuilder();
+
+// use the builder to create and configure a container
+// using an array of ContainerConfig classes
+$di = $container_builder-&gt;newConfiguredInstance([
+    'Aura\Cli\_Config\Common',
+    'Aura\Router\_Config\Common',
+    'Aura\Web\_Config\Common',
+]);
+</code></pre>
+<p>A configuration class looks like the following:</p>
+<pre><code class="language-php">namespace Vendor\Package;
+
+use Aura\Di\Container;
+use Aura\Di\ContainerConfig;
+
+class Config extends ContainerConfig
+{
+    public function define(Container $di)
+    {
+        $di-&gt;set('log_service', $di-&gt;lazyNew('Logger'));
+        $di-&gt;params['Logger']['dir'] = '/path/to/logs';
+    }
+
+    public function modify(Container $di)
+    {
+        $log = $di-&gt;get('log_service');
+        $log-&gt;debug('Finished config.');
+    }
+}
+</code></pre>
+<p>Here are some example <em>ContainerConfig</em> classes from earlier Aura packages:</p>
+<ul>
+<li>
+<a href="https://github.com/auraphp/Aura.Cli/blob/2.0.0/config/Common.php">Aura.Cli</a>
+</li>
+<li>
+<a href="https://github.com/auraphp/Aura.Html/blob/2.0.0/config/Common.php">Aura.Html</a>
+</li>
+<li>
+<a href="https://github.com/auraphp/Aura.Router/blob/2.0.0/config/Common.php">Aura.Router</a>
+</li>
+<li>
+<a href="https://github.com/auraphp/Aura.View/blob/2.0.0/config/Common.php">Aura.View</a>
+</li>
+</ul>
+
+<nav class="navfooter">
+    <table>
+        <tr>
+            <td class="prev"><a href="/packages/Aura.Di/factories.html">Prev</a></td>
+            <td class="parent"><a href="/packages/Aura.Di/">Up</a></td>
+            <td class="next"><a href="/packages/Aura.Di/serializing.html">Next</a></td>
+        </tr>
+        <tr>
+            <td class="prev">1.7. Instance Factories</td>
+            <td class="parent">1. Aura.Di</td>
+            <td class="next">1.9. Serializing the Container</td>
+        </tr>
+    </table>
+</nav>

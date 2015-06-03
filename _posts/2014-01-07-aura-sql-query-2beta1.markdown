@@ -16,5 +16,5 @@ If you like clean code, fully decoupled libraries, and truly independent package
 Be sure to join the [mailing list][] and check out the #auraphp IRC channel on Freenode!
 
 [Aura.Sql v1]: https://github.com/auraphp/Aura.Sql/
-[Aura.Sql_Query]: https://github.com/auraphp/Aura.Sql_Query/tree/develop-2
+[Aura.Sql_Query]: https://github.com/auraphp/Aura.Sql_Query/tree/2.x
 [mailing list]: http://groups.google.com/group/auraphp

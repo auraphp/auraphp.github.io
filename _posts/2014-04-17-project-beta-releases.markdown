@@ -21,7 +21,7 @@ Finally, we have [Aura.Framework_Project]((https://github.com/auraphp/Aura.Frame
 
 ### Kernels
 
-Each project is little more than a skeleton around a core "kernel" package. The [Aura.Web_Kernel](https://github.com/auraphp/Aura.Web_Kernel/tree/develop-2/src) is what actually provides the glue to connect the underlying library packages together, as does the [Aura.Cli_Kernel](https://github.com/auraphp/Aura.Cli_Kernel/tree/develop-2/src).
+Each project is little more than a skeleton around a core "kernel" package. The [Aura.Web_Kernel](https://github.com/auraphp/Aura.Web_Kernel/tree/2.x/src) is what actually provides the glue to connect the underlying library packages together, as does the [Aura.Cli_Kernel](https://github.com/auraphp/Aura.Cli_Kernel/tree/2.x/src).
 
 Keeping the kernel separate from the project means we can update the kernel without having to re-install a project. The separation between kernel and project also makes it possible to combine or stack the kernel packages. For example, the web and CLI kernel packages depend on a the same underlying [Project_Kernel](https://github.com/auraphp/Aura.Project_Kernel) to handle the common task of configuration and setup.  Similarly, the Framework_Project uses both the web and CLI kernel packages together.
 

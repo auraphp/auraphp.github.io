@@ -99,12 +99,12 @@ reduced in size and more focused. More on the [Aura.Web v2][] package next time!
 [Aura.Cli]: http://github.com/auraphp/Aura.Cli
 [Aura.Dispatcher]: https://github.com/auraphp/Aura.Dispatcher
 [Aura.Framework]: https://github.com/auraphp/Aura.Framework
-[Aura.Sql-v2]: https://github.com/auraphp/Aura.Sql/tree/develop-2
+[Aura.Sql-v2]: https://github.com/auraphp/Aura.Sql/tree/2.x
 [Aura.Sql]: http://github.com/auraphp/Aura.Sql
-[Aura.Sql_Query]: https://github.com/auraphp/Aura.Sql_Query/tree/develop-2
-[Aura.Sql_Schema]: https://github.com/auraphp/Aura.Sql_Schema/tree/develop-2
+[Aura.Sql_Query]: https://github.com/auraphp/Aura.Sql_Query/tree/2.x
+[Aura.Sql_Schema]: https://github.com/auraphp/Aura.Sql_Schema/tree/2.x
 [Aura.Web]: http://github.com/auraphp/Aura.Web
-[Aura.Web v2]: https://github.com/auraphp/Aura.Web/tree/develop-2
+[Aura.Web v2]: https://github.com/auraphp/Aura.Web/tree/2.x
 [Aura]: http://auraphp.com
 [Solar]: http://solarphp.com
 [full description]: https://github.com/auraphp/Aura.Dispatcher#refactoring-to-architecture-changes

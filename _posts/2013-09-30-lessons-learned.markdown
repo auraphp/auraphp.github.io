@@ -101,7 +101,7 @@ As we improve on Aura v1 and begin work on Aura v2 libraries, here's some of wha
 
 ### Further Extraction
 
-As noted above, some packages have functionality candidates for extraction.  
+As noted above, some packages have functionality candidates for extraction.
 
 We can derive an [Aura.Dispatcher][] package from combined functionality of the [Aura.Cli][], [Aura.Web][], and [Aura.Framework][] packages. This makes full-stack *and* micro-framework dispatch styles available in a single package.
 
@@ -111,7 +111,7 @@ The framework package has a technique for including configuration files from the
 
 The [Aura.View][] package currently has the helpers bound to it, but it turns out the helpers are easily extractable to their own [Aura.Html][] package.
 
-The [Aura.Sql][] package is particularly interesting.  It seems like the database connection functions, query objects, and schema discovery functions all have to be bound together.  But, by moving some of the functionality around, it turns out they can be split up into their own independent packages.  Take a look at [Aura.Sql-develop-2][], [Aura.Sql_Query][], and [Aura.Sql_Schema][] to see how we're doing it.
+The [Aura.Sql][] package is particularly interesting.  It seems like the database connection functions, query objects, and schema discovery functions all have to be bound together.  But, by moving some of the functionality around, it turns out they can be split up into their own independent packages.  Take a look at [Aura.Sql-2.x][], [Aura.Sql_Query][], and [Aura.Sql_Schema][] to see how we're doing it.
 
 ### Package Organization
 
@@ -137,7 +137,7 @@ There's a lot of other stuff in the works, but that's all we can discuss for now
 [Aura.Includer]: https://github.com/auraphp/Aura.Includer
 [Aura.Input]: https://github.com/auraphp/Aura.Input
 [Aura.Marshal]: https://github.com/auraphp/Aura.Marshal
-[Aura.Sql-develop-2]: https://github.com/auraphp/Aura.Sql/tree/develop-2
+[Aura.Sql-2.x]: https://github.com/auraphp/Aura.Sql/tree/2.x
 [Aura.Sql]: https://github.com/auraphp/Aura.Sql
 [Aura.Sql_Query]: https://github.com/auraphp/Aura.Sql_Query
 [Aura.Sql_Schema]: https://github.com/auraphp/Aura.Sql_Schema

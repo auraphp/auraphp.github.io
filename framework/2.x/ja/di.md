@@ -25,7 +25,7 @@ Aura.Diは以下の機能があるデペンデンシーテンテナシステム�
 * インスタンスファクトリー
 
 この章では簡単にするためにコンストラクターとセッタージェクションを取り上げます。
-[Aura.Di documentation](https://github.com/auraphp/Aura.Di/blob/develop-2/README.md)を読むことをお勧めします。
+[Aura.Di documentation](https://github.com/auraphp/Aura.Di/blob/2.x/README.md)を読むことをお勧めします。
 
 ## サービスのセットと取得
 

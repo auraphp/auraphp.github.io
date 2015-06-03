@@ -1,0 +1,67 @@
+---
+layout: site
+active: packages
+title: Instance Factories
+---
+<script>hljs.initHighlightingOnLoad();</script>
+
+<nav class="navheader">
+    <table>
+        <tr>
+            <th colspan="3" class="curr">1.7. Instance Factories</th>
+        </tr>
+        <tr>
+            <td class="prev"><a href="/packages/Aura.Di/lazy.html">Lazy Injection</a></td>
+            <td class="parent">1. Aura.Di</th>
+            <td class="next"><a href="/packages/Aura.Di/config.html">Container Builder and Config Classes</a></td>
+        </tr>
+    </table>
+</nav>
+<h1 id="1.7">1.7. Instance Factories</h1>
+<p>Occasionally, a class will need to receive not just an instance, but a factory that is capable of creating a new instance over and over.  For example, say we have a class like the following:</p>
+<pre><code class="language-php">class ExampleNeedsFactory
+{
+    protected $struct_factory;
+
+    public function __construct($struct_factory)
+    {
+        $this-&gt;struct_factory = $struct_factory;
+    }
+
+    public function getStruct(array $data)
+    {
+        $struct = $this-&gt;struct_factory-&gt;__invoke($data);
+        return $struct;
+    }
+}
+
+class ExampleStruct
+{
+    public function __construct(array $data)
+    {
+        foreach ($data as $key =&gt; $val) {
+            $this-&gt;$key = $val;
+        }
+    }
+}
+</code></pre>
+<p>We can inject a <em>Factory</em> that creates only <em>ExampleStruct</em> objects using <code>$di-&gt;newFactory()</code>.</p>
+<pre><code class="language-php">$di-&gt;params['ExampleNeedsFactory']['struct_factory'] = $di-&gt;newFactory('ExampleStruct');
+</code></pre>
+<p>Note that the arguments passed to the factory <code>__invoke()</code> method will be passed to the underlying instance constructor sequentially, not by name. This means the <code>__invoke()</code> method works more like the native <code>new</code> keyword, and not like <code>$di-&gt;lazyNew()</code>.  These arguments override any <code>$di-&gt;params</code> values that have been set for the class being factoried; without the overrides, all existing <code>$di-&gt;params</code> values for that class will be honored. (Values from <code>$di-&gt;setter</code> for the class will also be honored, but cannot be overriddden.)</p>
+<p>Do not feel limited by the <em>Factory</em> implementation. We can create and inject factory objects of our own if we like. The <em>Factory</em> returned by the <code>$di-&gt;newFactory()</code> method is an occasional convenience, nothing more.</p>
+
+<nav class="navfooter">
+    <table>
+        <tr>
+            <td class="prev"><a href="/packages/Aura.Di/lazy.html">Prev</a></td>
+            <td class="parent"><a href="/packages/Aura.Di/">Up</a></td>
+            <td class="next"><a href="/packages/Aura.Di/config.html">Next</a></td>
+        </tr>
+        <tr>
+            <td class="prev">1.6. Lazy Injection</td>
+            <td class="parent">1. Aura.Di</td>
+            <td class="next">1.8. Container Builder and Config Classes</td>
+        </tr>
+    </table>
+</nav>

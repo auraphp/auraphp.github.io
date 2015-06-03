@@ -192,7 +192,7 @@ $router->attach('blog', '/blog', function ($router) {
 ?>
 {% endhighlight %}
 
-See a longer example [here](https://github.com/auraphp/Aura.Router/tree/develop-2#attaching-route-groups).
+See a longer example [here](https://github.com/auraphp/Aura.Router/tree/2.x#attaching-route-groups).
 
 As a side note, the router will automatically add default `controller` and
 `action` values for you here. The `controller` value is the route name prefix,
@@ -211,7 +211,7 @@ $router->attachResource('blog', '/blog');
 {% endhighlight %}
 
 This will add seven REST routes with appropriate names, paths, HTTP methods,
-and token regexes; you can see the list [here](https://github.com/auraphp/Aura.Router/tree/develop-2#attaching-rest-resource-routes).
+and token regexes; you can see the list [here](https://github.com/auraphp/Aura.Router/tree/2.x#attaching-rest-resource-routes).
 
 If you decide those routes are not to your liking, you can override the
 default behavior by using `setResourceCallable()` to pass callable of your own
@@ -245,7 +245,7 @@ and start using it in your project today, with no added dependencies.
 
 
 [Aura.Dispatcher]: https://github.com/auraphp/Aura.Dispatcher
-[Aura.Router v2]: https://github.com/auraphp/Aura.Router/tree/develop-2
+[Aura.Router v2]: https://github.com/auraphp/Aura.Router/tree/2.x
 [Aura.Web]: http://github.com/auraphp/Aura.Web
 [Aura]: http://auraphp.com
 [Solar]: http://solarphp.com

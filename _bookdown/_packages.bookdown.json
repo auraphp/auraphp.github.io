@@ -1,0 +1,10 @@
+{
+    "title": "Aura 3.x Packages",
+    "content": [
+        {"Aura.Di": "https://raw.githubusercontent.com/auraphp/Aura.Di/3.x/docs/_bookdown.json"},
+        {"Aura.Router": "https://raw.githubusercontent.com/auraphp/Aura.Router/3.x/docs/_bookdown.json"}
+    ],
+    "target": "../packages/",
+    "rootHref": "/packages/",
+    "template": "templates/main.php"
+}

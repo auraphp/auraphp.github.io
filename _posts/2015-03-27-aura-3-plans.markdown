@@ -85,9 +85,9 @@ In addition to these, I will add PHP 7 to the testing mix on all 2.x packages. E
 
 2.x packages with existing stable releases will continue to be the center of development activity for the foreseeable future, including fixes and features.
 
-However, 2.x packages with only beta releases will not see stable releases as 2.x packages. Instead, they will get a new `develop-3` branch, and further development will continue on them as 3.x candidates.  Their existing `develop-2` branches will remain in place but deprecated. (This affects only [Aura.Auth](https://github.com/auraphp/Aura.Auth).)
+However, 2.x packages with only beta releases will not see stable releases as 2.x packages. Instead, they will get a new `develop-3` branch, and further development will continue on them as 3.x candidates.  Their existing `2.x` branches will remain in place but deprecated. (This affects only [Aura.Auth](https://github.com/auraphp/Aura.Auth).)
 
-Further, packages with `develop-2` branches, but no releases, will also not see 2.x releases. They will likewise get `develop-3` branches, and have their `develop-2` branches deprecated. Development will continue on them as 3.x candidates. (This affects [Aura.Filter](https://github.com/auraphp/Aura.Filter), [Aura.Http](https://github.com/auraphp/Aura.Http), and [Aura.SqlMapper_Bundle](https://github.com/auraphp/Aura.SqlMapper_Bundle).)
+Further, packages with `2.x` branches, but no releases, will also not see 2.x releases. They will likewise get `develop-3` branches, and have their `2.x` branches deprecated. Development will continue on them as 3.x candidates. (This affects [Aura.Filter](https://github.com/auraphp/Aura.Filter), [Aura.Http](https://github.com/auraphp/Aura.Http), and [Aura.SqlMapper_Bundle](https://github.com/auraphp/Aura.SqlMapper_Bundle).)
 
 
 ## The Future: Aura 3.x and Beyond
