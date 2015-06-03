@@ -35,10 +35,10 @@ pre {
 }
 
 #packages table {
-    margin-bottom: 12px;
+    margin-bottom: 24px;
 }
 
-#package table caption {
+#packages table caption {
     font-size: 120%;
     font-weight: bold;
 }
