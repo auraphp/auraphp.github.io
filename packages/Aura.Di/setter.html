@@ -33,7 +33,7 @@ class Example
 }
 </code></pre>
 <p>We can specify that, by default, the <code>setFoo()</code> method should be called with a specific value after construction like so:</p>
-<pre><code class="language-php">$di-&gt;setter['Vendor\Package\Example']['setFoo'] = 'foo_value';
+<pre><code class="language-php">$di-&gt;setters['Vendor\Package\Example']['setFoo'] = 'foo_value';
 </code></pre>
 <p>Note also that this works only with explicitly-defined setter methods. Setter methods that exist only via magic <code>__call()</code> will not be honored.</p>
 

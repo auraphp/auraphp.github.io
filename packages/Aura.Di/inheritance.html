@@ -49,12 +49,12 @@ class ExampleChild extends ExampleParent
 </code></pre>
 <p>If we define the constructor parameters and setter method values for the parent ...</p>
 <pre><code class="language-php">$di-&gt;params['ExampleParent']['foo'] = 'parent_foo';
-$di-&gt;setter['ExampleParent']['setBar'] = 'parent_bar';
+$di-&gt;setters['ExampleParent']['setBar'] = 'parent_bar';
 </code></pre>
 <p>... then when we call <code>$di-&gt;newInstance('ExampleChild')</code>, the child class will "inherit" those values as defaults.</p>
 <p>We can always override the "inherited" values by specifying them for the child class directly:</p>
 <pre><code class="language-php">$di-&gt;params['ExampleChild']['foo'] = 'child_foo';
-$di-&gt;setter['ExampleChild']['setBaz'] = 'child_baz';
+$di-&gt;setters['ExampleChild']['setBaz'] = 'child_baz';
 </code></pre>
 <p>Classes extended from the child class will then inherit those new values. In this way, constructor parameter and setter method values are propagated down the inheritance hierarchy.</p>
 <h2 id="1.4.2">1.4.2. Interface And Trait Inheritance</h2>
@@ -87,8 +87,8 @@ class Example implements ExampleBarInterface
 }
 </code></pre>
 <p>We can define the default setter method values on the trait and interface:</p>
-<pre><code class="language-php">$di-&gt;setter['ExampleFooTrait']['setFoo'] = 'foo_value';
-$di-&gt;setter['ExampleBarInterface']['setBar'] = 'bar_value';
+<pre><code class="language-php">$di-&gt;setters['ExampleFooTrait']['setFoo'] = 'foo_value';
+$di-&gt;setters['ExampleBarInterface']['setBar'] = 'bar_value';
 </code></pre>
 <p>When we call <code>$di-&gt;newInstance('Example')</code>, those setter methods will be called by the <em>Container</em> with those values.</p>
 <p>Note that if we have class-specific <code>$di-&gt;setter</code> values, those will take precedence over the trait and interface setter values.</p>
