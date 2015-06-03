@@ -46,5 +46,5 @@ $.getJSON('/packages.json', function (data) {
             html: table
         }).appendTo('#packages');
 
-    }
+    })
 });
