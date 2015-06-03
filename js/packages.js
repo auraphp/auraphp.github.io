@@ -17,7 +17,7 @@ $.getJSON('/packages.json', function (data) {
 
             var branchLink =
                 '<a href="'
-                + info.github + '/tree/' + branch + '>'
+                + info.github + '/tree/' + branch + '">'
                 + name + '</a>';
 
             var versionLink =
