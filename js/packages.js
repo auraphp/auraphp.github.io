@@ -15,20 +15,20 @@ $.getJSON('/packages.json', function (data) {
                 return;
             }
 
-            var readmeLink =
+            var branchLink =
                 '<a href="'
-                + info.github + '/tree/' + info.version + '#readme">'
+                + info.github + '/tree/' + branch + '>'
                 + name + '</a>';
 
-            var releasesLink =
+            var versionLink =
                 '<a class="version" href="'
-                + info.github + '/releases">'
+                + info.github + '/tree/' + info.version + '#readme">'
                 + info.version.replace('-', '&#8209;')
                 + '</a>';
 
             var row =
                 '<tr>'
-                + '<td>' + readmeLink + '&nbsp;' + releasesLink + '</td>'
+                + '<td>' + branchLink + '&nbsp;' + versionLink + '</td>'
                 + '<td>' + info.description + '</td>'
                 + '</tr>';
 
