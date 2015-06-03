@@ -41,11 +41,11 @@ pre {
 #packages table caption {
     font-size: 120%;
     font-weight: bold;
+    color: black;
 }
 
 #packages th {
     text-align: left;
-    color: gray;
 }
 
 #packages tr {
