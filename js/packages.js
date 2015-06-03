@@ -1,35 +1,50 @@
-$.getJSON('/packages.json', function (packages) {
+$.getJSON('/packages.json', function (data) {
 
-    var rows = [];
+    $.each(data, function (branch, packages)) {
 
-    $.each(packages, function (name, info) {
+        var rows = [];
 
-        if (info.type != 'library' && info.type != 'bundle') {
-            return;
-        }
+        $.each(packages, function (name, info) {
 
-        var readmeLink =
-            '<a href="'
-            + info.github + '/tree/' + info.version + '#readme">'
-            + name + '</a>';
+            if (info.type != 'library' && info.type != 'bundle') {
+                return;
+            }
 
-        var releasesLink =
-            '<a class="version" href="'
-            + info.github + '/releases">'
-            + info.version.replace('-', '&#8209;')
-            + '</a>';
+            var readmeLink =
+                '<a href="'
+                + info.github + '/tree/' + info.version + '#readme">'
+                + name + '</a>';
 
-        var row =
-            '<tr>'
-            + '<td>' + readmeLink + '&nbsp;' + releasesLink + '</td>'
-            + '<td>' + info.description + '</td>'
-            + '</tr>';
+            var releasesLink =
+                '<a class="version" href="'
+                + info.github + '/releases">'
+                + info.version.replace('-', '&#8209;')
+                + '</a>';
 
-        rows.push(row);
-    });
+            var row =
+                '<tr>'
+                + '<td>' + readmeLink + '&nbsp;' + releasesLink + '</td>'
+                + '<td>' + info.description + '</td>'
+                + '</tr>';
 
-    $('<tbody />', {
-        html: rows.join('')
-    }).appendTo('#packages');
+            rows.push(row);
+        });
 
+        var table =
+            '<caption>' + branch + ' Packages</caption>'
+            + '<thead>'
+            + '<tr>'
+            + '<th>Package</th>'
+            + '<th>Description</th>'
+            + '</tr>'
+            + '</thead>'
+            + '<tbody>'
+            + rows.join('')
+            + '</tbody>';
+
+        $('<table />', {
+            html: table
+        }).appendTo('#packages');
+
+    }
 });
