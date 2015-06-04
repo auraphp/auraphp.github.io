@@ -1,0 +1,105 @@
+---
+layout: site
+active: packages
+title: Auto-Resolution Of Constructor Parameters
+---
+<script>hljs.initHighlightingOnLoad();</script>
+
+<nav class="navheader">
+    <table>
+        <tr>
+            <th colspan="3" class="curr">1.9. Auto-Resolution Of Constructor Parameters</th>
+        </tr>
+        <tr>
+            <td class="prev"><a href="/packages/Aura.Di/config.html">Container Builder and Config Classes</a></td>
+            <td class="parent">1. Aura.Di</th>
+            <td class="next"><a href="/packages/Aura.Router/">Aura.Router</a></td>
+        </tr>
+    </table>
+</nav>
+<h1 id="1.9">1.9. Auto-Resolution Of Constructor Parameters</h1>
+<p>Some developers prefer to let the <em>Container</em> resolve dependencies on its own, without having to specify anything in a configuration file. Note that there can be unusual debugging problems inherent in tracking down the default injections, so auto-resolution may or may not be your preference.</p>
+<p>To use auto-resolution in a <em>Container</em>, build the <em>Container</em> with <code>$container = $builder-&gt;newInstance($builder::AUTO_RESOLVE)</code>.</p>
+<p>Note that auto-resolution only works for class/interface typehints. It does not work for <code>array</code> typehints. If the param is not typehinted, the <em>Container</em> will not attempt to fill in a value automatically.</p>
+<p>Note also that auto-resolution does not apply to setter methods. This is because the <em>Container</em> does not know which methods are setters and which are "normal use" methods. Since you have to specify <code>$di-&gt;setters</code> anyway, the <em>Container</em> has no chance to attempt auto-resolution.</p>
+<h2 id="1.9.1">1.9.1. Auto-Resolving From Concrete Typehints</h2>
+<p>If the parameter is typehinted to a class but there is no <code>$di-&gt;params</code> value for that parameter, and also no default value, the <em>Container</em> will automatically fill in a <code>lazyNew()</code> call to the typehinted class.</p>
+<p>For example, look at the following class; it has  a parameter typehinted to a class, and no default value:</p>
+<pre><code class="language-php">class Example
+{
+    public function __construct(Foo $foo)
+    {
+        // ...
+    }
+}
+</code></pre>
+<p>The <em>Container</em> will auto-resolve the constructor param as if you had explicitly specified the following:</p>
+<pre><code class="language-php">$di-&gt;params['Example']['foo'] = $di-&gt;lazyNew('Foo');
+</code></pre>
+<h2 id="1.9.2">1.9.2. Auto-Resolving From Abstract and Interface Typehints</h2>
+<p>Obviously, you can't instantiate an interface or an abstract class. So, if a constructor parameter is typehinted like this ...</p>
+<pre><code class="language-php">class Example
+{
+    public function __construct(FooInterface $foo)
+    {
+        // ...
+    }
+}
+</code></pre>
+<p>... the <em>Container</em> cannot auto-resolve with <code>lazyNew('FooInterface')</code>.</p>
+<p>When it comes to interfaces and abstracts, then, you have to tell the <em>Container</em> how to resolve them using <code>$di-&gt;types</code>:</p>
+<pre><code class="language-php">$di-&gt;types['FooInterface'] = $di-&gt;lazyNew('Foo');
+</code></pre>
+<p>The <em>Container</em> will now resolve all <em>FooInterface</em> typehints to a lazy-new instance of <em>Foo</em>.</p>
+<blockquote>
+<p>N.b.: Tou can use <code>$di-&gt;newInstance('Foo')</code> here if you like, but that will instantiate <em>Foo</em> right then and there, and that same <em>Foo</em> insteance will be used for every <em>FooInterface</em> typehinted constructor param. That may or may not be what you want.</p>
+</blockquote>
+<h2 id="1.9.3">1.9.3. Auto-Resolving to Services</h2>
+<p>Sometimes you don't want a new instance of the typehinted param. Often, you will want to use a service instead.  Auto-resolving a typehint to a service is easy, using the <code>$di-&gt;types</code> technique from above.  For example, given this class ...</p>
+<pre><code class="language-php">class Example
+{
+    public function __construct(DbInterface $db)
+    {
+        // ...
+    }
+}
+</code></pre>
+<p>... we can auto-resolve all <em>DbInterface</em> typehints to a service in the <em>Container</em>:</p>
+<pre><code>$di-&gt;types['DbInterface'] = $di-&gt;lazyGet('database_connection');
+</code></pre>
+<p>This works for concrete classes as well. Given this class:</p>
+<pre><code class="language-php">class Example
+{
+    public function __construct(Db $db)
+    {
+        // ...
+    }
+}
+</code></pre>
+<p>... we can auto-resolve all concrete <em>PDO</em> typehints to a service in the <em>Container</em>:</p>
+<pre><code>$di-&gt;types['Db'] = $di-&gt;lazyGet('database_connection');
+</code></pre>
+<h2 id="1.9.4">1.9.4. Overriding Auto-Resolution</h2>
+<p>You may wish to explicitly specify a constructor parameter for a class, instead of letting the <em>Container</em> use auto-resolution. You can do so through the old familiar <code>$di-&gt;params</code> technique.</p>
+<pre><code>// by default, resolve to this service
+$di-&gt;types['DbInterface'] = $di-&gt;lazyGet('database_connection');
+
+// but in this particular class, and its children,
+// resolve to this other service
+$di-&gt;params['OtherClass']['db'] = $di-&gt;lazyGet('other_connection');
+</code></pre>
+
+<nav class="navfooter">
+    <table>
+        <tr>
+            <td class="prev"><a href="/packages/Aura.Di/config.html">Prev</a></td>
+            <td class="parent"><a href="/packages/Aura.Di/">Up</a></td>
+            <td class="next"><a href="/packages/Aura.Router/">Next</a></td>
+        </tr>
+        <tr>
+            <td class="prev">1.8. Container Builder and Config Classes</td>
+            <td class="parent">1. Aura.Di</td>
+            <td class="next">2. Aura.Router</td>
+        </tr>
+    </table>
+</nav>
