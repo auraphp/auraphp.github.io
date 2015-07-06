@@ -86,6 +86,13 @@
             "composer": "aura/dispatcher",
             "description": "Creates objects from a factory and invokes methods using named parameters; also provides a trait for invoking closures and object methods with named parameters."
         },
+        "Filter": {
+            "type": "library",
+            "version": "2.0.0-beta1",
+            "github": "https://github.com/auraphp/Aura.Filter",
+            "composer": "aura/filter",
+            "description": "Filters to validate and sanitize objects and arrays."
+        },
         "Framework_Project": {
             "type": "project",
             "version": "2.0.1",
