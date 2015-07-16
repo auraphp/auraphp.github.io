@@ -23,7 +23,7 @@
         },
         "Router": {
             "type": "library",
-            "version": "3.0.0-beta1",
+            "version": "3.0.0-beta2",
             "github": "https://github.com/auraphp/Aura.Router",
             "composer": "aura/router",
             "description": "Powerful, flexible web routing for PSR-7 requests."
