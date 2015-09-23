@@ -303,7 +303,7 @@
             "version": "1.0.3",
             "github": "https://github.com/auraphp/Aura.Web",
             "composer": "aura/web",
-            "description": "The Aura Web package provides tools to build web page controllers, including an AbstractPage for action methods, a Context class for disovering the request environment, and a Response transfer object that describes the eventual HTTP response."
+            "description": "The Aura Web package provides tools to build web page controllers, including an AbstractPage for action methods, a Context class for discovering the request environment, and a Response transfer object that describes the eventual HTTP response."
         }
     }
 }
