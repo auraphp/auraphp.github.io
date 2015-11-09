@@ -144,7 +144,7 @@
         },
         "SqlQuery": {
             "type": "library",
-            "version": "2.5.0",
+            "version": "2.6.0",
             "github": "https://github.com/auraphp/Aura.SqlQuery",
             "composer": "aura/sqlquery",
             "description": "Object-oriented query builders for MySQL, Postgres, SQLite, and SQLServer; can be used with any database connection library."
