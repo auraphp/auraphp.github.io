@@ -2,7 +2,7 @@
     "3.x": {
         "Di": {
             "type": "library",
-            "version": "3.0.0-beta1",
+            "version": "3.0.0-beta2",
             "github": "https://github.com/auraphp/Aura.Di",
             "composer": "aura/di",
             "description": "A serializable dependency injection container with constructor and setter injection, interface and trait awareness, configuration inheritance, and much more."
