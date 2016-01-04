@@ -64,12 +64,12 @@ $matcher = $routerContainer-&gt;getMatcher();
 $route = $matcher-&gt;match($request);
 ?&gt;
 </code></pre>
-<h2 id="2.6.2">2.6.2. Setting Rules Into The Container</h2>
+<h2 id="2.6.2">2.6.2. Setting Rules</h2>
 <p>If you want, you can set all the matching rules into the <em>RouterContainer</em> in advance. They will be injected into the <em>RuleIterator</em> and thereby into the <em>Matcher</em> automatically.</p>
 <p>For good or bad, you need to pass the entire set of rules, not just your custom ones. This is because you need to include not just your own rules, but the default ones as well. It would look something like this:</p>
 <pre><code class="language-php">use Aura\Router\Rule;
 
-$routerContainer-&gt;setRules([
+$routerContainer-&gt;getRuleIterator()-&gt;set([
     // default rules
     new Rule\Secure(),
     new Rule\Host(),
@@ -86,7 +86,7 @@ $routerContainer-&gt;setRules([
 <p>Setting all the rules at once means you can place your rule exactly where you want.  If you want your custom rule to go right in the middle of the default set, you could do something like this:</p>
 <pre><code class="language-php">use Aura\Router\Rule;
 
-$routerContainer-&gt;setRules([
+$routerContainer-&gt;getRuleIterator()-&gt;set([
     new Rule\Secure(),
     new Rule\Host(),
     new ApiVersionRule(), // custom rule in the middle
@@ -98,7 +98,7 @@ $routerContainer-&gt;setRules([
 <p>Finally, if you feel you don't need some rules, you can omit them from the list. For example, you may only care about path and HTTP method matching:</p>
 <pre><code class="language-php">use Aura\Router\Rule;
 
-$routerContainer-&gt;setRules([
+$routerContainer-&gt;getRuleIterator()-&gt;set([
     new Rule\Path(),
     new Rule\Allows(),
 ]);

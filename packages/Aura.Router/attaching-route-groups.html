@@ -21,7 +21,7 @@ title: Attaching Route Groups
 <p>You can add a series of routes under a single master path in the <em>Map</em> using the <code>Map::attach()</code> method with a name prefix, path prefix, and a callable to perform the attachment logic.  The callable must take a <em>Map</em> as its only argument.</p>
 <p>For example, if you want all your blog-related routes to be mounted at <code>/blog</code> in your application, and all of their names to be prefixed with <code>blog.</code>, you can do the following:</p>
 <pre><code class="language-php">&lt;?php
-$namePrefix = 'blog';
+$namePrefix = 'blog.';
 $pathPrefix = '/blog';
 $map-&gt;attach($namePrefix, $pathPrefix, function ($map) {
 

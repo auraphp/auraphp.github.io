@@ -52,11 +52,13 @@ desirable, is beyond the scope of this document. For more information about
 $builder = new ContainerBuilder();
 $di = $builder-&gt;newInstance();
 </code></pre>
-<p>We can then use the <em>Container</em> to create objects for us.</p>
 <h2 id="1.1.3">1.1.3. Creating Object Instances</h2>
-<p>The most straightward way is to create an object through the <em>Container</em> is via the <code>newInstance()</code> method:</p>
+<p>The most straightforward way is to create an object through the <em>Container</em> (after locking it) is via the <code>newInstance()</code> method:</p>
 <pre><code>$object = $di-&gt;newInstance('Vendor\Package\ClassName');
 </code></pre>
+<blockquote>
+<p>N.b.: The <em>Container</em> locks itself once a new instance is produced; this ensures that the <em>Container</em> configuration cannot be modified once objects have been created.</p>
+</blockquote>
 <p>However, this is a relatively naive way to create objects with the <em>Container</em>. It is better to specify the various constructor parameters, setter methods, and so on, and let the <em>Container</em> inject those values for us only when the object is used as a dependency for something else.</p>
 
 <nav class="navfooter">

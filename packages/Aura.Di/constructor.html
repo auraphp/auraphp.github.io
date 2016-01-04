@@ -19,7 +19,7 @@ title: Constructor Injection
 </nav>
 <h1 id="1.2">1.2. Constructor Injection</h1>
 <p>When we use the <em>Container</em> to instantiate a new object, we often need to inject (i.e., set) constructor parameter values in various ways.</p>
-<p>We can define default values for constructor parameters using the <code>$di-&gt;params</code> array on the <em>Container</em>.</p>
+<p>We can define default values for constructor parameters using the <code>$di-&gt;params</code> array on the <em>Container</em> before locking it.</p>
 <p>Let's look at a class that takes some constructor parameters:</p>
 <pre><code class="language-php">namespace Vendor\Package;
 
@@ -43,7 +43,10 @@ $di-&gt;params['Vendor\Package\Example']['bar'] = 'bar_value';
 <pre><code class="language-php">$di-&gt;params['Vendor\Package\Example'][0] = 'foo_value';
 $di-&gt;params['Vendor\Package\Example'][1] = 'bar_value';
 </code></pre>
-<p>Now when we create an object with <code>$di-&gt;newInstance('Vendor\Package\Example')</code>, the instantiation will work correctly. Each time we create an instance through the <em>Container</em>, it will apply the <code>$di-&gt;params</code> values for the matching class.</p>
+<p>Once all the params are set, we create an object with <code>$di-&gt;newInstance('Vendor\Package\Example')</code>, the instantiation will work correctly. Each time we create an instance through the <em>Container</em>, it will apply the <code>$di-&gt;params</code> values for the matching class.</p>
+<blockquote>
+<p>N.b.: If you try to access <code>$params</code> after calling <code>newInstance()</code> (or after locking the <em>Container</em> using the <code>lock()</code> method) the <em>Container</em> will throw an exception. This is to prevent modifiying the params after objects have been created. Thus, be sure to set up all params for all objects before creating an object.</p>
+</blockquote>
 
 <nav class="navfooter">
     <table>

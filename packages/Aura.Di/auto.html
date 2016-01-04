@@ -51,9 +51,6 @@ title: Auto-Resolution Of Constructor Parameters
 <pre><code class="language-php">$di-&gt;types['FooInterface'] = $di-&gt;lazyNew('Foo');
 </code></pre>
 <p>The <em>Container</em> will now resolve all <em>FooInterface</em> typehints to a lazy-new instance of <em>Foo</em>.</p>
-<blockquote>
-<p>N.b.: You can use <code>$di-&gt;newInstance('Foo')</code> here if you like, but that will instantiate <em>Foo</em> right then and there, and that same <em>Foo</em> instance will be used for every <em>FooInterface</em> typehinted constructor param. That may or may not be what you want.</p>
-</blockquote>
 <h2 id="1.9.3">1.9.3. Auto-Resolving to Services</h2>
 <p>Sometimes you don't want a new instance of the typehinted param. Often, you will want to use a service instead.  Auto-resolving a typehint to a service is easy, using the <code>$di-&gt;types</code> technique from above.  For example, given this class ...</p>
 <pre><code class="language-php">class Example

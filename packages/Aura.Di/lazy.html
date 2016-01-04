@@ -18,6 +18,7 @@ title: Lazy Injection
     </table>
 </nav>
 <h1 id="1.6">1.6. Lazy Injection</h1>
+<p>Unlike the <code>newInstance()</code> and <code>get()</code> methods, calling one of the <code>lazy*()</code> methods on the <em>Container</em> will <em>not</em> lock the <em>Container</em>. Using lazy injection is the preferred and recommended way to defines object values for <code>$params</code> and <code>$setters</code>, and to define services.</p>
 <h2 id="1.6.1">1.6.1. Lazy Instances</h2>
 <p>Thus far, we have used <code>newInstance()</code> to create objects through the <em>Container</em>.
 However, we usually don't want to create an object <em>right at that moment</em> when
@@ -68,6 +69,10 @@ $di-&gt;set('service_name', $di-&gt;lazyNew('Example'));
 <pre><code class="language-php">$di-&gt;params['ExampleNeedsService']['db'] = $di-&gt;lazyGet('db_service');
 </code></pre>
 <p>This keeps the service from being created until the very moment it is needed. If we never instantiate anything that needs the service, the service itself will never be instantiated.</p>
+<h3 id="1.6.2.3">1.6.2.3. Getting-and-Calling</h3>
+<p>Sometimes it will be useful to retrieve the result of a method call to a shared service. To do so, use the <code>lazyGetCall()</code> method, passing the name of the service first, followed by the method name, and optionally followed by any arguments to the method.</p>
+<pre><code class="language-php">$di-&gt;params['ExampleNeedsFactoriedObject']['object'] = $di-&gt;lazyGetCall('factory_service', 'newInstance');
+</code></pre>
 <h2 id="1.6.3">1.6.3. Lazy Values</h2>
 <p>Sometimes we know that a parameter needs to be specified, but we don't know what it will be until later.  Perhaps it is the result of looking up an API key from an environment variable. In these and other cases, we can tell a constructor parameter or setter method to use a "lazy value" and then specify that value elsewhere.</p>
 <p>For example, we can configure the <em>Example</em> constructor parameters to use lazy values like so:</p>
@@ -98,7 +103,29 @@ $di-&gt;params['Example2']['data'] = $di-&gt;lazyRequire('/path/to/data.php');
     return $result;
 });
 </code></pre>
-<p>Beware of relying on this too much; if we do, it probably means we need to separate our configuration concerns better than we are currently doing.</p>
+<p>Note that this will work with any PHP callable, such as a static method or instance method.</p>
+<pre><code class="language-php">// ServiceClass::staticMethod()
+$di-&gt;set('service', $di-&gt;lazy(['ServiceClass', 'staticMethod']));
+
+// or an instance of $serviceClass-&gt;methodName()
+$instance = $di-&gt;newInstance('ServiceClass');
+$di-&gt;set('service', $di-&gt;lazy([$instance, 'methodName']));
+</code></pre>
+<p>You can pass arguments to the callable like so:</p>
+<pre><code class="language-php">// ServiceClass::staticMethod($arg1, $arg2, $arg3)
+$di-&gt;set('service', $di-&gt;lazy(['ServiceClass', 'staticMethod'],
+    $arg1,
+    $arg2,
+    $arg3
+));
+</code></pre>
+<p>Lazies in the callable array, and in the arguments, will be resolved automatically.</p>
+<pre><code class="language-php">// $serviceClass-&gt;methodName($configArray)
+$di-&gt;set('service', $di-&gt;lazy([$di-&gt;lazyNew('ServiceClass'), 'methodName'],
+    $di-&gt;lazyInclude('/path/to/config.array.php')
+));
+</code></pre>
+<p>Beware of relying on generic Lazy calls too much; if we do, it probably means we need to separate our configuration concerns better than we are currently doing.</p>
 
 <nav class="navfooter">
     <table>

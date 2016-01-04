@@ -54,6 +54,27 @@ $routerContainer-&gt;setLoggerFactory(function () {
 ?&gt;
 </code></pre>
 <p>The <em>RouterContainer</em> will use that callable to create the logger and inject it into the <em>Matcher</em>. You can then review the debug-level logs for <em>Matcher</em> activity.</p>
+<h2 id="2.7.3">2.7.3. Base Path</h2>
+<p>The router assumes that all URL paths begin at the top document root, but sometimes you will need them to begin in a subdirectory. In that case, you can instantiate the <em>RouterContainer</em> with an explicit base path; this base path will be used as a prefix for all route matching and path generation.</p>
+<pre><code class="language-php">&lt;?php
+// create a container with a base path
+$routerContainer = new RouterContainer('/path/to/subdir');
+
+// define a route as normal
+$map = $routerContainer-&gt;getMap();
+$map-&gt;get('blog.read', '/blog/{id}', ...);
+
+// if the incoming request is for "/path/to/subdir/blog/{id}"
+// then the route will match.
+$matcher = $routerContainer-&gt;getMatcher();
+$route = $matcher-&gt;match($request);
+
+// generating a path from the route will add the base path automatically
+$generator = $routerContainer-&gt;getGenerator();
+$path = $generator-&gt;generate('blog.read', '88');
+echo $path; // "/path/to/subdir/blog/88"
+?&gt;
+</code></pre>
 
 <nav class="navfooter">
     <table>

@@ -25,16 +25,19 @@ class Example
     // ...
 }
 
-// set the service
-$di-&gt;set('service_name', $di-&gt;newInstance('Example'));
+// set services as lazy; if you use newInstance() it will lock the container
+$di-&gt;set('service_name', $di-&gt;lazyNew('Example'));
 
-// get the service
+// get a service; the first get() will lock the container
 $service1 = $di-&gt;get('service_name');
 $service2 = $di-&gt;get('service_name');
 
 // the two service objects are the same
 var_dump($service1 === $service2); // true
 </code></pre>
+<blockquote>
+<p>N.b.: If you try to access <code>$params</code> or <code>$setters</code>, or to call <code>set()</code>, after calling <code>get()</code> or after locking the <em>Container</em> using the <code>lock()</code> method, the <em>Container</em> will throw an exception. This is to prevent modifiying the params after objects have been created. Thus, be sure to set up all params for all objects before creating an object.</p>
+</blockquote>
 
 <nav class="navfooter">
     <table>

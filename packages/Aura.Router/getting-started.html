@@ -119,7 +119,7 @@ $response = $action($request);
 $route = $matcher-&gt;match($request);
 if (! $route) {
     // get the first of the best-available non-matched routes
-    $failedRoute = $map-&gt;getFailedRoute();
+    $failedRoute = $matcher-&gt;getFailedRoute();
 
     // which matching rule failed?
     switch ($failedRoute-&gt;failedRule) {
