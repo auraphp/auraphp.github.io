@@ -158,7 +158,7 @@
         },
         "View": {
             "type": "library",
-            "version": "2.1.1",
+            "version": "2.2.0",
             "github": "https://github.com/auraphp/Aura.View",
             "composer": "aura/view",
             "description": "Provides an implementation of the TemplateView and TwoStepView patterns, with support for helpers and for closures as templates, using PHP itself as the templating language."
