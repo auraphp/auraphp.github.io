@@ -74,7 +74,7 @@
         },
         "Di": {
             "type": "library",
-            "version": "2.2.3",
+            "version": "2.2.4",
             "github": "https://github.com/auraphp/Aura.Di",
             "composer": "aura/di",
             "description": "Provides a dependency injection container system with native support for constructor- and setter-based injection, lazy-loading of services, and inheritable configuration of setters and constructor params."
