@@ -18,6 +18,6 @@
         }
     ],
     "require": {
-        "bookdown/bookdown": "dev-master"
+        "bookdown/bookdown": "dev-develop"
     }
 }

@@ -6,5 +6,6 @@
     ],
     "target": "../packages/",
     "rootHref": "/packages/",
-    "template": "templates/main.php"
+    "template": "templates/main.php",
+    "tocDepth": 2
 }
