@@ -88,7 +88,7 @@
         },
         "Filter": {
             "type": "library",
-            "version": "2.0.0-beta3",
+            "version": "2.0.0",
             "github": "https://github.com/auraphp/Aura.Filter",
             "composer": "aura/filter",
             "description": "Filters to validate and sanitize objects and arrays."
