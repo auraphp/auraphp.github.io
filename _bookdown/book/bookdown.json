@@ -1,0 +1,11 @@
+{
+    "title": "Aura Packages",
+    "content": [
+        "3.x/bookdown.json",
+        "2.x/bookdown.json"
+    ],
+    "target": "../../packages/",
+    "rootHref": "/packages/",
+    "template": "../templates/main.php",
+    "tocDepth": 2
+}

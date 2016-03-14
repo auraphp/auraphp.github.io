@@ -1,0 +1,224 @@
+---
+layout: site
+active: packages
+title: Aura.Accept
+---
+<script>hljs.initHighlightingOnLoad();</script>
+
+<nav class="navheader">
+    <table>
+        <tr>
+            <th colspan="3" class="curr">2.1. Aura.Accept</th>
+        </tr>
+        <tr>
+            <td class="prev"><a href="/packages/2.x/">Version 2.x</a></td>
+            <td class="parent">2. Version 2.x</th>
+            <td class="next"><a href="/packages/2.x/Auth.html">Aura.Auth</a></td>
+        </tr>
+    </table>
+</nav>
+<h1 id="2-1">2.1. Aura.Accept</h1>
+<p>Provides content-negotiation tools using <code>Accept*</code> headers.</p>
+<h2 id="2-1-1">2.1.1. Foreword</h2>
+<h3 id="2-1-1-1">2.1.1.1. Installation</h3>
+<p>This library requires PHP 5.3 or later; we recommend using the latest available version of PHP as a matter of principle. It has no userland dependencies.</p>
+<p>It is installable and autoloadable via Composer as <a href="https://packagist.org/packages/aura/accept">aura/accept</a>.</p>
+<p>Alternatively, <a href="https://github.com/auraphp/Aura.Accept/releases">download a release</a> or clone this repository, then require or include its <em>autoload.php</em> file.</p>
+<h3 id="2-1-1-2">2.1.1.2. Quality</h3>
+<p><a href="https://scrutinizer-ci.com/g/auraphp/Aura.Accept/"><img src="https://scrutinizer-ci.com/g/auraphp/Aura.Accept/badges/quality-score.png?b=develop-2" alt="Scrutinizer Code Quality"></a>
+<a href="https://scrutinizer-ci.com/g/auraphp/Aura.Accept/"><img src="https://scrutinizer-ci.com/g/auraphp/Aura.Accept/badges/coverage.png?b=develop-2" alt="Code Coverage"></a>
+<a href="https://travis-ci.org/auraphp/Aura.Accept"><img src="https://travis-ci.org/auraphp/Aura.Accept.png?branch=develop-2" alt="Build Status"></a></p>
+<p>To run the unit tests at the command line, issue <code>composer install</code> and then <code>phpunit</code> at the package root. This requires <a href="http://getcomposer.org/">Composer</a> to be available as <code>composer</code>, and <a href="http://phpunit.de/manual/">PHPUnit</a> to be available as <code>phpunit</code>.</p>
+<p>This library attempts to comply with <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md">PSR-1</a>, <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md">PSR-2</a>, and <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md">PSR-4</a>. If
+you notice compliance oversights, please send a patch via pull request.</p>
+<h3 id="2-1-1-3">2.1.1.3. Community</h3>
+<p>To ask questions, provide feedback, or otherwise communicate with the Aura community, please join our <a href="http://groups.google.com/group/auraphp">Google Group</a>, follow <a href="http://twitter.com/auraphp">@auraphp on Twitter</a>, or chat with us on #auraphp on Freenode.</p>
+<h2 id="2-1-2">2.1.2. Getting Started</h2>
+<h3 id="2-1-2-1">2.1.2.1. Instantiation</h3>
+<p>First, instantiate a <em>AcceptFactory</em> object, then use it to create an <em>Accept</em>
+object.</p>
+<pre><code class="language-php">&lt;?php
+use Aura\Accept\AcceptFactory;
+
+$accept_factory = new AcceptFactory($_SERVER);
+$accept = $accept_factory-&gt;newInstance();
+?&gt;
+</code></pre>
+<p>The <em>Accept</em> object provides convenienence methods to negotiate between
+acceptable (to the client) and available (from the application) charset,
+encoding, language, and media-type values. The methods are:</p>
+<ul>
+<li>
+<code>negotiateCharset()</code>
+</li>
+<li>
+<code>negotiateEncoding()</code>
+</li>
+<li>
+<code>negotiateLanguage()</code>
+</li>
+<li>
+<code>negotiateMedia()</code>
+</li>
+</ul>
+<p>Your application code, knowing what values it has available, should pass an
+array of the available values to the <code>negotiate*()</code> method. (The values that are
+acceptable to the client are already indicated by <code>$_SERVER</code>).</p>
+<p>The result returned from the method will be a <code>*Value</code> object describing the
+highest-quality match that was negotiated between the available and acceptable
+values. If there is no negotiable match, the result will be <code>false</code>.</p>
+<blockquote>
+<p>N.b. Accept headers can be kind of complicated. See the
+<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html">HTTP Header Field Definitions</a>
+for more detailed information regarding quality factors, matching rules,
+and parameters extensions.</p>
+</blockquote>
+<h3 id="2-1-2-2">2.1.2.2. Negotiating Media Types</h3>
+<p>To negotiate a media type (aka a content type), call the <code>negotiateMedia()</code>
+method with a list of available media types. The available types should be in
+the order you prefer for delivery, from "most preferred" to "least preferred".</p>
+<pre><code class="language-php">&lt;?php
+// assume the request indicates these Accept values (XML is best, then CSV,
+// then anything else)
+$_SERVER['HTTP_ACCEPT'] = 'application/xml;q=1.0,text/csv;q=0.5,*;q=0.1';
+
+// create the accept factory
+$accept_factory = new AcceptFactory($_SERVER);
+
+// create the accept object
+$accept = $accept_factory-&gt;newInstance();
+
+// assume our application has `application/json` and `text/csv` available
+// as media types, in order of highest-to-lowest preference for delivery
+$available = array(
+    'application/json',
+    'text/csv',
+);
+
+// get the best match between what the request finds acceptable and what we
+// have available; the result in this case is 'text/csv'
+$media = $accept-&gt;negotiateMedia($available);
+echo $media-&gt;getValue(); // text/csv
+?&gt;
+</code></pre>
+<p>If the requested URL ends in a recognized file extension for a media type,
+the <em>MediaNegotiator</em> object used by <em>Accept</em> will use that file extension
+instead of the explicit <code>Accept</code> header value to determine the acceptable media
+type:</p>
+<pre><code class="language-php">&lt;?php
+// assume the request indicates these Accept values (XML is best, then CSV,
+// then anything else)
+$_SERVER['HTTP_ACCEPT'] = 'application/xml;q=1.0,text/csv;q=0.5,*;q=0.1';
+
+// assume also that the request URI explicitly notes a .json file extension
+$_SERVER['REQUEST_URI'] = '/path/to/entity.json';
+
+// create the accept factory
+$accept_factory = new AcceptFactory($_SERVER);
+
+// factory the accept object
+$accept = $accept_factory-&gt;newInstance();
+
+// assume our application has `application/json` and `text/csv` available
+// as media types, in order of highest-to-lowest preference for delivery
+$available = array(
+    'application/json',
+    'text/csv',
+);
+
+// get the best match between what the request finds acceptable and what we
+// have available; the result in this case is 'application/json' because of
+// the file extenstion overriding the Accept header values
+$media = $accept-&gt;negotiateMedia($available);
+echo $media-&gt;getValue(); // application/json
+?&gt;
+</code></pre>
+<p>(See the <em>MediaNegotiator</em> class file for the list of what file extensions map
+to what media types.)</p>
+<p>To create your own mappings, set them into the <em>AcceptFactory</em> object at
+construction time:</p>
+<pre><code class="language-php">&lt;?php
+$accept_factory = new AcceptFactory($_SERVER, array(
+    '.foo' =&gt; 'application/x-foo-content-type',
+));
+
+$accept = $accept_factory-&gt;newInstance();
+?&gt;
+</code></pre>
+<p>If the acceptable values indicate additional parameters, you can match on those
+as well:</p>
+<pre><code class="language-php">&lt;?php
+// assume the request indicates these Accept values (XML is best, then CSV,
+// then anything else)
+$_SERVER['HTTP_ACCEPT'] = 'text/html;level=1;q=0.5,text/html;level=3';
+
+// create the accept factory
+$accept_factory = new AcceptFactory($_SERVER);
+
+// factory the accept object
+$accept = $accept_factory-&gt;newInstance();
+
+// assume our application has these available as media types,
+// in order of highest-to-lowest preference for delivery
+$available = array(
+    'text/html;level=1',
+    'text/html;level=2',
+);
+
+// get the best match between what the request finds acceptable and what we
+// have available; the result in this case is 'text/html;level=1'
+$media = $accept-&gt;negotiateMedia($available);
+echo $media-&gt;getValue(); // text/html
+var_dump($media-&gt;getParameters()); // array('level' =&gt; '1')
+?&gt;
+</code></pre>
+<blockquote>
+<p>N.b. Parameters in the acceptable values that are not present in the
+available values will not be used for matching.</p>
+</blockquote>
+<h3 id="2-1-2-3">2.1.2.3. Negotiating Other Values</h3>
+<p>The other negotiation methods work much the same way, although they are less
+complex than media-type negotiation.</p>
+<pre><code class="language-php">&lt;?php
+// assume the request indicates these Accept-* values
+$_SERVER['HTTP_ACCEPT_CHARSET'] = 'iso-8859-5, unicode-1-1;q=0.8';
+$_SERVER['HTTP_ACCEPT_ENCODING'] = 'compress;q=0.5, gzip;q=1.0';
+$_SERVER['HTTP_ACCEPT_LANGUAGE'] = 'en-US, en-GB, en, *';
+
+// create the accept factory
+$accept_factory = new AcceptFactory($_SERVER);
+
+// factory the accept object
+$accept = $accept_factory-&gt;newInstance();
+
+// charset negotiation
+$available_charsets = array('iso-1234', 'unicode-1-1');
+$charset = $accept-&gt;negotiateCharset($available_charsets);
+echo $charset-&gt;getValue('unicode-1-1');
+
+// encoding negotiation
+$available_encodings = array();
+$encoding = $accept-&gt;negotiateEncoding($available_encodings);
+var_dump($encoding); // false
+
+// language negotiation
+$available_languages = array('pt-BR', 'fr-FR');
+$language = $accept-&gt;negotiateLanguage($available_languages);
+echo $language-&gt;getValue(); // pt-BR
+?&gt;
+</code></pre>
+
+<nav class="navfooter">
+    <table>
+        <tr>
+            <td class="prev"><a href="/packages/2.x/">Prev</a></td>
+            <td class="parent"><a href="/packages/2.x/">Up</a></td>
+            <td class="next"><a href="/packages/2.x/Auth.html">Next</a></td>
+        </tr>
+        <tr>
+            <td class="prev">2. Version 2.x</td>
+            <td class="parent">2. Version 2.x</td>
+            <td class="next">2.2. Aura.Auth</td>
+        </tr>
+    </table>
+</nav>

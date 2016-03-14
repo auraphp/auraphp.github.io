@@ -1,0 +1,454 @@
+---
+layout: site
+active: packages
+title: Aura.Cli
+---
+<script>hljs.initHighlightingOnLoad();</script>
+
+<nav class="navheader">
+    <table>
+        <tr>
+            <th colspan="3" class="curr">2.4. Aura.Cli</th>
+        </tr>
+        <tr>
+            <td class="prev"><a href="/packages/2.x/Autoload.html">Aura.Autoload</a></td>
+            <td class="parent">2. Version 2.x</th>
+            <td class="next"><a href="/packages/2.x/Di.html">Aura.Di</a></td>
+        </tr>
+    </table>
+</nav>
+<h1 id="2-4">2.4. Aura.Cli</h1>
+<p>Provides the equivalent of request ( <em>Context</em> ) and response ( <em>Stdio</em> )
+objects for the command line interface, including <em>Getopt</em> support, and an
+independent <em>Help</em> object for describing commands.</p>
+<h2 id="2-4-1">2.4.1. Foreword</h2>
+<h3 id="2-4-1-1">2.4.1.1. Installation</h3>
+<p>This library requires PHP 5.3 or later; we recommend using the latest available version of PHP as a matter of principle. It has no userland dependencies.</p>
+<p>It is installable and autoloadable via Composer as <a href="https://packagist.org/packages/aura/cli">aura/cli</a>.</p>
+<p>Alternatively, <a href="https://github.com/auraphp/Aura.Cli/releases">download a release</a> or clone this repository, then require or include its <em>autoload.php</em> file.</p>
+<h3 id="2-4-1-2">2.4.1.2. Quality</h3>
+<p><a href="https://scrutinizer-ci.com/g/auraphp/Aura.Cli/"><img src="https://scrutinizer-ci.com/g/auraphp/Aura.Cli/badges/quality-score.png?b=develop-2" alt="Scrutinizer Code Quality"></a>
+<a href="https://scrutinizer-ci.com/g/auraphp/Aura.Cli/"><img src="https://scrutinizer-ci.com/g/auraphp/Aura.Cli/badges/coverage.png?b=develop-2" alt="Code Coverage"></a>
+<a href="https://travis-ci.org/auraphp/Aura.Cli"><img src="https://travis-ci.org/auraphp/Aura.Cli.png?branch=develop-2" alt="Build Status"></a></p>
+<p>To run the unit tests at the command line, issue <code>composer install</code> and then <code>phpunit</code> at the package root. This requires <a href="http://getcomposer.org/">Composer</a> to be available as <code>composer</code>, and <a href="http://phpunit.de/manual/">PHPUnit</a> to be available as <code>phpunit</code>.</p>
+<p>This library attempts to comply with <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md">PSR-1</a>, <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md">PSR-2</a>, and <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md">PSR-4</a>. If
+you notice compliance oversights, please send a patch via pull request.</p>
+<h3 id="2-4-1-3">2.4.1.3. Community</h3>
+<p>To ask questions, provide feedback, or otherwise communicate with the Aura community, please join our <a href="http://groups.google.com/group/auraphp">Google Group</a>, follow <a href="http://twitter.com/auraphp">@auraphp on Twitter</a>, or chat with us on #auraphp on Freenode.</p>
+<h2 id="2-4-2">2.4.2. Getting Started</h2>
+<h3 id="2-4-2-1">2.4.2.1. Context Discovery</h3>
+<p>The <em>Context</em> object provides information about the command line environment,
+including any option flags passed via the command line. (This is the command
+line equivalent of a web request object.)</p>
+<p>Instantiate a <em>Context</em> object using the <em>CliFactory</em>; pass it a copy of
+<code>$GLOBALS</code>.</p>
+<pre><code class="language-php">&lt;?php
+use Aura\Cli\CliFactory;
+
+$cli_factory = new CliFactory;
+$context = $cli_factory-&gt;newContext($GLOBALS);
+?&gt;
+</code></pre>
+<p>You can access the <code>$_ENV</code>, <code>$_SERVER</code>, and <code>$argv</code> values with the <code>$env</code>,
+<code>$server</code>, and <code>$argv</code> property objects, respectively. (Note that these
+properties are copies of those superglobals as they were at the time of
+<em>Context</em> instantiation.) You can pass an alternative default value if the
+related key is missing.</p>
+<pre><code class="language-php">&lt;?php
+// get copies of superglobals
+$env    = $context-&gt;env-&gt;get();
+$server = $context-&gt;server-&gt;get();
+$argv   = $context-&gt;argv-&gt;get();
+
+// equivalent to:
+// $value = isset($_ENV['key']) ? $_ENV['key'] : null;
+$value = $context-&gt;env-&gt;get('key');
+
+// equivalent to:
+// $value = isset($_ENV['key']) ? $_ENV['key'] : 'other_value';
+$value = $context-&gt;env-&gt;get('key', 'other_value');
+?&gt;
+</code></pre>
+<h3 id="2-4-2-2">2.4.2.2. Getopt Support</h3>
+<p>The <em>Context</em> object provides support for retrieving command-line options and
+params, along with positional arguments.</p>
+<p>To retrieve options and arguments parsed from the command-line <code>$argv</code> values,
+use the <code>getopt()</code> method on the <em>Context</em> object. This will return a
+<em>GetoptValues</em> object for you to use as as you wish.</p>
+<h4 id="2-4-2-2-1">2.4.2.2.1. Defining Options and Params</h4>
+<p>To tell <code>getopt()</code> how to recognize command line options, pass an array of
+option definitions. The definitions array format is similar to, but not
+exactly the same as, the one used by the <a href="http://php.net/getopt">getopt()</a>
+function in PHP. Instead of defining short flags in a string and long options
+in a separate array, they are both defined as elements in a single array.
+Adding a <code>*</code> after the option name indicates it can be passed multiple times;
+its values will be stored in an array.</p>
+<pre><code class="language-php">&lt;?php
+$options = array(
+    'a',        // short flag -a, parameter is not allowed
+    'b:',       // short flag -b, parameter is required
+    'c::',      // short flag -c, parameter is optional
+    'foo',      // long option --foo, parameter is not allowed
+    'bar:',     // long option --bar, parameter is required
+    'baz::',    // long option --baz, parameter is optional
+    'g*::',     // short flag -g, parameter is optional, multi-pass
+);
+
+$getopt = $context-&gt;getopt($options);
+?&gt;
+</code></pre>
+<blockquote>
+<p>N.b.: When we say "required" here, it means "the option, when present,
+must have a parameter."  It does <em>not</em> mean "the option must be present."
+These are options, after all. If a particular value <em>must</em> be passed,
+consider using <a href="#positional-arguments">positional arguments</a> instead.</p>
+</blockquote>
+<p>Use the <code>get()</code> method on the returned <em>GetoptValues</em> object to retrieve the
+option values. You can provide an alternative default value for when the
+option is missing.</p>
+<pre><code class="language-php">&lt;?php
+$a   = $getopt-&gt;get('-a', false); // true if -a was passed, false if not
+$b   = $getopt-&gt;get('-b');
+$c   = $getopt-&gt;get('-c', 'default value');
+$foo = $getopt-&gt;get('--foo', 0); // true if --foo was passed, false if not
+$bar = $getopt-&gt;get('--bar');
+$baz = $getopt-&gt;get('--baz', 'default value');
+$g   = $getopt-&gt;get('-g', []);
+?&gt;
+</code></pre>
+<p>If you want to alias one option name to another, comma-separate the two names.
+The values will be stored under both names;</p>
+<pre><code class="language-php">&lt;?php
+// alias -f to --foo
+$options = array(
+    'foo,f:',  // long option --foo or short flag -f, parameter required
+);
+
+$getopt = $context-&gt;getopt($options);
+
+$foo = $getopt-&gt;get('--foo'); // both -f and --foo have the same values
+$f   = $getopt-&gt;get('-f'); // both -f and --foo have the same values
+?&gt;
+</code></pre>
+<p>If you want to allow an option to be passed multiple times, add a '*' to the end
+of the option name.</p>
+<pre><code class="language-php">&lt;?php
+$options = array(
+    'f*',
+    'foo*:'
+);
+
+$getopt = $context-&gt;getopt($options);
+
+// if the script was invoked with:
+// php script.php --foo=foo --foo=bar --foo=baz -f -f -f
+$foo = $getopt-&gt;get('--foo'); // ['foo', 'bar', 'baz']
+$f   = $getopt-&gt;get('-f'); // [true, true, true]
+?&gt;
+</code></pre>
+<p>If the user passes options that do not conform to the definitions, the
+<em>GetoptValues</em> object retains various errors related to the parsing
+failures. In these cases, <code>hasErrors()</code> will return <code>true</code>, and you can then
+review the errors.  (The errors are actually <code>Aura\Cli\Exception</code> objects,
+but they don't get thrown as they occur; this is so that you can deal with or
+ignore the different kinds of errors as you like.)</p>
+<pre><code class="language-php">&lt;?php
+$getopt = $context-&gt;getopt($options);
+if ($getopt-&gt;hasErrors()) {
+    $errors = $getopt-&gt;getErrors();
+    foreach ($errors as $error) {
+        // print error messages to stderr using a Stdio object
+        $stdio-&gt;errln($error-&gt;getMessage());
+    }
+};
+?&gt;
+</code></pre>
+<h4 id="2-4-2-2-2">2.4.2.2.2. Positional Arguments</h4>
+<p>To get the positional arguments passed to the command line, use the <code>get()</code>
+method and the argument position number:</p>
+<pre><code class="language-php">&lt;?php
+$getopt = $context-&gt;getopt($options);
+
+// if the script was invoked with:
+// php script.php arg1 arg2 arg3 arg4
+
+$val0 = $getopt-&gt;get(0); // script.php
+$val1 = $getopt-&gt;get(1); // arg1
+$val2 = $getopt-&gt;get(2); // arg2
+$val3 = $getopt-&gt;get(3); // arg3
+$val4 = $getopt-&gt;get(4); // arg4
+?&gt;
+</code></pre>
+<p>Defined options will be removed from the arguments automatically.</p>
+<pre><code class="language-php">&lt;?php
+$options = array(
+    'a',
+    'foo:',
+);
+
+$getopt = $context-&gt;getopt($options);
+
+// if the script was invoked with:
+// php script.php arg1 --foo=bar -a arg2
+$arg0 = $getopt-&gt;get(0); // script.php
+$arg1 = $getopt-&gt;get(1); // arg1
+$arg2 = $getopt-&gt;get(2); // arg2
+$foo  = $getopt-&gt;get('--foo'); // bar
+$a    = $getopt-&gt;get('-a'); // 1
+?&gt;
+</code></pre>
+<blockquote>
+<p>N.b.: If a short flag has an optional parameter, the argument immediately
+after it will be treated as the option value, not as an argument.</p>
+</blockquote>
+<h3 id="2-4-2-3">2.4.2.3. Standard Input/Output Streams</h3>
+<p>The <em>Stdio</em> object allows you to work with standard input/output streams.
+(This is the command line equivalent of a web response object.)</p>
+<p>Instantiate a <em>Stdio</em> object using the <em>CliFactory</em>.</p>
+<pre><code class="language-php">&lt;?php
+use Aura\Cli\CliFactory;
+
+$cli_factory = new CliFactory;
+$stdio = $cli_factory-&gt;newStdio();
+?&gt;
+</code></pre>
+<p>It defaults to using <code>php://stdin</code>, <code>php://stdout</code>, and <code>php://stderr</code>, but
+you can pass whatever stream names you like as parameters to the <code>newStdio()</code>
+method.</p>
+<p>The <em>Stdio</em> object methods are ...</p>
+<ul>
+<li>
+<p><code>getStdin()</code>, <code>getStdout()</code>, and <code>getStderr()</code> to return the respective
+<em>Handle</em> objects;</p>
+</li>
+<li>
+<p><code>outln()</code> and <code>out()</code> to print to <em>stdout</em>, with or without a line ending;</p>
+</li>
+<li>
+<p><code>errln()</code> and <code>err()</code> to print to <em>stderr</em>, with or without a line ending;</p>
+</li>
+<li>
+<p><code>inln()</code> and <code>in()</code> to read from <em>stdin</em> until the user hits enter; <code>inln()</code>
+leaves the trailing line ending in place, whereas <code>in()</code> strips it.</p>
+</li>
+</ul>
+<p>You can use special formatting markup in the output and error strings to set
+text color, text weight, background color, and other display characteristics.
+See the <a href="#formatter-cheat-sheet">formatter cheat sheet</a> below.</p>
+<pre><code class="language-php">&lt;?php
+// print to stdout
+$stdio-&gt;outln('This is normal text.');
+
+// print to stderr
+$stdio-&gt;errln('&lt;&lt;red&gt;&gt;This is an error in red.');
+$stdio-&gt;errln('Output will stay red until a formatting change.&lt;&lt;reset&gt;&gt;');
+?&gt;
+</code></pre>
+<h3 id="2-4-2-4">2.4.2.4. Exit Codes</h3>
+<p>This library comes with a <em>Status</em> class that defines constants for exit
+status codes. You should use these whenever possible.  For example, if a
+command is used with the wrong number of arguments or improper option flags,
+<code>exit()</code> with <code>Status::USAGE</code>.  The exit status codes are the same as those
+found in <a href="http://www.unix.com/man-page/freebsd/3/sysexits/">sysexits.h</a>.</p>
+<h3 id="2-4-2-5">2.4.2.5. Writing Commands</h3>
+<p>The Aura.Cli library does not come with an abstract or base command class to
+extend from, but writing commands for yourself is straightforward. The
+following is a standalone command script, but similar logic can be used in a
+class.  Save it in a file named <code>hello</code> and invoke it with
+<code>php hello [-v,--verbose] [name]</code>.</p>
+<pre><code class="language-php">&lt;?php
+use Aura\Cli\CliFactory;
+use Aura\Cli\Status;
+
+require '/path/to/Aura.Cli/autoload.php';
+
+// get the context and stdio objects
+$cli_factory = new CliFactory;
+$context = $cli_factory-&gt;newContext($GLOBALS);
+$stdio = $cli_factory-&gt;newStdio();
+
+// define options and named arguments through getopt
+$options = ['verbose,v'];
+$getopt = $context-&gt;getopt($options);
+
+// do we have a name to say hello to?
+$name = $getopt-&gt;get(1);
+if (! $name) {
+    // print an error
+    $stdio-&gt;errln("Please give a name to say hello to.");
+    exit(Status::USAGE);
+}
+
+// say hello
+if ($getopt-&gt;get('--verbose')) {
+    // verbose output
+    $stdio-&gt;outln("Hello {$name}, it's nice to see you!");
+} else {
+    // plain output
+    $stdio-&gt;outln("Hello {$name}!");
+}
+
+// done!
+exit(Status::SUCCESS);
+?&gt;
+</code></pre>
+<h3 id="2-4-2-6">2.4.2.6. Writing Command Help</h3>
+<p>Sometimes it will be useful to provide help output for your commands. With Aura.Cli, the <em>Help</em> object is separate from any command you may write. It may be manipulated externally or extended.</p>
+<p>For example, extend the <em>Help</em> object and override the <code>init()</code> method.</p>
+<pre><code class="language-php">&lt;?php
+use Aura\Cli\Help;
+
+class MyCommandHelp extends Help
+{
+    protected function init()
+    {
+        $this-&gt;setSummary('A single-line summary.');
+        $this-&gt;setUsage('&lt;arg1&gt; [&lt;arg2&gt;]');
+        $this-&gt;setOptions(array(
+            'f,foo' =&gt; "The -f/--foo option description.",
+            'bar::' =&gt; "The --bar option description.",
+        ));
+        $this-&gt;setDescr("A multi-line description of the command.");
+    }
+}
+?&gt;
+</code></pre>
+<p>Then instantiate the new class and pass its <code>getHelp()</code> output through <em>Stdio</em>:</p>
+<pre><code class="language-php">&lt;?php
+use Aura\Cli\CliFactory;
+use Aura\Cli\Context\OptionFactory;
+
+$cli_factory = new CliFactory;
+$stdio = $cli_factory-&gt;newStdio();
+
+$help = new MyCommandHelp(new OptionFactory);
+$stdio-&gt;outln($help-&gt;getHelp('my-command'));
+?&gt;
+</code></pre>
+<blockquote>
+<ul>
+<li>
+<p>We keep the command name itself outside of the help class, because the command name may be mapped differently in different projects.</p>
+</li>
+<li>
+<p>We pass a <em>GetoptParser</em> to the <em>Help</em> object so it can parse the option definitions.</p>
+</li>
+<li>
+<p>We can get the option definitions out of the <em>Help</em> object using <code>getOptions()</code>; this allows us to pass a <em>Help</em> object into a hypothetical command object and reuse the definitions.</p>
+</li>
+</ul>
+</blockquote>
+<p>The output will look something like this:</p>
+<pre><code>SUMMARY
+    my-command -- A single-line summary.
+
+USAGE
+    my-command &lt;arg1&gt; [&lt;arg2&gt;]
+
+DESCRIPTION
+    A multi-line description of the command.
+
+OPTIONS
+    -f
+    --foo
+        The -f/--foo option description.
+
+    --bar[=&lt;value&gt;]
+        The --bar option description.
+</code></pre>
+<p>As a side note, the array of options passed to <code>setOptions()</code> may contain argument descriptions as well. These are in the format <code>#argname</code> (to indicate a required argument) and <code>#argname?</code> (to indicate an optional argument). They may additionally be used as keys, with corresponding description values. Their presence in a <em>Getopt</em> definition array is ignored, but the <em>Help</em> object will read them and generate output for them automatically.</p>
+<p>For example, the following code (notice the lack of a <code>setUsage()</code> call)...</p>
+<pre><code class="language-php">&lt;?php
+use Aura\Cli\CliFactory;
+use Aura\Cli\Context\OptionFactory;
+use Aura\Cli\Help;
+
+$cli_factory = new CliFactory;
+$stdio = $cli_factory-&gt;newStdio();
+
+$help = new Help(new OptionFactory);
+$this-&gt;setSummary('A single-line summary.');
+$help-&gt;setOptions(array(
+    'f,foo' =&gt; "The -f/--foo option description.",
+    'bar::' =&gt; "The --bar option description.",
+    '#arg1' =&gt; "The description for argument 1.",
+    '#arg2?' =&gt; "The description for argument 2.",
+));
+$this-&gt;setDescr("A multi-line description of the command.");
+
+$stdio-&gt;outln($help-&gt;getHelp('my-command'));
+?&gt;
+</code></pre>
+<p>... will generate the following output:</p>
+<pre><code>SUMMARY
+    my-command -- A single-line summary.
+
+USAGE
+    my-command &lt;arg1&gt; [&lt;arg2&gt;]
+
+DESCRIPTION
+    A multi-line description of the command.
+
+ARGUMENTS
+    &lt;foo&gt;
+        The description for argument 1.
+
+    &lt;bar&gt;
+        The description for argument 2.
+
+OPTIONS
+    -f
+    --foo
+        The -f/--foo option description.
+
+    --bar[=&lt;value&gt;]
+        The --bar option description.
+</code></pre>
+<h3 id="2-4-2-7">2.4.2.7. Formatter Cheat Sheet</h3>
+<p>On POSIX terminals, <code>&lt;&lt;markup&gt;&gt;</code> strings will change the display
+characteristics. Note that these are not HTML tags; they will be converted
+into terminal control codes, and do not get "closed". You can place as many
+space-separated markup codes between the double angle-brackets as you like.</p>
+<pre><code>reset       reset display to defaults
+
+black       black text
+red         red text
+green       green text
+yellow      yellow text
+blue        blue text
+magenta     magenta (purple) text
+cyan        cyan (light blue) text
+white       white text
+
+blackbg     black background
+redbg       red background
+greenbg     green background
+yellowbg    yellow background
+bluebg      blue background
+magentabg   magenta (purple) background
+cyanbg      cyan (light blue) background
+whitebg     white background
+
+bold        bold in the current text and background colors
+dim         dim in the current text and background colors
+ul          underline in the current text and background colors
+blink       blinking in the current text and background colors
+reverse     reverse the current text and background colors
+</code></pre>
+<p>For example, to set bold white text on a red background, add <code>&lt;&lt;bold white redbg&gt;&gt;</code>
+into your output or error string. Reset back to normal with <code>&lt;&lt;reset&gt;&gt;</code>.</p>
+
+<nav class="navfooter">
+    <table>
+        <tr>
+            <td class="prev"><a href="/packages/2.x/Autoload.html">Prev</a></td>
+            <td class="parent"><a href="/packages/2.x/">Up</a></td>
+            <td class="next"><a href="/packages/2.x/Di.html">Next</a></td>
+        </tr>
+        <tr>
+            <td class="prev">2.3. Aura.Autoload</td>
+            <td class="parent">2. Version 2.x</td>
+            <td class="next">2.5. Aura.Di</td>
+        </tr>
+    </table>
+</nav>

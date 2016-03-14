@@ -1,0 +1,57 @@
+---
+layout: site
+active: packages
+title: Setter Injection
+---
+<script>hljs.initHighlightingOnLoad();</script>
+
+<nav class="navheader">
+    <table>
+        <tr>
+            <th colspan="3" class="curr">1.1.3. Setter Injection</th>
+        </tr>
+        <tr>
+            <td class="prev"><a href="/packages/3.x/Di/constructor.html">Constructor Injection</a></td>
+            <td class="parent">1.1. Aura.Di</th>
+            <td class="next"><a href="/packages/3.x/Di/inheritance.html">Class, Interface, and Trait Inheritance</a></td>
+        </tr>
+    </table>
+</nav>
+<h1 id="1-1-3">1.1.3. Setter Injection</h1>
+<p>The <em>Container</em> supports setter injection in addition to constructor injection. (These can be combined as needed.)</p>
+<p>After the <em>Container</em> constructs a new instance of an object, we can specify that certain methods should be called with certain values immediately after instantiation by using the <code>$di-&gt;setter</code> array before locking it.</p>
+<p>Say we have class like the following:</p>
+<pre><code class="language-php">namespace Vendor\Package;
+
+class Example
+{
+    protected $foo;
+
+    public function setFoo($foo)
+    {
+        $this-&gt;foo = $foo;
+    }
+}
+</code></pre>
+<p>We can specify that, by default, the <code>setFoo()</code> method should be called with a specific value after construction like so:</p>
+<pre><code class="language-php">$di-&gt;setters['Vendor\Package\Example']['setFoo'] = 'foo_value';
+</code></pre>
+<p>Note also that this works only with explicitly-defined setter methods. Setter methods that exist only via magic <code>__call()</code> will not be honored.</p>
+<blockquote>
+<p>N.b.: If you try to access <code>$setters</code> after calling <code>newInstance()</code> (or after locking the <em>Container</em> using the <code>lock()</code> method) the <em>Container</em> will throw an exception. This is to prevent modifiying the params after objects have been created. Thus, be sure to set up all params for all objects before creating an object.</p>
+</blockquote>
+
+<nav class="navfooter">
+    <table>
+        <tr>
+            <td class="prev"><a href="/packages/3.x/Di/constructor.html">Prev</a></td>
+            <td class="parent"><a href="/packages/3.x/Di/">Up</a></td>
+            <td class="next"><a href="/packages/3.x/Di/inheritance.html">Next</a></td>
+        </tr>
+        <tr>
+            <td class="prev">1.1.2. Constructor Injection</td>
+            <td class="parent">1.1. Aura.Di</td>
+            <td class="next">1.1.4. Class, Interface, and Trait Inheritance</td>
+        </tr>
+    </table>
+</nav>

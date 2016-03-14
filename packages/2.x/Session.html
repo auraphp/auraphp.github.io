@@ -1,0 +1,269 @@
+---
+layout: site
+active: packages
+title: Aura Session
+---
+<script>hljs.initHighlightingOnLoad();</script>
+
+<nav class="navheader">
+    <table>
+        <tr>
+            <th colspan="3" class="curr">2.11. Aura Session</th>
+        </tr>
+        <tr>
+            <td class="prev"><a href="/packages/2.x/Router.html">Aura.Router</a></td>
+            <td class="parent">2. Version 2.x</th>
+            <td class="next"><a href="/packages/2.x/Sql.html">Aura.Sql</a></td>
+        </tr>
+    </table>
+</nav>
+<h1 id="2-11">2.11. Aura Session</h1>
+<p>Provides session management functionality, including lazy session starting,
+session segments, next-request-only ("flash") values, and CSRF tools.</p>
+<h2 id="2-11-1">2.11.1. Foreword</h2>
+<h3 id="2-11-1-1">2.11.1.1. Installation</h3>
+<p>This library requires PHP 5.3 or later; we recommend using the latest available version of PHP as a matter of principle. It has no userland dependencies.</p>
+<p>It is installable and autoloadable via Composer as <a href="https://packagist.org/packages/aura/session">aura/session</a>.</p>
+<p>Alternatively, <a href="https://github.com/auraphp/Aura.Session/releases">download a release</a> or clone this repository, then require or include its <em>autoload.php</em> file.</p>
+<h3 id="2-11-1-2">2.11.1.2. Quality</h3>
+<p><a href="https://scrutinizer-ci.com/g/auraphp/Aura.Session/"><img src="https://scrutinizer-ci.com/g/auraphp/Aura.Session/badges/quality-score.png?b=develop-2" alt="Scrutinizer Code Quality"></a>
+<a href="https://scrutinizer-ci.com/g/auraphp/Aura.Session/"><img src="https://scrutinizer-ci.com/g/auraphp/Aura.Session/badges/coverage.png?b=develop-2" alt="Code Coverage"></a>
+<a href="https://travis-ci.org/auraphp/Aura.Session"><img src="https://travis-ci.org/auraphp/Aura.Session.png?branch=develop-2" alt="Build Status"></a></p>
+<p>To run the unit tests at the command line, issue <code>composer install</code> and then <code>phpunit</code> at the package root. This requires <a href="http://getcomposer.org/">Composer</a> to be available as <code>composer</code>, and <a href="http://phpunit.de/manual/">PHPUnit</a> to be available as <code>phpunit</code>.</p>
+<p>This library attempts to comply with <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md">PSR-1</a>, <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md">PSR-2</a>, and <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md">PSR-4</a>. If
+you notice compliance oversights, please send a patch via pull request.</p>
+<h3 id="2-11-1-3">2.11.1.3. Community</h3>
+<p>To ask questions, provide feedback, or otherwise communicate with the Aura community, please join our <a href="http://groups.google.com/group/auraphp">Google Group</a>, follow <a href="http://twitter.com/auraphp">@auraphp on Twitter</a>, or chat with us on #auraphp on Freenode.</p>
+<h2 id="2-11-2">2.11.2. Getting Started</h2>
+<h3 id="2-11-2-1">2.11.2.1. Instantiation</h3>
+<p>The easiest way to get started is to use the <em>SessionFactory</em> to create a <em>Session</em> manager object.</p>
+<pre><code class="language-php">&lt;?php
+$session_factory = new \Aura\Session\SessionFactory;
+$session = $session_factory-&gt;newInstance($_COOKIE);
+?&gt;
+</code></pre>
+<p>We can then use the <em>Session</em> instance to create <em>Segment</em> objects to manage session values and flashes. (In general, we should not need to manipulate the <em>Session</em> manager directly -- we will work mostly with <em>Segment</em> objects.)</p>
+<h3 id="2-11-2-2">2.11.2.2. Segments</h3>
+<p>In normal PHP, we keep session values in the <code>$_SESSION</code> array. However, when different libraries and projects try to modify the same keys, the resulting conflicts can result in unexpected behavior. To resolve this, we use <em>Segment</em> objects. Each <em>Segment</em> addresses a named key within the <code>$_SESSION</code> array for deconfliction purposes.</p>
+<p>For example, if we get a <em>Segment</em>  for <code>Vendor\Package\ClassName</code>, that <em>Segment</em> will contain a reference to <code>$_SESSION['Vendor\Package\ClassName']</code>. We can then <code>set()</code> and <code>get()</code> values on the <em>Segment</em>, and the values will reside in an array under that reference.</p>
+<pre><code class="language-php">&lt;?php
+// get a _Segment_ object
+$segment = $session-&gt;getSegment('Vendor\Package\ClassName');
+
+// try to get a value from the segment;
+// if it does not exist, return an alternative value
+echo $segment-&gt;get('foo'); // null
+echo $segment-&gt;get('baz', 'not set'); // 'not set'
+
+// set some values on the segment
+$segment-&gt;set('foo', 'bar');
+$segment-&gt;set('baz', 'dib');
+
+// the $_SESSION array is now:
+// $_SESSION = array(
+//      'Vendor\Package\ClassName' =&gt; array(
+//          'foo' =&gt; 'bar',
+//          'baz' =&gt; 'dib',
+//      ),
+// );
+
+// try again to get a value from the segment
+echo $segment-&gt;get('foo'); // 'bar'
+
+// because the segment is a reference to $_SESSION, we can modify
+// the superglobal directly and the segment values will also change
+$_SESSION['Vendor\Package\ClassName']['zim'] = 'gir'
+echo $segment-&gt;get('zim'); // 'gir'
+?&gt;
+</code></pre>
+<p>The benefit of a session segment is that we can deconflict the keys in the
+<code>$_SESSION</code> superglobal by using class names (or some other unique name) for
+the segment names. With segments, different packages can use the <code>$_SESSION</code>
+superglobal without stepping on each other's toes.</p>
+<p>To clear all the values on a <em>Segment</em>, use the <code>clear()</code> method.</p>
+<h3 id="2-11-2-3">2.11.2.3. Flash Values</h3>
+<p><em>Segment</em> values persist until the session is cleared or destroyed. However, sometimes it is useful to set a value that propagates only through the next request, and is then discarded. These are called "flash" values.</p>
+<h4 id="2-11-2-3-1">2.11.2.3.1. Setting And Getting Flash Values</h4>
+<p>To set a flash value on a <em>Segment</em>, use the <code>setFlash()</code> method.</p>
+<pre><code class="language-php">&lt;?php
+$segment = $session-&gt;getSegment('Vendor\Package\ClassName');
+$segment-&gt;setFlash('message', 'Hello world!');
+?&gt;
+</code></pre>
+<p>Then, in subsequent requests, we can read the flash value using <code>getFlash()</code>:</p>
+<pre><code class="language-php">&lt;?php
+$segment = $session-&gt;getSegment('Vendor\Package\ClassName');
+$message = $segment-&gt;getFlash('message'); // 'Hello world!'
+?&gt;
+</code></pre>
+<blockquote>
+<p>N.b. As with <code>get()</code>, we can provide an alternative value if the flash key does not exist. For example, <code>getFlash('foo', 'not set')</code> will return 'not set' if there is no 'foo' key available.</p>
+</blockquote>
+<p>Using <code>setFlash()</code> makes the flash value available only in the <em>next</em> request, not the current one. To make the flash value available immediately as well as in the next request, use <code>setFlashNow($key, $val)</code>.</p>
+<p>Using <code>getFlash()</code> returns only the values that are available now from having been set in the previous request. To read a value that will be available in the next request, use <code>getFlashNext($key, $alt)</code>.</p>
+<h4 id="2-11-2-3-2">2.11.2.3.2. Keeping and Clearing Flash Values</h4>
+<p>Sometimes we will want to keep the flash values in the current request for the next request.  We can do so on a per-segment basis by calling the <em>Segment</em> <code>keepFlash()</code> method, or we can keep all flashes for all segments by calling the <em>Session</em> <code>keepFlash()</code> method.</p>
+<p>Similarly, we can clear flash values on a per-segment basis or a session-wide bases.  Use the <code>clearFlash()</code> method on the <em>Segment</em> to clear flashes just for that segment, or the same method on the <em>Session</em> to clear all flash values for all segments.</p>
+<h3 id="2-11-2-4">2.11.2.4. Lazy Session Starting</h3>
+<p>Merely instantiating the <em>Session</em> manager and getting a <em>Segment</em> from it does <em>not</em> call <code>session_start()</code>. Instead, <code>session_start()</code> occurs only in certain circumstances:</p>
+<ul>
+<li>
+<p>If we <em>read</em> from a <em>Segment</em> (e.g. with <code>get()</code>) the <em>Session</em> looks to see if a session cookie has already been set. If so, it will call <code>session_start()</code> to resume the previously-started session. If not, it knows there are no previously existing <code>$_SESSION</code> values, so it will not call <code>session_start()</code>.</p>
+</li>
+<li>
+<p>If we <em>write</em> to a <em>Segment</em> (e.g. with <code>set()</code>) the <em>Session</em> will always call <code>session_start()</code>. This will resume a previous session if it exists, or start a new one if it does not.</p>
+</li>
+</ul>
+<p>This means we can create each <em>Segment</em> at will, and <code>session_start()</code> will not be invoked until we actually interact with a <em>Segment</em> in a particular way. This helps to conserve the resources involved in starting a session.</p>
+<p>Of course, we can force a session start or reactivation by calling the <em>Session</em> <code>start()</code> method, but that defeats the purpose of lazy-loaded sessions.</p>
+<h3 id="2-11-2-5">2.11.2.5. Saving, Clearing, and Destroying Sessions</h3>
+<blockquote>
+<p>N.b.: These methods apply to all session data and flashes across all segments.</p>
+</blockquote>
+<p>To save the session data and end its use during the current request, call the <code>commit()</code> method on the <em>Session</em> manager:</p>
+<pre><code class="language-php">&lt;?php
+$session-&gt;commit();
+?&gt;
+</code></pre>
+<blockquote>
+<p>N.b.: Per <a href="http://php.net/manual/en/session.examples.basic.php">http://php.net/manual/en/session.examples.basic.php</a>, "Sessions
+normally shutdown automatically when PHP is finished executing a script, but
+can be manually shutdown using the session_write_close() function."
+The <code>commit()</code> method is the equivalent of <code>session_write_close()</code>.</p>
+</blockquote>
+<p>To clear all session data, but leave the session active during the current request, use the <code>clear()</code> method on the <em>Session</em> manager.</p>
+<pre><code class="language-php">&lt;?php
+$session-&gt;clear();
+?&gt;
+</code></pre>
+<p>To clear all flash values on a segment, use the <code>clearFlash()</code> method:</p>
+<p>To clear the data <em>and</em> terminate the session for this and future requests, thereby destroying it completely, call the <code>destroy()</code> method:</p>
+<pre><code class="language-php">&lt;?php
+$session-&gt;destroy(); // equivalent of session_destroy()
+?&gt;
+</code></pre>
+<p>Calling <code>destroy()</code> will also delete the session cookie via <code>setcookie()</code>. If we have an alternative means by which we delete cookies, we should pass a callable as the second argument to the <em>SessionFactory</em> method <code>newInstance()</code>. The callable should take three parameters: the cookie name, path, and domain.</p>
+<pre><code class="language-php">&lt;?php
+// assume $response is a framework response object.
+// this will be used to delete the session cookie.
+$delete_cookie = function ($name, $path, $domain) use ($response) {
+    $response-&gt;cookies-&gt;delete($name, $path, $domain);
+}
+
+$session = $session_factory-&gt;newInstance($_COOKIE, $delete_cookie);
+?&gt;
+</code></pre>
+<h2 id="2-11-3">2.11.3. Session Security</h2>
+<h3 id="2-11-3-1">2.11.3.1. Session ID Regeneration</h3>
+<p>Any time a user has a change in privilege (that is, gaining or losing access
+rights within a system) be sure to regenerate the session ID:</p>
+<pre><code class="language-php">&lt;?php
+$session-&gt;regenerateId();
+?&gt;
+</code></pre>
+<blockquote>
+<p>N.b.: The <code>regenerateId()</code> method also regenerates the CSRF token value.</p>
+</blockquote>
+<h3 id="2-11-3-2">2.11.3.2. Cross-Site Request Forgery</h3>
+<p>A "cross-site request forgery" is a security issue where the attacker, via
+malicious JavaScript or other means, issues a request in-the-blind from a
+client browser to a server where the user has already authenticated. The
+request <em>looks</em> valid to the server, but in fact is a forgery, since the user
+did not actually make the request (the malicious JavaScript did).</p>
+<p><a href="http://en.wikipedia.org/wiki/Cross-site_request_forgery">http://en.wikipedia.org/wiki/Cross-site_request_forgery</a></p>
+<h4 id="2-11-3-2-1">2.11.3.2.1. Defending Against CSRF</h4>
+<p>To defend against CSRF attacks, server-side logic should:</p>
+<ol>
+<li>
+<p>Place a token value unique to each authenticated user session in each form;
+and</p>
+</li>
+<li>
+<p>Check that all incoming POST/PUT/DELETE (i.e., "unsafe") requests contain
+that value.</p>
+</li>
+</ol>
+<blockquote>
+<p>N.b.: If our application uses GET requests to modify resources (which
+incidentally is an improper use of GET), we should also check for CSRF on
+GET requests from authenticated users.</p>
+</blockquote>
+<p>For this example, the form field name will be <code>__csrf_value</code>. In each form
+we want to protect against CSRF, we use the session CSRF token value for that
+field:</p>
+<pre><code class="language-php">&lt;?php
+/**
+ * @var Vendor\Package\User $user A user-authentication object.
+ * @var Aura\Session\Session $session A session management object.
+ */
+?&gt;
+&lt;form method="post"&gt;
+
+    &lt;?php if ($user-&gt;auth-&gt;isValid()) {
+        $csrf_value = $session-&gt;getCsrfToken()-&gt;getValue();
+        echo '&lt;input type="hidden" name="__csrf_value" value="'
+           . htmlspecialchars($csrf_value, ENT_QUOTES, 'UTF-8')
+           . '"&gt;&lt;/input&gt;';
+    } ?&gt;
+
+    &lt;!-- other form fields --&gt;
+
+&lt;/form&gt;
+</code></pre>
+<p>When processing the request, check to see if the incoming CSRF token is valid
+for the authenticated user:</p>
+<pre><code class="language-php">&lt;?php
+/**
+ * @var Vendor\Package\User $user A user-authentication object.
+ * @var Aura\Session\Session $session A session management object.
+ */
+
+$unsafe = $_SERVER['REQUEST_METHOD'] == 'POST'
+       || $_SERVER['REQUEST_METHOD'] == 'PUT'
+       || $_SERVER['REQUEST_METHOD'] == 'DELETE';
+
+if ($unsafe &amp;&amp; $user-&gt;auth-&gt;isValid()) {
+    $csrf_value = $_POST['__csrf_value'];
+    $csrf_token = $session-&gt;getCsrfToken();
+    if (! $csrf_token-&gt;isValid($csrf_value)) {
+        echo "This looks like a cross-site request forgery.";
+    } else {
+        echo "This looks like a valid request.";
+    }
+} else {
+    echo "CSRF attacks only affect unsafe requests by authenticated users.";
+}
+?&gt;
+</code></pre>
+<h4 id="2-11-3-2-2">2.11.3.2.2. CSRF Value Generation</h4>
+<p>For a CSRF token to be useful, its random value must be cryptographically
+secure. Using things like <code>mt_rand()</code> is insufficient. Aura.Session comes with
+a <code>Randval</code> class that implements a <code>RandvalInterface</code>, and uses either the
+<code>openssl</code> or the <code>mcrypt</code> extension to generate a random value. If you do not
+have one of these extensions installed, you will need your own random-value
+implementation of the <code>RandvalInterface</code>. We suggest a wrapper around
+<a href="https://github.com/ircmaxell/RandomLib">RandomLib</a>.</p>
+<h3 id="2-11-3-3">2.11.3.3. Session Lifetime</h3>
+<p>We can set the session lifetime to as long (or as short) as we like using the <code>setCookieParams</code> on <em>Session</em> object. The lifetime is in seconds. To set the session cookie lifetime to two weeks:</p>
+<pre><code>&lt;?php
+$session-&gt;setCookieParams(array('lifetime' =&gt; '1209600'));
+?&gt;
+</code></pre>
+<blockquote>
+<p>N.b: The <code>setCookieParams</code> method calls <a href="http://php.net/session_set_cookie_params">session_set_cookie_params</a> internally.</p>
+</blockquote>
+
+<nav class="navfooter">
+    <table>
+        <tr>
+            <td class="prev"><a href="/packages/2.x/Router.html">Prev</a></td>
+            <td class="parent"><a href="/packages/2.x/">Up</a></td>
+            <td class="next"><a href="/packages/2.x/Sql.html">Next</a></td>
+        </tr>
+        <tr>
+            <td class="prev">2.10. Aura.Router</td>
+            <td class="parent">2. Version 2.x</td>
+            <td class="next">2.12. Aura.Sql</td>
+        </tr>
+    </table>
+</nav>

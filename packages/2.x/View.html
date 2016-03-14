@@ -1,0 +1,333 @@
+---
+layout: site
+active: packages
+title: Aura View
+---
+<script>hljs.initHighlightingOnLoad();</script>
+
+<nav class="navheader">
+    <table>
+        <tr>
+            <th colspan="3" class="curr">2.15. Aura View</th>
+        </tr>
+        <tr>
+            <td class="prev"><a href="/packages/2.x/SqlSchema.html">Aura.SqlSchema</a></td>
+            <td class="parent">2. Version 2.x</th>
+            <td class="next"><a href="/packages/2.x/Web.html">Aura.Web</a></td>
+        </tr>
+    </table>
+</nav>
+<h1 id="2-15">2.15. Aura View</h1>
+<p>This package provides an implementation of the <a href="http://martinfowler.com/eaaCatalog/templateView.html">TemplateView</a> and
+<a href="http://martinfowler.com/eaaCatalog/twoStepView.html">TwoStepView</a> patterns using PHP itself as the templating language. It supports both file-based and closure-based templates along with helpers and sections.</p>
+<p>It is preceded by systems such as
+<a href="http://phpsavant.com"><code>Savant</code></a>,
+<a href="http://framework.zend.com/manual/en/zend.view.html"><code>Zend_View</code></a>, and
+<a href="http://solarphp.com/class/Solar_View"><code>Solar_View</code></a>.</p>
+<h2 id="2-15-1">2.15.1. Foreword</h2>
+<h3 id="2-15-1-1">2.15.1.1. Installation</h3>
+<p>This library requires PHP 5.4 or later; we recommend using the latest available version of PHP as a matter of principle. It has no userland dependencies.</p>
+<p>It is installable and autoloadable via Composer as <a href="https://packagist.org/packages/aura/view">aura/view</a>.</p>
+<p>Alternatively, <a href="https://github.com/auraphp/Aura.View/releases">download a release</a> or clone this repository, then require or include its <em>autoload.php</em> file.</p>
+<h3 id="2-15-1-2">2.15.1.2. Quality</h3>
+<p><a href="https://scrutinizer-ci.com/g/auraphp/Aura.View/"><img src="https://scrutinizer-ci.com/g/auraphp/Aura.View/badges/quality-score.png?b=develop-2" alt="Scrutinizer Code Quality"></a>
+<a href="https://scrutinizer-ci.com/g/auraphp/Aura.View/"><img src="https://scrutinizer-ci.com/g/auraphp/Aura.View/badges/coverage.png?b=develop-2" alt="Code Coverage"></a>
+<a href="https://travis-ci.org/auraphp/Aura.View"><img src="https://travis-ci.org/auraphp/Aura.View.png?branch=develop-2" alt="Build Status"></a></p>
+<p>To run the unit tests at the command line, issue <code>composer install</code> and then <code>phpunit</code> at the package root. This requires <a href="http://getcomposer.org/">Composer</a> to be available as <code>composer</code>, and <a href="http://phpunit.de/manual/">PHPUnit</a> to be available as <code>phpunit</code>.</p>
+<p>This library attempts to comply with <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md">PSR-1</a>, <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md">PSR-2</a>, and <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md">PSR-4</a>. If
+you notice compliance oversights, please send a patch via pull request.</p>
+<h3 id="2-15-1-3">2.15.1.3. Community</h3>
+<p>To ask questions, provide feedback, or otherwise communicate with the Aura community, please join our <a href="http://groups.google.com/group/auraphp">Google Group</a>, follow <a href="http://twitter.com/auraphp">@auraphp on Twitter</a>, or chat with us on #auraphp on Freenode.</p>
+<h2 id="2-15-2">2.15.2. Getting Started</h2>
+<h3 id="2-15-2-1">2.15.2.1. Instantiation</h3>
+<p>To instantiate a <em>View</em> object, use the <em>ViewFactory</em>:</p>
+<pre><code class="language-php">&lt;?php
+$view_factory = new \Aura\View\ViewFactory;
+$view = $view_factory-&gt;newInstance();
+?&gt;
+</code></pre>
+<h3 id="2-15-2-2">2.15.2.2. Escaping Output</h3>
+<p>Security-minded observers will note that all the examples in this document use manually-escaped output. Because this package is not specific to any particular media type, it <strong>does not</strong> come with escaping functionality.</p>
+<p>When you generate output via templates, you <strong>must</strong> escape it appropriately for security purposes. This means that HTML templates should use HTML escaping, CSS templates should use CSS escaping, XML templates should use XML escaping, PDF templates should use PDF escaping, RTF templates should use RTF escaping, and so on.</p>
+<p>For a good set of HTML escapers, please consider <a href="https://github.com/auraphp/Aura.Html#escaping">Aura.Html</a>.</p>
+<h3 id="2-15-2-3">2.15.2.3. Registering View Templates</h3>
+<p>Now that we have a <em>View</em>, we need to add named templates to its view template registry. These are typically PHP file paths, but <a href="#closures-as-templates">templates can also be closures</a>.  For example:</p>
+<pre><code class="language-php">&lt;?php
+$view_registry = $view-&gt;getViewRegistry();
+$view_registry-&gt;set('browse', '/path/to/views/browse.php');
+?&gt;
+</code></pre>
+<p>The <code>browse.php</code> file may look something like this:</p>
+<pre><code class="language-php">&lt;?php
+foreach ($this-&gt;items as $item) {
+    $id = htmlspecialchars($item['id'], ENT_QUOTES, 'UTF-8');
+    $name = htmlspecialchars($item['name'], ENT_QUOTES, 'UTF-8')
+    echo "Item ID #{$id} is '{$name}'." . PHP_EOL;
+?&gt;
+</code></pre>
+<p>Note that we use <code>echo</code>, and not <code>return</code>, in templates.</p>
+<blockquote>
+<p>N.b.: The template logic will be executed inside the <em>View</em> object scope,
+which means that <code>$this</code> in the template code will refer to the <em>View</em>
+object. The same is true for closure-based templates.</p>
+</blockquote>
+<h3 id="2-15-2-4">2.15.2.4. Setting Data</h3>
+<p>We will almost always want to use dynamic data in our templates. To assign a data collection to the <em>View</em>, use the <code>setData()</code> method and either an array or an object. We can then use data elements as if they are properties on the
+<em>View</em> object.</p>
+<pre><code class="language-php">&lt;?php
+$view-&gt;setData(array(
+    'items' =&gt; array(
+        array(
+            'id' =&gt; '1',
+            'name' =&gt; 'Foo',
+        ),
+        array(
+            'id' =&gt; '2',
+            'name' =&gt; 'Bar',
+        ),
+        array(
+            'id' =&gt; '3',
+            'name' =&gt; 'Baz',
+        ),
+    )
+));
+?&gt;
+</code></pre>
+<blockquote>
+<p>N.b.: Recall that <code>$this</code> in the template logic refers to the <em>View</em> object,
+so that data assigned to the <em>View</em> can be accessed as properties on <code>$this</code>.</p>
+</blockquote>
+<p>The <code>setData()</code> method will overwrite all existing data in the <em>View</em> object. The <code>addData()</code> method, on the other hand, will merge with existing data in the <em>View</em> object.</p>
+<h3 id="2-15-2-5">2.15.2.5. Invoking A One-Step View</h3>
+<p>Now that we have registered a template and assigned some data to the <em>View</em>, we tell the <em>View</em> which template to use, and then invoke the <em>View</em>:</p>
+<pre><code class="language-php">&lt;?php
+$view-&gt;setView('browse');
+$output = $view-&gt;__invoke(); // or just $view()
+?&gt;
+</code></pre>
+<p>The <code>$output</code> in this case will be something like this:</p>
+<pre><code>Item #1 is 'Foo'.
+Item #2 is 'Bar'.
+Item #3 is 'Baz'.
+</code></pre>
+<h3 id="2-15-2-6">2.15.2.6. Using Sub-Templates (aka "Partials")</h3>
+<p>Sometimes we will want to split a template up into multiple pieces. We can
+render these "partial" template pieces using the <code>render()</code> method in our main template code.</p>
+<p>First, we place the sub-template in the view registry (or in the layout registry if it for use in layouts). Then we <code>render()</code> it from inside the main template code. Sub-templates can use any naming scheme we like. Some systems use the convention of prefixing partial templates with an underscore, and the following example will use that convention.</p>
+<p>Second, we can pass an array of variables to be extracted into the local scope of the partial template. (The <code>$this</code> variable will always be available regardless.)</p>
+<p>For example, let's split up our <code>browse.php</code> template file so that it uses a sub-template for displaying items.</p>
+<pre><code class="language-php">&lt;?php
+// add templates to the view registry
+$view_registry = $view-&gt;getViewRegistry();
+
+// the "main" template
+$view_registry-&gt;set('browse', '/path/to/views/browse.php');
+
+// the "sub" template
+$view_registry-&gt;set('_item', '/path/to/views/_item.php');
+?&gt;
+</code></pre>
+<p>We extract the item-display code from <code>browse.php</code> into <code>_item.php</code>:</p>
+<pre><code class="language-php">&lt;?php
+$id = htmlspecialchars($item['id'], ENT_QUOTES, 'UTF-8');
+$name = htmlspecialchars($item['name'], ENT_QUOTES, 'UTF-8')
+echo "Item ID #{$id} is '{$name}'." . PHP_EOL;
+?&gt;
+</code></pre>
+<p>Then we modify <code>browse.php</code> to use the sub-template:</p>
+<pre><code class="language-php">&lt;?php
+foreach ($this-&gt;items as $item) {
+    echo $this-&gt;render('_item', array(
+        'item' =&gt; $item,
+    ));
+?&gt;
+</code></pre>
+<p>The output will be the same as earlier when we invoke the view.</p>
+<blockquote>
+<p>N.b.: Alternatively, we can use <code>include</code> or <code>require</code> to execute a PHP file directly in the current template scope.</p>
+</blockquote>
+<h3 id="2-15-2-7">2.15.2.7. Using Sections</h3>
+<p>Sections are similar to sub-templates (aka "partials") except that they are captured inline for later use. In general, they are used by view templates to capture output for layout templates.</p>
+<p>For example, we can capture output in the view template to a named section ...</p>
+<pre><code class="language-php">&lt;?php
+// begin buffering output for a named section
+$this-&gt;beginSection('local-nav');
+
+echo "&lt;div&gt;";
+// ... echo the local navigation output ...
+echo "&lt;/div&gt;";
+
+// end buffering and capture the output
+$this-&gt;endSection();
+?&gt;
+</code></pre>
+<p>... and then use that output in a layout template:</p>
+<pre><code class="language-php">&lt;?php
+if ($this-&gt;hasSection('local-nav')) {
+    echo $this-&gt;getSection('local-nav');
+} else {
+    echo "&lt;div&gt;No local navigation.&lt;/div&gt;";
+}
+?&gt;
+</code></pre>
+<p>In addition, the <code>setSection()</code> method can be used to set the section body directly, instead of capturing it:</p>
+<pre><code class="language-php">&lt;?php
+$this-&gt;setSection('local-nav', $this-&gt;render('_local-nav.php'));
+?&gt;
+</code></pre>
+<h3 id="2-15-2-8">2.15.2.8. Using Helpers</h3>
+<p>The <em>ViewFactory</em> instantiates the <em>View</em> with an empty <em>HelperRegistry</em> to manage helpers. We can register closures or other invokable objects as helpers through the <em>HelperRegistry</em>. We can then call these helpers as if they are methods on the <em>View</em>.</p>
+<pre><code class="language-php">&lt;?php
+$helpers = $view-&gt;getHelpers();
+$helpers-&gt;set('hello', function ($name) {
+    return "Hello {$name}!";
+});
+
+$view_registry = $view-&gt;getViewRegistry();
+$view_registry-&gt;set('index', function () {
+    echo $this-&gt;hello('World');
+});
+
+$view-&gt;setView('index');
+$output = $view();
+?&gt;
+</code></pre>
+<p>This library does not come with any view helpers. You will need to add your own
+helpers to the registry as closures or invokable objects.</p>
+<h3 id="2-15-2-9">2.15.2.9. Custom Helper Managers</h3>
+<p>The <em>View</em> is not type-hinted to any particular class for its helper manager. This means you may inject an arbitrary object of your own at <em>View</em> construction time to manage helpers. To do so, pass a helper manager of your own to the <em>ViewFactory</em>.</p>
+<pre><code class="language-php">&lt;?php
+class OtherHelperManager
+{
+    public function __call($helper_name, $args)
+    {
+        // logic to call $helper_name with
+        // $args and return the result
+    }
+}
+
+$helpers = new OtherHelperManager;
+$view = $view_factory-&gt;newInstance($helpers);
+?&gt;
+</code></pre>
+<p>For a comprehensive set of HTML helpers, including form and input helpers, please consider the <a href="https://github.com/Aura.Html">Aura.Html</a> package and its <em>HelperLocator</em> as an alternative to the <em>HelperRegistry</em> in this package. You can pass it to the <em>ViewFactory</em> like so:</p>
+<pre><code class="language-php">&lt;?php
+$helpers_factory = new Aura\Html\HelperLocatorFactory;
+$helpers = $helpers_factory-&gt;newInstance();
+$view = $view_factory-&gt;newInstance($helpers);
+?&gt;
+</code></pre>
+<h3 id="2-15-2-10">2.15.2.10. Rendering a Two-Step View</h3>
+<p>To wrap the main content in a layout as part of a two-step view, we register
+layout templates with the <em>View</em> and then call <code>setLayout()</code> to pick one of
+them for the second step. (If no layout is set, the second step will not be
+executed.)</p>
+<p>Let's say we have already set the <code>browse</code> template above into our view registry. We then set a layout template called <code>default</code> into the layout registry:</p>
+<pre><code class="language-php">&lt;?php
+$layout_registry = $view-&gt;getLayoutRegistry();
+$layout_registry-&gt;set('default', '/path/to/layouts/default.php');
+?&gt;
+</code></pre>
+<p>The <code>default.php</code> layout template might look like this:</p>
+<pre><code class="language-html+php">&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;My Site&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;?= $this-&gt;getContent(); ?&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>We can then set the view and layout templates on the <em>View</em> object and then invoke it:</p>
+<pre><code class="language-php">&lt;?php
+$view-&gt;setView('browse');
+$view-&gt;setLayout('default');
+$output = $view-&gt;__invoke(); // or just $view()
+?&gt;
+</code></pre>
+<p>The output from the inner view template is automatically retained and becomes available via the <code>getContent()</code> method on the <em>View</em> object. The layout template then calls <code>getContent()</code> to place the inner view results in the outer layout template.</p>
+<blockquote>
+<p>N.b. We can also call <code>setLayout()</code> from inside the view template, allowing us to pick a layout as part of the view logic.</p>
+</blockquote>
+<p>The view template and the layout template both execute inside the same <em>View</em> object. This means:</p>
+<ul>
+<li>
+<p>All data values are shared between the view and the layout. Any data assigned to the view, or modified by the view, is used as-is by the layout.</p>
+</li>
+<li>
+<p>All helpers are shared between the view and the layout. This sharing situation allows the view to modify data and helpers before the layout is executed.</p>
+</li>
+<li>
+<p>All section bodies are shared between the view and the layout. A section that is captured from the view template can therefore be used by the layout template.</p>
+</li>
+</ul>
+<h3 id="2-15-2-11">2.15.2.11. Closures As Templates</h3>
+<p>The view and layout registries accept closures as templates. For example, these are closure-based equivlents of the <code>browse.php</code> and <code>_item.php</code> template files above:</p>
+<pre><code class="language-php">&lt;?php
+$view_registry-&gt;set('browse', function () {
+    foreach ($this-&gt;items as $item) {
+        echo $this-&gt;render('_item', array(
+            'item' =&gt; $item,
+        ));
+    }
+);
+
+$view_registry-&gt;set('_item', function (array $vars) {
+    extract($vars, EXTR_SKIP);
+    $id = htmlspecialchars($item['id'], ENT_QUOTES, 'UTF-8');
+    $name = htmlspecialchars($item['name'], ENT_QUOTES, 'UTF-8')
+    echo "Item ID #{$id} is '{$name}'." . PHP_EOL;
+);
+?&gt;
+</code></pre>
+<p>When registering a closure-based template, continue to use <code>echo</code> instead of <code>return</code> when generating output. The closure is rebound to the <em>View</em> object, so <code>$this</code> in the closure will refer to the <em>View</em> just as it does in a file-based template.</p>
+<p>A bit of extra effort is required with closure-based sub-templates (aka "partials"). Whereas file-based templates automatically extract the passed array of variables into the local scope, a closure-based template must:</p>
+<ol>
+<li>
+<p>Define a function parameter to receive the injected variables (the <code>$vars</code> param in the <code>_item</code> template); and,</p>
+</li>
+<li>
+<p>Extract the injected variables using <code>extract()</code>. Alternatively, the closure may use the injected variables parameter directly.</p>
+</li>
+</ol>
+<p>Aside from that, closure-based templates work exactly like file-based templates.</p>
+<h3 id="2-15-2-12">2.15.2.12. Registering Template Search Paths</h3>
+<p>We can also tell the view and layout registries to search the filesystem for templates. First, we tell the registry what directories contain template files:</p>
+<pre><code class="language-php">&lt;?php
+$view_registry = $view-&gt;getViewRegistry();
+$view_registry-&gt;setPaths(array(
+    '/path/to/foo',
+    '/path/to/bar',
+    '/path/to/baz'
+));
+?&gt;
+</code></pre>
+<p>When we refer to named templates later, the registry will search from the first directory to the last. For finer control over the search paths, we can call <code>prependPath()</code> to add a directory to search earlier, or <code>appendPath()</code> to add a directory to search later. Regardless, the <em>View</em> will auto-append <code>.php</code> to the end of template names when searching through the directories.</p>
+<h3 id="2-15-2-13">2.15.2.13. Changing The Template File Extension</h3>
+<p>By default, each <em>TemplateRegistry</em> will auto-append <code>.php</code> to template file names. If the template files end with a different extension, change it usin the <code>setTemplateFileExtension()</code> method:</p>
+<pre><code class="language-php">&lt;?php
+$view_registry = $view-&gt;getViewRegistry();
+$view_registry-&gt;setTemplateFileExtension('.phtml');
+?&gt;
+</code></pre>
+<p>The <em>TemplateRegistry</em> instance used for the layouts is separate from the one for the views, so it may be necessary to change the template file extension on it as well:</p>
+<pre><code class="language-php">&lt;?php
+$layout_registry = $view-&gt;getLayoutRegistry();
+$layout_registry-&gt;setTemplateFileExtension('.phtml');
+?&gt;
+</code></pre>
+
+<nav class="navfooter">
+    <table>
+        <tr>
+            <td class="prev"><a href="/packages/2.x/SqlSchema.html">Prev</a></td>
+            <td class="parent"><a href="/packages/2.x/">Up</a></td>
+            <td class="next"><a href="/packages/2.x/Web.html">Next</a></td>
+        </tr>
+        <tr>
+            <td class="prev">2.14. Aura.SqlSchema</td>
+            <td class="parent">2. Version 2.x</td>
+            <td class="next">2.16. Aura.Web</td>
+        </tr>
+    </table>
+</nav>

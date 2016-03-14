@@ -1,0 +1,153 @@
+---
+layout: site
+active: packages
+title: Aura.Autoload
+---
+<script>hljs.initHighlightingOnLoad();</script>
+
+<nav class="navheader">
+    <table>
+        <tr>
+            <th colspan="3" class="curr">2.3. Aura.Autoload</th>
+        </tr>
+        <tr>
+            <td class="prev"><a href="/packages/2.x/Auth.html">Aura.Auth</a></td>
+            <td class="parent">2. Version 2.x</th>
+            <td class="next"><a href="/packages/2.x/Cli.html">Aura.Cli</a></td>
+        </tr>
+    </table>
+</nav>
+<h1 id="2-3">2.3. Aura.Autoload</h1>
+<p>Provides a full PSR-4 and limited PSR-0 autoloader. Although it is
+installable via Composer, its best use is probably outside a Composer-oriented
+project.</p>
+<p>For a full PSR-0 only autoloader, please see <a href="https://github.com/auraphp/Aura.Autoload/tree/develop">Aura.Autoload v1</a>.</p>
+<h2 id="2-3-1">2.3.1. Foreword</h2>
+<h3 id="2-3-1-1">2.3.1.1. Installation</h3>
+<p>This library requires PHP 5.3 or later; we recommend using the latest available version of PHP as a matter of principle. It has no userland dependencies.</p>
+<p>It is installable and autoloadable via Composer as <a href="https://packagist.org/packages/aura/autoload">aura/autoload</a>.</p>
+<p>Alternatively, <a href="https://github.com/auraphp/Aura.Autoload/releases">download a release</a> or clone this repository, then require or include its <em>autoload.php</em> file.</p>
+<h3 id="2-3-1-2">2.3.1.2. Quality</h3>
+<p><a href="https://scrutinizer-ci.com/g/auraphp/Aura.Autoload/"><img src="https://scrutinizer-ci.com/g/auraphp/Aura.Autoload/badges/quality-score.png?b=develop-2" alt="Scrutinizer Code Quality"></a>
+<a href="https://scrutinizer-ci.com/g/auraphp/Aura.Autoload/"><img src="https://scrutinizer-ci.com/g/auraphp/Aura.Autoload/badges/coverage.png?b=develop-2" alt="Code Coverage"></a>
+<a href="https://travis-ci.org/auraphp/Aura.Autoload"><img src="https://travis-ci.org/auraphp/Aura.Autoload.png?branch=develop-2" alt="Build Status"></a></p>
+<p>To run the unit tests at the command line, issue <code>phpunit</code> at the package root. (This requires <a href="http://phpunit.de/manual/">PHPUnit</a> to be available as <code>phpunit</code>.)</p>
+<p>This library attempts to comply with <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md">PSR-1</a>, <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md">PSR-2</a>, and <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md">PSR-4</a>. If
+you notice compliance oversights, please send a patch via pull request.</p>
+<h3 id="2-3-1-3">2.3.1.3. Community</h3>
+<p>To ask questions, provide feedback, or otherwise communicate with the Aura community, please join our <a href="http://groups.google.com/group/auraphp">Google Group</a>, follow <a href="http://twitter.com/auraphp">@auraphp on Twitter</a>, or chat with us on #auraphp on Freenode.</p>
+<h2 id="2-3-2">2.3.2. Getting Started</h2>
+<p>To use the autoloader, first instantiate it, then register it with SPL
+autoloader stack:</p>
+<pre><code class="language-php">&lt;?php
+// instantiate
+$loader = new \Aura\Autoload\Loader;
+
+// append to the SPL autoloader stack; use register(true) to prepend instead
+$loader-&gt;register();
+?&gt;
+</code></pre>
+<h3 id="2-3-2-1">2.3.2.1. PSR-4 Namespace Prefixes</h3>
+<p>To add a namespace conforming to <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md">PSR-4</a> specifications, point to the base
+directory for that namespace. Multiple base directories are allowed, and will
+be searched in the order they are added.</p>
+<pre><code class="language-php">&lt;?php
+$loader-&gt;addPrefix('Foo\Bar', '/path/to/foo-bar/src');
+$loader-&gt;addPrefix('Foo\Bar', '/path/to/foo-bar/tests');
+?&gt;
+</code></pre>
+<p>To set several namespaces prefixes at once, overriding all previous prefix
+settings, use <code>setPrefixes()</code>.</p>
+<pre><code class="language-php">&lt;?php
+$loader-&gt;setPrefixes(array(
+    'Foo\Bar' =&gt; array(
+        '/path/to/foo-bar/src',
+        '/path/to/foo-bar/tests',
+    ),
+
+    'Baz\Dib' =&gt; array(
+        '/path/to/baz.dib/src',
+        '/path/to/baz.dib/tests',
+    ),
+));
+?&gt;
+</code></pre>
+<h3 id="2-3-2-2">2.3.2.2. PSR-0 Namespaces</h3>
+<p>To add a namespace conforming to <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md">PSR-0</a> specifications, one that uses only
+namespace separators in the class names (no underscores allowed!), point to
+the directory containing classes for that namespace. Multiple directories are
+allowed, and will be searched in the order they are added.</p>
+<pre><code class="language-php">&lt;?php
+$loader-&gt;addPrefix('Baz\Dib', '/path/to/baz-dib/src/Baz/Dib');
+$loader-&gt;addPrefix('Baz\Dib', '/path/to/baz-dib/tests/Baz/Dib');
+?&gt;
+</code></pre>
+<p>To set several namespaces prefixes at once, as with PSR-4, use <code>setPrefixes()</code>.</p>
+<h3 id="2-3-2-3">2.3.2.3. Explicit Class-to-File Mappings</h3>
+<p>To map a class explictly to a file, use the <code>setClassFile()</code> method.</p>
+<pre><code class="language-php">&lt;?php
+$loader-&gt;setClassFile('Foo\Bar\Baz', '/path/to/Foo/Bar/Baz.php');
+?&gt;
+</code></pre>
+<p>To set several class-to-file mappings at once, overriding all previous
+mappings, use <code>setClassFiles()</code>. (Alternatively, use <code>addClassFiles()</code> to
+append to the existing mappings.)</p>
+<pre><code class="language-php">&lt;?php
+$loader-&gt;setClassFiles(array(
+    'Foo\Bar\Baz'  =&gt; '/path/to/Foo/Bar/Baz.php',
+    'Foo\Bar\Qux'  =&gt; '/path/to/Foo/Bar/Qux.php',
+    'Foo\Bar\Quux' =&gt; '/path/to/Foo/Bar/Quux.php',
+));
+?&gt;
+</code></pre>
+<h3 id="2-3-2-4">2.3.2.4. Inspection and Debugging</h3>
+<p>These methods are available to inspect the <code>Loader</code>:</p>
+<ul>
+<li>
+<p><code>getPrefixes()</code> returns all the added namespace prefixes and their base
+directories</p>
+</li>
+<li>
+<p><code>getClassFiles()</code> returns all the explicit class-to-file mappings</p>
+</li>
+<li>
+<p><code>getLoadedClasses()</code> returns all the class names loaded by the <code>Loader</code> and
+the file names for the loaded classes</p>
+</li>
+</ul>
+<p>If a class file cannot be loaded for some reason, review the debug information
+using <code>getDebug()</code>. This will show a log of information for the most-recent
+autoload attempt involving the <code>Loader</code>.</p>
+<pre><code class="language-php">&lt;?php
+// set the wrong path for Foo\Bar classes
+$loader-&gt;addPrefix('Foo\Bar', '/wrong/path/to/foo-bar/src');
+
+// this will fail
+$baz = new \Foo\Bar\Baz;
+
+// examine the debug information
+var_dump($loader-&gt;getDebug());
+// array(
+//     'Loading Foo\\Bar\\Baz',
+//     'No explicit class file',
+//     'Foo\\Bar\\: /path/to/foo-bar/Baz.php not found',
+//     'Foo\\: no base dirs',
+//     'Foo\\Bar\\Baz not loaded',
+// )
+?&gt;
+</code></pre>
+
+<nav class="navfooter">
+    <table>
+        <tr>
+            <td class="prev"><a href="/packages/2.x/Auth.html">Prev</a></td>
+            <td class="parent"><a href="/packages/2.x/">Up</a></td>
+            <td class="next"><a href="/packages/2.x/Cli.html">Next</a></td>
+        </tr>
+        <tr>
+            <td class="prev">2.2. Aura.Auth</td>
+            <td class="parent">2. Version 2.x</td>
+            <td class="next">2.4. Aura.Cli</td>
+        </tr>
+    </table>
+</nav>

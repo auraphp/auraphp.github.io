@@ -1,0 +1,614 @@
+---
+layout: site
+active: packages
+title: Aura.SqlQuery
+---
+<script>hljs.initHighlightingOnLoad();</script>
+
+<nav class="navheader">
+    <table>
+        <tr>
+            <th colspan="3" class="curr">2.13. Aura.SqlQuery</th>
+        </tr>
+        <tr>
+            <td class="prev"><a href="/packages/2.x/Sql.html">Aura.Sql</a></td>
+            <td class="parent">2. Version 2.x</th>
+            <td class="next"><a href="/packages/2.x/SqlSchema.html">Aura.SqlSchema</a></td>
+        </tr>
+    </table>
+</nav>
+<h1 id="2-13">2.13. Aura.SqlQuery</h1>
+<p>Provides query builders for MySQL, Postgres, SQLite, and Microsoft SQL Server.
+These builders are independent of any particular database connection library,
+although <a href="http://php.net/PDO">PDO</a> in general is recommended.</p>
+<h2 id="2-13-1">2.13.1. Foreword</h2>
+<h3 id="2-13-1-1">2.13.1.1. Installation</h3>
+<p>This library requires PHP 5.3 or later; we recommend using the latest available version of PHP as a matter of principle. It has no userland dependencies.</p>
+<p>It is installable and autoloadable via Composer as <a href="https://packagist.org/packages/aura/sqlquery">aura/sqlquery</a>.</p>
+<p>Alternatively, <a href="https://github.com/auraphp/Aura.SqlQuery/releases">download a release</a> or clone this repository, then require or include its <em>autoload.php</em> file.</p>
+<h3 id="2-13-1-2">2.13.1.2. Quality</h3>
+<p><a href="https://scrutinizer-ci.com/g/auraphp/Aura.SqlQuery/"><img src="https://scrutinizer-ci.com/g/auraphp/Aura.SqlQuery/badges/quality-score.png?b=develop-2" alt="Scrutinizer Code Quality"></a>
+<a href="https://scrutinizer-ci.com/g/auraphp/Aura.SqlQuery/"><img src="https://scrutinizer-ci.com/g/auraphp/Aura.SqlQuery/badges/coverage.png?b=develop-2" alt="Code Coverage"></a>
+<a href="https://travis-ci.org/auraphp/Aura.SqlQuery"><img src="https://travis-ci.org/auraphp/Aura.SqlQuery.png?branch=develop-2" alt="Build Status"></a></p>
+<p>To run the unit tests at the command line, issue <code>phpunit</code> at the package root. (This requires <a href="http://phpunit.de/manual/">PHPUnit</a> to be available as <code>phpunit</code>.)</p>
+<p>This library attempts to comply with <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md">PSR-1</a>, <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md">PSR-2</a>, and <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md">PSR-4</a>. If
+you notice compliance oversights, please send a patch via pull request.</p>
+<h3 id="2-13-1-3">2.13.1.3. Community</h3>
+<p>To ask questions, provide feedback, or otherwise communicate with the Aura community, please join our <a href="http://groups.google.com/group/auraphp">Google Group</a>, follow <a href="http://twitter.com/auraphp">@auraphp on Twitter</a>, or chat with us on #auraphp on Freenode.</p>
+<h2 id="2-13-2">2.13.2. Getting Started</h2>
+<p>First, instantiate a <em>QueryFactory</em> with a database type:</p>
+<pre><code class="language-php">&lt;?php
+use Aura\SqlQuery\QueryFactory;
+
+$query_factory = new QueryFactory('sqlite');
+?&gt;
+</code></pre>
+<p>You can then use the factory to create query objects:</p>
+<pre><code class="language-php">&lt;?php
+$select = $query_factory-&gt;newSelect();
+$insert = $query_factory-&gt;newInsert();
+$update = $query_factory-&gt;newUpdate();
+$delete = $query_factory-&gt;newDelete();
+?&gt;
+</code></pre>
+<p>The query objects do not execute queries against a database. When you are done
+building the query, you will need to pass it to a database connection of your
+choice. In the examples below, we will use <a href="http://php.net/pdo">PDO</a> for the
+database connection, but any database library that uses named placeholders and
+bound values should work just as well (e.g. the <a href="https://github.com/auraphp/Aura.Sql/tree/develop-2">Aura.Sql</a> <em>ExtendedPdo</em>
+class).</p>
+<h2 id="2-13-3">2.13.3. Identifier Quoting</h2>
+<p>In most cases, the query objects will quote identifiers for you. For example,
+under the common <em>Select</em> object with double-quotes for identifiers:</p>
+<pre><code class="language-php">&lt;?php
+$select-&gt;cols(array('foo', 'bar AS barbar'))
+       -&gt;from('table1')
+       -&gt;from('table2')
+       -&gt;where('table2.zim = 99');
+
+echo $select-&gt;getStatement();
+// SELECT
+//     "foo",
+//     "bar" AS "barbar"
+// FROM
+//     "table1",
+//     "table2"
+// WHERE
+//     "table2"."zim" = 99
+
+?&gt;
+</code></pre>
+<p>If you discover that a partially-qualified identifier has not been auto-quoted
+for you, change it to a fully-qualified identifer (e.g., from <code>col_name</code> to
+<code>table_name.col_name</code>).</p>
+<h2 id="2-13-4">2.13.4. Common Query Objects</h2>
+<p>Although you must specify a database type when instantiating a <em>QueryFactory</em>,
+you can tell the factory to return "common" query objects instead of database-
+specific ones.  This will make only the common query methods available, which
+helps with writing database-portable applications. To do so, pass the constant
+<code>QueryFactory::COMMON</code> as the second constructor parameter.</p>
+<pre><code class="language-php">&lt;?php
+use Aura\SqlQuery\QueryFactory;
+
+// return Common, not SQLite-specific, query objects
+$query_factory = new QueryFactory('sqlite', QueryFactory::COMMON);
+?&gt;
+</code></pre>
+<blockquote>
+<p>N.b. You still need to pass a database type so that identifiers can be
+quoted appropriately.</p>
+</blockquote>
+<p>All query objects implement the "Common" methods.</p>
+<h3 id="2-13-4-1">2.13.4.1. SELECT</h3>
+<p>Build a <em>Select</em> query using the following methods. They do not need to
+be called in any particular order, and may be called multiple times.</p>
+<pre><code class="language-php">&lt;?php
+$select = $query_factory-&gt;newSelect();
+
+$select
+    -&gt;distinct()                    // SELECT DISTINCT
+    -&gt;cols(array(                   // select these columns
+        'id',                       // column name
+        'name AS namecol',          // one way of aliasing
+        'col_name' =&gt; 'col_alias',  // another way of aliasing
+        'COUNT(foo) AS foo_count'   // embed calculations directly
+    ))
+    -&gt;from('foo AS f')              // FROM these tables
+    -&gt;fromSubselect(                // FROM sub-select AS my_sub
+        'SELECT ...',
+        'my_sub'
+    )
+    -&gt;join(                         // JOIN ...
+        'LEFT',                     // left/inner/natural/etc
+        'doom AS d'                 // this table name
+        'foo.id = d.foo_id'         // ON these conditions
+    )
+    -&gt;joinSubSelect(                // JOIN to a sub-select
+        'INNER',                    // left/inner/natural/etc
+        'SELECT ...',               // the subselect to join on
+        'subjoin'                   // AS this name
+        'sub.id = foo.id'           // ON these conditions
+    )
+    -&gt;where('bar &gt; :bar')           // AND WHERE these conditions
+    -&gt;where('zim = ?', 'zim_val')   // bind 'zim_val' to the ? placeholder
+    -&gt;orWhere('baz &lt; :baz')         // OR WHERE these conditions
+    -&gt;groupBy(array('dib'))         // GROUP BY these columns
+    -&gt;having('foo = :foo')          // AND HAVING these conditions
+    -&gt;having('bar &gt; ?', 'bar_val')  // bind 'bar_val' to the ? placeholder
+    -&gt;orHaving('baz &lt; :baz')        // OR HAVING these conditions
+    -&gt;orderBy(array('baz'))         // ORDER BY these columns
+    -&gt;limit(10)                     // LIMIT 10
+    -&gt;offset(40)                    // OFFSET 40
+    -&gt;forUpdate()                   // FOR UPDATE
+    -&gt;union()                       // UNION with a followup SELECT
+    -&gt;unionAll()                    // UNION ALL with a followup SELECT
+    -&gt;bindValue('foo', 'foo_val')   // bind one value to a placeholder
+    -&gt;bindValues(array(             // bind these values to named placeholders
+        'bar' =&gt; 'bar_val',
+        'baz' =&gt; 'baz_val',
+    ));
+?&gt;
+</code></pre>
+<blockquote>
+<p>N.b.: The <code>*where()</code> and <code>*having()</code> methods take an arbitrary number of
+trailing arguments, each of which is a value to bind to a sequential question-
+mark placeholder in the condition clause.</p>
+<p>Similarly, the <code>*join*()</code> methods take an optional final argument, a
+sequential array of values to bind to sequential question-mark placeholders in
+the condition clause.</p>
+</blockquote>
+<p>Once you have built the query, pass it to the database connection of your
+choice as a string, and send the bound values along with it.</p>
+<pre><code class="language-php">&lt;?php
+// a PDO connection
+$pdo = new PDO(...);
+
+// prepare the statment
+$sth = $pdo-&gt;prepare($select-&gt;getStatement());
+
+// bind the values and execute
+$sth-&gt;execute($select-&gt;getBindValues());
+
+// get the results back as an associative array
+$result = $sth-&gt;fetch(PDO::FETCH_ASSOC);
+?&gt;
+</code></pre>
+<h3 id="2-13-4-2">2.13.4.2. INSERT</h3>
+<h4 id="2-13-4-2-1">2.13.4.2.1. Single-Row Insert</h4>
+<p>Build an <em>Insert</em> query using the following methods. They do not need to
+be called in any particular order, and may be called multiple times.</p>
+<pre><code class="language-php">&lt;?php
+$insert = $query_factory-&gt;newInsert();
+
+$insert
+    -&gt;into('foo')                   // INTO this table
+    -&gt;cols(array(                   // bind values as "(col) VALUES (:col)"
+        'bar',
+        'baz',
+    ))
+    -&gt;set('ts', 'NOW()')            // raw value as "(ts) VALUES (NOW())"
+    -&gt;bindValue('foo', 'foo_val')   // bind one value to a placeholder
+    -&gt;bindValues(array(             // bind these values
+        'bar' =&gt; 'foo',
+        'baz' =&gt; 'zim',
+    ));
+?&gt;
+</code></pre>
+<p>The <code>cols()</code> method allows you to pass an array of key-value pairs where the
+key is the column name and the value is a bind value (not a raw value):</p>
+<pre><code class="language-php">&lt;?php
+$insert = $query_factory-&gt;newInsert();
+
+$insert-&gt;into('foo')             // insert into this table
+    -&gt;cols(array(                // insert these columns and bind these values
+        'foo' =&gt; 'foo_value',
+        'bar' =&gt; 'bar_value',
+        'baz' =&gt; 'baz_value',
+    ));
+?&gt;
+</code></pre>
+<p>Once you have built the query, pass it to the database connection of your
+choice as a string, and send the bound values along with it.</p>
+<pre><code class="language-php">&lt;?php
+// the PDO connection
+$pdo = new PDO(...);
+
+// prepare the statement
+$sth = $pdo-&gt;prepare($insert-&gt;getStatement());
+
+// execute with bound values
+$sth-&gt;execute($insert-&gt;getBindValues());
+
+// get the last insert ID
+$name = $insert-&gt;getLastInsertIdName('id');
+$id = $pdo-&gt;lastInsertId($name);
+?&gt;
+</code></pre>
+<h4 id="2-13-4-2-2">2.13.4.2.2. Multiple-Row (Bulk) Insert</h4>
+<p>If you want to do a multiple-row or bulk insert, call the <code>addRow()</code> method
+after finishing the first row, then build the next row you want to insert. The
+columns in the rows after the first will be inserted in the same order as the
+first row.</p>
+<pre><code class="language-php">&lt;?php
+$insert = $query_factory-&gt;newInsert();
+
+// insert into this table
+$insert-&gt;into('foo');
+
+// set up the first row
+$insert-&gt;cols(array(
+    'bar' =&gt; 'bar-0',
+    'baz' =&gt; 'baz-0'
+));
+$insert-&gt;set('ts', 'NOW()');
+
+// set up the second row. the columns here are in a different order
+// than in the first row, but it doesn't matter; the INSERT object
+// keeps track and builds them the same order as the first row.
+$insert-&gt;addRow();
+$insert-&gt;set('ts', 'NOW()');
+$insert-&gt;cols(array(
+    'bar' =&gt; 'bar-1',
+    'baz' =&gt; 'baz-1'
+));
+
+// set up further rows ...
+$insert-&gt;addRow();
+// ...
+
+// execute a bulk insert of all rows
+$pdo = new PDO(...);
+$sth = $pdo-&gt;prepare($insert-&gt;getStatement());
+$sth-&gt;execute($insert-&gt;getBindValues());
+?&gt;
+</code></pre>
+<blockquote>
+<p>N.b.: If you add a row and do not specify a value for a column that was
+present in the first row, the <em>Insert</em> will throw an exception.</p>
+</blockquote>
+<p>If you pass an array of column key-value pairs to <code>addRow()</code>, they will be
+bound to the next row, thus allowing you to skip setting up the first row
+manually with <code>col()</code> and <code>cols()</code>:</p>
+<pre><code class="language-php">&lt;?php
+// set up the first row
+$insert-&gt;addRow(array(
+    'bar' =&gt; 'bar-0',
+    'baz' =&gt; 'baz-0'
+));
+$insert-&gt;set('ts', 'NOW()');
+
+// set up the second row
+$insert-&gt;addRow(array(
+    'bar' =&gt; 'bar-1',
+    'baz' =&gt; 'baz-1'
+));
+$insert-&gt;set('ts', 'NOW()');
+
+// etc.
+?&gt;
+</code></pre>
+<p>If you only need to use bound values, and do not need to set raw values, and
+have the entire data set as an array already, you can use <code>addRows()</code> to add
+them all at once:</p>
+<pre><code class="language-php">&lt;?php
+$rows = array(
+    array(
+        'bar' =&gt; 'bar-0',
+        'baz' =&gt; 'baz-0'
+    ),
+    array(
+        'bar' =&gt; 'bar-1',
+        'baz' =&gt; 'baz-1'
+    ),
+);
+$insert-&gt;addRows($rows);
+?&gt;
+</code></pre>
+<blockquote>
+<p>N.b.: SQLite 3.7.10 and earlier do not support the "standard" multiple-row
+insert syntax. Thus, bulk inserts with <em>Insert</em> object will not work on those
+earlier versions of SQLite. We suggest wrapping multuple INSERT operations
+with a transaction as an alternative.</p>
+</blockquote>
+<h3 id="2-13-4-3">2.13.4.3. UPDATE</h3>
+<p>Build an <em>Update</em> query using the following methods. They do not need to
+be called in any particular order, and may be called multiple times.</p>
+<pre><code class="language-php">&lt;?php
+$update = $query_factory-&gt;newUpdate();
+
+$update
+    -&gt;table('foo')                  // update this table
+    -&gt;cols(array(                   // bind values as "SET bar = :bar"
+        'bar',
+        'baz',
+    ))
+    -&gt;set('ts', 'NOW()')            // raw value as "(ts) VALUES (NOW())"
+    -&gt;where('zim = :zim')           // AND WHERE these conditions
+    -&gt;where('gir = ?', 'doom')      // bind this value to the condition
+    -&gt;orWhere('gir = :gir')         // OR WHERE these conditions
+    -&gt;bindValue('bar', 'bar_val')   // bind one value to a placeholder
+    -&gt;bindValues(array(             // bind these values to the query
+        'baz' =&gt; 99,
+        'zim' =&gt; 'dib',
+        'gir' =&gt; 'doom',
+    ));
+?&gt;
+</code></pre>
+<p>The <code>cols()</code> method allows you to pass an array of key-value pairs where the
+key is the column name and the value is a bind value (not a raw value):</p>
+<pre><code class="language-php">&lt;?php
+$update = $query_factory-&gt;newUpdate();
+
+$update-&gt;table('foo')           // update this table
+    -&gt;cols(array(               // update these columns and bind these values
+        'foo' =&gt; 'foo_value',
+        'bar' =&gt; 'bar_value',
+        'baz' =&gt; 'baz_value',
+    ));
+?&gt;
+</code></pre>
+<p>Once you have built the query, pass it to the database connection of your
+choice as a string, and send the bound values along with it.</p>
+<pre><code class="language-php">&lt;?php
+// the PDO connection
+$pdo = new PDO(...);
+
+// prepare the statement
+$sth = $pdo-&gt;prepare($update-&gt;getStatement())
+
+// execute with bound values
+$sth-&gt;execute($update-&gt;getBindValues());
+?&gt;
+</code></pre>
+<h3 id="2-13-4-4">2.13.4.4. DELETE</h3>
+<p>Build a <em>Delete</em> query using the following methods. They do not need to
+be called in any particular order, and may be called multiple times.</p>
+<pre><code class="language-php">&lt;?php
+$delete = $query_factory-&gt;newDelete();
+
+$delete
+    -&gt;from('foo')                   // FROM this table
+    -&gt;where('zim = :zim')           // AND WHERE these conditions
+    -&gt;where('gir = ?', 'doom')      // bind this value to the condition
+    -&gt;orWhere('gir = :gir')         // OR WHERE these conditions
+    -&gt;bindValue('bar', 'bar_val')   // bind one value to a placeholder
+    -&gt;bindValues(array(             // bind these values to the query
+        'baz' =&gt; 99,
+        'zim' =&gt; 'dib',
+        'gir' =&gt; 'doom',
+    ));
+?&gt;
+</code></pre>
+<p>Once you have built the query, pass it to the database connection of your
+choice as a string, and send the bound values along with it.</p>
+<pre><code class="language-php">&lt;?php
+// the PDO connection
+$pdo = new PDO(...);
+
+// prepare the statement
+$sth = $pdo-&gt;prepare($delete-&gt;getStatement())
+
+// execute with bound values
+$sth-&gt;execute($delete-&gt;getBindValues());
+?&gt;
+</code></pre>
+<h2 id="2-13-5">2.13.5. MySQL Query Objects ('mysql')</h2>
+<p>These 'mysql' query objects have additional MySQL-specific methods:</p>
+<ul>
+<li>
+<p>SELECT</p>
+<ul>
+<li>
+<code>calcFoundRows()</code> to add or remove <code>SQL_CALC_FOUND_ROWS</code> flag</li>
+<li>
+<code>cache()</code> to add or remove <code>SQL_CACHE</code> flag</li>
+<li>
+<code>noCache()</code> to add or remove <code>SQL_NO_CACHE</code> flag</li>
+<li>
+<code>bigResult()</code> to add or remove <code>SQL_BIG_RESULT</code> flag</li>
+<li>
+<code>smallResult()</code> to add or remove <code>SQL_SMALL_RESULT</code> flag</li>
+<li>
+<code>bufferResult()</code> to add or remove <code>SQL_BUFFER_RESULT</code> flag</li>
+<li>
+<code>highPriority()</code> to add or remove <code>HIGH_PRIORITY</code> flag</li>
+<li>
+<code>straightJoin()</code> to add or remove <code>STRAIGHT_JOIN</code> flag</li>
+</ul>
+</li>
+<li>
+<p>INSERT</p>
+<ul>
+<li>
+<code>highPriority()</code> to add or remove <code>HIGH_PRIORITY</code> flag</li>
+<li>
+<code>lowPriority()</code> to add or remove <code>LOW_PRIORITY</code> flag</li>
+<li>
+<code>ignore()</code> to add or remove <code>IGNORE</code> flag</li>
+<li>
+<code>delayed()</code> to add or remove <code>DELAYED</code> flag</li>
+</ul>
+</li>
+<li>
+<p>UPDATE</p>
+<ul>
+<li>
+<code>lowPriority()</code> to add or remove <code>LOW_PRIORITY</code> flag</li>
+<li>
+<code>ignore()</code> to add or remove <code>IGNORE</code> flag</li>
+<li>
+<code>where()</code> and <code>orWhere()</code> to add WHERE conditions flag</li>
+<li>
+<code>orderBy()</code> to add an ORDER BY clause flag</li>
+<li>
+<code>limit()</code> to set a LIMIT count</li>
+</ul>
+</li>
+<li>
+<p>DELETE</p>
+<ul>
+<li>
+<code>lowPriority()</code> to add or remove <code>LOW_PRIORITY</code> flag</li>
+<li>
+<code>ignore()</code> to add or remove <code>IGNORE</code> flag</li>
+<li>
+<code>quick()</code> to add or remove <code>QUICK</code> flag</li>
+<li>
+<code>orderBy()</code> to add an ORDER BY clause</li>
+<li>
+<code>limit()</code> to set a LIMIT count</li>
+</ul>
+</li>
+</ul>
+<p>In addition, the <em>Insert</em> object has support for <code>ON DUPLICATE KEY UPDATE</code>:</p>
+<ul>
+<li>
+<code>onDuplicateKeyUpdate($col, $raw_value)</code> sets a raw value</li>
+<li>
+<code>onDuplicateKeyUpateCol($col, $value)</code> is a <code>col()</code> equivalent for the update</li>
+<li>
+<code>onDuplicateKeyUpdateCols($cols)</code> is a <code>cols()</code>equivalent for the update</li>
+</ul>
+<p>Placeholders for bound values in the <code>ON DUPLICATE KEY UPDATE</code> portions will be
+automatically suffixed with <code>__on_duplicate key</code> to deconflict them from the
+insert placeholders.</p>
+<h2 id="2-13-6">2.13.6. PostgreSQL Query Objects ('pgsql')</h2>
+<p>These 'pgsql' query objects have additional PostgreSQL-specific methods:</p>
+<ul>
+<li>
+<p>INSERT</p>
+<ul>
+<li>
+<code>returning()</code> to add a <code>RETURNING</code> clause</li>
+</ul>
+</li>
+<li>
+<p>UPDATE</p>
+<ul>
+<li>
+<code>returning()</code> to add a <code>RETURNING</code> clause</li>
+</ul>
+</li>
+<li>
+<p>DELETE</p>
+<ul>
+<li>
+<code>returning()</code> to add a <code>RETURNING</code> clause</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-13-6-1">2.13.6.1. Last Insert ID Names in PostgreSQL</h3>
+<p>PostgreSQL determines the default sequence name for the last inserted ID by concatenating the table name, the column name, and a <code>seq</code> suffix, using underscore separators (e.g. <code>table_col_seq</code>).</p>
+<p>However, when inserting into an extended or inherited table, the parent table is used for the sequence name, not the child (insertion) table. This package allows you to override the default last-insert-id name with the method <code>setLastInsertIdNames()</code> on both <em>QueryFactory</em> and the <em>Insert</em> object itself.  Pass an array of <code>inserttable.col</code> keys mapped to <code>parenttable_col_seq</code> values, and the <em>Insert</em> object will use the mapped sequence names instead of the default names.</p>
+<pre><code class="language-php">&lt;?php
+$query_factory-&gt;setLastInsertIdNames(array(
+    'child.id' =&gt; 'parent_id_seq'
+));
+
+$insert = $query_factory-&gt;newInsert();
+$insert-&gt;into('child');
+// ...
+$seq = $insert-&gt;getLastInsertIdName('id');
+?&gt;
+</code></pre>
+<p>The <code>$seq</code> name is now <code>parent_id_seq</code>, not <code>child_id_seq</code> as it would have been by default.</p>
+<h2 id="2-13-7">2.13.7. SQLite Query Objects ('sqlite')</h2>
+<p>These 'sqlite' query objects have additional SQLite-specific methods:</p>
+<ul>
+<li>
+<p>INSERT</p>
+<ul>
+<li>
+<code>orAbort()</code> to add or remove an <code>OR ABORT</code> flag</li>
+<li>
+<code>orFail()</code> to add or remove an <code>OR FAIL</code> flag</li>
+<li>
+<code>orIgnore()</code> to add or remove an <code>OR IGNORE</code> flag</li>
+<li>
+<code>orReplace()</code> to add or remove an <code>OR REPLACE</code> flag</li>
+<li>
+<code>orRollback()</code> to add or remove an <code>OR ROLLBACK</code> flag</li>
+</ul>
+</li>
+<li>
+<p>UPDATE</p>
+<ul>
+<li>
+<code>orAbort()</code> to add or remove an <code>OR ABORT</code> flag</li>
+<li>
+<code>orFail()</code> to add or remove an <code>OR FAIL</code> flag</li>
+<li>
+<code>orIgnore()</code> to add or remove an <code>OR IGNORE</code> flag</li>
+<li>
+<code>orReplace()</code> to add or remove an <code>OR REPLACE</code> flag</li>
+<li>
+<code>orRollback()</code> to add or remove an <code>OR ROLLBACK</code> flag</li>
+<li>
+<code>orderBy()</code> to add an ORDER BY clause</li>
+<li>
+<code>limit()</code> to set a LIMIT count</li>
+<li>
+<code>offset()</code> to set an OFFSET count</li>
+</ul>
+</li>
+<li>
+<p>DELETE</p>
+<ul>
+<li>
+<code>orAbort()</code> to add or remove an <code>OR ABORT</code> flag</li>
+<li>
+<code>orFail()</code> to add or remove an <code>OR FAIL</code> flag</li>
+<li>
+<code>orIgnore()</code> to add or remove an <code>OR IGNORE</code> flag</li>
+<li>
+<code>orReplace()</code> to add or remove an <code>OR REPLACE</code> flag</li>
+<li>
+<code>orRollback()</code> to add or remove an <code>OR ROLLBACK</code> flag</li>
+<li>
+<code>orderBy()</code> to add an ORDER BY clause</li>
+<li>
+<code>limit()</code> to set a LIMIT count</li>
+<li>
+<code>offset()</code> to set an OFFSET count</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-13-8">2.13.8. Microsoft SQL Query Objects ('sqlsrv')</h2>
+<p>The 'sqlsrv' query objects have no additional methods specific to Microsoft SQL Server.</p>
+<p>In general, <code>limit()</code> and <code>offset()</code> with Microsoft SQL Server are best
+combined with <code>orderBy()</code>. The <code>limit()</code> and <code>offset()</code> methods on the
+Microsoft SQL Server query objects will generate sqlsrv-specific variations of
+<code>LIMIT ... OFFSET</code>:</p>
+<ul>
+<li>
+<p>If only a <code>LIMIT</code> is present, it will be translated as a <code>TOP</code> clause.</p>
+</li>
+<li>
+<p>If both <code>LIMIT</code> and <code>OFFSET</code> are present, it will be translated as an
+<code>OFFSET ... ROWS FETCH NEXT ... ROWS ONLY</code> clause. In this case there <em>must</em>
+be an <code>ORDER BY</code> clause, as the limiting clause is a sub-clause of <code>ORDER BY</code>.</p>
+</li>
+</ul>
+<h2 id="2-13-9">2.13.9. Table Prefixes</h2>
+<p>One frequently-requested feature for this package is support for "automatic
+table prefixes" on all queries.  This feature sounds great in theory, but in
+practice is it (1) difficult to implement well, and (2) even when implemented it
+turns out to be not as great as it seems in theory. This assessment is the
+result of the hard trials of experience. For those of you who want modifiable
+table prefixes, we suggest using constants with your table names prefixed as
+desired; as the prefixes change, you can then change your constants.</p>
+
+<nav class="navfooter">
+    <table>
+        <tr>
+            <td class="prev"><a href="/packages/2.x/Sql.html">Prev</a></td>
+            <td class="parent"><a href="/packages/2.x/">Up</a></td>
+            <td class="next"><a href="/packages/2.x/SqlSchema.html">Next</a></td>
+        </tr>
+        <tr>
+            <td class="prev">2.12. Aura.Sql</td>
+            <td class="parent">2. Version 2.x</td>
+            <td class="next">2.14. Aura.SqlSchema</td>
+        </tr>
+    </table>
+</nav>

@@ -1,0 +1,124 @@
+---
+layout: site
+active: packages
+title: Aura.SqlSchema
+---
+<script>hljs.initHighlightingOnLoad();</script>
+
+<nav class="navheader">
+    <table>
+        <tr>
+            <th colspan="3" class="curr">2.14. Aura.SqlSchema</th>
+        </tr>
+        <tr>
+            <td class="prev"><a href="/packages/2.x/SqlQuery.html">Aura.SqlQuery</a></td>
+            <td class="parent">2. Version 2.x</th>
+            <td class="next"><a href="/packages/2.x/View.html">Aura View</a></td>
+        </tr>
+    </table>
+</nav>
+<h1 id="2-14">2.14. Aura.SqlSchema</h1>
+<p>Provides facilities to read table names and table columns from a database
+using a <a href="http://php.net/PDO">PDO</a> connection.</p>
+<h2 id="2-14-1">2.14.1. Foreword</h2>
+<h3 id="2-14-1-1">2.14.1.1. Installation</h3>
+<p>This library requires PHP 5.3 or later; we recommend using the latest available version of PHP as a matter of principle. It has no userland dependencies.</p>
+<p>It is installable and autoloadable via Composer as <a href="https://packagist.org/packages/aura/sqlschema">aura/sqlschema</a>.</p>
+<p>Alternatively, <a href="https://github.com/auraphp/Aura.SqlSchema/releases">download a release</a> or clone this repository, then require or include its <em>autoload.php</em> file.</p>
+<h3 id="2-14-1-2">2.14.1.2. Quality</h3>
+<p><a href="https://scrutinizer-ci.com/g/auraphp/Aura.SqlSchema/"><img src="https://scrutinizer-ci.com/g/auraphp/Aura.SqlSchema/badges/quality-score.png?b=develop-2" alt="Scrutinizer Code Quality"></a>
+<a href="https://scrutinizer-ci.com/g/auraphp/Aura.SqlSchema/"><img src="https://scrutinizer-ci.com/g/auraphp/Aura.SqlSchema/badges/coverage.png?b=develop-2" alt="Code Coverage"></a>
+<a href="https://travis-ci.org/auraphp/Aura.SqlSchema"><img src="https://travis-ci.org/auraphp/Aura.SqlSchema.png?branch=develop-2" alt="Build Status"></a></p>
+<p>To run the unit tests at the command line, issue <code>phpunit</code> at the package root. (This requires <a href="http://phpunit.de/manual/">PHPUnit</a> to be available as <code>phpunit</code>.)</p>
+<p>This library attempts to comply with <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md">PSR-1</a>, <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md">PSR-2</a>, and <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md">PSR-4</a>. If
+you notice compliance oversights, please send a patch via pull request.</p>
+<h3 id="2-14-1-3">2.14.1.3. Community</h3>
+<p>To ask questions, provide feedback, or otherwise communicate with the Aura community, please join our <a href="http://groups.google.com/group/auraphp">Google Group</a>, follow <a href="http://twitter.com/auraphp">@auraphp on Twitter</a>, or chat with us on #auraphp on Freenode.</p>
+<h2 id="2-14-2">2.14.2. Getting Started</h2>
+<h3 id="2-14-2-1">2.14.2.1. Instantiation</h3>
+<p>Instantiate a driver-specific schema object with a matching
+<a href="http://php.net/PDO">PDO</a> instance:</p>
+<pre><code class="language-php">&lt;?php
+use Aura\SqlSchema\ColumnFactory;
+use Aura\SqlSchema\MysqlSchema; // for MySQL
+use Aura\SqlSchema\PgsqlSchema; // for PostgreSQL
+use Aura\SqlSchema\SqliteSchema; // for Sqlite
+use Aura\SqlSchema\SqlsrvSchema; // for Microsoft SQL Server
+use PDO;
+
+// a PDO connection
+$pdo = new PDO(...);
+
+// a column definition factory
+$column_factory = new ColumnFactory();
+
+// the schema discovery object
+$schema = new MysqlSchema($pdo, $column_factory);
+?&gt;
+</code></pre>
+<h3 id="2-14-2-2">2.14.2.2. Fetching Table Lists</h3>
+<p>To get a list of tables in the database, issue <code>fetchTableList()</code>:</p>
+<pre><code class="language-php">&lt;?php
+$tables = $schema-&gt;fetchTableList();
+foreach ($tables as $table) {
+    echo $table . PHP_EOL;
+}
+?&gt;
+</code></pre>
+<h3 id="2-14-2-3">2.14.2.3. Fetching Column Information</h3>
+<p>To get information about the columns in a table, issue <code>fetchTableCols()</code>:</p>
+<pre><code class="language-php">&lt;?php
+$cols = $schema-&gt;fetchTableCols('table_name');
+foreach ($cols as $name =&gt; $col) {
+    echo "Column $name is of type "
+       . $col-&gt;type
+       . " with a size of "
+       . $col-&gt;size
+       . PHP_EOL;
+}
+?&gt;
+</code></pre>
+<p>Each column description is a <code>Column</code> object with the following properties:</p>
+<ul>
+<li>
+<p><code>name</code>: (string) The column name</p>
+</li>
+<li>
+<p><code>type</code>: (string) The column data type.  Data types are as reported by the database.</p>
+</li>
+<li>
+<p><code>size</code>: (int) The column size.</p>
+</li>
+<li>
+<p><code>scale</code>: (int) The number of decimal places for the column, if any.</p>
+</li>
+<li>
+<p><code>notnull</code>: (bool) Is the column marked as <code>NOT NULL</code>?</p>
+</li>
+<li>
+<p><code>default</code>: (mixed) The default value for the column. Note that sometimes
+this will be <code>null</code> if the underlying database is going to set a timestamp
+automatically.</p>
+</li>
+<li>
+<p><code>autoinc</code>: (bool) Is the column auto-incremented?</p>
+</li>
+<li>
+<p><code>primary</code>: (bool) Is the column part of the primary key?</p>
+</li>
+</ul>
+
+<nav class="navfooter">
+    <table>
+        <tr>
+            <td class="prev"><a href="/packages/2.x/SqlQuery.html">Prev</a></td>
+            <td class="parent"><a href="/packages/2.x/">Up</a></td>
+            <td class="next"><a href="/packages/2.x/View.html">Next</a></td>
+        </tr>
+        <tr>
+            <td class="prev">2.13. Aura.SqlQuery</td>
+            <td class="parent">2. Version 2.x</td>
+            <td class="next">2.15. Aura View</td>
+        </tr>
+    </table>
+</nav>

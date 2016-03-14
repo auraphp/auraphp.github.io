@@ -1,0 +1,253 @@
+---
+layout: site
+active: packages
+title: Aura.Includer
+---
+<script>hljs.initHighlightingOnLoad();</script>
+
+<nav class="navheader">
+    <table>
+        <tr>
+            <th colspan="3" class="curr">2.9. Aura.Includer</th>
+        </tr>
+        <tr>
+            <td class="prev"><a href="/packages/2.x/Html.html">Aura.Html</a></td>
+            <td class="parent">2. Version 2.x</th>
+            <td class="next"><a href="/packages/2.x/Router.html">Aura.Router</a></td>
+        </tr>
+    </table>
+</nav>
+<h1 id="2-9">2.9. Aura.Includer</h1>
+<p>Provides a facility to include multiple files from specified directories, in
+order, with variables extracted into a limited include scope.</p>
+<h2 id="2-9-1">2.9.1. Foreword</h2>
+<h3 id="2-9-1-1">2.9.1.1. Installation</h3>
+<p>This library requires PHP 5.3 or later; we recommend using the latest available version of PHP as a matter of principle. It has no userland dependencies.</p>
+<p>It is installable and autoloadable via Composer as <a href="https://packagist.org/packages/aura/includer">aura/includer</a>.</p>
+<p>Alternatively, <a href="https://github.com/auraphp/Aura.Includer/releases">download a release</a> or clone this repository, then require or include its <em>autoload.php</em> file.</p>
+<h3 id="2-9-1-2">2.9.1.2. Quality</h3>
+<p><a href="https://scrutinizer-ci.com/g/auraphp/Aura.Includer/"><img src="https://scrutinizer-ci.com/g/auraphp/Aura.Includer/badges/quality-score.png?b=develop-2" alt="Scrutinizer Code Quality"></a>
+<a href="https://scrutinizer-ci.com/g/auraphp/Aura.Includer/"><img src="https://scrutinizer-ci.com/g/auraphp/Aura.Includer/badges/coverage.png?b=develop-2" alt="Code Coverage"></a>
+<a href="https://travis-ci.org/auraphp/Aura.Includer"><img src="https://travis-ci.org/auraphp/Aura.Includer.png?branch=develop-2" alt="Build Status"></a></p>
+<p>To run the unit tests at the command line, issue <code>phpunit</code> at the package root. (This requires <a href="http://phpunit.de/manual/">PHPUnit</a> to be available as <code>phpunit</code>.)</p>
+<p>This library attempts to comply with <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md">PSR-1</a>, <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md">PSR-2</a>, and <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md">PSR-4</a>. If
+you notice compliance oversights, please send a patch via pull request.</p>
+<h3 id="2-9-1-3">2.9.1.3. Community</h3>
+<p>To ask questions, provide feedback, or otherwise communicate with the Aura community, please join our <a href="http://groups.google.com/group/auraphp">Google Group</a>, follow <a href="http://twitter.com/auraphp">@auraphp on Twitter</a>, or chat with us on #auraphp on Freenode.</p>
+<h2 id="2-9-2">2.9.2. Getting Started</h2>
+<h3 id="2-9-2-1">2.9.2.1. The Example Scenario</h3>
+<p>Let's say you have a series of packages, modules, plugins, etc. To do its
+setup work, your framework or foundation needs to include certain files from
+each of thse modules, such as configuration or routing files.</p>
+<p>For our examples, the module directory structure will look like this:</p>
+<pre><code>modules/
+    foo/
+        autoload.php
+        config/
+            default.php
+            testing.php
+        routes.php
+    bar/
+        autoload.php
+    baz/
+        autoload.php
+        config/
+            default.php
+</code></pre>
+<p>An example <em>autoload.php</em> file might look like this:</p>
+<pre><code class="language-php">&lt;?php
+$loader-&gt;addNamespace('Module\Foo', __DIR__);
+?&gt;
+</code></pre>
+<p>An example config file might look like this:</p>
+<pre><code class="language-php">&lt;?php
+$config-&gt;setValue('db_host', 'localhost');
+?&gt;
+</code></pre>
+<p>An example <em>routes.php</em> file might look like this:</p>
+<pre><code class="language-php">&lt;?php
+$router-&gt;setPath('/blog/read/{id}', function ($id) {
+    // logic for the blog "read" action
+});
+?&gt;
+</code></pre>
+<p>Because of the shared variables being used in each file, we need them to be
+available, but we also want each file to be kept separate from the global
+scope.</p>
+<p>When including the configuration files, we need <em>both</em> the default
+<em>and</em> an additional "mode" for overrides to the defaults.</p>
+<p>If a file is missing, we can skip it without ill effect.</p>
+<h3 id="2-9-2-2">2.9.2.2. Accomplishing The Task</h3>
+<p>The <em>Includer</em> makes this scenario, and others like it, relatively easy.
+First, we instantiate the <em>Includer</em>:</p>
+<pre><code class="language-php">&lt;?php
+use Aura\Includer\Includer;
+
+$includer = new Includer;
+?&gt;
+</code></pre>
+<p>Next, we set the various directories we need to look through for files to
+include:</p>
+<pre><code class="language-php">&lt;?php
+$includer-&gt;setDirs(array(
+    '/path/to/modules/foo',
+    '/path/to/modules/bar',
+    '/path/to/modules/baz',
+));
+?&gt;
+</code></pre>
+<p>Then we set the files to look for in each of the directories (we will include
+both the default config and an override testing config):</p>
+<pre><code class="language-php">&lt;?php
+$includer-&gt;setFiles(array(
+    'autoload.php',
+    'config/default.php',
+    'config/testing.php',
+    'routes.php',
+));
+?&gt;
+</code></pre>
+<p>Because the files happen to need local variables, we create them first, then
+make them available to the include files:</p>
+<pre><code class="language-php">&lt;?php
+$loader = new Loader(...);
+$config = new Config(...);
+$router = new Router(...);
+
+$includer-&gt;setVars(array(
+    'loader' =&gt; $loader,
+    'config' =&gt; $config,
+    'router' =&gt; $router,
+));
+?&gt;
+</code></pre>
+<p>Finally, after setting up the directory, files, and variables, we call the
+<code>load()</code> method:</p>
+<pre><code class="language-php">&lt;?php
+$includer-&gt;load();
+?&gt;
+</code></pre>
+<p>This will create a separate scope for each include file, extract the
+variables into that limited scope, and then include the file within that limited
+scope. This means that no include file can affect the global state of the
+application, except through the injected variables.</p>
+<h3 id="2-9-2-3">2.9.2.3. Include Order</h3>
+<p>By default, the <em>Includer</em> will include files in "directory order", represented
+by the constant <code>Includer::DIR_ORDER</code>. This means that the <em>Includer</em> visits the
+first directory and attemps to load all the files noted in that directory,
+then proceeds to the next directory. Given our above example, the loading
+for <code>Includer::DIR_ORDER</code> would be:</p>
+<pre><code># first dir
+modules/foo/autoload.php
+modules/foo/config/default.php
+modules/foo/config/testing.php
+modules/foo/routes.php
+# second dir
+modules/bar/autoload.php
+# third dir
+modules/baz/autoload.php
+modules/baz/config/default.php
+</code></pre>
+<p>Alternatively, you can specify <code>load(Includer::FILE_ORDER)</code> to load files in
+"file order". This means that the loader attemps to load the first file from
+each directory, then the second file from each directory, and so on. Given our
+above example, the loading for <code>Includer::FILE_ORDER</code> would be:</p>
+<pre><code># first file
+modules/foo/autoload.php
+modules/bar/autoload.php
+modules/baz/autoload.php
+# second file
+modules/foo/config/default.php
+modules/baz/config/default.php
+# third file
+modules/foo/config/testing.php
+# fourth file
+modules/foo/routes.php
+</code></pre>
+<h3 id="2-9-2-4">2.9.2.4. Strict Processing</h3>
+<p>By default, the <em>Includer</em> is relatively strict about what path combinations
+it will actually include. It will convert the directory + file path using
+<a href="http://php.net/realpath">realpath()</a> to get the absolute path, and then check
+to see if that absolute path is in the same directory as specified in the
+<em>Includer</em>. (This is because it's possible to use <code>../</code> and symbolic links to
+point to file locations outside the specified directory.)  Files that are not
+readable, or that are outside the specified directory, will not be included.</p>
+<p>This type of processing is sometimes too strict; if you use symbolic links,
+for example, the strict processing may exclude those files. To turn off strict
+process, and only check if the file is readable, call <code>setStrict(false)</code>.</p>
+<pre><code class="language-php">&lt;?php
+// turn off strict processing
+$includer-&gt;setStrict(false);
+?&gt;
+</code></pre>
+<h3 id="2-9-2-5">2.9.2.5. Globbing</h3>
+<p>Under the hood, the <em>Includer</em> uses <a href="http://php.net/glob">glob()</a> to find
+files. This means you can use wildcards in the filenames to include files.</p>
+<pre><code class="language-php">&lt;?php
+// load all '.php' files in each of the directories
+$includer-&gt;addFiles(array(
+    'config/*.php',
+    'routes/*.php'
+);
+?&gt;
+</code></pre>
+<h3 id="2-9-2-6">2.9.2.6. Cache File</h3>
+<p>If you have dozens or scores of files that need to be included, that amount of
+file system activity can be a performance drain. To mitigate this, it can be
+useful to cache the files that would have been included.</p>
+<p>The <em>Includer</em> has a <code>read()</code> method to get the contents of the files to be
+included and concatenate them, returning the concatenated contents for you to
+cache in a file of your choosing. You can then point the <em>Includer</em> to that
+cached file; if it exists, the <em>Includer</em> will use that file instead of
+including the various different directory and file path combinations.</p>
+<p>First, we get the text of the concatenated files using the <code>read()</code> method.
+By default, it will concatenate the files in <code>Includer::DIR_ORDER</code>, but you
+can specify <code>read(Includer::FILE_ORDER)</code> if you prefer.</p>
+<pre><code class="language-php">&lt;?php
+$text = $includer-&gt;read();
+?&gt;
+</code></pre>
+<p>The <code>read()</code> method will get the contents of each file, trim it, strip any
+leading and trailing <code>&lt;?php ?&gt;</code> tags, replace the <code>__FILE__</code> constant with the
+equivalent string file name, and replace the <code>__DIR__</code> constant with the
+equivalent string directory name. (These replacements reflect the fact that
+the code is being copied from its original location to a new location, and
+the constants expect the value of thr original location.)</p>
+<p>Now that we have the contents of the files, we add an opening <code>&lt;?php</code> tag and
+the time we created it, and then save it as a cache file:</p>
+<pre><code class="language-php">&lt;?php
+$text = '&lt;?php /** '
+      . date('Y-m-d H:i:s')
+      . ' */' . PHP_EOL . PHP_EOL
+      . $text;
+
+file_put_contents('/path/to/cache_file.php', $text);
+?&gt;
+</code></pre>
+<p>Finally, we tell the <em>Includer</em> where the cache file is. If it is readable,
+the <em>Includer</em> will use it on <code>load()</code>; otherwise, it will include the various
+directory and file combinations.</p>
+<pre><code class="language-php">&lt;?php
+$includer-&gt;setCacheFile('/path/to/cache_file.php');
+$includer-&gt;load(); // uses the cache file if it exists
+?&gt;
+</code></pre>
+<h3 id="2-9-2-7">2.9.2.7. Debugging</h3>
+<p>Sometimes it will be useful to see what files the <em>Includer</em> actually found.
+Use the <code>getDebug()</code> method to return an array of information about what
+the <em>Includer</em> found, in what order, and in what mode.</p>
+
+<nav class="navfooter">
+    <table>
+        <tr>
+            <td class="prev"><a href="/packages/2.x/Html.html">Prev</a></td>
+            <td class="parent"><a href="/packages/2.x/">Up</a></td>
+            <td class="next"><a href="/packages/2.x/Router.html">Next</a></td>
+        </tr>
+        <tr>
+            <td class="prev">2.8. Aura.Html</td>
+            <td class="parent">2. Version 2.x</td>
+            <td class="next">2.10. Aura.Router</td>
+        </tr>
+    </table>
+</nav>

@@ -1,0 +1,64 @@
+---
+layout: site
+active: packages
+title: Constructor Injection
+---
+<script>hljs.initHighlightingOnLoad();</script>
+
+<nav class="navheader">
+    <table>
+        <tr>
+            <th colspan="3" class="curr">1.1.2. Constructor Injection</th>
+        </tr>
+        <tr>
+            <td class="prev"><a href="/packages/3.x/Di/getting-started.html">Getting Started</a></td>
+            <td class="parent">1.1. Aura.Di</th>
+            <td class="next"><a href="/packages/3.x/Di/setter.html">Setter Injection</a></td>
+        </tr>
+    </table>
+</nav>
+<h1 id="1-1-2">1.1.2. Constructor Injection</h1>
+<p>When we use the <em>Container</em> to instantiate a new object, we often need to inject (i.e., set) constructor parameter values in various ways.</p>
+<p>We can define default values for constructor parameters using the <code>$di-&gt;params</code> array on the <em>Container</em> before locking it.</p>
+<p>Let's look at a class that takes some constructor parameters:</p>
+<pre><code class="language-php">namespace Vendor\Package;
+
+class Example
+{
+    protected $foo;
+    protected $bar;
+    public function __construct($foo, $bar)
+    {
+        $this-&gt;foo = $foo;
+        $this-&gt;bar = $bar;
+    }
+}
+</code></pre>
+<p>If we were to try to create an object using <code>$di-&gt;newInstance('Vendor\Package\Example')</code>, the instantiation would fail. The <code>$foo</code> and <code>$bar</code> params are required, and the <em>Container</em> does not know what to use for that value.</p>
+<p>To remedy this, we tell the <em>Container</em> what values to use for each <em>Vendor\Package\Example</em> constructor parameter by name using the <code>$di-&gt;params</code> array:</p>
+<pre><code class="language-php">$di-&gt;params['Vendor\Package\Example']['foo'] = 'foo_value';
+$di-&gt;params['Vendor\Package\Example']['bar'] = 'bar_value';
+</code></pre>
+<p>We can also specify by position:</p>
+<pre><code class="language-php">$di-&gt;params['Vendor\Package\Example'][0] = 'foo_value';
+$di-&gt;params['Vendor\Package\Example'][1] = 'bar_value';
+</code></pre>
+<p>Once all the params are set, we create an object with <code>$di-&gt;newInstance('Vendor\Package\Example')</code>, the instantiation will work correctly. Each time we create an instance through the <em>Container</em>, it will apply the <code>$di-&gt;params</code> values for the matching class.</p>
+<blockquote>
+<p>N.b.: If you try to access <code>$params</code> after calling <code>newInstance()</code> (or after locking the <em>Container</em> using the <code>lock()</code> method) the <em>Container</em> will throw an exception. This is to prevent modifiying the params after objects have been created. Thus, be sure to set up all params for all objects before creating an object.</p>
+</blockquote>
+
+<nav class="navfooter">
+    <table>
+        <tr>
+            <td class="prev"><a href="/packages/3.x/Di/getting-started.html">Prev</a></td>
+            <td class="parent"><a href="/packages/3.x/Di/">Up</a></td>
+            <td class="next"><a href="/packages/3.x/Di/setter.html">Next</a></td>
+        </tr>
+        <tr>
+            <td class="prev">1.1.1. Getting Started</td>
+            <td class="parent">1.1. Aura.Di</td>
+            <td class="next">1.1.3. Setter Injection</td>
+        </tr>
+    </table>
+</nav>

@@ -1,0 +1,138 @@
+---
+layout: site
+active: packages
+title: Aura.Web
+---
+<script>hljs.initHighlightingOnLoad();</script>
+
+<nav class="navheader">
+    <table>
+        <tr>
+            <th colspan="3" class="curr">2.16. Aura.Web</th>
+        </tr>
+        <tr>
+            <td class="prev"><a href="/packages/2.x/View.html">Aura View</a></td>
+            <td class="parent">2. Version 2.x</th>
+            <td class="next"></td>
+        </tr>
+    </table>
+</nav>
+<h1 id="2-16">2.16. Aura.Web</h1>
+<p>Provides web <em>Request</em> and <em>Response</em> objects for use by web controllers and
+actions. These are representations of the PHP web environment, not HTTP request
+and response objects proper.</p>
+<h2 id="2-16-1">2.16.1. Foreword</h2>
+<h3 id="2-16-1-1">2.16.1.1. Installation</h3>
+<p>This library requires PHP 5.3 or later; we recommend using the latest available version of PHP as a matter of principle. It has no userland dependencies.</p>
+<p>It is installable and autoloadable via Composer as <a href="https://packagist.org/packages/aura/web">aura/web</a>.</p>
+<p>Alternatively, <a href="https://github.com/auraphp/Aura.Web/releases">download a release</a> or clone this repository, then require or include its <em>autoload.php</em> file.</p>
+<h3 id="2-16-1-2">2.16.1.2. Quality</h3>
+<p><a href="https://scrutinizer-ci.com/g/auraphp/Aura.Web/"><img src="https://scrutinizer-ci.com/g/auraphp/Aura.Web/badges/quality-score.png?b=develop-2" alt="Scrutinizer Code Quality"></a>
+<a href="https://scrutinizer-ci.com/g/auraphp/Aura.Web/"><img src="https://scrutinizer-ci.com/g/auraphp/Aura.Web/badges/coverage.png?b=develop-2" alt="Code Coverage"></a>
+<a href="https://travis-ci.org/auraphp/Aura.Web"><img src="https://travis-ci.org/auraphp/Aura.Web.png?branch=develop-2" alt="Build Status"></a></p>
+<p>To run the unit tests at the command line, issue <code>composer install</code> and then <code>phpunit</code> at the package root. This requires <a href="http://getcomposer.org/">Composer</a> to be available as <code>composer</code>, and <a href="http://phpunit.de/manual/">PHPUnit</a> to be available as <code>phpunit</code>.</p>
+<p>This library attempts to comply with <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md">PSR-1</a>, <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md">PSR-2</a>, and <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md">PSR-4</a>. If
+you notice compliance oversights, please send a patch via pull request.</p>
+<h3 id="2-16-1-3">2.16.1.3. Community</h3>
+<p>To ask questions, provide feedback, or otherwise communicate with the Aura community, please join our <a href="http://groups.google.com/group/auraphp">Google Group</a>, follow <a href="http://twitter.com/auraphp">@auraphp on Twitter</a>, or chat with us on #auraphp on Freenode.</p>
+<h2 id="2-16-2">2.16.2. Getting Started</h2>
+<h3 id="2-16-2-1">2.16.2.1. Instantiation</h3>
+<p>First, instantiate a <em>WebFactory</em> object, then use it to create <em>Request</em> and
+<em>Response</em> objects.</p>
+<pre><code class="language-php">&lt;?php
+use Aura\Web\WebFactory;
+
+$web_factory = new WebFactory($GLOBALS);
+$request = $web_factory-&gt;newRequest();
+$response = $web_factory-&gt;newResponse();
+?&gt;
+</code></pre>
+<p>Note that if <code>jit-globals</code> is turned on, merely passing <code>$GLOBALS</code> will not
+work properly. In this case, use <code>compact()</code> to pass the needed values. For
+example:</p>
+<pre><code class="language-php">&lt;?php
+use Aura\Web\WebFactory;
+
+$web_factory = new WebFactory(array(
+    '_ENV' =&gt; $_ENV,
+    '_GET' =&gt; $_GET,
+    '_POST' =&gt; $_POST,
+    '_COOKIE' =&gt; $_COOKIE,
+    '_SERVER' =&gt; $_SERVER
+));
+$request = $web_factory-&gt;newRequest();
+$response = $web_factory-&gt;newResponse();
+?&gt;
+</code></pre>
+<h3 id="2-16-2-2">2.16.2.2. Request and Response Objects</h3>
+<p>Because each object contains so much functionality, we have split up the
+documentation into a <a href="README-REQUEST.md">Request</a> page and a
+<a href="README-RESPONSE.md">Response</a> page.</p>
+<p>By way of overview, the <em>Request</em> object has these sub-objects ...</p>
+<ul>
+<li>
+<a href="README-REQUEST.md#superglobals">$request-&gt;cookies</a> for $_COOKIES</li>
+<li>
+<a href="README-REQUEST.md#superglobals">$request-&gt;env</a> for $_ENV</li>
+<li>
+<a href="README-REQUEST.md#superglobals">$request-&gt;files</a> for $_FILES</li>
+<li>
+<a href="README-REQUEST.md#superglobals">$request-&gt;post</a> for $_POST</li>
+<li>
+<a href="README-REQUEST.md#superglobals">$request-&gt;query</a> for $_GET</li>
+<li>
+<a href="README-REQUEST.md#superglobals">$request-&gt;server</a> for $_SERVER</li>
+<li>
+<a href="README-REQUEST.md#client">$request-&gt;client</a> for the client making the
+request</li>
+<li>
+<a href="README-REQUEST.md#content">$request-&gt;content</a> for the raw body of the
+request</li>
+<li>
+<a href="README-REQUEST.md#headers">$request-&gt;headers</a> for the request headers</li>
+<li>
+<a href="README-REQUEST.md#method">$request-&gt;method</a> for the request method</li>
+<li>
+<a href="README-REQUEST.md#params">$request-&gt;params</a> for path-info parameters</li>
+<li>
+<a href="README-REQUEST.md#url">$request-&gt;url</a> for the request URL</li>
+</ul>
+<p>... and the <em>Response</em> object has these sub-objects:</p>
+<ul>
+<li>
+<a href="README-RESPONSE.md#status">$response-&gt;status</a> for the status code, status
+phrase, and HTTP version</li>
+<li>
+<a href="README-RESPONSE.md#headers">$response-&gt;headers</a> for non-cookie headers</li>
+<li>
+<a href="README-RESPONSE.md#cookies">$response-&gt;cookies</a> for cookie headers</li>
+<li>
+<a href="README-RESPONSE.md#content">$response-&gt;content</a> for describing the response
+content, and for convenience methods related to content type, charset,
+disposition, and filename</li>
+<li>
+<a href="README-RESPONSE.md#cache">$response-&gt;cache</a> for convenience methods related
+to cache headers</li>
+<li>
+<a href="README-RESPONSE.md#redirect">$response-&gt;redirect</a> for convenience methods
+related to Location and Status</li>
+</ul>
+<p>Once you have built a <em>Response</em> you can send it with any HTTP mechanism you
+prefer, <a href="README-RESPONSE.md#sending-the-response">including plain PHP</a>.</p>
+<p>Be sure to read the <a href="README-REQUEST.md">Request</a> and
+<a href="README-RESPONSE.md">Response</a> pages for more detailed information.</p>
+
+<nav class="navfooter">
+    <table>
+        <tr>
+            <td class="prev"><a href="/packages/2.x/View.html">Prev</a></td>
+            <td class="parent"><a href="/packages/2.x/">Up</a></td>
+            <td class="next"></td>
+        </tr>
+        <tr>
+            <td class="prev">2.15. Aura View</td>
+            <td class="parent">2. Version 2.x</td>
+            <td class="next"></td>
+        </tr>
+    </table>
+</nav>

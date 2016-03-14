@@ -1,0 +1,22 @@
+{
+    "title": "Version 2.x",
+    "content": [
+        {"Accept": "https://raw.githubusercontent.com/auraphp/Aura.Accept/2.x/README.md"},
+        {"Auth": "https://raw.githubusercontent.com/auraphp/Aura.Auth/2.x/README.md"},
+        {"Autoload": "https://raw.githubusercontent.com/auraphp/Aura.Autoload/2.x/README.md"},
+        {"Cli": "https://raw.githubusercontent.com/auraphp/Aura.Cli/2.x/README.md"},
+        {"Di": "https://raw.githubusercontent.com/auraphp/Aura.Di/2.x/README.md"},
+        {"Dispatcher": "https://raw.githubusercontent.com/auraphp/Aura.Dispatcher/2.x/README.md"},
+        {"Filter": "https://raw.githubusercontent.com/auraphp/Aura.Filter/2.x/README.md"},
+        {"Html": "https://raw.githubusercontent.com/auraphp/Aura.Html/2.x/README.md"},
+        {"Includer": "https://raw.githubusercontent.com/auraphp/Aura.Includer/2.x/README.md"},
+        {"Router": "https://raw.githubusercontent.com/auraphp/Aura.Router/2.x/README.md"},
+        {"Session": "https://raw.githubusercontent.com/auraphp/Aura.Session/2.x/README.md"},
+        {"Sql": "https://raw.githubusercontent.com/auraphp/Aura.Sql/2.x/README.md"},
+        {"SqlQuery": "https://raw.githubusercontent.com/auraphp/Aura.SqlQuery/2.x/README.md"},
+        {"SqlSchema": "https://raw.githubusercontent.com/auraphp/Aura.SqlSchema/2.x/README.md"},
+        {"View": "https://raw.githubusercontent.com/auraphp/Aura.View/2.x/README.md"},
+        {"Web": "https://raw.githubusercontent.com/auraphp/Aura.Web/2.x/README.md"}
+    ],
+    "tocDepth": 1
+}

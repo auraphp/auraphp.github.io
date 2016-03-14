@@ -1,0 +1,730 @@
+---
+layout: site
+active: packages
+title: Aura.Router
+---
+<script>hljs.initHighlightingOnLoad();</script>
+
+<nav class="navheader">
+    <table>
+        <tr>
+            <th colspan="3" class="curr">2.10. Aura.Router</th>
+        </tr>
+        <tr>
+            <td class="prev"><a href="/packages/2.x/Includer.html">Aura.Includer</a></td>
+            <td class="parent">2. Version 2.x</th>
+            <td class="next"><a href="/packages/2.x/Session.html">Aura Session</a></td>
+        </tr>
+    </table>
+</nav>
+<h1 id="2-10">2.10. Aura.Router</h1>
+<p>Provides a web router implementation: given a URL path and a copy of
+<code>$_SERVER</code>, it will extract path-info and <code>$_SERVER</code> values for a specific
+route.</p>
+<p>This package does not provide a dispatching mechanism. Your application is
+expected to take the information provided by the matching route and dispatch
+it on its own. For one possible dispatch system, please see
+<a href="https://github.com/auraphp/Aura.Dispatcher">Aura.Dispatcher</a>.</p>
+<h2 id="2-10-1">2.10.1. Foreword</h2>
+<h3 id="2-10-1-1">2.10.1.1. Installation</h3>
+<p>This library requires PHP 5.3 or later; we recommend using the latest available version of PHP as a matter of principle. It has no userland dependencies.</p>
+<p>It is installable and autoloadable via Composer as <a href="https://packagist.org/packages/aura/router">aura/router</a>.</p>
+<p>Alternatively, <a href="https://github.com/auraphp/Aura.Router/releases">download a release</a> or clone this repository, then require or include its <em>autoload.php</em> file.</p>
+<h3 id="2-10-1-2">2.10.1.2. Quality</h3>
+<p><a href="https://scrutinizer-ci.com/g/auraphp/Aura.Router/"><img src="https://scrutinizer-ci.com/g/auraphp/Aura.Router/badges/quality-score.png?b=develop-2" alt="Scrutinizer Code Quality"></a>
+<a href="https://scrutinizer-ci.com/g/auraphp/Aura.Router/"><img src="https://scrutinizer-ci.com/g/auraphp/Aura.Router/badges/coverage.png?b=develop-2" alt="Code Coverage"></a>
+<a href="https://travis-ci.org/auraphp/Aura.Router"><img src="https://travis-ci.org/auraphp/Aura.Router.png?branch=develop-2" alt="Build Status"></a></p>
+<p>To run the unit tests at the command line, issue <code>composer install</code> and then <code>phpunit</code> at the package root. This requires <a href="http://getcomposer.org/">Composer</a> to be available as <code>composer</code>, and <a href="http://phpunit.de/manual/">PHPUnit</a> to be available as <code>phpunit</code>.</p>
+<p>This library attempts to comply with <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md">PSR-1</a>, <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md">PSR-2</a>, and <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md">PSR-4</a>. If
+you notice compliance oversights, please send a patch via pull request.</p>
+<h3 id="2-10-1-3">2.10.1.3. Community</h3>
+<p>To ask questions, provide feedback, or otherwise communicate with the Aura community, please join our <a href="http://groups.google.com/group/auraphp">Google Group</a>, follow <a href="http://twitter.com/auraphp">@auraphp on Twitter</a>, or chat with us on #auraphp on Freenode.</p>
+<h2 id="2-10-2">2.10.2. Getting Started</h2>
+<h3 id="2-10-2-1">2.10.2.1. Instantiation</h3>
+<p>Instantiate a <em>Router</em> like so:</p>
+<pre><code class="language-php">&lt;?php
+use Aura\Router\RouterFactory;
+
+$router_factory = new RouterFactory;
+$router = $router_factory-&gt;newInstance();
+?&gt;
+</code></pre>
+<p>You will need to place the <em>Router</em> where you can get to it from your
+application; e.g., in a registry, a service locator, or a dependency injection
+container. One such system is the <a href="https://github.com/auraphp/Aura.Di">Aura.Di</a>
+package.</p>
+<h3 id="2-10-2-2">2.10.2.2. Adding A Route</h3>
+<p>To create a route, call the <code>add()</code> method on the <em>Router</em>. Named path-info
+params are placed inside braces in the path.</p>
+<pre><code class="language-php">&lt;?php
+// add a simple named route without params
+$router-&gt;add('home', '/');
+
+// add a simple unnamed route with params
+$router-&gt;add(null, '/{controller}/{action}/{id}');
+
+// add a named route with an extended specification
+$router-&gt;add('blog.read', '/blog/read/{id}{format}')
+    -&gt;addTokens(array(
+        'id'     =&gt; '\d+',
+        'format' =&gt; '(\.[^/]+)?',
+    ))
+    -&gt;addValues(array(
+        'action'     =&gt; 'BlogReadAction',
+        'format'     =&gt; '.html',
+    ));
+?&gt;
+</code></pre>
+<p>You can create a route that matches only against a particular HTTP method
+as well. The following <em>Router</em> methods are identical to <code>add()</code> but require
+the related HTTP method:</p>
+<ul>
+<li>
+<code>$router-&gt;addHead()</code>
+</li>
+<li>
+<code>$router-&gt;addGet()</code>
+</li>
+<li>
+<code>$router-&gt;addDelete()</code>
+</li>
+<li>
+<code>$router-&gt;addOptions()</code>
+</li>
+<li>
+<code>$router-&gt;addPatch()</code>
+</li>
+<li>
+<code>$router-&gt;addPost()</code>
+</li>
+<li>
+<code>$router-&gt;addPut()</code>
+</li>
+</ul>
+<h3 id="2-10-2-3">2.10.2.3. Matching A Route</h3>
+<p>To match a URL path against your routes, call <code>match()</code> with a path string
+and the <code>$_SERVER</code> values.</p>
+<pre><code class="language-php">&lt;?php
+// get the incoming request URL path
+$path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+
+// get the route based on the path and server
+$route = $router-&gt;match($path, $_SERVER);
+?&gt;
+</code></pre>
+<p>The <code>match()</code> method does not parse the URL or use <code>$_SERVER</code> internally. This
+is because different systems may have different ways of representing that
+information; e.g., through a URL object or a context object. As long as you
+can pass the string path and a server array, you can use the <em>Router</em> in your
+application foundation or framework.</p>
+<p>The returned <code>$route</code> object will contain, among other things, a <code>$params</code>
+array with values for each of the parameters identified by the route path. For
+example, matching a route with the path <code>/{controller}/{action}/{id}</code> will
+populate the <code>$route-&gt;params</code> array with <code>controller</code>, <code>action</code>, and <code>id</code>
+keys.</p>
+<h3 id="2-10-2-4">2.10.2.4. Handling Failure To Match</h3>
+<p>When <code>$router-&gt;match()</code> returns empty, it means there was no matching route for the URL path and server variables. However, we can still discover something about the matching process; in particular, whether the failure is related to an HTTP method or an <code>Accept</code> header.</p>
+<pre><code class="language-php">&lt;?php
+// get the first of the best-available non-matched routes
+$failure = $router-&gt;getFailedRoute();
+
+// inspect the failed route
+if ($failure-&gt;failedMethod()) {
+    // the route failed on the allowed HTTP methods.
+    // this is a "405 Method Not Allowed" error.
+} elseif ($failure-&gt;failedAccept()) {
+    // the route failed on the available content-types.
+    // this is a "406 Not Acceptable" error.
+} else {
+    // there was some other unknown matching problem.
+}
+?&gt;
+</code></pre>
+<h3 id="2-10-2-5">2.10.2.5. Dispatching A Route</h3>
+<p>Now that you have route, you can dispatch it. The following is what a
+foundation or framework system might do with a route to invoke a page
+controller.</p>
+<pre><code class="language-php">&lt;?php
+if (! $route) {
+    // no route object was returned
+    echo "No application route was found for that URL path.";
+    exit();
+}
+
+// does the route indicate an action?
+if (isset($route-&gt;params['action'])) {
+    // take the action class directly from the route
+    $action_class = $route-&gt;params['action'];
+} else {
+    // use a default action class
+    $action_class = 'IndexAction';
+}
+
+// instantiate the action class
+$action = new $action_class();
+
+// call the __invoke() method on the action
+// class using the route params
+echo $action-&gt;__invoke($route-&gt;params);
+?&gt;
+</code></pre>
+<p>Again, note that the <em>Router</em> will not dispatch for you; the above is provided
+as a naive example only to show how to use route values.  For a more complex
+dispatching system, try <a href="https://github.com/auraphp/Aura.Dispatcher">Aura.Dispatcher</a>.</p>
+<h3 id="2-10-2-6">2.10.2.6. Generating A Route Path</h3>
+<p>To generate a URL path from a route so that you can create links, call
+<code>generate()</code> on the <em>Router</em> and provide the route name with optional data.</p>
+<pre><code class="language-php">&lt;?php
+// $path =&gt; "/blog/read/42.atom"
+$path = $router-&gt;generate('read', array(
+    'id' =&gt; 42,
+    'format' =&gt; '.atom',
+));
+
+$href = htmlspecialchars($path, ENT_QUOTES, 'UTF-8');
+echo '&lt;a href="' . $href .'"&gt;Atom feed for this blog entry&lt;/a&gt;';
+?&gt;
+</code></pre>
+<p>The <em>Router</em> does not do dynamic matching of routes; a route must have a name
+to be able to generate a path from it.</p>
+<p>The example shows that passing an array of data as the second parameter will
+cause that data to be interpolated into the route path. This data array is
+optional. If there are path params without matching data keys, those params
+will <em>not</em> be replaced, leaving the <code>{param}</code> token in the path. If there are
+data keys without matching params, those values will not be added to the path.</p>
+<h2 id="2-10-3">2.10.3. Advanced Usage</h2>
+<h3 id="2-10-3-1">2.10.3.1. Extended Route Specification</h3>
+<p>You can extend a route specification with the following methods:</p>
+<ul>
+<li>
+<p><code>addTokens()</code> -- Adds regular expression subpatterns that params must
+match.</p>
+<pre><code>  addTokens(array(
+      'id' =&gt; '\d+',
+  ))
+</code></pre>
+<p>Note that <code>setTokens()</code> is also available, but this will replace any
+previous subpatterns entirely, instead of merging with the existing
+subpatterns.</p>
+</li>
+<li>
+<p><code>addServer()</code> -- Adds regular expressions that server values must
+match.</p>
+<pre><code>  addServer(array(
+      'REQUEST_METHOD' =&gt; 'PUT|PATCH',
+  ))
+</code></pre>
+<p>Note that <code>setServer()</code> is also available, but this will replace any
+previous expressions entirely, instead of merging with the existing
+expressions.</p>
+</li>
+<li>
+<p><code>addAccept()</code> -- Adds a list of content types that the route responds to. Note that this is <em>not</em> content negotiation per se, only a "sanity check" to make sure the route can eventually provide the content types specified by the request.</p>
+<pre><code>  addAccept(array(
+      'application/json',
+      'application/xml',
+      'text/csv',
+  ));
+</code></pre>
+<p>Note that <code>setAccept()</code> is also available, but this will replace any
+previous content types entirely, instead of merging with the existing
+types.</p>
+</li>
+<li>
+<p><code>addValues()</code> -- Adds default values for the params.</p>
+<pre><code>  addValues(array(
+      'year' =&gt; '1979',
+      'month' =&gt; '11',
+      'day' =&gt; '07'
+  ))
+</code></pre>
+<p>Note that <code>setValues()</code> is also available, but this will replace any
+previous default values entirely, instead of merging with the existing
+default value.</p>
+</li>
+<li>
+<p><code>setSecure()</code> -- When <code>true</code> the <code>$server['HTTPS']</code> value must be on, or the
+request must be on port 443; when <code>false</code>, neither of those must be in
+place.</p>
+</li>
+<li>
+<p><code>setWildcard()</code> -- Sets the name of a wildcard param; this is where
+arbitrary slash-separated values appearing after the route path will be
+stored.</p>
+</li>
+<li>
+<p><code>setRoutable()</code> -- When <code>false</code> the route will be used only for generating
+paths, not for matching (<code>true</code> by default).</p>
+</li>
+<li>
+<p><code>setIsMatchCallable()</code> -- A custom callable with the signature
+<code>function(array $server, \ArrayObject $matches)</code> that returns true on a
+match, or false if not. This allows developers to build any kind of matching
+logic for the route, and to change the <code>$matches</code> for param values from the
+path.</p>
+</li>
+<li>
+<p><code>setGenerateCallable()</code> -- A custom callable with the signature
+<code>function(\ArrayObject $data)</code>. This allows developers to modify the data
+for path interpolation.</p>
+</li>
+</ul>
+<p>Here is a full extended route specification named <code>read</code>:</p>
+<pre><code class="language-php">&lt;?php
+$router-&gt;add('blog.read', '/blog/read/{id}{format}')
+    -&gt;addTokens(array(
+        'id' =&gt; '\d+',
+        'format' =&gt; '(\.[^/]+)?',
+        'REQUEST_METHOD' =&gt; 'GET|POST',
+    ))
+    -&gt;addValues(array(
+        'id' =&gt; 1,
+        'format' =&gt; '.html',
+    ))
+    -&gt;setSecure(false)
+    -&gt;setRoutable(false)
+    -&gt;setIsMatchCallable(function(array $server, \ArrayObject $matches) {
+
+        // disallow matching if referred from example.com
+        if ($server['HTTP_REFERER'] == 'http://example.com') {
+            return false;
+        }
+
+        // add the referer from $server to the match values
+        $matches['referer'] = $server['HTTP_REFERER'];
+        return true;
+
+    })
+    -&gt;setGenerateCallable(function (\ArrayObject $data) {
+        $data['foo'] = 'bar';
+    });
+?&gt;
+</code></pre>
+<h3 id="2-10-3-2">2.10.3.2. Default Route Specifications</h3>
+<p>You can set the default route specifications with the following <em>Router</em>
+methods; the values will apply to all routes added thereafter.</p>
+<pre><code class="language-php">&lt;?php
+// add to the default 'tokens' expressions; setTokens() is also available
+$router-&gt;addTokens(array(
+    'id' =&gt; '\d+',
+));
+
+// add to the default 'server' expressions; setServer() is also available
+$router-&gt;addServer(array(
+    'REQUEST_METHOD' =&gt; 'PUT|PATCH',
+));
+
+// add to the default param values; setValues() is also available
+$router-&gt;addValues(array(
+    'format' =&gt; null,
+));
+
+// set the default 'secure' value
+$router-&gt;setSecure(true);
+
+// set the default wildcard param name
+$router-&gt;setWildcard('other');
+
+// set the default 'routable' flag
+$router-&gt;setRoutable(false);
+
+// set the default 'isMatch()' callable
+$router-&gt;setIsMatchCallable(function (...) { ... });
+
+// set the default 'generate()' callable
+$router-&gt;setGenerateCallable(function (...) { ... });
+?&gt;
+</code></pre>
+<h3 id="2-10-3-3">2.10.3.3. Simple Routes</h3>
+<p>You don't need to specify an extended route specification. With the following
+simple route ...</p>
+<pre><code class="language-php">&lt;?php
+$router-&gt;add('archive', '/archive/{year}/{month}/{day}');
+?&gt;
+</code></pre>
+<p>... the <em>Router</em> will use a default subpattern that matches everything except
+slashes for the path params. Thus, the above simple route is equivalent to the
+following extended route:</p>
+<pre><code class="language-php">&lt;?php
+$router-&gt;add('archive', '/archive/{year}/{month}/{day}')
+    -&gt;setValues(array(
+        'action' =&gt; 'archive',
+    ))
+    -&gt;addTokens(array(
+        'year'  =&gt; '[^/]+',
+        'month' =&gt; '[^/]+',
+        'day'   =&gt; '[^/]+',
+    ));
+?&gt;
+</code></pre>
+<h3 id="2-10-3-4">2.10.3.4. Automatic Params</h3>
+<p>The <em>Router</em> will automatically populate values for the <code>action</code>
+route param if one is not set manually.</p>
+<pre><code class="language-php">&lt;?php
+// ['action' =&gt; 'foo.bar'] because it has not been set otherwise
+$router-&gt;add('foo.bar', '/path/to/bar');
+
+// ['action' =&gt; 'zim'] because we add it explicitly
+$router-&gt;add('foo.dib', '/path/to/dib')
+       -&gt;addValues(array('action' =&gt; 'zim'));
+
+// the 'action' param here will be whatever the path value for {action} is
+$router-&gt;add('/path/to/{action}');
+?&gt;
+</code></pre>
+<h3 id="2-10-3-5">2.10.3.5. Optional Params</h3>
+<p>Sometimes it is useful to have a route with optional named params. None, some,
+or all of the optional params may be present, and the route will still match.</p>
+<p>To specify optional params, use the notation <code>{/param1,param2,param3}</code> in the
+path. For example:</p>
+<pre><code class="language-php">&lt;?php
+$router-&gt;add('archive', '/archive{/year,month,day}')
+    -&gt;addTokens(array(
+        'year'  =&gt; '\d{4}',
+        'month' =&gt; '\d{2}',
+        'day'   =&gt; '\d{2}'
+    ));
+?&gt;
+</code></pre>
+<blockquote>
+<p>N.b.: The leading slash separator is inside the params token, not outside.</p>
+</blockquote>
+<p>With that, the following routes will all match the 'archive' route, and will
+set the appropriate values:</p>
+<pre><code>/archive
+/archive/1979
+/archive/1979/11
+/archive/1979/11/07
+</code></pre>
+<p>Optional params are <em>sequentially</em> optional. This means that, in the above
+example, you cannot have a "day" without a "month", and you cannot have a
+"month" without a "year".</p>
+<p>Only one set of optional params per path is recognized by the <em>Router</em>.</p>
+<p>Optional params belong at the end of a route path; placing them elsewhere may
+result in unexpected behavior.</p>
+<p>If you <code>generate()</code> a link with optional params, the params will be filled in
+if they are present in the data for the link. Remember, the optional params
+are <em>sequentially</em> optional, so the params will not be filled in after the
+first missing one:</p>
+<pre><code class="language-php">&lt;?php
+$router-&gt;add('archive', '/archive{/year,month,day}')
+    -&gt;addTokens(array(
+        'year'  =&gt; '\d{4}',
+        'month' =&gt; '\d{2}',
+        'day'   =&gt; '\d{2}'
+    ));
+
+$link = $router-&gt;generate('archive', array(
+    'year' =&gt; '1979',
+    'month' =&gt; '11',
+)); // "/archive/1979/11"
+?&gt;
+</code></pre>
+<p>Similarly, optional params can be used as a generic catchall route:</p>
+<pre><code class="language-php">&lt;?php
+$router-&gt;add('generic', '{/controller,action,id}')
+    -&gt;setValues(array(
+        'controller' =&gt; 'index',
+        'action' =&gt; 'browse',
+        'id' =&gt; null,
+    );
+?&gt;
+</code></pre>
+<p>That will match these paths, with these param values:</p>
+<pre><code>/           : 'controller' =&gt; 'index', 'action' =&gt; 'browse', 'id' =&gt; null
+/foo        : 'controller' =&gt; 'foo',   'action' =&gt; 'browse', 'id' =&gt; null
+/foo/bar    : 'controller' =&gt; 'foo',   'action' =&gt; 'bar',    'id' =&gt; null
+/foo/bar/42 : 'controller' =&gt; 'foo',   'action' =&gt; 'bar',    'id' =&gt; '42'
+</code></pre>
+<h3 id="2-10-3-6">2.10.3.6. Wildcard Params</h3>
+<p>Sometimes it is useful to allow the trailing part of the path be anything at
+all. To allow arbitrary trailing params on a route, extend the route
+definition with <code>setWildcard()</code> to specify param name under which the
+arbitrary trailing param values will be stored.</p>
+<pre><code class="language-php">&lt;?php
+$router-&gt;add('wild_post', '/post/{id}')
+    -&gt;setWildcard('other');
+
+// this matches, with the following values
+$route = $router-&gt;match('/post/88/foo/bar/baz', $_SERVER);
+// $route-&gt;params['id'] = 88;
+// $route-&gt;params['other'] = array('foo', 'bar', 'baz')
+
+// this also matches, with the following values; note the trailing slash
+$route = $router-&gt;match('/post/88/', $_SERVER);
+// $route-&gt;params['id'] = 88;
+// $route-&gt;params['other'] = array();
+
+// this also matches, with the following values; note the missing slash
+$route = $router-&gt;match('/post/88', $_SERVER);
+// $route-&gt;params['id'] = 88;
+// $route-&gt;params['other'] = array();
+?&gt;
+</code></pre>
+<p>If you <code>generate()</code> a link with wildcard params, the wildcard key in the data
+will be used for the trailing arbitrary param values:</p>
+<pre><code class="language-php">&lt;?php
+$router-&gt;add('wild_post', '/post/{id}')
+    -&gt;setWildcard('other');
+
+$link = $router-&gt;generate('wild_post', array(
+    'id' =&gt; '88',
+    'other' =&gt; array(
+        'foo',
+        'bar',
+        'baz',
+    );
+)); // "/post/88/foo/bar/baz"
+?&gt;
+</code></pre>
+<h3 id="2-10-3-7">2.10.3.7. Attaching Route Groups</h3>
+<p>You can add a series of routes all at once under a single "mount point" in
+your application. For example, if you want all your blog-related routes to be
+mounted at <code>/blog</code> in your application, you can do this:</p>
+<pre><code class="language-php">&lt;?php
+$name_prefix = 'blog';
+$path_prefix = '/blog';
+
+$router-&gt;attach($name_prefix, $path_prefix, function ($router) {
+
+    $router-&gt;add('browse', '{format}')
+        -&gt;addTokens(array(
+            'format' =&gt; '(\.json|\.atom|\.html)?'
+        ))
+        -&gt;addValues(array(
+            'format' =&gt; '.html',
+        ));
+
+    $router-&gt;add('read', '/{id}{format}')
+        -&gt;addTokens(array(
+            'id'     =&gt; '\d+',
+            'format' =&gt; '(\.json|\.atom|\.html)?'
+        ))
+        -&gt;addValues(array(
+            'format' =&gt; '.html',
+        ));
+
+    $router-&gt;add('edit', '/{id}/edit{format}')
+        -&gt;addTokens(array(
+            'id' =&gt; '\d+',
+            'format' =&gt; '(\.json|\.atom|\.html)?'
+        ))
+        -&gt;addValues(array(
+            'format' =&gt; '.html',
+        ));
+});
+?&gt;
+</code></pre>
+<p>Each of the route names will be prefixed with 'blog.', and each of the route paths
+will be prefixed with <code>/blog</code>, so the effective route names and paths become:</p>
+<ul>
+<li>
+<code>blog.browse =&gt; /blog{format}</code>
+</li>
+<li>
+<code>blog.read =&gt; /blog/{id}{format}</code>
+</li>
+<li>
+<code>blog.edit =&gt; /blog/{id}/edit{format}</code>
+</li>
+</ul>
+<p>You can set other route specification values as part of the attachment
+specification; these will be used as the defaults for each attached route, so
+you don't need to repeat common information. (Setting these values will
+not affect routes outside the attached group.)</p>
+<pre><code class="language-php">&lt;?php
+$name_prefix = 'blog';
+$path_prefix = '/blog';
+
+$router-&gt;attach($name_prefix, $path_prefix, function ($router) {
+
+    $router-&gt;setTokens(array(
+        'id'     =&gt; '\d+',
+        'format' =&gt; '(\.json|\.atom)?'
+    ));
+
+    $router-&gt;setValues(array(
+        'format' =&gt; '.html',
+    ));
+
+    $router-&gt;add('browse', '');
+    $router-&gt;add('read', '/{id}{format}');
+    $router-&gt;add('edit', '/{id}/edit');
+});
+?&gt;
+</code></pre>
+<h3 id="2-10-3-8">2.10.3.8. Attaching REST Resource Routes</h3>
+<p>The router can attach a series of REST resource routes for you with the
+<code>attachResource()</code> method:</p>
+<pre><code class="language-php">&lt;?php
+$router-&gt;attachResource('blog', '/blog');
+?&gt;
+</code></pre>
+<p>That method call will result in the following routes being added:</p>
+<p>| Route Name    | HTTP Method   | Route Path            | Purpose
+| ------------- | ------------- | --------------------- | -------
+| blog.browse   | GET           | /blog{format}         | Browse multiple resources
+| blog.read     | GET           | /blog/{id}{format}    | Read a single resource
+| blog.edit     | GET           | /blog/{id}/edit       | The form for editing a resource
+| blog.add      | GET           | /blog/add             | The form for adding a resource
+| blog.delete   | DELETE        | /blog/{id}            | Delete a single resource
+| blog.create   | POST          | /blog                 | Create a new resource
+| blog.update   | PATCH         | /blog/{id}            | Update part of an existing resource
+| blog.replace  | PUT           | /blog/{id}            | Replace an entire existing resource</p>
+<p>The <code>{id}</code> token is whatever has already been defined in the router; if not
+already defined, it will be any series of numeric digits. Likewise, the
+<code>{format}</code> token is whatever has already been defined in the router; if not
+already defined, it is an optional dot-format file extension (including the
+dot itself).</p>
+<p>The <code>action</code> value is the same as the route name.</p>
+<p>If you want calls to <code>attachResource()</code> to create a different series of REST
+routes, use the <code>setResourceCallable()</code> method to set your own callable to
+create them.</p>
+<pre><code class="language-php">&lt;?php
+$router-&gt;setResourceCallable(function ($router) {
+    $router-&gt;setTokens(array(
+        'id' =&gt; '([a-f0-9]+)'
+    ));
+    $router-&gt;addPost('create', '/{id}');
+    $router-&gt;addGet('read', '/{id}');
+    $router-&gt;addPatch('update', '/{id}');
+    $router-&gt;addDelete('delete', '/{id}');
+});
+?&gt;
+</code></pre>
+<p>That example will cause only four CRUD routes, using hexadecimal resource IDs,
+to be added for the resource when you call <code>attachResource()</code>.</p>
+<h3 id="2-10-3-9">2.10.3.9. Setting A Base Path</h3>
+<p>The router assumes that all URL paths begin at the top document root, but sometimes you will need them to begin in a subdirectory. In that case, you can instantiate the <em>RouterFactory</em> with an explicit base path; this base path will be used as a prefix for all route matching and path generation.</p>
+<pre><code class="language-php">&lt;?php
+// create a factory with a base path
+$router_factory = new RouterFactory('/path/to/subdir');
+
+// define a route as normal
+$router = $router_factory-&gt;getInstance();
+$router-&gt;addGet('blog.read', '/blog/{id}');
+
+// if the incoming request is for "/path/to/subdir/blog/{id}"
+// then the route will match.
+$path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$route = $router-&gt;match($path, $_SERVER);
+
+// generating a path from the route will add the base path automatically
+$path = $router-&gt;generate('blog.read', '88');
+echo $path; // "/path/to/subdir/blog/88"
+?&gt;
+</code></pre>
+<h3 id="2-10-3-10">2.10.3.10. Caching Route Information</h3>
+<p>You may wish to cache the router for production deployments so that the
+router does not have to build the route objects from definitions on each page
+load. The methods <code>getRoutes()</code> and <code>setRoutes()</code> may be used for that
+purpose.</p>
+<p>The following is a naive example for file-based caching and restoring of
+routes:</p>
+<pre><code class="language-php">&lt;?php
+// the cache file location
+$cache = '/path/to/routes.cache';
+
+// does the cache exist?
+if (file_exists($cache)) {
+
+    // restore from the cache
+    $routes = unserialize(file_get_contents($cache));
+    $router-&gt;setRoutes($routes);
+
+} else {
+
+    // build the routes using add() and attach() ...
+    // ... ... ...
+    // ... then save to the cache for the next page load
+    $routes = $router-&gt;getRoutes();
+    file_put_contents($cache, serialize($routes));
+
+}
+?&gt;
+</code></pre>
+<p>Note that if there are closures in the <em>Route</em> objects (e.g. for <code>isMatch()</code>
+or <code>generate()</code>), you will not be able to cache the routes; this is because
+closures cannot be serialized properly for caching. Consider using non-closure
+callables instead.</p>
+<h3 id="2-10-3-11">2.10.3.11. As a Micro-Framework</h3>
+<p>Sometimes you may wish to use the <em>Router</em> as a micro-framework. This is
+possible by assigning a <code>callable</code> as a default param value, usually <code>action</code>,
+then calling that param to dispatch it.</p>
+<pre><code class="language-php">&lt;?php
+$router-&gt;add('read', '/blog/read/{id}{format}')
+    -&gt;addTokens(array(
+        'id' =&gt; '\d+',
+        'format' =&gt; '(\.[^/]+)?',
+    ))
+    -&gt;addValues(array(
+        'action' =&gt; function ($params) {
+            if ($params['format'] == '.json') {
+                $id = (int) $params['id'];
+                header('Content-Type: application/json');
+                echo json_encode(['id' =&gt; $id]);
+            } else {
+                $id = (int) $params['id'];
+                header('Content-Type: text/plain');
+                echo "Reading blog ID {$id}";
+            }
+        },
+        'format' =&gt; '.html',
+    ));
+?&gt;
+</code></pre>
+<p>Alternatively, and perhaps more easily, you may specify a third parameter to the <code>add()</code> method; this will be used as the <code>action</code> value in the params. The following is identical to the above:</p>
+<pre><code class="language-php">&lt;?php
+$router-&gt;add(
+    'read',
+    '/blog/read/{id}{format}',
+    function ($params) {
+        if ($params['format'] == '.json') {
+            $id = (int) $params['id'];
+            header('Content-Type: application/json');
+            echo json_encode(['id' =&gt; $id]);
+        } else {
+            $id = (int) $params['id'];
+            header('Content-Type: text/plain');
+            echo "Reading blog ID {$id}";
+        }
+    })
+    -&gt;addTokens(array(
+        'id' =&gt; '\d+',
+        'format' =&gt; '(\.[^/]+)?',
+    ))
+    -&gt;addValues(array(
+        'format' =&gt; '.html',
+    ));
+?&gt;
+</code></pre>
+<p>A naive micro-framework dispatcher might then work like this:</p>
+<pre><code class="language-php">&lt;?php
+// get the route params
+$params = $route-&gt;params;
+
+// extract the action callable from the params
+$action = $params['action'];
+unset($params['action']);
+
+// invoke the callable
+$action($params);
+?&gt;
+</code></pre>
+<p>With the above example action, the URL <code>/blog/read/1.json</code> will send JSON
+ouput, but for <code>/blog/read/1</code> it will send plain text output.</p>
+
+<nav class="navfooter">
+    <table>
+        <tr>
+            <td class="prev"><a href="/packages/2.x/Includer.html">Prev</a></td>
+            <td class="parent"><a href="/packages/2.x/">Up</a></td>
+            <td class="next"><a href="/packages/2.x/Session.html">Next</a></td>
+        </tr>
+        <tr>
+            <td class="prev">2.9. Aura.Includer</td>
+            <td class="parent">2. Version 2.x</td>
+            <td class="next">2.11. Aura Session</td>
+        </tr>
+    </table>
+</nav>

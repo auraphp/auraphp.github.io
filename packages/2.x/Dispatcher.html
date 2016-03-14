@@ -1,0 +1,454 @@
+---
+layout: site
+active: packages
+title: Aura.Dispatcher
+---
+<script>hljs.initHighlightingOnLoad();</script>
+
+<nav class="navheader">
+    <table>
+        <tr>
+            <th colspan="3" class="curr">2.6. Aura.Dispatcher</th>
+        </tr>
+        <tr>
+            <td class="prev"><a href="/packages/2.x/Di.html">Aura.Di</a></td>
+            <td class="parent">2. Version 2.x</th>
+            <td class="next"><a href="/packages/2.x/Filter.html">Aura.Filter</a></td>
+        </tr>
+    </table>
+</nav>
+<h1 id="2-6">2.6. Aura.Dispatcher</h1>
+<p>Provides tools to map arbitrary names to dispatchable objects, then to
+dispatch to those objects using named parameters. This is useful for invoking
+controller and command objects based on path-info parameters or command line
+arguments, for dispatching to closure-based controllers, and for building
+dispatchable objects from factories.</p>
+<h2 id="2-6-1">2.6.1. Foreword</h2>
+<h3 id="2-6-1-1">2.6.1.1. Installation</h3>
+<p>This library requires PHP 5.4 or later; we recommend using the latest available version of PHP as a matter of principle. It has no userland dependencies.</p>
+<p>It is installable and autoloadable via Composer as <a href="https://packagist.org/packages/aura/dispatcher">aura/dispatcher</a>.</p>
+<p>Alternatively, <a href="https://github.com/auraphp/Aura.Dispatcher/releases">download a release</a> or clone this repository, then require or include its <em>autoload.php</em> file.</p>
+<h3 id="2-6-1-2">2.6.1.2. Quality</h3>
+<p><a href="https://scrutinizer-ci.com/g/auraphp/Aura.Dispatcher/"><img src="https://scrutinizer-ci.com/g/auraphp/Aura.Dispatcher/badges/quality-score.png?b=develop-2" alt="Scrutinizer Code Quality"></a>
+<a href="https://scrutinizer-ci.com/g/auraphp/Aura.Dispatcher/"><img src="https://scrutinizer-ci.com/g/auraphp/Aura.Dispatcher/badges/coverage.png?b=develop-2" alt="Code Coverage"></a>
+<a href="https://travis-ci.org/auraphp/Aura.Dispatcher"><img src="https://travis-ci.org/auraphp/Aura.Dispatcher.png?branch=develop-2" alt="Build Status"></a></p>
+<p>To run the unit tests at the command line, issue <code>phpunit</code> at the package root. (This requires <a href="http://phpunit.de/manual/">PHPUnit</a> to be available as <code>phpunit</code>.)</p>
+<p>This library attempts to comply with <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md">PSR-1</a>, <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md">PSR-2</a>, and <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md">PSR-4</a>. If
+you notice compliance oversights, please send a patch via pull request.</p>
+<h3 id="2-6-1-3">2.6.1.3. Community</h3>
+<p>To ask questions, provide feedback, or otherwise communicate with the Aura community, please join our <a href="http://groups.google.com/group/auraphp">Google Group</a>, follow <a href="http://twitter.com/auraphp">@auraphp on Twitter</a>, or chat with us on #auraphp on Freenode.</p>
+<h2 id="2-6-2">2.6.2. Getting Started</h2>
+<h3 id="2-6-2-1">2.6.2.1. Overview</h3>
+<p>First, an external routing mechanism such as <a href="https://github.com/auraphp/Aura.Router">Aura.Router</a> or a
+micro-framework router creates an array of parameters. (Alternatively, the
+parameters may be an object that implements <a href="http://php.net/ArrayAccess">ArrayAccess</a>).</p>
+<p>The parameters are then passed to the <em>Dispatcher</em>. It examines them and picks
+an object to invoke with those parameters, optionally with a method determined
+by the parameters.</p>
+<p>The <em>Dispatcher</em> then examines the returned result from that first invocation.
+If the result is itself a dispatchable object, the <em>Dispatcher</em> will
+recursively dispatch the result until something other than a dispatchable
+object is returned.</p>
+<p>When a non-dispatchable result is returned, the <em>Dispatcher</em> stops recursion
+and returns the non-dispatchable result.</p>
+<h3 id="2-6-2-2">2.6.2.2. Closures and Invokable Objects</h3>
+<p>First, we tell the <em>Dispatcher</em> to examine the <code>controller</code> parameter to find
+the name of the object to dispatch to:</p>
+<pre><code class="language-php">&lt;?php
+use Aura\Dispatcher\Dispatcher;
+
+$dispatcher = new Dispatcher;
+$dispatcher-&gt;setObjectParam('controller');
+?&gt;
+</code></pre>
+<p>Next, we set a closure object into the <em>Dispatcher</em> using <code>setObject()</code>:</p>
+<pre><code class="language-php">&lt;?php
+$dispatcher-&gt;setObject('blog', function ($id) {
+    return "Read blog entry $id";
+});
+?&gt;
+</code></pre>
+<p>We can now dispatch to that closure by using the name as the value for
+the <code>controller</code> parameter:</p>
+<pre><code class="language-php">&lt;?php
+$params = [
+    'controller' =&gt; 'blog',
+    'id' =&gt; 88,
+];
+
+$result = $dispatcher($params); // or call __invoke() directly
+echo $result; // "Read blog entry 88"
+?&gt;
+</code></pre>
+<p>The same goes for invokable objects. First, define a class with an
+<code>__invoke()</code> method:</p>
+<pre><code class="language-php">&lt;?php
+class InvokableBlog
+{
+    public function __invoke($id)
+    {
+        return "Read blog entry $id";
+    }
+}
+?&gt;
+</code></pre>
+<p>Next, set an instance of the object into the <em>Dispatcher</em>:</p>
+<pre><code class="language-php">&lt;?php
+$dispatcher-&gt;setObject('blog', new InvokableBlog);
+?&gt;
+</code></pre>
+<p>Finally, dispatch to the invokable object (the parameters and logic are
+the same as above):</p>
+<pre><code class="language-php">&lt;?php
+$params = [
+    'controller' =&gt; 'blog',
+    'id' =&gt; 88,
+];
+
+$result = $dispatcher($params); // or call __invoke() directly
+echo $result; // "Read blog entry 88"
+?&gt;
+</code></pre>
+<h3 id="2-6-2-3">2.6.2.3. Object Method</h3>
+<p>We can tell the <em>Dispatcher</em> to examine the params for a method to call on the
+object. This method will take precedence over the <code>__invoke()</code> method on an
+object, if such a method exists.</p>
+<p>First, tell the <em>Dispatcher</em> to examine the value of the <code>action</code> param to
+find the name of the method it should invoke.</p>
+<pre><code class="language-php">&lt;?php
+$dispatcher-&gt;setMethodParam('action');
+?&gt;
+</code></pre>
+<p>Next, define the object we will dispatch to; note that the method is <code>read()</code>
+instead of <code>__invoke()</code>.</p>
+<pre><code class="language-php">&lt;?php
+class Blog
+{
+    public function read($id)
+    {
+        return "Read blog entry $id";
+    }
+}
+?&gt;
+</code></pre>
+<p>Then, we set the object into the <em>Dispatcher</em> ...</p>
+<pre><code class="language-php">&lt;?php
+$dispatcher-&gt;setObject('blog', new Blog);
+?&gt;
+</code></pre>
+<p>... and finally, we invoke the <em>Dispatcher</em>; we have added an <code>action</code>
+parameter with the name of the method to invoke:</p>
+<pre><code class="language-php">&lt;?php
+$params = [
+    'controller' =&gt; 'blog',
+    'action' =&gt; 'read',
+    'id' =&gt; 88,
+];
+
+$result = $dispatcher($params); // or call __invoke() directly
+echo $result; // "Read blog entry 88"
+?&gt;
+</code></pre>
+<h3 id="2-6-2-4">2.6.2.4. Embedding Objects in Parameters</h3>
+<p>If you like, you can place dispatchable objects directly in the parameters.
+(This is often how micro-framework routers work.) For example, let's put a
+closure into the <code>controller</code> parameter; when we invoke the <em>Dispatcher</em>, it
+will invoke that closure.</p>
+<pre><code class="language-php">&lt;?php
+$params = [
+    'controller' =&gt; function ($id) {
+        return "Read blog entry $id";
+    },
+    'id' =&gt; 88,
+];
+
+$result = $dispatcher($params); // or call __invoke() directly
+echo $result; // "Read blog entry 88"
+?&gt;
+</code></pre>
+<p>The same is true for invokable objects ...</p>
+<pre><code class="language-php">&lt;?php
+$params = [
+    'controller' =&gt; new InvokableBlog,
+    'id' =&gt; 88,
+];
+
+$result = $dispatcher($params); // or call __invoke() directly
+echo $result; // "Read blog entry 88"
+?&gt;
+</code></pre>
+<p>... and for object-methods:</p>
+<pre><code class="language-php">&lt;?php
+$params = [
+    'controller' =&gt; new Blog,
+    'action' =&gt; 'read',
+    'id' =&gt; 88,
+];
+
+$result = $dispatcher($params); // or call __invoke() directly
+echo $result; // "Read blog entry 88"
+?&gt;
+</code></pre>
+<h3 id="2-6-2-5">2.6.2.5. Recursion and Lazy Loading</h3>
+<p>The <em>Dispatcher</em> is recursive. After dispatching to the first object, if that
+object returns a dispatchable object, the <em>Dispatcher</em> will re-dispatch to
+that object. It will continue doing this until the returned result is not a
+dispatchable object.</p>
+<p>Let's turn the above example of an invokable object in the <em>Dispatcher</em> into a
+lazy-loaded instantiation. All we have to do is wrap the instantiation in
+another dispatchable object (in this example, a closure). The benefit of this
+is that we can fill the <em>Dispatcher</em> with as many objects as we like, and they
+won't get instantiated until the <em>Dispatcher</em> calls on them.</p>
+<pre><code class="language-php">&lt;?php
+$dispatcher-&gt;setObject('blog', function () {
+    return new Blog;
+});
+?&gt;
+</code></pre>
+<p>Then we invoke the dispatcher with the same params as before.</p>
+<pre><code class="language-php">&lt;?php
+$params = [
+    'controller' =&gt; 'blog',
+    'action' =&gt; 'read',
+    'id' =&gt; 88,
+];
+
+$result = $dispatcher($params); // or call __invoke() directly
+echo $result; // "Read blog entry 88"
+?&gt;
+</code></pre>
+<p>What happens is this:</p>
+<ul>
+<li>
+<p>The <em>Dispatcher</em> finds the 'blog' dispatchable object, sees that it
+is a closure, and invokes it with the params.</p>
+</li>
+<li>
+<p>The <em>Dispatcher</em> examines the result, sees the result is a dispatchable
+object, and invokes it with the params.</p>
+</li>
+<li>
+<p>The <em>Dispatcher</em> examines <em>that</em> result, sees that it is <em>not</em> a callable
+object, and returns the result.</p>
+</li>
+</ul>
+<h2 id="2-6-3">2.6.3. Sending The Array Of Params Directly</h2>
+<p>Sometimes you will want to send the entire array of parameters directly to the
+object method or closure, as opposed to matching parameter keys with function
+argument names. To do so, name a key in the parameters array for the argument
+name that will receive them, and then set the parameters array into itself
+using that name. If may be easier to do this by reference, or by copy,
+depending on your needs.</p>
+<pre><code class="language-php">&lt;?php
+// a dispatchable closure that takes an array of params directly,
+// not the individual params by keys matching argument names
+$dispatcher-&gt;setObject('blog', function ($params) {
+    return "Read blog entry {$params['id']}"
+});
+
+// the initial params
+$params = [
+     'controller' =&gt; 'blog',
+     'action' =&gt; 'read',
+     'id' =&gt; 88,
+];
+
+// set a params reference into itself; this corresponds with the
+// 'params' closure argument
+$params['params'] =&amp; $params;
+
+// dispatch
+$result = $dispatcher($params); // or call __invoke() directly
+echo $result; // "Read blog entry 88"
+?&gt;
+</code></pre>
+<h2 id="2-6-4">2.6.4. Refactoring To Architecture Changes</h2>
+<p>The <em>Dispatcher</em> is built with the idea that some developers may begin with a
+micro-framework architecture, and evolve over time toward a full-stack
+architecture.</p>
+<p>At first, the developer uses closures embedded in the params:</p>
+<pre><code class="language-php">&lt;?php
+$dispatcher-&gt;setObjectParam('controller');
+
+$params = [
+    'controller' =&gt; function ($id) {
+        return "Read blog entry $id";
+    },
+    'id' =&gt; 88,
+];
+
+$result = $dispatcher($params); // or call __invoke() directly
+echo $result; // "Read blog entry 88"
+?&gt;
+</code></pre>
+<p>After adding several controllers, the developer is likely to want to keep the
+routing configurations separate from the controller actions. At this point the
+developer may start putting the controller actions in the <em>Dispatcher</em>:</p>
+<pre><code class="language-php">&lt;?php
+$dispatcher-&gt;setObject('blog', function ($id) {
+    return "Read blog entry $id!";
+});
+
+$params = [
+    'controller' =&gt; 'blog',
+    'id' =&gt; 88,
+];
+
+$result = $dispatcher($params); // or call __invoke() directly
+echo $result; // "Read blog entry 88"
+?&gt;
+</code></pre>
+<p>As the number and complexity of controllers continues to grow, the developer
+may wish to put the controllers into their own classes, lazy-loading along the
+way:</p>
+<pre><code class="language-php">&lt;?php
+class Blog
+{
+    public function __invoke($id)
+    {
+        return "Read blog entry $id";
+    }
+}
+
+$dispatcher-&gt;setObject('blog', function () {
+    return new Blog;
+});
+
+$params = [
+    'controller' =&gt; 'blog',
+    'id' =&gt; 88,
+];
+
+$result = $dispatcher($params); // or call __invoke() directly
+echo $result; // "Read blog entry 88"
+?&gt;
+</code></pre>
+<p>Finally, the developer may collect several actions into a single controller,
+keeping related functionality in the same class. At this point the developer
+should call <code>setMethodParam()</code> to tell the <em>Dispatcher</em> where to find the
+method to invoke on the dispatchable object.</p>
+<pre><code class="language-php">&lt;?php
+class Blog
+{
+    public function browse()
+    {
+        // ...
+    }
+
+    public function read($id)
+    {
+        return "Read blog entry $id";
+    }
+
+    public function edit($id)
+    {
+        // ...
+    }
+
+    public function add()
+    {
+        // ...
+    }
+
+    public function delete($id)
+    {
+        // ...
+    }
+}
+
+$dispatcher-&gt;setMethodParam('action');
+
+$dispatcher-&gt;setObject('blog', function () {
+    return new Blog;
+});
+
+$params = [
+    'controller' =&gt; 'blog',
+    'action' =&gt; 'read',
+    'id' =&gt; 88,
+];
+
+$result = $dispatcher($params); // or call __invoke() directly
+echo $result; // "Read blog entry 88"
+?&gt;
+</code></pre>
+<h2 id="2-6-5">2.6.5. Construction-Based Configuration</h2>
+<p>You can set all dispatchable objects, along with the object parameter name and
+the method parameter name, at construction time. This makes it easier to
+configure the <em>Dispatcher</em> object in a single call.</p>
+<pre><code class="language-php">&lt;?php
+$object_param = 'controller';
+$method_param = 'action';
+$objects = [
+    'blog' =&gt; function () {
+        return new BlogController;
+    },
+    'wiki' =&gt; function () {
+        return new WikiController;
+    },
+    'forum' =&gt; function () {
+        return new ForumController;
+    },
+];
+
+$dispatcher = new Dispatcher($objects, $object_param, $method_param);
+?&gt;
+</code></pre>
+<h2 id="2-6-6">2.6.6. Intercessory Dispatch Methods</h2>
+<p>Sometimes your classes will have an intercessory method that picks an action
+to run, either on itself or on another object. This package provides an
+<em>InvokeMethodTrait</em> to invoke a method on an object using named parameters.
+(The <em>InvokeMethodTrait</em> honors protected and private scopes.)</p>
+<pre><code class="language-php">&lt;?php
+use Aura\Dispatcher\InvokeMethodTrait;
+
+class Blog
+{
+    use InvokeMethodTrait;
+
+    public function __invoke(array $params)
+    {
+        $action = isset($params['action']) ? $params['action'] : 'index';
+        $method = 'action' . ucfirst($action);
+        return $this-&gt;invokeMethod($this, $method, $params);
+    }
+
+    protected function actionRead($id = null)
+    {
+        return "Read blog entry $id";
+    }
+}
+?&gt;
+</code></pre>
+<p>You can then dispatch to the object as normal, and it will determine its own
+logical flow.</p>
+<pre><code class="language-php">&lt;?php
+$dispatcher-&gt;setObject('blog', function () {
+    return new Blog;
+});
+
+$params = [
+     'controller' =&gt; 'blog',
+     'action' =&gt; 'read',
+     'id' =&gt; 88,
+];
+
+$result = $dispatcher($params); // or call __invoke() directly
+echo $result; // "Read blog entry 88"
+?&gt;
+</code></pre>
+
+<nav class="navfooter">
+    <table>
+        <tr>
+            <td class="prev"><a href="/packages/2.x/Di.html">Prev</a></td>
+            <td class="parent"><a href="/packages/2.x/">Up</a></td>
+            <td class="next"><a href="/packages/2.x/Filter.html">Next</a></td>
+        </tr>
+        <tr>
+            <td class="prev">2.5. Aura.Di</td>
+            <td class="parent">2. Version 2.x</td>
+            <td class="next">2.7. Aura.Filter</td>
+        </tr>
+    </table>
+</nav>

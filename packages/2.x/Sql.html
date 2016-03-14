@@ -1,0 +1,479 @@
+---
+layout: site
+active: packages
+title: Aura.Sql
+---
+<script>hljs.initHighlightingOnLoad();</script>
+
+<nav class="navheader">
+    <table>
+        <tr>
+            <th colspan="3" class="curr">2.12. Aura.Sql</th>
+        </tr>
+        <tr>
+            <td class="prev"><a href="/packages/2.x/Session.html">Aura Session</a></td>
+            <td class="parent">2. Version 2.x</th>
+            <td class="next"><a href="/packages/2.x/SqlQuery.html">Aura.SqlQuery</a></td>
+        </tr>
+    </table>
+</nav>
+<h1 id="2-12">2.12. Aura.Sql</h1>
+<p>Provides an extension to the native <a href="http://php.net/PDO">PDO</a> along with a
+profiler and connection locator. Because <em>ExtendedPdo</em> is an extension of the
+native <em>PDO</em>, code already using the native <em>PDO</em> or typehinted to the native
+<em>PDO</em> can use <em>ExtendedPdo</em> without any changes.</p>
+<p>Added functionality in <em>Aura.Sql</em> over the native <em>PDO</em> includes:</p>
+<ul>
+<li>
+<p><strong>Lazy connection.</strong> <em>ExtendedPdo</em> connects to the database only on
+method calls that require a connection. This means you can create an
+instance and not incur the cost of a connection if you never make a query.</p>
+</li>
+<li>
+<p><strong>Decoration.</strong> <em>ExtendedPdo</em> can be used to decorate an existing PDO
+instance. This means that a PDO instance can be "extended" <strong>at runtime</strong> to
+provide the <em>ExtendedPdo</em> behaviors. (Note that lazy connection is not
+possible in this case, as the PDO instance being decorated has already
+connected.)</p>
+</li>
+<li>
+<p><strong>Array quoting.</strong> The <code>quote()</code> method will accept an array as input, and
+return a string of comma-separated quoted values.</p>
+</li>
+<li>
+<p><strong>New <code>perform()</code> method.</strong> The <code>perform()</code> method acts just like <code>query()</code>,
+but binds values to a prepared statement as part of the call.  In addition, placeholders that represent array values will be replaced with comma-
+separated quoted values. This means you can bind an  array of values to a placeholder used with an <code>IN (...)</code>  condition when using <code>perform()</code>.</p>
+</li>
+<li>
+<p><strong>New <code>fetch*()</code> methods.</strong> The new <code>fetch*()</code> methods provide for
+commonly-used fetch actions. For example, you can call <code>fetchAll()</code> directly
+on the instance instead of having to prepare a statement, bind values,
+execute, and then fetch from the prepared statement. All of the <code>fetch*()</code>
+methods take an array of values to bind to to the query statement, and use
+the new <code>perform()</code> method internally.</p>
+</li>
+<li>
+<p><strong>Exceptions by default.</strong> <em>ExtendedPdo</em> starts in the <code>ERRMODE_EXCEPTION</code>
+mode for error reporting instead of the <code>ERRMODE_SILENT</code> mode.</p>
+</li>
+<li>
+<p><strong>Profiler.</strong> An optional query profiler is provided, along with an
+interface for other implementations.</p>
+</li>
+<li>
+<p><strong>Connection locator.</strong> A optional lazy-loading service locator is provided
+for picking different database connections (default, read, and write).</p>
+</li>
+</ul>
+<h2 id="2-12-1">2.12.1. Foreword</h2>
+<h3 id="2-12-1-1">2.12.1.1. Installation</h3>
+<p>This library requires PHP 5.3 or later; we recommend using the latest available version of PHP as a matter of principle. It has no userland dependencies.</p>
+<p>It is installable and autoloadable via Composer as <a href="https://packagist.org/packages/aura/sql">aura/sql</a>.</p>
+<p>Alternatively, <a href="https://github.com/auraphp/Aura.Sql/releases">download a release</a> or clone this repository, then require or include its <em>autoload.php</em> file.</p>
+<h3 id="2-12-1-2">2.12.1.2. Quality</h3>
+<p><a href="https://scrutinizer-ci.com/g/auraphp/Aura.Sql/"><img src="https://scrutinizer-ci.com/g/auraphp/Aura.Sql/badges/quality-score.png?b=develop-2" alt="Scrutinizer Code Quality"></a>
+<a href="https://scrutinizer-ci.com/g/auraphp/Aura.Sql/"><img src="https://scrutinizer-ci.com/g/auraphp/Aura.Sql/badges/coverage.png?b=develop-2" alt="Code Coverage"></a>
+<a href="https://travis-ci.org/auraphp/Aura.Sql"><img src="https://travis-ci.org/auraphp/Aura.Sql.png?branch=develop-2" alt="Build Status"></a></p>
+<p>To run the unit tests at the command line, issue <code>phpunit</code> at the package root. (This requires <a href="http://phpunit.de/manual/">PHPUnit</a> to be available as <code>phpunit</code>.)</p>
+<p>This library attempts to comply with <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md">PSR-1</a>, <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md">PSR-2</a>, and <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md">PSR-4</a>. If
+you notice compliance oversights, please send a patch via pull request.</p>
+<h3 id="2-12-1-3">2.12.1.3. Community</h3>
+<p>To ask questions, provide feedback, or otherwise communicate with the Aura community, please join our <a href="http://groups.google.com/group/auraphp">Google Group</a>, follow <a href="http://twitter.com/auraphp">@auraphp on Twitter</a>, or chat with us on #auraphp on Freenode.</p>
+<h2 id="2-12-2">2.12.2. Getting Started</h2>
+<h3 id="2-12-2-1">2.12.2.1. Instantiation</h3>
+<p>You can instantiate <em>ExtendedPdo</em> so that it uses lazy connection, or you can use it to decorate an existing <em>PDO</em> instance.</p>
+<h4 id="2-12-2-1-1">2.12.2.1.1. Lazy Connection Instance</h4>
+<p>Instantiation is the same as with the native <em>PDO</em> class: pass a data source
+name, username, password, and driver options. There is one additional
+parameter that allows you to pass attributes to be set after the connection is
+made.</p>
+<pre><code class="language-php">&lt;?php
+use Aura\Sql\ExtendedPdo;
+
+$pdo = new ExtendedPdo(
+    'mysql:host=localhost;dbname=test',
+    'username',
+    'password',
+    array(), // driver options as key-value pairs
+    array()  // attributes as key-value pairs
+);
+?&gt;
+</code></pre>
+<blockquote>
+<p>N.b.: The <code>sqlsrv</code> extension will fail to connect when using error mode <code>PDO::ERRMODE_EXCEPTION</code>. To connect, you will need to explicitly pass <code>array(PDO::ATTR_ERRMODE =&gt; PDO::ERRMODE_WARNING)</code> (or <code>PDO::ERRMODE_SILENT</code>) when using <code>sqlsrv</code>.</p>
+</blockquote>
+<p>Whereas the native <em>PDO</em> connects on instantiation, <em>ExtendedPdo</em> does not connect immediately. Instead, it connects only when you call a method that actually needs the connection to the database; e.g., on <code>query()</code>.</p>
+<p>If you want to force a connection, call the <code>connect()</code> method.</p>
+<pre><code class="language-php">&lt;?php
+// does not connect to the database
+$pdo = new ExtendedPdo(
+    'mysql:host=localhost;dbname=test',
+    'username',
+    'password'
+);
+
+// automatically connects
+$pdo-&gt;exec('SELECT * FROM test');
+
+// explicitly forces a connection
+$pdo-&gt;connect();
+?&gt;
+</code></pre>
+<p>If you want to explicitly force a disconnect, call the <code>disconnect()</code> method.</p>
+<pre><code class="language-php">&lt;?php
+// explicitly forces disconnection
+$pdo-&gt;disconnect();
+?&gt;
+</code></pre>
+<p>Doing so will close the connection by unsetting the internal <em>PDO</em> instance. However, calling an <em>ExtendedPdo</em> method that implicitly establishes a connection, such as <code>query()</code> or one of the <code>fetch*()</code> methods, will automatically re-connect to the database.</p>
+<h4 id="2-12-2-1-2">2.12.2.1.2. Decorator Instance</h4>
+<p>The <em>ExtendedPdo</em> class can be used to decorate an existing PDO connection as well. To do so, instantiate <em>ExtendedPdo</em> by passing an existing PDO connection:</p>
+<pre><code class="language-php">&lt;?php
+use Aura\Sql\ExtendedPdo;
+
+$pdo = new PDO(...);
+$extended_pdo = new ExtendedPdo($pdo);
+?&gt;
+</code></pre>
+<p>The decorated <em>PDO</em> instance now provides all the <em>ExtendedPdo</em> functionality (aside from lazy connection, which is not possible since the <em>PDO</em> instance by definition has already connected).</p>
+<p>Decoration of this kind can be useful when you have access to an existing <em>PDO</em> connection managed elsewhere in your application.</p>
+<blockquote>
+<p>N.b.: The <code>disconnect()</code> method <strong>will not work</strong> on decorated <em>PDO</em> connections, since <em>ExtendedPdo</em> did not create the connection itself. You will need to manage the decorated <em>PDO</em> instance yourself in that case.</p>
+</blockquote>
+<h3 id="2-12-2-2">2.12.2.2. Array Quoting</h3>
+<p>The native <em>PDO</em> <code>quote()</code> method will not quote arrays. This makes it
+difficult to bind an array to something like an <code>IN (...)</code> condition in SQL.
+However, <em>ExtendedPdo</em> recognizes arrays and converts them into comma-
+separated quoted strings.</p>
+<pre><code class="language-php">&lt;?php
+// the array to be quoted
+$array = array('foo', 'bar', 'baz');
+
+// the native PDO way:
+// "Warning:  PDO::quote() expects parameter 1 to be string, array given"
+$pdo = new PDO(...);
+$cond = 'IN (' . $pdo-&gt;quote($array) . ')';
+
+// the ExtendedPdo way:
+// "IN ('foo', 'bar', 'baz')"
+$pdo = new ExtendedPdo(...);
+$cond = 'IN (' . $pdo-&gt;quote($array) . ')';
+?&gt;
+</code></pre>
+<h3 id="2-12-2-3">2.12.2.3. The <code>perform()</code> Method</h3>
+<p>The new <code>perform()</code> method will prepare a query with bound values in a single
+step.  Also, because the native <em>PDO</em> does not deal with bound array values,
+<code>perform()</code> modifies the query string to replace array-bound placeholders with
+the quoted array.  Note that this is <em>not</em> the same thing as binding:
+the query string itself is modified before passing to the database for value
+binding.</p>
+<pre><code class="language-php">&lt;?php
+// the array to be quoted
+$array = array('foo', 'bar', 'baz');
+
+// the statement to prepare
+$stm = 'SELECT * FROM test WHERE foo IN (:foo)'
+
+// the native PDO way does not work (PHP Notice:  Array to string conversion)
+$pdo = new ExtendedPdo(...);
+$sth = $pdo-&gt;prepare($stm);
+$sth-&gt;bindValue('foo', $array);
+
+// the ExtendedPdo way allows a single call to prepare and execute the query.
+// it quotes the array and replaces the array placeholder directly in the
+// query string
+$pdo = new ExtendedPdo(...);
+$bind_values = array('foo' =&gt; $array);
+$sth = $pdo-&gt;perform($stm, $bind_values);
+echo $sth-&gt;queryString;
+// the query string has been modified by ExtendedPdo to become
+// "SELECT * FROM test WHERE foo IN ('foo', 'bar', 'baz')"
+?&gt;
+</code></pre>
+<p>Finally, note that array quoting works only via the <code>perform()</code> method,
+not on returned <em>PDOStatement</em> instances.</p>
+<h3 id="2-12-2-4">2.12.2.4. New <code>fetch*()</code> Methods</h3>
+<p><em>ExtendedPdo</em> comes with <code>fetch*()</code> methods to help reduce boilerplate code.
+Instead of issuing <code>prepare()</code>, a series of <code>bindValue()</code> calls, <code>execute()</code>,
+and then <code>fetch*()</code> on a <em>PDOStatement</em>, you can bind values and fetch results
+in one call on <em>ExtendedPdo</em> directly.  (The <code>fetch*()</code> methods use <code>perform()</code>
+internally, so quoting-and-replacement of array placeholders is supported.)</p>
+<pre><code class="language-php">&lt;?php
+$stm  = 'SELECT * FROM test WHERE foo = :foo AND bar = :bar';
+$bind = array('foo' =&gt; 'baz', 'bar' =&gt; 'dib');
+
+// the native PDO way to "fetch all" where the result is a sequential array
+// of rows, and the row arrays are keyed on the column names
+$pdo = new PDO(...);
+$sth = $pdo-&gt;prepare($stm);
+$sth-&gt;execute($bind);
+$result = $sth-&gt;fetchAll(PDO::FETCH_ASSOC);
+
+// the ExtendedPdo way to do the same kind of "fetch all"
+$pdo = new ExtendedPdo(...);
+$result = $pdo-&gt;fetchAll($stm, $bind);
+
+// fetchAssoc() returns an associative array of all rows where the key is the
+// first column, and the row arrays are keyed on the column names
+$result = $pdo-&gt;fetchAssoc($stm, $bind);
+
+// fetchGroup() is like fetchAssoc() except that the values aren't wrapped in
+// arrays. Instead, single column values are returned as a single dimensional
+// array and multiple columns are returned as an array of arrays
+// Set style to PDO::FETCH_NAMED when values are an array
+// (i.e. there are more than two columns in the select)
+$result = $pdo-&gt;fetchGroup($stm, $bind, $style = PDO::FETCH_COLUMN)
+
+// fetchObject() returns the first row as an object of your choosing; the
+// columns are mapped to object properties. an optional 4th parameter array
+// provides constructor arguments when instantiating the object.
+$result = $pdo-&gt;fetchObject($stm, $bind, 'ClassName', array('ctor_arg_1'));
+
+// fetchObjects() returns an array of objects of your choosing; the
+// columns are mapped to object properties. an optional 4th parameter array
+// provides constructor arguments when instantiating the object.
+$result = $pdo-&gt;fetchObjects($stm, $bind, 'ClassName', array('ctor_arg_1'));
+
+// fetchOne() returns the first row as an associative array where the keys
+// are the column names
+$result = $pdo-&gt;fetchOne($stm, $bind);
+
+// fetchPairs() returns an associative array where each key is the first
+// column and each value is the second column
+$result = $pdo-&gt;fetchPairs($stm, $bind);
+
+// fetchValue() returns the value of the first row in the first column
+$result = $pdo-&gt;fetchValue($stm, $bind);
+
+// fetchAffected() returns the number of affected rows
+$stm = "UPDATE test SET incr = incr + 1 WHERE foo = :foo AND bar = :bar";
+$row_count = $pdo-&gt;fetchAffected($stm, $bind);
+?&gt;
+</code></pre>
+<p>The methods <code>fetchAll()</code>, <code>fetchAssoc()</code>, <code>fetchCol()</code>, and <code>fetchPairs()</code>
+take an optional third parameter, a callable, to apply to each row of the
+results before returning.</p>
+<pre><code class="language-php">&lt;?php
+$result = $pdo-&gt;fetchAssoc($stm, $bind, function (&amp;$row) {
+    // add a column to the row
+    $row['my_new_col'] = 'Added this column from the callable.';
+});
+?&gt;
+</code></pre>
+<h2 id="2-12-3">2.12.3. Profiler</h2>
+<p>When debugging, it is often useful to see what queries have been executed,
+where they were issued from in the codebase, and how long they took to
+complete. <em>ExtendedPdo</em> comes with an optional profiler that you can use to
+discover that information.</p>
+<pre><code class="language-php">&lt;?php
+use Aura\Sql\ExtendedPdo;
+use Aura\Sql\Profiler;
+
+$pdo = new ExtendedPdo(...);
+$pdo-&gt;setProfiler(new Profiler);
+
+// ...
+// query(), fetch(), beginTransaction()/commit()/rollback() etc.
+// ...
+
+// now retrieve the profile information:
+$profiles = $pdo-&gt;getProfiler()-&gt;getProfiles();
+?&gt;
+</code></pre>
+<p>Each profile entry will have these keys:</p>
+<ul>
+<li>
+<p><code>duration</code>: How long the query took to complete, in seconds.</p>
+</li>
+<li>
+<p><code>function</code>: The method that was called on <em>ExtendedPdo</em> that created the
+profile entry.</p>
+</li>
+<li>
+<p><code>statement</code>: The query string that was issued, if any. (Methods like
+<code>connect()</code> and <code>rollBack()</code> do not send query strings.)</p>
+</li>
+<li>
+<p><code>bind_values</code>: Any values that were bound to the query.</p>
+</li>
+<li>
+<p><code>trace</code>: An exception stack trace indicating where the query was issued from
+in the codebase.</p>
+</li>
+</ul>
+<p>Note that an entry is made into the profile for each call to underlying <em>ExtendedPDO</em> methods.  For example, in a simple query using a bind value, there will be two entries, one for the call to <code>prepare</code> and one for the call to <code>perform</code>.</p>
+<p>Setting the <em>Profiler</em> into the <em>ExtendedPdo</em> instance is optional. Once it
+is set, you can activate and deactivate it as you wish using the
+<code>Profiler::setActive()</code> method. When not active, query profiles will not be
+retained.</p>
+<pre><code class="language-php">&lt;?php
+$pdo = new ExtendedPdo(...);
+$pdo-&gt;setProfiler(new Profiler);
+
+// deactivate, issue a query, and reactivate;
+// the query will not show up in the profiles
+$pdo-&gt;getProfiler()-&gt;setActive(false);
+$pdo-&gt;fetchAll('SELECT * FROM foo');
+$pdo-&gt;getProfiler()-&gt;setActive(true);
+?&gt;
+</code></pre>
+<h2 id="2-12-4">2.12.4. Connection Locator</h2>
+<p>Frequently, high-traffic PHP applications use multiple database servers,
+generally one for writes, and one or more for reads. The <em>ConnectionLocator</em>
+allows you to define multiple <em>ExtendedPdo</em> objects for lazy-loaded read and
+write connections. It will create the connections only when they are when
+called. The creation logic is wrapped in a callable.</p>
+<p>First, create the <em>ConnectionLocator</em>:</p>
+<pre><code class="language-php">&lt;?php
+use Aura\Sql\ExtendedPdo;
+use Aura\Sql\ConnectionLocator;
+
+$connections = new ConnectionLocator;
+?&gt;
+</code></pre>
+<p>Now add a default connection; this will be used when a read or write
+connection is not defined. (This is also useful for setting up connection
+location in advance of actually having multiple database servers.)</p>
+<pre><code class="language-php">&lt;?php
+$connections-&gt;setDefault(function () {
+    return new ExtendedPdo(
+        'mysql:host=default.db.localhost;dbname=database',
+        'username',
+        'password'
+    );
+});
+?&gt;
+</code></pre>
+<p>Next, add as many named read and write connections as you like:</p>
+<pre><code class="language-php">&lt;?php
+// the write (master) server
+$connections-&gt;setWrite('master', function () {
+    return new ExtendedPdo(
+        'mysql:host=master.db.localhost;dbname=database',
+        'username',
+        'password'
+    );
+});
+
+// read (slave) #1
+$connections-&gt;setRead('slave1', function () {
+    return new ExtendedPdo(
+        'mysql:host=slave1.db.localhost;dbname=database',
+        'username',
+        'password'
+    );
+});
+
+// read (slave) #2
+$connections-&gt;setRead('slave2', function () {
+    return new ExtendedPdo(
+        'mysql:host=slave2.db.localhost;dbname=database',
+        'username',
+        'password'
+    );
+});
+
+// read (slave) #3
+$connections-&gt;setRead('slave3', function () {
+    return new ExtendedPdo(
+        'mysql:host=slave3.db.localhost;dbname=database',
+        'username',
+        'password'
+    );
+});
+?&gt;
+</code></pre>
+<p>Finally, retrieve a connection from the locator when you need it. This will
+create the connection (if needed) and then return it.</p>
+<ul>
+<li>
+<p><code>getDefault()</code> will return the default connection.</p>
+</li>
+<li>
+<p><code>getRead()</code> will return a named read connection; if no name is specified, it
+will return a random read connection. If no read connections are defined, it
+will return the default connection.</p>
+</li>
+<li>
+<p><code>getWrite()</code> will return a named write connection; if no name is specified,
+it will return a random write connection. If no write connections are
+defined, it will return the default connection.</p>
+</li>
+</ul>
+<pre><code class="language-php">&lt;?php
+$read = $connections-&gt;getRead();
+$results = $read-&gt;fetchAll('SELECT * FROM table_name LIMIT 10');
+?&gt;
+</code></pre>
+<h3 id="2-12-4-1">2.12.4.1. Construction-Time Configuration</h3>
+<p>The <em>ConnectionLocator</em> can be configured with all its connections at
+construction time; this is useful with dependency injection mechanisms.</p>
+<pre><code class="language-php">&lt;?php
+use Aura\Sql\ConnectionLocator;
+use Aura\Sql\ExtendedPdo;
+
+// default connection
+$default = function () {
+    return new ExtendedPdo(
+        'mysql:host=default.db.localhost;dbname=database',
+        'username',
+        'password'
+    );
+};
+
+// read connections
+$read = array(
+    'slave1' =&gt; function () {
+        return new ExtendedPdo(
+            'mysql:host=slave1.db.localhost;dbname=database',
+            'username',
+            'password'
+        );
+    },
+    'slave2' =&gt; function () {
+        return new ExtendedPdo(
+            'mysql:host=slave2.db.localhost;dbname=database',
+            'username',
+            'password'
+        );
+    },
+    'slave3' =&gt; function () {
+        return new ExtendedPdo(
+            'mysql:host=slave3.db.localhost;dbname=database',
+            'username',
+            'password'
+        );
+    },
+);
+
+// write connection
+$write = array(
+    'master' =&gt; function () {
+        return new ExtendedPdo(
+            'mysql:host=master.db.localhost;dbname=database',
+            'username',
+            'password'
+        );
+    },
+);
+
+// configure locator at construction time
+$connections = new ConnectionLocator($default, $read, $write);
+?&gt;
+</code></pre>
+
+<nav class="navfooter">
+    <table>
+        <tr>
+            <td class="prev"><a href="/packages/2.x/Session.html">Prev</a></td>
+            <td class="parent"><a href="/packages/2.x/">Up</a></td>
+            <td class="next"><a href="/packages/2.x/SqlQuery.html">Next</a></td>
+        </tr>
+        <tr>
+            <td class="prev">2.11. Aura Session</td>
+            <td class="parent">2. Version 2.x</td>
+            <td class="next">2.13. Aura.SqlQuery</td>
+        </tr>
+    </table>
+</nav>
