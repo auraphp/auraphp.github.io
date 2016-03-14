@@ -18,36 +18,323 @@ title: Aura.Payload
     </table>
 </nav>
 <h1 id="1-2">1.2. Aura.Payload</h1>
-<p>A Domain Payload implementation.</p>
-<h2 id="1-2-1">1.2.1. Installation and Autoloading</h2>
-<p>This package is installable and PSR-4 autoloadable via Composer as
-<a href="https://packagist.org/packages/aura/payload">aura/payload</a>.</p>
-<p>Alternatively, <a href="https://github.com/auraphp/Aura.Payload/releases">download a release</a>, or clone this repository, then map the
-<code>Aura\Payload\</code> namespace to the package <code>src/</code> directory.</p>
-<h2 id="1-2-2">1.2.2. Dependencies</h2>
-<p>This package requires PHP 5.5 or later; it has been tested on PHP 5.6, PHP 7,
-and HHVM. We recommend using the latest available version of PHP as a matter of
-principle.</p>
-<p>Aura library packages may sometimes depend on external interfaces, but never on
-external implementations. This allows compliance with community standards
-without compromising flexibility. For specifics, please examine the package
-<a href="./composer.json">composer.json</a> file.</p>
-<h2 id="1-2-3">1.2.3. Quality</h2>
-<p><a href="https://scrutinizer-ci.com/g/auraphp/Aura.Payload/"><img src="https://scrutinizer-ci.com/g/auraphp/Aura.Payload/badges/quality-score.png?b=3.x" alt="Scrutinizer Code Quality"></a>
-<a href="https://scrutinizer-ci.com/g/auraphp/Aura.Payload/"><img src="https://scrutinizer-ci.com/g/auraphp/Aura.Payload/badges/coverage.png?b=3.x" alt="Code Coverage"></a>
-<a href="https://travis-ci.org/auraphp/Aura.Payload"><img src="https://travis-ci.org/auraphp/Aura.Payload.png?branch=3.x" alt="Build Status"></a></p>
-<p>This project adheres to <a href="http://semver.org/">Semantic Versioning</a>.</p>
-<p>To run the unit tests at the command line, issue <code>composer install</code> and then
-<code>phpunit</code> at the package root. This requires <a href="http://getcomposer.org/">Composer</a> to be available as
-<code>composer</code>, and <a href="http://phpunit.de/">PHPUnit</a> to be available as <code>phpunit</code>.</p>
-<p>This package attempts to comply with <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md">PSR-1</a>, <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md">PSR-2</a>, and <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md">PSR-4</a>. If
-you notice compliance oversights, please send a patch via pull request.</p>
-<h2 id="1-2-4">1.2.4. Community</h2>
-<p>To ask questions, provide feedback, or otherwise communicate with other Aura
-users, please join our <a href="http://groups.google.com/group/auraphp">Google Group</a>, follow <a href="http://twitter.com/auraphp">@auraphp</a>, or chat with us
-on Freenode in the #auraphp channel.</p>
-<h2 id="1-2-5">1.2.5. Documentation</h2>
-<p>This package is fully documented <a href="./docs/index.md">here</a>.</p>
+<p>You use a <em>Payload</em> as a data transfer object to send domain-layer results to
+your user-interface layer, along with meta-data indicating the meaning of the
+domain results.</p>
+<h2 id="1-2-1">1.2.1. Getting Started</h2>
+<p>Instantiating a <em>Payload</em> object is straighforward:</p>
+<pre><code class="language-php">&lt;?php
+use Aura\Payload\Payload;
+
+$payload = new Payload();
+?&gt;
+</code></pre>
+<p>You can then set the payload status and domain output, along with error codes,
+error messages, the input as received by the domain layer, and any extras you
+like.</p>
+<p>While this may suffice for your particular implementation, there is also a
+factory object to allow each call to return its own payload.</p>
+<pre><code class="language-php">&lt;?php
+use Aura\Payload\PayloadFactory;
+
+$payloadFactory = new PayloadFactory();
+$payload = $payloadFactory-&gt;newInstance();
+?&gt;
+</code></pre>
+<h2 id="1-2-2">1.2.2. Methods</h2>
+<p>Use these methods in your domain layer to modify the <em>Payload</em>. (All <code>set*()</code>
+methods return the <em>Payload</em> object itself, so you can chain the methods
+fluently.)</p>
+<ul>
+<li>
+<p><code>setStatus()</code>: Sets the payload status in terms of the domain layer.</p>
+</li>
+<li>
+<p><code>setInput()</code>: Sets the input as received by the domain layer.</p>
+</li>
+<li>
+<p><code>setOutput()</code>: Sets the output produced by the domain layer.</p>
+</li>
+<li>
+<p><code>setMessages()</code>: Sets the messages reported by the domain layer.</p>
+</li>
+<li>
+<p><code>setExtras()</code>: Sets "extra" values produced by the domain layer.</p>
+</li>
+</ul>
+<p>Your calling code can then examine the payload object using the <code>get*()</code>
+complements to the the <code>set*()</code> methods.</p>
+<ul>
+<li>
+<p><code>getStatus()</code>: Gets the payload status in terms of the domain layer.</p>
+</li>
+<li>
+<p><code>getInput()</code>: Gets the input as received by the domain layer.</p>
+</li>
+<li>
+<p><code>getOutput()</code>: Gets the output produced by the domain layer.</p>
+</li>
+<li>
+<p><code>getMessages()</code>: Gets the messages reported by the domain layer.</p>
+</li>
+<li>
+<p><code>getExtras()</code>: Gets "extra" values produced by the domain layer.</p>
+</li>
+</ul>
+<h2 id="1-2-3">1.2.3. Status Values</h2>
+<p>Several generic status values are available as constants on the
+<em>Aura\Payload_Interface\PayloadStatus</em> class:</p>
+<ul>
+<li>
+<code>PayloadStatus::ACCEPTED</code>: A command has been accepted for later processing.</li>
+<li>
+<code>PayloadStatus::AUTHENTICATED</code>: An authentication attempt succeeded.</li>
+<li>
+<code>PayloadStatus::AUTHORIZED</code>: An authorization request succeeded.</li>
+<li>
+<code>PayloadStatus::CREATED</code>: A creation attempt succeeded.</li>
+<li>
+<code>PayloadStatus::DELETED</code>: A deletion attempt succeeded.</li>
+<li>
+<code>PayloadStatus::ERROR</code>: There was a major error of some sort.</li>
+<li>
+<code>PayloadStatus::FAILURE</code>: There was a generic failure of some sort.</li>
+<li>
+<code>PayloadStatus::FOUND</code>: A query successfullly returned results.</li>
+<li>
+<code>PayloadStatus::NOT_ACCEPTED</code>: A command failed to be accepted.</li>
+<li>
+<code>PayloadStatus::NOT_AUTHENTICATED</code>: The user is not authenticated.</li>
+<li>
+<code>PayloadStatus::NOT_AUTHORIZED</code>: The user is not authorized for the action.</li>
+<li>
+<code>PayloadStatus::NOT_CREATED</code>: A creation attempt failed.</li>
+<li>
+<code>PayloadStatus::NOT_DELETED</code>: A deletion attempt failed.</li>
+<li>
+<code>PayloadStatus::NOT_FOUND</code>: A query failed to return results.</li>
+<li>
+<code>PayloadStatus::NOT_UPDATED</code>: An update attempt failed.</li>
+<li>
+<code>PayloadStatus::NOT_VALID</code>: User input was invalid.</li>
+<li>
+<code>PayloadStatus::PROCESSING</code>: A command is in-process but not finished.</li>
+<li>
+<code>PayloadStatus::SUCCESS</code>: There was a generic success of some sort.</li>
+<li>
+<code>PayloadStatus::UPDATED</code>: An update attempt succeeded.</li>
+<li>
+<code>PayloadStatus::VALID</code>: User input was valid.</li>
+</ul>
+<p>You should consider creating your own domain-specific payload statuses as well.</p>
+<p>Your user-interface layer can use these to determine how to process and present
+the domain objects retrieved via <code>Payload::getOutput()</code>.</p>
+<h2 id="1-2-4">1.2.4. Example</h2>
+<p>Here is a naive example Application Service class that uses a <em>Payload</em> to
+return its results. Note how:</p>
+<ul>
+<li>the <code>browsePosts()</code> method returns either <code>FOUND</code> or <code>NOT_FOUND</code> payloads;</li>
+<li>the <code>readPost()</code> method also returns either <code>FOUND</code> or <code>NOT_FOUND</code> payloads;</li>
+<li>the <code>editPost()</code> method returns ...
+<ul>
+<li>... a <code>NOT_FOUND</code> payload if the <code>$id</code> does not exist,</li>
+<li>... a <code>NOT_AUTHORIZED</code> payload if the user does not own the post,</li>
+<li>... a <code>NOT_VALID</code> payload for invalid input,</li>
+<li>... or an <code>UPDATED</code> payload on success;</li>
+</ul>
+</li>
+<li>the <code>addPost()</code> method returns ...
+<ul>
+<li>... a <code>NOT_VALID</code> payload for invalid input,</li>
+<li>... or a <code>CREATED</code> payload on success;</li>
+</ul>
+</li>
+<li>the <code>deletePost()</code> method returns ...
+<ul>
+<li>... a <code>NOT_FOUND</code> payload if the <code>$id</code> does not exist,</li>
+<li>... a <code>NOT_AUTHORIZED</code> payload if the user does not own the post,</li>
+<li>... or a <code>DELETED</code> payload on success.</li>
+</ul>
+</li>
+</ul>
+<p>Any raised <em>Exception</em> gets transformed into an <code>ERROR</code> payload, with the
+exception and the input that led to the problem.</p>
+<p>When your user-interface code receives the <em>Payload</em>, it can examine the payload
+status to discover exactly what happened in the domain layer, then determine how
+to present the information from the domain.</p>
+<pre><code class="language-php">&lt;?php
+namespace App\Blog;
+
+use Aura\Payload\PayloadFactory;
+use Aura\Payload_Interface\PayloadStatus;
+use Exception;
+
+class ApplicationService
+{
+    protected $user;
+    protected $mapper;
+    protected $filter;
+    protected $payloadFactory;
+
+    public function __construct(
+        User $user,
+        BlogMapper $mapper,
+        BlogFilter $filter,
+        PayloadFactory $payloadFactory
+    ) {
+        $this-&gt;user = $user;
+        $this-&gt;mapper = $mapper;
+        $this-&gt;filter = $filter;
+        $this-&gt;payloadFactory = $payloadFactory;
+    }
+
+    public function browsePosts($page = 1, $perPage = 10)
+    {
+        $payload = $this-&gt;payloadFactory-&gt;newInstance();
+
+        try {
+
+            $posts = $this-&gt;mapper-&gt;fetchAllByPage($page, $perPage);
+            if (! $posts) {
+                return $payload
+                    -&gt;setStatus(PayloadStatus::NOT_FOUND)
+                    -&gt;setInput(func_get_args());
+            }
+
+            return $payload
+                -&gt;setStatus(PayloadStatus::FOUND)
+                -&gt;setOutput($posts);
+
+        } catch (Exception $e) {
+            return $this-&gt;error($e, func_get_args());
+        }
+    }
+
+    public function readPost($id)
+    {
+        $payload = $this-&gt;payloadFactory-&gt;newInstance();
+
+        try {
+
+            $post = $this-&gt;mapper-&gt;fetchOneById($id);
+            if (! $post) {
+                return $payload
+                    -&gt;setStatus(PayloadStatus::NOT_FOUND)
+                    -&gt;setInput(func_get_args());
+            }
+
+            return $payload
+                -&gt;setStatus(PayloadStatus::FOUND)
+                -&gt;setOutput($post);
+
+        } catch (Exception $e) {
+            return $this-&gt;error($e, func_get_args());
+        }
+    }
+
+    public function editPost($id, array $input)
+    {
+        $payload = $this-&gt;payloadFactory-&gt;newInstance();
+
+        try {
+
+            $post = $this-&gt;mapper-&gt;fetchOneById($id);
+            if (! $post) {
+                return $payload
+                    -&gt;setStatus(PayloadStatus::NOT_FOUND)
+                    -&gt;setInput(func_get_args());
+            }
+
+            if (! $post-&gt;isOwnedBy($user)) {
+                return $payload
+                    -&gt;setStatus(PayloadStatus::NOT_AUTHORIZED)
+                    -&gt;setInput(func_get_args());
+            }
+
+            $post-&gt;setData($input);
+            if (! $this-&gt;filter-&gt;forUpdate($post)) {
+                return $payload
+                    -&gt;setStatus(PayloadStatus::NOT_VALID)
+                    -&gt;setInput($input)
+                    -&gt;setOutput($post)
+                    -&gt;setMessages($this-&gt;filter-&gt;getMessages());
+            }
+
+            $this-&gt;mapper-&gt;update($post);
+            return $payload
+                -&gt;setStatus(PayloadStatus::UPDATED)
+                -&gt;setOutput($post);
+
+        } catch (Exception $e) {
+            return $this-&gt;error($e, func_get_args());
+        }
+    }
+
+    public function addPost(array $input)
+    {
+        $payload = $this-&gt;payloadFactory-&gt;newInstance();
+
+        try {
+
+            $post = $this-&gt;mapper-&gt;newPost($input);
+            if (! $this-&gt;filter-&gt;forInsert($post)) {
+                return $payload
+                    -&gt;setStatus(PayloadStatus::NOT_VALID)
+                    -&gt;setInput($input)
+                    -&gt;setOutput($post)
+                    -&gt;setMessages($this-&gt;filter-&gt;getMessages());
+            }
+
+            $this-&gt;mapper-&gt;create($post);
+            return $payload
+                -&gt;setStatus(PayloadStatus::CREATED)
+                -&gt;setOutput($post);
+
+        } catch (Exception $e) {
+            return $this-&gt;error($e, func_get_args());
+        }
+    }
+
+    public function deletePost($id)
+    {
+        $payload = $this-&gt;payloadFactory-&gt;newInstance();
+
+        try {
+
+            $post = $this-&gt;mapper-&gt;fetchOneById($id);
+            if (! $post) {
+                return $payload
+                    -&gt;setStatus(PayloadStatus::NOT_FOUND)
+                    -&gt;setInput(func_get_args());
+            }
+
+            if (! $post-&gt;isOwnedBy($user)) {
+                return $payload
+                    -&gt;setStatus(PayloadStatus::NOT_AUTHORIZED)
+                    -&gt;setInput(func_get_args());
+            }
+
+            $this-&gt;mapper-&gt;delete($post);
+            return $payload
+                -&gt;setStatus(PayloadStatus::DELETED)
+                -&gt;setOutput($post);
+
+        } catch (Exception $e) {
+            return $this-&gt;error($e, func_get_args());
+        }
+    }
+
+    protected function error(Exception $e, array $args)
+    {
+        $payload = $this-&gt;payloadFactory-&gt;newInstance();
+        return $payload
+            -&gt;setStatus(PayloadStatus::ERROR)
+            -&gt;setInput($args)
+            -&gt;setOutput($e);
+    }
+}
+?&gt;
+</code></pre>
 
 <nav class="navfooter">
     <table>
