@@ -2,7 +2,7 @@
     "3.x": {
         "Di": {
             "type": "library",
-            "version": "3.0.0",
+            "version": "3.1.0",
             "github": "https://github.com/auraphp/Aura.Di",
             "composer": "aura/di",
             "description": "A serializable dependency injection container with constructor and setter injection, interface and trait awareness, configuration inheritance, and much more."
@@ -88,7 +88,7 @@
         },
         "Filter": {
             "type": "library",
-            "version": "2.1.0",
+            "version": "2.2.0",
             "github": "https://github.com/auraphp/Aura.Filter",
             "composer": "aura/filter",
             "description": "Filters to validate and sanitize objects and arrays."
