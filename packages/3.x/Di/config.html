@@ -69,6 +69,17 @@ class Config extends ContainerConfig
 <a href="https://github.com/auraphp/Aura.View/blob/2.0.0/config/Common.php">Aura.View</a>
 </li>
 </ul>
+<p>Alterntively, if you already have a ContainerConfig object created, you can pass it directly to the ContainerBuilder instead of a string class name:</p>
+<pre><code class="language-php">$routerConfig = new Aura\Router\_Config\Common();
+
+// use the builder to create and configure a container
+// using an array of ContainerConfig classes
+$di = $container_builder-&gt;newConfiguredInstance([
+    'Aura\Cli\_Config\Common',
+    $routerConfig,
+    'Aura\Web\_Config\Common',
+]);
+</code></pre>
 
 <nav class="navfooter">
     <table>

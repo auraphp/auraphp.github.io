@@ -114,7 +114,7 @@ $select
         'COUNT(foo) AS foo_count'   // embed calculations directly
     ))
     -&gt;from('foo AS f')              // FROM these tables
-    -&gt;fromSubselect(                // FROM sub-select AS my_sub
+    -&gt;fromSubSelect(                // FROM sub-select AS my_sub
         'SELECT ...',
         'my_sub'
     )
