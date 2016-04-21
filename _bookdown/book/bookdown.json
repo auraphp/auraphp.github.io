@@ -7,5 +7,5 @@
     "target": "../../packages/",
     "rootHref": "/packages/",
     "template": "../templates/main.php",
-    "tocDepth": 2
+    "tocDepth": 3
 }

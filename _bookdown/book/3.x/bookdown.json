@@ -5,5 +5,5 @@
         {"Payload": "https://raw.githubusercontent.com/auraphp/Aura.Payload/3.x/docs/index.md"},
         {"Router": "https://raw.githubusercontent.com/auraphp/Aura.Router/3.x/docs/_bookdown.json"}
     ],
-    "tocDepth": 1
+    "tocDepth": 3
 }

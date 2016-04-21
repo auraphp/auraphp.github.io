@@ -18,5 +18,5 @@
         {"View": "https://raw.githubusercontent.com/auraphp/Aura.View/2.x/README.md"},
         {"Web": "https://raw.githubusercontent.com/auraphp/Aura.Web/2.x/README.md"}
     ],
-    "tocDepth": 1
+    "tocDepth": 3
 }
