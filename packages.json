@@ -151,7 +151,7 @@
         },
         "SqlSchema": {
             "type": "library",
-            "version": "2.0.1",
+            "version": "2.0.3",
             "github": "https://github.com/auraphp/Aura.SqlSchema",
             "composer": "aura/sqlschema",
             "description": "Provides facilities to read table names and table columns from a database using PDO."
