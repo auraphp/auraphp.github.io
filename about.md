@@ -18,4 +18,6 @@ Finally, Aura 2.x provides `*_Kernel` and `*_Project` packages. These compose th
 
 Aura 1.x began as a rewrite of [Solar](http://solarphp.com), reimagined as a library collection with dependency injection instead of a monolithic framework with service location. (The name change from Solar to Aura was to reduce confusion with the Apache Solr project.) The libraries, once finished, were combined into the [1.x framework](/framework/1.x/en/).
 
-Aura 2.x continued the decoupling of 1.x components into even more independent packages. It also split apart the framework into kernel and project packages, providing the basis for the [2.x framework](/framework/2.x/en/).
+Aura 2.x continues the decoupling of 1.x components into even more independent packages. It also split apart the framework into kernel and project packages, providing the basis for the [2.x framework](/framework/2.x/en/).
+
+Aura 3.x very slightly relaxes the no-dependencies rule to allow for "interface package" dependencies. Under the relaxed rule, an Aura library may depend on an interface package, but not on an implementation. This allows an Aura library to conform to commonly-used interfaces for logging, HTTP messages, and so on.  In addition, the 3.x series eschews providing a framework, preferring to let end-users build their own for their own particular needs.
