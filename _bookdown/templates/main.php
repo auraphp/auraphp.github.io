@@ -16,6 +16,7 @@ $templates->set("toc", "{$library}/toc.php");
 layout: site
 active: packages
 title: <?= $this->page->getTitle() . PHP_EOL; ?>
+permalink: <?= $this->page->getHref() . PHP_EOL; ?>
 ---
 <script>hljs.initHighlightingOnLoad();</script>
 <?php echo $this->render("core"); ?>
