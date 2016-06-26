@@ -1,12 +1,11 @@
 ---
-layout: nil
 title : Aura for PHP
 ---
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
- 
+
  <title>{{ site.title }}</title>
- <link href="{{ site.production_url }}/atom.xml" rel="self"/>
+ <link href="{{ site.production_url }}/blog/atom.xml" rel="self"/>
  <link href="{{ site.production_url }}"/>
  <updated>{{ site.time | date: '%Y-%m-%dT%H:%M:%S%Z' }}</updated>
  <id>{{ site.production_url }}</id>
@@ -24,5 +23,5 @@ title : Aura for PHP
    <content type="html">{{ post.content | xml_escape }}</content>
  </entry>
  {% endfor %}
- 
+
 </feed>
