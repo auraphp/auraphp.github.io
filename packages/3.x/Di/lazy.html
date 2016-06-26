@@ -2,6 +2,7 @@
 layout: site
 active: packages
 title: Lazy Injection
+permalink: /packages/3.x/Di/lazy.html
 ---
 <script>hljs.initHighlightingOnLoad();</script>
 
@@ -96,7 +97,12 @@ return [
 <pre><code class="language-php">$di-&gt;params['Example1']['data'] = $di-&gt;lazyInclude('/path/to/data.php');
 $di-&gt;params['Example2']['data'] = $di-&gt;lazyRequire('/path/to/data.php');
 </code></pre>
-<h2 id="1-1-6-5">1.1.6.5. Generic Lazy Calls</h2>
+<h2 id="1-1-6-5">1.1.6.5. Lazy Callable</h2>
+<p>Sometimes you'll be working with code that deals with callables. This code may expect to invoke the callable once, or many times. If you wanted to use a service in this situation, you can use the <code>lazyCallable</code> method. This will produce a callable that will lazily resolve other lazies, and ensure that all calls to the service are made appropriately.</p>
+<pre><code class="language-php">$di-&gt;params['Example']['foo'] = $di-&gt;lazyCallable($di-&gt;lazyGet('service_name'));
+$di-&gt;params['Example']['bar'] = $di-&gt;lazyCallable([$di-&gt;lazyNew('ServiceClass'), 'methodName']);
+</code></pre>
+<h2 id="1-1-6-6">1.1.6.6. Generic Lazy Calls</h2>
 <p>It may be that we have a complex bit of logic we need to execute for a value. If none of the existing <code>$di-&gt;lazy*()</code> methods meet our needs, we can wrap an anonymous function or other callable in a <code>lazy()</code> call, and the callable's return will be used as the value.</p>
 <pre><code class="language-php">$di-&gt;params['Example']['foo'] = $di-&gt;lazy(function () {
     // complex calculations, and then:
@@ -123,6 +129,12 @@ $di-&gt;set('service', $di-&gt;lazy(['ServiceClass', 'staticMethod'],
 <pre><code class="language-php">// $serviceClass-&gt;methodName($configArray)
 $di-&gt;set('service', $di-&gt;lazy([$di-&gt;lazyNew('ServiceClass'), 'methodName'],
     $di-&gt;lazyInclude('/path/to/config.array.php')
+));
+</code></pre>
+<p>You can also pass in lazies directly as the callable.</p>
+<pre><code class="language-php">$di-&gt;set('service', $di-&gt;lazy($di-&gt;lazyNew('InvokableServiceClass'),
+    $arg1,
+    $arg2
 ));
 </code></pre>
 <p>Beware of relying on generic Lazy calls too much; if we do, it probably means we need to separate our configuration concerns better than we are currently doing.</p>

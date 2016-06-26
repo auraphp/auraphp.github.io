@@ -2,6 +2,7 @@
 layout: site
 active: packages
 title: Instance Factories
+permalink: /packages/3.x/Di/factories.html
 ---
 <script>hljs.initHighlightingOnLoad();</script>
 
@@ -48,7 +49,7 @@ class ExampleStruct
 <p>We can inject a <em>Factory</em> that creates only <em>ExampleStruct</em> objects using <code>$di-&gt;newFactory()</code>.</p>
 <pre><code class="language-php">$di-&gt;params['ExampleNeedsFactory']['struct_factory'] = $di-&gt;newFactory('ExampleStruct');
 </code></pre>
-<p>Note that the arguments passed to the factory <code>__invoke()</code> method will be passed to the underlying instance constructor sequentially, not by name. This means the <code>__invoke()</code> method works more like the native <code>new</code> keyword, and not like <code>$di-&gt;lazyNew()</code>.  These arguments override any <code>$di-&gt;params</code> values that have been set for the class being factoried; without the overrides, all existing <code>$di-&gt;params</code> values for that class will be honored. (Values from <code>$di-&gt;setter</code> for the class will also be honored, but cannot be overriddden.)</p>
+<p>Note that the arguments passed to the factory <code>__invoke()</code> method will be passed to the underlying instance constructor sequentially, not by name. This means the <code>__invoke()</code> method works more like the native <code>new</code> keyword, and not like <code>$di-&gt;lazyNew()</code>.  These arguments override any <code>$di-&gt;params</code> values that have been set for the class being factoried; without the overrides, all existing <code>$di-&gt;params</code> values for that class will be honored. (Values from <code>$di-&gt;setter</code> for the class will also be honored, but cannot be overridden.)</p>
 <p>Do not feel limited by the <em>Factory</em> implementation. We can create and inject factory objects of our own if we like. The <em>Factory</em> returned by the <code>$di-&gt;newFactory()</code> method is an occasional convenience, nothing more.</p>
 
 <nav class="navfooter">

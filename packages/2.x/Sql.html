@@ -2,6 +2,7 @@
 layout: site
 active: packages
 title: Aura.Sql
+permalink: /packages/2.x/Sql.html
 ---
 <script>hljs.initHighlightingOnLoad();</script>
 
@@ -52,6 +53,12 @@ on the instance instead of having to prepare a statement, bind values,
 execute, and then fetch from the prepared statement. All of the <code>fetch*()</code>
 methods take an array of values to bind to to the query statement, and use
 the new <code>perform()</code> method internally.</p>
+</li>
+<li>
+<p><strong>New <code>yield*()</code> methods.</strong> The equivalent of various <code>fetch*()</code> methods, the
+<code>yield*()</code> methods return an iterator instead of a complete result set. Using
+the iterator to fetch one result at a time can help reduce memory usage with
+very large result sets.</p>
 </li>
 <li>
 <p><strong>Exceptions by default.</strong> <em>ExtendedPdo</em> starts in the <code>ERRMODE_EXCEPTION</code>
@@ -260,6 +267,44 @@ $result = $pdo-&gt;fetchAssoc($stm, $bind, function (&amp;$row) {
     $row['my_new_col'] = 'Added this column from the callable.';
 });
 ?&gt;
+</code></pre>
+<h3 id="2-12-2-5">2.12.2.5. New <code>yield*()</code> Methods</h3>
+<p><em>ExtendedPdo</em> comes with <code>yield*()</code> methods to help reduce memory usage. Whereas
+many <code>fetch*()</code> methods collect all the query result rows before returning them
+all at once, the equivalent <code>yield*()</code> methods return an iterator that generates
+one result row at a time. For example:</p>
+<pre><code class="language-php">$stm  = 'SELECT * FROM test WHERE foo = :foo AND bar = :bar';
+$bind = array('foo' =&gt; 'baz', 'bar' =&gt; 'dib');
+
+// like fetchAll(), each row is an associative array
+foreach ($pdo-&gt;yieldAll($stm, $bind) as $row) {
+    // ...
+}
+
+// like fetchAssoc(), each key is the first column,
+// and the row is an associative array
+foreach ($pdo-&gt;yieldAssoc($stm, $bind) as $key =&gt; $row) {
+    // ...
+}
+
+// like fetchCol(), each result is a value from the first column
+foreach ($pdo-&gt;yieldCol($stm, $bind) as $val) {
+    // ...
+}
+
+// like fetchObjects(), each result is an object; pass an optional
+// class name and optional array of constructor arguments.
+$class = 'ClassName';
+$args = ['arg0', 'arg1', 'arg2'];
+foreach ($pdo-&gt;yieldCol($stm, $bind, $class, $args) as $object) {
+    // ...
+}
+
+// like fetchPairs(), each result is a key-value pair from the
+// first and second columns
+foreach ($pdo-&gt;yieldPairs($stm, $bind) as $key =&gt; $val) {
+    // ...
+}
 </code></pre>
 <h2 id="2-12-3">2.12.3. Profiler</h2>
 <p>When debugging, it is often useful to see what queries have been executed,

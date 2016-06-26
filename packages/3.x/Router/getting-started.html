@@ -2,6 +2,7 @@
 layout: site
 active: packages
 title: Getting Started
+permalink: /packages/3.x/Router/getting-started.html
 ---
 <script>hljs.initHighlightingOnLoad();</script>
 
@@ -84,6 +85,19 @@ $matcher = $routerContainer-&gt;getMatcher();
 $route = $matcher-&gt;match($request);
 ?&gt;
 </code></pre>
+<h3 id="1-3-1-2-1">1.3.1.2.1. The $request Object</h3>
+<p>The <code>$request</code> object can be <a href="https://packagist.org/providers/psr/http-message-implementation">any of the psr-7 implementation</a>. The most widely used is  <a href="https://zendframework.github.io/zend-diactoros/">zend-diactoros</a> . Below is an example how to create the <code>$request</code> object via <code>zend-diactoros</code>.</p>
+<pre><code class="language-php">$request = Zend\Diactoros\ServerRequestFactory::fromGlobals(
+    $_SERVER,
+    $_GET,
+    $_POST,
+    $_COOKIE,
+    $_FILES
+);
+</code></pre>
+<blockquote>
+<p>NB : Make sure you have installed diactoros. Read <a href="https://zendframework.github.io/zend-diactoros/">documentation</a> for more details regarding installation and usage.</p>
+</blockquote>
 <h2 id="1-3-1-3">1.3.1.3. Dispatching A Route</h2>
 <p>This is the point at which your application takes over. The route has two properties that you are most likely to be interested in:</p>
 <ul>

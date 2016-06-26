@@ -2,6 +2,7 @@
 layout: site
 active: packages
 title: Setter Injection
+permalink: /packages/3.x/Di/setter.html
 ---
 <script>hljs.initHighlightingOnLoad();</script>
 
@@ -38,7 +39,7 @@ class Example
 </code></pre>
 <p>Note also that this works only with explicitly-defined setter methods. Setter methods that exist only via magic <code>__call()</code> will not be honored.</p>
 <blockquote>
-<p>N.b.: If you try to access <code>$setters</code> after calling <code>newInstance()</code> (or after locking the <em>Container</em> using the <code>lock()</code> method) the <em>Container</em> will throw an exception. This is to prevent modifiying the params after objects have been created. Thus, be sure to set up all params for all objects before creating an object.</p>
+<p>N.b.: If you try to access <code>$setters</code> after calling <code>newInstance()</code> (or after locking the <em>Container</em> using the <code>lock()</code> method) the <em>Container</em> will throw an exception. This is to prevent modifying the params after objects have been created. Thus, be sure to set up all params for all objects before creating an object.</p>
 </blockquote>
 
 <nav class="navfooter">

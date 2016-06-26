@@ -2,6 +2,7 @@
 layout: site
 active: packages
 title: Class, Interface, and Trait Inheritance
+permalink: /packages/3.x/Di/inheritance.html
 ---
 <script>hljs.initHighlightingOnLoad();</script>
 
@@ -22,7 +23,7 @@ title: Class, Interface, and Trait Inheritance
 <p>N.b.: When specifying fully-qualified class names, <strong>do not</strong> include the leading namespace separator. Doing so may lead to unexpected behavior. In other words, always use <code>ClassName</code> and never use <code>\ClassName</code>.</p>
 </blockquote>
 <h2 id="1-1-4-1">1.1.4.1. Class Inheritance</h2>
-<p>Each class instantiated through the <em>Container</em> "inherits" the constrctor parameter and setter method values of its parents by default. This means we can specify a constructor parameter or setter method value on a parent class, and the child class will use it (that is, unless we set an overriding value on the child class).</p>
+<p>Each class instantiated through the <em>Container</em> "inherits" the constructor parameter and setter method values of its parents by default. This means we can specify a constructor parameter or setter method value on a parent class, and the child class will use it (that is, unless we set an overriding value on the child class).</p>
 <p>Let's say we have this parent class and this child class:</p>
 <pre><code class="language-php">class ExampleParent
 {

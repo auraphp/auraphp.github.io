@@ -2,6 +2,7 @@
 layout: site
 active: packages
 title: Services
+permalink: /packages/3.x/Di/services.html
 ---
 <script>hljs.initHighlightingOnLoad();</script>
 
@@ -36,7 +37,7 @@ $service2 = $di-&gt;get('service_name');
 var_dump($service1 === $service2); // true
 </code></pre>
 <blockquote>
-<p>N.b.: If you try to access <code>$params</code> or <code>$setters</code>, or to call <code>set()</code>, after calling <code>get()</code> or after locking the <em>Container</em> using the <code>lock()</code> method, the <em>Container</em> will throw an exception. This is to prevent modifiying the params after objects have been created. Thus, be sure to set up all params for all objects before creating an object.</p>
+<p>N.b.: If you try to access <code>$params</code> or <code>$setters</code>, or to call <code>set()</code>, after calling <code>get()</code> or after locking the <em>Container</em> using the <code>lock()</code> method, the <em>Container</em> will throw an exception. This is to prevent modifying the params after objects have been created. Thus, be sure to set up all params for all objects before creating an object.</p>
 </blockquote>
 
 <nav class="navfooter">
