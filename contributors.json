@@ -743,5 +743,45 @@
         "html_url": "https:\/\/github.com\/adamaltman",
         "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/1161871?v=3",
         "name": "Adam Altman"
+    },
+    "andrewshell": {
+        "html_url": "https:\/\/github.com\/andrewshell",
+        "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/144136?v=3",
+        "name": "Andrew Shell"
+    },
+    "chriscook": {
+        "html_url": "https:\/\/github.com\/chriscook",
+        "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/765239?v=3",
+        "name": "Chris Cook"
+    },
+    "jkphl": {
+        "html_url": "https:\/\/github.com\/jkphl",
+        "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/4446936?v=3",
+        "name": "Joschi Kuphal"
+    },
+    "omniton": {
+        "html_url": "https:\/\/github.com\/omniton",
+        "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/236876?v=3",
+        "name": "omniton"
+    },
+    "DQNEO": {
+        "html_url": "https:\/\/github.com\/DQNEO",
+        "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/188741?v=3",
+        "name": "DQNEO"
+    },
+    "jhuet": {
+        "html_url": "https:\/\/github.com\/jhuet",
+        "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/372409?v=3",
+        "name": "J\u00e9r\u00e9my Huet"
+    },
+    "yespire": {
+        "html_url": "https:\/\/github.com\/yespire",
+        "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/1065882?v=3",
+        "name": "yespire"
+    },
+    "cyberhck": {
+        "html_url": "https:\/\/github.com\/cyberhck",
+        "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/3640284?v=3",
+        "name": "Nishchal Gautam"
     }
 }
