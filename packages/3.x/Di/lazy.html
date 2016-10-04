@@ -84,6 +84,9 @@ $di-&gt;params['Example']['bar'] = $di-&gt;lazyValue('barval');
 <pre><code class="language-php">$di-&gt;values['fooval'] = 'lazy value for foo';
 $di-&gt;values['barval'] = 'lazy value for bar';
 </code></pre>
+<p>Lazy values can be lazy themselves:</p>
+<pre><code class="language-php">$di-&gt;values['fooval'] = $di-&gt;lazyGetCall('option_container', 'getFooOption');
+</code></pre>
 <h2 id="1-1-6-4">1.1.6.4. Lazy Include and Require</h2>
 <p>Occasionally we will need to <code>include</code> a file that returns a value, such as data file that returns a PHP array:</p>
 <pre><code class="language-php">// /path/to/data.php
@@ -97,25 +100,34 @@ return [
 <pre><code class="language-php">$di-&gt;params['Example1']['data'] = $di-&gt;lazyInclude('/path/to/data.php');
 $di-&gt;params['Example2']['data'] = $di-&gt;lazyRequire('/path/to/data.php');
 </code></pre>
-<h2 id="1-1-6-5">1.1.6.5. Lazy Callable</h2>
+<h2 id="1-1-6-5">1.1.6.5. Lazy Array</h2>
+<p>Sometimes you'll be working with code that expects an array of objects. If you want to have the objects within the array to be lazy you can use the <code>$di-&gt;lazyArray()</code> method. This will iterate through your array and resolve any lazy objects before returning the array.</p>
+<pre><code class="language-php">$di-&gt;setters['Example']['addFoos'] = $di-&gt;lazyArray([
+    $di-&gt;lazyNew('FirstFoo'),
+    $di-&gt;lazyNew('SecondFoo'),
+]);
+
+// Nesting Lazy Arrays
+$di-&gt;setters['Example']['addBars'] = $di-&gt;lazyArray([
+    $di-&gt;lazyArray(['name1', $di-&gt;lazyNew('FirstBar), 'en']),
+    $di-&gt;lazyArray(['name2', $di-&gt;lazyNew('SecondFoo'), 'es']),
+]);
+</code></pre>
+<h2 id="1-1-6-6">1.1.6.6. Lazy Callable</h2>
 <p>Sometimes you'll be working with code that deals with callables. This code may expect to invoke the callable once, or many times. If you wanted to use a service in this situation, you can use the <code>lazyCallable</code> method. This will produce a callable that will lazily resolve other lazies, and ensure that all calls to the service are made appropriately.</p>
 <pre><code class="language-php">$di-&gt;params['Example']['foo'] = $di-&gt;lazyCallable($di-&gt;lazyGet('service_name'));
 $di-&gt;params['Example']['bar'] = $di-&gt;lazyCallable([$di-&gt;lazyNew('ServiceClass'), 'methodName']);
 </code></pre>
-<h2 id="1-1-6-6">1.1.6.6. Generic Lazy Calls</h2>
+<h2 id="1-1-6-7">1.1.6.7. Generic Lazy Calls</h2>
 <p>It may be that we have a complex bit of logic we need to execute for a value. If none of the existing <code>$di-&gt;lazy*()</code> methods meet our needs, we can wrap an anonymous function or other callable in a <code>lazy()</code> call, and the callable's return will be used as the value.</p>
 <pre><code class="language-php">$di-&gt;params['Example']['foo'] = $di-&gt;lazy(function () {
     // complex calculations, and then:
     return $result;
 });
 </code></pre>
-<p>Note that this will work with any PHP callable, such as a static method or instance method.</p>
+<p>Note that this will work with any PHP callable, such as a static method:</p>
 <pre><code class="language-php">// ServiceClass::staticMethod()
 $di-&gt;set('service', $di-&gt;lazy(['ServiceClass', 'staticMethod']));
-
-// or an instance of $serviceClass-&gt;methodName()
-$instance = $di-&gt;newInstance('ServiceClass');
-$di-&gt;set('service', $di-&gt;lazy([$instance, 'methodName']));
 </code></pre>
 <p>You can pass arguments to the callable like so:</p>
 <pre><code class="language-php">// ServiceClass::staticMethod($arg1, $arg2, $arg3)

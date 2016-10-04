@@ -24,13 +24,13 @@ These builders are independent of any particular database connection library,
 although <a href="http://php.net/PDO">PDO</a> in general is recommended.</p>
 <h2 id="2-13-1">2.13.1. Foreword</h2>
 <h3 id="2-13-1-1">2.13.1.1. Installation</h3>
-<p>This library requires PHP 5.3 or later; we recommend using the latest available version of PHP as a matter of principle. It has no userland dependencies.</p>
+<p>This library requires PHP 5.3.9 or later; we recommend using the latest available version of PHP as a matter of principle. It has no userland dependencies.</p>
 <p>It is installable and autoloadable via Composer as <a href="https://packagist.org/packages/aura/sqlquery">aura/sqlquery</a>.</p>
 <p>Alternatively, <a href="https://github.com/auraphp/Aura.SqlQuery/releases">download a release</a> or clone this repository, then require or include its <em>autoload.php</em> file.</p>
 <h3 id="2-13-1-2">2.13.1.2. Quality</h3>
-<p><a href="https://scrutinizer-ci.com/g/auraphp/Aura.SqlQuery/"><img src="https://scrutinizer-ci.com/g/auraphp/Aura.SqlQuery/badges/quality-score.png?b=develop-2" alt="Scrutinizer Code Quality"></a>
-<a href="https://scrutinizer-ci.com/g/auraphp/Aura.SqlQuery/"><img src="https://scrutinizer-ci.com/g/auraphp/Aura.SqlQuery/badges/coverage.png?b=develop-2" alt="Code Coverage"></a>
-<a href="https://travis-ci.org/auraphp/Aura.SqlQuery"><img src="https://travis-ci.org/auraphp/Aura.SqlQuery.png?branch=develop-2" alt="Build Status"></a></p>
+<p><a href="https://scrutinizer-ci.com/g/auraphp/Aura.SqlQuery/?branch=2.x"><img src="https://scrutinizer-ci.com/g/auraphp/Aura.SqlQuery/badges/quality-score.png?b=2.x" alt="Scrutinizer Code Quality"></a>
+<a href="https://scrutinizer-ci.com/g/auraphp/Aura.SqlQuery/?branch=2.x"><img src="https://scrutinizer-ci.com/g/auraphp/Aura.SqlQuery/badges/coverage.png?b=2.x" alt="Code Coverage"></a>
+<a href="https://travis-ci.org/auraphp/Aura.SqlQuery"><img src="https://travis-ci.org/auraphp/Aura.SqlQuery.png?branch=2.x" alt="Build Status"></a></p>
 <p>To run the unit tests at the command line, issue <code>phpunit</code> at the package root. (This requires <a href="http://phpunit.de/manual/">PHPUnit</a> to be available as <code>phpunit</code>.)</p>
 <p>This library attempts to comply with <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md">PSR-1</a>, <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md">PSR-2</a>, and <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md">PSR-4</a>. If
 you notice compliance oversights, please send a patch via pull request.</p>
@@ -101,6 +101,7 @@ quoted appropriately.</p>
 </blockquote>
 <p>All query objects implement the "Common" methods.</p>
 <h3 id="2-13-4-1">2.13.4.1. SELECT</h3>
+<h4 id="2-13-4-1-1">2.13.4.1.1. Building A Query</h4>
 <p>Build a <em>Select</em> query using the following methods. They do not need to
 be called in any particular order, and may be called multiple times.</p>
 <pre><code class="language-php">&lt;?php
@@ -121,13 +122,13 @@ $select
     )
     -&gt;join(                         // JOIN ...
         'LEFT',                     // left/inner/natural/etc
-        'doom AS d'                 // this table name
+        'doom AS d',                // this table name
         'foo.id = d.foo_id'         // ON these conditions
     )
     -&gt;joinSubSelect(                // JOIN to a sub-select
         'INNER',                    // left/inner/natural/etc
         'SELECT ...',               // the subselect to join on
-        'subjoin'                   // AS this name
+        'subjoin',                  // AS this name
         'sub.id = foo.id'           // ON these conditions
     )
     -&gt;where('bar &gt; :bar')           // AND WHERE these conditions
@@ -158,6 +159,27 @@ mark placeholder in the condition clause.</p>
 sequential array of values to bind to sequential question-mark placeholders in
 the condition clause.</p>
 </blockquote>
+<h4 id="2-13-4-1-2">2.13.4.1.2. Resetting Query Elements</h4>
+<p>The <em>Select</em> class comes with the following methods to "reset" various clauses
+a blank state. This can be useful when reusing the same query in different
+variations (e.g., to re-issue a query to get a <code>COUNT(*)</code> without a <code>LIMIT</code>, to
+find the total number of rows to be paginated over).</p>
+<ul>
+<li>
+<code>resetCols()</code> removes all columns</li>
+<li>
+<code>resetTable()</code> removes all <code>FROM</code> and <code>JOIN</code> clauses</li>
+<li>
+<code>resetWhere()</code>, <code>resetGroupBy()</code>, <code>resetHaving()</code>, and <code>resetOrderBy()</code>
+remove the respective clauses</li>
+<li>
+<code>resetUnions()</code> removes all <code>UNION</code> and <code>UNION ALL</code> clauses</li>
+<li>
+<code>resetFlags()</code> removes all database-engine-specific flags</li>
+<li>
+<code>resetBindValues()</code> removes all values bound to named placeholders</li>
+</ul>
+<h4 id="2-13-4-1-3">2.13.4.1.3. Issuing The Query</h4>
 <p>Once you have built the query, pass it to the database connection of your
 choice as a string, and send the bound values along with it.</p>
 <pre><code class="language-php">&lt;?php
