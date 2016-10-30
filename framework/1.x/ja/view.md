@@ -9,7 +9,7 @@ permalink: /framework/1.x/ja/view/
 AuraフレームワークはAura.Viewをデフォルトのテンプレートとして使用します。
 しかし[Hari.Extras](https://github.com/harikt/Hari.Extras)で行っている様に他のテンプレートシステムを使う事もできます。
 Aura Viewパッケージは[`TemplateView`](http://martinfowler.com/eaaCatalog/templateView.html)パターンの実装です。
-これには自動エスペープや"path stacks"、ヘルパー等のサポートも含まれています。
+これには自動エスケープや"path stacks"、ヘルパー等のサポートも含まれています。
 
 「PHPをプレゼンテーションロジックのために使用する」という方針を固持していますが、[`Savant`](http://phpsavant.com)、[`Zend_View`](http://framework.zend.com/manual/en/zend.view.html)、それに
 [`Solar_View`](http://solarphp.com/class/Solar_View)などで置き換えることができます。
@@ -72,10 +72,10 @@ PHPコードを通常通りに使用します（ここにはプレゼンテー�
 
 ***Aura View はテンプレートにアサインされたデータをアクセスする時に自動でエスケープ処理が行われます。***通常はテンプレート内で手動で適用する必要はありません
 
-- アサインされた文字列はアクセスに応じて自動的にエスペープされます：
+- アサインされた文字列はアクセスに応じて自動的にエスケープされます：
   integers, floats, booleans, それに nulls と not
 
-- もし配列がアサインされたらそのキーと値はアクセスされたときにエスペープされます
+- もし配列がアサインされたらそのキーと値はアクセスされたときにエスケープされます
 
 - もしオブジェクトがアサインされたらプロパティとメソッドの返り値はアクセスされたときにエスケープされます
 
