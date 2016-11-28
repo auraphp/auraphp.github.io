@@ -4,7 +4,7 @@ title: Aura SQL
 permalink: /framework/1.x/ja/sql/
 ---
 
-#Aura SQL#
+# Aura SQL #
 
 Aura SQLパッケージはMySQL、PostgreSQL、それにSqliteなどのデータベースのクエリーとその接続を提供します。
 接続のほとんどは[PDO](http://php.net/PDO)接続でラップされたものです。
@@ -92,7 +92,7 @@ $result = $connection->fetchAll('SELECT * FROM foo');
 つまり、全ての値をクオートしてクエリー文字列に差し込む[SQL injectionの防止](http://bobby-tables.com/)をしなければなりません。
 
 Aura SQLはクオートするメソッドを提供していますが、それよりプリペアードステートを使って値をバインドする方が良いでしょう。
-その為にクエリーの文字列中に名前を使ったプレースフォルダーを置いて、そのプレースフォルダに配列の値をバインドします。
+その為にクエリーの文字列中に名前を使ったプレースホルダーを置いて、そのプレースホルダーに配列の値をバインドします。
 
 {% highlight php %}
 <?php
