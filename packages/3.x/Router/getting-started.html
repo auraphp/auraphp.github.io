@@ -9,16 +9,16 @@ permalink: /packages/3.x/Router/getting-started.html
 <nav class="navheader">
     <table>
         <tr>
-            <th colspan="3" class="curr">1.3.1. Getting Started</th>
+            <th colspan="3" class="curr">1.4.1. Getting Started</th>
         </tr>
         <tr>
             <td class="prev"><a href="/packages/3.x/Router/">Aura.Router</a></td>
-            <td class="parent">1.3. Aura.Router</th>
+            <td class="parent">1.4. Aura.Router</th>
             <td class="next"><a href="/packages/3.x/Router/defining-routes.html">Defining Routes</a></td>
         </tr>
     </table>
 </nav>
-<h1 id="1-3-1">1.3.1. Getting Started</h1>
+<h1 id="1-4-1">1.4.1. Getting Started</h1>
 <p>Aura.Router is a web router implementation for PSR-7.</p>
 <p>You get all the router objects through a library-specific <em>RouterContainer</em>, which manages object creation, dependencies, and wiring for you. That means you need to instantiate the container before anything else.</p>
 <pre><code class="language-php">&lt;?php
@@ -29,7 +29,7 @@ $routerContainer = new RouterContainer();
 </code></pre>
 <p>You can then retrieve a <em>Map</em> for adding routes, a <em>Matcher</em> for matching the incoming request to a route, and a <em>Generator</em> for generating paths from routes.</p>
 <p>Let's go step-by-step to add a route, match a request against it, and dispatch it.</p>
-<h2 id="1-3-1-1">1.3.1.1. Adding A Route</h2>
+<h2 id="1-4-1-1">1.4.1.1. Adding A Route</h2>
 <p>To add a route, first retrieve the <em>Map</em> from the <em>RouterContainer</em>.</p>
 <pre><code class="language-php">&lt;?php
 $map = $routerContainer-&gt;getMap();
@@ -60,7 +60,7 @@ $map = $routerContainer-&gt;getMap();
 <pre><code class="language-php">&lt;?php
 $map-&gt;get('blog.read', '/blog/{id}', function ($request, $response) {
     $id = (int) $request-&gt;getAttribute('id');
-    $response-&gt;body()-&gt;write("You asked for blog entry {$id}.");
+    $response-&gt;getBody()-&gt;write("You asked for blog entry {$id}.");
     return $response;
 });
 ?&gt;
@@ -71,7 +71,7 @@ $map-&gt;route('route-name', '/route/path', function () { ... })
     -&gt;allows('CUSTOMVERB');
 ?&gt;
 </code></pre>
-<h2 id="1-3-1-2">1.3.1.2. Matching A Request To A Route</h2>
+<h2 id="1-4-1-2">1.4.1.2. Matching A Request To A Route</h2>
 <p>First, get the <em>Matcher</em> from the <em>RouterContainer</em>.</p>
 <pre><code class="language-php">&lt;?php
 $matcher = $routerContainer-&gt;getMatcher();
@@ -85,7 +85,7 @@ $matcher = $routerContainer-&gt;getMatcher();
 $route = $matcher-&gt;match($request);
 ?&gt;
 </code></pre>
-<h3 id="1-3-1-2-1">1.3.1.2.1. The $request Object</h3>
+<h3 id="1-4-1-2-1">1.4.1.2.1. The $request Object</h3>
 <p>The <code>$request</code> object can be <a href="https://packagist.org/providers/psr/http-message-implementation">any of the psr-7 implementation</a>. The most widely used is  <a href="https://zendframework.github.io/zend-diactoros/">zend-diactoros</a> . Below is an example how to create the <code>$request</code> object via <code>zend-diactoros</code>.</p>
 <pre><code class="language-php">$request = Zend\Diactoros\ServerRequestFactory::fromGlobals(
     $_SERVER,
@@ -98,7 +98,7 @@ $route = $matcher-&gt;match($request);
 <blockquote>
 <p>NB : Make sure you have installed diactoros. Read <a href="https://zendframework.github.io/zend-diactoros/">documentation</a> for more details regarding installation and usage.</p>
 </blockquote>
-<h2 id="1-3-1-3">1.3.1.3. Dispatching A Route</h2>
+<h2 id="1-4-1-3">1.4.1.3. Dispatching A Route</h2>
 <p>This is the point at which your application takes over. The route has two properties that you are most likely to be interested in:</p>
 <ul>
 <li>
@@ -126,7 +126,7 @@ $action = new $actionClass();
 $response = $action($request);
 ?&gt;
 </code></pre>
-<h2 id="1-3-1-4">1.3.1.4. Handling Failure To Match</h2>
+<h2 id="1-4-1-4">1.4.1.4. Handling Failure To Match</h2>
 <p>When <code>$map-&gt;match()</code> returns empty, it means there was no matching route for the request. However, we can still discover the closest-matching failed route, and which rule it failed to match against.</p>
 <p>Your application might do something like the following:</p>
 <pre><code class="language-php">&lt;?php
@@ -160,9 +160,9 @@ if (! $route) {
             <td class="next"><a href="/packages/3.x/Router/defining-routes.html">Next</a></td>
         </tr>
         <tr>
-            <td class="prev">1.3. Aura.Router</td>
-            <td class="parent">1.3. Aura.Router</td>
-            <td class="next">1.3.2. Defining Routes</td>
+            <td class="prev">1.4. Aura.Router</td>
+            <td class="parent">1.4. Aura.Router</td>
+            <td class="next">1.4.2. Defining Routes</td>
         </tr>
     </table>
 </nav>

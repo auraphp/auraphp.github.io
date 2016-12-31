@@ -2,6 +2,7 @@
     "title": "Version 3.x",
     "content": [
         {"Di": "https://raw.githubusercontent.com/auraphp/Aura.Di/3.x/docs/_bookdown.json"},
+        {"Intl": "https://raw.githubusercontent.com/auraphp/Aura.Intl/3.x/docs/index.md"},
         {"Payload": "https://raw.githubusercontent.com/auraphp/Aura.Payload/3.x/docs/index.md"},
         {"Router": "https://raw.githubusercontent.com/auraphp/Aura.Router/3.x/docs/_bookdown.json"}
     ],

@@ -1,0 +1,214 @@
+---
+layout: site
+active: packages
+title: Aura.Intl
+permalink: /packages/3.x/Intl.html
+---
+<script>hljs.initHighlightingOnLoad();</script>
+
+<nav class="navheader">
+    <table>
+        <tr>
+            <th colspan="3" class="curr">1.2. Aura.Intl</th>
+        </tr>
+        <tr>
+            <td class="prev"><a href="/packages/3.x/Di/migrating.html">Migrating from 2.x to 3.x</a></td>
+            <td class="parent">1. Version 3.x</th>
+            <td class="next"><a href="/packages/3.x/Payload.html">Aura.Payload</a></td>
+        </tr>
+    </table>
+</nav>
+<h1 id="1-2">1.2. Aura.Intl</h1>
+<p>The Aura.Intl package provides internationalization (I18N) tools, specifically
+package-oriented per-locale message translation.</p>
+<h2 id="1-2-1">1.2.1. Getting Started</h2>
+<p>You can instantiate <em>TranslatorLocator</em> object from <em>TranslatorLocatorFactory</em>
+as below</p>
+<pre><code class="language-php">&lt;?php
+use Aura\Intl\TranslatorLocatorFactory;
+
+$factory = new TranslatorLocatorFactory();
+$translators = $factory-&gt;newInstance();
+?&gt;
+</code></pre>
+<p>Alternatively, we can add the Aura.Intl package <code>/path/to/Aura.Intl/src</code> to
+our autoloader and build a translator locator manually:</p>
+<pre><code class="language-php">&lt;?php
+use Aura\Intl\PackageLocator;
+use Aura\Intl\FormatterLocator;
+use Aura\Intl\TranslatorFactory;
+use Aura\Intl\TranslatorLocator;
+
+return new TranslatorLocator(
+    new PackageLocator,
+    new FormatterLocator([
+        'basic' =&gt; function () { return new \Aura\Intl\BasicFormatter; },
+        'intl'  =&gt; function () { return new \Aura\Intl\IntlFormatter; },
+    ]),
+    new TranslatorFactory,
+    'en_US'
+);
+?&gt;
+</code></pre>
+<h2 id="1-2-2">1.2.2. Setting Localized Messages For A Package</h2>
+<p>We can set localized messages for a package through the <code>PackageLocator</code> object
+from the translator locator. We create a new <code>Package</code> with messages and place
+it into the locator as a callable. The messages take the form of a message key and
+and message string.</p>
+<pre><code class="language-php">&lt;?php
+use Aura\Intl\Package;
+
+// get the package locator
+$packages = $translators-&gt;getPackages();
+
+// place into the locator for Vendor.Package
+$packages-&gt;set('Vendor.Package', 'en_US', function() {
+    // create a US English message set
+    $package = new Package;
+    $package-&gt;setMessages([
+        'FOO' =&gt; 'The text for "foo."',
+        'BAR' =&gt; 'The text for "bar."',
+    ]);
+    return $package;
+});
+
+// place into the locator for a Vendor.Package
+$packages-&gt;set('Vendor.Package', 'pt_BR', function() {
+    // a Brazilian Portuguese message set
+    $package = new Package;
+    $package-&gt;setMessages([
+        'FOO' =&gt; 'O texto de "foo".',
+        'BAR' =&gt; 'O texto de "bar".',
+    ]);
+    return $package;
+});
+?&gt;
+</code></pre>
+<h2 id="1-2-3">1.2.3. Setting The Default Locale</h2>
+<p>We can set the default locale for translations using the <code>setLocale()</code> method:</p>
+<pre><code class="language-php">&lt;?php
+$translators-&gt;setLocale('pt_BR');
+?&gt;
+</code></pre>
+<h2 id="1-2-4">1.2.4. Getting A Localized Message</h2>
+<p>Now that the translator locator has messages and a default locale, we can get
+an individual package translator. The package translator is suitable for
+injection into another class, or for standalone use.</p>
+<pre><code class="language-php">&lt;?php
+// recall that the default locale is pt_BR
+$translator = $translators-&gt;get('Vendor.Package');
+echo $translator-&gt;translate('FOO'); // 'O texto de "foo".'
+?&gt;
+</code></pre>
+<p>You can get a translator for a non-default locale as well:</p>
+<pre><code class="language-php">&lt;?php
+$translator = $translators-&gt;get('Vendor.Package', 'en_US');
+echo $translator-&gt;translate('FOO'); // 'The text for "foo."'
+?&gt;
+</code></pre>
+<h2 id="1-2-5">1.2.5. Replacing Message Tokens With Values</h2>
+<p>We often need to use dynamic values in translated messages. First, the
+message string needs to have a token placeholder for the dynamic value:</p>
+<pre><code class="language-php">&lt;?php
+// get the packages out of the translator locator
+$packages = $translators-&gt;getPackages();
+
+$packages-&gt;set('Vendor.Dynamic', 'en_US', function() {
+
+    // US English messages
+    $package = new Package;
+    $package-&gt;setMessages([
+        'PAGE' =&gt; 'Page {page} of {pages} pages.',
+    ]);
+    return $package;
+});
+
+$packages-&gt;set('Vendor.Dynamic', 'pt_BR', function() {
+    // Brazilian Portuguese messages
+    $package = new Package;
+    $package-&gt;setMessages([
+        'PAGE' =&gt; 'Página {page} de {pages} páginas.',
+    ]);
+    return $package;
+});
+?&gt;
+</code></pre>
+<p>Then, when we translate the message, we provide an array of tokens and
+replacement values.  These will be interpolated into the message string.</p>
+<pre><code class="language-php">&lt;?php
+// recall that the default locale is pt_BR
+$translator = $translators-&gt;get('Vendor.Dynamic');
+echo $translator-&gt;translate('PAGE', [
+    'page' =&gt; 1,
+    'pages' =&gt; 1,
+]); // 'Página 1 de 1 páginas.'
+?&gt;
+</code></pre>
+<h2 id="1-2-6">1.2.6. Pluralized Messages</h2>
+<p>Usually, we need to use different messages when a value is singular or plural.
+The <code>BasicFormatter</code> is not capable of presenting different messages based on
+different token values. The <code>IntlFormatter</code> <em>is</em> capable, but the PHP
+<a href="http://php.net/intl"><code>intl</code></a> extension must be loaded to take advantage of
+it, and we must specify the <code>'intl'</code> formatter for the package in the catalog.</p>
+<p>When using the <code>IntlFormatter</code>, we can build our message strings to present
+singular or plural messages, as in the following example:</p>
+<pre><code class="language-php">&lt;?php
+// get the packages out of the translator locator
+$packages = $translators-&gt;getCatalog();
+
+// get the Vendor.Dynamic package en_US locale and set
+// US English messages with pluralization. note the use
+// of # instead of {pages} herein; using the placeholder
+// "inside itself" with the Intl formatter causes trouble.
+$package-&gt;setMessages([
+    'PAGE' =&gt; '{pages,plural,'
+            . '=0{No pages.}'
+            . '=1{One page only.}'
+            . 'other{Page {page} of # pages.}'
+            . '}'
+]);
+
+// use the 'intl' formatter for this package and locale
+$package-&gt;setFormatter('intl');
+
+// now that we have added the pluralizable messages,
+// get the US English translator for the package
+$translator = $translators-&gt;get('Vendor.Dynamic', 'en_US');
+
+// zero translation
+echo $translator-&gt;translate('PAGE', [
+    'page' =&gt; 0,
+    'pages' =&gt; 0,
+]); // 'No pages.'
+
+// singular translation
+echo $translator-&gt;translate('PAGE', [
+    'page' =&gt; 1,
+    'pages' =&gt; 1,
+]); // 'One page only.'
+
+// plural translation
+echo $translator-&gt;translate('PAGE', [
+    'page' =&gt; 3,
+    'pages' =&gt; 10,
+]); // 'Page 3 of 10 pages.'
+?&gt;
+</code></pre>
+<p>Note that you can use other tokens within a pluralized token string to build
+more complex messages. For more information, see the following:</p>
+<p><a href="http://icu-project.org/apiref/icu4j/com/ibm/icu/text/MessageFormat.html">http://icu-project.org/apiref/icu4j/com/ibm/icu/text/MessageFormat.html</a></p>
+
+<nav class="navfooter">
+    <table>
+        <tr>
+            <td class="prev"><a href="/packages/3.x/Di/migrating.html">Prev</a></td>
+            <td class="parent"><a href="/packages/3.x/">Up</a></td>
+            <td class="next"><a href="/packages/3.x/Payload.html">Next</a></td>
+        </tr>
+        <tr>
+            <td class="prev">1.1.10. Migrating from 2.x to 3.x</td>
+            <td class="parent">1. Version 3.x</td>
+            <td class="next">1.3. Aura.Payload</td>
+        </tr>
+    </table>
+</nav>

@@ -109,7 +109,7 @@ $di-&gt;params['Example2']['data'] = $di-&gt;lazyRequire('/path/to/data.php');
 
 // Nesting Lazy Arrays
 $di-&gt;setters['Example']['addBars'] = $di-&gt;lazyArray([
-    $di-&gt;lazyArray(['name1', $di-&gt;lazyNew('FirstBar), 'en']),
+    $di-&gt;lazyArray(['name1', $di-&gt;lazyNew('FirstBar'), 'en']),
     $di-&gt;lazyArray(['name2', $di-&gt;lazyNew('SecondFoo'), 'es']),
 ]);
 </code></pre>
