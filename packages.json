@@ -53,7 +53,7 @@
         },
         "Cli": {
             "type": "library",
-            "version": "2.1.2",
+            "version": "2.2.0",
             "github": "https://github.com/auraphp/Aura.Cli",
             "composer": "aura/cli",
             "description": "Provides the equivalent of request (Context) and response (Stdio) classes for a command line environment, including Getopt support."
@@ -165,7 +165,7 @@
         },
         "Web": {
             "type": "library",
-            "version": "2.0.4",
+            "version": "2.1.0",
             "github": "https://github.com/auraphp/Aura.Web",
             "composer": "aura/web",
             "description": "Provides web Request and Response objects for use by web controllers and actions. These are representations of the PHP web environment, not HTTP request and response objects proper."
