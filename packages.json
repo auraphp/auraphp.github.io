@@ -7,6 +7,13 @@
             "composer": "aura/di",
             "description": "A serializable dependency injection container with constructor and setter injection, interface and trait awareness, configuration inheritance, and much more."
         },
+        "Intl": {
+            "type": "library",
+            "version": "3.0.0",
+            "github": "https://github.com/auraphp/Aura.Intl",
+            "composer": "aura/intl",
+            "description": "The Aura Intl package provides internationalization tools, specifically message translation."
+        },
         "Payload": {
             "type": "library",
             "version": "3.0.1",
@@ -27,12 +34,19 @@
             "github": "https://github.com/auraphp/Aura.Router",
             "composer": "aura/router",
             "description": "Powerful, flexible web routing for PSR-7 requests."
+        },
+        "Sql": {
+            "type": "library",
+            "version": "3.0.0-alpha1",
+            "github": "https://github.com/auraphp/Aura.Sql",
+            "composer": "aura/sql",
+            "description": "A PDO extension that provides lazy connections, array quoting, query profiling, value binding, and convenience methods for common fetch styles. Because it extends PDO, existing code that uses PDO can use this without any changes to the existing code."
         }
     },
     "2.x": {
         "Accept": {
             "type": "library",
-            "version": "2.2.4",
+            "version": "2.2.5",
             "github": "https://github.com/auraphp/Aura.Accept",
             "composer": "aura/accept",
             "description": "Provides content-negotiation tools using Accept* headers."
@@ -303,7 +317,7 @@
             "version": "1.0.3",
             "github": "https://github.com/auraphp/Aura.Web",
             "composer": "aura/web",
-            "description": "The Aura Web package provides tools to build web page controllers, including an AbstractPage for action methods, a Context class for discovering the request environment, and a Response transfer object that describes the eventual HTTP response."
+            "description": "The Aura Web package provides tools to build web page controllers, including an AbstractPage for action methods, a Context class for disovering the request environment, and a Response transfer object that describes the eventual HTTP response."
         }
     }
 }
