@@ -318,6 +318,38 @@ $layout_registry = $view-&gt;getLayoutRegistry();
 $layout_registry-&gt;setTemplateFileExtension('.phtml');
 ?&gt;
 </code></pre>
+<h3 id="2-15-2-14">2.15.2.14. Advanced Configuration</h3>
+<p>Alternatively you can pass <a href="https://github.com/auraphp/Aura.View#custom-helper-managers">$helpers</a>,
+mapping information or paths for views and layouts as below.</p>
+<pre><code class="language-php">&lt;?php
+$view_factory = new \Aura\View\ViewFactory;
+$view = $view_factory-&gt;newInstance(
+    $helpers = null,
+    [
+        'browse' =&gt; '/path/to/views/browse.php'
+    ],
+    [
+        '/path/to/views/welcome',
+        '/path/to/views/user',
+    ],
+    [
+        'layout' =&gt; '/path/to/layouts/default.php'
+    ],    
+    [
+        '/path/to/layouts',
+    ],
+);
+?&gt;
+</code></pre>
+<p>If you are passing the mapping information or paths to <code>views</code> and <code>layouts</code> you don't need to
+call the <code>getViewRegistry</code> or <code>getLayoutRegistry</code> and <code>set</code> the mapping information.</p>
+<p>Eg :</p>
+<pre><code class="language-php">$view_registry = $view-&gt;getViewRegistry();
+$view_registry-&gt;set('browse', '/path/to/views/browse.php');
+
+$layout_registry = $view-&gt;getLayoutRegistry();
+$layout_registry-&gt;set('default', '/path/to/layouts/default.php');
+</code></pre>
 
 <nav class="navfooter">
     <table>

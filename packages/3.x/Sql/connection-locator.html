@@ -1,0 +1,170 @@
+---
+layout: site
+active: packages
+title: Connection Locator
+permalink: /packages/3.x/Sql/connection-locator.html
+---
+<script>hljs.initHighlightingOnLoad();</script>
+
+<nav class="navheader">
+    <table>
+        <tr>
+            <th colspan="3" class="curr">1.5.5. Connection Locator</th>
+        </tr>
+        <tr>
+            <td class="prev"><a href="/packages/3.x/Sql/profiling-logging.html">Profiling and Logging</a></td>
+            <td class="parent">1.5. Aura.Sql</th>
+            <td class="next"><a href="/packages/3.x/Sql/upgrade.html">3.x Upgrade Notes</a></td>
+        </tr>
+    </table>
+</nav>
+<h1 id="1-5-5">1.5.5. Connection Locator</h1>
+<p>Frequently, high-traffic PHP applications use multiple database servers,
+generally one for writes, and one or more for reads. The <em>ConnectionLocator</em>
+allows you to define multiple <em>ExtendedPdo</em> objects for lazy-loaded read and
+write connections. It will create the connections only when they are when
+called. The creation logic is wrapped in a callable.</p>
+<h2 id="1-5-5-1">1.5.5.1. Runtime Configuration</h2>
+<p>First, create the <em>ConnectionLocator</em>:</p>
+<pre><code class="language-php">use Aura\Sql\ExtendedPdo;
+use Aura\Sql\ConnectionLocator;
+
+$connections = new ConnectionLocator();
+</code></pre>
+<p>Now add a default connection; this will be used when a read or write
+connection is not defined. (This is also useful for setting up connection
+location in advance of actually having multiple database servers.)</p>
+<pre><code class="language-php">$connections-&gt;setDefault(function () {
+    return new ExtendedPdo(
+        'mysql:host=default.db.localhost;dbname=database',
+        'username',
+        'password'
+    );
+});
+</code></pre>
+<p>Next, add as many named read and write connections as you like:</p>
+<pre><code class="language-php">// the write (master) server
+$connections-&gt;setWrite('master', function () {
+    return new ExtendedPdo(
+        'mysql:host=master.db.localhost;dbname=database',
+        'username',
+        'password'
+    );
+});
+
+// read (slave) #1
+$connections-&gt;setRead('slave1', function () {
+    return new ExtendedPdo(
+        'mysql:host=slave1.db.localhost;dbname=database',
+        'username',
+        'password'
+    );
+});
+
+// read (slave) #2
+$connections-&gt;setRead('slave2', function () {
+    return new ExtendedPdo(
+        'mysql:host=slave2.db.localhost;dbname=database',
+        'username',
+        'password'
+    );
+});
+
+// read (slave) #3
+$connections-&gt;setRead('slave3', function () {
+    return new ExtendedPdo(
+        'mysql:host=slave3.db.localhost;dbname=database',
+        'username',
+        'password'
+    );
+});
+</code></pre>
+<p>Finally, retrieve a connection from the locator when you need it. This will
+create the connection (if needed) and then return it.</p>
+<ul>
+<li>
+<p><code>getDefault()</code> will return the default connection.</p>
+</li>
+<li>
+<p><code>getRead()</code> will return a named read connection; if no name is specified, it
+will return a random read connection. If no read connections are defined, it
+will return the default connection.</p>
+</li>
+<li>
+<p><code>getWrite()</code> will return a named write connection; if no name is specified,
+it will return a random write connection. If no write connections are
+defined, it will return the default connection.</p>
+</li>
+</ul>
+<pre><code class="language-php">$read = $connections-&gt;getRead();
+$results = $read-&gt;fetchAll('SELECT * FROM table_name LIMIT 10');
+</code></pre>
+<h2 id="1-5-5-2">1.5.5.2. Construction-Time Configuration</h2>
+<p>The <em>ConnectionLocator</em> can be configured with all its connections at
+construction time; this is useful with dependency injection mechanisms.</p>
+<pre><code class="language-php">use Aura\Sql\ConnectionLocator;
+use Aura\Sql\ExtendedPdo;
+
+// default connection
+$default = function () {
+    return new ExtendedPdo(
+        'mysql:host=default.db.localhost;dbname=database',
+        'username',
+        'password'
+    );
+};
+
+// read connections
+$read = array(
+    'slave1' =&gt; function () {
+        return new ExtendedPdo(
+            'mysql:host=slave1.db.localhost;dbname=database',
+            'username',
+            'password'
+        );
+    },
+    'slave2' =&gt; function () {
+        return new ExtendedPdo(
+            'mysql:host=slave2.db.localhost;dbname=database',
+            'username',
+            'password'
+        );
+    },
+    'slave3' =&gt; function () {
+        return new ExtendedPdo(
+            'mysql:host=slave3.db.localhost;dbname=database',
+            'username',
+            'password'
+        );
+    },
+);
+
+// write connection
+$write = array(
+    'master' =&gt; function () {
+        return new ExtendedPdo(
+            'mysql:host=master.db.localhost;dbname=database',
+            'username',
+            'password'
+        );
+    },
+);
+
+// configure locator at construction time
+$connections = new ConnectionLocator($default, $read, $write);
+</code></pre>
+
+<nav class="navfooter">
+    <table>
+        <tr>
+            <td class="prev"><a href="/packages/3.x/Sql/profiling-logging.html">Prev</a></td>
+            <td class="parent"><a href="/packages/3.x/Sql/">Up</a></td>
+            <td class="next"><a href="/packages/3.x/Sql/upgrade.html">Next</a></td>
+        </tr>
+        <tr>
+            <td class="prev">1.5.4. Profiling and Logging</td>
+            <td class="parent">1.5. Aura.Sql</td>
+            <td class="next">1.5.6. 3.x Upgrade Notes</td>
+        </tr>
+    </table>
+</nav>

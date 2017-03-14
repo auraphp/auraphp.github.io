@@ -45,7 +45,24 @@ $map-&gt;post('blog.archive', '/blog/{id}{format}')
     ]);
 ?&gt;
 </code></pre>
-<h2 id="1-4-2-2">1.4.2.2. Optional Placeholder Tokens</h2>
+<h2 id="1-4-2-2">1.4.2.2. Custom Placeholder Token Matching</h2>
+<p>Sometimes it's useful to be able to do custom matching of placeholder tokens.</p>
+<p>To define a custom callback for placeholder tokens, use the <code>tokens()</code> method.</p>
+<p>The following will verify that date is a valid DateTime format:</p>
+<pre><code class="language-php">&lt;?php
+$map-&gt;get('/calendar/from/{date}')
+    -&gt;tokens([
+        'date' =&gt; function ($date, $route, $request) {
+            try {
+                new \DateTime($date);
+                return true;
+            } catch(\Exception $e) {
+                return false;
+            }
+        }
+    ]);
+</code></pre>
+<h2 id="1-4-2-3">1.4.2.3. Optional Placeholder Tokens</h2>
 <p>Sometimes it is useful to have a route with optional placeholder tokens for attributes. None, some, or all of the optional values may be present, and the route will still match.</p>
 <p>To specify optional attributes, use the notation <code>{/attribute1,attribute2,attribute3}</code> in the path. For example:</p>
 <pre><code class="language-php">&lt;?php
@@ -76,7 +93,7 @@ $map-&gt;get('archive', '/archive{/year,month,day}')
 <p>Optional attributes are <em>sequentially</em> optional. This means that, in the above example, you cannot have a "day" without a "month", and you cannot have a "month" without a "year".</p>
 <p>You can have only one set of optional attributes in a route path.</p>
 <p>Optional attributes belong at the end of a route path. Placing them elsewhere may result in unexpected behavior.</p>
-<h2 id="1-4-2-3">1.4.2.3. Wildcard Attributes</h2>
+<h2 id="1-4-2-4">1.4.2.4. Wildcard Attributes</h2>
 <p>Sometimes it is useful to allow the trailing part of the path be anything at all. To allow arbitrary trailing path segments on a route, call the <code>wildcard()</code> method. This will let you specify the attribute name under which the arbitrary trailing values will be stored.</p>
 <pre><code class="language-php">&lt;?php
 $map-&gt;get('wild', '/wild')
@@ -98,7 +115,7 @@ $map-&gt;get('wild', '/wild')
 <code>/wild/foo/bar/baz : ['card' =&gt; ['foo', 'bar', 'baz']]</code>
 </li>
 </ul>
-<h2 id="1-4-2-4">1.4.2.4. Host Matching</h2>
+<h2 id="1-4-2-5">1.4.2.5. Host Matching</h2>
 <p>You can limit a route to specific hosts with the <code>host()</code> method and a regular expression. The following example will only match when the request is on <code>example.com</code> domain:</p>
 <pre><code class="language-php">&lt;?php
 $map-&gt;get('blog.browse', '/blog')
@@ -112,7 +129,7 @@ $map-&gt;get('blog.browse', '/blog')
     -&gt;host('{subdomain}.?example.com');
 ?&gt;
 </code></pre>
-<h2 id="1-4-2-5">1.4.2.5. Accept Headers</h2>
+<h2 id="1-4-2-6">1.4.2.6. Accept Headers</h2>
 <p>The <code>accepts()</code> method adds to a list of content types that the route handler can be expected to return.</p>
 <pre><code class="language-php">&lt;?php
 $map-&gt;get('blog.browse', '/blog')
@@ -124,14 +141,14 @@ $map-&gt;get('blog.browse', '/blog')
 ?&gt;
 </code></pre>
 <p>Note that this is <em>not</em> a content negotiation method. It is only a pro-forma check to see if one of the specified types is present in the <code>Accept</code> header with a non-zero <code>q</code> value. THe handler, or some other layer, should perform content negotation proper.</p>
-<h2 id="1-4-2-6">1.4.2.6. Multiple HTTP Verbs</h2>
+<h2 id="1-4-2-7">1.4.2.7. Multiple HTTP Verbs</h2>
 <p>The <code>allows()</code> method adds to the allowed HTTP verbs for the route.</p>
 <pre><code class="language-php">&lt;?php
 $map-&gt;post('blog.edit', '/blog/{id}')
     -&gt;allows(['PATCH', 'PUT'])
 ?&gt;
 </code></pre>
-<h2 id="1-4-2-7">1.4.2.7. Secure Protocols</h2>
+<h2 id="1-4-2-8">1.4.2.8. Secure Protocols</h2>
 <p>You can use the <code>secure()</code> method to specify that a route should only match a secure protcol. (Specifically, <code>$_SERVER['HTTPS']</code> must be on, or the request must be on port 443.)</p>
 <pre><code class="language-php">&lt;?php
 $map-&gt;post('blog.edit', '/blog/{id}')
@@ -139,9 +156,9 @@ $map-&gt;post('blog.edit', '/blog/{id}')
 ?&gt;
 </code></pre>
 <p>You can call <code>secure(false)</code> to limit the route to only non-secure protocols. Calling <code>secure(null)</code> causes the route to ignore the protocol security.</p>
-<h2 id="1-4-2-8">1.4.2.8. Non-Routable Routes</h2>
+<h2 id="1-4-2-9">1.4.2.9. Non-Routable Routes</h2>
 <p>Sometimes you will want to have a route in the <em>Map</em> that is used only for generating paths, and not for matching to handlers.  In this case, you can call <code>isRoutable(false)</code>. (This is rare but useful.)</p>
-<h2 id="1-4-2-9">1.4.2.9. Authentication</h2>
+<h2 id="1-4-2-10">1.4.2.10. Authentication</h2>
 <p>Each route instance has a special-purpose method and property, <code>auth()</code> and <code>$auth</code>, for you to store authentication/authorization values.  These values are entirely arbitrary, and are best used with custom matching rules of your own design.</p>
 <pre><code class="language-php">&lt;?php
 $map-&gt;post('blog.admin', '/blog/admin')
@@ -150,7 +167,7 @@ $map-&gt;post('blog.admin', '/blog/admin')
     ]);
 ?&gt;
 </code></pre>
-<h2 id="1-4-2-10">1.4.2.10. Custom Extras</h2>
+<h2 id="1-4-2-11">1.4.2.11. Custom Extras</h2>
 <p>Other, custom data about the route can be stored using the <code>extras()</code> method. Pass an array of key-value pairs and it will be merged with any other custom data already stored.</p>
 <pre><code class="language-php">&lt;?php
 $map-&gt;post('blog.other', '/blog/other')
@@ -161,7 +178,24 @@ $map-&gt;post('blog.other', '/blog/other')
 ?&gt;
 </code></pre>
 <p>You can then use these extra values in your own custom matching rules.</p>
-<h2 id="1-4-2-11">1.4.2.11. Default Map Route Specifications</h2>
+<h2 id="1-4-2-12">1.4.2.12. Route-Specific Matching Logic</h2>
+<p>If you need a special matching logic on an individual <em>Route</em>, you can use the <code>special()</code> method to add a callable to the <em>Route</em> for matching. The method should return a boolean to indicate if the <em>Route</em> is a match or not.</p>
+<pre><code class="language-php">&lt;?php
+$map-&gt;get('foo', '/foo/bar/{baz}')
+    -&gt;special(function ($request, $route) {
+        if ($request-&gt;getHeader('Foo') == 'bar') {
+            $route-&gt;extras(['foo' =&gt; true]);
+            return true;
+        }
+        return false;
+    }
+})
+?&gt;
+</code></pre>
+<blockquote>
+<p>N.b.: You can also create a <em>Rule</em> that applies to all routes; see <a href="./custom-matching.md">this section</a> for more.</p>
+</blockquote>
+<h2 id="1-4-2-13">1.4.2.13. Default Map Route Specifications</h2>
 <p>You can call any of the above <em>Route</em> methods on the <em>Map</em>. When you do so, the <em>Map</em> will then use those as the defaults for every route you add thereafter. This is useful for defining a base set of placeholder token expressions, default values, and so on.</p>
 <pre><code class="language-php">&lt;?php
 // define defaults for all routes added hereafter

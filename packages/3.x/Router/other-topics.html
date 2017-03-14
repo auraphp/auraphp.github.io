@@ -14,7 +14,7 @@ permalink: /packages/3.x/Router/other-topics.html
         <tr>
             <td class="prev"><a href="/packages/3.x/Router/custom-matching.html">Custom Matching Rules</a></td>
             <td class="parent">1.4. Aura.Router</th>
-            <td class="next"><a href="/packages/2.x/">Version 2.x</a></td>
+            <td class="next"><a href="/packages/3.x/Sql/">Aura.Sql</a></td>
         </tr>
     </table>
 </nav>
@@ -76,18 +76,45 @@ $path = $generator-&gt;generate('blog.read', ['id' =&gt; 88]);
 echo $path; // "/path/to/subdir/blog/88"
 ?&gt;
 </code></pre>
+<h2 id="1-4-7-4">1.4.7.4. Route Helpers</h2>
+<p>You may wish to be able to generate route URLs from your views. <em>Helper\Route</em> and Helper\RouteRaw are available to assist you in creating these URLs.</p>
+<p>The invocation of the helpers accept the same parameters as the <em>Generator</em>  <code>generate()</code> method.</p>
+<pre><code class="language-php">&lt;?php
+// create a container with a base path
+$routerContainer = new RouterContainer('/path/to/subdir');
+
+// define a route as normal
+$map = $routerContainer-&gt;getMap();
+$map-&gt;get('blog.read', '/blog/{slug}', ...);
+
+// get the helper from the container
+$routeHelper = $routerContainer-&gt;newRouteHelper();
+
+// use the helper in a view; note how the URL is escaped
+echo $routeHelper('blog.read', [
+    'slug' =&gt; 'my title'
+]); // "/path/to/subdir/blog/my%20title"
+
+// get the raw helper from the container
+$routeRawHelper = $routerContainer-&gt;newRouteRawHelper();
+
+// use the raw helper; note that no URL escaping is applied
+echo $routeRawHelper('blog.read', [
+    'slug' =&gt; 'my title'
+]); // "/path/to/subdir/blog/my title"
+</code></pre>
 
 <nav class="navfooter">
     <table>
         <tr>
             <td class="prev"><a href="/packages/3.x/Router/custom-matching.html">Prev</a></td>
             <td class="parent"><a href="/packages/3.x/Router/">Up</a></td>
-            <td class="next"><a href="/packages/2.x/">Next</a></td>
+            <td class="next"><a href="/packages/3.x/Sql/">Next</a></td>
         </tr>
         <tr>
             <td class="prev">1.4.6. Custom Matching Rules</td>
             <td class="parent">1.4. Aura.Router</td>
-            <td class="next">2. Version 2.x</td>
+            <td class="next">1.5. Aura.Sql</td>
         </tr>
     </table>
 </nav>
