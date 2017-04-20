@@ -746,42 +746,92 @@
     },
     "andrewshell": {
         "html_url": "https:\/\/github.com\/andrewshell",
-        "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/144136?v=3",
+        "avatar_url": "https:\/\/avatars2.githubusercontent.com\/u\/144136?v=3",
         "name": "Andrew Shell"
     },
     "chriscook": {
         "html_url": "https:\/\/github.com\/chriscook",
-        "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/765239?v=3",
+        "avatar_url": "https:\/\/avatars1.githubusercontent.com\/u\/765239?v=3",
         "name": "Chris Cook"
+    },
+    "jhoughtelin": {
+        "html_url": "https:\/\/github.com\/jhoughtelin",
+        "avatar_url": "https:\/\/avatars0.githubusercontent.com\/u\/6137941?v=3",
+        "name": "Josh Houghtelin"
+    },
+    "dlundgren": {
+        "html_url": "https:\/\/github.com\/dlundgren",
+        "avatar_url": "https:\/\/avatars1.githubusercontent.com\/u\/1322393?v=3",
+        "name": "David Lundgren"
     },
     "jkphl": {
         "html_url": "https:\/\/github.com\/jkphl",
-        "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/4446936?v=3",
+        "avatar_url": "https:\/\/avatars2.githubusercontent.com\/u\/4446936?v=3",
         "name": "Joschi Kuphal"
+    },
+    "smuggli": {
+        "html_url": "https:\/\/github.com\/smuggli",
+        "avatar_url": "https:\/\/avatars1.githubusercontent.com\/u\/5166759?v=3",
+        "name": "Stephan Muggli"
+    },
+    "johnnypeck": {
+        "html_url": "https:\/\/github.com\/johnnypeck",
+        "avatar_url": "https:\/\/avatars3.githubusercontent.com\/u\/254875?v=3",
+        "name": "Johnny Peck"
+    },
+    "muglug": {
+        "html_url": "https:\/\/github.com\/muglug",
+        "avatar_url": "https:\/\/avatars3.githubusercontent.com\/u\/2292638?v=3",
+        "name": "Matthew Brown"
+    },
+    "Pherserk": {
+        "html_url": "https:\/\/github.com\/Pherserk",
+        "avatar_url": "https:\/\/avatars1.githubusercontent.com\/u\/5042579?v=3",
+        "name": "Michele Carino"
+    },
+    "zonuexe": {
+        "html_url": "https:\/\/github.com\/zonuexe",
+        "avatar_url": "https:\/\/avatars2.githubusercontent.com\/u\/822086?v=3",
+        "name": "USAMI Kenta"
     },
     "omniton": {
         "html_url": "https:\/\/github.com\/omniton",
-        "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/236876?v=3",
+        "avatar_url": "https:\/\/avatars0.githubusercontent.com\/u\/236876?v=3",
         "name": "omniton"
     },
-    "DQNEO": {
-        "html_url": "https:\/\/github.com\/DQNEO",
-        "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/188741?v=3",
-        "name": "DQNEO"
+    "demos": {
+        "html_url": "https:\/\/github.com\/demos",
+        "avatar_url": "https:\/\/avatars2.githubusercontent.com\/u\/657699?v=3",
+        "name": "demos"
+    },
+    "JLacoude": {
+        "html_url": "https:\/\/github.com\/JLacoude",
+        "avatar_url": "https:\/\/avatars1.githubusercontent.com\/u\/605248?v=3",
+        "name": "JLacoude"
     },
     "jhuet": {
         "html_url": "https:\/\/github.com\/jhuet",
-        "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/372409?v=3",
+        "avatar_url": "https:\/\/avatars1.githubusercontent.com\/u\/372409?v=3",
         "name": "J\u00e9r\u00e9my Huet"
+    },
+    "scrutinizer-auto-fixer": {
+        "html_url": "https:\/\/github.com\/scrutinizer-auto-fixer",
+        "avatar_url": "https:\/\/avatars1.githubusercontent.com\/u\/6253494?v=3",
+        "name": "Scrutinizer Auto-Fixer"
     },
     "yespire": {
         "html_url": "https:\/\/github.com\/yespire",
-        "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/1065882?v=3",
+        "avatar_url": "https:\/\/avatars0.githubusercontent.com\/u\/1065882?v=3",
         "name": "yespire"
     },
     "cyberhck": {
         "html_url": "https:\/\/github.com\/cyberhck",
-        "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/3640284?v=3",
+        "avatar_url": "https:\/\/avatars2.githubusercontent.com\/u\/3640284?v=3",
         "name": "Nishchal Gautam"
+    },
+    "mprelude": {
+        "html_url": "https:\/\/github.com\/mprelude",
+        "avatar_url": "https:\/\/avatars3.githubusercontent.com\/u\/11092086?v=3",
+        "name": "Matt Prelude"
     }
 }
