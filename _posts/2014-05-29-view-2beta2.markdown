@@ -5,7 +5,7 @@ tags : [view, v2]
 author : Paul M. Jones
 ---
 
-We have added a new feature (["sections"](https://github.com/auraphp/Aura.View#using-sections)) to [Aura.View v2]((https://github.com/auraphp/Aura.View)) and released it as [2.0.0-beta2](https://github.com/auraphp/Aura.View/releases).
+We have added a new feature ["sections"](https://github.com/auraphp/Aura.View#using-sections) to [Aura.View v2](https://github.com/auraphp/Aura.View) and released it as [2.0.0-beta2](https://github.com/auraphp/Aura.View/releases).
 
 This feature is due to the patient lobbying of Hari KT. He saw variations of it in [Plates](http://platesphp.com/templates/sections/) and [Symfony](http://api.symfony.com/2.0/Symfony/Component/Templating/Helper/SlotsHelper.html), and figured it would be a nice bit of feature parity to add. He was right.
 
