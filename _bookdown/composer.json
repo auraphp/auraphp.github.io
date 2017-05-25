@@ -18,6 +18,6 @@
         }
     ],
     "require": {
-        "bookdown/bookdown": "1.x@dev"
+        "bookdown/bookdown": "~1.0"
     }
 }

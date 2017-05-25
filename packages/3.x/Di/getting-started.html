@@ -18,7 +18,7 @@ permalink: /packages/3.x/Di/getting-started.html
         </tr>
     </table>
 </nav>
-<h1 id="1-1-1">1.1.1. Getting Started</h1>
+<div id="section-main"><h1 id="1-1-1">1.1.1. Getting Started</h1>
 <h2 id="1-1-1-1">1.1.1.1. Overview</h2>
 <p>The Aura.Di package provides a serializable dependency injection container
 with the following features:</p>
@@ -78,7 +78,7 @@ $di = $builder-&gt;newInstance();
 <p>N.b.: The <em>Container</em> locks itself once a new instance is produced; this ensures that the <em>Container</em> configuration cannot be modified once objects have been created.</p>
 </blockquote>
 <p>However, this is a relatively naive way to create objects with the <em>Container</em>. It is better to specify the various constructor parameters, setter methods, and so on, and let the <em>Container</em> inject those values for us only when the object is used as a dependency for something else.</p>
-
+</div>
 <nav class="navfooter">
     <table>
         <tr>

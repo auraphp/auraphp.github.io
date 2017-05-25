@@ -18,7 +18,7 @@ permalink: /packages/3.x/Di/auto.html
         </tr>
     </table>
 </nav>
-<h1 id="1-1-9">1.1.9. Auto-Resolution Of Constructor Parameters</h1>
+<div id="section-main"><h1 id="1-1-9">1.1.9. Auto-Resolution Of Constructor Parameters</h1>
 <p>Some developers prefer to let the <em>Container</em> resolve dependencies on its own, without having to specify anything in a configuration file. Note that there can be unusual debugging problems inherent in tracking down the default injections, so auto-resolution may or may not be your preference.</p>
 <p>To use auto-resolution in a <em>Container</em>, build the <em>Container</em> with <code>$container = $builder-&gt;newInstance($builder::AUTO_RESOLVE)</code>.</p>
 <p>Note that auto-resolution only works for class/interface typehints. It does not work for <code>array</code> typehints.</p>
@@ -86,7 +86,7 @@ $di-&gt;types['DbInterface'] = $di-&gt;lazyGet('database_connection');
 // resolve to this other service
 $di-&gt;params['OtherClass']['db'] = $di-&gt;lazyGet('other_connection');
 </code></pre>
-
+</div>
 <nav class="navfooter">
     <table>
         <tr>

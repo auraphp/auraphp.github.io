@@ -18,7 +18,7 @@ permalink: /packages/3.x/Router/getting-started.html
         </tr>
     </table>
 </nav>
-<h1 id="1-4-1">1.4.1. Getting Started</h1>
+<div id="section-main"><h1 id="1-4-1">1.4.1. Getting Started</h1>
 <p>Aura.Router is a web router implementation for PSR-7.</p>
 <p>You get all the router objects through a library-specific <em>RouterContainer</em>, which manages object creation, dependencies, and wiring for you. That means you need to instantiate the container before anything else.</p>
 <pre><code class="language-php">&lt;?php
@@ -29,7 +29,7 @@ $routerContainer = new RouterContainer();
 </code></pre>
 <p>You can then retrieve a <em>Map</em> for adding routes, a <em>Matcher</em> for matching the incoming request to a route, and a <em>Generator</em> for generating paths from routes.</p>
 <p>Let's go step-by-step to add a route, match a request against it, and dispatch it.
-A full working example is provided at the ended of this page.</p>
+A full working example is provided at the end of this page.</p>
 <h2 id="1-4-1-1">1.4.1.1. Adding A Route</h2>
 <p>To add a route, first retrieve the <em>Map</em> from the <em>RouterContainer</em>.</p>
 <pre><code class="language-php">&lt;?php
@@ -53,8 +53,8 @@ $map = $routerContainer-&gt;getMap();
 </ul>
 <p>Each route-adding method takes three parameters:</p>
 <ol>
-<li>A <code>$name</code> (for when you need to generate link from the route)</li>
-<li>A <code>$path</code> (with optional named token placeholders)</li>
+<li>A <code>$name</code> (for when you need to generate a link from the route)</li>
+<li>A <code>$path</code> (with optional, named token placeholders)</li>
 <li>An optional <code>$handler</code> (a closure, callback, action object, controller class, etc); if you do not pass a handler, the route will use the <code>$name</code> parameter as the handler.</li>
 </ol>
 <p>For example, this route named <code>blog.read</code> will match against a <code>GET</code> request on the path <code>/blog/42</code> (or any other <code>{id}</code> value). It also defines a closure as a handler for the route, using a <em>ServerRequestInterface</em> instance and a <em>ResponseInterface</em> instance as arguments.</p>
@@ -129,7 +129,7 @@ $response = $action($request);
 ?&gt;
 </code></pre>
 <h2 id="1-4-1-4">1.4.1.4. Handling Failure To Match</h2>
-<p>When <code>$map-&gt;match()</code> returns empty, it means there was no matching route for the request. However, we can still discover the closest-matching failed route, and which rule it failed to match against.</p>
+<p>When <code>$map-&gt;match()</code> returns empty, it means there was no matching route for the request. However, we can still discover the closest-matching, failed route, and which rule it failed to match against.</p>
 <p>Your application might do something like the following:</p>
 <pre><code class="language-php">&lt;?php
 $route = $matcher-&gt;match($request);
@@ -171,7 +171,7 @@ $request = Zend\Diactoros\ServerRequestFactory::fromGlobals(
     $_FILES
 );
 
-// create the router continer and get the routing map
+// create the router container and get the routing map
 $routerContainer = new Aura\Router\RouterContainer();
 $map = $routerContainer-&gt;getMap();
 
@@ -212,11 +212,11 @@ foreach ($response-&gt;getHeaders() as $name =&gt; $values) {
 }
 echo $response-&gt;getBody();
 </code></pre>
-<p>Now start built in PHP server ...</p>
+<p>Now start the built in PHP server ...</p>
 <pre><code>$ php -S localhost:8000 -t .
 </code></pre>
 <p>... and point your browser to <code>http://localhost:8000/blog/12</code> .</p>
-
+</div>
 <nav class="navfooter">
     <table>
         <tr>

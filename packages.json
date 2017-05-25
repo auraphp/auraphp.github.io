@@ -53,7 +53,7 @@
         },
         "Auth": {
             "type": "library",
-            "version": "2.0.0",
+            "version": "2.0.1",
             "github": "https://github.com/auraphp/Aura.Auth",
             "composer": "aura/auth",
             "description": "Provides a unified interface to authenticate a user with local or remote authentication systems."
@@ -102,7 +102,7 @@
         },
         "Filter": {
             "type": "library",
-            "version": "2.3.0",
+            "version": "2.3.1",
             "github": "https://github.com/auraphp/Aura.Filter",
             "composer": "aura/filter",
             "description": "Filters to validate and sanitize objects and arrays."

@@ -18,7 +18,7 @@ permalink: /packages/3.x/Router/defining-routes.html
         </tr>
     </table>
 </nav>
-<h1 id="1-4-2">1.4.2. Defining Routes</h1>
+<div id="section-main"><h1 id="1-4-2">1.4.2. Defining Routes</h1>
 <p>Every time you add a route to the <em>Map</em>, you get back a <em>Route</em> object. The <em>Route</em> object is pretty powerful, and allows you to define a wide range of matching conditions. All of the <em>Route</em> methods are fluent, so you can chain them together.</p>
 <h2 id="1-4-2-1">1.4.2.1. Placeholder Tokens and Default Values</h2>
 <p>When you add a <code>{token}</code> placeholer in the path, it uses a default regular expression of <code>([^/]+)</code>. Essentially, this matches everything except a slash, which of course indicates the next path segment.</p>
@@ -220,7 +220,7 @@ $map-&gt;post('blog.add', '/blog');
 $map-&gt;delete('blog.delete', '/blog/{id}');
 ?&gt;
 </code></pre>
-
+</div>
 <nav class="navfooter">
     <table>
         <tr>

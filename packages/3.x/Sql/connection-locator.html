@@ -18,7 +18,7 @@ permalink: /packages/3.x/Sql/connection-locator.html
         </tr>
     </table>
 </nav>
-<h1 id="1-5-5">1.5.5. Connection Locator</h1>
+<div id="section-main"><h1 id="1-5-5">1.5.5. Connection Locator</h1>
 <p>Frequently, high-traffic PHP applications use multiple database servers,
 generally one for writes, and one or more for reads. The <em>ConnectionLocator</em>
 allows you to define multiple <em>ExtendedPdo</em> objects for lazy-loaded read and
@@ -153,7 +153,7 @@ $write = array(
 // configure locator at construction time
 $connections = new ConnectionLocator($default, $read, $write);
 </code></pre>
-
+</div>
 <nav class="navfooter">
     <table>
         <tr>
