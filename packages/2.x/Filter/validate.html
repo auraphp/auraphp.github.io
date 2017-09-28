@@ -1,0 +1,205 @@
+---
+layout: site
+active: packages
+title: Rules To Validate Fields
+permalink: /packages/2.x/Filter/validate.html
+---
+<script>hljs.initHighlightingOnLoad();</script>
+
+<nav class="navheader">
+    <table>
+        <tr>
+            <th colspan="3" class="curr">2.7.4. Rules To Validate Fields</th>
+        </tr>
+        <tr>
+            <td class="prev"><a href="/packages/2.x/Filter/subject-filter.html">Filtering Arrays and Objects</a></td>
+            <td class="parent">2.7. Aura.Filter 2.x</th>
+            <td class="next"><a href="/packages/2.x/Filter/sanitize.html">Rules To Sanitize Fields</a></td>
+        </tr>
+    </table>
+</nav>
+<div id="section-main"><h1 id="2-7-4">2.7.4. Rules To Validate Fields</h1>
+<h2 id="2-7-4-1">2.7.4.1. alnum</h2>
+<p>Validates the value as alphanumeric only.</p>
+<pre><code class="language-php">$filter-&gt;validate('field')-&gt;is('alnum');
+</code></pre>
+<h2 id="2-7-4-2">2.7.4.2. alpha</h2>
+<p>Validates the value as alphabetic only.</p>
+<pre><code class="language-php">$filter-&gt;validate('field')-&gt;is('alpha');
+</code></pre>
+<h2 id="2-7-4-3">2.7.4.3. between</h2>
+<p>Validates the value as being within or equal to a minimum and maximum value.</p>
+<pre><code class="language-php">$filter-&gt;validate('field')-&gt;is('between', $min, $max);
+</code></pre>
+<h2 id="2-7-4-4">2.7.4.4. blank</h2>
+<p>Validates the value as being blank.</p>
+<pre><code class="language-php">$filter-&gt;validate('field1')-&gt;isBlank();
+$filter-&gt;validate('field2')-&gt;isBlankOr('strlen', 3);
+$filter-&gt;validate('field3')-&gt;isBlankOrNot('strlen', 3);
+</code></pre>
+<p>To validate the value as not being blank.</p>
+<pre><code class="language-php">$filter-&gt;validate('field')-&gt;isNotBlank();
+</code></pre>
+<h2 id="2-7-4-5">2.7.4.5. bool</h2>
+<p>Validates the value as being a boolean, or a pseudo-boolean. Pseudo-true values include the strings '1', 'y', 'yes', and 'true'; pseudo-false values include the strings '0', 'n', 'no', and 'false'.</p>
+<pre><code class="language-php">$filter-&gt;validate('field')-&gt;is('bool');
+</code></pre>
+<h2 id="2-7-4-6">2.7.4.6. callback</h2>
+<p>Validates the value using a callable/callback. The callable should take two arguments, <code>$subject</code> and <code>$field</code>, to indicate the subject and the field within that subject. It should return <code>true</code> to pass, or <code>false</code> to fail.</p>
+<pre><code class="language-php">$filter-&gt;validate('field')-&gt;is('callback', function ($subject, $field) {
+    if ($subject-&gt;$field === 'foo') {
+        return true;
+    }
+    return false;
+});
+</code></pre>
+<blockquote>
+<p>N.b.: Always use object notation (<code>$subject-&gt;$field</code>) and not array notation (<code>$subject[$field]</code>) in the closure, as the <em>Filter</em> converts arrays to objects on the fly.</p>
+</blockquote>
+<h2 id="2-7-4-7">2.7.4.7. creditCard</h2>
+<p>Validates the value as being a credit card number.</p>
+<pre><code class="language-php">$filter-&gt;validate('field')-&gt;is('creditCard');
+</code></pre>
+<h2 id="2-7-4-8">2.7.4.8. dateTime</h2>
+<p>Validates the value as representing a date and/or time.</p>
+<pre><code class="language-php">$filter-&gt;validate('field')-&gt;is('dateTime');
+</code></pre>
+<h2 id="2-7-4-9">2.7.4.9. email</h2>
+<p>Validates the value as being a properly-formed email address per the various relevant RFCs. If the <code>intl</code> extension is loaded, it will also allow for international domain names.</p>
+<pre><code class="language-php">$filter-&gt;validate('field')-&gt;is('email');
+</code></pre>
+<h2 id="2-7-4-10">2.7.4.10. equalToField</h2>
+<p>Validates the value as loosely equal (<code>==</code>) to the value of another
+field in the subject.</p>
+<pre><code class="language-php">$filter-&gt;validate('field')-&gt;is('equalToField', 'other_field_name');
+</code></pre>
+<h2 id="2-7-4-11">2.7.4.11. equalToValue</h2>
+<p>Validates the value as loosely equal (`==') to a specified value.</p>
+<pre><code class="language-php">$filter-&gt;validate('field')-&gt;is('equalToValue', $other_value);
+</code></pre>
+<h2 id="2-7-4-12">2.7.4.12. float</h2>
+<p>Validates the value as representing a float.</p>
+<pre><code class="language-php">$filter-&gt;validate('field')-&gt;is('float');
+</code></pre>
+<h2 id="2-7-4-13">2.7.4.13. inKeys</h2>
+<p>Validates that the value is loosely equal (<code>==</code>) to a key in a given array.</p>
+<pre><code class="language-php">$filter-&gt;validate('field')-&gt;is('inKeys', $array);
+</code></pre>
+<h2 id="2-7-4-14">2.7.4.14. int</h2>
+<p>Validates the value as representing an integer.</p>
+<pre><code class="language-php">$filter-&gt;validate('field')-&gt;is('int');
+</code></pre>
+<h2 id="2-7-4-15">2.7.4.15. inValues</h2>
+<p>Validates that the value is strictly equal (<code>===</code>) to a value in a given array.</p>
+<pre><code class="language-php">$filter-&gt;validate('field')-&gt;is('inValues', $array);
+</code></pre>
+<h2 id="2-7-4-16">2.7.4.16. ip</h2>
+<p>Validates the value as an IPv4 or IPv6 address, allowing reserved and private addresses.</p>
+<pre><code class="language-php">$filter-&gt;validate('field')-&gt;is('ip');
+</code></pre>
+<p>To modify restrictions on the filter, pass the appropriate <code>FILTER_FLAG_*</code> constants (seen <a href="http://php.net/manual/en/filter.filters.flags.php">here</a>) as a second parameter.</p>
+<pre><code class="language-php">// only allow IPv4 addresses in the non-private range.
+$filter-&gt;validate('field')-&gt;is('ip', FILTER_FLAG_IPV4 | FILTER_FLAG_NO_PRIV_RANGE);
+
+// only allow IPv6 addresses in non-reserved range.
+$filter-&gt;validate('field')-&gt;is('ip', FILTER_FLAG_IPV6 | FILTER_FLAG_NO_RES_RANGE);
+</code></pre>
+<h2 id="2-7-4-17">2.7.4.17. isbn</h2>
+<p>Validates the value is a correct ISBN (International Standard Book Number).</p>
+<pre><code class="language-php">$filter-&gt;validate('field')-&gt;is('isbn');
+</code></pre>
+<h2 id="2-7-4-18">2.7.4.18. locale</h2>
+<p>Validates the given value against a list of locale strings (internal to the rule class).</p>
+<pre><code class="language-php">$filter-&gt;validate('field')-&gt;is('locale');
+</code></pre>
+<h2 id="2-7-4-19">2.7.4.19. lowercase</h2>
+<p>Validates the value as all lowercase.</p>
+<pre><code class="language-php">$filter-&gt;validate('field')-&gt;is('lowercase');
+</code></pre>
+<h2 id="2-7-4-20">2.7.4.20. lowercaseFirst</h2>
+<p>Validates the value begins with a lowercase character.</p>
+<pre><code class="language-php">$filter-&gt;validate('field')-&gt;is('lowercaseFirst');
+</code></pre>
+<h2 id="2-7-4-21">2.7.4.21. max</h2>
+<p>Validates the value as being less than or equal to a maximum.</p>
+<pre><code class="language-php">$filter-&gt;validate('field')-&gt;is('max', $max);
+</code></pre>
+<h2 id="2-7-4-22">2.7.4.22. min</h2>
+<p>Validates the value as being greater than or equal to a minimum.</p>
+<pre><code class="language-php">$filter-&gt;validate('field')-&gt;is('min', $min);
+</code></pre>
+<h2 id="2-7-4-23">2.7.4.23. regex</h2>
+<p>Validates the value using <code>preg_match()</code>.</p>
+<pre><code class="language-php">$filter-&gt;validate('field')-&gt;is('regex', $expr);
+</code></pre>
+<h2 id="2-7-4-24">2.7.4.24. strictEqualToField</h2>
+<p>Validates the value as strictly equal (<code>===</code>) to the value of another field in the subject.</p>
+<pre><code class="language-php">$filter-&gt;validate('field')-&gt;is('strictEqualToField', 'other_field_name');
+</code></pre>
+<h2 id="2-7-4-25">2.7.4.25. strictEqualToValue</h2>
+<p>Validates the value as strictly equal (<code>===</code>) to a specified value.</p>
+<pre><code class="language-php">$filter-&gt;validate('field')-&gt;is('strictEqualToValue', $other_value);
+</code></pre>
+<h2 id="2-7-4-26">2.7.4.26. string</h2>
+<p>Validates the value can be represented by a string.</p>
+<pre><code class="language-php">$filter-&gt;validate('field')-&gt;is('string');
+</code></pre>
+<h2 id="2-7-4-27">2.7.4.27. strlen</h2>
+<p>Validates the value has a specified length.</p>
+<pre><code class="language-php">$filter-&gt;validate('field')-&gt;is('strlen', $len);
+</code></pre>
+<h2 id="2-7-4-28">2.7.4.28. strlenBetween</h2>
+<p>Validates the value as being within or equal to a minimum and maximum length.</p>
+<pre><code class="language-php">$filter-&gt;validate('field')-&gt;is('strlenBetween', $min, $max);
+</code></pre>
+<h2 id="2-7-4-29">2.7.4.29. strlenMax</h2>
+<p>Validates the value length as being no longer than a maximum.</p>
+<pre><code class="language-php">$filter-&gt;validate('field')-&gt;is('strlenMax', $max);
+</code></pre>
+<h2 id="2-7-4-30">2.7.4.30. strlenMin</h2>
+<p>Validates the value length as being no shorter than a minimum.</p>
+<pre><code class="language-php">$filter-&gt;validate('field')-&gt;is('strlenMin', $min);
+</code></pre>
+<h2 id="2-7-4-31">2.7.4.31. titlecase</h2>
+<p>Validates the value as title case</p>
+<pre><code class="language-php">$filter-&gt;validate('field')-&gt;is('titlecase');
+</code></pre>
+<h2 id="2-7-4-32">2.7.4.32. trim</h2>
+<p>Validates the value is <code>trim()</code>med. Optionally specify characters to trim.</p>
+<pre><code class="language-php">$filter-&gt;validate('field')-&gt;is('trim', $chars);
+</code></pre>
+<h2 id="2-7-4-33">2.7.4.33. upload</h2>
+<p>Validates the value represents a PHP upload information array, and that the file is an uploaded file.</p>
+<pre><code class="language-php">$filter-&gt;validate('field')-&gt;is('upload');
+</code></pre>
+<h2 id="2-7-4-34">2.7.4.34. uppercase</h2>
+<p>Validates the value as all uppercase.</p>
+<pre><code class="language-php">$filter-&gt;validate('field')-&gt;is('uppercase');
+</code></pre>
+<h2 id="2-7-4-35">2.7.4.35. uppercaseFirst</h2>
+<p>Validates the value begins with an uppercase character.</p>
+<pre><code class="language-php">$filter-&gt;validate('field')-&gt;is('uppercaseFirst');
+</code></pre>
+<h2 id="2-7-4-36">2.7.4.36. url</h2>
+<p>Validates the value is a well-formed URL.</p>
+<pre><code class="language-php">$filter-&gt;validate('field')-&gt;is('url');
+</code></pre>
+<h2 id="2-7-4-37">2.7.4.37. word</h2>
+<p>Validates the value as being composed only of word characters.</p>
+<pre><code class="language-php">$filter-&gt;validate('field')-&gt;is('word');
+</code></pre>
+</div>
+<nav class="navfooter">
+    <table>
+        <tr>
+            <td class="prev"><a href="/packages/2.x/Filter/subject-filter.html">Prev</a></td>
+            <td class="parent"><a href="/packages/2.x/Filter/">Up</a></td>
+            <td class="next"><a href="/packages/2.x/Filter/sanitize.html">Next</a></td>
+        </tr>
+        <tr>
+            <td class="prev">2.7.3. Filtering Arrays and Objects</td>
+            <td class="parent">2.7. Aura.Filter 2.x</td>
+            <td class="next">2.7.5. Rules To Sanitize Fields</td>
+        </tr>
+    </table>
+</nav>

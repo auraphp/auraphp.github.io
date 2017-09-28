@@ -7,7 +7,7 @@
         {"Cli": "https://raw.githubusercontent.com/auraphp/Aura.Cli/2.x/README.md"},
         {"Di": "https://raw.githubusercontent.com/auraphp/Aura.Di/2.x/README.md"},
         {"Dispatcher": "https://raw.githubusercontent.com/auraphp/Aura.Dispatcher/2.x/README.md"},
-        {"Filter": "https://raw.githubusercontent.com/auraphp/Aura.Filter/2.x/README.md"},
+        {"Filter": "https://raw.githubusercontent.com/auraphp/Aura.Filter/2.x/docs/_bookdown.json"},
         {"Html": "https://raw.githubusercontent.com/auraphp/Aura.Html/2.x/README.md"},
         {"Includer": "https://raw.githubusercontent.com/auraphp/Aura.Includer/2.x/README.md"},
         {"Router": "https://raw.githubusercontent.com/auraphp/Aura.Router/2.x/README.md"},

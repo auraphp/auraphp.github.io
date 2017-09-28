@@ -18,7 +18,7 @@ permalink: /packages/3.x/Di/constructor.html
         </tr>
     </table>
 </nav>
-<h1 id="1-1-2">1.1.2. Constructor Injection</h1>
+<div id="section-main"><h1 id="1-1-2">1.1.2. Constructor Injection</h1>
 <p>When we use the <em>Container</em> to instantiate a new object, we often need to inject (i.e., set) constructor parameter values in various ways.</p>
 <p>We can define default values for constructor parameters using the <code>$di-&gt;params</code> array on the <em>Container</em> before locking it.</p>
 <p>Let's look at a class that takes some constructor parameters:</p>
@@ -48,7 +48,7 @@ $di-&gt;params['Vendor\Package\Example'][1] = 'bar_value';
 <blockquote>
 <p>N.b.: If you try to access <code>$params</code> after calling <code>newInstance()</code> (or after locking the <em>Container</em> using the <code>lock()</code> method) the <em>Container</em> will throw an exception. This is to prevent modifying the params after objects have been created. Thus, be sure to set up all params for all objects before creating an object.</p>
 </blockquote>
-
+</div>
 <nav class="navfooter">
     <table>
         <tr>

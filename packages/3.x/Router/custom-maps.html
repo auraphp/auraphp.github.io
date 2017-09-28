@@ -18,7 +18,7 @@ permalink: /packages/3.x/Router/custom-maps.html
         </tr>
     </table>
 </nav>
-<h1 id="1-4-5">1.4.5. Building Custom Maps and Routes</h1>
+<div id="section-main"><h1 id="1-4-5">1.4.5. Building Custom Maps and Routes</h1>
 <h2 id="1-4-5-1">1.4.5.1. Extending the Map Class</h2>
 <p>You might want to extend the <em>Map</em> class to provide convenience methods specific to your application. As with writing a custom matching rule, this is a bit involved but not difficult:</p>
 <ol>
@@ -154,7 +154,7 @@ $routerContainer-&gt;setMapBuilder(function ($map) {
 <p>N.b.: If there are closures in the <em>Route</em> objects (e.g. in the handlers), you will not be able to serialize the routes for caching. This is because closures cannot be serialized by PHP. Consider using non-closure callables instead.</p>
 </blockquote>
 <p>Now when you call <code>$routerContainer-&gt;getMap()</code>, the container will automatically call the map-builder logic and apply it to the <code>$map</code> before returning it.</p>
-
+</div>
 <nav class="navfooter">
     <table>
         <tr>

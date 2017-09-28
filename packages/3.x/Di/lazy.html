@@ -18,7 +18,7 @@ permalink: /packages/3.x/Di/lazy.html
         </tr>
     </table>
 </nav>
-<h1 id="1-1-6">1.1.6. Lazy Injection</h1>
+<div id="section-main"><h1 id="1-1-6">1.1.6. Lazy Injection</h1>
 <p>Unlike the <code>newInstance()</code> and <code>get()</code> methods, calling one of the <code>lazy*()</code> methods on the <em>Container</em> will <em>not</em> lock the <em>Container</em>. Using lazy injection is the preferred and recommended way to defines object values for <code>$params</code> and <code>$setters</code>, and to define services.</p>
 <h2 id="1-1-6-1">1.1.6.1. Lazy Instances</h2>
 <p>Thus far, we have used <code>newInstance()</code> to create objects through the <em>Container</em>.
@@ -165,7 +165,7 @@ $di-&gt;set('service', $di-&gt;lazy([$di-&gt;lazyNew('ServiceClass'), 'methodNam
 ));
 </code></pre>
 <p>Beware of relying on generic Lazy calls too much; if we do, it probably means we need to separate our configuration concerns better than we are currently doing.</p>
-
+</div>
 <nav class="navfooter">
     <table>
         <tr>

@@ -18,7 +18,7 @@ permalink: /packages/3.x/Di/setter.html
         </tr>
     </table>
 </nav>
-<h1 id="1-1-3">1.1.3. Setter Injection</h1>
+<div id="section-main"><h1 id="1-1-3">1.1.3. Setter Injection</h1>
 <p>The <em>Container</em> supports setter injection in addition to constructor injection. (These can be combined as needed.)</p>
 <p>After the <em>Container</em> constructs a new instance of an object, we can specify that certain methods should be called with certain values immediately after instantiation by using the <code>$di-&gt;setter</code> array before locking it.</p>
 <p>Say we have class like the following:</p>
@@ -41,7 +41,7 @@ class Example
 <blockquote>
 <p>N.b.: If you try to access <code>$setters</code> after calling <code>newInstance()</code> (or after locking the <em>Container</em> using the <code>lock()</code> method) the <em>Container</em> will throw an exception. This is to prevent modifying the params after objects have been created. Thus, be sure to set up all params for all objects before creating an object.</p>
 </blockquote>
-
+</div>
 <nav class="navfooter">
     <table>
         <tr>

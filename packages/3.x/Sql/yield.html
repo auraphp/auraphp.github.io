@@ -18,7 +18,7 @@ permalink: /packages/3.x/Sql/yield.html
         </tr>
     </table>
 </nav>
-<h1 id="1-5-3">1.5.3. The <code>yield*()</code> Methods</h1>
+<div id="section-main"><h1 id="1-5-3">1.5.3. The <code>yield*()</code> Methods</h1>
 <p><em>ExtendedPdo</em> comes with <code>yield*()</code> methods to help reduce memory usage. Whereas
 many <code>fetch*()</code> methods collect all the query result rows before returning them
 all at once, the equivalent <code>yield*()</code> methods generate one result row at a
@@ -56,7 +56,7 @@ foreach ($pdo-&gt;yieldPairs($stm, $bind) as $key =&gt; $val) {
     // ...
 }
 </code></pre>
-
+</div>
 <nav class="navfooter">
     <table>
         <tr>

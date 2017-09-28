@@ -1,0 +1,141 @@
+---
+layout: site
+active: packages
+title: Aura.Filter 2.x
+permalink: /packages/2.x/Filter/
+---
+<script>hljs.initHighlightingOnLoad();</script>
+
+<nav class="navheader">
+    <table>
+        <tr>
+            <th colspan="3" class="curr">2.7. Aura.Filter 2.x</th>
+        </tr>
+        <tr>
+            <td class="prev"><a href="/packages/2.x/Dispatcher.html">Aura.Dispatcher</a></td>
+            <td class="parent">2. Version 2.x</th>
+            <td class="next"><a href="/packages/2.x/Filter/getting-started.html">Getting Started</a></td>
+        </tr>
+    </table>
+</nav>
+
+<h1>2.7. Aura.Filter 2.x</h1>
+<dl>
+<dt>2.7.1. <a href="/packages/2.x/Filter/getting-started.html#2-7-1">Getting Started</a></dt>
+<dd><dl>
+<dt>2.7.1.1. <a href="/packages/2.x/Filter/getting-started.html#2-7-1-1">Terminology</a></dt>
+<dt>2.7.1.2. <a href="/packages/2.x/Filter/getting-started.html#2-7-1-2">Filter Container</a></dt>
+</dl></dd>
+<dt>2.7.2. <a href="/packages/2.x/Filter/value-filter.html#2-7-2">Filtering Individual Values</a></dt>
+<dd><dl>
+<dt>2.7.2.1. <a href="/packages/2.x/Filter/value-filter.html#2-7-2-1">Using A Value Filter</a></dt>
+<dt>2.7.2.2. <a href="/packages/2.x/Filter/value-filter.html#2-7-2-2">Using A Static Value Filter</a></dt>
+</dl></dd>
+<dt>2.7.3. <a href="/packages/2.x/Filter/subject-filter.html#2-7-3">Filtering Arrays and Objects</a></dt>
+<dd><dl>
+<dt>2.7.3.1. <a href="/packages/2.x/Filter/subject-filter.html#2-7-3-1">Creating A Subject Filter</a></dt>
+<dt>2.7.3.2. <a href="/packages/2.x/Filter/subject-filter.html#2-7-3-2">Applying The Subject Filter</a></dt>
+<dt>2.7.3.3. <a href="/packages/2.x/Filter/subject-filter.html#2-7-3-3">Filter Failures</a></dt>
+<dt>2.7.3.4. <a href="/packages/2.x/Filter/subject-filter.html#2-7-3-4">Failure Modes</a></dt>
+<dt>2.7.3.5. <a href="/packages/2.x/Filter/subject-filter.html#2-7-3-5">Field-Specific Failure Messages</a></dt>
+<dt>2.7.3.6. <a href="/packages/2.x/Filter/subject-filter.html#2-7-3-6">Blank Fields</a></dt>
+<dt>2.7.3.7. <a href="/packages/2.x/Filter/subject-filter.html#2-7-3-7">Extending And Initializing A Subject Filter</a></dt>
+<dt>2.7.3.8. <a href="/packages/2.x/Filter/subject-filter.html#2-7-3-8">Asserting or Invoking the Filter</a></dt>
+</dl></dd>
+<dt>2.7.4. <a href="/packages/2.x/Filter/validate.html#2-7-4">Rules To Validate Fields</a></dt>
+<dd><dl>
+<dt>2.7.4.1. <a href="/packages/2.x/Filter/validate.html#2-7-4-1">alnum</a></dt>
+<dt>2.7.4.2. <a href="/packages/2.x/Filter/validate.html#2-7-4-2">alpha</a></dt>
+<dt>2.7.4.3. <a href="/packages/2.x/Filter/validate.html#2-7-4-3">between</a></dt>
+<dt>2.7.4.4. <a href="/packages/2.x/Filter/validate.html#2-7-4-4">blank</a></dt>
+<dt>2.7.4.5. <a href="/packages/2.x/Filter/validate.html#2-7-4-5">bool</a></dt>
+<dt>2.7.4.6. <a href="/packages/2.x/Filter/validate.html#2-7-4-6">callback</a></dt>
+<dt>2.7.4.7. <a href="/packages/2.x/Filter/validate.html#2-7-4-7">creditCard</a></dt>
+<dt>2.7.4.8. <a href="/packages/2.x/Filter/validate.html#2-7-4-8">dateTime</a></dt>
+<dt>2.7.4.9. <a href="/packages/2.x/Filter/validate.html#2-7-4-9">email</a></dt>
+<dt>2.7.4.10. <a href="/packages/2.x/Filter/validate.html#2-7-4-10">equalToField</a></dt>
+<dt>2.7.4.11. <a href="/packages/2.x/Filter/validate.html#2-7-4-11">equalToValue</a></dt>
+<dt>2.7.4.12. <a href="/packages/2.x/Filter/validate.html#2-7-4-12">float</a></dt>
+<dt>2.7.4.13. <a href="/packages/2.x/Filter/validate.html#2-7-4-13">inKeys</a></dt>
+<dt>2.7.4.14. <a href="/packages/2.x/Filter/validate.html#2-7-4-14">int</a></dt>
+<dt>2.7.4.15. <a href="/packages/2.x/Filter/validate.html#2-7-4-15">inValues</a></dt>
+<dt>2.7.4.16. <a href="/packages/2.x/Filter/validate.html#2-7-4-16">ip</a></dt>
+<dt>2.7.4.17. <a href="/packages/2.x/Filter/validate.html#2-7-4-17">isbn</a></dt>
+<dt>2.7.4.18. <a href="/packages/2.x/Filter/validate.html#2-7-4-18">locale</a></dt>
+<dt>2.7.4.19. <a href="/packages/2.x/Filter/validate.html#2-7-4-19">lowercase</a></dt>
+<dt>2.7.4.20. <a href="/packages/2.x/Filter/validate.html#2-7-4-20">lowercaseFirst</a></dt>
+<dt>2.7.4.21. <a href="/packages/2.x/Filter/validate.html#2-7-4-21">max</a></dt>
+<dt>2.7.4.22. <a href="/packages/2.x/Filter/validate.html#2-7-4-22">min</a></dt>
+<dt>2.7.4.23. <a href="/packages/2.x/Filter/validate.html#2-7-4-23">regex</a></dt>
+<dt>2.7.4.24. <a href="/packages/2.x/Filter/validate.html#2-7-4-24">strictEqualToField</a></dt>
+<dt>2.7.4.25. <a href="/packages/2.x/Filter/validate.html#2-7-4-25">strictEqualToValue</a></dt>
+<dt>2.7.4.26. <a href="/packages/2.x/Filter/validate.html#2-7-4-26">string</a></dt>
+<dt>2.7.4.27. <a href="/packages/2.x/Filter/validate.html#2-7-4-27">strlen</a></dt>
+<dt>2.7.4.28. <a href="/packages/2.x/Filter/validate.html#2-7-4-28">strlenBetween</a></dt>
+<dt>2.7.4.29. <a href="/packages/2.x/Filter/validate.html#2-7-4-29">strlenMax</a></dt>
+<dt>2.7.4.30. <a href="/packages/2.x/Filter/validate.html#2-7-4-30">strlenMin</a></dt>
+<dt>2.7.4.31. <a href="/packages/2.x/Filter/validate.html#2-7-4-31">titlecase</a></dt>
+<dt>2.7.4.32. <a href="/packages/2.x/Filter/validate.html#2-7-4-32">trim</a></dt>
+<dt>2.7.4.33. <a href="/packages/2.x/Filter/validate.html#2-7-4-33">upload</a></dt>
+<dt>2.7.4.34. <a href="/packages/2.x/Filter/validate.html#2-7-4-34">uppercase</a></dt>
+<dt>2.7.4.35. <a href="/packages/2.x/Filter/validate.html#2-7-4-35">uppercaseFirst</a></dt>
+<dt>2.7.4.36. <a href="/packages/2.x/Filter/validate.html#2-7-4-36">url</a></dt>
+<dt>2.7.4.37. <a href="/packages/2.x/Filter/validate.html#2-7-4-37">word</a></dt>
+</dl></dd>
+<dt>2.7.5. <a href="/packages/2.x/Filter/sanitize.html#2-7-5">Rules To Sanitize Fields</a></dt>
+<dd><dl>
+<dt>2.7.5.1. <a href="/packages/2.x/Filter/sanitize.html#2-7-5-1">alnum</a></dt>
+<dt>2.7.5.2. <a href="/packages/2.x/Filter/sanitize.html#2-7-5-2">alpha</a></dt>
+<dt>2.7.5.3. <a href="/packages/2.x/Filter/sanitize.html#2-7-5-3">between</a></dt>
+<dt>2.7.5.4. <a href="/packages/2.x/Filter/sanitize.html#2-7-5-4">bool</a></dt>
+<dt>2.7.5.5. <a href="/packages/2.x/Filter/sanitize.html#2-7-5-5">callback</a></dt>
+<dt>2.7.5.6. <a href="/packages/2.x/Filter/sanitize.html#2-7-5-6">dateTime</a></dt>
+<dt>2.7.5.7. <a href="/packages/2.x/Filter/sanitize.html#2-7-5-7">field</a></dt>
+<dt>2.7.5.8. <a href="/packages/2.x/Filter/sanitize.html#2-7-5-8">float</a></dt>
+<dt>2.7.5.9. <a href="/packages/2.x/Filter/sanitize.html#2-7-5-9">int</a></dt>
+<dt>2.7.5.10. <a href="/packages/2.x/Filter/sanitize.html#2-7-5-10">isbn</a></dt>
+<dt>2.7.5.11. <a href="/packages/2.x/Filter/sanitize.html#2-7-5-11">lowercase</a></dt>
+<dt>2.7.5.12. <a href="/packages/2.x/Filter/sanitize.html#2-7-5-12">lowercaseFirst</a></dt>
+<dt>2.7.5.13. <a href="/packages/2.x/Filter/sanitize.html#2-7-5-13">max</a></dt>
+<dt>2.7.5.14. <a href="/packages/2.x/Filter/sanitize.html#2-7-5-14">min</a></dt>
+<dt>2.7.5.15. <a href="/packages/2.x/Filter/sanitize.html#2-7-5-15">now</a></dt>
+<dt>2.7.5.16. <a href="/packages/2.x/Filter/sanitize.html#2-7-5-16">remove</a></dt>
+<dt>2.7.5.17. <a href="/packages/2.x/Filter/sanitize.html#2-7-5-17">regex</a></dt>
+<dt>2.7.5.18. <a href="/packages/2.x/Filter/sanitize.html#2-7-5-18">string</a></dt>
+<dt>2.7.5.19. <a href="/packages/2.x/Filter/sanitize.html#2-7-5-19">strlen</a></dt>
+<dt>2.7.5.20. <a href="/packages/2.x/Filter/sanitize.html#2-7-5-20">strlenBetween</a></dt>
+<dt>2.7.5.21. <a href="/packages/2.x/Filter/sanitize.html#2-7-5-21">strlenMax</a></dt>
+<dt>2.7.5.22. <a href="/packages/2.x/Filter/sanitize.html#2-7-5-22">strlenMin</a></dt>
+<dt>2.7.5.23. <a href="/packages/2.x/Filter/sanitize.html#2-7-5-23">titlecase</a></dt>
+<dt>2.7.5.24. <a href="/packages/2.x/Filter/sanitize.html#2-7-5-24">trim</a></dt>
+<dt>2.7.5.25. <a href="/packages/2.x/Filter/sanitize.html#2-7-5-25">uppercase</a></dt>
+<dt>2.7.5.26. <a href="/packages/2.x/Filter/sanitize.html#2-7-5-26">uppercaseFirst</a></dt>
+<dt>2.7.5.27. <a href="/packages/2.x/Filter/sanitize.html#2-7-5-27">value</a></dt>
+<dt>2.7.5.28. <a href="/packages/2.x/Filter/sanitize.html#2-7-5-28">word</a></dt>
+</dl></dd>
+<dt>2.7.6. <a href="/packages/2.x/Filter/custom.html#2-7-6">Creating and Using Custom Rules</a></dt>
+<dd><dl>
+<dt>2.7.6.1. <a href="/packages/2.x/Filter/custom.html#2-7-6-1">Writing a Rule Class</a></dt>
+<dd><dl>
+<dt>2.7.6.1.1. <a href="/packages/2.x/Filter/custom.html#2-7-6-1-1">A Validate Class</a></dt>
+<dt>2.7.6.1.2. <a href="/packages/2.x/Filter/custom.html#2-7-6-1-2">A Sanitize Class</a></dt>
+</dl></dd>
+<dt>2.7.6.2. <a href="/packages/2.x/Filter/custom.html#2-7-6-2">Set Locator Factories</a></dt>
+<dt>2.7.6.3. <a href="/packages/2.x/Filter/custom.html#2-7-6-3">Apply The New Rule</a></dt>
+</dl></dd>
+</dl>
+<div id="section-main"></div>
+<nav class="navfooter">
+    <table>
+        <tr>
+            <td class="prev"><a href="/packages/2.x/Dispatcher.html">Prev</a></td>
+            <td class="parent"><a href="/packages/2.x/">Up</a></td>
+            <td class="next"><a href="/packages/2.x/Filter/getting-started.html">Next</a></td>
+        </tr>
+        <tr>
+            <td class="prev">2.6. Aura.Dispatcher</td>
+            <td class="parent">2. Version 2.x</td>
+            <td class="next">2.7.1. Getting Started</td>
+        </tr>
+    </table>
+</nav>
