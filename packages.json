@@ -7,6 +7,13 @@
             "composer": "aura/di",
             "description": "A serializable dependency injection container with constructor and setter injection, interface and trait awareness, configuration inheritance, and much more."
         },
+        "Filter_Interface": {
+            "type": "interface",
+            "version": "3.0.0-alpha1",
+            "github": "https://github.com/auraphp/Aura.Filter_Interface",
+            "composer": "aura/filter-interface",
+            "description": "An interface package for validation and sanitizing library"
+        },
         "Intl": {
             "type": "library",
             "version": "3.0.0",
@@ -37,7 +44,7 @@
         },
         "Sql": {
             "type": "library",
-            "version": "3.0.0-beta1",
+            "version": "3.0.0",
             "github": "https://github.com/auraphp/Aura.Sql",
             "composer": "aura/sql",
             "description": "A PDO extension that provides lazy connections, array quoting, query profiling, value binding, and convenience methods for common fetch styles. Because it extends PDO, existing code that uses PDO can use this without any changes to the existing code."
@@ -151,7 +158,7 @@
         },
         "Sql": {
             "type": "library",
-            "version": "2.5.1",
+            "version": "2.5.2",
             "github": "https://github.com/auraphp/Aura.Sql",
             "composer": "aura/sql",
             "description": "A PDO extension that provides lazy connections, array quoting, identifier quoting, query profiling, value binding, and convenience methods for common fetch styles. Because it extends PDO, existing code that uses PDO can use this without any changes to the existing code."
