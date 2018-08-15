@@ -34,6 +34,7 @@ $di = $container_builder-&gt;newConfiguredInstance([
     'Aura\Web\_Config\Common',
 ]);
 </code></pre>
+<p><strong>Note:</strong> As with the <code>newInstance</code> method of the <code>ContainerBuilder</code>, you will have to pass <code>$container_builder::AUTO_RESOLVE</code> to <code>newConfiguredInstance</code> (as the second parameter) if you want to enable auto-resolution.</p>
 <p>A configuration class looks like the following:</p>
 <pre><code class="language-php">namespace Vendor\Package;
 
@@ -80,6 +81,37 @@ $di = $container_builder-&gt;newConfiguredInstance([
     $routerConfig,
     'Aura\Web\_Config\Common',
 ]);
+</code></pre>
+<p>If you have a package which combines a number of disparate components that
+each provide a <code>ContainerConfig</code> you could bundle them together using the
+<code>ConfigCollection</code> class. This class takes an array of <code>ContainerConfig</code>s or
+<code>ContainerConfig</code> class names and implements <code>ContainerConfigInterface</code> itself.</p>
+<pre><code class="language-php">
+namespace My\App;
+
+use Aura\Di\ConfigCollection;
+
+use My\Domain;
+use My\WebInterface;
+use My\DataSource;
+
+class Config extends ConfigCollection
+{
+    public function __construct()
+    {
+        parent::__construct(
+            [
+                Domain\Config::class,
+                WebInterface\Config::class,
+                DataSource\Config::class,
+            ]
+        );
+    }
+}
+</code></pre>
+<p>You can then use the Collection and it will instantiate (if necessary) and call
+the <code>define</code> and <code>modify</code> methods of each of the other ContainerConfigs.</p>
+<pre><code class="language-php">$di = $container_builder-&gt;newConfiguredInstance([\My\App\Config::class])
 </code></pre>
 </div>
 <nav class="navfooter">

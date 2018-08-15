@@ -176,7 +176,7 @@ echo $auth-&gt;getStatus(); // ANON
 <p>If the session has been idle for too long (i.e., too much time has passed since the last request), the <em>ResumeService</em> will log the user out automatically and return to the calling code.</p>
 </li>
 <li>
-<p>If the session session has expired (i.e., the total logged-in time has been too long), the <em>ResumeService</em> will likewise log the user out automatically and return to the calling code.</p>
+<p>If the session has expired (i.e., the total logged-in time has been too long), the <em>ResumeService</em> will likewise log the user out automatically and return to the calling code.</p>
 </li>
 <li>
 <p>Otherwise, the <em>ResumeService</em> will update the last-active time on the <em>Auth</em> object and return to the calling code.</p>
@@ -321,7 +321,7 @@ $login_service-&gt;login($auth, array(
 <pre><code class="language-php">&lt;?php
 $pdo = new \PDO(...);
 $hash = new PasswordVerifier('md5');
-$cols = ('username', 'md5password');
+$cols = array('username', 'md5password');
 $from = 'accounts';
 $pdo_adapter = $auth_factory-&gt;newPdoAdapter($pdo, $hash, $cols, $from);
 ?&gt;

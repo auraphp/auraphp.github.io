@@ -108,44 +108,45 @@ be called in any particular order, and may be called multiple times.</p>
 $select = $query_factory-&gt;newSelect();
 
 $select
-    -&gt;distinct()                    // SELECT DISTINCT
-    -&gt;cols(array(                   // select these columns
-        'id',                       // column name
-        'name AS namecol',          // one way of aliasing
-        'col_name' =&gt; 'col_alias',  // another way of aliasing
-        'COUNT(foo) AS foo_count'   // embed calculations directly
+    -&gt;distinct()                         // SELECT DISTINCT
+    -&gt;cols(array(                        // select these columns
+        'id',                            // column name
+        'name AS namecol',               // one way of aliasing
+        'col_name' =&gt; 'col_alias',       // another way of aliasing
+        'COUNT(foo) AS foo_count'        // embed calculations directly
     ))
-    -&gt;from('foo AS f')              // FROM these tables
-    -&gt;fromSubSelect(                // FROM sub-select AS my_sub
+    -&gt;from('foo AS f')                   // FROM these tables
+    -&gt;fromSubSelect(                     // FROM sub-select AS my_sub
         'SELECT ...',
         'my_sub'
     )
-    -&gt;join(                         // JOIN ...
-        'LEFT',                     // left/inner/natural/etc
-        'doom AS d',                // this table name
-        'foo.id = d.foo_id'         // ON these conditions
+    -&gt;join(                              // JOIN ...
+        'LEFT',                          // left/inner/natural/etc
+        'doom AS d',                     // this table name
+        'foo.id = d.foo_id'              // ON these conditions
     )
-    -&gt;joinSubSelect(                // JOIN to a sub-select
-        'INNER',                    // left/inner/natural/etc
-        'SELECT ...',               // the subselect to join on
-        'subjoin',                  // AS this name
-        'sub.id = foo.id'           // ON these conditions
+    -&gt;joinSubSelect(                     // JOIN to a sub-select
+        'INNER',                         // left/inner/natural/etc
+        'SELECT ...',                    // the subselect to join on
+        'subjoin',                       // AS this name
+        'sub.id = foo.id'                // ON these conditions
     )
-    -&gt;where('bar &gt; :bar')           // AND WHERE these conditions
-    -&gt;where('zim = ?', 'zim_val')   // bind 'zim_val' to the ? placeholder
-    -&gt;orWhere('baz &lt; :baz')         // OR WHERE these conditions
-    -&gt;groupBy(array('dib'))         // GROUP BY these columns
-    -&gt;having('foo = :foo')          // AND HAVING these conditions
-    -&gt;having('bar &gt; ?', 'bar_val')  // bind 'bar_val' to the ? placeholder
-    -&gt;orHaving('baz &lt; :baz')        // OR HAVING these conditions
-    -&gt;orderBy(array('baz'))         // ORDER BY these columns
-    -&gt;limit(10)                     // LIMIT 10
-    -&gt;offset(40)                    // OFFSET 40
-    -&gt;forUpdate()                   // FOR UPDATE
-    -&gt;union()                       // UNION with a followup SELECT
-    -&gt;unionAll()                    // UNION ALL with a followup SELECT
-    -&gt;bindValue('foo', 'foo_val')   // bind one value to a placeholder
-    -&gt;bindValues(array(             // bind these values to named placeholders
+    -&gt;where('bar &gt; :bar')                // AND WHERE these conditions
+    -&gt;where('zim = ?', 'zim_val')        // bind 'zim_val' to the ? placeholder
+    -&gt;where('id IN (?, ?, ?)', 1, 2, 3)  // WHERE id IN(1, 2, 3)
+    -&gt;orWhere('baz &lt; :baz')              // OR WHERE these conditions
+    -&gt;groupBy(array('dib'))              // GROUP BY these columns
+    -&gt;having('foo = :foo')               // AND HAVING these conditions
+    -&gt;having('bar &gt; ?', 'bar_val')       // bind 'bar_val' to the ? placeholder
+    -&gt;orHaving('baz &lt; :baz')             // OR HAVING these conditions
+    -&gt;orderBy(array('baz'))              // ORDER BY these columns
+    -&gt;limit(10)                          // LIMIT 10
+    -&gt;offset(40)                         // OFFSET 40
+    -&gt;forUpdate()                        // FOR UPDATE
+    -&gt;union()                            // UNION with a followup SELECT
+    -&gt;unionAll()                         // UNION ALL with a followup SELECT
+    -&gt;bindValue('foo', 'foo_val')        // bind one value to a placeholder
+    -&gt;bindValues(array(                  // bind these values to named placeholders
         'bar' =&gt; 'bar_val',
         'baz' =&gt; 'baz_val',
     ));

@@ -51,6 +51,28 @@ class ExampleStruct
 </code></pre>
 <p>Note that the arguments passed to the factory <code>__invoke()</code> method will be passed to the underlying instance constructor sequentially, not by name. This means the <code>__invoke()</code> method works more like the native <code>new</code> keyword, and not like <code>$di-&gt;lazyNew()</code>.  These arguments override any <code>$di-&gt;params</code> values that have been set for the class being factoried; without the overrides, all existing <code>$di-&gt;params</code> values for that class will be honored. (Values from <code>$di-&gt;setter</code> for the class will also be honored, but cannot be overridden.)</p>
 <p>Do not feel limited by the <em>Factory</em> implementation. We can create and inject factory objects of our own if we like. The <em>Factory</em> returned by the <code>$di-&gt;newFactory()</code> method is an occasional convenience, nothing more.</p>
+<h2 id="1-1-7-1">1.1.7.1. Broader Instantiation</h2>
+<p>Sometimes you may want to more broadly leverage a configured containers ability
+to instantiate objects in your classes, for example in some kind of service
+locator. The <code>ResolutionHelper</code> provides a callable object which takes a
+"specification" as a parameter and will retrieve a service if the container has
+one appropriate to the specification or instantiate a new instance of the class
+if there is no matching service name. If an array is passed as the
+specification, the array is returned with the first value "resolved". This array
+functionality allows for a callable to be returned referencing an method on an
+instance.</p>
+<pre><code class="language-php">
+$helper = $di-&gt;newResolutionHelper();
+
+$foo = $helper(\My\Foo::class);
+// will return service named "My\Foo" if on is named as such
+// or else a new instance of "My\Foo"
+
+$fooBar = $helper([\My\Foo::class, 'bar']);
+// will return the equivalent of [$foo, 'bar']
+</code></pre>
+<p>Using the <code>ResolutionHelper</code>, you can write consuming code that type hints a
+callable, rather than the container itself.</p>
 </div>
 <nav class="navfooter">
     <table>
