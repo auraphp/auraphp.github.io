@@ -158,7 +158,7 @@
         },
         "Sql": {
             "type": "library",
-            "version": "2.5.2",
+            "version": "2.6.0",
             "github": "https://github.com/auraphp/Aura.Sql",
             "composer": "aura/sql",
             "description": "A PDO extension that provides lazy connections, array quoting, identifier quoting, query profiling, value binding, and convenience methods for common fetch styles. Because it extends PDO, existing code that uses PDO can use this without any changes to the existing code."
