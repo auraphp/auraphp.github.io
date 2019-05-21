@@ -9,16 +9,16 @@ permalink: /packages/2.x/Sql.html
 <nav class="navheader">
     <table>
         <tr>
-            <th colspan="3" class="curr">2.12. Aura.Sql</th>
+            <th colspan="3" class="curr">3.12. Aura.Sql</th>
         </tr>
         <tr>
             <td class="prev"><a href="/packages/2.x/Session.html">Aura Session</a></td>
-            <td class="parent">2. Version 2.x</th>
+            <td class="parent">3. Version 2.x</th>
             <td class="next"><a href="/packages/2.x/SqlQuery.html">Aura.SqlQuery</a></td>
         </tr>
     </table>
 </nav>
-<div id="section-main"><h1 id="2-12">2.12. Aura.Sql</h1>
+<div id="section-main"><h1 id="3-12">3.12. Aura.Sql</h1>
 <p>Provides an extension to the native <a href="http://php.net/PDO">PDO</a> along with a
 profiler and connection locator. Because <em>ExtendedPdo</em> is an extension of the
 native <em>PDO</em>, code already using the native <em>PDO</em> or typehinted to the native
@@ -73,24 +73,24 @@ interface for other implementations.</p>
 for picking different database connections (default, read, and write).</p>
 </li>
 </ul>
-<h2 id="2-12-1">2.12.1. Foreword</h2>
-<h3 id="2-12-1-1">2.12.1.1. Installation</h3>
+<h2 id="3-12-1">3.12.1. Foreword</h2>
+<h3 id="3-12-1-1">3.12.1.1. Installation</h3>
 <p>This library requires PHP 5.3 or later; we recommend using the latest available version of PHP as a matter of principle. It has no userland dependencies.</p>
 <p>It is installable and autoloadable via Composer as <a href="https://packagist.org/packages/aura/sql">aura/sql</a>.</p>
 <p>Alternatively, <a href="https://github.com/auraphp/Aura.Sql/releases">download a release</a> or clone this repository, then require or include its <em>autoload.php</em> file.</p>
-<h3 id="2-12-1-2">2.12.1.2. Quality</h3>
+<h3 id="3-12-1-2">3.12.1.2. Quality</h3>
 <p><a href="https://scrutinizer-ci.com/g/auraphp/Aura.Sql/"><img src="https://scrutinizer-ci.com/g/auraphp/Aura.Sql/badges/quality-score.png?b=2.x" alt="Scrutinizer Code Quality"></a>
 <a href="https://scrutinizer-ci.com/g/auraphp/Aura.Sql/"><img src="https://scrutinizer-ci.com/g/auraphp/Aura.Sql/badges/coverage.png?b=2.x" alt="Code Coverage"></a>
 <a href="https://travis-ci.org/auraphp/Aura.Sql"><img src="https://travis-ci.org/auraphp/Aura.Sql.png?branch=2.x" alt="Build Status"></a></p>
 <p>To run the <a href="http://phpunit.de/manual/">PHPUnit</a> unit tests at the command line, issue <code>composer install</code> and then <code>vendor/bin/phpunit</code> at the package root. (This requires <a href="http://getcomposer.org/">Composer</a> to be available as <code>composer</code>.)</p>
 <p>This library attempts to comply with <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md">PSR-1</a>, <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md">PSR-2</a>, and <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md">PSR-4</a>. If
 you notice compliance oversights, please send a patch via pull request.</p>
-<h3 id="2-12-1-3">2.12.1.3. Community</h3>
+<h3 id="3-12-1-3">3.12.1.3. Community</h3>
 <p>To ask questions, provide feedback, or otherwise communicate with the Aura community, please join our <a href="http://groups.google.com/group/auraphp">Google Group</a>, follow <a href="http://twitter.com/auraphp">@auraphp on Twitter</a>, or chat with us on #auraphp on Freenode.</p>
-<h2 id="2-12-2">2.12.2. Getting Started</h2>
-<h3 id="2-12-2-1">2.12.2.1. Instantiation</h3>
+<h2 id="3-12-2">3.12.2. Getting Started</h2>
+<h3 id="3-12-2-1">3.12.2.1. Instantiation</h3>
 <p>You can instantiate <em>ExtendedPdo</em> so that it uses lazy connection, or you can use it to decorate an existing <em>PDO</em> instance.</p>
-<h4 id="2-12-2-1-1">2.12.2.1.1. Lazy Connection Instance</h4>
+<h4 id="3-12-2-1-1">3.12.2.1.1. Lazy Connection Instance</h4>
 <p>Instantiation is the same as with the native <em>PDO</em> class: pass a data source
 name, username, password, and driver options. There is one additional
 parameter that allows you to pass attributes to be set after the connection is
@@ -128,7 +128,7 @@ $pdo-&gt;connect();
 $pdo-&gt;disconnect();
 </code></pre>
 <p>Doing so will close the connection by unsetting the internal <em>PDO</em> instance. However, calling an <em>ExtendedPdo</em> method that implicitly establishes a connection, such as <code>query()</code> or one of the <code>fetch*()</code> methods, will automatically re-connect to the database.</p>
-<h4 id="2-12-2-1-2">2.12.2.1.2. Decorator Instance</h4>
+<h4 id="3-12-2-1-2">3.12.2.1.2. Decorator Instance</h4>
 <p>The <em>ExtendedPdo</em> class can be used to decorate an existing PDO connection as well. To do so, instantiate <em>ExtendedPdo</em> by passing an existing PDO connection:</p>
 <pre><code class="language-php">use Aura\Sql\ExtendedPdo;
 
@@ -140,7 +140,7 @@ $extended_pdo = new ExtendedPdo($pdo);
 <blockquote>
 <p>N.b.: The <code>disconnect()</code> method <strong>will not work</strong> on decorated <em>PDO</em> connections, since <em>ExtendedPdo</em> did not create the connection itself. You will need to manage the decorated <em>PDO</em> instance yourself in that case.</p>
 </blockquote>
-<h3 id="2-12-2-2">2.12.2.2. Array Quoting</h3>
+<h3 id="3-12-2-2">3.12.2.2. Array Quoting</h3>
 <p>The native <em>PDO</em> <code>quote()</code> method will not quote arrays. This makes it
 difficult to bind an array to something like an <code>IN (...)</code> condition in SQL.
 However, <em>ExtendedPdo</em> recognizes arrays and converts them into comma-
@@ -158,7 +158,7 @@ $cond = 'IN (' . $pdo-&gt;quote($array) . ')';
 $pdo = new ExtendedPdo(...);
 $cond = 'IN (' . $pdo-&gt;quote($array) . ')';
 </code></pre>
-<h3 id="2-12-2-3">2.12.2.3. The <code>perform()</code> Method</h3>
+<h3 id="3-12-2-3">3.12.2.3. The <code>perform()</code> Method</h3>
 <p>The new <code>perform()</code> method will prepare a query with bound values in a single
 step.  Also, because the native <em>PDO</em> does not deal with bound array values,
 <code>perform()</code> modifies the query string to replace array-bound placeholders with
@@ -188,7 +188,7 @@ echo $sth-&gt;queryString;
 </code></pre>
 <p>Finally, note that array quoting works only via the <code>perform()</code> method,
 not on returned <em>PDOStatement</em> instances.</p>
-<h3 id="2-12-2-4">2.12.2.4. New <code>fetch*()</code> Methods</h3>
+<h3 id="3-12-2-4">3.12.2.4. New <code>fetch*()</code> Methods</h3>
 <p><em>ExtendedPdo</em> comes with <code>fetch*()</code> methods to help reduce boilerplate code.
 Instead of issuing <code>prepare()</code>, a series of <code>bindValue()</code> calls, <code>execute()</code>,
 and then <code>fetch*()</code> on a <em>PDOStatement</em>, you can bind values and fetch results
@@ -252,7 +252,7 @@ results before returning.</p>
     $row['my_new_col'] = 'Added this column from the callable.';
 });
 </code></pre>
-<h3 id="2-12-2-5">2.12.2.5. New <code>yield*()</code> Methods</h3>
+<h3 id="3-12-2-5">3.12.2.5. New <code>yield*()</code> Methods</h3>
 <p><em>ExtendedPdo</em> comes with <code>yield*()</code> methods to help reduce memory usage. Whereas
 many <code>fetch*()</code> methods collect all the query result rows before returning them
 all at once, the equivalent <code>yield*()</code> methods return an iterator that generates
@@ -290,7 +290,7 @@ foreach ($pdo-&gt;yieldPairs($stm, $bind) as $key =&gt; $val) {
     // ...
 }
 </code></pre>
-<h2 id="2-12-3">2.12.3. Profiler</h2>
+<h2 id="3-12-3">3.12.3. Profiler</h2>
 <p>When debugging, it is often useful to see what queries have been executed,
 where they were issued from in the codebase, and how long they took to
 complete. <em>ExtendedPdo</em> comes with an optional profiler that you can use to
@@ -343,7 +343,7 @@ $pdo-&gt;getProfiler()-&gt;setActive(false);
 $pdo-&gt;fetchAll('SELECT * FROM foo');
 $pdo-&gt;getProfiler()-&gt;setActive(true);
 </code></pre>
-<h2 id="2-12-4">2.12.4. Connection Locator</h2>
+<h2 id="3-12-4">3.12.4. Connection Locator</h2>
 <p>Frequently, high-traffic PHP applications use multiple database servers,
 generally one for writes, and one or more for reads. The <em>ConnectionLocator</em>
 allows you to define multiple <em>ExtendedPdo</em> objects for lazy-loaded read and
@@ -423,7 +423,7 @@ defined, it will return the default connection.</p>
 <pre><code class="language-php">$read = $connectionLocator-&gt;getRead();
 $results = $read-&gt;fetchAll('SELECT * FROM table_name LIMIT 10');
 </code></pre>
-<h3 id="2-12-4-1">2.12.4.1. Construction-Time Configuration</h3>
+<h3 id="3-12-4-1">3.12.4.1. Construction-Time Configuration</h3>
 <p>The <em>ConnectionLocator</em> can be configured with all its connections at
 construction time; this is useful with dependency injection mechanisms.</p>
 <pre><code class="language-php">use Aura\Sql\ConnectionLocator;
@@ -477,7 +477,7 @@ $write = array(
 // configure locator at construction time
 $connectionLocator = new ConnectionLocator($default, $read, $write);
 </code></pre>
-<h3 id="2-12-4-2">2.12.4.2. Profiler</h3>
+<h3 id="3-12-4-2">3.12.4.2. Profiler</h3>
 <p>You can turn profiling on and off for all connections in the locator using the
 <code>setProfiling()</code> method. (If no profiler has been set on a connection, the
 locator will set a default profiler into it automatically.) To get all the
@@ -495,9 +495,9 @@ $profiles = $connectionLocator-&gt;getProfiles();
             <td class="next"><a href="/packages/2.x/SqlQuery.html">Next</a></td>
         </tr>
         <tr>
-            <td class="prev">2.11. Aura Session</td>
-            <td class="parent">2. Version 2.x</td>
-            <td class="next">2.13. Aura.SqlQuery</td>
+            <td class="prev">3.11. Aura Session</td>
+            <td class="parent">3. Version 2.x</td>
+            <td class="next">3.13. Aura.SqlQuery</td>
         </tr>
     </table>
 </nav>

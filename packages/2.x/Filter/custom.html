@@ -9,16 +9,16 @@ permalink: /packages/2.x/Filter/custom.html
 <nav class="navheader">
     <table>
         <tr>
-            <th colspan="3" class="curr">2.7.6. Creating and Using Custom Rules</th>
+            <th colspan="3" class="curr">3.7.6. Creating and Using Custom Rules</th>
         </tr>
         <tr>
             <td class="prev"><a href="/packages/2.x/Filter/sanitize.html">Rules To Sanitize Fields</a></td>
-            <td class="parent">2.7. Aura.Filter 2.x</th>
+            <td class="parent">3.7. Aura.Filter 2.x</th>
             <td class="next"><a href="/packages/2.x/Html.html">Aura.Html</a></td>
         </tr>
     </table>
 </nav>
-<div id="section-main"><h1 id="2-7-6">2.7.6. Creating and Using Custom Rules</h1>
+<div id="section-main"><h1 id="3-7-6">3.7.6. Creating and Using Custom Rules</h1>
 <p>There are three steps to creating and using new rules:</p>
 <ol>
 <li>
@@ -31,11 +31,11 @@ permalink: /packages/2.x/Filter/custom.html
 <p>Use the new rule in a filter specification</p>
 </li>
 </ol>
-<h2 id="2-7-6-1">2.7.6.1. Writing a Rule Class</h2>
+<h2 id="3-7-6-1">3.7.6.1. Writing a Rule Class</h2>
 <p>Writing a rule class is straightforward.  Define a class with an
 <code>__invoke($subject, $field)</code> method, along with any additional needed arguments.
 The method should return a boolean: true on success, or false on failure.</p>
-<h3 id="2-7-6-1-1">2.7.6.1.1. A Validate Class</h3>
+<h3 id="3-7-6-1-1">3.7.6.1.1. A Validate Class</h3>
 <p>Here is an example of a hexdecimal validator:</p>
 <pre><code class="language-php">namespace Vendor\Package\Filter\Rule\Validate;
 
@@ -65,7 +65,7 @@ class ValidateHex
     }
 }
 </code></pre>
-<h3 id="2-7-6-1-2">2.7.6.1.2. A Sanitize Class</h3>
+<h3 id="3-7-6-1-2">3.7.6.1.2. A Sanitize Class</h3>
 <p>Here is an example of a hexadecimal sanitizer. Note how we modify the
 <code>$subject-&gt;$field</code> value directly at the end of the method.</p>
 <pre><code class="language-php">namespace Vendor\Package\Filter\Rule\Sanitize;
@@ -100,7 +100,7 @@ class SanitizeHex
     }
 }
 </code></pre>
-<h2 id="2-7-6-2">2.7.6.2. Set Locator Factories</h2>
+<h2 id="3-7-6-2">3.7.6.2. Set Locator Factories</h2>
 <p>Now we set a factory for the rule into the appropriate locator from the <em>FilterFactory</em>.  Pass additional <code>$validate_factories</code> and <code>$sanitize_factories</code> to the <em>FilterFactory</em> at construction time; Wrap the rule instantiation logic in a closure so that it is lazy-loaded only when the rule is called:</p>
 <pre><code class="language-php">use Aura\Filter\FilterFactory;
 
@@ -117,7 +117,7 @@ $filter_factory = new FilterFactory(
     $sanitize_factories
 );
 </code></pre>
-<h2 id="2-7-6-3">2.7.6.3. Apply The New Rule</h2>
+<h2 id="3-7-6-3">3.7.6.3. Apply The New Rule</h2>
 <p>Finally, we can use the rule in our filters:</p>
 <pre><code class="language-php">$filter = $filter_factory-&gt;newSubjectFilter();
 
@@ -136,9 +136,9 @@ $filter-&gt;sanitize('color')-&gt;to('hex', 6);
             <td class="next"><a href="/packages/2.x/Html.html">Next</a></td>
         </tr>
         <tr>
-            <td class="prev">2.7.5. Rules To Sanitize Fields</td>
-            <td class="parent">2.7. Aura.Filter 2.x</td>
-            <td class="next">2.8. Aura.Html</td>
+            <td class="prev">3.7.5. Rules To Sanitize Fields</td>
+            <td class="parent">3.7. Aura.Filter 2.x</td>
+            <td class="next">3.8. Aura.Html</td>
         </tr>
     </table>
 </nav>
