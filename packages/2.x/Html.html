@@ -9,44 +9,44 @@ permalink: /packages/2.x/Html.html
 <nav class="navheader">
     <table>
         <tr>
-            <th colspan="3" class="curr">2.8. Aura.Html</th>
+            <th colspan="3" class="curr">3.8. Aura.Html</th>
         </tr>
         <tr>
             <td class="prev"><a href="/packages/2.x/Filter/custom.html">Creating and Using Custom Rules</a></td>
-            <td class="parent">2. Version 2.x</th>
+            <td class="parent">3. Version 2.x</th>
             <td class="next"><a href="/packages/2.x/Includer.html">Aura.Includer</a></td>
         </tr>
     </table>
 </nav>
-<div id="section-main"><h1 id="2-8">2.8. Aura.Html</h1>
+<div id="section-main"><h1 id="3-8">3.8. Aura.Html</h1>
 <p>Provides HTML escapers and helpers, including form input helpers, that can be used in any template, view, or presentation system.</p>
-<h2 id="2-8-1">2.8.1. Foreword</h2>
-<h3 id="2-8-1-1">2.8.1.1. Installation</h3>
+<h2 id="3-8-1">3.8.1. Foreword</h2>
+<h3 id="3-8-1-1">3.8.1.1. Installation</h3>
 <p>This library requires PHP 5.3 or later  with <code>mbstring</code> and/or <code>iconv</code> installed; we recommend using the latest available version of PHP as a matter of principle. It has no userland dependencies.</p>
 <p>It is installable and autoloadable via Composer as <a href="https://packagist.org/packages/aura/html">aura/html</a>.</p>
 <p>Alternatively, <a href="https://github.com/auraphp/Aura.Html/releases">download a release</a> or clone this repository, then require or include its <em>autoload.php</em> file.</p>
-<h3 id="2-8-1-2">2.8.1.2. Quality</h3>
+<h3 id="3-8-1-2">3.8.1.2. Quality</h3>
 <p><a href="https://scrutinizer-ci.com/g/auraphp/Aura.Html/"><img src="https://scrutinizer-ci.com/g/auraphp/Aura.Html/badges/quality-score.png?b=2.x" alt="Scrutinizer Code Quality"></a>
 <a href="https://scrutinizer-ci.com/g/auraphp/Aura.Html/"><img src="https://scrutinizer-ci.com/g/auraphp/Aura.Html/badges/coverage.png?b=2.x" alt="Code Coverage"></a>
 <a href="https://travis-ci.org/auraphp/Aura.Html"><img src="https://travis-ci.org/auraphp/Aura.Html.png?branch=2.x" alt="Build Status"></a></p>
 <p>To run the unit tests at the command line, issue <code>composer install</code> and then <code>phpunit</code> at the package root. This requires <a href="http://getcomposer.org/">Composer</a> to be available as <code>composer</code>, and <a href="http://phpunit.de/manual/">PHPUnit</a> to be available as <code>phpunit</code>.</p>
 <p>This library attempts to comply with <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md">PSR-1</a>, <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md">PSR-2</a>, and <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md">PSR-4</a>. If
 you notice compliance oversights, please send a patch via pull request.</p>
-<h3 id="2-8-1-3">2.8.1.3. Community</h3>
+<h3 id="3-8-1-3">3.8.1.3. Community</h3>
 <p>To ask questions, provide feedback, or otherwise communicate with the Aura community, please join our <a href="http://groups.google.com/group/auraphp">Google Group</a>, follow <a href="http://twitter.com/auraphp">@auraphp on Twitter</a>, or chat with us on #auraphp on Freenode.</p>
-<h2 id="2-8-2">2.8.2. Getting Started</h2>
+<h2 id="3-8-2">3.8.2. Getting Started</h2>
 <p>The easiest way to instantiate a <em>HelperLocator</em> with all the available helpers is to use the <em>HelperLocatorFactory</em>:</p>
 <pre><code class="language-php">&lt;?php
 $factory = new \Aura\Html\HelperLocatorFactory;
 $helper = $factory-&gt;newInstance();
 ?&gt;
 </code></pre>
-<h3 id="2-8-2-1">2.8.2.1. Built-In Helpers</h3>
+<h3 id="3-8-2-1">3.8.2.1. Built-In Helpers</h3>
 <p>Once you have a <em>HelperLocator</em>, you can then use the helpers by calling them as methods on the <em>HelperLocator</em> instance.  See the <a href="https://github.com/auraphp/Aura.Html/blob/2.x/README-HELPERS.md">tag helpers</a> and <a href="https://github.com/auraphp/Aura.Html/blob/2.x/README-FORMS.md">form helpers</a> pages for more information.</p>
 <blockquote>
 <p>N.b.: All built-in helpers escape values appropriately; see the various helper class internals for more information.</p>
 </blockquote>
-<h3 id="2-8-2-2">2.8.2.2. Custom Helpers</h3>
+<h3 id="3-8-2-2">3.8.2.2. Custom Helpers</h3>
 <p>There are two steps to adding your own custom helpers:</p>
 <ol>
 <li>
@@ -86,7 +86,7 @@ $helper-&gt;set('obfuscate', function () {
 useful to name the service for the helper class, and for a word that can be called as a method.</p>
 <p>Please examine the classes in <code>Aura\Html\Helper</code> for more complex and powerful
 examples.</p>
-<h3 id="2-8-2-3">2.8.2.3. Escaping</h3>
+<h3 id="3-8-2-3">3.8.2.3. Escaping</h3>
 <p>One of the important but menial tasks with PHP-based template systems is that of escaping output properly. Escaping output is <strong>absolutely necessary</strong> from a security perspective. This package comes with an <code>escape()</code> helper that has four escaping methods:</p>
 <ul>
 <li>
@@ -216,9 +216,9 @@ $j = $this-&gt;escape()-&gt;js;
             <td class="next"><a href="/packages/2.x/Includer.html">Next</a></td>
         </tr>
         <tr>
-            <td class="prev">2.7.6. Creating and Using Custom Rules</td>
-            <td class="parent">2. Version 2.x</td>
-            <td class="next">2.9. Aura.Includer</td>
+            <td class="prev">3.7.6. Creating and Using Custom Rules</td>
+            <td class="parent">3. Version 2.x</td>
+            <td class="next">3.9. Aura.Includer</td>
         </tr>
     </table>
 </nav>

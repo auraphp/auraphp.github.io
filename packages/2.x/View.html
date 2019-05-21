@@ -9,49 +9,49 @@ permalink: /packages/2.x/View.html
 <nav class="navheader">
     <table>
         <tr>
-            <th colspan="3" class="curr">2.15. Aura View</th>
+            <th colspan="3" class="curr">3.15. Aura View</th>
         </tr>
         <tr>
             <td class="prev"><a href="/packages/2.x/SqlSchema.html">Aura.SqlSchema</a></td>
-            <td class="parent">2. Version 2.x</th>
+            <td class="parent">3. Version 2.x</th>
             <td class="next"><a href="/packages/2.x/Web.html">Aura.Web</a></td>
         </tr>
     </table>
 </nav>
-<div id="section-main"><h1 id="2-15">2.15. Aura View</h1>
+<div id="section-main"><h1 id="3-15">3.15. Aura View</h1>
 <p>This package provides an implementation of the <a href="http://martinfowler.com/eaaCatalog/templateView.html">TemplateView</a> and
 <a href="http://martinfowler.com/eaaCatalog/twoStepView.html">TwoStepView</a> patterns using PHP itself as the templating language. It supports both file-based and closure-based templates along with helpers and sections.</p>
 <p>It is preceded by systems such as
 <a href="http://phpsavant.com"><code>Savant</code></a>,
 <a href="http://framework.zend.com/manual/en/zend.view.html"><code>Zend_View</code></a>, and
 <a href="http://solarphp.com/class/Solar_View"><code>Solar_View</code></a>.</p>
-<h2 id="2-15-1">2.15.1. Foreword</h2>
-<h3 id="2-15-1-1">2.15.1.1. Installation</h3>
+<h2 id="3-15-1">3.15.1. Foreword</h2>
+<h3 id="3-15-1-1">3.15.1.1. Installation</h3>
 <p>This library requires PHP 5.4 or later; we recommend using the latest available version of PHP as a matter of principle. It has no userland dependencies.</p>
 <p>It is installable and autoloadable via Composer as <a href="https://packagist.org/packages/aura/view">aura/view</a>.</p>
 <p>Alternatively, <a href="https://github.com/auraphp/Aura.View/releases">download a release</a> or clone this repository, then require or include its <em>autoload.php</em> file.</p>
-<h3 id="2-15-1-2">2.15.1.2. Quality</h3>
+<h3 id="3-15-1-2">3.15.1.2. Quality</h3>
 <p><a href="https://scrutinizer-ci.com/g/auraphp/Aura.View/"><img src="https://scrutinizer-ci.com/g/auraphp/Aura.View/badges/quality-score.png?b=develop-2" alt="Scrutinizer Code Quality"></a>
 <a href="https://scrutinizer-ci.com/g/auraphp/Aura.View/"><img src="https://scrutinizer-ci.com/g/auraphp/Aura.View/badges/coverage.png?b=develop-2" alt="Code Coverage"></a>
 <a href="https://travis-ci.org/auraphp/Aura.View"><img src="https://travis-ci.org/auraphp/Aura.View.png?branch=develop-2" alt="Build Status"></a></p>
 <p>To run the unit tests at the command line, issue <code>composer install</code> and then <code>./vendor/bin/phpunit</code> at the package root. This requires <a href="http://getcomposer.org/">Composer</a> to be available as <code>composer</code>.</p>
 <p>This library attempts to comply with <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md">PSR-1</a>, <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md">PSR-2</a>, and <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md">PSR-4</a>. If
 you notice compliance oversights, please send a patch via pull request.</p>
-<h3 id="2-15-1-3">2.15.1.3. Community</h3>
+<h3 id="3-15-1-3">3.15.1.3. Community</h3>
 <p>To ask questions, provide feedback, or otherwise communicate with the Aura community, please join our <a href="http://groups.google.com/group/auraphp">Google Group</a>, follow <a href="http://twitter.com/auraphp">@auraphp on Twitter</a>, or chat with us on #auraphp on Freenode.</p>
-<h2 id="2-15-2">2.15.2. Getting Started</h2>
-<h3 id="2-15-2-1">2.15.2.1. Instantiation</h3>
+<h2 id="3-15-2">3.15.2. Getting Started</h2>
+<h3 id="3-15-2-1">3.15.2.1. Instantiation</h3>
 <p>To instantiate a <em>View</em> object, use the <em>ViewFactory</em>:</p>
 <pre><code class="language-php">&lt;?php
 $view_factory = new \Aura\View\ViewFactory;
 $view = $view_factory-&gt;newInstance();
 ?&gt;
 </code></pre>
-<h3 id="2-15-2-2">2.15.2.2. Escaping Output</h3>
+<h3 id="3-15-2-2">3.15.2.2. Escaping Output</h3>
 <p>Security-minded observers will note that all the examples in this document use manually-escaped output. Because this package is not specific to any particular media type, it <strong>does not</strong> come with escaping functionality.</p>
 <p>When you generate output via templates, you <strong>must</strong> escape it appropriately for security purposes. This means that HTML templates should use HTML escaping, CSS templates should use CSS escaping, XML templates should use XML escaping, PDF templates should use PDF escaping, RTF templates should use RTF escaping, and so on.</p>
 <p>For a good set of HTML escapers, please consider <a href="https://github.com/auraphp/Aura.Html#escaping">Aura.Html</a>.</p>
-<h3 id="2-15-2-3">2.15.2.3. Registering View Templates</h3>
+<h3 id="3-15-2-3">3.15.2.3. Registering View Templates</h3>
 <p>Now that we have a <em>View</em>, we need to add named templates to its view template registry. These are typically PHP file paths, but <a href="#closures-as-templates">templates can also be closures</a>.  For example:</p>
 <pre><code class="language-php">&lt;?php
 $view_registry = $view-&gt;getViewRegistry();
@@ -73,7 +73,7 @@ foreach ($this-&gt;items as $item) {
 which means that <code>$this</code> in the template code will refer to the <em>View</em>
 object. The same is true for closure-based templates.</p>
 </blockquote>
-<h3 id="2-15-2-4">2.15.2.4. Setting Data</h3>
+<h3 id="3-15-2-4">3.15.2.4. Setting Data</h3>
 <p>We will almost always want to use dynamic data in our templates. To assign a data collection to the <em>View</em>, use the <code>setData()</code> method and either an array or an object. We can then use data elements as if they are properties on the
 <em>View</em> object.</p>
 <pre><code class="language-php">&lt;?php
@@ -100,7 +100,7 @@ $view-&gt;setData(array(
 so that data assigned to the <em>View</em> can be accessed as properties on <code>$this</code>.</p>
 </blockquote>
 <p>The <code>setData()</code> method will overwrite all existing data in the <em>View</em> object. The <code>addData()</code> method, on the other hand, will merge with existing data in the <em>View</em> object.</p>
-<h3 id="2-15-2-5">2.15.2.5. Invoking A One-Step View</h3>
+<h3 id="3-15-2-5">3.15.2.5. Invoking A One-Step View</h3>
 <p>Now that we have registered a template and assigned some data to the <em>View</em>, we tell the <em>View</em> which template to use, and then invoke the <em>View</em>:</p>
 <pre><code class="language-php">&lt;?php
 $view-&gt;setView('browse');
@@ -112,7 +112,7 @@ $output = $view-&gt;__invoke(); // or just $view()
 Item #2 is 'Bar'.
 Item #3 is 'Baz'.
 </code></pre>
-<h3 id="2-15-2-6">2.15.2.6. Using Sub-Templates (aka "Partials")</h3>
+<h3 id="3-15-2-6">3.15.2.6. Using Sub-Templates (aka "Partials")</h3>
 <p>Sometimes we will want to split a template up into multiple pieces. We can
 render these "partial" template pieces using the <code>render()</code> method in our main template code.</p>
 <p>First, we place the sub-template in the view registry (or in the layout registry if it for use in layouts). Then we <code>render()</code> it from inside the main template code. Sub-templates can use any naming scheme we like. Some systems use the convention of prefixing partial templates with an underscore, and the following example will use that convention.</p>
@@ -148,7 +148,7 @@ foreach ($this-&gt;items as $item) {
 <blockquote>
 <p>N.b.: Alternatively, we can use <code>include</code> or <code>require</code> to execute a PHP file directly in the current template scope.</p>
 </blockquote>
-<h3 id="2-15-2-7">2.15.2.7. Using Sections</h3>
+<h3 id="3-15-2-7">3.15.2.7. Using Sections</h3>
 <p>Sections are similar to sub-templates (aka "partials") except that they are captured inline for later use. In general, they are used by view templates to capture output for layout templates.</p>
 <p>For example, we can capture output in the view template to a named section ...</p>
 <pre><code class="language-php">&lt;?php
@@ -177,7 +177,7 @@ if ($this-&gt;hasSection('local-nav')) {
 $this-&gt;setSection('local-nav', $this-&gt;render('_local-nav'));
 ?&gt;
 </code></pre>
-<h3 id="2-15-2-8">2.15.2.8. Using Helpers</h3>
+<h3 id="3-15-2-8">3.15.2.8. Using Helpers</h3>
 <p>The <em>ViewFactory</em> instantiates the <em>View</em> with an empty <em>HelperRegistry</em> to manage helpers. We can register closures or other invokable objects as helpers through the <em>HelperRegistry</em>. We can then call these helpers as if they are methods on the <em>View</em>.</p>
 <pre><code class="language-php">&lt;?php
 $helpers = $view-&gt;getHelpers();
@@ -196,7 +196,7 @@ $output = $view();
 </code></pre>
 <p>This library does not come with any view helpers. You will need to add your own
 helpers to the registry as closures or invokable objects.</p>
-<h3 id="2-15-2-9">2.15.2.9. Custom Helper Managers</h3>
+<h3 id="3-15-2-9">3.15.2.9. Custom Helper Managers</h3>
 <p>The <em>View</em> is not type-hinted to any particular class for its helper manager. This means you may inject an arbitrary object of your own at <em>View</em> construction time to manage helpers. To do so, pass a helper manager of your own to the <em>ViewFactory</em>.</p>
 <pre><code class="language-php">&lt;?php
 class OtherHelperManager
@@ -219,7 +219,7 @@ $helpers = $helpers_factory-&gt;newInstance();
 $view = $view_factory-&gt;newInstance($helpers);
 ?&gt;
 </code></pre>
-<h3 id="2-15-2-10">2.15.2.10. Rendering a Two-Step View</h3>
+<h3 id="3-15-2-10">3.15.2.10. Rendering a Two-Step View</h3>
 <p>To wrap the main content in a layout as part of a two-step view, we register
 layout templates with the <em>View</em> and then call <code>setLayout()</code> to pick one of
 them for the second step. (If no layout is set, the second step will not be
@@ -263,7 +263,7 @@ $output = $view-&gt;__invoke(); // or just $view()
 <p>All section bodies are shared between the view and the layout. A section that is captured from the view template can therefore be used by the layout template.</p>
 </li>
 </ul>
-<h3 id="2-15-2-11">2.15.2.11. Closures As Templates</h3>
+<h3 id="3-15-2-11">3.15.2.11. Closures As Templates</h3>
 <p>The view and layout registries accept closures as templates. For example, these are closure-based equivlents of the <code>browse.php</code> and <code>_item.php</code> template files above:</p>
 <pre><code class="language-php">&lt;?php
 $view_registry-&gt;set('browse', function () {
@@ -293,7 +293,7 @@ $view_registry-&gt;set('_item', function (array $vars) {
 </li>
 </ol>
 <p>Aside from that, closure-based templates work exactly like file-based templates.</p>
-<h3 id="2-15-2-12">2.15.2.12. Registering Template Search Paths</h3>
+<h3 id="3-15-2-12">3.15.2.12. Registering Template Search Paths</h3>
 <p>We can also tell the view and layout registries to search the filesystem for templates. First, we tell the registry what directories contain template files:</p>
 <pre><code class="language-php">&lt;?php
 $view_registry = $view-&gt;getViewRegistry();
@@ -305,7 +305,7 @@ $view_registry-&gt;setPaths(array(
 ?&gt;
 </code></pre>
 <p>When we refer to named templates later, the registry will search from the first directory to the last. For finer control over the search paths, we can call <code>prependPath()</code> to add a directory to search earlier, or <code>appendPath()</code> to add a directory to search later. Regardless, the <em>View</em> will auto-append <code>.php</code> to the end of template names when searching through the directories.</p>
-<h3 id="2-15-2-13">2.15.2.13. Changing The Template File Extension</h3>
+<h3 id="3-15-2-13">3.15.2.13. Changing The Template File Extension</h3>
 <p>By default, each <em>TemplateRegistry</em> will auto-append <code>.php</code> to template file names. If the template files end with a different extension, change it usin the <code>setTemplateFileExtension()</code> method:</p>
 <pre><code class="language-php">&lt;?php
 $view_registry = $view-&gt;getViewRegistry();
@@ -318,7 +318,7 @@ $layout_registry = $view-&gt;getLayoutRegistry();
 $layout_registry-&gt;setTemplateFileExtension('.phtml');
 ?&gt;
 </code></pre>
-<h3 id="2-15-2-14">2.15.2.14. Advanced Configuration</h3>
+<h3 id="3-15-2-14">3.15.2.14. Advanced Configuration</h3>
 <p>Alternatively you can pass <a href="https://github.com/auraphp/Aura.View#custom-helper-managers">$helpers</a>,
 mapping information or paths for views and layouts as below.</p>
 <pre><code class="language-php">&lt;?php
@@ -359,9 +359,9 @@ $layout_registry-&gt;set('default', '/path/to/layouts/default.php');
             <td class="next"><a href="/packages/2.x/Web.html">Next</a></td>
         </tr>
         <tr>
-            <td class="prev">2.14. Aura.SqlSchema</td>
-            <td class="parent">2. Version 2.x</td>
-            <td class="next">2.16. Aura.Web</td>
+            <td class="prev">3.14. Aura.SqlSchema</td>
+            <td class="parent">3. Version 2.x</td>
+            <td class="next">3.16. Aura.Web</td>
         </tr>
     </table>
 </nav>
