@@ -1,7 +1,8 @@
 {
     "title": "Version 4.x",
     "content": [
-        {"Di": "https://raw.githubusercontent.com/auraphp/Aura.Di/4.x/docs/_bookdown.json"}
+        {"Di": "https://raw.githubusercontent.com/auraphp/Aura.Di/4.x/docs/_bookdown.json"},
+	{"Sql": "https://raw.githubusercontent.com/auraphp/Aura.Sql/4.x/docs/_bookdown.json"}
     ],
     "tocDepth": 3
 }
