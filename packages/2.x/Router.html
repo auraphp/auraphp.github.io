@@ -520,13 +520,13 @@ $router-&gt;attach($name_prefix, $path_prefix, function ($router) {
 will be prefixed with <code>/blog</code>, so the effective route names and paths become:</p>
 <ul>
 <li>
-<code>blog.browse =&gt; /blog{format}</code>
+<code>blog.browse  =&gt;  /blog{format}</code>
 </li>
 <li>
-<code>blog.read =&gt; /blog/{id}{format}</code>
+<code>blog.read    =&gt;  /blog/{id}{format}</code>
 </li>
 <li>
-<code>blog.edit =&gt; /blog/{id}/edit{format}</code>
+<code>blog.edit    =&gt;  /blog/{id}/edit{format}</code>
 </li>
 </ul>
 <p>You can set other route specification values as part of the attachment
@@ -562,16 +562,66 @@ $router-&gt;attachResource('blog', '/blog');
 ?&gt;
 </code></pre>
 <p>That method call will result in the following routes being added:</p>
-<p>| Route Name    | HTTP Method   | Route Path            | Purpose
-| ------------- | ------------- | --------------------- | -------
-| blog.browse   | GET           | /blog{format}         | Browse multiple resources
-| blog.read     | GET           | /blog/{id}{format}    | Read a single resource
-| blog.edit     | GET           | /blog/{id}/edit       | The form for editing a resource
-| blog.add      | GET           | /blog/add             | The form for adding a resource
-| blog.delete   | DELETE        | /blog/{id}            | Delete a single resource
-| blog.create   | POST          | /blog                 | Create a new resource
-| blog.update   | PATCH         | /blog/{id}            | Update part of an existing resource
-| blog.replace  | PUT           | /blog/{id}            | Replace an entire existing resource</p>
+<table>
+<thead>
+<tr>
+<th>Route Name</th>
+<th>HTTP Method</th>
+<th>Route Path</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>blog.browse</td>
+<td>GET</td>
+<td>/blog{format}</td>
+<td>Browse multiple resources</td>
+</tr>
+<tr>
+<td>blog.read</td>
+<td>GET</td>
+<td>/blog/{id}{format}</td>
+<td>Read a single resource</td>
+</tr>
+<tr>
+<td>blog.edit</td>
+<td>GET</td>
+<td>/blog/{id}/edit</td>
+<td>The form for editing a resource</td>
+</tr>
+<tr>
+<td>blog.add</td>
+<td>GET</td>
+<td>/blog/add</td>
+<td>The form for adding a resource</td>
+</tr>
+<tr>
+<td>blog.delete</td>
+<td>DELETE</td>
+<td>/blog/{id}</td>
+<td>Delete a single resource</td>
+</tr>
+<tr>
+<td>blog.create</td>
+<td>POST</td>
+<td>/blog</td>
+<td>Create a new resource</td>
+</tr>
+<tr>
+<td>blog.update</td>
+<td>PATCH</td>
+<td>/blog/{id}</td>
+<td>Update part of an existing resource</td>
+</tr>
+<tr>
+<td>blog.replace</td>
+<td>PUT</td>
+<td>/blog/{id}</td>
+<td>Replace an entire existing resource</td>
+</tr>
+</tbody>
+</table>
 <p>The <code>{id}</code> token is whatever has already been defined in the router; if not
 already defined, it will be any series of numeric digits. Likewise, the
 <code>{format}</code> token is whatever has already been defined in the router; if not

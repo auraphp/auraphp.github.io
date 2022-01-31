@@ -33,16 +33,16 @@ $map-&gt;get('catchall', '{/controller,action,id}')
 <p>That will match these paths, with these attribute values:</p>
 <ul>
 <li>
-<code>/ : ['controller' =&gt; 'index', 'action' =&gt; 'browse', 'id' =&gt; null]</code>
+<code>/           : ['controller' =&gt; 'index', 'action' =&gt; 'browse', 'id' =&gt; null]</code>
 </li>
 <li>
-<code>/foo : ['controller' =&gt; 'foo', 'action' =&gt; 'browse', 'id' =&gt; null]</code>
+<code>/foo        : ['controller' =&gt; 'foo',   'action' =&gt; 'browse', 'id' =&gt; null]</code>
 </li>
 <li>
-<code>/foo/bar : ['controller' =&gt; 'foo', 'action' =&gt; 'bar', 'id' =&gt; null]</code>
+<code>/foo/bar    : ['controller' =&gt; 'foo',   'action' =&gt; 'bar',    'id' =&gt; null]</code>
 </li>
 <li>
-<code>/foo/bar/42 : ['controller' =&gt; 'foo', 'action' =&gt; 'bar', 'id' =&gt; '42']</code>
+<code>/foo/bar/42 : ['controller' =&gt; 'foo',   'action' =&gt; 'bar',    'id' =&gt; '42']</code>
 </li>
 </ul>
 <p>Because routes are matched in the order they are added, the catchall should be the last route in the <em>Map</em> so that more specific routes may match first.</p>

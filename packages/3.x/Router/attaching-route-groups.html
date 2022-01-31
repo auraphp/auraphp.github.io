@@ -47,19 +47,19 @@ $map-&gt;attach($namePrefix, $pathPrefix, function ($map) {
 will be prefixed with <code>/blog</code>, so the effective route names and paths become:</p>
 <ul>
 <li>
-<code>blog.browse =&gt; /blog</code>
+<code>blog.browse  =&gt;  /blog</code>
 </li>
 <li>
-<code>blog.read =&gt; /blog/{id}{format}</code>
+<code>blog.read    =&gt;  /blog/{id}{format}</code>
 </li>
 <li>
-<code>blog.edit =&gt; /blog/{id}</code>
+<code>blog.edit    =&gt;  /blog/{id}</code>
 </li>
 <li>
-<code>blog.add =&gt; /blog/{id}</code>
+<code>blog.add     =&gt;  /blog/{id}</code>
 </li>
 <li>
-<code>blog.delete =&gt; /blog/{id}</code>
+<code>blog.delete  =&gt;  /blog/{id}</code>
 </li>
 </ul>
 <p>Any defaults you set on the <code>$map</code> inside the callable will revert to their previous values when the callable is complete.</p>
