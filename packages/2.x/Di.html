@@ -9,16 +9,16 @@ permalink: /packages/2.x/Di.html
 <nav class="navheader">
     <table>
         <tr>
-            <th colspan="3" class="curr">3.5. Aura.Di</th>
+            <th colspan="3" class="curr">4.5. Aura.Di</th>
         </tr>
         <tr>
             <td class="prev"><a href="/packages/2.x/Cli.html">Aura.Cli</a></td>
-            <td class="parent">3. Version 2.x</th>
+            <td class="parent">4. Version 2.x</th>
             <td class="next"><a href="/packages/2.x/Dispatcher.html">Aura.Dispatcher</a></td>
         </tr>
     </table>
 </nav>
-<div id="section-main"><h1 id="3-5">3.5. Aura.Di</h1>
+<div id="section-main"><h1 id="4-5">4.5. Aura.Di</h1>
 <p>The Aura.Di package provides a dependency injection container system with the
 following features:</p>
 <ul>
@@ -46,22 +46,22 @@ desirable, is beyond the scope of this document. For more information about
 "inversion of control" and "dependency injection" please consult
 <a href="http://martinfowler.com/articles/injection.html">http://martinfowler.com/articles/injection.html</a> by Martin Fowler.</p>
 <p>Finally, please note that this package is intended for use as a <strong>dependency injection</strong> system, not as a <strong>service locator</strong> system. If you use it as a service locator, that's bad, and you should feel bad.</p>
-<h2 id="3-5-1">3.5.1. Foreword</h2>
-<h3 id="3-5-1-1">3.5.1.1. Installation</h3>
+<h2 id="4-5-1">4.5.1. Foreword</h2>
+<h3 id="4-5-1-1">4.5.1.1. Installation</h3>
 <p>This library requires PHP 5.3 or later; we recommend using the latest available version of PHP as a matter of principle. It has no userland dependencies.</p>
 <p>It is installable and autoloadable via Composer as <a href="https://packagist.org/packages/aura/di">aura/di</a>.</p>
 <p>Alternatively, <a href="https://github.com/auraphp/Aura.Di/releases">download a release</a> or clone this repository, then require or include its <em>autoload.php</em> file.</p>
-<h3 id="3-5-1-2">3.5.1.2. Quality</h3>
+<h3 id="4-5-1-2">4.5.1.2. Quality</h3>
 <p><a href="https://scrutinizer-ci.com/g/auraphp/Aura.Di/"><img src="https://scrutinizer-ci.com/g/auraphp/Aura.Di/badges/quality-score.png?b=develop-2" alt="Scrutinizer Code Quality"></a>
 <a href="https://scrutinizer-ci.com/g/auraphp/Aura.Di/"><img src="https://scrutinizer-ci.com/g/auraphp/Aura.Di/badges/coverage.png?b=develop-2" alt="Code Coverage"></a>
 <a href="https://travis-ci.org/auraphp/Aura.Di"><img src="https://travis-ci.org/auraphp/Aura.Di.png?branch=develop-2" alt="Build Status"></a></p>
 <p>To run the unit tests at the command line, issue <code>composer install</code> and then <code>phpunit</code> at the package root. This requires <a href="http://getcomposer.org/">Composer</a> to be available as <code>composer</code>, and <a href="http://phpunit.de/manual/">PHPUnit</a> to be available as <code>phpunit</code>.</p>
 <p>This library attempts to comply with <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md">PSR-1</a>, <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md">PSR-2</a>, and <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md">PSR-4</a>. If
 you notice compliance oversights, please send a patch via pull request.</p>
-<h3 id="3-5-1-3">3.5.1.3. Community</h3>
+<h3 id="4-5-1-3">4.5.1.3. Community</h3>
 <p>To ask questions, provide feedback, or otherwise communicate with other Aura users, please join our <a href="http://groups.google.com/group/auraphp">Google Group</a>, follow <a href="http://twitter.com/auraphp">@auraphp on Twitter</a>, or chat with us on #auraphp on Freenode.</p>
-<h2 id="3-5-2">3.5.2. Getting Started</h2>
-<h3 id="3-5-2-1">3.5.2.1. Instantiation</h3>
+<h2 id="4-5-2">4.5.2. Getting Started</h2>
+<h3 id="4-5-2-1">4.5.2.1. Instantiation</h3>
 <p>We instantiate a <em>Container</em> like so:</p>
 <pre><code class="language-php">&lt;?php
 use Aura\Di\Container;
@@ -71,7 +71,7 @@ $di = new Container(new Factory);
 ?&gt;
 </code></pre>
 <p>We can then set shared services on the container. Additionally, we can add default constructor parameters and setter method values to be used on new class instances, along with other values as well.</p>
-<h3 id="3-5-2-2">3.5.2.2. Setting And Getting Services</h3>
+<h3 id="4-5-2-2">4.5.2.2. Setting And Getting Services</h3>
 <p>A "service" is an object stored in the <em>Container</em> under a unique name. Any time you <code>get()</code> the named service, you always get back the same object instance.</p>
 <pre><code class="language-php">&lt;?php
 // define the Example class
@@ -99,9 +99,9 @@ $di-&gt;set('service_name', $di-&gt;lazyNew('Example'));
 ?&gt;
 </code></pre>
 <p>Now the service is created only when we we <code>get()</code> it, and not before. This lets us set as many services as we want, but only incur the overhead of creating the instances we actually use.</p>
-<h3 id="3-5-2-3">3.5.2.3. Constructor Injection</h3>
+<h3 id="4-5-2-3">4.5.2.3. Constructor Injection</h3>
 <p>When we use the <em>Container</em> to instantiate a new object, we often need to inject (i.e., set) constructor parameter values in various ways.</p>
-<h4 id="3-5-2-3-1">3.5.2.3.1. Default Parameter Values</h4>
+<h4 id="4-5-2-3-1">4.5.2.3.1. Default Parameter Values</h4>
 <p>We can define default values for constructor parameters using the <code>$di-&gt;params</code> array on the <em>Container</em>.</p>
 <p>Let's look at a class that takes some constructor parameters:</p>
 <pre><code class="language-php">&lt;?php
@@ -125,7 +125,7 @@ $di-&gt;params['ExampleWithParams']['bar'] = 'bar_value';
 ?&gt;
 </code></pre>
 <p>Now when a service is defined with <code>$di-&gt;lazyNew('ExampleWithParams')</code>, the instantiation will work correctly. Each time we create an <em>ExampleWithParams</em> instance through the <em>Container</em>, it will apply the <code>$di-&gt;params['ExampleWithParams']</code> values.</p>
-<h4 id="3-5-2-3-2">3.5.2.3.2. Instance-Specific Parameter Values</h4>
+<h4 id="4-5-2-3-2">4.5.2.3.2. Instance-Specific Parameter Values</h4>
 <p>If we want to override the default <code>$di-&gt;params</code> values for a specific new instance, we can pass a <code>$params</code> array as the second argument to <code>lazyNew()</code> to merge with the default values. For example:</p>
 <pre><code class="language-php">&lt;?php
 $di-&gt;set('service_name', $di-&gt;lazyNew(
@@ -137,7 +137,7 @@ $di-&gt;set('service_name', $di-&gt;lazyNew(
 ?&gt;
 </code></pre>
 <p>This will leave the <code>$foo</code> parameter default in place, and override the <code>$bar</code> parameter value, for just that instance of the <em>ExampleWithParams</em>.</p>
-<h4 id="3-5-2-3-3">3.5.2.3.3. Lazy-Loaded Services As Parameter Values</h4>
+<h4 id="4-5-2-3-3">4.5.2.3.3. Lazy-Loaded Services As Parameter Values</h4>
 <p>Sometimes a class will need another service as one of its parameters. By way of example, the following class needs a database connection:</p>
 <pre><code class="language-php">&lt;?php
 class ExampleNeedsService
@@ -156,12 +156,12 @@ $di-&gt;params['ExampleNeedsService']['db'] = $di-&gt;lazyGet('db_service');
 ?&gt;
 </code></pre>
 <p>This keeps the service from being created until the very moment it is needed. If we never instantiate anything that needs the service, the service itself will never be instantiated.</p>
-<h4 id="3-5-2-3-4">3.5.2.3.4. Auto-Resolution Of Parameter Values</h4>
-<h5 id="3-5-2-3-4-1">3.5.2.3.4.1. A Note About Auto-Resolution</h5>
+<h4 id="4-5-2-3-4">4.5.2.3.4. Auto-Resolution Of Parameter Values</h4>
+<h5 id="4-5-2-3-4-1">4.5.2.3.4.1. A Note About Auto-Resolution</h5>
 <p>Auto-resolution turns out to be difficult to debug in many situations. We regret to say that we did not appreciate how difficult until after the feature was released as stable in a major version. As such, we cannot remove it until the next major version.</p>
 <p>To mitigate these difficulties, we recommend you <em>always</em> disable auto-resolution when developing shared packages. Further, we suggest you <em>consider</em> disabling auto-resolution when developing or debugging an application built on shared packages.</p>
 <p>Auto-resolution is enabled by default. You can disable auto-resolution by calling <code>$di-&gt;setAutoResolve(false)</code>.</p>
-<h5 id="3-5-2-3-4-2">3.5.2.3.4.2. How Auto-Resolution Works</h5>
+<h5 id="4-5-2-3-4-2">4.5.2.3.4.2. How Auto-Resolution Works</h5>
 <p>If there is no <code>$di-&gt;params</code> value for a parameter, the <em>Container</em> will fill in the constructor default value.</p>
 <p>If the parameter is typehinted as an <code>array</code> but there is no <code>$di-&gt;params</code> value and also no default value, the <em>Container</em> will fill in an empty <code>array()</code>.</p>
 <p>If the parameter is typehinted to a class but there is no <code>$di-&gt;params</code> value for that parameter and also no default value, the <em>Container</em> will fill in a <code>lazyNew()</code> call to the typehinted class.</p>
@@ -185,7 +185,7 @@ $di-&gt;params['ExampleForAutoResolution']['foo'] = 'bar';
 </code></pre>
 <p>We can set any combination of these explicitly, and those that are not explicitly set will be filled in automatically for us.</p>
 <p>(Note that we cannot auto-resolve an <code>array</code> typehint; such typehints are always resolved to an empty <code>array()</code> when no default value is present.)</p>
-<h5 id="3-5-2-3-4-3">3.5.2.3.4.3. Explicitly Directing Auto-Resolution Typehints</h5>
+<h5 id="4-5-2-3-4-3">4.5.2.3.4.3. Explicitly Directing Auto-Resolution Typehints</h5>
 <p>We can direct the auto-resolution of class-typehinted constructor parameters by using the <code>$di-&gt;types</code> array.  This allows us to avoid having to specify <code>$di-&gt;params</code> for every typehinted constructor parameter in every class.  (Note that we can still specify explicit params on a specific class to override the auto-resolution.)</p>
 <p>We can specify auto-resolution to a new instance of a class of our choosing ...</p>
 <pre><code class="language-php">&lt;?php
@@ -203,9 +203,9 @@ $di-&gt;types['Db'] = $di-&gt;lazyGet('db_service');
 $di-&gt;types['DbInterface'] = $di-&gt;lazyGet('db_service');
 ?&gt;
 </code></pre>
-<h3 id="3-5-2-4">3.5.2.4. Setter Injection</h3>
+<h3 id="4-5-2-4">4.5.2.4. Setter Injection</h3>
 <p>This package supports setter injection in addition to constructor injection. (These can be combined as needed.)</p>
-<h4 id="3-5-2-4-1">3.5.2.4.1. Setter Method Values</h4>
+<h4 id="4-5-2-4-1">4.5.2.4.1. Setter Method Values</h4>
 <p>After the <em>Container</em> constructs a new instance of an object, we can specify that certain methods should be called with certain values immediately after instantiation by using the <code>$di-&gt;setter</code> array.  Say we have class like the following:</p>
 <pre><code class="language-php">&lt;?php
 class ExampleWithSetter
@@ -227,7 +227,7 @@ $di-&gt;setter['ExampleWithSetter']['setFoo'] = 'foo_value';
 <p>The value can be any valid value: a literal, a call to <code>lazyNew()</code> or <code>lazyGet()</code>, and so on.</p>
 <p>Note, however, that auto-resolution <em>does not apply</em> to setter methods. This is because the <em>Container</em> does not know which methods are setters and which are "normal use" methods.</p>
 <p>Note also that this works only with explicitly-defined setter methods. Setter methods that exist only via magic <code>__call()</code> will not be honored.</p>
-<h4 id="3-5-2-4-2">3.5.2.4.2. Setters In Traits and Interfaces</h4>
+<h4 id="4-5-2-4-2">4.5.2.4.2. Setters In Traits and Interfaces</h4>
 <p>If a class uses a setter method via a trait, or implements an interface with a setter method, we can specify the default value for that setter method in relation to the trait or interface. That value will then be applied by default in every class that uses that trait or implements that interface.</p>
 <p>For example, let's say we have this trait, interface, and class:</p>
 <pre><code class="language-php">&lt;?php
@@ -266,7 +266,7 @@ $di-&gt;setter['ExampleBarInterface']['setBar'] = 'bar_value';
 </code></pre>
 <p>When we call <code>$di-&gt;lazyNew('ExampleWithTraitAndInterface')</code>, those setter methods will be called by the <em>Container</em> with those values.</p>
 <p>Note that if we have class-specific <code>$di-&gt;setter</code> values, those will take precedence over the trait and interface setter values.</p>
-<h4 id="3-5-2-4-3">3.5.2.4.3. Instance-Specific Setter Values</h4>
+<h4 id="4-5-2-4-3">4.5.2.4.3. Instance-Specific Setter Values</h4>
 <p>As with constructor injection, we can note instance-specific setter values to use in place of the defaults. We do so via the third argument to <code>$di-&gt;lazyNew()</code>. For example:</p>
 <pre><code class="language-php">&lt;?php
 $di-&gt;set('service_name', $di-&gt;lazyNew(
@@ -278,7 +278,7 @@ $di-&gt;set('service_name', $di-&gt;lazyNew(
 ));
 ?&gt;
 </code></pre>
-<h3 id="3-5-2-5">3.5.2.5. Lazy Values</h3>
+<h3 id="4-5-2-5">4.5.2.5. Lazy Values</h3>
 <p>Sometimes we know that a parameter needs to be specified, but we don't know what it will be until later.  Perhaps it is the result of looking up an API key from an environment variable. In these and other cases, we can tell a constructor parameter or setter method to use a "lazy value" and then specify that value elsewhere.</p>
 <p>For example, we can configure the <em>Example</em> constructor parameters to use lazy values like so:</p>
 <pre><code class="language-php">&lt;?php
@@ -292,7 +292,7 @@ $di-&gt;values['fooval'] = 'lazy value for foo';
 $di-&gt;values['barval'] = 'lazy value for bar';
 ?&gt;
 </code></pre>
-<h3 id="3-5-2-6">3.5.2.6. Lazy Include and Require</h3>
+<h3 id="4-5-2-6">4.5.2.6. Lazy Include and Require</h3>
 <p>Occasionally we will need to <code>include</code> a file that returns a value, such as data file that returns a PHP array:</p>
 <pre><code class="language-php">&lt;?php
 // /path/to/data.php
@@ -309,7 +309,7 @@ $di-&gt;params['ExampleNeedsInclude']['data'] = $di-&gt;lazyInclude('/path/to/da
 $di-&gt;params['ExampleNeedsRequire']['data'] = $di-&gt;lazyRequire('/path/to/data.php');
 ?&gt;
 </code></pre>
-<h3 id="3-5-2-7">3.5.2.7. Generic Lazy Calls</h3>
+<h3 id="4-5-2-7">4.5.2.7. Generic Lazy Calls</h3>
 <p>It may be that we have a complex bit of logic we need to execute for a value. If none of the existing <code>$di-&gt;lazy*()</code> methods meet our needs, we can wrap an anonymous function or other callable in a <code>lazy()</code> call, and the callable's return will be used as the value.</p>
 <pre><code class="language-php">&lt;?php
 $di-&gt;params['Example']['foo'] = $di-&gt;lazy(function () {
@@ -319,7 +319,7 @@ $di-&gt;params['Example']['foo'] = $di-&gt;lazy(function () {
 ?&gt;
 </code></pre>
 <p>Beware of relying on this too much; if we do, it probably means we need to separate our configuration concerns better than we are currently doing.</p>
-<h3 id="3-5-2-8">3.5.2.8. Instance Factory Objects</h3>
+<h3 id="4-5-2-8">4.5.2.8. Instance Factory Objects</h3>
 <p>Occasionally, a class will need to receive not just an instance, but a factory that is capable of creating a new instance over and over.  For example, say we have a class like the following:</p>
 <pre><code class="language-php">&lt;?php
 class ExampleNeedsFactory
@@ -356,7 +356,7 @@ $di-&gt;params['ExampleNeedsFactory']['struct_factory'] = $di-&gt;newFactory('Ex
 </code></pre>
 <p>Note that the arguments passed to the factory <code>__invoke()</code> method will be passed to the underlying instance constructor sequentially, not by name. This means the <code>__invoke()</code> method works more like the native <code>new</code> keyword, and not like <code>$di-&gt;lazyNew()</code>.  These arguments override any <code>$di-&gt;params</code> values that have been set for the class being factoried; without the overrides, all existing <code>$di-&gt;params</code> values for that class will be honored. (Values from <code>$di-&gt;setter</code> for the class will also be honored, but cannot be overriddden.)</p>
 <p>Do not feel limited by the <em>InstanceFactory</em> implementation. We can create and inject factory objects of our own if we like. The <em>InstanceFactory</em> returned by the <code>$di-&gt;newFactory()</code> method is an occasional convenience, nothing more.</p>
-<h3 id="3-5-2-9">3.5.2.9. Inheritance Of Parent Values</h3>
+<h3 id="4-5-2-9">4.5.2.9. Inheritance Of Parent Values</h3>
 <p>Whether by constructor parameters or setter methods, each class "inherits" the values of its parents by default. This means we can set a value on a parent class, and the child class will use it (that is, unless we set an overriding value on the child class).</p>
 <p>For example, let's say we have this parent class and this child class:</p>
 <pre><code class="language-php">&lt;?php
@@ -401,7 +401,7 @@ $di-&gt;setter['ExampleChild']['setBaz'] = 'child_baz';
 ?&gt;
 </code></pre>
 <p>Note that classes extended from the child class will then inherit those new values. In this way, constructor parameter and setter method values are propagated down the inheritance hierarchy.</p>
-<h3 id="3-5-2-10">3.5.2.10. Container Builder and Config Classes</h3>
+<h3 id="4-5-2-10">4.5.2.10. Container Builder and Config Classes</h3>
 <p>The <em>ContainerBuilder</em> helps to build <em>Container</em> objects from <em>Config</em> classes and pre-existing service objects. It works using a <a href="http://auraphp.com/blog/2014/04/07/two-stage-config/">two-stage configuration system</a>.</p>
 <p>The two stages are "define" and "modify". In the "define" stage, the <em>Config</em> object defines constructor parameter values, setter method values, services, and so on. The <em>ContainerBuilder</em> then locks the <em>Container</em> so that these definitions cannot be changed, and begins the "modify" stage. In the "modify" stage, we may <code>get()</code> services from the <em>Container</em> and modify them programmatically if needed.</p>
 <p>To build a <em>Container</em> using the <em>ContainerBuilder</em>, we do something like the following:</p>
@@ -470,7 +470,7 @@ class Common extends Config
 <a href="https://github.com/auraphp/Aura.View/blob/2.0.0/config/Common.php">Aura.View</a>
 </li>
 </ul>
-<h3 id="3-5-2-11">3.5.2.11. Conclusion</h3>
+<h3 id="4-5-2-11">4.5.2.11. Conclusion</h3>
 <p>If we construct our dependencies properly with params, setters, services, and factories, we will only need to get one object directly from the <em>Container</em> in our bootstrap file. All object creation will then occur within <em>Container</em> itself or the various factory objects. We will never need to use the <em>Container</em> itself in any of our application objects.</p>
 </div>
 <nav class="navfooter">
@@ -481,9 +481,9 @@ class Common extends Config
             <td class="next"><a href="/packages/2.x/Dispatcher.html">Next</a></td>
         </tr>
         <tr>
-            <td class="prev">3.4. Aura.Cli</td>
-            <td class="parent">3. Version 2.x</td>
-            <td class="next">3.6. Aura.Dispatcher</td>
+            <td class="prev">4.4. Aura.Cli</td>
+            <td class="parent">4. Version 2.x</td>
+            <td class="next">4.6. Aura.Dispatcher</td>
         </tr>
     </table>
 </nav>

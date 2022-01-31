@@ -9,29 +9,29 @@ permalink: /packages/2.x/Filter/sanitize.html
 <nav class="navheader">
     <table>
         <tr>
-            <th colspan="3" class="curr">3.7.5. Rules To Sanitize Fields</th>
+            <th colspan="3" class="curr">4.7.5. Rules To Sanitize Fields</th>
         </tr>
         <tr>
             <td class="prev"><a href="/packages/2.x/Filter/validate.html">Rules To Validate Fields</a></td>
-            <td class="parent">3.7. Aura.Filter 2.x</th>
+            <td class="parent">4.7. Aura.Filter 2.x</th>
             <td class="next"><a href="/packages/2.x/Filter/custom.html">Creating and Using Custom Rules</a></td>
         </tr>
     </table>
 </nav>
-<div id="section-main"><h1 id="3-7-5">3.7.5. Rules To Sanitize Fields</h1>
-<h2 id="3-7-5-1">3.7.5.1. alnum</h2>
+<div id="section-main"><h1 id="4-7-5">4.7.5. Rules To Sanitize Fields</h1>
+<h2 id="4-7-5-1">4.7.5.1. alnum</h2>
 <p>Sanitizes to leave only alphanumeric characters.</p>
 <pre><code class="language-php">$filter-&gt;sanitize('field')-&gt;to('alnum');
 </code></pre>
-<h2 id="3-7-5-2">3.7.5.2. alpha</h2>
+<h2 id="4-7-5-2">4.7.5.2. alpha</h2>
 <p>Sanitizes to leave only alphabetic characters.</p>
 <pre><code class="language-php">$filter-&gt;sanitize('field')-&gt;to('alpha');
 </code></pre>
-<h2 id="3-7-5-3">3.7.5.3. between</h2>
+<h2 id="4-7-5-3">4.7.5.3. between</h2>
 <p>Sanitizes so that values lower than the range are forced up to the minimum, and values higher than the range are forced down to the maximum.</p>
 <pre><code class="language-php">$filter-&gt;sanitize('field')-&gt;to('between', $min, $max);
 </code></pre>
-<h2 id="3-7-5-4">3.7.5.4. bool</h2>
+<h2 id="4-7-5-4">4.7.5.4. bool</h2>
 <p>Sanitizes to a strict PHP boolean value. Pseudo-true values include the strings '1', 'y', 'yes', and 'true'; pseudo-false values include the strings '0', 'n', 'no', and 'false'.</p>
 <pre><code class="language-php">// sanitize to `true` and `false`
 $filter-&gt;sanitize('field')-&gt;to('bool');
@@ -40,7 +40,7 @@ $filter-&gt;sanitize('field')-&gt;to('bool');
 <pre><code class="language-php">// sanitize to alternative true and false values
 $filter-&gt;sanitize('field')-&gt;to('bool', $value_if_true, $value_if_false);
 </code></pre>
-<h2 id="3-7-5-5">3.7.5.5. callback</h2>
+<h2 id="4-7-5-5">4.7.5.5. callback</h2>
 <p>Sanitizes the value using a callable/callback. The callback should take two arguments, <code>$subject</code> and <code>$field</code>, to indicate the subject and the field within that subject. It should return <code>true</code> to pass, or <code>false</code> to fail.</p>
 <pre><code class="language-php">$filter-&gt;sanitize('field')-&gt;to('callback', function ($subject, $field) {
     // always force the field to 'foo'
@@ -51,96 +51,96 @@ $filter-&gt;sanitize('field')-&gt;to('bool', $value_if_true, $value_if_false);
 <blockquote>
 <p>N.b.: Always use object notation (<code>$subject-&gt;$field</code>) and not array notation (<code>$subject[$field]</code>) in the callable, as the <em>Filter</em> converts arrays to objects on the fly.</p>
 </blockquote>
-<h2 id="3-7-5-6">3.7.5.6. dateTime</h2>
+<h2 id="4-7-5-6">4.7.5.6. dateTime</h2>
 <p>Sanitizes the value to a specified date/time format, default <code>'Y-m-d H:i:s'</code>.</p>
 <pre><code class="language-php">$filter-&gt;sanitize('field')-&gt;to('dateTime', $format);
 </code></pre>
-<h2 id="3-7-5-7">3.7.5.7. field</h2>
+<h2 id="4-7-5-7">4.7.5.7. field</h2>
 <p>Sanitizes to the value of another field in the subject.</p>
 <pre><code class="language-php">$filter-&gt;sanitize('field')-&gt;to('field', 'other_field_name');
 </code></pre>
-<h2 id="3-7-5-8">3.7.5.8. float</h2>
+<h2 id="4-7-5-8">4.7.5.8. float</h2>
 <p>Sanitizes the value to transform it into a float; for weird strings, this may not be what you expect.</p>
 <pre><code class="language-php">$filter-&gt;sanitize('field')-&gt;to('float');
 </code></pre>
-<h2 id="3-7-5-9">3.7.5.9. int</h2>
+<h2 id="4-7-5-9">4.7.5.9. int</h2>
 <p>Sanitizes the value to transform it into an integer; for weird strings, this may not be what you expect.</p>
 <pre><code class="language-php">$filter-&gt;sanitize('field')-&gt;to('int');
 </code></pre>
-<h2 id="3-7-5-10">3.7.5.10. isbn</h2>
+<h2 id="4-7-5-10">4.7.5.10. isbn</h2>
 <p>Sanitizes the value to an ISBN (International Standard Book Number).</p>
 <pre><code class="language-php">$filter-&gt;sanitize('field')-&gt;to('isbn');
 </code></pre>
-<h2 id="3-7-5-11">3.7.5.11. lowercase</h2>
+<h2 id="4-7-5-11">4.7.5.11. lowercase</h2>
 <p>Sanitizes the value to all lowercase characters.</p>
 <pre><code>$filter-&gt;sanitize('field')-&gt;to('lowercase');
 </code></pre>
-<h2 id="3-7-5-12">3.7.5.12. lowercaseFirst</h2>
+<h2 id="4-7-5-12">4.7.5.12. lowercaseFirst</h2>
 <p>Sanitizes the value to begin with a lowercase character.</p>
 <pre><code>$filter-&gt;sanitize('field')-&gt;to('lowercaseFirst');
 </code></pre>
-<h2 id="3-7-5-13">3.7.5.13. max</h2>
+<h2 id="4-7-5-13">4.7.5.13. max</h2>
 <p>Sanitizes so that values higher than the maximum are forced down to the maximum.</p>
 <pre><code class="language-php">$filter-&gt;sanitize('field')-&gt;to('max', $max);
 </code></pre>
-<h2 id="3-7-5-14">3.7.5.14. min</h2>
+<h2 id="4-7-5-14">4.7.5.14. min</h2>
 <p>Sanitizes so that values lower than the minimum are forced up to the minimum.</p>
 <pre><code class="language-php">$filter-&gt;sanitize('field')-&gt;to('min', $min);
 </code></pre>
-<h2 id="3-7-5-15">3.7.5.15. now</h2>
+<h2 id="4-7-5-15">4.7.5.15. now</h2>
 <p>Sanitizes the value to force it to the current datetime, default format 'Y-m-d H:i:s'.</p>
 <pre><code class="language-php">$filter-&gt;sanitize('field')-&gt;to('now', $format);
 </code></pre>
-<h2 id="3-7-5-16">3.7.5.16. remove</h2>
+<h2 id="4-7-5-16">4.7.5.16. remove</h2>
 <p>Removes the field from the subject with <code>unset()</code>.</p>
 <pre><code class="language-php">$filter-&gt;sanitize('field')-&gt;to('remove');
 </code></pre>
-<h2 id="3-7-5-17">3.7.5.17. regex</h2>
+<h2 id="4-7-5-17">4.7.5.17. regex</h2>
 <p>Sanitizes the value using <code>preg_replace()</code>.</p>
 <pre><code class="language-php">$filter-&gt;sanitize('field')-&gt;to('regex', $expr, $replace);
 </code></pre>
-<h2 id="3-7-5-18">3.7.5.18. string</h2>
+<h2 id="4-7-5-18">4.7.5.18. string</h2>
 <p>Sanitizes the value by casting to a string and optionally using <code>str_replace()</code> to find and replace within the string.</p>
 <pre><code class="language-php">$filter-&gt;sanitize('field')-&gt;to('string', $find, $replace);
 </code></pre>
-<h2 id="3-7-5-19">3.7.5.19. strlen</h2>
+<h2 id="4-7-5-19">4.7.5.19. strlen</h2>
 <p>Sanitizes the value to cut off longer values at the right, and <code>str_pad()</code> shorter ones.</p>
 <pre><code class="language-php">$filter-&gt;sanitize('field')-&gt;to('strlen', $len[, $pad_string[, $pad_type]]);
 </code></pre>
-<h2 id="3-7-5-20">3.7.5.20. strlenBetween</h2>
+<h2 id="4-7-5-20">4.7.5.20. strlenBetween</h2>
 <p>Sanitizes the value to truncate values longer than the maximum, and <code>str_pad()</code>
 shorter ones.</p>
 <pre><code class="language-php">$filter-&gt;sanitize('field')-&gt;to('strlenBetween', $min, $max[, $pad_string[, $pad_type]]);
 </code></pre>
-<h2 id="3-7-5-21">3.7.5.21. strlenMax</h2>
+<h2 id="4-7-5-21">4.7.5.21. strlenMax</h2>
 <p>Sanitizes the value to truncate values longer than the maximum.</p>
 <pre><code class="language-php">$filter-&gt;sanitize('field')-&gt;to('strlenMax', $max);
 </code></pre>
-<h2 id="3-7-5-22">3.7.5.22. strlenMin</h2>
+<h2 id="4-7-5-22">4.7.5.22. strlenMin</h2>
 <p>Sanitizes the value to <code>str_pad()</code> values shorter than the minimum.</p>
 <pre><code class="language-php">$filter-&gt;sanitize('field')-&gt;to('strlenMin', $min[, $pad_string[, $pad_type]]);
 </code></pre>
-<h2 id="3-7-5-23">3.7.5.23. titlecase</h2>
+<h2 id="4-7-5-23">4.7.5.23. titlecase</h2>
 <p>Sanitizes the value to titlecase (eg. "Title Case").</p>
 <pre><code class="language-php">$filter-&gt;sanitize('field')-&gt;to('titlecase');
 </code></pre>
-<h2 id="3-7-5-24">3.7.5.24. trim</h2>
+<h2 id="4-7-5-24">4.7.5.24. trim</h2>
 <p>Sanitizes the value to <code>trim()</code> it. Optionally specify characters to trim.</p>
 <pre><code class="language-php">$filter-&gt;sanitize('field')-&gt;to('trim', $chars);
 </code></pre>
-<h2 id="3-7-5-25">3.7.5.25. uppercase</h2>
+<h2 id="4-7-5-25">4.7.5.25. uppercase</h2>
 <p>Sanitizes the value to all uppercase characters.</p>
 <pre><code>$filter-&gt;sanitize('field')-&gt;to('uppercase');
 </code></pre>
-<h2 id="3-7-5-26">3.7.5.26. uppercaseFirst</h2>
+<h2 id="4-7-5-26">4.7.5.26. uppercaseFirst</h2>
 <p>Sanitizes the value to begin with an uppercase character.</p>
 <pre><code>$filter-&gt;sanitize('field')-&gt;to('uppercaseFirst');
 </code></pre>
-<h2 id="3-7-5-27">3.7.5.27. value</h2>
+<h2 id="4-7-5-27">4.7.5.27. value</h2>
 <p>Sanitizes to the specified value.</p>
 <pre><code class="language-php">$filter-&gt;sanitize('field')-&gt;to('value', $other_value);
 </code></pre>
-<h2 id="3-7-5-28">3.7.5.28. word</h2>
+<h2 id="4-7-5-28">4.7.5.28. word</h2>
 <p>Sanitizes the value to remove non-word characters.</p>
 <pre><code class="language-php">$filter-&gt;sanitize('field')-&gt;to('word');
 </code></pre>
@@ -153,9 +153,9 @@ shorter ones.</p>
             <td class="next"><a href="/packages/2.x/Filter/custom.html">Next</a></td>
         </tr>
         <tr>
-            <td class="prev">3.7.4. Rules To Validate Fields</td>
-            <td class="parent">3.7. Aura.Filter 2.x</td>
-            <td class="next">3.7.6. Creating and Using Custom Rules</td>
+            <td class="prev">4.7.4. Rules To Validate Fields</td>
+            <td class="parent">4.7. Aura.Filter 2.x</td>
+            <td class="next">4.7.6. Creating and Using Custom Rules</td>
         </tr>
     </table>
 </nav>

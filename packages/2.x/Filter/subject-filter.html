@@ -9,18 +9,18 @@ permalink: /packages/2.x/Filter/subject-filter.html
 <nav class="navheader">
     <table>
         <tr>
-            <th colspan="3" class="curr">3.7.3. Filtering Arrays and Objects</th>
+            <th colspan="3" class="curr">4.7.3. Filtering Arrays and Objects</th>
         </tr>
         <tr>
             <td class="prev"><a href="/packages/2.x/Filter/value-filter.html">Filtering Individual Values</a></td>
-            <td class="parent">3.7. Aura.Filter 2.x</th>
+            <td class="parent">4.7. Aura.Filter 2.x</th>
             <td class="next"><a href="/packages/2.x/Filter/validate.html">Rules To Validate Fields</a></td>
         </tr>
     </table>
 </nav>
-<div id="section-main"><h1 id="3-7-3">3.7.3. Filtering Arrays and Objects</h1>
+<div id="section-main"><h1 id="4-7-3">4.7.3. Filtering Arrays and Objects</h1>
 <p>You can filter an entire object or array (herein called a "subject") by specifying rules for each object property or array element (herein called "fields").</p>
-<h2 id="3-7-3-1">3.7.3.1. Creating A Subject Filter</h2>
+<h2 id="4-7-3-1">4.7.3.1. Creating A Subject Filter</h2>
 <p>First, create a <em>SubjectFilter</em> via the <em>FilterFactory</em>:</p>
 <pre><code class="language-php">$filter_factory = new FilterFactory();
 
@@ -69,7 +69,7 @@ and that non-blank fields should be changed according to the rule</li>
 <code>useBlankValue(...)</code> to specify what value blank fields should be changed to (default <code>null</code>)</li>
 </ul>
 <p>For more about blanks, see the section on <a href="#blank-fields">Blank Fields</a>.</p>
-<h2 id="3-7-3-2">3.7.3.2. Applying The Subject Filter</h2>
+<h2 id="4-7-3-2">4.7.3.2. Applying The Subject Filter</h2>
 <p>We can then apply the filter specifications to the subject. A <code>true</code> result
 means all the rules passed, while <code>false</code> means one or more failed.</p>
 <pre><code class="language-php">// the data to be filtered; could also be an object
@@ -87,7 +87,7 @@ if (! $success) {
     var_dump($failures-&gt;getMessages());
 }
 </code></pre>
-<h2 id="3-7-3-3">3.7.3.3. Filter Failures</h2>
+<h2 id="4-7-3-3">4.7.3.3. Filter Failures</h2>
 <p>When we get the failures via <code>getFailures()</code>, we can examine in detail which fields failed, and what the failure messages were. The <code>getFailures()</code> method returns a <em>FailureCollection</em> (essentially an <em>ArrayObject</em> keyed on the field names). Each field in the <em>FailureCollection</em> has an array of <em>Failure</em> objects, each with these methods:</p>
 <ul>
 <li>
@@ -98,7 +98,7 @@ if (! $success) {
 <code>Failure::getArgs()</code> -- arguments passed to the rule specification</li>
 </ul>
 <p>These can be combined in various ways to generate output regarding the filter failures.</p>
-<h2 id="3-7-3-4">3.7.3.4. Failure Modes</h2>
+<h2 id="4-7-3-4">4.7.3.4. Failure Modes</h2>
 <p>Normally, the filter will stop filtering any field that fails one of
 its rules, but will continue applying rules to the rest of the fields. Also,
 the filter specification will provide a default message when a rule fails.</p>
@@ -123,7 +123,7 @@ is, the filter will not apply any more rules to any more fields.</p>
 <p>In each case, the custom message will be used instead of the default one for
 the specified rule.  If we want to just set a custom message without changing
 the failure mode, we can use <code>$filter-&gt;...-&gt;setMessage('custom message')</code>.</p>
-<h2 id="3-7-3-5">3.7.3.5. Field-Specific Failure Messages</h2>
+<h2 id="4-7-3-5">4.7.3.5. Field-Specific Failure Messages</h2>
 <p>If a field fails multiple rules, there will be multiple failure messages (one for each failed rule). To specify a single failure message for a field, regardless of which rule(s) it fails, call <code>$filter-&gt;useFieldMessage()</code>:</p>
 <pre><code class="language-php">$filter-&gt;validate('field')-&gt;isNot('blank')-&gt;asSoftRule();
 $filter-&gt;validate('field')-&gt;is('alnum')-&gt;asSoftRule();
@@ -132,7 +132,7 @@ $filter-&gt;validate('field')-&gt;is('strlenMax', 12)-&gt;asSoftRule();
 
 $filter-&gt;useFieldMessage('field', 'Please use 6-12 alphanumeric characters.');
 </code></pre>
-<h2 id="3-7-3-6">3.7.3.6. Blank Fields</h2>
+<h2 id="4-7-3-6">4.7.3.6. Blank Fields</h2>
 <p>This library incorporates the concept of "blank" fields, as distinct from
 <code>isset()</code> and <code>empty()</code>, to allow for input elements that are missing or have
 not been filled in. A field is blank if it is:</p>
@@ -176,7 +176,7 @@ the same effect as the above:</p>
 <pre><code class="language-php">// both an alphanumeric field *and* a blank field will pass
 $filter-&gt;sanitize('field')-&gt;to('alnum')-&gt;useBlankValue('');
 </code></pre>
-<h2 id="3-7-3-7">3.7.3.7. Extending And Initializing A Subject Filter</h2>
+<h2 id="4-7-3-7">4.7.3.7. Extending And Initializing A Subject Filter</h2>
 <p>Sometimes it may be useful to extend the <em>Filter</em> class for a specific purpose, one that can initialize itself. This can be useful when filtering a specific kind of object or dataset.</p>
 <p>To do so, override the the <code>init()</code> method on the extended <em>Filter</em> class; the above examples remain instructive, but use <code>$this</code> instead of <code>$filter</code> since you are working from inside the filter object:</p>
 <pre><code class="language-php">namespace Vendor\Package;
@@ -200,7 +200,7 @@ class EntityFilter extends SubjectFilter
 <pre><code class="language-php">$entity_filter = $filter_factory-&gt;newSubjectFilter('Vendor\Package\EntityFilter');
 $success = $entity_filter-&gt;apply($entity);
 </code></pre>
-<h2 id="3-7-3-8">3.7.3.8. Asserting or Invoking the Filter</h2>
+<h2 id="4-7-3-8">4.7.3.8. Asserting or Invoking the Filter</h2>
 <p>Whereas calling <code>$filter-&gt;apply($subject)</code> returns a boolean, calling <code>$filter-&gt;assert($subject)</code> returns <code>null</code> on success, and throws an exception on failure. (Invoking the filter as a callable a la <code>$filter($subject)</code> works the same as <code>assert()</code>.)</p>
 <pre><code class="language-php">use Aura\Filter\Exception\FilterFailed;
 
@@ -237,9 +237,9 @@ try {
             <td class="next"><a href="/packages/2.x/Filter/validate.html">Next</a></td>
         </tr>
         <tr>
-            <td class="prev">3.7.2. Filtering Individual Values</td>
-            <td class="parent">3.7. Aura.Filter 2.x</td>
-            <td class="next">3.7.4. Rules To Validate Fields</td>
+            <td class="prev">4.7.2. Filtering Individual Values</td>
+            <td class="parent">4.7. Aura.Filter 2.x</td>
+            <td class="next">4.7.4. Rules To Validate Fields</td>
         </tr>
     </table>
 </nav>

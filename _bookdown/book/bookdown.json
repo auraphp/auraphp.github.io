@@ -1,6 +1,7 @@
 {
     "title": "Aura Packages",
     "content": [
+        "5.x/bookdown.json",
         "4.x/bookdown.json",
         "3.x/bookdown.json",
         "2.x/bookdown.json"

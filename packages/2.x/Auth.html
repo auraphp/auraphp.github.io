@@ -9,16 +9,16 @@ permalink: /packages/2.x/Auth.html
 <nav class="navheader">
     <table>
         <tr>
-            <th colspan="3" class="curr">3.2. Aura.Auth</th>
+            <th colspan="3" class="curr">4.2. Aura.Auth</th>
         </tr>
         <tr>
             <td class="prev"><a href="/packages/2.x/Accept.html">Aura.Accept</a></td>
-            <td class="parent">3. Version 2.x</th>
+            <td class="parent">4. Version 2.x</th>
             <td class="next"><a href="/packages/2.x/Autoload.html">Aura.Autoload</a></td>
         </tr>
     </table>
 </nav>
-<div id="section-main"><h1 id="3-2">3.2. Aura.Auth</h1>
+<div id="section-main"><h1 id="4-2">4.2. Aura.Auth</h1>
 <p>Provides authentication functionality and session tracking using various adapters; currently supported adapters are:</p>
 <ul>
 <li>Apache htpasswd files</li>
@@ -28,22 +28,22 @@ permalink: /packages/2.x/Auth.html
 <li>OAuth via customized adapters</li>
 </ul>
 <p>Note that the purpose of this package is only to authenticate user credentials. It does not currently, and probably will not in the future, handle user account creation and management. That is more properly the domain of application-level functionality, or at least a separate Aura bundle.</p>
-<h2 id="3-2-1">3.2.1. Foreword</h2>
-<h3 id="3-2-1-1">3.2.1.1. Installation</h3>
+<h2 id="4-2-1">4.2.1. Foreword</h2>
+<h3 id="4-2-1-1">4.2.1.1. Installation</h3>
 <p>This library requires PHP 5.5 or later, and has no userland dependencies.  (As a special consideration, this library is compatible with PHP 5.3 and 5.4 when the <a href="https://github.com/ircmaxell/password_compat">ircmaxell/password-compat</a> package is installed.)</p>
 <p>It is installable and autoloadable via Composer as <a href="https://packagist.org/packages/aura/auth">aura/auth</a>.</p>
 <p>Alternatively, <a href="https://github.com/auraphp/Aura.Auth/releases">download a release</a> or clone this repository, then require or include its <em>autoload.php</em> file.</p>
-<h3 id="3-2-1-2">3.2.1.2. Quality</h3>
+<h3 id="4-2-1-2">4.2.1.2. Quality</h3>
 <p><a href="https://scrutinizer-ci.com/g/auraphp/Aura.Auth/?branch=develop-2"><img src="https://scrutinizer-ci.com/g/auraphp/Aura.Auth/badges/quality-score.png?b=develop-2" alt="Scrutinizer Code Quality"></a>
 <a href="https://scrutinizer-ci.com/g/auraphp/Aura.Auth/?branch=develop-2"><img src="https://scrutinizer-ci.com/g/auraphp/Aura.Auth/badges/coverage.png?b=develop-2" alt="Code Coverage"></a>
 <a href="https://travis-ci.org/auraphp/Aura.Auth"><img src="https://travis-ci.org/auraphp/Aura.Auth.png?branch=develop-2" alt="Build Status"></a></p>
 <p>To run the unit tests at the command line, issue <code>composer install</code> and then <code>vendor/bin/phpunit</code> at the package root. This requires <a href="http://getcomposer.org/">Composer</a> to be available as <code>composer</code>.</p>
 <p>This library attempts to comply with <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md">PSR-1</a>, <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md">PSR-2</a>, and <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md">PSR-4</a>. If
 you notice compliance oversights, please send a patch via pull request.</p>
-<h3 id="3-2-1-3">3.2.1.3. Community</h3>
+<h3 id="4-2-1-3">4.2.1.3. Community</h3>
 <p>To ask questions, provide feedback, or otherwise communicate with the Aura community, please join our <a href="http://groups.google.com/group/auraphp">Google Group</a>, follow <a href="http://twitter.com/auraphp">@auraphp on Twitter</a>, or chat with us on #auraphp on Freenode.</p>
-<h2 id="3-2-2">3.2.2. Getting Started</h2>
-<h3 id="3-2-2-1">3.2.2.1. Instantiation</h3>
+<h2 id="4-2-2">4.2.2. Getting Started</h2>
+<h3 id="4-2-2-1">4.2.2.1. Instantiation</h3>
 <p>To track authentication state and related information, create an <em>Auth</em> object using the <em>AuthFactory</em>.</p>
 <pre><code class="language-php">&lt;?php
 $auth_factory = new \Aura\Auth\AuthFactory($_COOKIE);
@@ -87,7 +87,7 @@ $auth = $auth_factory-&gt;newInstance();
 </ul>
 <p>You can also use the <code>set*()</code> variations of the <code>get*()</code> methods above to force the <em>Auth</em> object to whatever values you like. However, because the values are stored in a <code>$_SESSION</code> segment, the values will not be retained if a session is not running.</p>
 <p>To retain values in a session, you can start a session by force with <code>session_start()</code> on your own. Alternatively, it would be better to use one of the Aura.Auth package services to handle authentication and session-state management for you.</p>
-<h3 id="3-2-2-2">3.2.2.2. Services</h3>
+<h3 id="4-2-2-2">4.2.2.2. Services</h3>
 <p>This package comes with three services for dealing with authentication phases:</p>
 <ul>
 <li>
@@ -101,7 +101,7 @@ $auth = $auth_factory-&gt;newInstance();
 </li>
 </ul>
 <p>You can create each by using the <em>AuthFactory</em>.  For now, we will look at how to force login and logout; later, we will show how to have the service use a credential adapter.</p>
-<h4 id="3-2-2-2-1">3.2.2.2.1. Forcing Login</h4>
+<h4 id="4-2-2-2-1">4.2.2.2.1. Forcing Login</h4>
 <p>You can force the <em>Auth</em> object to a logged-in state by calling the <em>LoginService</em> <code>forceLogin()</code> method with a user name and optional arbitrary user data.</p>
 <pre><code class="language-php">&lt;?php
 // the authentication status is currently anonymous
@@ -134,7 +134,7 @@ echo $auth-&gt;getStatus(); // VALID
 </ul>
 <p>The specified user name and user data will be stored in a <code>$_SESSION</code> segment, along with an authentication status of <code>Status::VALID</code>.</p>
 <p>Note that <code>forceLogin()</code> does not check any credential sources. You as the application owner are forcing the <em>Auth</em> object to a logged-in state.</p>
-<h4 id="3-2-2-2-2">3.2.2.2.2. Forcing Logout</h4>
+<h4 id="4-2-2-2-2">4.2.2.2.2. Forcing Logout</h4>
 <p>You can force the <em>Auth</em> object to a logged-out state by calling the <em>LogoutService</em> <code>forceLogout()</code> method.</p>
 <pre><code class="language-php">&lt;?php
 // the authentication status is currently valid
@@ -161,7 +161,7 @@ echo $auth-&gt;getStatus(); // ANON
 </ul>
 <p>Note that <code>forceLogout()</code> does not check any credential sources. You as the application owner are forcing the <em>Auth</em> object to a logged-out state.</p>
 <p>Note also that this <strong>does not</strong> destroy the session. This is because you may have other things you need in the session memory, such as flash messages.</p>
-<h4 id="3-2-2-2-3">3.2.2.2.3. Resuming A Session</h4>
+<h4 id="4-2-2-2-3">4.2.2.2.3. Resuming A Session</h4>
 <p>When a PHP request ends, PHP saves the <code>$_SESSION</code> data for you. However, on the next request, PHP does not automatically start a new session for you, so <code>$_SESSION</code> is not automatically available.</p>
 <p>You could start a new session yourself to repopulate <code>$_SESSION</code>, but that will incur a performance overhead if you don't actually need the session data.  Similarly, there may be no need to start a session when there was no session previously (and thus no data to repopulate into <code>$_SESSION</code>).  What we need is a way to start a session if one was started previously, but avoid starting a session if none was started previously.</p>
 <p>The <em>ResumeService</em> exists to address this problem. When you call the <code>resume()</code> method on the <em>ResumeService</em>, it examines <code>$_COOKIE</code> to see if a session cookie is present:</p>
@@ -196,11 +196,11 @@ $resume_service-&gt;resume($auth);
 // meaning the $auth object is now populated with its previous values, if any
 ?&gt;
 </code></pre>
-<h3 id="3-2-2-3">3.2.2.3. Adapters</h3>
+<h3 id="4-2-2-3">4.2.2.3. Adapters</h3>
 <p>Forcing the <em>Auth</em> object to a particular state is fine for when you want to exercise manual control over the authentication status, user name, user data, and other information. However, it is more often the case that you will want to check user credential input (username and password) against a credential store.  This is where the <em>Adapter</em> classes come in.</p>
 <p>To use an <em>Adapter</em> with a <em>Service</em>, you first need to create the <em>Adapter</em>, then pass it to the <em>AuthFactory</em> <code>new*Service()</code> method.</p>
-<h4 id="3-2-2-3-1">3.2.2.3.1. Htpasswd Adapter</h4>
-<h5 id="3-2-2-3-1-1">3.2.2.3.1.1. Instantiation</h5>
+<h4 id="4-2-2-3-1">4.2.2.3.1. Htpasswd Adapter</h4>
+<h5 id="4-2-2-3-1-1">4.2.2.3.1.1. Instantiation</h5>
 <p>To create an adapter for Apache htpasswd files, call the <em>AuthFactory</em> <code>newHtpasswdAdapter()</code> method and pass the file path of the Apache htpasswd file.</p>
 <pre><code class="language-php">&lt;?php
 $htpasswd_adapter = $auth_factory-&gt;newHtpasswdAdapter(
@@ -209,7 +209,7 @@ $htpasswd_adapter = $auth_factory-&gt;newHtpasswdAdapter(
 ?&gt;
 </code></pre>
 <p>This will automatically use the <em>HtpasswdVerifier</em> to check DES, MD5, and SHA passwords from the htpasswd file on a per-user basis.</p>
-<h5 id="3-2-2-3-1-2">3.2.2.3.1.2. Service Integration</h5>
+<h5 id="4-2-2-3-1-2">4.2.2.3.1.2. Service Integration</h5>
 <p>You can then pass the <em>Adapter</em> to each <em>Service</em> factory method like so:</p>
 <pre><code class="language-php">&lt;?php
 $login_service = $auth_factory-&gt;newLoginService($htpasswd_adapter);
@@ -226,8 +226,8 @@ $login_service-&gt;login($auth, array(
 ?&gt;
 </code></pre>
 <p>For more on <em>LoginService</em> idioms, please see the <a href="#service-idioms">Service Idioms</a> section. (The <em>LogoutService</em> and <em>ResumeService</em> do not need credential information.)</p>
-<h4 id="3-2-2-3-2">3.2.2.3.2. IMAP/POP/NNTP Adapter</h4>
-<h5 id="3-2-2-3-2-1">3.2.2.3.2.1. Instantiation</h5>
+<h4 id="4-2-2-3-2">4.2.2.3.2. IMAP/POP/NNTP Adapter</h4>
+<h5 id="4-2-2-3-2-1">4.2.2.3.2.1. Instantiation</h5>
 <p>To create an adapter for IMAP/POP/NNTP servers, call the <em>AuthFactory</em> <code>newImapAdapter()</code> method and pass the mailbox specification string, along with any appropriate option constants:</p>
 <pre><code class="language-php">&lt;?php
 $imap_adapter = $auth_factory-&gt;newImapAdapter(
@@ -239,7 +239,7 @@ $imap_adapter = $auth_factory-&gt;newImapAdapter(
 <blockquote>
 <p>N.b.: See the <a href="http://php.net/imap_open">imap_open()</a> documentation for more variations on mailbox specification strings.</p>
 </blockquote>
-<h5 id="3-2-2-3-2-2">3.2.2.3.2.2. Service Integration</h5>
+<h5 id="4-2-2-3-2-2">4.2.2.3.2.2. Service Integration</h5>
 <p>You can then pass the <em>Adapter</em> to each <em>Service</em> factory method like so:</p>
 <pre><code class="language-php">&lt;?php
 $login_service = $auth_factory-&gt;newLoginService($imap_adapter);
@@ -256,8 +256,8 @@ $login_service-&gt;login($auth, array(
 ?&gt;
 </code></pre>
 <p>For more on <em>LoginService</em> idioms, please see the <a href="#service-idioms">Service Idioms</a> section. (The <em>LogoutService</em> and <em>ResumeService</em> do not need credential information.)</p>
-<h4 id="3-2-2-3-3">3.2.2.3.3. LDAP Adapter</h4>
-<h5 id="3-2-2-3-3-1">3.2.2.3.3.1. Instantiation</h5>
+<h4 id="4-2-2-3-3">4.2.2.3.3. LDAP Adapter</h4>
+<h5 id="4-2-2-3-3-1">4.2.2.3.3.1. Instantiation</h5>
 <p>To create an adapter for LDAP and Active Directory servers, call the <em>AuthFactory</em> <code>newLdapAdapter()</code> method and pass the server name with a distinguished name (DN) format string:</p>
 <pre><code class="language-php">&lt;?php
 $ldap_adapter = $auth_factory-&gt;newLdapAdapter(
@@ -269,7 +269,7 @@ $ldap_adapter = $auth_factory-&gt;newLdapAdapter(
 <blockquote>
 <p>N.b.: The username will be escaped and then passed to the DN format string via <a href="http://php.net/sprintf">sprintf()</a>. The completed DN will be used for binding to the server after connection.</p>
 </blockquote>
-<h5 id="3-2-2-3-3-2">3.2.2.3.3.2. Service Integration</h5>
+<h5 id="4-2-2-3-3-2">4.2.2.3.3.2. Service Integration</h5>
 <p>You can then pass the <em>Adapter</em> to each <em>Service</em> factory method like so:</p>
 <pre><code class="language-php">&lt;?php
 $login_service = $auth_factory-&gt;newLoginService($ldap_adapter);
@@ -286,8 +286,8 @@ $login_service-&gt;login($auth, array(
 ?&gt;
 </code></pre>
 <p>For more on <em>LoginService</em> idioms, please see the <a href="#service-idioms">Service Idioms</a> section. (The <em>LogoutService</em> and <em>ResumeService</em> do not need credential information.)</p>
-<h4 id="3-2-2-3-4">3.2.2.3.4. PDO Adapter</h4>
-<h5 id="3-2-2-3-4-1">3.2.2.3.4.1. Instantiation</h5>
+<h4 id="4-2-2-3-4">4.2.2.3.4. PDO Adapter</h4>
+<h5 id="4-2-2-3-4-1">4.2.2.3.4.1. Instantiation</h5>
 <p>To create an adapter for PDO connections to SQL tables, call the <em>AuthFactory</em> <code>newPdoAdapter()</code> method and pass these parameters in order:</p>
 <ul>
 <li>
@@ -344,7 +344,7 @@ $pdo_adapter = $auth_factory-&gt;newPdoAdapter($pdo, $hash, $cols, $from, $where
 ?&gt;
 </code></pre>
 <p>(The additional information columns will be retained in the session data after successful authentication.)</p>
-<h5 id="3-2-2-3-4-2">3.2.2.3.4.2. Service Integration</h5>
+<h5 id="4-2-2-3-4-2">4.2.2.3.4.2. Service Integration</h5>
 <p>You can then pass the <em>Adapter</em> to each <em>Service</em> factory method like so:</p>
 <pre><code class="language-php">&lt;?php
 $login_service = $auth_factory-&gt;newLoginService($pdo_adapter);
@@ -361,7 +361,7 @@ $login_service-&gt;login($auth, array(
 ?&gt;
 </code></pre>
 <p>For more on <em>LoginService</em> idioms, please see the <a href="#service-idioms">Service Idioms</a> section. (The <em>LogoutService</em> and <em>ResumeService</em> do not need credential information.)</p>
-<h4 id="3-2-2-3-5">3.2.2.3.5. Custom Adapters</h4>
+<h4 id="4-2-2-3-5">4.2.2.3.5. Custom Adapters</h4>
 <p>Although this package comes with multiple <em>Adapter</em> classes, it may be that none of them fit your needs.</p>
 <p>You may wish to extend one of the existing adapters to add login/logout/resume behaviors. Alternatively, you can create an <em>Adapter</em> of your own by implementing the <em>AdapterInterface</em> on a class of your choosing:</p>
 <pre><code class="language-php">&lt;?php
@@ -415,7 +415,7 @@ $logout_service = $auth_factory-&gt;newLogoutService($custom_adapter);
 $resume_service = $auth_factory-&gt;newResumeService($custom_adapter);
 ?&gt;
 </code></pre>
-<h5 id="3-2-2-3-5-1">3.2.2.3.5.1. OAuth Adapters</h5>
+<h5 id="4-2-2-3-5-1">4.2.2.3.5.1. OAuth Adapters</h5>
 <p>Should you desire to handle your authentication through a 3rd party service that uses OAuth 2.0, you'll need to write an adapter that implements <code>Aura\Auth\Adapter\AdapterInterface</code> and provide your own implementation for
 fetching the access token and user information. Your implementation can be something you've written yourself or it can be an existing OAuth2 client.</p>
 <p>The following example will demonstrate how you'd go about creating this adapter using the <a href="https://github.com/thephpleague/oauth2-client">PHP League's OAuth2 Client</a>. We'll also be using Github as the service provider for this example.</p>
@@ -539,8 +539,8 @@ if (!isset($_GET['code'])) {
 not reasonable for Aura to try to handle every different data set out of the
 box. By writing this little bit of code, you can easily implement Aura Auth for
 your 3rd Party OAuth2 services.</p>
-<h3 id="3-2-2-4">3.2.2.4. Service Idioms</h3>
-<h4 id="3-2-2-4-1">3.2.2.4.1. Resuming A Session</h4>
+<h3 id="4-2-2-4">4.2.2.4. Service Idioms</h3>
+<h4 id="4-2-2-4-1">4.2.2.4.1. Resuming A Session</h4>
 <p>This is an example of the code needed to resume a pre-existing session. Note that the <code>echo</code> statements are intended to explain the different resulting states of the <code>resume()</code> call, and may be replaced by whatever logic you feel is appropriate. For example, you may wish to redirect to a login page when a session has idled or expired.</p>
 <pre><code class="language-php">&lt;?php
 $auth = $auth_factory-&gt;newInstance();
@@ -570,7 +570,7 @@ switch (true) {
 <blockquote>
 <p>N.b.: Instead of creating the  <em>Auth</em> and <em>ResumeService</em> objects by hand, you may wish to use a dependency injection container such as <a href="https://github.com/auraphp/Aura.Di">Aura.Di</a> to retain them for shared use throughout your application.</p>
 </blockquote>
-<h4 id="3-2-2-4-2">3.2.2.4.2. Logging In</h4>
+<h4 id="4-2-2-4-2">4.2.2.4.2. Logging In</h4>
 <p>This is an example of the code needed to effect a login. Note that the <code>echo</code> and <code>$log</code> statements are intended to explain the different resulting states of the <code>login()</code> call, and may be replaced by whatever logic you feel is appropriate; in particular, you should probably not expose the exact nature of the failure, to help mitigate brute-force attempts.</p>
 <pre><code class="language-php">&lt;?php
 
@@ -680,7 +680,7 @@ $login_service-&gt;login($auth, array(
 ));
 ?&gt;
 </code></pre>
-<h4 id="3-2-2-4-3">3.2.2.4.3. Logging Out</h4>
+<h4 id="4-2-2-4-3">4.2.2.4.3. Logging Out</h4>
 <p>This is an example of the code needed to effect a logout. Note that the <code>echo</code> statements are intended to explain the different resulting states of the <code>logout()</code> call, and may be replaced by whatever logic you feel is appropriate.</p>
 <pre><code class="language-php">&lt;?php
 $auth = $auth_factory-&gt;newInstance();
@@ -699,11 +699,11 @@ if ($auth-&gt;isAnon()) {
 <blockquote>
 <p>N.b.: Instead of creating the  <em>Auth</em> and <em>LogoutService</em> objects by hand, you may wish to use a dependency injection container such as <a href="https://github.com/auraphp/Aura.Di">Aura.Di</a> to retain them for shared use throughout your application.</p>
 </blockquote>
-<h4 id="3-2-2-4-4">3.2.2.4.4. Custom Services</h4>
+<h4 id="4-2-2-4-4">4.2.2.4.4. Custom Services</h4>
 <p>You are not restricted to the login, logout, and resume services provided by this package. However, if you build a service of your own, or if you extend one of the provided services, you will have to instantiate that customized service object manually, instead of using the <em>AuthFactory</em>. This can be tedious but is not difficult, especially when using a dependency injection container system such as <a href="https://github.com/auraphp/Aura.Di">Aura.Di</a>.</p>
-<h3 id="3-2-2-5">3.2.2.5. Session Management</h3>
+<h3 id="4-2-2-5">4.2.2.5. Session Management</h3>
 <p>The <em>Service</em> objects use a <em>Session</em> object to start sessions and regenerate session IDs. (Note that they <strong>do not</strong> destroy sessions.) The <em>Session</em> object uses the native PHP <code>session_*()</code> functions to manage sessions.</p>
-<h4 id="3-2-2-5-1">3.2.2.5.1. Custom Sessions</h4>
+<h4 id="4-2-2-5-1">4.2.2.5.1. Custom Sessions</h4>
 <p>If you wish to use an alternative means of managing sessions, implement the <em>SessionInterface</em> on an object of your choice. One way to do this is by by wrapping a framework-specific session object and proxying the <em>SessionInterface</em> methods to the wrapped object:</p>
 <pre><code class="language-php">&lt;?php
 use Aura\Auth\Session\SessionInterface;
@@ -751,7 +751,7 @@ $auth_factory = new AuthFactory($_COOKIE, $custom_session);
 ?&gt;
 </code></pre>
 <p>The factory will pass your custom session object wherever it is needed.</p>
-<h4 id="3-2-2-5-2">3.2.2.5.2. Working Without Sessions</h4>
+<h4 id="4-2-2-5-2">4.2.2.5.2. Working Without Sessions</h4>
 <p>In some situations, such as with APIs where credentials are provided with every request, it may be beneficial to avoid sessions altogether. In this case, pass a <em>NullSession</em> and <em>NullSegment</em> to the <em>AuthFactory</em>:</p>
 <pre><code class="language-php">&lt;?php
 use Aura\Auth\AuthFactory;
@@ -769,23 +769,23 @@ $auth_factory = new AuthFactory($_COOKIE, $null_session, $null_segment);
 <blockquote>
 <p>N.b. In an API situation, the credentials may be an API token, or passed as HTTP basic or digest authentication headers.  Pass these to the adapter of your choice.</p>
 </blockquote>
-<h3 id="3-2-2-6">3.2.2.6. DI Configuration</h3>
+<h3 id="4-2-2-6">4.2.2.6. DI Configuration</h3>
 <p>Here are some hints regarding configuration of Aura.Auth via Aura.Di.</p>
-<h4 id="3-2-2-6-1">3.2.2.6.1. Aura\Auth\Adapter\HtpasswdAdapter</h4>
+<h4 id="4-2-2-6-1">4.2.2.6.1. Aura\Auth\Adapter\HtpasswdAdapter</h4>
 <pre><code class="language-php">&lt;?php
 $di-&gt;params['Aura\Auth\Adapter\HtpasswdAdapter'] = array(
     'file' =&gt; '/path/to/htpasswdfile',
 );
 ?&gt;
 </code></pre>
-<h4 id="3-2-2-6-2">3.2.2.6.2. Aura\Auth\Adapter\ImapAdapter</h4>
+<h4 id="4-2-2-6-2">4.2.2.6.2. Aura\Auth\Adapter\ImapAdapter</h4>
 <pre><code class="language-php">&lt;?php
 $di-&gt;params['Aura\Auth\Adapter\ImapAdapter'] = array(
     'mailbox' =&gt; '{mail.example.com:143/imap/secure}',
 );
 ?&gt;
 </code></pre>
-<h4 id="3-2-2-6-3">3.2.2.6.3. Aura\Auth\Adapter\LdapAdapter</h4>
+<h4 id="4-2-2-6-3">4.2.2.6.3. Aura\Auth\Adapter\LdapAdapter</h4>
 <pre><code class="language-php">&lt;?php
 $di-&gt;params['Aura\Auth\Adapter\LdapAdapter'] = array(
     'server' =&gt; 'ldaps://ldap.example.com:636',
@@ -793,7 +793,7 @@ $di-&gt;params['Aura\Auth\Adapter\LdapAdapter'] = array(
 );
 ?&gt;
 </code></pre>
-<h4 id="3-2-2-6-4">3.2.2.6.4. Aura\Auth\Adapter\PdoAdapter</h4>
+<h4 id="4-2-2-6-4">4.2.2.6.4. Aura\Auth\Adapter\PdoAdapter</h4>
 <pre><code class="language-php">&lt;?php
 $di-&gt;params['Aura\Auth\Adapter\PdoAdapter'] = array(
     'pdo' =&gt; $di-&gt;lazyGet('your_pdo_connection_service'),
@@ -815,9 +815,9 @@ $di-&gt;params['Aura\Auth\Adapter\PdoAdapter'] = array(
             <td class="next"><a href="/packages/2.x/Autoload.html">Next</a></td>
         </tr>
         <tr>
-            <td class="prev">3.1. Aura.Accept</td>
-            <td class="parent">3. Version 2.x</td>
-            <td class="next">3.3. Aura.Autoload</td>
+            <td class="prev">4.1. Aura.Accept</td>
+            <td class="parent">4. Version 2.x</td>
+            <td class="next">4.3. Aura.Autoload</td>
         </tr>
     </table>
 </nav>

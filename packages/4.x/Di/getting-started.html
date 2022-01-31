@@ -9,17 +9,17 @@ permalink: /packages/4.x/Di/getting-started.html
 <nav class="navheader">
     <table>
         <tr>
-            <th colspan="3" class="curr">1.1.1. Getting Started</th>
+            <th colspan="3" class="curr">2.1.1. Getting Started</th>
         </tr>
         <tr>
             <td class="prev"><a href="/packages/4.x/Di/">Aura.Di</a></td>
-            <td class="parent">1.1. Aura.Di</th>
+            <td class="parent">2.1. Aura.Di</th>
             <td class="next"><a href="/packages/4.x/Di/constructor.html">Constructor Injection</a></td>
         </tr>
     </table>
 </nav>
-<div id="section-main"><h1 id="1-1-1">1.1.1. Getting Started</h1>
-<h2 id="1-1-1-1">1.1.1.1. Overview</h2>
+<div id="section-main"><h1 id="2-1-1">2.1.1. Getting Started</h1>
+<h2 id="2-1-1-1">2.1.1.1. Overview</h2>
 <p>The Aura.Di package provides a serializable dependency injection container
 with the following features:</p>
 <ul>
@@ -47,7 +47,7 @@ desirable, is beyond the scope of this document. For more information about
 "inversion of control" and "dependency injection" please consult
 <a href="http://martinfowler.com/articles/injection.html">http://martinfowler.com/articles/injection.html</a> by Martin Fowler.</p>
 <p>Finally, please note that this package is intended for use as a <strong>dependency injection</strong> system, not as a <strong>service locator</strong> system. If you use it as a service locator, that's bad, and you should feel bad.</p>
-<h3 id="1-1-1-1-1">1.1.1.1.1. Intended Usage</h3>
+<h3 id="2-1-1-1-1">2.1.1.1.1. Intended Usage</h3>
 <p>The intent behind Aura.Di is for it be used like so:</p>
 <ol>
 <li>
@@ -64,13 +64,13 @@ desirable, is beyond the scope of this document. For more information about
 </li>
 </ol>
 <p>Note that calling <code>get()</code> or <code>newInstance()</code> will automatically lock the container, preventing further configuration changes. This is true <em>even inside configuration code</em>, so use the <code>lazy*()</code> methods instead while configuring the container.</p>
-<h2 id="1-1-1-2">1.1.1.2. Container Instantiation</h2>
+<h2 id="2-1-1-2">2.1.1.2. Container Instantiation</h2>
 <p>We instantiate a <em>Container</em> like so:</p>
 <pre><code class="language-php">use Aura\Di\ContainerBuilder;
 $builder = new ContainerBuilder();
 $di = $builder-&gt;newInstance();
 </code></pre>
-<h2 id="1-1-1-3">1.1.1.3. Creating Object Instances</h2>
+<h2 id="2-1-1-3">2.1.1.3. Creating Object Instances</h2>
 <p>The most straightforward way is to create an object through the <em>Container</em> is via the <code>newInstance()</code> method:</p>
 <pre><code>$object = $di-&gt;newInstance('Vendor\Package\ClassName');
 </code></pre>
@@ -87,9 +87,9 @@ $di = $builder-&gt;newInstance();
             <td class="next"><a href="/packages/4.x/Di/constructor.html">Next</a></td>
         </tr>
         <tr>
-            <td class="prev">1.1. Aura.Di</td>
-            <td class="parent">1.1. Aura.Di</td>
-            <td class="next">1.1.2. Constructor Injection</td>
+            <td class="prev">2.1. Aura.Di</td>
+            <td class="parent">2.1. Aura.Di</td>
+            <td class="next">2.1.2. Constructor Injection</td>
         </tr>
     </table>
 </nav>

@@ -9,34 +9,34 @@ permalink: /packages/2.x/SqlQuery.html
 <nav class="navheader">
     <table>
         <tr>
-            <th colspan="3" class="curr">3.13. Aura.SqlQuery</th>
+            <th colspan="3" class="curr">4.13. Aura.SqlQuery</th>
         </tr>
         <tr>
             <td class="prev"><a href="/packages/2.x/Sql.html">Aura.Sql</a></td>
-            <td class="parent">3. Version 2.x</th>
+            <td class="parent">4. Version 2.x</th>
             <td class="next"><a href="/packages/2.x/SqlSchema.html">Aura.SqlSchema</a></td>
         </tr>
     </table>
 </nav>
-<div id="section-main"><h1 id="3-13">3.13. Aura.SqlQuery</h1>
+<div id="section-main"><h1 id="4-13">4.13. Aura.SqlQuery</h1>
 <p>Provides query builders for MySQL, Postgres, SQLite, and Microsoft SQL Server.
 These builders are independent of any particular database connection library,
 although <a href="http://php.net/PDO">PDO</a> in general is recommended.</p>
-<h2 id="3-13-1">3.13.1. Foreword</h2>
-<h3 id="3-13-1-1">3.13.1.1. Installation</h3>
+<h2 id="4-13-1">4.13.1. Foreword</h2>
+<h3 id="4-13-1-1">4.13.1.1. Installation</h3>
 <p>This library requires PHP 5.3.9 or later; we recommend using the latest available version of PHP as a matter of principle. It has no userland dependencies.</p>
 <p>It is installable and autoloadable via Composer as <a href="https://packagist.org/packages/aura/sqlquery">aura/sqlquery</a>.</p>
 <p>Alternatively, <a href="https://github.com/auraphp/Aura.SqlQuery/releases">download a release</a> or clone this repository, then require or include its <em>autoload.php</em> file.</p>
-<h3 id="3-13-1-2">3.13.1.2. Quality</h3>
+<h3 id="4-13-1-2">4.13.1.2. Quality</h3>
 <p><a href="https://scrutinizer-ci.com/g/auraphp/Aura.SqlQuery/?branch=2.x"><img src="https://scrutinizer-ci.com/g/auraphp/Aura.SqlQuery/badges/quality-score.png?b=2.x" alt="Scrutinizer Code Quality"></a>
 <a href="https://scrutinizer-ci.com/g/auraphp/Aura.SqlQuery/?branch=2.x"><img src="https://scrutinizer-ci.com/g/auraphp/Aura.SqlQuery/badges/coverage.png?b=2.x" alt="Code Coverage"></a>
 <a href="https://travis-ci.org/auraphp/Aura.SqlQuery"><img src="https://travis-ci.org/auraphp/Aura.SqlQuery.png?branch=2.x" alt="Build Status"></a></p>
 <p>To run the <a href="http://phpunit.de/manual/">PHPUnit</a> unit tests at the command line, issue <code>composer install</code> and then <code>vendor/bin/phpunit</code> at the package root. (This requires <a href="http://getcomposer.org/">Composer</a> to be available as <code>composer</code>.)</p>
 <p>This library attempts to comply with <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md">PSR-1</a>, <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md">PSR-2</a>, and <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md">PSR-4</a>. If
 you notice compliance oversights, please send a patch via pull request.</p>
-<h3 id="3-13-1-3">3.13.1.3. Community</h3>
+<h3 id="4-13-1-3">4.13.1.3. Community</h3>
 <p>To ask questions, provide feedback, or otherwise communicate with the Aura community, please join our <a href="http://groups.google.com/group/auraphp">Google Group</a>, follow <a href="http://twitter.com/auraphp">@auraphp on Twitter</a>, or chat with us on #auraphp on Freenode.</p>
-<h2 id="3-13-2">3.13.2. Getting Started</h2>
+<h2 id="4-13-2">4.13.2. Getting Started</h2>
 <p>First, instantiate a <em>QueryFactory</em> with a database type:</p>
 <pre><code class="language-php">&lt;?php
 use Aura\SqlQuery\QueryFactory;
@@ -58,7 +58,7 @@ choice. In the examples below, we will use <a href="http://php.net/pdo">PDO</a> 
 database connection, but any database library that uses named placeholders and
 bound values should work just as well (e.g. the <a href="https://github.com/auraphp/Aura.Sql/tree/develop-2">Aura.Sql</a> <em>ExtendedPdo</em>
 class).</p>
-<h2 id="3-13-3">3.13.3. Identifier Quoting</h2>
+<h2 id="4-13-3">4.13.3. Identifier Quoting</h2>
 <p>In most cases, the query objects will quote identifiers for you. For example,
 under the common <em>Select</em> object with double-quotes for identifiers:</p>
 <pre><code class="language-php">&lt;?php
@@ -82,7 +82,7 @@ echo $select-&gt;getStatement();
 <p>If you discover that a partially-qualified identifier has not been auto-quoted
 for you, change it to a fully-qualified identifer (e.g., from <code>col_name</code> to
 <code>table_name.col_name</code>).</p>
-<h2 id="3-13-4">3.13.4. Common Query Objects</h2>
+<h2 id="4-13-4">4.13.4. Common Query Objects</h2>
 <p>Although you must specify a database type when instantiating a <em>QueryFactory</em>,
 you can tell the factory to return "common" query objects instead of database-
 specific ones.  This will make only the common query methods available, which
@@ -100,8 +100,8 @@ $query_factory = new QueryFactory('sqlite', QueryFactory::COMMON);
 quoted appropriately.</p>
 </blockquote>
 <p>All query objects implement the "Common" methods.</p>
-<h3 id="3-13-4-1">3.13.4.1. SELECT</h3>
-<h4 id="3-13-4-1-1">3.13.4.1.1. Building A Query</h4>
+<h3 id="4-13-4-1">4.13.4.1. SELECT</h3>
+<h4 id="4-13-4-1-1">4.13.4.1.1. Building A Query</h4>
 <p>Build a <em>Select</em> query using the following methods. They do not need to
 be called in any particular order, and may be called multiple times.</p>
 <pre><code class="language-php">&lt;?php
@@ -160,7 +160,7 @@ mark placeholder in the condition clause.</p>
 sequential array of values to bind to sequential question-mark placeholders in
 the condition clause.</p>
 </blockquote>
-<h4 id="3-13-4-1-2">3.13.4.1.2. Resetting Query Elements</h4>
+<h4 id="4-13-4-1-2">4.13.4.1.2. Resetting Query Elements</h4>
 <p>The <em>Select</em> class comes with the following methods to "reset" various clauses
 a blank state. This can be useful when reusing the same query in different
 variations (e.g., to re-issue a query to get a <code>COUNT(*)</code> without a <code>LIMIT</code>, to
@@ -180,7 +180,7 @@ remove the respective clauses</li>
 <li>
 <code>resetBindValues()</code> removes all values bound to named placeholders</li>
 </ul>
-<h4 id="3-13-4-1-3">3.13.4.1.3. Issuing The Query</h4>
+<h4 id="4-13-4-1-3">4.13.4.1.3. Issuing The Query</h4>
 <p>Once you have built the query, pass it to the database connection of your
 choice as a string, and send the bound values along with it.</p>
 <pre><code class="language-php">&lt;?php
@@ -197,8 +197,8 @@ $sth-&gt;execute($select-&gt;getBindValues());
 $result = $sth-&gt;fetch(PDO::FETCH_ASSOC);
 ?&gt;
 </code></pre>
-<h3 id="3-13-4-2">3.13.4.2. INSERT</h3>
-<h4 id="3-13-4-2-1">3.13.4.2.1. Single-Row Insert</h4>
+<h3 id="4-13-4-2">4.13.4.2. INSERT</h3>
+<h4 id="4-13-4-2-1">4.13.4.2.1. Single-Row Insert</h4>
 <p>Build an <em>Insert</em> query using the following methods. They do not need to
 be called in any particular order, and may be called multiple times.</p>
 <pre><code class="language-php">&lt;?php
@@ -248,7 +248,7 @@ $name = $insert-&gt;getLastInsertIdName('id');
 $id = $pdo-&gt;lastInsertId($name);
 ?&gt;
 </code></pre>
-<h4 id="3-13-4-2-2">3.13.4.2.2. Multiple-Row (Bulk) Insert</h4>
+<h4 id="4-13-4-2-2">4.13.4.2.2. Multiple-Row (Bulk) Insert</h4>
 <p>If you want to do a multiple-row or bulk insert, call the <code>addRow()</code> method
 after finishing the first row, then build the next row you want to insert. The
 columns in the rows after the first will be inserted in the same order as the
@@ -334,7 +334,7 @@ insert syntax. Thus, bulk inserts with <em>Insert</em> object will not work on t
 earlier versions of SQLite. We suggest wrapping multuple INSERT operations
 with a transaction as an alternative.</p>
 </blockquote>
-<h3 id="3-13-4-3">3.13.4.3. UPDATE</h3>
+<h3 id="4-13-4-3">4.13.4.3. UPDATE</h3>
 <p>Build an <em>Update</em> query using the following methods. They do not need to
 be called in any particular order, and may be called multiple times.</p>
 <pre><code class="language-php">&lt;?php
@@ -384,7 +384,7 @@ $sth = $pdo-&gt;prepare($update-&gt;getStatement())
 $sth-&gt;execute($update-&gt;getBindValues());
 ?&gt;
 </code></pre>
-<h3 id="3-13-4-4">3.13.4.4. DELETE</h3>
+<h3 id="4-13-4-4">4.13.4.4. DELETE</h3>
 <p>Build a <em>Delete</em> query using the following methods. They do not need to
 be called in any particular order, and may be called multiple times.</p>
 <pre><code class="language-php">&lt;?php
@@ -416,7 +416,7 @@ $sth = $pdo-&gt;prepare($delete-&gt;getStatement())
 $sth-&gt;execute($delete-&gt;getBindValues());
 ?&gt;
 </code></pre>
-<h2 id="3-13-5">3.13.5. MySQL Query Objects ('mysql')</h2>
+<h2 id="4-13-5">4.13.5. MySQL Query Objects ('mysql')</h2>
 <p>These 'mysql' query objects have additional MySQL-specific methods:</p>
 <ul>
 <li>
@@ -496,7 +496,7 @@ $sth-&gt;execute($delete-&gt;getBindValues());
 <p>Placeholders for bound values in the <code>ON DUPLICATE KEY UPDATE</code> portions will be
 automatically suffixed with <code>__on_duplicate key</code> to deconflict them from the
 insert placeholders.</p>
-<h2 id="3-13-6">3.13.6. PostgreSQL Query Objects ('pgsql')</h2>
+<h2 id="4-13-6">4.13.6. PostgreSQL Query Objects ('pgsql')</h2>
 <p>These 'pgsql' query objects have additional PostgreSQL-specific methods:</p>
 <ul>
 <li>
@@ -521,7 +521,7 @@ insert placeholders.</p>
 </ul>
 </li>
 </ul>
-<h3 id="3-13-6-1">3.13.6.1. Last Insert ID Names in PostgreSQL</h3>
+<h3 id="4-13-6-1">4.13.6.1. Last Insert ID Names in PostgreSQL</h3>
 <p>PostgreSQL determines the default sequence name for the last inserted ID by concatenating the table name, the column name, and a <code>seq</code> suffix, using underscore separators (e.g. <code>table_col_seq</code>).</p>
 <p>However, when inserting into an extended or inherited table, the parent table is used for the sequence name, not the child (insertion) table. This package allows you to override the default last-insert-id name with the method <code>setLastInsertIdNames()</code> on both <em>QueryFactory</em> and the <em>Insert</em> object itself.  Pass an array of <code>inserttable.col</code> keys mapped to <code>parenttable_col_seq</code> values, and the <em>Insert</em> object will use the mapped sequence names instead of the default names.</p>
 <pre><code class="language-php">&lt;?php
@@ -536,7 +536,7 @@ $seq = $insert-&gt;getLastInsertIdName('id');
 ?&gt;
 </code></pre>
 <p>The <code>$seq</code> name is now <code>parent_id_seq</code>, not <code>child_id_seq</code> as it would have been by default.</p>
-<h2 id="3-13-7">3.13.7. SQLite Query Objects ('sqlite')</h2>
+<h2 id="4-13-7">4.13.7. SQLite Query Objects ('sqlite')</h2>
 <p>These 'sqlite' query objects have additional SQLite-specific methods:</p>
 <ul>
 <li>
@@ -597,7 +597,7 @@ $seq = $insert-&gt;getLastInsertIdName('id');
 </ul>
 </li>
 </ul>
-<h2 id="3-13-8">3.13.8. Microsoft SQL Query Objects ('sqlsrv')</h2>
+<h2 id="4-13-8">4.13.8. Microsoft SQL Query Objects ('sqlsrv')</h2>
 <p>The 'sqlsrv' query objects have no additional methods specific to Microsoft SQL Server.</p>
 <p>In general, <code>limit()</code> and <code>offset()</code> with Microsoft SQL Server are best
 combined with <code>orderBy()</code>. The <code>limit()</code> and <code>offset()</code> methods on the
@@ -613,7 +613,7 @@ Microsoft SQL Server query objects will generate sqlsrv-specific variations of
 be an <code>ORDER BY</code> clause, as the limiting clause is a sub-clause of <code>ORDER BY</code>.</p>
 </li>
 </ul>
-<h2 id="3-13-9">3.13.9. Table Prefixes</h2>
+<h2 id="4-13-9">4.13.9. Table Prefixes</h2>
 <p>One frequently-requested feature for this package is support for "automatic
 table prefixes" on all queries.  This feature sounds great in theory, but in
 practice is it (1) difficult to implement well, and (2) even when implemented it
@@ -630,9 +630,9 @@ desired; as the prefixes change, you can then change your constants.</p>
             <td class="next"><a href="/packages/2.x/SqlSchema.html">Next</a></td>
         </tr>
         <tr>
-            <td class="prev">3.12. Aura.Sql</td>
-            <td class="parent">3. Version 2.x</td>
-            <td class="next">3.14. Aura.SqlSchema</td>
+            <td class="prev">4.12. Aura.Sql</td>
+            <td class="parent">4. Version 2.x</td>
+            <td class="next">4.14. Aura.SqlSchema</td>
         </tr>
     </table>
 </nav>
