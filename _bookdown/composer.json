@@ -17,7 +17,13 @@
             "homepage": "https://github.com/bookdown/Bookdown.Project/contributors"
         }
     ],
+    "repositories": [
+	{
+		"type": "vcs",
+		"url":  "https://github.com/harikt/Bookdown.Bookdown"
+	}
+    ],
     "require": {
-        "bookdown/bookdown": "~1.0"
+        "bookdown/bookdown": "dev-patch-1"
     }
 }
