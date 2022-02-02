@@ -15,10 +15,18 @@ $.getJSON('/packages.json', function (data) {
                 return;
             }
 
-            var docLink =
-                '<a href="'
-                + '/packages/' + branch + '/' + name  + '">'
-                + name + '</a>';
+            if (branch < 3) {
+                var docLink =
+                    '<a href="'
+                    + info.github + '/tree/' + branch + '">'
+                    + name + '</a>';
+            } else {
+		// From 3.x onwards we have the bookdown docs
+                var docLink =
+                    '<a href="'
+                    + '/packages/' + branch + '/' + name  + '">'
+                    + name + '</a>';
+            }
 
             var versionLink =
                 '<a class="version" href="'
