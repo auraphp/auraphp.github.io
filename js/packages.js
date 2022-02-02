@@ -15,7 +15,7 @@ $.getJSON('/packages.json', function (data) {
                 return;
             }
 
-            if (branch < 3) {
+            if (branch < 3 || info.type == 'interface') {
                 var docLink =
                     '<a href="'
                     + info.github + '/tree/' + branch + '">'
