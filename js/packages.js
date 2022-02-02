@@ -15,9 +15,9 @@ $.getJSON('/packages.json', function (data) {
                 return;
             }
 
-            var branchLink =
+            var docLink =
                 '<a href="'
-                + info.github + '/tree/' + branch + '">'
+                + '/packages/' + branch + '/' + name  + '">'
                 + name + '</a>';
 
             var versionLink =
@@ -28,7 +28,7 @@ $.getJSON('/packages.json', function (data) {
 
             var row =
                 '<tr>'
-                + '<td>' + branchLink + '&nbsp;' + versionLink + '</td>'
+                + '<td>' + docLink + '&nbsp;' + versionLink + '</td>'
                 + '<td>' + info.description + '</td>'
                 + '</tr>';
 
