@@ -15,13 +15,13 @@ $.getJSON('/packages.json', function (data) {
                 return;
             }
 
-            if (branch < 3 || info.type == 'interface') {
+            if (branch < 2 || info.type == 'interface') {
                 var docLink =
                     '<a href="'
                     + info.github + '/tree/' + branch + '">'
                     + name + '</a>';
             } else {
-		// From 3.x onwards we have the bookdown docs
+		// From 2.x onwards we have the bookdown docs
                 var docLink =
                     '<a href="'
                     + '/packages/' + branch + '/' + name  + '">'
