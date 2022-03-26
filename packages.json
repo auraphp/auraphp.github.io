@@ -9,6 +9,13 @@
         }
     },
     "4.x": {
+        "Accept": {
+            "type": "library",
+            "version": "4.0.0",
+            "github": "https://github.com/auraphp/Aura.Accept",
+            "composer": "aura/accpet",
+            "description": "Provides content-negotiation tools using `Accept*` headers."
+        },
         "Di": {
             "type": "library",
             "version": "4.2.1",
