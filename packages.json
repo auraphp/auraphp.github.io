@@ -29,7 +29,7 @@
             "github": "https://github.com/auraphp/Aura.Marshal",
             "composer": "aura/sql",
             "description": "The Aura Marshal package is a data-object marshalling tool. It takes results from data sources and marshals those result sets into domain model objects of your own design, preserving data relationships along the way."
-        }
+        },
         "Sql": {
             "type": "library",
             "version": "4.0.0",
