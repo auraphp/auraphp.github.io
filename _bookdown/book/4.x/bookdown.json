@@ -3,6 +3,7 @@
     "content": [
         {"Accept": "https://raw.githubusercontent.com/auraphp/Aura.Accept/4.x/docs/_bookdown.json"},
         {"Di": "https://raw.githubusercontent.com/auraphp/Aura.Di/4.x/docs/_bookdown.json"},
+        {"Marshal": "https://raw.githubusercontent.com/auraphp/Aura.Marshal/4.x/docs/_bookdown.json"},
     	{"Sql": "https://raw.githubusercontent.com/auraphp/Aura.Sql/4.x/docs/_bookdown.json"}
     ],
     "tocDepth": 3

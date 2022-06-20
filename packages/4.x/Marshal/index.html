@@ -4,7 +4,7 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
-        <title>Aura for PHP : The fetch*() Methods</title>
+        <title>Aura for PHP : Aura.Marshal</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width">
@@ -79,83 +79,48 @@
 <nav class="navheader">
     <table>
         <tr>
-            <th colspan="3" class="curr">2.4.2. The fetch*() Methods</th>
+            <th colspan="3" class="curr">2.3. Aura.Marshal</th>
         </tr>
         <tr>
-            <td class="prev"><a href="/packages/4.x/Sql/getting-started.html">Getting Started</a></td>
-            <td class="parent">2.4. Aura.Sql</th>
-            <td class="next"><a href="/packages/4.x/Sql/yield.html">The yield*() Methods</a></td>
+            <td class="prev"><a href="/packages/4.x/Di/migrating.html">Migrating</a></td>
+            <td class="parent">2. Version 4.x</th>
+            <td class="next"><a href="/packages/4.x/Marshal/overview.html">Overview</a></td>
         </tr>
     </table>
 </nav>
-<div id="section-main"><h1 id="2-4-2">2.4.2. The <code>fetch*()</code> Methods</h1>
-<p><em>ExtendedPdo</em> comes with <code>fetch*()</code> methods to help reduce boilerplate code.
-Instead of issuing <code>prepare()</code>, a series of <code>bindValue()</code> calls, <code>execute()</code>,
-and then <code>fetch*()</code> on a <em>PDOStatement</em>, you can bind values and fetch results
-in one call on <em>ExtendedPdo</em> directly.  (The <code>fetch*()</code> methods use <code>perform()</code>
-internally, so quoting-and-replacement of array placeholders is supported.)</p>
-<pre><code class="language-php">$stm  = 'SELECT * FROM test WHERE foo = :foo AND bar = :bar';
-$bind = array('foo' =&gt; 'baz', 'bar' =&gt; 'dib');
 
-// the native PDO way to "fetch all" where the result is a sequential array
-// of rows, and the row arrays are keyed on the column names
-$pdo = new PDO(...);
-$sth = $pdo-&gt;prepare($stm);
-$sth-&gt;execute($bind);
-$result = $sth-&gt;fetchAll(PDO::FETCH_ASSOC);
-
-// the ExtendedPdo way to do the same kind of "fetch all"
-$pdo = new ExtendedPdo(...);
-$result = $pdo-&gt;fetchAll($stm, $bind);
-
-// fetchAssoc() returns an associative array of all rows where the key is the
-// first column, and the row arrays are keyed on the column names
-$result = $pdo-&gt;fetchAssoc($stm, $bind);
-
-// fetchGroup() is like fetchAssoc() except that the values aren't wrapped in
-// arrays. Instead, single column values are returned as a single dimensional
-// array and multiple columns are returned as an array of arrays
-// Set style to PDO::FETCH_NAMED when values are an array
-// (i.e. there are more than two columns in the select)
-$result = $pdo-&gt;fetchGroup($stm, $bind, $style = PDO::FETCH_COLUMN)
-
-// fetchObject() returns the first row as an object of your choosing; the
-// columns are mapped to object properties. an optional 4th parameter array
-// provides constructor arguments when instantiating the object.
-$result = $pdo-&gt;fetchObject($stm, $bind, 'ClassName', array('ctor_arg_1'));
-
-// fetchObjects() returns an array of objects of your choosing; the
-// columns are mapped to object properties. an optional 4th parameter array
-// provides constructor arguments when instantiating the object.
-$result = $pdo-&gt;fetchObjects($stm, $bind, 'ClassName', array('ctor_arg_1'));
-
-// fetchOne() returns the first row as an associative array where the keys
-// are the column names
-$result = $pdo-&gt;fetchOne($stm, $bind);
-
-// fetchPairs() returns an associative array where each key is the first
-// column and each value is the second column
-$result = $pdo-&gt;fetchPairs($stm, $bind);
-
-// fetchValue() returns the value of the first row in the first column
-$result = $pdo-&gt;fetchValue($stm, $bind);
-
-// fetchAffected() returns the number of affected rows
-$stm = "UPDATE test SET incr = incr + 1 WHERE foo = :foo AND bar = :bar";
-$row_count = $pdo-&gt;fetchAffected($stm, $bind);
-</code></pre>
-</div>
+<h1>2.3. Aura.Marshal</h1>
+<dl>
+<dt>2.3.1. <a href="/packages/4.x/Marshal/overview.html#2-3-1">Overview</a></dt>
+<dt>2.3.1. <a href="/packages/4.x/Marshal/overview.html#2-3-1">Example Schema</a></dt>
+<dt>2.3.2. <a href="/packages/4.x/Marshal/getting-started.html#2-3-2">Getting Started</a></dt>
+<dd><dl>
+<dt>2.3.2.1. <a href="/packages/4.x/Marshal/getting-started.html#2-3-2-1">Instantiation</a></dt>
+<dt>2.3.2.2. <a href="/packages/4.x/Marshal/getting-started.html#2-3-2-2">Defining Types</a></dt>
+<dt>2.3.2.3. <a href="/packages/4.x/Marshal/getting-started.html#2-3-2-3">Defining Relationships</a></dt>
+<dt>2.3.2.4. <a href="/packages/4.x/Marshal/getting-started.html#2-3-2-4">Loading Data</a></dt>
+<dt>2.3.2.5. <a href="/packages/4.x/Marshal/getting-started.html#2-3-2-5">Reading Data</a></dt>
+</dl></dd>
+<dt>2.3.3. <a href="/packages/4.x/Marshal/advanced-usage.html#2-3-3">Advanced Usage</a></dt>
+<dd><dl>
+<dt>2.3.3.1. <a href="/packages/4.x/Marshal/advanced-usage.html#2-3-3-1">Entity and Collection Builders</a></dt>
+<dt>2.3.3.2. <a href="/packages/4.x/Marshal/advanced-usage.html#2-3-3-2">Indexing</a></dt>
+<dt>2.3.3.3. <a href="/packages/4.x/Marshal/advanced-usage.html#2-3-3-3">Removing and Clearing Entities</a></dt>
+<dt>2.3.3.4. <a href="/packages/4.x/Marshal/advanced-usage.html#2-3-3-4">All-At-Once Definition</a></dt>
+</dl></dd>
+</dl>
+<div id="section-main"></div>
 <nav class="navfooter">
     <table>
         <tr>
-            <td class="prev"><a href="/packages/4.x/Sql/getting-started.html">Prev</a></td>
-            <td class="parent"><a href="/packages/4.x/Sql/">Up</a></td>
-            <td class="next"><a href="/packages/4.x/Sql/yield.html">Next</a></td>
+            <td class="prev"><a href="/packages/4.x/Di/migrating.html">Prev</a></td>
+            <td class="parent"><a href="/packages/4.x/">Up</a></td>
+            <td class="next"><a href="/packages/4.x/Marshal/overview.html">Next</a></td>
         </tr>
         <tr>
-            <td class="prev">2.4.1. Getting Started</td>
-            <td class="parent">2.4. Aura.Sql</td>
-            <td class="next">2.4.3. The yield*() Methods</td>
+            <td class="prev">2.2.12. Migrating</td>
+            <td class="parent">2. Version 4.x</td>
+            <td class="next">2.3.1. Overview</td>
         </tr>
     </table>
 </nav>

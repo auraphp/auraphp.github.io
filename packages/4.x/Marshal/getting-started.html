@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <title>Aura for PHP : Getting Started</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="/favicon/ms-icon-144x144.png">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="alternate" type="application/atom+xml" title="Atom" href="http://auraphp.com/blog/atom.xml" />
+
+        <link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="/favicon/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="/favicon/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="/favicon/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="/favicon/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="/favicon/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="/favicon/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+        <link rel="manifest" href="/favicon/manifest.json">
+
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/magula.min.css">
+        <link rel="stylesheet" href="/css/spacelab.css">
+        <link rel="stylesheet" href="/css/aura.css">
+        <link rel="stylesheet" href="/css/bootstrap-responsive.min.css">
+
+        <script src="/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        <script src="/js/vendor/jquery-1.9.1.min.js"></script>
+        <script src="/js/vendor/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+        <script src="/js/plugins.js"></script>
+
+    </head>
+
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- This code is taken from http://twitter.github.com/bootstrap/examples/hero.html -->
+
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="/">Aura for PHP</a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav">
+                            <li><a href="/about">About</a></li>
+                            <li class="active"><a href="/packages">Packages</a></li>
+                            <li><a href="/framework">Framework</a></li>
+                            <li><a href="/blog">Blog</a></li>
+                            <li><a href="/community">Community</a></li>
+                            <li><a href="/contributing">Contributing</a></li>
+                        </ul>
+                    </div><!--/.nav-collapse -->
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+
+            <script>hljs.initHighlightingOnLoad();</script>
+            
+<nav class="navheader">
+    <table>
+        <tr>
+            <th colspan="3" class="curr">2.3.2. Getting Started</th>
+        </tr>
+        <tr>
+            <td class="prev"><a href="/packages/4.x/Marshal/overview.html">Overview</a></td>
+            <td class="parent">2.3. Aura.Marshal</th>
+            <td class="next"><a href="/packages/4.x/Marshal/advanced-usage.html">Advanced Usage</a></td>
+        </tr>
+    </table>
+</nav>
+<div id="section-main"><h1 id="2-3-2">2.3.2. Getting Started</h1>
+<p>The Aura Marshal package is a data-object marshalling tool. It takes results
+from data sources and marshals those result sets into domain model objects of
+your own design, preserving data relationships along the way.</p>
+<h2 id="2-3-2-1">2.3.2.1. Instantiation</h2>
+<p>First, instantiate a <code>Manager</code> so we can define our <code>Type</code> objects and
+relationships.</p>
+<pre><code class="language-php">&lt;?php
+use Aura\Marshal\Manager;
+use Aura\Marshal\Type\Builder as TypeBuilder;
+use Aura\Marshal\Relation\Builder as RelationBuilder;
+
+$manager = new \Aura\Marshal\Manager(
+    new TypeBuilder,
+    new RelationBuilder
+);
+?&gt;
+</code></pre>
+<h2 id="2-3-2-2">2.3.2.2. Defining Types</h2>
+<p>Now we add definitions for each of the entity types in our domain model. These
+do not have to map directly to tables, but it is often the case that they do.
+Because Aura Marshal does not read schemas, we need to identify explicitly the
+primary key fields and the relationships (along with the relationship fields).</p>
+<p>First, let's set the basic definitions for each type in the domain model. In
+this case it turns out they all have the same primary key, so it's always
+<code>'id'</code>, but each could have a different primary key depending on your data
+source.</p>
+<pre><code class="language-php">&lt;?php
+$manager-&gt;setType('authors',    ['identity_field' =&gt; 'id']);
+$manager-&gt;setType('posts',      ['identity_field' =&gt; 'id']);
+$manager-&gt;setType('comments',   ['identity_field' =&gt; 'id']);
+$manager-&gt;setType('summaries',  ['identity_field' =&gt; 'id']);
+$manager-&gt;setType('tags',       ['identity_field' =&gt; 'id']);
+$manager-&gt;setType('posts_tags', ['identity_field' =&gt; 'id']);
+?&gt;
+</code></pre>
+<h2 id="2-3-2-3">2.3.2.3. Defining Relationships</h2>
+<p>Aura Marshal recognizes four kinds of relationships between types:</p>
+<ul>
+<li>
+<p><code>has_one</code>: A one-to-one relationship where the native entity is the owner of
+one foreign entity.</p>
+</li>
+<li>
+<p><code>belongs_to</code>: A many-to-one relationship where the native entity is owned by
+one foreign entity. (The foreign entity might be the owner of many other
+entities.)</p>
+</li>
+<li>
+<p><code>has_many</code>: A one-to-many relationship where the native entity is the owner
+of many foreign entities.</p>
+</li>
+<li>
+<p><code>has_many_through</code>: A many-to-many relationship where each native entity is
+linked to many foreign entities; at the same time, each foreign entity is
+linked to many native entities. This kind of relationship requires an
+association mapping type through which the native and foreign entities are
+linked to each other.</p>
+</li>
+</ul>
+<p>Let's add the simpler relationships to our <code>Manager</code> using the <code>setRelation()</code>
+method. The first parameter is the name of the type we're setting the
+relationship on, the second parameter is the field name the related data
+should be saved in (as well as the implicit foreign type), and the third
+parameter is an array of information about the relationship.</p>
+<pre><code class="language-php">&lt;?php
+// each author has many posts
+$manager-&gt;setRelation('authors', 'posts', [
+
+    // the kind of relationship
+    'relationship'  =&gt; 'has_many',
+
+    // the authors field to match against
+    'native_field'  =&gt; 'id',
+
+    // the posts field to match against
+    'foreign_field' =&gt; 'author_id',
+]);
+
+// each post belongs to one author
+$manager-&gt;setRelation('posts', 'author', [
+
+    // the kind of relationship
+    'relationship'  =&gt; 'belongs_to',
+
+    // normally the second param doubles as the foreign_type, but here
+    // we are using plural type names, so we need to specify the
+    // foreign_type explicitly
+    'foreign_type'  =&gt; 'authors',
+
+    // the posts field to match against
+    'native_field'  =&gt; 'author_id',
+
+    // the authors field to match against
+    'foreign_field' =&gt; 'id',
+]);
+
+// posts have one summary
+$manager-&gt;setRelation('posts', 'summary', [
+
+    // the kind of relationship
+    'relationship'  =&gt; 'has_one',
+
+    // the explicit foreign type
+    'foreign_type'  =&gt; 'summaries',
+
+    // the posts field to match against
+    'native_field'  =&gt; 'id',
+
+    // the summaries field to match against
+    'foreign_field' =&gt; 'post_id'
+]);
+
+// posts have many comments
+$manager-&gt;setRelation('posts', 'comments', [
+    // the kind of relationship
+    'relationship'  =&gt; 'has_many',
+
+    // the posts field to match against
+    'native_field'  =&gt; 'id',
+
+    // the comments field to match against
+    'foreign_field' =&gt; 'post_id'
+]);
+?&gt;
+</code></pre>
+<p>Now let's set up the more complex many-to-many relationship between posts and
+tags.</p>
+<pre><code class="language-php">&lt;?php
+// posts have many tags, as mapped through posts_tags
+$manager-&gt;setRelation('posts', 'tags', [
+
+    // the kind of relationship
+    'relationship' =&gt; 'has_many_through',
+
+    // the association mapping type that links posts and tags
+    'through_type' =&gt; 'posts_tags',
+
+    // the posts field that should map to the "posts" side of the
+    // association mapping type
+    'native_field' =&gt; 'id',
+
+    // the "posts" side of the association mapping type
+    'through_native_field' =&gt; 'post_id',
+
+    // the "tags" side of the association mapping type
+    'through_foreign_field' =&gt; 'tag_id',
+
+    // the tags field that should map to the "tags" side of the
+    // association mapping type
+    'foreign_field' =&gt; 'id',
+]);
+
+// tags have many posts, as mapped through posts_tags
+$manager-&gt;setRelation('tags', 'posts', [
+
+    // the kind of relationship
+    'relationship' =&gt; 'has_many_through',
+
+    // the association mapping type that links posts and tags
+    'through_type' =&gt; 'posts_tags',
+
+    // the tags field that should map to the "tags" side of the
+    // association mapping type
+    'native_field' =&gt; 'id',
+
+    // the "tags" side of the association mapping
+    'through_native_field' =&gt; 'tag_id',
+
+    // the "posts" side of the association mapping
+    'through_foreign_field' =&gt; 'post_id',
+
+    // the posts field that should map to the "posts" side of the
+    // association mapping
+    'foreign_field' =&gt; 'id',
+]);
+?&gt;
+</code></pre>
+<h2 id="2-3-2-4">2.3.2.4. Loading Data</h2>
+<p>Now that we have defined the <code>Type</code> objects and their relationships to each
+other in the <code>Manager</code>, we can load data into the <code>Type</code> objects. In the
+following example, we load data using <a href="https://github.com/auraphp/Aura.Sql">Aura SQL</a>,
+but any database access tool can be used.</p>
+<pre><code class="language-php">&lt;?php
+/**
+ * @var Aura\Sql\AdapterFactory $adapter_factory
+ */
+// instantiate a database adapter for MySQL
+$sql = $adapter_factory-&gt;newInstance(
+    'mysql',
+    [
+        'host'   =&gt; '127.0.0.1',
+        'dbname' =&gt; 'database_name',
+    ]
+    'user_name',
+    'pass_word'
+);
+
+// select the first 10 posts in the system
+$result = $sql-&gt;fetchAll('SELECT * FROM posts LIMIT 10');
+
+// load the results into the posts type object, and get back the
+// identity (primary key) values for the loaded results.
+$post_ids = $manager-&gt;posts-&gt;load($result);
+
+// select and load all the comments on all the posts at once.
+$result = $sql-&gt;fetchAll(
+    'SELECT * FROM comments WHERE post_id IN (:post_ids)',
+    [
+        'post_ids' =&gt; $post_ids,
+    ]
+);
+$manager-&gt;comments-&gt;load($result);
+?&gt;
+</code></pre>
+<p>Note that we are able to select all the comments for all the posts at once.
+This means that instead of issuing 10 queries to get comments (one for each
+blog post), we can issue a single query to get all comments at one time; the
+<code>Type</code> objects will wire up the related collections for us automatically as
+defined by the relationships. This helps us avoid the N+1 problem easily.
+Let's continue:</p>
+<pre><code class="language-php">&lt;?php
+// add the authors for the posts.  first, we need to know
+// the author_id values for all the posts so far ...
+$author_ids = $manager-&gt;posts-&gt;getFieldValues('author_id');
+
+// ... then we can query and load.
+$result = $sql-&gt;fetchAll(
+    'SELECT * FROM authors WHERE id IN (:author_ids)',
+    [
+        'author_ids' =&gt; $author_ids,
+    ]
+);
+$manager-&gt;authors-&gt;load($result);
+
+// query and load post summaries.
+$result = $sql-&gt;fetchAll(
+    'SELECT * FROM summaries WHERE post_id IN (:post_ids)',
+    [
+        'post_ids' =&gt; $post_ids,
+    ]
+);
+$manager-&gt;summaries-&gt;load($result);
+
+// query and load the association mapping type linking posts and tags
+$result = $sql-&gt;fetchAll(
+    'SELECT * FROM posts_tags WHERE post_id IN (:post_ids)',
+    [
+        'post_ids' =&gt; $post_ids,
+    ]
+);
+$manager-&gt;posts_tags-&gt;load($result);
+
+// finally, query and load all tags regardless of posts
+$result = $sql-&gt;fetchAll('SELECT * FROM tags');
+$manager-&gt;tags-&gt;load($result);
+?&gt;
+</code></pre>
+<h2 id="2-3-2-5">2.3.2.5. Reading Data</h2>
+<p>Now that the domain model has been loaded with data, we can read out the
+entity objects, with related data wired up for us automatically.</p>
+<pre><code class="language-php">&lt;?php
+// get a collection of the post IDs we just loaded
+$posts = $manager-&gt;posts-&gt;getCollection($post_ids);
+
+// loop through posts collection, getting a post entity each time
+foreach ($posts as $post) {
+
+    // address the native and foreign fields
+    echo "The post titled {$post-&gt;title} "
+       . "was written by {$post-&gt;author-&gt;name}. "
+       . "It has been read {$post-&gt;summary-&gt;read_sum} times "
+       . "and has " . count($post-&gt;comments) . " comments. ";
+
+    // loop through the tags
+    if ($post-&gt;tags-&gt;isEmpty()) {
+        echo "It has no tags.";
+    } else {
+        echo "It has these tags: ";
+        $tags = [];
+        foreach ($post-&gt;tags as $tag) {
+            $tags[] = $tag-&gt;name;
+        }
+        echo implode(', ', $tags);
+    }
+
+    echo PHP_EOL;
+}
+?&gt;
+</code></pre>
+</div>
+<nav class="navfooter">
+    <table>
+        <tr>
+            <td class="prev"><a href="/packages/4.x/Marshal/overview.html">Prev</a></td>
+            <td class="parent"><a href="/packages/4.x/Marshal/">Up</a></td>
+            <td class="next"><a href="/packages/4.x/Marshal/advanced-usage.html">Next</a></td>
+        </tr>
+        <tr>
+            <td class="prev">2.3.1. Overview</td>
+            <td class="parent">2.3. Aura.Marshal</td>
+            <td class="next">2.3.3. Advanced Usage</td>
+        </tr>
+    </table>
+</nav>
+
+            <hr />
+
+            <footer>
+                <p>&copy; 2011-2022, Aura for PHP
+                    <script type="text/javascript">
+                        var sc_project=9117595;
+                        var sc_invisible=0;
+                        var sc_security="b58cd28d";
+                        var scJsHost = (("https:" == document.location.protocol) ? "https://secure." : "http://www.");
+                        document.write("<sc"+"ript type='text/javascript' src='" + scJsHost+ "statcounter.com/counter/counter.js'></"+"script>");
+                    </script>
+                    <noscript><div class="statcounter"><a
+                        title="site stats"
+                        href="http://statcounter.com/free-web-stats/"
+                        target="_blank"><img class="statcounter"
+                        src="http://c.statcounter.com/9117595/0/b58cd28d/0/"
+                        alt="site stats"
+                    ></a></div></noscript>
+                </p>
+            </footer>
+
+        </div>
+
+    </body>
+</html>

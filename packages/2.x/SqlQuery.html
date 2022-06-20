@@ -95,12 +95,16 @@ although <a href="http://php.net/PDO">PDO</a> in general is recommended.</p>
 <h2 id="4-13-1">4.13.1. Foreword</h2>
 <h3 id="4-13-1-1">4.13.1.1. Installation</h3>
 <p>This library requires PHP 5.3.9 or later; we recommend using the latest available version of PHP as a matter of principle. It has no userland dependencies.</p>
+<blockquote>
+<p>CI ( From year 2022 ) is only testing from 5.4 onwards.
+Because of the dependency on yoast/phpunit-polyfills which require php &gt;=5.4.</p>
+</blockquote>
 <p>It is installable and autoloadable via Composer as <a href="https://packagist.org/packages/aura/sqlquery">aura/sqlquery</a>.</p>
 <p>Alternatively, <a href="https://github.com/auraphp/Aura.SqlQuery/releases">download a release</a> or clone this repository, then require or include its <em>autoload.php</em> file.</p>
 <h3 id="4-13-1-2">4.13.1.2. Quality</h3>
-<p><a href="https://scrutinizer-ci.com/g/auraphp/Aura.SqlQuery/?branch=2.x"><img src="https://scrutinizer-ci.com/g/auraphp/Aura.SqlQuery/badges/quality-score.png?b=2.x" alt="Scrutinizer Code Quality"></a>
-<a href="https://scrutinizer-ci.com/g/auraphp/Aura.SqlQuery/?branch=2.x"><img src="https://scrutinizer-ci.com/g/auraphp/Aura.SqlQuery/badges/coverage.png?b=2.x" alt="Code Coverage"></a>
-<a href="https://travis-ci.org/auraphp/Aura.SqlQuery"><img src="https://travis-ci.org/auraphp/Aura.SqlQuery.png?branch=2.x" alt="Build Status"></a></p>
+<p><a href="https://scrutinizer-ci.com/g/auraphp/Aura.SqlQuery/"><img src="https://scrutinizer-ci.com/g/auraphp/Aura.SqlQuery/badges/quality-score.png?b=2.x" alt="Scrutinizer Code Quality"></a>
+<a href="https://codecov.io/gh/auraphp/Aura.SqlQuery"><img src="https://codecov.io/gh/auraphp/Aura.SqlQuery/branch/2.x/graph/badge.svg?token=UASDouLxyc" alt="codecov"></a>
+<a href="https://github.com/auraphp/Aura.SqlQuery/actions/workflows/continuous-integration.yml"><img src="https://github.com/auraphp/Aura.SqlQuery/actions/workflows/continuous-integration.yml/badge.svg?branch=2.x" alt="Continuous Integration"></a></p>
 <p>To run the <a href="http://phpunit.de/manual/">PHPUnit</a> unit tests at the command line, issue <code>composer install</code> and then <code>vendor/bin/phpunit</code> at the package root. (This requires <a href="http://getcomposer.org/">Composer</a> to be available as <code>composer</code>.)</p>
 <p>This library attempts to comply with <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md">PSR-1</a>, <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md">PSR-2</a>, and <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md">PSR-4</a>. If
 you notice compliance oversights, please send a patch via pull request.</p>
