@@ -1,4 +1,20 @@
 {
+    "6.x": {
+        "Sql": {
+            "type": "library",
+            "version": "6.0.0",
+            "github": "https://github.com/auraphp/Aura.Sql",
+            "composer": "aura/sql",
+            "description": "A PDO extension that provides lazy connections, array quoting, query profiling, value binding, and convenience methods for common fetch styles. Because it extends PDO, existing code that uses PDO can use this without any changes to the existing code."
+        },
+        "Html": {
+            "type": "library",
+            "version": "6.0.0",
+            "github": "https://github.com/auraphp/Aura.Html",
+            "composer": "aura/html",
+            "description": "Provides HTML escapers and helpers, including form input helpers."
+        }
+    },
     "5.x": {
         "Sql": {
             "type": "library",
