@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <title>Aura for PHP : Aura.Html Tag Helpers</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="/favicon/ms-icon-144x144.png">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="alternate" type="application/atom+xml" title="Atom" href="http://auraphp.com/blog/atom.xml" />
+
+        <link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="/favicon/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="/favicon/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="/favicon/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="/favicon/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="/favicon/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="/favicon/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+        <link rel="manifest" href="/favicon/manifest.json">
+
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/magula.min.css">
+        <link rel="stylesheet" href="/css/spacelab.css">
+        <link rel="stylesheet" href="/css/aura.css">
+        <link rel="stylesheet" href="/css/bootstrap-responsive.min.css">
+
+        <script src="/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        <script src="/js/vendor/jquery-1.9.1.min.js"></script>
+        <script src="/js/vendor/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+        <script src="/js/plugins.js"></script>
+
+    </head>
+
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- This code is taken from http://twitter.github.com/bootstrap/examples/hero.html -->
+
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="/">Aura for PHP</a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav">
+                            <li><a href="/about">About</a></li>
+                            <li class="active"><a href="/packages">Packages</a></li>
+                            <li><a href="/framework">Framework</a></li>
+                            <li><a href="/blog">Blog</a></li>
+                            <li><a href="/community">Community</a></li>
+                            <li><a href="/contributing">Contributing</a></li>
+                        </ul>
+                    </div><!--/.nav-collapse -->
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+
+            <script>hljs.initHighlightingOnLoad();</script>
+            
+<nav class="navheader">
+    <table>
+        <tr>
+            <th colspan="3" class="curr">1.1.2. Aura.Html Tag Helpers</th>
+        </tr>
+        <tr>
+            <td class="prev"><a href="/packages/6.x/Html/getting-started.html">Getting Started</a></td>
+            <td class="parent">1.1. Aura.Html 6.x</th>
+            <td class="next"><a href="/packages/6.x/Html/form-helpers.html">Aura.Html Form Helpers</a></td>
+        </tr>
+    </table>
+</nav>
+<div id="section-main"><h1 id="1-1-2">1.1.2. Aura.Html Tag Helpers</h1>
+<p>Use a helper by calling it as a method on the <em>HelperLocator</em>. The available helpers are:</p>
+<ul>
+<li>
+<a href="#a">a</a> / anchor / aRaw / anchorRaw</li>
+<li><a href="#base">base</a></li>
+<li>
+<a href="#img">img</a> / image</li>
+<li><a href="#label">label</a></li>
+<li><a href="#links">links</a></li>
+<li><a href="#metas">metas</a></li>
+<li><a href="#ol">ol</a></li>
+<li>
+<a href="#scripts">scripts</a> / scriptsFoot</li>
+<li><a href="#styles">styles</a></li>
+<li><a href="#tag">tag</a></li>
+<li><a href="#title">title</a></li>
+<li><a href="#ul">ul</a></li>
+<li><a href="#void">void</a></li>
+</ul>
+<p>There is also a series of <a href="forms.html">helpers for forms</a>.</p>
+<h2 id="1-1-2-1">1.1.2.1. a</h2>
+<p>Helper for <code>&lt;a&gt;</code> tags.</p>
+<pre><code class="language-html+php">&lt;?php
+echo $helper-&gt;a(
+    'http://auraphp.com',       // (string) href
+    'Aura Project',             // (string) text
+    array('id' =&gt; 'aura-link')  // (array) optional attributes
+);
+?&gt;
+&lt;a href="http://auraphp.com" id="aura-link"&gt;Aura Project&lt;/a&gt;
+</code></pre>
+<p>Use <code>$helper-&gt;anchor()</code> as an alias for <code>$helper-&gt;a()</code>. All output will be escaped properly.</p>
+<p>To output the anchor text without escaped, use <code>$helper-&gt;aRaw()</code> or <code>$helper-&gt;anchorRaw()</code>.</p>
+<pre><code class="language-html+php">&lt;?php
+echo $helper-&gt;anchorRaw(
+    'http://auraphp.com',       // (string) href
+    '&lt;em&gt;Aura Project&lt;/em&gt;',    // (string) text (WILL NOT be escaped)
+    array('id' =&gt; 'aura-link')  // (array) optional attributes
+);
+?&gt;
+&lt;a href="http://auraphp.com" id="aura-link"&gt;&lt;em&gt;Aura Project&lt;/em&gt;&lt;/a&gt;
+</code></pre>
+<p>(The href and attributes will still be escaped properly.)</p>
+<h2 id="1-1-2-2">1.1.2.2. base</h2>
+<p>Helper for <code>&lt;base&gt;</code> tags.</p>
+<pre><code class="language-html+php">&lt;?php
+echo $helper-&gt;base(
+    '/base' // (string) href
+);
+?&gt;
+&lt;base href="/base" /&gt;
+</code></pre>
+<h2 id="1-1-2-3">1.1.2.3. img</h2>
+<p>Helper for <code>&lt;img&gt;</code> tags.</p>
+<pre><code class="language-html+php">&lt;?php
+echo $helper-&gt;img(
+    '/images/hello.jpg',            // (string) image href src
+    array('id' =&gt; 'image-id');      // (array) optional attributes
+?&gt;
+&lt;!-- if alt is not specified, uses the basename of the image href --&gt;
+&lt;img src="/images/hello.jpg" alt="hello" id="image-id"&gt;
+
+</code></pre>
+<h2 id="1-1-2-4">1.1.2.4. label</h2>
+<p>Helper for <code>&lt;label&gt;</code> tags.</p>
+<pre><code class="language-html+php">&lt;?php
+echo $helper-&gt;label(
+    'Label For Field',          // (string) label text
+    array('for' =&gt; 'field'));   // (array) optional attributes
+?&gt;
+&lt;label for="field"&gt;Label For Field&lt;/label&gt;
+
+&lt;?php
+// wrap html with the label before the html
+echo $helper-&gt;label('Foo: ')
+            -&gt;before($helper-&gt;input(array(
+                'type' =&gt; 'text',
+                'name' =&gt; 'foo',
+            )));
+?&gt;
+&lt;label&gt;Foo: &lt;input type="text" name="foo" value="" /&gt;&lt;/label&gt;
+
+&lt;?php
+// wrap html with the label after the html
+echo $helper-&gt;label(' (Foo)')
+            -&gt;after($helper-&gt;input(array(
+                'type' =&gt; 'text',
+                'name' =&gt; 'foo',
+            )));
+?&gt;
+&lt;label&gt;&lt;input type="text" name="foo" value="" /&gt; (Foo)&lt;/label&gt;
+</code></pre>
+<h2 id="1-1-2-5">1.1.2.5. links</h2>
+<p>Helper for a set of generic <code>&lt;link&gt;</code> tags. Build a set of links with <code>add()</code> then output them all at once.</p>
+<pre><code class="language-html+php">&lt;?php
+// build the array of links with add()
+$helper-&gt;links()-&gt;add(array(
+    'rel' =&gt; 'prev',                // (array) link attributes
+    'href' =&gt; '/path/to/prev',
+));
+
+$helper-&gt;links()-&gt;add(array(        // (array) link attributes
+    'rel' =&gt; 'next',
+    'href' =&gt; '/path/to/next',
+));
+
+// output the links
+echo $helper-&gt;links();
+?&gt;
+&lt;link rel="prev" href="/path/to/prev" /&gt;
+&lt;link ref="next" href="/path/to/next" /&gt;
+
+&lt;?php
+// alternatively, echo a chain of add() calls
+echo $helper-&gt;links()
+    -&gt;add(array(                    // (array) link attributes
+        'rel' =&gt; 'prev',
+        'href' =&gt; '/path/to/prev',
+    ))
+    -&gt;add(array(                    // (array) link attributes
+        'rel' =&gt; 'next',
+        'href' =&gt; '/path/to/next',
+    ));
+?&gt;
+
+&lt;link rel="prev" href="/path/to/prev" /&gt;
+&lt;link ref="next" href="/path/to/next" /&gt;
+</code></pre>
+<p>Finally, you can output a one-off <code>&lt;link&gt;</code> tag by echoing the helper directly
+with an array of attributes:</p>
+<pre><code class="language-html+php">&lt;?php
+echo $helper-&gt;links(array(
+    'rel' =&gt; 'prev',
+    'href' =&gt; '/path/to/prev',
+));
+?&gt;
+&lt;link rel="prev" href="/path/to/prev" /&gt;
+</code></pre>
+<h2 id="1-1-2-6">1.1.2.6. metas</h2>
+<p>Helper for a set of <code>&lt;meta&gt;</code> tags. Build a set of metas with <code>add*()</code> then output them all at once.</p>
+<pre><code class="language-html+php">&lt;?php
+// add an http-equivalent meta
+$helper-&gt;metas()-&gt;addHttp(
+    'Location',         // (string) header label
+    '/redirect/to/here' // (string) header value
+);
+
+// add a name meta
+$helper-&gt;metas()-&gt;addName(
+    'foo',              // the meta name
+    'bar'               // the meta content
+);
+
+// output the metas
+echo $helper-&gt;metas();
+?&gt;
+&lt;meta http-equiv="Location" content="/redirect/to/here"&gt;
+&lt;meta name="foo" content="bar"&gt;
+
+&lt;?php
+// alternatively, echo a chain of add calls
+echo $helper-&gt;metas()
+    -&gt;addHttp(
+        'Location',         // (string) header label
+        '/redirect/to/here' // (string) header value
+    )
+    -&gt;addName(
+        'foo',              // the meta name
+        'bar'               // the meta content
+    );
+?&gt;
+&lt;meta http-equiv="Location" content="/redirect/to/here"&gt;
+&lt;meta name="foo" content="bar"&gt;
+</code></pre>
+<p>Finally, you can output a one-off <code>&lt;meta&gt;</code> tag by echoing the helper directly
+with an array of attributes:</p>
+<pre><code class="language-html+php">&lt;?php
+echo $helper-&gt;metas(array(
+    'name' =&gt; 'foo',
+    'content' =&gt; 'bar',
+));
+?&gt;
+&lt;meta name="foo" content="bar"&gt;
+</code></pre>
+<h2 id="1-1-2-7">1.1.2.7. ol</h2>
+<p>Helper for <code>&lt;ol&gt;</code> tags with <code>&lt;li&gt;</code> items.  Build the set of items (both raw and escaped) then output them all at once.</p>
+<pre><code class="language-html+php">&lt;?php
+// start the list of items
+$helper-&gt;ol(array(                  // (array) optional attributes
+    'id' =&gt; 'test',
+));
+
+// add a single item to be escaped
+$helper-&gt;ol()-&gt;item(
+    'foo',                          // (string) the item text
+    array('id' =&gt; 'foo')            // (array) optional attributes
+);
+
+// add several items to be escaped
+$helper-&gt;ol()-&gt;items(array(         // (array) the items to add
+    'bar',                          // the item text, no item attributes
+    'baz' =&gt; array('id' =&gt; 'baz'),  // item text with item attributes
+));
+
+// add a single raw item not to be escaped
+$helper-&gt;ol()-&gt;rawItem(
+    '&lt;a href="/first"&gt;First&lt;/a&gt;',   // (string) the raw item html
+    array('id' =&gt; 'first')          // (array) optional attributes
+);
+
+// add several raw items not to be escaped
+$helper-&gt;ol()-&gt;rawItems(array(         // (array) the raw items to add
+    '&lt;a href="/prev"&gt;Prev&lt;/a&gt;',     // the item text, no item attributes
+    '&lt;a href="/next"&gt;Next&lt;/a&gt;',
+    '&lt;a href="/last"&gt;Last&lt;/a&gt;' =&gt; array('id' =&gt; 'last') // text and attributes
+));
+
+// output the list
+echo $helper-&gt;ol();
+?&gt;
+&lt;ol id="test"&gt;
+    &lt;li id="foo"&gt;foo&lt;/li&gt;
+    &lt;li&gt;bar&lt;/li&gt;
+    &lt;li id="baz"&gt;baz&lt;/li&gt;
+    &lt;li&gt;&lt;a href="/first"&gt;First&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="/pref"&gt;First&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="/next"&gt;First&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="/last"&gt;First&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</code></pre>
+<h2 id="1-1-2-8">1.1.2.8. scripts</h2>
+<p>Helper for a set of <code>&lt;script&gt;</code> tags. Build a set of script links, then output
+them all at once.</p>
+<pre><code class="language-html+php">&lt;?php
+// add a single script
+$helper-&gt;scripts()-&gt;add('/js/middle.js');
+
+// add another script after that one
+$helper-&gt;scripts()-&gt;add('/js/last.js');
+
+// add another at a specific priority order
+echo $helper-&gt;scripts()-&gt;add(
+    '/js/first.js',     // (string) the script src
+    50                  // (int) optional priority order (default 100)
+);
+
+// add a conditional script
+$helper-&gt;scripts()-&gt;addCond(
+    'ie6',              // (string) the condition
+    '/js/ie6.js',       // (string) the script src
+    25                  // (int) optional priority order (default 100)
+));
+
+// add an internal script
+$helper-&gt;scripts()-&gt;addInternal(
+    'alert("foo");',     // (string) script
+    1000                // (int) optional priority order (default 100)
+);
+
+// add an internal conditional script
+$helper-&gt;scripts()-&gt;addCondInternal(
+    'ie6',                // (string) the condition
+    'alert("ie6");',     // (string) script
+    1000                // (int) optional priority order (default 100)
+);
+
+// capture an internal script
+$helper-&gt;scripts()-&gt;beginInternal(
+    1000                // (int) optional priority order (default 100)
+);
+echo 'alert("captured")';
+$helper-&gt;scripts()-&gt;endInternal();
+
+// capture an internal conditional script
+$helper-&gt;scripts()-&gt;beginCondInternal(
+    'ie6',                    // (string) the condition
+    'alert("capture ie6");',  // (string) script
+    1000                      // (int) optional priority order (default 100)
+);
+echo 'alert("capture ie6")';
+$helper-&gt;scripts()-&gt;endInternal();
+
+// add a script tag with additional attributes
+// by passing an attribute array as the last parameter of any of the method
+$helper-&gt;scripts()-&gt;add(
+    'https://cdn.tld/foo.js',
+    100,
+    [
+        'async' =&gt; true,
+        'defer' =&gt; true,
+        'crossorigin' =&gt; 'anonymous',
+        'integrity' =&gt; 'sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo='
+    ]
+);
+
+?&gt;
+&lt;!--[if ie6]&gt;&lt;script src="/js/ie6.js" type="text/javascript"&gt;&lt;/script&gt;&lt;![endif]--&gt;
+&lt;script src="/js/first.js" type="text/javascript"&gt;&lt;/script&gt;
+&lt;script src="/js/middle.js" type="text/javascript"&gt;&lt;/script&gt;
+&lt;script src="/js/last.js" type="text/javascript"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;alert("foo");&lt;/script&gt;
+&lt;!--[if ie6]&gt;&lt;script type="text/javascript"&gt;alert("ie6");&lt;/script&gt;&lt;![endif]--&gt;
+&lt;script type="text/javascript"&gt;alert("captured");&lt;/script&gt;
+&lt;!--[if ie6]&gt;&lt;script type="text/javascript"&gt;alert("capture ie6");&lt;/script&gt;&lt;![endif]--&gt;
+&lt;script src="http://cdn.tld/foo.js" type="text/javascript" async defer crossorigin="anonymous" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="&gt;&lt;/script&gt;
+
+</code></pre>
+<blockquote>
+<p>N.b.: The <code>scriptsFoot()</code> helper works the same way, but is intended for placing a separate set of scripts at the end of the HTML body.</p>
+</blockquote>
+<p>Finally, you can output a one-off <code>&lt;script&gt;</code> tag by echoing the helper directly
+with the source string:</p>
+<pre><code class="language-html+php">&lt;?php
+echo $helper-&gt;scripts('/js/script.js');
+?&gt;
+&lt;script src="/js/script.js" type="text/javascript"&gt;&lt;/script&gt;
+</code></pre>
+<h2 id="1-1-2-9">1.1.2.9. styles</h2>
+<p>Helper for a set of <code>&lt;link&gt;</code> tags for stylesheets. Build a set of style links, then output them all at once. As with the <code>script</code> helper, you can optionally set the priority order for each stylesheet.</p>
+<pre><code class="language-html+php">&lt;?php
+// add a stylesheet link
+$helper-&gt;styles()-&gt;add(
+    '/css/middle.css',          // (string) the stylesheet href
+    array('media' =&gt; 'print')   // (array) optional attributes
+);
+
+// add another one after that
+$helper-&gt;styles()-&gt;add('/css/last.css');
+
+// add one at a specific priority order
+$helper-&gt;styles()-&gt;add(
+    '/css/first.css',           // (string) the stylesheet href
+    null,                       // (array) optional attributes
+    50                          // (int) optional priority order (default 100)
+);
+
+// add a conditional stylesheet
+$helper-&gt;styles()-&gt;addCond(
+    'ie6',                      // (string) the condition
+    '/css/ie6.css',             // (string) the stylesheet href
+    array('media' =&gt; 'print'),  // (array) optional attributes
+    25                          // (int) optional priority order (default 100)
+);
+
+// add an internal style
+$helper-&gt;styles()-&gt;addInternal(
+    '.foo{color:red;}', // (string) style
+    null,              // (array) optional attributes
+    1000              // (int) optional priority order (default 100)
+);
+
+// add an internal conditional style
+$helper-&gt;styles()-&gt;addCondInternal(
+    'ie6',                 // (string) the condition
+    '.foo{color:pink;}',  // (string) style
+    null,                // (array) optional attributes
+    1000                // (int) optional priority order (default 100)
+);
+
+// capture an internal style
+$helper-&gt;styles()-&gt;beginInternal(
+    null,                // (array) optional attributes
+    1000,               // (int) optional priority order (default 100)
+);
+echo '.bar{color:red;}';
+$helper-&gt;styles()-&gt;endInternal();
+
+// capture an internal conditional style
+$helper-&gt;styles()-&gt;beginCondInternal(
+    'ie6',                // (string) the condition
+    null,                // (array) optional attributes
+    1000                // (int) optional priority order (default 100)
+);
+echo '.bar{color:pink;}';
+$helper-&gt;styles()-&gt;endInternal();
+
+// output the stylesheet links
+echo $helper-&gt;styles();
+?&gt;
+&lt;!--[if ie6]&gt;&lt;link rel="stylesheet" href="/css/ie6.css" type="text/css" media="print" /&gt;&lt;![endif]--&gt;
+&lt;link rel="stylesheet" href="/css/first.css" type="text/css" media="screen" /&gt;
+&lt;link rel="stylesheet" href="/css/middle.css" type="text/css" media="print" /&gt;
+&lt;link rel="stylesheet" href="/css/last.css" type="text/css" media="screen" /&gt;
+&lt;style type="text/css" media="screen"&gt;.foo{color:red;}&lt;/style&gt;
+&lt;!--[if ie6]&gt;&lt;style type="text/css" media="screen"&gt;.foo{color:pink;}&lt;/style&gt;&lt;![endif]--&gt;
+&lt;style type="text/css" media="screen"&gt;.bar{color:red;}&lt;/style&gt;
+&lt;!--[if ie6]&gt;&lt;style type="text/css" media="screen"&gt;.bar{color:pink;}&lt;/style&gt;&lt;![endif]--&gt;
+?&gt;
+</code></pre>
+<p>Finally, you can output a one-off <code>&lt;script&gt;</code> tag by echoing the helper directly
+with the href string and optional attributes:</p>
+<pre><code class="language-html+php">&lt;?php
+echo $helper-&gt;styles('/css/screen.css');
+echo $helper-&gt;styles('/css/print.css', array(
+    'media' =&gt; 'print',
+))
+?&gt;
+&lt;link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen" /&gt;
+&lt;link rel="stylesheet" href="/css/print.css" type="text/css" media="print" /&gt;
+</code></pre>
+<h2 id="1-1-2-10">1.1.2.10. tag</h2>
+<p>A generic tag helper.</p>
+<pre><code class="language-html+php">&lt;?php
+echo $helper-&gt;tag(
+    'div',                  // (string) the tag name
+    array('id' =&gt; 'foo')    // (array) optional array of attributes
+);
+echo $helper-&gt;tag('/div');
+?&gt;
+&lt;div id="foo"&gt;&lt;/div&gt;
+</code></pre>
+<h2 id="1-1-2-11">1.1.2.11. title</h2>
+<p>Helper for the <code>&lt;title&gt;</code> tag.</p>
+<pre><code class="language-html+php">&lt;?php
+// escaped variations (can be intermixed with raw variations)
+
+// set the title
+$helper-&gt;title()-&gt;set('This &amp; That');
+
+// append the title
+$helper-&gt;title()-&gt;append(' &gt; Suf1');
+$helper-&gt;title()-&gt;append(' &gt; Suf2');
+
+// prepend the title
+$helper-&gt;title()-&gt;prepend('Pre1 &gt; ');
+$helper-&gt;title()-&gt;prepend('Pre2 &gt; ');
+
+echo $helper-&gt;title();
+?&gt;
+&lt;title&gt;Pre2 &amp;gt; Pre1 &amp;gt; This &amp;amp; That &amp;gt; Suf1 &amp;gt; Suf2&lt;/title&gt;
+
+&lt;?php
+// raw variations (can be intermixed with escaped variations):
+
+// set the title
+$helper-&gt;title()-&gt;set('This &amp; That');
+
+// append the title
+$helper-&gt;title()-&gt;append(' &gt; Suf1');
+$helper-&gt;title()-&gt;append(' &gt; Suf2');
+
+// prepend the title
+$helper-&gt;title()-&gt;prepend('Pre1 &gt; ');
+$helper-&gt;title()-&gt;prepend('Pre2 &gt; ');
+
+echo $helper-&gt;title();
+?&gt;
+&lt;title&gt;Pre2 &gt; Pre1 &gt; This &amp; That &gt; Suf1 &gt; Suf2&lt;/title&gt;
+</code></pre>
+<h3 id="1-1-2-11-1">1.1.2.11.1. Reading back the title value</h3>
+<p>Use <code>get()</code> to retrieve the HTML-escaped title string, and <code>getRaw()</code> to retrieve
+the original unescaped string. This is useful when you need to reuse the title
+in other contexts such as an <code>og:title</code> meta tag.</p>
+<pre><code class="language-html+php">&lt;?php
+// In a child view (page.php):
+$helper-&gt;title()-&gt;set('Café &amp; Bistro');
+
+// In the layout:
+$helper-&gt;metas()-&gt;add([
+    'name'     =&gt; 'title',
+    'property' =&gt; 'og:title',
+    'content'  =&gt; $helper-&gt;title()-&gt;getRaw(), // "Café &amp; Bistro" — plain text, safe for attributes
+]);
+
+$helper-&gt;title()-&gt;prepend('Site Name | ');
+
+echo $helper-&gt;title();
+?&gt;
+&lt;meta name="title" property="og:title" content="Café &amp;amp; Bistro" /&gt;
+&lt;title&gt;Site Name | Café &amp;amp; Bistro&lt;/title&gt;
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> <code>getRaw()</code> is only reliable when the title has been built exclusively
+using the escaped methods (<code>set()</code>, <code>append()</code>, <code>prepend()</code>). If you mix in the
+raw variants (<code>setRaw()</code>, <code>appendRaw()</code>, <code>prependRaw()</code>), the raw title will
+contain whatever HTML was passed to those methods (including any entities or
+markup), rather than plain text. In that case, <code>get()</code> remains correct for
+HTML output, but <code>getRaw()</code> should not be relied upon for non-HTML contexts.</p>
+</blockquote>
+<h2 id="1-1-2-12">1.1.2.12. ul</h2>
+<p>Helper for <code>&lt;ul&gt;</code> tags with <code>&lt;li&gt;</code> items.  Build the set of items (both raw and escaped) then output them all at once.</p>
+<pre><code class="language-html+php">&lt;?php
+// start the list of items
+$helper-&gt;ul(array(                  // (array) optional attributes
+    'id' =&gt; 'test',
+));
+
+// add a single item to be escaped
+$helper-&gt;ul()-&gt;item(
+    'foo',                          // (string) the item text
+    array('id' =&gt; 'foo')            // (array) optional attributes
+);
+
+// add several items to be escaped
+$helper-&gt;ul()-&gt;items(array(         // (array) the items to add
+    'bar',                          // the item text, no item attributes
+    'baz' =&gt; array('id' =&gt; 'baz'),  // item text with item attributes
+));
+
+// add a single raw item not to be escaped
+$helper-&gt;ul()-&gt;rawItem(
+    '&lt;a href="/first"&gt;First&lt;/a&gt;',   // (string) the raw item html
+    array('id' =&gt; 'first')          // (array) optional attributes
+);
+
+// add several raw items not to be escaped
+$helper-&gt;ul()-&gt;rawItems(array(      // (array) the raw items to add
+    '&lt;a href="/prev"&gt;Prev&lt;/a&gt;',     // the item text, no item attributes
+    '&lt;a href="/next"&gt;Next&lt;/a&gt;',
+    '&lt;a href="/last"&gt;Last&lt;/a&gt;' =&gt; array('id' =&gt; 'last') // text and attributes
+));
+
+// output the list
+echo $helper-&gt;ul();
+?&gt;
+&lt;ul id="test"&gt;
+    &lt;li id="foo"&gt;foo&lt;/li&gt;
+    &lt;li&gt;bar&lt;/li&gt;
+    &lt;li id="baz"&gt;baz&lt;/li&gt;
+    &lt;li&gt;&lt;a href="/first"&gt;First&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="/prev"&gt;Prev&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="/next"&gt;Next&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="/last"&gt;Last&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+<h2 id="1-1-2-13">1.1.2.13. void</h2>
+<p>Helper for self closing void tags.</p>
+<pre><code class="language-html+php">&lt;?php
+echo $helper-&gt;void('meta', ['itemprop' =&gt; 'duration', 'content' =&gt; 'T1M33S']);
+echo $helper-&gt;void('br');
+?&gt;
+&lt;meta itemprop="duration" content="T1M33S" /&gt;
+&lt;br  /&gt;
+</code></pre>
+</div>
+<nav class="navfooter">
+    <table>
+        <tr>
+            <td class="prev"><a href="/packages/6.x/Html/getting-started.html">Prev</a></td>
+            <td class="parent"><a href="/packages/6.x/Html/">Up</a></td>
+            <td class="next"><a href="/packages/6.x/Html/form-helpers.html">Next</a></td>
+        </tr>
+        <tr>
+            <td class="prev">1.1.1. Getting Started</td>
+            <td class="parent">1.1. Aura.Html 6.x</td>
+            <td class="next">1.1.3. Aura.Html Form Helpers</td>
+        </tr>
+    </table>
+</nav>
+
+            <hr />
+
+            <footer>
+                <p>&copy; 2011-2026, Aura for PHP
+                    <script type="text/javascript">
+                        var sc_project=9117595;
+                        var sc_invisible=0;
+                        var sc_security="b58cd28d";
+                        var scJsHost = (("https:" == document.location.protocol) ? "https://secure." : "http://www.");
+                        document.write("<sc"+"ript type='text/javascript' src='" + scJsHost+ "statcounter.com/counter/counter.js'></"+"script>");
+                    </script>
+                    <noscript><div class="statcounter"><a
+                        title="site stats"
+                        href="http://statcounter.com/free-web-stats/"
+                        target="_blank"><img class="statcounter"
+                        src="http://c.statcounter.com/9117595/0/b58cd28d/0/"
+                        alt="site stats"
+                    ></a></div></noscript>
+                </p>
+            </footer>
+
+        </div>
+
+    </body>
+</html>
